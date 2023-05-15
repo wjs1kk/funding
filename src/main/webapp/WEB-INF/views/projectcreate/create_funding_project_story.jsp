@@ -1,23 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<html lang="ko" class="">
-
+<!DOCTYPE html>
+<html>
 <head>
-	<title>와디즈 프로젝트만들기 스토리작성</title>
-
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
 	<link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 	<link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/1.d6f42453.chunk.css">
 	<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/6.eb91f874.chunk.css">
+	<!-- 05-15 김동욱 (스토리 상세페이지 작성 폼) 라이브러리 추가 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jodit.min.js"></script>
+	<!-- 05-15 김동욱 (스토리 상세페이지 작성 폼) 라이브러리 추가 -->
+	<link href="${pageContext.request.contextPath }/resources/css/jodit.min.css" rel="stylesheet" type="text/css">
+	
+	
 </head>
-
-<body class="ReactModal__Body--open" aria-hidden="true">
+<body class="" style="overflow: auto;">
+	<div data-react-modal-body-trap="" tabindex="0"
+		style="position: absolute; opacity: 0;"></div>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root">
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<div class="AppLayout_main__14bCi">
-				<jsp:include page="../inc/create_project_side.jsp"></jsp:include>
+				<div class="AppSidebarLayout_contents__2thGr" id="sidebar">
+					<div
+						class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
+						<div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
+							<span class="AppSidebarRewardProjectInfo_flag__2Ctnr">펀딩</span><span
+								class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
+						</div>
+						<a class="AppSidebarRewardProjectInfo_projectName__1Hf5o"
+							href="/web/campaign/detail/213862?preview=Y" target="_blank"
+							rel="nofollow noopener noreferrer">김동욱의<br>멋진 프로젝트
+						</a>
+						<button
+							class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_"
+							type="button">
+							<span><span class="Button_children__q9VCZ">프로젝트 번호
+									213862</span>
+							<svg viewBox="0 0 32 32" focusable="false" role="presentation"
+									class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN"
+									aria-hidden="true" style="width: 20px; height: 20px;">
+									<path
+										d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
+						</button>
+					</div>
+					<nav class="AppSidebarMenuList_container__199gJ">
+						<div class="AppSidebarMenuList_margin__3qjoc"></div>
+						<ul>
+							<li><a aria-current="page"
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL"
+								href="/studio/reward/213862/funding">프로젝트 관리<i
+									class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR"
+									aria-hidden="true"></i></a>
+							<ul class="AppSidebarRewardSubList_container__2zCmr">
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/plan">요금제 선택</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/screening">프로젝트 정보</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/baseinfo">기본 정보</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa AppSidebarMenuList_active__tbFuL active"
+										href="/studio/reward/213862/funding/story" aria-current="page">스토리
+											작성</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/condition">리워드 설계</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/policy">정책</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/makerInfo">메이커 정보</a></li>
+									<li><a
+										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
+										href="/studio/reward/213862/funding/contractInfo">대표자 및 정산
+											정보</a></li>
+								</ul></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/news">새소식<i
+									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">
+										프로젝트 공개 후 확인할 수 있어요.<br>(오픈예정 신청한 경우, 오픈예정 공개 후 가능)
+									</div></a></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/dashboard/coming-report">오픈예정 현황<i
+									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">
+										오픈예정 공개 후 확인할 수 있어요.<br>(오픈예정 서비스 신청자에 한함)
+									</div></a></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/dashboard/funding-report">프로젝트
+									현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
+										공개 후 확인할 수 있어요.</div>
+							</a></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/dashboard/payment-report">결제 현황<i
+									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
+										종료 후 확인할 수 있어요.</div></a></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/supporter">발송∙환불 관리<i
+									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
+										공개 후 확인할 수 있어요.</div></a></li>
+							<li><a
+								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
+								href="/studio/reward/213862/settlement">수수료∙정산 관리<i
+									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
+									aria-hidden="true"></i>
+								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
+										제출 후 확인할 수 있어요.</div></a></li>
+							<li><a class="AppSidebarMenuList_navLink__1FytL"
+								href="/studio/reward/213862/ads">광고·콘텐츠 제작</a></li>
+							<li><a class="AppSidebarMenuList_navLink__1FytL"
+								href="/studio/reward/213862/maker_service">메이커 서비스</a></li>
+							<li><a href="http://www.wadiz.kr/link/studio_makerguide"
+								class="AppSidebarMenuList_navLink__1FytL" target="blank"
+								rel="nofollow noopener noreferrer">자료 및 도움말</a></li>
+						</ul>
+					</nav>
+				</div>
 				<div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
 					<div id="container" class="ContentsLayout_container__11k-W">
 						<div class="FundingStoryContainer_container__33WY0">
@@ -33,7 +152,7 @@
 										<div class="Avatar_avatar__2DI5d Avatar_xs__i50kh">
 											<span></span>
 										</div>
-										<div>익명의 서포터 932</div>
+										<div>김동욱</div>
 									</div>
 									<div class="AppNavbar_buttonGroup__UcLfm">
 										<div class="PreviewButton_container__1P-_4">
@@ -199,7 +318,7 @@
 												</div>
 											</div>
 										</div>
-										<button onclick="location.href='./'"
+										<button
 											class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
 											type="button">
 											<span><span class="Button_children__q9VCZ">나가기</span></span>
@@ -230,89 +349,116 @@
 							<form
 								class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
 								<div class="Loader_loader__d9YUC Form_loader__1YJ5I"></div>
-								<section class="Section_container__3md8M" style="">
-									<div style="max-width: 630px;">
-										<div class="Section_header__1qwS7">
-											<h2 class="Section_title__ikPIm Section_isRequired__F8rij">소개
-												영상·사진 등록</h2>
-											<div class="Section_guide__2xeJO"></div>
-										</div>
-										<div class="Section_description__10Uwo">프로젝트의 맨 위에서 가장
-											먼저 보여 주고 싶은 영상이나 사진을 등록해 주세요.</div>
-										<div class="Section_content__3OkLZ">
-											<div class="StoryVideoOrImageField_container__1lnfV">
-												<label class="wz Radio_radio__15She radio"><input
-													name="representVisual" type="radio">
-												<div>소개 영상</div></label><label class="wz Radio_radio__15She radio"><input
-													name="representVisual" type="radio" checked="">
-												<div>소개 사진</div></label>
-												<div
-													class="field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
-													<div class="ImageFormField_buttonWrapper__su3pO">
-														<label
-															class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h"><button
-																type="button"
-																class="wz button gray ImageFileButton_button__3gAHD">
-																<i class="icon-camera-o" aria-hidden="true"></i>등록하기
-															</button>
-															<div class="wz input right ImageFileButton_input__1Dnch">
-																<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
-																	name="uploadFile" placeholder="" type="file" value="">
-															</div></label><em class="helper error"></em><em
-															class="helper ImageFormField_helper__3XC5c">2MB 이하의
-															JPG, JPEG, GIF, PNG 파일</em><em
-															class="helper ImageFormField_helper__3XC5c">해상도
-															630x400 픽셀 이상</em><em
-															class="helper ImageFormField_helper__3XC5c">여러 장
-															등록돼요.</em>
-													</div>
+								<section class="Section_container__3md8M"
+									style="max-width: 630px;">
+									<div style="" class="Section_header__1qwS7">
+										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
+											소개 영상·사진 등록
+											<div>
+												<button type="button" class="Tooltip_button__26Zz0"
+													aria-describedby="Tooltip_4">
+													<span class="Tooltip_label__1s0-R"></span><span
+														class="Tooltip_helpIconWrap__3JEtO"><svg
+															viewBox="0 0 40 40" focusable="false" role="presentation"
+															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
+															aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
+															<path
+																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
+														<svg viewBox="0 0 40 40" focusable="false"
+															role="presentation"
+															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
+															aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
+												</button>
+											</div>
+										</h2>
+										<div class="Section_guide__2xeJO"></div>
+									</div>
+									<div class="Section_description__10Uwo">프로젝트의 맨 위에서 가장 먼저
+										보여 주고 싶은 영상이나 사진을 등록해 주세요.</div>
+									<div class="Section_content__3OkLZ">
+										<div class="StoryVideoOrImageField_container__1lnfV">
+											<label class="wz Radio_radio__15She radio"><input
+												name="representVisual" type="radio">
+											<div>소개 영상</div></label><label class="wz Radio_radio__15She radio"><input
+												name="representVisual" type="radio" checked="">
+											<div>소개 사진</div></label>
+											<div
+												class="field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
+												<div class="ImageFormField_buttonWrapper__su3pO">
+													<label
+														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h"><button
+															type="button"
+															class="wz button gray ImageFileButton_button__3gAHD">
+															<i class="icon-camera-o" aria-hidden="true"></i>등록하기
+														</button>
+														<div class="wz input right ImageFileButton_input__1Dnch">
+															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
+																name="uploadFile" placeholder="" type="file" value="">
+														</div></label><em class="helper error"></em><em
+														class="helper ImageFormField_helper__3XC5c">2MB 이하의
+														JPG, JPEG, GIF, PNG 파일</em><em
+														class="helper ImageFormField_helper__3XC5c">해상도
+														630x400 픽셀 이상</em><em
+														class="helper ImageFormField_helper__3XC5c">여러 장
+														등록돼요.</em>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="Section_guideMessage__3XqrM">
-										<h4>
-											<a class="link"
-												href="https://www.wadiz.kr/link/picture_guide"
-												target="blank" rel="nofollow noopener noreferrer">소개
-												영상·사진</a>
-										</h4>
-										<p>영상과 사진을 모두 업로드하면 영상만 보여요.</p>
-										<br>
-										<h4>영상 썸네일 이미지</h4>
-										<p>와디즈에서는 썸네일을 지정할 수 없어요. 대신 YouTube, Vimeo 등에서 영상 썸네일을
-											지정할 수 있어요.</p>
 									</div>
 								</section>
-								<section class="Section_container__3md8M" style="">
-									<div style="max-width: 630px;">
-										<div class="Section_header__1qwS7">
-											<h2 class="Section_title__ikPIm Section_isRequired__F8rij">프로젝트
-												요약</h2>
-											<div class="Section_guide__2xeJO"></div>
-										</div>
-										<div class="Section_description__10Uwo">소개 영상이나 사진과 함께
-											보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.</div>
-										<div class="Section_content__3OkLZ">
-											<div class="StorySummaryField_container__25ePA">
-												<div
-													class="field Form_field__35I9T FormFieldTextarea_field__33Ncu">
-													<div class="wide column-2"></div>
-													<div class="wide column-4">
-														<div class="wz input">
-															<textarea placeholder="내용 입력" helper="[object Object]"
-																maxlength="100" name="storyInfo.coreMessage" rows="3"></textarea>
-														</div>
-														<em class="helper FormFieldTextarea_helper__3-iK_">100자
-															남음</em>
+								<section class="Section_container__3md8M"
+									style="max-width: 630px;">
+									<div style="" class="Section_header__1qwS7">
+										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
+											프로젝트 요약
+											<div>
+												<button type="button" class="Tooltip_button__26Zz0"
+													aria-describedby="Tooltip_5">
+													<span class="Tooltip_label__1s0-R"></span><span
+														class="Tooltip_helpIconWrap__3JEtO"><svg
+															viewBox="0 0 40 40" focusable="false" role="presentation"
+															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
+															aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
+															<path
+																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
+														<svg viewBox="0 0 40 40" focusable="false"
+															role="presentation"
+															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
+															aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
+												</button>
+											</div>
+										</h2>
+										<div class="Section_guide__2xeJO"></div>
+									</div>
+									<div class="Section_description__10Uwo">소개 영상이나 사진과 함께
+										보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.</div>
+									<div class="Section_content__3OkLZ">
+										<div class="StorySummaryField_container__25ePA">
+											<div
+												class="field Form_field__35I9T FormFieldTextarea_field__33Ncu">
+												<div class="wide column-2"></div>
+												<div class="wide column-4">
+													<div class="wz input">
+														<textarea placeholder="내용 입력" helper="[object Object]"
+															maxlength="100" name="storyInfo.coreMessage" rows="3"></textarea>
 													</div>
+													<em class="helper FormFieldTextarea_helper__3-iK_">100자
+														남음</em>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="Section_guideMessage__3XqrM">
-										<h4>이것만은 알아 주었으면 좋겠어요!</h4>
-										<p>서포터님들이 꼭 알아 주었으면 하는 리워드/프로젝트의 매력 포인트가 있다면 적어 주세요.</p>
 									</div>
 								</section>
 								<section class="Section_container__3md8M"
@@ -345,26 +491,20 @@
 														rel="noopener noreferrer" target="_blank"
 														download="건강보조기구 표시·광고 가이드라인.pdf">건강보조기구 표시·광고 가이드라인</a></li>
 												</ul>
-												<button type="button"
-													class="wz button gray StoryMakerAgreementInfo_agreeBtn__35dmv">
-													<i class="icon-check" aria-hidden="true"></i> 동의하기
-												</button>
+												<p class="StoryMakerAgreementInfo_registered__12WHo">
+													<span class="wz mini badge">동의 완료</span> 2023.05.15 12:34
+													<button type="button"
+														class="StoryMakerAgreementInfo_showTermBtn__24MFn">동의
+														내용 보기</button>
+												</p>
+												<p class="StoryMakerAgreementInfo_userInfo__2KP5n">
+													<span>김동욱</span>kdw940822@naver.com
+												</p>
 											</div>
 										</div>
 									</div>
 								</section>
-								<div
-									class="StoryMakerAgreementNoticeBox_container__3Klad StoryMakerAgreementNoticeBox_disable__1IRzx">
-									<div class="StoryMakerAgreementNoticeBox_noticeBox__2m-JH">
-										<p>
-											바로 위의 <em>스토리 광고 심의를</em> 동의해 주세요!<br>동의해야 스토리 작성이 가능해요.
-										</p>
-										<button type="button"
-											class="wz button less StoryMakerAgreementNoticeBox_closeBtn__3lr1X">
-											<i class="icon-close" aria-hidden="true"></i>
-										</button>
-									</div>
-								</div>
+								<div class="StoryMakerAgreementNoticeBox_container__3Klad"></div>
 								<section
 									class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
 									style="max-width: 720px;">
@@ -421,257 +561,25 @@
 										</div>
 										<div
 											class="WYSIWYGEditor_container__3MZO0 StoryEditorWrapperItemWeb_editor__3AvV7">
-											<button type="button"
-												class="wz button less WYSIWYGEditor_editButton__1MLjp">미리
-												보기</button>
-											<div
-												class="WYSIWYGEditor_editor__V4Eam WYSIWYGEditor_disabled__1KqRM">
+											<div class="WYSIWYGEditor_editor__V4Eam">
 												<div class="wysiwyg-editor">
-													<div class="fr-box fr-basic fr-top" role="application">
-														<div class="fr-toolbar fr-desktop fr-top fr-basic">
-															<div class="fr-btn-grp fr-float-left">
-																<button id="paragraphFormat-1" type="button"
-																	tabindex="-1" role="button"
-																	aria-controls="dropdown-menu-paragraphFormat-1"
-																	aria-expanded="false" aria-haspopup="true"
-																	title="문단 스타일"
-																	class="fr-command fr-btn fr-dropdown fr-selection"
-																	data-cmd="paragraphFormat">
-																	<span style="width: 80px">문단 스타일</span>
-																</button>
-																<div id="dropdown-menu-paragraphFormat-1"
-																	class="fr-dropdown-menu" role="listbox"
-																	aria-labelledby="paragraphFormat-1" aria-hidden="true">
-																	<div class="fr-dropdown-wrapper" role="presentation">
-																		<div class="fr-dropdown-content" role="presentation">
-																			<ul class="fr-dropdown-list" role="presentation">
-																				<li role="presentation"><h1
-																						style="padding: 0 !important; margin: 0 !important; border: 0 !important; background-color: transparent !important; font-weight: bold !important; font-size: 2em !important;"
-																						role="presentation">
-																						<a class="fr-command" tabindex="-1" role="option"
-																							data-cmd="paragraphFormat" data-param1="H1"
-																							title="대제목 1">대제목 1</a>
-																					</h1></li>
-																				<li role="presentation"><h2
-																						style="padding: 0 !important; margin: 0 !important; border: 0 !important; background-color: transparent !important; font-weight: bold !important; font-size: 1.5em !important;"
-																						role="presentation">
-																						<a class="fr-command" tabindex="-1" role="option"
-																							data-cmd="paragraphFormat" data-param1="H2"
-																							title="대제목 2">대제목 2</a>
-																					</h2></li>
-																				<li role="presentation"><h3
-																						style="padding: 0 !important; margin: 0 !important; border: 0 !important; background-color: transparent !important; font-weight: bold !important; font-size: 1.17em !important;"
-																						role="presentation">
-																						<a class="fr-command" tabindex="-1" role="option"
-																							data-cmd="paragraphFormat" data-param1="H3"
-																							title="대제목 3">대제목 3</a>
-																					</h3></li>
-																				<li role="presentation"><h4
-																						style="padding: 0 !important; margin: 0 !important; border: 0 !important; background-color: transparent !important; font-weight: bold !important; font-size: 15px !important;"
-																						role="presentation">
-																						<a class="fr-command" tabindex="-1" role="option"
-																							data-cmd="paragraphFormat" data-param1="H4"
-																							title="소제목">소제목</a>
-																					</h4></li>
-																				<li role="presentation"><p
-																						style="padding: 0 !important; margin: 0 !important; border: 0 !important; background-color: transparent !important; font-size: 15px"
-																						role="presentation">
-																						<a class="fr-command" tabindex="-1" role="option"
-																							data-cmd="paragraphFormat" data-param1="N"
-																							title="본문">본문</a>
-																					</p></li>
-																			</ul>
-																		</div>
-																	</div>
-																</div>
-																<button id="bold-1" type="button" tabindex="-1"
-																	role="button" aria-pressed="false" title="굵게 (⌘B)"
-																	class="fr-command fr-btn" data-cmd="bold">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M15.25,11.8h0A3.68,3.68,0,0,0,17,9a3.93,3.93,0,0,0-3.86-4H6.65V19h7a3.74,3.74,0,0,0,3.7-3.78V15.1A3.64,3.64,0,0,0,15.25,11.8ZM8.65,7h4.2a2.09,2.09,0,0,1,2,1.3,2.09,2.09,0,0,1-1.37,2.61,2.23,2.23,0,0,1-.63.09H8.65Zm4.6,10H8.65V13h4.6a2.09,2.09,0,0,1,2,1.3,2.09,2.09,0,0,1-1.37,2.61A2.23,2.23,0,0,1,13.25,17Z"></path>
-    </svg> <label aria-hidden="true">굵게</label>
-																	</i> <span class="fr-sr-only">굵게</span>
-																</button>
-																<button id="underline-1" type="button" tabindex="-1"
-																	role="button" aria-pressed="false" title="밑줄 (⌘U)"
-																	class="fr-command fr-btn" data-cmd="underline">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M19,20v2H5V20Zm-3-6.785a4,4,0,0,1-5.74,3.4A3.75,3.75,0,0,1,8,13.085V5.005H6v8.21a6,6,0,0,0,8,5.44,5.851,5.851,0,0,0,4-5.65v-8H16ZM16,5v0h2V5ZM8,5H6v0H8Z"></path>
-    </svg> <label aria-hidden="true">밑줄</label>
-																	</i> <span class="fr-sr-only">밑줄</span>
-																</button>
-																<button id="quote-1" type="button" tabindex="-1"
-																	role="button" title="인용" class="fr-command fr-btn"
-																	data-cmd="quote">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M10.31788,5l.93817,1.3226A12.88271,12.88271,0,0,0,8.1653,9.40125a5.54242,5.54242,0,0,0-.998,3.07866v.33733q.36089-.04773.66067-.084a4.75723,4.75723,0,0,1,.56519-.03691,2.87044,2.87044,0,0,1,2.11693.8427,2.8416,2.8416,0,0,1,.8427,2.09274,3.37183,3.37183,0,0,1-.8898,2.453A3.143,3.143,0,0,1,8.10547,19,3.40532,3.40532,0,0,1,5.375,17.7245,4.91156,4.91156,0,0,1,4.30442,14.453,9.3672,9.3672,0,0,1,5.82051,9.32933,14.75716,14.75716,0,0,1,10.31788,5Zm8.39243,0,.9369,1.3226a12.88289,12.88289,0,0,0-3.09075,3.07865,5.54241,5.54241,0,0,0-.998,3.07866v.33733q.33606-.04773.63775-.084a4.91773,4.91773,0,0,1,.58938-.03691,2.8043,2.8043,0,0,1,2.1042.83,2.89952,2.89952,0,0,1,.80578,2.10547,3.42336,3.42336,0,0,1-.86561,2.453A3.06291,3.06291,0,0,1,16.49664,19,3.47924,3.47924,0,0,1,13.742,17.7245,4.846,4.846,0,0,1,12.64721,14.453,9.25867,9.25867,0,0,1,14.17476,9.3898,15.26076,15.26076,0,0,1,18.71031,5Z"></path>
-    </svg> <label aria-hidden="true">인용</label>
-																	</i> <span class="fr-sr-only">인용</span>
-																</button>
-																<button id="textColor-1" type="button" tabindex="-1"
-																	role="button" title="색상" class="fr-command fr-btn"
-																	data-cmd="textColor" data-popup="true">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M15.2,13.494s-3.6,3.9-3.6,6.3a3.65,3.65,0,0,0,7.3.1v-.1C18.9,17.394,15.2,13.494,15.2,13.494Zm-1.47-1.357.669-.724L12.1,5h-2l-5,14h2l1.43-4h2.943A24.426,24.426,0,0,1,13.726,12.137ZM11.1,7.8l1.86,5.2H9.244Z"></path>
-    </svg> <label aria-hidden="true">색상</label>
-																	</i> <span class="fr-sr-only">색상</span>
-																</button>
-																<button id="highlighter-1" type="button" tabindex="-1"
-																	role="button" title="형광펜" class="fr-command fr-btn"
-																	data-cmd="highlighter">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M12.6,6.4l4.2,4.2l-8.5,8.5L3.2,20l0.9-5.1L12.6,6.4z M15,4l4.2,4.2l-1.8,1.8l-4.2-4.2L15,4z M10.4,18.4h10.4V20H10.4V18.4z"></path>
-    </svg> <label aria-hidden="true">형광펜</label>
-																	</i> <span class="fr-sr-only">형광펜</span>
-																</button>
-																<button id="align-1" type="button" tabindex="-1"
-																	role="button" aria-controls="dropdown-menu-align-1"
-																	aria-expanded="false" aria-haspopup="true" title="정렬"
-																	class="fr-command fr-btn fr-dropdown" data-cmd="align">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M3,18h18v-2H3V18z M3,11v2h18v-2H3z M3,6v2h18V6H3z"></path>
-    </svg> <label aria-hidden="true">정렬</label>
-																	</i> <span class="fr-sr-only">정렬</span>
-																</button>
-																<div id="dropdown-menu-align-1" class="fr-dropdown-menu"
-																	role="listbox" aria-labelledby="align-1"
-																	aria-hidden="true">
-																	<div class="fr-dropdown-wrapper" role="presentation">
-																		<div class="fr-dropdown-content" role="presentation">
-																			<ul class="fr-dropdown-list" role="presentation">
-																				<li role="presentation"><a
-																					class="fr-command fr-title" tabindex="-1"
-																					role="option" data-cmd="align"
-																					data-param1="
-        left" title="왼쪽 정렬"> <i
-																						aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M3,18h6v-2H3V18z M3,11v2h12v-2H3z M3,6v2h18V6H3z"></path>
-    </svg> <label aria-hidden="true">왼쪽 정렬</label>
-																					</i> <span class="fr-sr-only"> 왼쪽 정렬</span></a></li>
-																				<li role="presentation"><a
-																					class="fr-command fr-title" tabindex="-1"
-																					role="option" data-cmd="align"
-																					data-param1="
-        center" title="가운데 정렬"> <i
-																						aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M9,18h6v-2H9V18z M6,11v2h12v-2H6z M3,6v2h18V6H3z"></path>
-    </svg> <label aria-hidden="true">가운데 정렬</label>
-																					</i> <span class="fr-sr-only"> 가운데 정렬</span></a></li>
-																				<li role="presentation"><a
-																					class="fr-command fr-title" tabindex="-1"
-																					role="option" data-cmd="align"
-																					data-param1="
-        right" title="오른쪽 정렬"> <i
-																						aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M15,18h6v-2h-6V18z M9,11v2h12v-2H9z M3,6v2h18V6H3z"></path>
-    </svg> <label aria-hidden="true">오른쪽 정렬</label>
-																					</i> <span class="fr-sr-only"> 오른쪽 정렬</span></a></li>
-																				<li role="presentation"><a
-																					class="fr-command fr-title" tabindex="-1"
-																					role="option" data-cmd="align"
-																					data-param1="
-        justify" title="양쪽 정렬"> <i
-																						aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M3,18h18v-2H3V18z M3,11v2h18v-2H3z M3,6v2h18V6H3z"></path>
-    </svg> <label aria-hidden="true">양쪽 정렬</label>
-																					</i> <span class="fr-sr-only"> 양쪽 정렬</span></a></li>
-																			</ul>
-																		</div>
-																	</div>
-																</div>
-																<button id="formatOL-1" type="button" tabindex="-1"
-																	role="button" title="숫자 목록" class="fr-command fr-btn"
-																	data-cmd="formatOL">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M2.5,16h2v.5h-1v1h1V18h-2v1h3V15h-3Zm1-7h1V5h-2V6h1Zm-1,2H4.3L2.5,13.1V14h3V13H3.7l1.8-2.1V10h-3Zm5-5V8h14V6Zm0,12h14V16H7.5Zm0-5h14V11H7.5Z"></path>
-    </svg> <label aria-hidden="true">숫자 목록</label>
-																	</i> <span class="fr-sr-only">숫자 목록</span>
-																</button>
-																<button id="formatUL-1" type="button" tabindex="-1"
-																	role="button" title="점 목록" class="fr-command fr-btn"
-																	data-cmd="formatUL">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M4,10.5c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5S4.8,10.5,4,10.5z M4,5.5C3.2,5.5,2.5,6.2,2.5,7  S3.2,8.5,4,8.5S5.5,7.8,5.5,7S4.8,5.5,4,5.5z M4,15.5c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5S4.8,15.5,4,15.5z   M7.5,6v2h14V6H7.5z M7.5,18h14v-2h-14V18z M7.5,13h14v-2h-14V13z"></path>
-    </svg> <label aria-hidden="true">점 목록</label>
-																	</i> <span class="fr-sr-only">점 목록</span>
-																</button>
-																<button id="insertHR-1" type="button" tabindex="-1"
-																	role="button" title="구분선" class="fr-command fr-btn"
-																	data-cmd="insertHR">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path d="M5,12h14 M19,11H5v2h14V11z"></path>
-    </svg> <label aria-hidden="true">구분선</label>
-																	</i> <span class="fr-sr-only">구분선</span>
-																</button>
-																<button id="insertLink-1" type="button" tabindex="-1"
-																	role="button" title="링크 (⌘K)" class="fr-command fr-btn"
-																	data-cmd="insertLink" data-popup="true">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M11,17H7A5,5,0,0,1,7,7h4V9H7a3,3,0,0,0,0,6h4ZM17,7H13V9h4a3,3,0,0,1,0,6H13v2h4A5,5,0,0,0,17,7Zm-1,4H8v2h8Z"></path>
-    </svg> <label aria-hidden="true">링크</label>
-																	</i> <span class="fr-sr-only">링크</span>
-																</button>
-																<button id="insertImage-1" type="button" tabindex="-1"
-																	role="button" title="이미지 (⌘P)"
-																	class="fr-command fr-btn" data-cmd="insertImage"
-																	data-popup="true">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M14.2,11l3.8,5H6l3-3.9l2.1,2.7L14,11H14.2z M8.5,11c0.8,0,1.5-0.7,1.5-1.5S9.3,8,8.5,8S7,8.7,7,9.5C7,10.3,7.7,11,8.5,11z   M22,6v12c0,1.1-0.9,2-2,2H4c-1.1,0-2-0.9-2-2V6c0-1.1,0.9-2,2-2h16C21.1,4,22,4.9,22,6z M20,8.8V6H4v12h16V8.8z"></path>
-    </svg> <label aria-hidden="true">이미지</label>
-																	</i> <span class="fr-sr-only">이미지</span>
-																</button>
-																<button id="insertVideo-1" type="button" tabindex="-1"
-																	role="button" title="동영상" class="fr-command fr-btn"
-																	data-cmd="insertVideo" data-popup="true">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M15,8v8H5V8H15m2,2.5V7a1,1,0,0,0-1-1H4A1,1,0,0,0,3,7V17a1,1,0,0,0,1,1H16a1,1,0,0,0,1-1V13.5l2.29,2.29A1,1,0,0,0,21,15.08V8.91a1,1,0,0,0-1.71-.71Z"></path>
-    </svg> <label aria-hidden="true">동영상</label>
-																	</i> <span class="fr-sr-only">동영상</span>
-																</button>
-																<button id="insertTable-1" type="button" tabindex="-1"
-																	role="button" title="표" class="fr-command fr-btn"
-																	data-cmd="insertTable" data-popup="true">
-																	<i aria-hidden="true"> <svg viewBox="0 0 24 24">
-      <path
-																				d="M20,5H4C2.9,5,2,5.9,2,7v2v1.5v3V15v2c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2v-2v-1.5v-3V9V7C22,5.9,21.1,5,20,5z M9.5,13.5v-3  h5v3H9.5z M14.5,15v2.5h-5V15H14.5z M9.5,9V6.5h5V9H9.5z M3.5,7c0-0.3,0.2-0.5,0.5-0.5h4V9H3.5V7z M3.5,10.5H8v3H3.5V10.5z M3.5,17  v-2H8v2.5H4C3.7,17.5,3.5,17.3,3.5,17z M20.5,17c0,0.3-0.2,0.5-0.5,0.5h-4V15h4.5V17z M20.5,13.5H16v-3h4.5V13.5z M16,9V6.5h4  c0.3,0,0.5,0.2,0.5,0.5v2H16z"></path>
-    </svg> <label aria-hidden="true">표</label>
-																	</i> <span class="fr-sr-only">표</span>
-																</button>
-															</div>
-															<div class="fr-newline"></div>
-														</div>
-														<div class="fr-wrapper show-placeholder" dir="auto"
-															style="height: 600px; overflow: auto;">
-															<div style="min-height: 600px;"
-																class="fr-element fr-view fr-element-scroll-visible"
-																dir="auto" contenteditable="true" aria-disabled="false"
-																spellcheck="true">
-																<p>
-																	<br>
-																</p>
-															</div>
-															<span class="fr-placeholder"
-																style="font-size: 16px; line-height: 28px; margin-top: 12px; padding-top: 20px; padding-left: 20px; margin-left: 0px; padding-right: 20px; margin-right: 0px; text-align: left;">내용을
-																입력해 주세요.</span>
-														</div>
-														<div class="fr-second-toolbar">
-															<span class="fr-counter"
-																style="bottom: 1px; margin-right: 8px;">글자 수 : 0</span>
-														</div>
-													</div>
+
+													<!--  05-15 김동욱 스토리 상세페이지 관련 폼 (jodit 라이브러리 추가) -->
+													<textarea id="project_content" name="project_content">
+													</textarea>
+													<script>
+														var editor = new Jodit('#project_content', {
+														  uploader: {
+														    insertImageAsBase64URI: true,
+														    url: 'path/to/image/upload/endpoint'
+														  }
+														});
+													</script>
+
 												</div>
 											</div>
 										</div>
+										<em class="helper error">필수 항목을 입력해 주세요.</em>
 									</div>
 								</section>
 								<div class="StoryEditorForComingWrapper_container__1cngW">
@@ -740,6 +648,5 @@
 			<div class="Toast_content__G-bTq"></div>
 		</div>
 	</div>
-
 </body>
 </html>
