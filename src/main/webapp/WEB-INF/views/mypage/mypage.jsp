@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
 
+<!-- 서포터/메이터 탭 클릭시 화면전환 -->
+<script type="text/javascript">
+function supporter() {
+  window.location.href = 'supporter';
+}
+function maker() {
+  window.location.href = 'maker';
+}
+</script>
+
 </head>
 <body>
 	<div id="page-container">
@@ -24,22 +34,12 @@
 						<div class="MyWadizPage_popperBox__113hj">
 							<div class="MyWadizHeader_wadizHeader__8fJ9f">
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizHeader_switch__2WQSt" role="tablist">
-									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true"
+									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true" onclick="supporter()"
 										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ MyWadizUserTypeSwitch_active__dwn-k"></button>
-									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false"
+									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false" onclick="maker()"
 										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"></button>
 								</div>
 							</div>
-<!-- 							<div class="PopperRenew_container__1PprA PopperRenew_hasOutsideChildren__3F_zW"> -->
-<!-- 								<div class="PopperRenew_popperContainer__2aDcn MyWadizPage_popperContent__3LnCT PopperRenew_bottom-right__3C1jr PopperRenew_fixed__295ce"> -->
-<!-- 									<div class="PopperRenew_popperBox__14vki PopperRenew_whiteMode__1YNfF"> -->
-<!-- 										<div class="PopperRenew_arrow__1XC5N" aria-hidden="true"></div> -->
-<!-- 										<div class="PopperRenew_popperContent__1wOqH" role="tooltip" id="Popper_9"> -->
-<!-- 											서포터 ↔ 메이커 모드를 전환해서<br>사용해 보세요 -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 						</div>
 						<div class="MyWadizPage_contentsWrapper__1dzMJ">
 							<div class="MyWadizSupporter_supporterMode__2XDQZ"
@@ -140,7 +140,7 @@
 										<div>
 											<ul>
 												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="/web/social/followingmaker">
+													<a href="follow">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path fill="none" d="M0 0h40v40H0z"></path>
