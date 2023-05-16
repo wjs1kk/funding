@@ -2,11 +2,20 @@ package com.itwillbs.funding.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.itwillbs.funding.service.MemberService;
+import com.itwillbs.funding.service.ProjectCreateService;
+
 @Controller
 public class ProjectCreateController {
+	
+	//05-16 김동욱 projectCreateService 추가
+	@Autowired
+	private ProjectCreateService projectCreateService;
+	
 	@GetMapping("intro")
 	public String intro(HttpSession session) {
 		if(session.getAttribute("member_idx") == null) {
@@ -48,4 +57,18 @@ public class ProjectCreateController {
 	public String create_funding_project_baseInfo() {
 		return "projectcreate/create_funding_project_baseInfo";
 	}
+	// 05-16 김동욱 리워드 설계 페이지 추가
+	@GetMapping("project/reward")
+	public String create_funding_project_reward() {
+		return "projectcreate/create_funding_project_reward";
+	}
+	//05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성
+	@GetMapping("projectCreate")
+	public String createFundingProject(HttpSession session) {
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		System.out.println("member_idx : " + member_idx);
+		int insertCount = projectCreateService.createFundingProject(member_idx);
+		return "redirect:/intro";
+	}
+	
 }

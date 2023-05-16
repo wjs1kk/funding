@@ -14,7 +14,6 @@
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
 		style="position: absolute; opacity: 0;"></div>
-	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root">
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<div class="AppNavbar_container__5uOnI">
@@ -269,8 +268,9 @@
 												<div
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
+													<!-- 05-16 김동욱 리워드 설계 페이지 추가 -->
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="#"><button
+													href="reward"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>

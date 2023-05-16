@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko" class="scroll-top">
 <head>
 <link rel="stylesheet" href="resources/css/mypage.css">
@@ -27,8 +28,10 @@
 						<div class="MyWadizPage_popperBox__113hj">
 							<div class="MyWadizHeader_wadizHeader__8fJ9f">
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizUserTypeSwitch_isMaker__2h2K4 MyWadizHeader_switch__2WQSt" role="tablist">
+									<!-- 05-16 김동욱 서포터 페이지로 이동하는 href 추가 -->
 									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="false"
-										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ"></button>
+										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ"
+										onclick="location.href = 'supporter'"></button>
 									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="true"
 										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T MyWadizUserTypeSwitch_active__dwn-k"></button>
 								</div>
@@ -111,17 +114,29 @@
 													<strong class="MyWadizMyProject_title__2cowP">만든 프로젝트<span>3</span> </strong> 
 													<a class="MyWadizMyProject_more__1FOsj" href="/web/wmypage/myfunding/makingrewardlist">더보기</a>
 													<ul class="MyWadizMyProject_hideScroll__uQ06T">
-														<li>
-															<a class="CardType_projectCard__2S8_G CardType_projectCardB__PatIP MyWadizMyProject_defaultImage__Tr8wd"
-																href="/studio/reward/213037?v=plan">
-																<article>
-																	<span class="Thumbnail_thumbnail__3gakA Thumbnail_img__j7EZh CardType_thumbnail__2yL-W" style=""></span>
-																	<div class="TextContent_content__2jSfH CardType_content__2B7IB">
-																		<h1 class="TextContent_title__3Clug">제목을 입력해주세요</h1>
-																		<p class="TextContent_summary__18CPX">작성 중</p>
-																	</div>
-																</article>
-														</a></li>
+														<!-- 05-16 김동욱 메이커 마이페이지에서 자신이 생성산 프로젝트 리스트 출력 -->
+														<c:forEach var="projectList" items="${projectList}">
+															<li>
+																<!-- 05-16 김동욱 해당 프로젝트 클릭시 project_idx 파라미터를 가지고 create_funding.jsp페이지로 이동 -->
+																<a class="CardType_projectCard__2S8_G CardType_projectCardB__PatIP MyWadizMyProject_defaultImage__Tr8wd"
+																	href="../project/main?project_idx=${projectList.project_idx}">
+																	<article>
+																		<span class="Thumbnail_thumbnail__3gakA Thumbnail_img__j7EZh CardType_thumbnail__2yL-W" style=""></span>
+																		<div class="TextContent_content__2jSfH CardType_content__2B7IB">
+																			<c:choose>
+																				<c:when test="${empty projectList.project_title}">
+																					<h1 class="TextContent_title__3Clug">제목을 입력해주세요!</h1>
+																				</c:when>
+																				<c:otherwise>
+																					<h1 class="TextContent_title__3Clug">${projectList.project_title }</h1>
+																				</c:otherwise>
+																			</c:choose>
+																			<p class="TextContent_summary__18CPX">작성 중</p>
+																		</div>
+																	</article>
+																</a>
+															</li>
+														</c:forEach>
 													</ul>
 													<a href="/web/wsub/openfunding/reward" class="Button_button__1HNjI Button_primary__2kq3x Button_contained__1Lx6c Button_lg__37Mrj Button_block__3-IpL MyWadizMyProject_button__3WHeG"><span><span
 														class="Button_children__lqBGI">프로젝트 만들기</span></span></a>

@@ -26,8 +26,10 @@
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizHeader_switch__2WQSt" role="tablist">
 									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true"
 										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ MyWadizUserTypeSwitch_active__dwn-k"></button>
+									<!-- 05-16 김동욱 메이커 페이지로 이동하는 href 추가 -->
 									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false"
-										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"></button>
+										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"
+										onclick="location.href = 'maker'"></button>
 								</div>
 							</div>
 <!-- 							<div class="PopperRenew_container__1PprA PopperRenew_hasOutsideChildren__3F_zW"> -->

@@ -95,7 +95,8 @@
 					<div class="web-header-funding-open funding-open">
 						<div>
 							<div>
-								<button onclick="location.href='intro'" aria-label="프로젝트 만들기"
+								<!-- 05-16 김동욱 프로젝트 만들기 서블릿 주소 projectCreate로 변경후 새로운 프로젝트를 생성하고 intro로 이동 -->
+								<button onclick="location.href='projectCreate'" aria-label="프로젝트 만들기"
 									class="Button_button__2FuOU Button_primary__2mZni Button_md__46Ai- funding-open-button"
 									type="button">
 									<span><span class="Button_children__ilFun">프로젝트

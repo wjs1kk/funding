@@ -398,8 +398,9 @@
 															<i class="icon-camera-o" aria-hidden="true"></i>등록하기
 														</button>
 														<div class="wz input right ImageFileButton_input__1Dnch">
+														<!-- 05-16 김동욱 name : project_thumbnail로 변경 -->
 															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
-																name="uploadFile" placeholder="" type="file" value="">
+																name="project_thumbnail" placeholder="" type="file" value="">
 														</div></label><em class="helper error"></em><em
 														class="helper ImageFormField_helper__3XC5c">2MB 이하의
 														JPG, JPEG, GIF, PNG 파일</em><em

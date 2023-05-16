@@ -45,9 +45,10 @@
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
 						href="story">스토리 작성</a></li>
+						<!-- 05-16 김동욱 리워드 설계 페이지 추가 -->
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="#">리워드 설계</a></li>
+						href="reward">리워드 설계</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
 						href="policy">정책</a></li>
