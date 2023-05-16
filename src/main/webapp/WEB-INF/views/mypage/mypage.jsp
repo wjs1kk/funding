@@ -10,16 +10,6 @@
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
 
-<!-- 서포터/메이터 탭 클릭시 화면전환 -->
-<script type="text/javascript">
-function supporter() {
-  window.location.href = 'supporter';
-}
-function maker() {
-  window.location.href = 'maker';
-}
-</script>
-
 </head>
 <body>
 	<div id="page-container">
@@ -34,9 +24,9 @@ function maker() {
 						<div class="MyWadizPage_popperBox__113hj">
 							<div class="MyWadizHeader_wadizHeader__8fJ9f">
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizHeader_switch__2WQSt" role="tablist">
-									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true" onclick="supporter()"
+									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true" onclick="location.href='supporter'"
 										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ MyWadizUserTypeSwitch_active__dwn-k"></button>
-									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false" onclick="maker()"
+									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false" onclick="location.href='maker'"
 										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"></button>
 								</div>
 							</div>
@@ -51,7 +41,7 @@ function maker() {
 										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
 											aria-label="프로필 상세 보기" data-event="profile"
 											style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-4.png&quot;);"></button>
-										<button onclick="location.href='myinfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
+										<button onclick="location.href='myInfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
 											aria-label="프로필 편집하기" data-event="profile_edit">
 											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 												<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path></svg>
@@ -59,8 +49,8 @@ function maker() {
 									</div>
 									<div class="MyWadizSupporterProfile_profileUser__a_r1P">
 										<button data-event="profile">
-											<b class="MyWadizSupporterProfile_userName__3hSE4">익명의 서포터 22<span aria-label="프로필 상세 보기">님</span>
-											</b>
+											<b class="MyWadizSupporterProfile_userName__3hSE4">${member.member_name}
+												<span aria-label="프로필 상세 보기">님</span></b>
 										</button>
 										<dl class="MyWadizSupporterProfile_profileUserLabel__1fiU3">
 											<dt class="BlindText_textHidden__ovQb4">내 회원 정보</dt>
@@ -68,7 +58,7 @@ function maker() {
 										</dl>
 									</div>
 									
-									<button onclick="location.href='myinfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
 									</button>
 									

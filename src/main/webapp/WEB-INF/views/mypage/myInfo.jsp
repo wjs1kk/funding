@@ -11,26 +11,24 @@
 <body>
 	<div id="page-container">
 		<div class="black-bg-wrap" style="display: none;"></div>
+		<jsp:include page="../inc/top.jsp"></jsp:include>
+		
 
 		<!-- S : #accountWrap -->
 		<div id="accountWrap">
 			<!-- S : #newContainer -->
 			<div id="newContainer">
 				<!-- account-wrap -->
-				<div class="account-wrap">
+				<div class="account-wrap" style="padding: 80px 20px;">
 					<h2>기본 정보 설정</h2>
-					<form id="saveForm">
+					<form id="saveForm" method="post" action="myInfoPro">
 						<div class="email-input-wrap">
-							<input type="text" name="nickName" class="input-text" maxlength="20" placeholder="닉네임" value="익명의 서포터 22"> 
-							<input type="text" name="realName" class="input-text disable hide"
-								maxlength="20" placeholder="이름" value="" disabled="" style="display: none;">
+							<input type="text" name="realName" class="input-text disable" 
+								placeholder="이름" value="${member.member_name}" disabled="" >
 							<div class="input-btn-wrap">
-								<div class="input" style="width: 218px;">
+								<div class="" style="width: 310px">
 									<input type="email" id="userName" name="userName"
-										class="disable input-text" placeholder="이메일 계정" value="lfodmik@gmail.com" disabled="">
-								</div>
-								<div id="emailChangeBtn" class="emailAuthBtn btn" data-status="change">
-									<a href="#" onclick="return false;"> <span>변경</span> </a>
+										class="disable input-text" placeholder="이메일 계정" value="${member.member_email}" disabled="">
 								</div>
 								<div id="emailCheckBtn" class="emailAuthBtn btn" style="display: none;" data-status="check">
 									<a href="#" onclick="return false;"> <span>인증하기</span> </a>
@@ -105,12 +103,12 @@
 							<div class="email-input-wrap">
 		                        <input type="password" id="newPassword" name="newPassword" class="input-text" placeholder="새 비밀번호" maxlength="17">
 		                        <p id="passwordError" class="pwd-text">영문, 숫자, 특수문자 (!@#$%^&amp;*+=-)를 모두 조합한 8자 이상</p>
-		                        <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" class="input-text" placeholder="새 비밀번호 확인" maxlength="17">
+		                        <input type="password" id="newPassword2" name="newPassword2" class="input-text" placeholder="새 비밀번호 확인" maxlength="17">
 		                        <p class="error-text">비밀번호가 같지 않습니다.</p>
                    			 </div>
 							<div class="email-input-wrap small">
 								<div class="btn-wrap">
-									<button type="button" id="saveBtn" class="wz button primary block btn-block-mint">확인</button>
+									<button type="submit" id="saveBtn" class="wz button primary block btn-block-mint">확인</button>
 								</div>
 							</div>
 							
@@ -119,7 +117,7 @@
                     		</div>
 							
 						</div>
-						<input type="hidden" id="validEmailFirstCheck" value="Y">
+						
 						<input type="hidden" id="validEmail" value="1">
 					</form>
 				</div>
