@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.ProjectCreateService;
@@ -70,5 +71,16 @@ public class ProjectCreateController {
 		int insertCount = projectCreateService.createFundingProject(member_idx);
 		return "redirect:/intro";
 	}
+	//05-17 김동욱 마이페이지에서 프로젝트 생성을 누르면 경로가 달라 프로젝트 생성이 안돼서 프로젝트 생성과 같은 코드에 경로만 추가
+	@GetMapping("mypage/projectCreate")
+	public String myPcreateFundingProject(HttpSession session) {
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		System.out.println("member_idx : " + member_idx);
+		int insertCount = projectCreateService.createFundingProject(member_idx);
+		return "redirect:/intro";
+	}
+	
+	
+	
 	
 }

@@ -24,38 +24,16 @@
 		// '리워드를 추가해주세요' 버튼을 누르면 모달창 띄우기
 		$(".AddBox_container__39RWm").on("click", function() {
 			$("#reward_modal").css("opacity", 1);
-		})
+		});
 
 		//모달창 X 버튼 누를 시 닫힘
 		$(".ConfirmModal_closeIconWrapper__3vX7j").on("click", function() {
 			$("#reward_modal").css("opacity", 0);
-		})
+		});
 		//모달창 취소 버튼 누를 시 닫힘
 		$("#reward_modal_cancle").on("click", function() {
 			$("#reward_modal").css("opacity", 0);
-		})
-
-		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경
-		$("#deliveryUsedBtn").on("click", function() {
-			$("#deliveryUsedBtn").css("background", "#e7f9f9");
-			$("#deliveryUsedBtn").css("border-color", "#00c4c4");
-			$("#deliveryUsedCheckIcon").css("color", "#00c4c4");
-
-			$("#deliveryNotUsedBtn").css("background", "transparent");
-			$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
-			$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
-		})
-
-		$("#deliveryNotUsedBtn").on("click", function() {
-			$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
-			$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
-			$("#deliveryNotUsedCheckIcon").css("color", "#00c4c4");
-
-			$("#deliveryUsedBtn").css("background", "transparent");
-			$("#deliveryUsedBtn").css("border-color", "#cdd3d8");
-			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
-
-		})
+		});
 		
 		// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 추가된 리워드 append'
 		// 나중에 AJAX 리스트 출력으로 바꿀 것임.
@@ -120,10 +98,52 @@
 				+'</button>'
 				+'</div>'
 				+'</div>'
-			)
-		})
+			);
+		});
 		
-	})
+		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경
+		$("#deliveryUsedBtn").on("click", function() {
+			$("#deliveryUsedBtn").css("background", "#e7f9f9");
+			$("#deliveryUsedBtn").css("border-color", "#00c4c4");
+			$("#deliveryUsedCheckIcon").css("color", "#00c4c4");
+
+			$("#deliveryNotUsedBtn").css("background", "transparent");
+			$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
+			$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
+		});
+
+		$("#deliveryNotUsedBtn").on("click", function() {
+			$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
+			$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
+			$("#deliveryNotUsedCheckIcon").css("color", "#00c4c4");
+
+			$("#deliveryUsedBtn").css("background", "transparent");
+			$("#deliveryUsedBtn").css("border-color", "#cdd3d8");
+			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
+
+		});
+		
+		// 리워드 추가 모달창 배송여부에서 배송 누를 시 배송비 입력란 생성
+		$("#deliveryUsedBtn").on("click", function() {
+			$("#deliveryCheck").html("");
+			$("#deliveryCheck").append(
+				'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
+				+'<label>배송비</label>'
+				+'<div class="TextField_field__1E9vt">'
+				+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="">'
+				+'<span class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>'
+				+'</div>'
+				+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
+				+'</div>'
+			);
+		});
+		
+		// 리워드 추가 모달창 배송여부에서 배송없음 누를 시 배송비 입력란 삭제
+		$("#deliveryNotUsedBtn").on("click", function() {
+			$("#deliveryCheck").html("");
+		});
+		
+	});
 	
 </script>
 <body class="">
@@ -400,6 +420,7 @@
 									</button>
 								</div>
 							</div>
+							<img alt="" src="${pageContext.request.contextPath }/resources/image/${project_image}">
 							<div class="table">
 								<div class="ant-table-wrapper css-9ntgx0">
 									<div class="ant-spin-nested-loading css-9ntgx0">
@@ -503,19 +524,11 @@
 								</button>
 							</div>
 						</div>
-						<div class="spacing-8" style="width: 50%;">
-							<div
-								class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">
-								<label>배송비</label>
-								<div class="TextField_field__1E9vt">
-									<input placeholder="0" type="text"
-										class="Input_input__2kAAL Input_md__3-eZ6"
-										aria-invalid="false" value=""><span
-										class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>
-								</div>
-								<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을
-									입력해 주세요.</em>
-							</div>
+						<!-- 05-17 배송여부에 따라 배송비 입력란 셍성 및 삭제  -->
+						<div class="spacing-8" style="width: 50%;" id="deliveryCheck">
+						
+						
+							
 						</div>
 						<div class="spacing-9">
 							<label class="wz label Label_label__3oH0h">발송 시작일</label>
@@ -607,181 +620,10 @@
 				<jsp:include page="../inc/create_project_side.jsp"></jsp:include>
 
 				<div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
-					<nav class="ProjectNavbar_container__3ybm3">
-						<div
-							style="background: url(&amp;quot;https://static.wadiz.kr/studio/funding/static/media/wadiz-logo.549edcd7.svg&amp;quot;) 50% center/contain no-repeat; width: 129px; height: 48px; cursor: pointer;"></div>
-						<div class="ProjectNavbar_maker__3c-SX">
-							<div class="Avatar_avatar__2DI5d Avatar_xs__i50kh">
-								<span></span>
-							</div>
-							<div>김동욱</div>
-						</div>
-						<div class="ProjectNavbar_buttonGroup__219eP">
-							<div class="PreviewButton_container__1P-_4">
-								<button
-									class="Button_button__1e2A2 Button_primary__PxOJr Button_md__1FRMG Button_circular__3NpOv"
-									type="button">
-									<span><span class="Button_children__q9VCZ">미리 보기</span></span>
-								</button>
-							</div>
-							<button
-								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_md__1FRMG Button_circular__3NpOv"
-								type="button">
-								<span><span class="Button_children__q9VCZ">임시 저장</span></span>
-							</button>
-							<div class="AnnouncementButton_container__1p1gr" role="button">
-								<img class="AnnouncementButton_icon__29AtY"
-									src="https://static.wadiz.kr/studio/funding/static/media/announcement.56f4b8e3.svg"
-									alt="" aria-hidden="true"><span
-									class="Badge_container__3mdFR AnnouncementButton_badge__2Jq25"></span>
-								<div class="AnnouncementPopover_container__51hBA">
-									<div
-										class="AnnouncementList_container__3Y83C AnnouncementPopover_list__2F5OR">
-										<h2 class="AnnouncementList_title__3ydqj">안내</h2>
-										<ul class="AnnouncementList_list__SiNbg">
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX">
-													<span class="Badge_container__3mdFR Badge_visible__2c54z"><span
-														class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_info__MW_1H Badge_tertiary__-ciUe">중요</span></span>
-												</div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-															19일</div>
-													</div>
-													<div
-														class="AnnouncementListItem_title__3s-2e AnnouncementListItem_bold__2IKe5">서포터
-														안심번호 서비스 도입</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX">
-													<span class="Badge_container__3mdFR Badge_visible__2c54z"><span
-														class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_info__MW_1H Badge_tertiary__-ciUe">중요</span></span>
-												</div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-															19일</div>
-													</div>
-													<div
-														class="AnnouncementListItem_title__3s-2e AnnouncementListItem_bold__2IKe5">프리오더
-														서비스 정책 변경 안내</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-															19일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">정보제공고시
-														개정에 따른 서비스 변경</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">2월
-															2일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">SNS 광고
-														수수료 변경 안내</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">정책</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">12월
-															13일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">프리오더
-														서비스 심사 정책 변경</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">정책</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">12월
-															2일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">펀딩 요금제
-														수수료 개편 안내</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">11월
-															4일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">앵콜/글로벌
-														펀딩의 [프리오더] 노출</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">정책</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">10월
-															18일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">개인 후원
-														펀딩 정책 개정 안내</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">서비스</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">8월
-															30일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">리워드 옵션
-														단위 제한 수량 설정</div>
-												</div></li>
-											<li class="AnnouncementListItem_container__1RcK9"><div
-													class="AnnouncementListItem_badgeArea__1SUhX"></div>
-												<div class="AnnouncementListItem_content__JdK0M">
-													<div class="AnnouncementListItem_info__3TWyQ">
-														<div class="AnnouncementListItem_header__72g1V">정책</div>
-														<div class="AnnouncementListItem_registeredDate__3QNjz">5월
-															18일</div>
-													</div>
-													<div class="AnnouncementListItem_title__3s-2e">글로벌 펀딩
-														프로젝트 정책 개정 안내</div>
-												</div></li>
-										</ul>
-										<div
-											class="AnnouncementDetailDrawer_container__3upVM AnnouncementPopover_drawer__2SiY_">
-											<div class="AnnouncementDetailDrawer_buttonGroup__3uOYT">
-												<button class="AnnouncementDetailDrawer_backButton__29Lhc"
-													type="button">
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation"
-														class="withIcon_icon__3lrgp AnnouncementDetailDrawer_icon__1Uxof"
-														aria-hidden="true" style="width: 24px; height: 24px;">
-														<path
-															d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<button
-								class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
-								type="button">
-								<span><span class="Button_children__q9VCZ">나가기</span></span>
-							</button>
-						</div>
-					</nav>
+					<!-- 05-17 김동욱 모든 프로젝트 페이지 상단탭 project_top.jsp include로 변경 -->
+						<nav class="DetailNavbar_container__3SkEf">
+							<jsp:include page="../inc/project_top.jsp"></jsp:include>
+						</nav>
 					<section class="Page_container__1PffN">
 						<ol class="Breadcrumb_container__3YjD4">
 							<li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>

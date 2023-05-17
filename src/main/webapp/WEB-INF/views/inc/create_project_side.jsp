@@ -24,40 +24,42 @@
 						d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
 		</button>
 	</div>
+	
+	<!-- 05-17 김동욱 각 페이지로 포워딩하는 항목에 project_idx 파라미터 추가   -->
 	<nav class="AppSidebarMenuList_container__199gJ">
 		<div class="AppSidebarMenuList_margin__3qjoc"></div>
 		<ul>
 			<li><a aria-current="page"
 				class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL"
-				href="/studio/reward/213704/funding">프로젝트 관리<i
+				href="main?project_idx=${param.project_idx }">프로젝트 관리<i
 					class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR"
 					aria-hidden="true"></i></a>
 				<ul class="AppSidebarRewardSubList_container__2zCmr">
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="plan">요금제 선택</a></li>
+						href="plan?project_idx=${param.project_idx }">요금제 선택</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="screening">프로젝트 정보</a></li>
+						href="screening?project_idx=${param.project_idx }">프로젝트 정보</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="baseinfo">기본 정보</a></li>
+						href="baseinfo?project_idx=${param.project_idx }">기본 정보</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="story">스토리 작성</a></li>
+						href="story?project_idx=${param.project_idx }">스토리 작성</a></li>
 						<!-- 05-16 김동욱 리워드 설계 페이지 추가 -->
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="reward">리워드 설계</a></li>
+						href="reward?project_idx=${param.project_idx }">리워드 설계</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="policy">정책</a></li>
+						href="policy?project_idx=${param.project_idx }">정책</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="makerInfo">메이커 정보</a></li>
+						href="makerInfo?project_idx=${param.project_idx }">메이커 정보</a></li>
 					<li><a
 						class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-						href="contractInfo">대표자 및 정산 정보</a></li>
+						href="contractInfo?project_idx=${param.project_idx }">대표자 및 정산 정보</a></li>
 				</ul></li>
 			<li><a
 				class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"

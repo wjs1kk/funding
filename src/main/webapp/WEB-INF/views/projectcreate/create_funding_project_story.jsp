@@ -24,117 +24,9 @@
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<div class="AppLayout_main__14bCi">
 				<div class="AppSidebarLayout_contents__2thGr" id="sidebar">
-					<div
-						class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
-						<div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
-							<span class="AppSidebarRewardProjectInfo_flag__2Ctnr">펀딩</span><span
-								class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
-						</div>
-						<a class="AppSidebarRewardProjectInfo_projectName__1Hf5o"
-							href="/web/campaign/detail/213862?preview=Y" target="_blank"
-							rel="nofollow noopener noreferrer">김동욱의<br>멋진 프로젝트
-						</a>
-						<button
-							class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_"
-							type="button">
-							<span><span class="Button_children__q9VCZ">프로젝트 번호
-									213862</span>
-							<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-									class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN"
-									aria-hidden="true" style="width: 20px; height: 20px;">
-									<path
-										d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
-						</button>
-					</div>
 					<nav class="AppSidebarMenuList_container__199gJ">
-						<div class="AppSidebarMenuList_margin__3qjoc"></div>
-						<ul>
-							<li><a aria-current="page"
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL"
-								href="/studio/reward/213862/funding">프로젝트 관리<i
-									class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR"
-									aria-hidden="true"></i></a>
-							<ul class="AppSidebarRewardSubList_container__2zCmr">
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/plan">요금제 선택</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/screening">프로젝트 정보</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/baseinfo">기본 정보</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa AppSidebarMenuList_active__tbFuL active"
-										href="/studio/reward/213862/funding/story" aria-current="page">스토리
-											작성</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/condition">리워드 설계</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/policy">정책</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/makerInfo">메이커 정보</a></li>
-									<li><a
-										class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa"
-										href="/studio/reward/213862/funding/contractInfo">대표자 및 정산
-											정보</a></li>
-								</ul></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/news">새소식<i
-									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">
-										프로젝트 공개 후 확인할 수 있어요.<br>(오픈예정 신청한 경우, 오픈예정 공개 후 가능)
-									</div></a></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/dashboard/coming-report">오픈예정 현황<i
-									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">
-										오픈예정 공개 후 확인할 수 있어요.<br>(오픈예정 서비스 신청자에 한함)
-									</div></a></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/dashboard/funding-report">프로젝트
-									현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
-										공개 후 확인할 수 있어요.</div>
-							</a></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/dashboard/payment-report">결제 현황<i
-									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
-										종료 후 확인할 수 있어요.</div></a></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/supporter">발송∙환불 관리<i
-									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
-										공개 후 확인할 수 있어요.</div></a></li>
-							<li><a
-								class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR"
-								href="/studio/reward/213862/settlement">수수료∙정산 관리<i
-									class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC"
-									aria-hidden="true"></i>
-								<div class="AppSidebarMenuList_helpFloating__3uu8D">프로젝트
-										제출 후 확인할 수 있어요.</div></a></li>
-							<li><a class="AppSidebarMenuList_navLink__1FytL"
-								href="/studio/reward/213862/ads">광고·콘텐츠 제작</a></li>
-							<li><a class="AppSidebarMenuList_navLink__1FytL"
-								href="/studio/reward/213862/maker_service">메이커 서비스</a></li>
-							<li><a href="http://www.wadiz.kr/link/studio_makerguide"
-								class="AppSidebarMenuList_navLink__1FytL" target="blank"
-								rel="nofollow noopener noreferrer">자료 및 도움말</a></li>
-						</ul>
+						<!-- 05-17 김동욱 사이드바 삭제 후 include로 변경 -->
+						<jsp:include page="../inc/create_project_side.jsp"></jsp:include>
 					</nav>
 				</div>
 				<div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
@@ -144,187 +36,9 @@
 								<li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
 								<li class="Breadcrumb_item__2r9Ym">스토리 작성</li>
 							</ol>
+							<!-- 05-17 김동욱 모든 프로젝트 페이지 상단탭 project_top.jsp include로 변경 -->
 							<nav class="DetailNavbar_container__3SkEf">
-								<div class="AppNavbar_container__5uOnI">
-									<div
-										style="background: url(&amp;quot;https://static.wadiz.kr/studio/funding/static/media/wadiz-logo.549edcd7.svg&amp;quot;) 50% center/contain no-repeat; width: 129px; height: 48px; cursor: pointer;"></div>
-									<div class="AppNavbar_maker__2WVfm">
-										<div class="Avatar_avatar__2DI5d Avatar_xs__i50kh">
-											<span></span>
-										</div>
-										<div>김동욱</div>
-									</div>
-									<div class="AppNavbar_buttonGroup__UcLfm">
-										<div class="PreviewButton_container__1P-_4">
-											<button
-												class="Button_button__1e2A2 Button_primary__PxOJr Button_md__1FRMG Button_circular__3NpOv"
-												type="button">
-												<span><span class="Button_children__q9VCZ">미리
-														보기</span></span>
-											</button>
-										</div>
-										<button
-											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_md__1FRMG Button_circular__3NpOv"
-											type="button">
-											<span><span class="Button_children__q9VCZ">임시
-													저장</span></span>
-										</button>
-										<div class="AnnouncementButton_container__1p1gr" role="button">
-											<img class="AnnouncementButton_icon__29AtY"
-												src="https://static.wadiz.kr/studio/funding/static/media/announcement.56f4b8e3.svg"
-												alt="" aria-hidden="true"><span
-												class="Badge_container__3mdFR AnnouncementButton_badge__2Jq25"></span>
-											<div class="AnnouncementPopover_container__51hBA">
-												<div
-													class="AnnouncementList_container__3Y83C AnnouncementPopover_list__2F5OR">
-													<h2 class="AnnouncementList_title__3ydqj">안내</h2>
-													<ul class="AnnouncementList_list__SiNbg">
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX">
-																<span
-																	class="Badge_container__3mdFR Badge_visible__2c54z"><span
-																	class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_info__MW_1H Badge_tertiary__-ciUe">중요</span></span>
-															</div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-																		19일</div>
-																</div>
-																<div
-																	class="AnnouncementListItem_title__3s-2e AnnouncementListItem_bold__2IKe5">서포터
-																	안심번호 서비스 도입</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX">
-																<span
-																	class="Badge_container__3mdFR Badge_visible__2c54z"><span
-																	class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_info__MW_1H Badge_tertiary__-ciUe">중요</span></span>
-															</div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-																		19일</div>
-																</div>
-																<div
-																	class="AnnouncementListItem_title__3s-2e AnnouncementListItem_bold__2IKe5">프리오더
-																	서비스 정책 변경 안내</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">4월
-																		19일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">정보제공고시
-																	개정에 따른 서비스 변경</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">2월
-																		2일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">SNS
-																	광고 수수료 변경 안내</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">정책</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">12월
-																		13일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">프리오더
-																	서비스 심사 정책 변경</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">정책</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">12월
-																		2일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">펀딩
-																	요금제 수수료 개편 안내</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">11월
-																		4일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">앵콜/글로벌
-																	펀딩의 [프리오더] 노출</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">정책</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">10월
-																		18일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">개인
-																	후원 펀딩 정책 개정 안내</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">서비스</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">8월
-																		30일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">리워드
-																	옵션 단위 제한 수량 설정</div>
-															</div></li>
-														<li class="AnnouncementListItem_container__1RcK9"><div
-																class="AnnouncementListItem_badgeArea__1SUhX"></div>
-															<div class="AnnouncementListItem_content__JdK0M">
-																<div class="AnnouncementListItem_info__3TWyQ">
-																	<div class="AnnouncementListItem_header__72g1V">정책</div>
-																	<div class="AnnouncementListItem_registeredDate__3QNjz">5월
-																		18일</div>
-																</div>
-																<div class="AnnouncementListItem_title__3s-2e">글로벌
-																	펀딩 프로젝트 정책 개정 안내</div>
-															</div></li>
-													</ul>
-													<div
-														class="AnnouncementDetailDrawer_container__3upVM AnnouncementPopover_drawer__2SiY_">
-														<div class="AnnouncementDetailDrawer_buttonGroup__3uOYT">
-															<button
-																class="AnnouncementDetailDrawer_backButton__29Lhc"
-																type="button">
-																<svg viewBox="0 0 40 40" focusable="false"
-																	role="presentation"
-																	class="withIcon_icon__3lrgp AnnouncementDetailDrawer_icon__1Uxof"
-																	aria-hidden="true" style="width: 24px; height: 24px;">
-																	<path
-																		d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<button
-											class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
-											type="button">
-											<span><span class="Button_children__q9VCZ">나가기</span></span>
-										</button>
-									</div>
-								</div>
+								<jsp:include page="../inc/project_top.jsp"></jsp:include>
 							</nav>
 							<div class="HeaderLayout_container__3fXkO">
 								<div class="HeaderLayout_contents__F4hlC">
@@ -566,8 +280,8 @@
 												<div class="wysiwyg-editor">
 
 													<!--  05-15 김동욱 스토리 상세페이지 관련 폼 (jodit 라이브러리 추가) -->
-													<textarea id="project_content" name="project_content">
-													</textarea>
+														<textarea id="project_content" name="project_content">
+														</textarea>
 													<script>
 														var editor = new Jodit('#project_content', {
 														  uploader: {
@@ -575,7 +289,9 @@
 														    url: 'path/to/image/upload/endpoint'
 														  }
 														});
+														
 													</script>
+													</form>
 
 												</div>
 											</div>

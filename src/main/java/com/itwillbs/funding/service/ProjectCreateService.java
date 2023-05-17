@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.funding.mapper.MemberMapper;
 import com.itwillbs.funding.mapper.ProjectCreateMapper;
 import com.itwillbs.funding.vo.MemberVO;
-import com.itwillbs.funding.vo.ProjectCreateVO;
+import com.itwillbs.funding.vo.ProjectVO;
 
 @Service
 public class ProjectCreateService {
@@ -21,7 +21,7 @@ public class ProjectCreateService {
 	}
 
 	// 05-16 김동욱 메이커 마이페이지에서 자신이 생성한 프로젝트 리스트 출력 기능 추가
-	public List<ProjectCreateVO> getProjectList(int member_idx) {
+	public List<ProjectVO> getProjectList(int member_idx) {
 		return mapper.getProjectList(member_idx);
 	}
 	

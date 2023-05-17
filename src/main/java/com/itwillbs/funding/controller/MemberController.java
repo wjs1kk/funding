@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.ProjectCreateService;
 import com.itwillbs.funding.vo.MemberVO;
-import com.itwillbs.funding.vo.ProjectCreateVO;
+import com.itwillbs.funding.vo.ProjectVO;
 
 @Controller
 public class MemberController {
@@ -83,7 +83,7 @@ public class MemberController {
 	@GetMapping("mypage/maker")
 	public String mypage2(HttpSession session, Model model) {
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
-		List<ProjectCreateVO> projectList = projectCreateService.getProjectList(member_idx);
+		List<ProjectVO> projectList = projectCreateService.getProjectList(member_idx);
 		System.out.println(projectList);
 		model.addAttribute("projectList", projectList);
 		return "mypage/mypage2";

@@ -22,10 +22,11 @@
  			, null
  			, null
  			, null
+ 			, null
  			)
  	</insert>
  	
- 	<select id="getProjectList" resultType="com.itwillbs.funding.vo.ProjectCreateVO">
+ 	<select id="getProjectList" resultType="com.itwillbs.funding.vo.ProjectVO">
  		SELECT *
  		FROM project
  		WHERE member_idx = ${member_idx};
