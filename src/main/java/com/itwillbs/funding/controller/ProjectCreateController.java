@@ -1,14 +1,26 @@
 package com.itwillbs.funding.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.ProjectCreateService;
+import com.itwillbs.funding.vo.ProjectVO;
 
 @Controller
 public class ProjectCreateController {
@@ -71,16 +83,52 @@ public class ProjectCreateController {
 		int insertCount = projectCreateService.createFundingProject(member_idx);
 		return "redirect:/intro";
 	}
-	//05-17 김동욱 마이페이지에서 프로젝트 생성을 누르면 경로가 달라 프로젝트 생성이 안돼서 프로젝트 생성과 같은 코드에 경로만 추가
+	// 05-17 김동욱 마이페이지에서 프로젝트 생성을 누르면 경로가 달라 프로젝트 생성이 안돼서 프로젝트 생성과 같은 코드에 경로만 추가
 	@GetMapping("mypage/projectCreate")
-	public String myPcreateFundingProject(HttpSession session) {
+	public String myPagecreateFundingProject(HttpSession session) {
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
 		System.out.println("member_idx : " + member_idx);
 		int insertCount = projectCreateService.createFundingProject(member_idx);
 		return "redirect:/intro";
 	}
-	
-	
+	// 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_images)및 이미지 파일 업로드
+	@PostMapping("project/projectStoryUpdate")
+	public String projectStoryUpdate(HttpSession session, ProjectVO project, MultipartFile images, Model model) {
+		
+		
+		System.out.println("업로드 파일명 : " + images.getOriginalFilename());
+		
+		String uploadDir = "/resources/images/project_images";
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		
+		System.out.println("실제 업로드 경로 : " + saveDir);
+		
+		String originalFileName = images.getOriginalFilename();
+		
+		String uuid = UUID.randomUUID().toString();
+		
+		project.setProject_images(uuid.substring(0, 8) + "_" + originalFileName);
+		System.out.println("실제 업로드 될 파일명 : " + project.getProject_images());
+		
+		// -------------------------------------------------------------------------------
+		
+		int updateCount = projectCreateService.projectStoryUpdate(project);
+		if(updateCount > 0) {
+			try {
+				images.transferTo(new File(saveDir, project.getProject_images()));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return "redirect:/project/story?project_idx="+project.getProject_idx();
+		} else { // 실패
+			model.addAttribute("msg", "스토리 업데이트 실패!");
+			return "fail_back";
+		}
+		
+		
+	}
 	
 	
 }

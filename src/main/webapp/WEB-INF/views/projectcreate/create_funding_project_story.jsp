@@ -60,14 +60,15 @@
 									</button>
 								</div>
 							</div>
-							<form
+							<!-- 05-17 김동욱 파일 업로드를 위해 enctype="multipart/form-data" 추가 및 action과 method 설정 -->
+							<form action="projectStoryUpdate" method="post" enctype="multipart/form-data"
 								class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
 								<div class="Loader_loader__d9YUC Form_loader__1YJ5I"></div>
 								<section class="Section_container__3md8M"
 									style="max-width: 630px;">
 									<div style="" class="Section_header__1qwS7">
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
-											소개 영상·사진 등록
+											사진 등록
 											<div>
 												<button type="button" class="Tooltip_button__26Zz0"
 													aria-describedby="Tooltip_4">
@@ -97,24 +98,15 @@
 										보여 주고 싶은 영상이나 사진을 등록해 주세요.</div>
 									<div class="Section_content__3OkLZ">
 										<div class="StoryVideoOrImageField_container__1lnfV">
-											<label class="wz Radio_radio__15She radio"><input
-												name="representVisual" type="radio">
-											<div>소개 영상</div></label><label class="wz Radio_radio__15She radio"><input
-												name="representVisual" type="radio" checked="">
-											<div>소개 사진</div></label>
 											<div
 												class="field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
 												<div class="ImageFormField_buttonWrapper__su3pO">
-													<label
-														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h"><button
-															type="button"
-															class="wz button gray ImageFileButton_button__3gAHD">
-															<i class="icon-camera-o" aria-hidden="true"></i>등록하기
-														</button>
-														<div class="wz input right ImageFileButton_input__1Dnch">
-														<!-- 05-16 김동욱 name : project_thumbnail로 변경 -->
+														<!-- 05-17 김동욱 name : images로 변경 -->
 															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
-																name="project_thumbnail" placeholder="" type="file" value="">
+																name="images" placeholder="" type="file" value="">
+													<label
+														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h">
+														<div class="wz input right ImageFileButton_input__1Dnch">
 														</div></label><em class="helper error"></em><em
 														class="helper ImageFormField_helper__3XC5c">2MB 이하의
 														JPG, JPEG, GIF, PNG 파일</em><em
@@ -167,7 +159,7 @@
 												<div class="wide column-4">
 													<div class="wz input">
 														<textarea placeholder="내용 입력" helper="[object Object]"
-															maxlength="100" name="storyInfo.coreMessage" rows="3"></textarea>
+															maxlength="100" name="project_summary" rows="3"></textarea>
 													</div>
 													<em class="helper FormFieldTextarea_helper__3-iK_">100자
 														남음</em>
@@ -291,7 +283,6 @@
 														});
 														
 													</script>
-													</form>
 
 												</div>
 											</div>
@@ -344,15 +335,17 @@
 											</div>
 										</div>
 									</section>
+
 								</div>
+									<input type="hidden" name="project_idx" value="${param.project_idx}">
+									<div class="FundingStoryContainer_btnWrapper__32tvJ">
+										<button
+											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
+											type="submit" style="width: 420px; max-width: 100%;">
+											<span><span class="Button_children__q9VCZ">저장하기</span></span>
+										</button>
+									</div>
 							</form>
-							<div class="FundingStoryContainer_btnWrapper__32tvJ">
-								<button
-									class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
-									type="button" style="width: 420px; max-width: 100%;">
-									<span><span class="Button_children__q9VCZ">저장하기</span></span>
-								</button>
-							</div>
 						</div>
 					</div>
 					<div class="ChannelTalk_container__3OcHU">

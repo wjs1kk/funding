@@ -25,4 +25,9 @@ public class ProjectCreateService {
 		return mapper.getProjectList(member_idx);
 	}
 	
+	// 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_image)
+	public int projectStoryUpdate(ProjectVO project) {
+		return mapper.projectStoryUpdate(project);
+	}
+	
 }

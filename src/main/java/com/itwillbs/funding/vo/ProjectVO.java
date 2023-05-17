@@ -10,7 +10,7 @@ public class ProjectVO {
 	private String project_content;
 	private String project_summary;
 	private String project_thumbnail;
-	private String project_image;
+	private String project_images;
 	private String project_start_date;
 	private String project_end_date;
 	private String project_coming_soon_date;
@@ -18,7 +18,6 @@ public class ProjectVO {
 	private String project_type;
 	private String project_target;
 	private String project_approve;
-	
 	public int getProject_idx() {
 		return project_idx;
 	}
@@ -61,11 +60,11 @@ public class ProjectVO {
 	public void setProject_thumbnail(String project_thumbnail) {
 		this.project_thumbnail = project_thumbnail;
 	}
-	public String getProject_image() {
-		return project_image;
+	public String getProject_images() {
+		return project_images;
 	}
-	public void setProject_image(String project_image) {
-		this.project_image = project_image;
+	public void setProject_images(String project_images) {
+		this.project_images = project_images;
 	}
 	public String getProject_start_date() {
 		return project_start_date;
@@ -114,10 +113,11 @@ public class ProjectVO {
 		return "ProjectVO [project_idx=" + project_idx + ", member_idx=" + member_idx + ", project_category="
 				+ project_category + ", project_title=" + project_title + ", project_content=" + project_content
 				+ ", project_summary=" + project_summary + ", project_thumbnail=" + project_thumbnail
-				+ ", project_image=" + project_image + ", project_start_date=" + project_start_date
+				+ ", project_images=" + project_images + ", project_start_date=" + project_start_date
 				+ ", project_end_date=" + project_end_date + ", project_coming_soon_date=" + project_coming_soon_date
 				+ ", project_plan=" + project_plan + ", project_type=" + project_type + ", project_target="
 				+ project_target + ", project_approve=" + project_approve + "]";
 	}
+	
 	
 }

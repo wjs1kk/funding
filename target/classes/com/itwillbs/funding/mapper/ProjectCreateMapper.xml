@@ -9,7 +9,7 @@
  	<insert id="createFundingProject">
  		INSERT INTO project VALUES(
  			null
- 			, #{member_idx}
+ 			, ${member_idx}
  			, null
  			, null
  			, null
@@ -23,13 +23,24 @@
  			, null
  			, null
  			, null
+ 			, now()
  			)
  	</insert>
  	
+ 	<!-- 05-16 김동욱 메이커 마이페이지에 프로젝트 리스트 출력 -->
  	<select id="getProjectList" resultType="com.itwillbs.funding.vo.ProjectVO">
  		SELECT *
  		FROM project
  		WHERE member_idx = ${member_idx};
  	</select>
+ 	
+ 	<!-- 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_image) -->
+ 	<update id="projectStoryUpdate">
+ 		UPDATE project SET
+ 		project_summary = #{project_summary}
+ 		,project_content = #{project_content}
+ 		,project_images = #{project_images}
+ 		where project_idx = #{project_idx}
+ 	</update>
   
   </mapper>

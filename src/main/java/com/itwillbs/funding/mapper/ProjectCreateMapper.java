@@ -9,4 +9,6 @@ public interface ProjectCreateMapper {
 	int createFundingProject(int member_idx);
 	// 05-16 김동욱 메이커 마이페이지에서 자신이 생성한 프로젝트 리스트 출력 기능 추가
 	List<ProjectVO> getProjectList(int member_idx);
+	// 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_image)
+	int projectStoryUpdate(ProjectVO project);
 }
