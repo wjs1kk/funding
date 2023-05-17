@@ -119,4 +119,15 @@ public class MypageController {
 		}
 	}
 	
+//	0517 추가! 팔로잉 매핑
+	@GetMapping("mypage/follow")
+	public String follow() {
+		return "mypage/follow";
+	}
+//	0517 추가! 펀딩참여내역 매핑
+	@GetMapping("mypage/history")
+	public String history() {
+		return "mypage/history";
+	}
+	
 }
