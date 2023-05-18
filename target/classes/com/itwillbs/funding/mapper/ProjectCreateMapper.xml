@@ -42,5 +42,35 @@
  		,project_images = #{project_images}
  		where project_idx = #{project_idx}
  	</update>
+ 	
+ 	<!-- 05-17 김동욱 프로젝트 리워드 추가 -->
+ 	<insert id="projectRewardAdd">
+ 		INSERT INTO reward
+ 			VALUES(null
+ 				   , #{project_idx}
+ 				   , #{reward_name}
+ 				   , #{reward_amount}
+ 				   , #{reward_content}
+ 				   , #{reward_option}
+ 				   , #{reward_quantity}
+ 				   , #{reward_delivery}
+ 				   , #{reward_delivery_fee}
+ 				   , #{reward_delivery_date}
+ 				   )
+ 	</insert>
+ 	
+ 	<!-- 05-17 김동욱 프로젝트 리워드 리스트 -->
+ 	<select id="getProjectReward" resultType="com.itwillbs.funding.vo.RewardVO">
+ 		SELECT *
+ 		FROM reward
+ 		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
+ 	<!-- 05-17 김동욱 AJAX 리워드 상세 정보 가져오기 -->
+ 	<select id="getRewardDetail" resultType="com.itwillbs.funding.vo.RewardVO">
+ 		SELECT *
+ 		FROM reward
+ 		WHERE reward_idx = #{reward_idx}
+ 	</select>
   
   </mapper>

@@ -17,12 +17,169 @@
 	href="https://static.wadiz.kr/studio/funding/static/css/18.725773c4.chunk.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 </head>
 
 <script type="text/javascript">
+	
 	$(function() {
+		$(document).on("click","#rewardModifyBtn",function(){
+			alert("수정 버튼 클릭");
+		})
+		
+	})
+	
+	// 05-18 김동욱 리워드 수정버튼을 누를 시 리워드 정보를 가져와 모달창에 출력
+	function rewardDetail(reward_idx) {
+		$.ajax({
+			type: "post",
+			url: "getRewardDetail",
+			dataType: "json",
+			data: {"reward_idx" : reward_idx},
+			success: function(rewardDetail) {
+					$("#reward_modal_title").html('<div title="리워드 수정" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 수정</div>');
+					$("#rewardModalBtns").html("")
+					$("#rewardModalBtns").append('<button'
+							+' class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"'
+							+'id="reward_modal_cancle" type="button">'
+							+'<span><span class="Button_children__q9VCZ">취소</span></span>'
+							+'</button>'
+							+'<button'
+							+' class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"'
+							+'type="button" id="rewardModifyBtn">'
+							+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">수정</span></span>'
+							+'</button>')
+				
+					$("#reward_name").val(rewardDetail.reward_name)
+					$("#reward_amount").val(rewardDetail.reward_amount)
+					$("#reward_content").val(rewardDetail.reward_content)
+					$("#reward_option").val(rewardDetail.reward_option)
+					$("#reward_quantity").val(rewardDetail.reward_quantity)
+					$("#reward_delivery").val(rewardDetail.reward_delivery)
+					
+					// 리워드 배송 값이 1일 경우 배송 버튼 CSS가 클릭된 스타일로 변경후 배송란이 생성되고 기존에 입력된 배송비 값 적용 
+					if(rewardDetail.reward_delivery == 1){
+						$("#deliveryUsedBtn").css("background", "#e7f9f9");
+						$("#deliveryUsedBtn").css("border-color", "#00c4c4");
+						$("#deliveryUsedCheckIcon").css("color", "#00c4c4");
+						$("#deliveryCheck").html("");
+						$("#deliveryCheck").append(
+							'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
+							+'<label>배송비</label>'
+							+'<div class="TextField_field__1E9vt">'
+							+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="'+ rewardDetail.reward_delivery_fee +'" id="reward_delivery_fee" name = "reward_delivery_fee">'
+							+'<span class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>'
+							+'</div>'
+							+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
+							+'</div>'
+						);
+						
+					}else if(rewardDetail.reward_delivery == 0) {
+						$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
+						$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
+						$("#deliveryNotUsedCheckIcon").css("color", "#00c4c4");
+					}
+					
+					$("#reward_delivery_date").val(rewardDetail.reward_delivery_date)
+					$("#reward_modal").css("opacity", 1)
+				}
+		});
+		
+	}
+	
+	$(function() {
+		
+		// 리워드 ajax 리스트 출력
+		$.ajax({
+			type: "post",
+			url: "getProjectReward",
+			dataType: "json",
+			data: {"project_idx" : ${param.project_idx}},
+			success: function(jsonRewardList) {
+				for(let rewardList of jsonRewardList){
+					$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
+							+'<div class="FundingConditionRewardItem_header__3LoHV">'
+							+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
+							+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
+							+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 '+rewardList.reward_quantity+'개</span>'
+							+'</span>'
+							+'</div>'
+							+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
+							+'<h4 class="FundingConditionRewardItem_name__Q9cMr">'+rewardList.reward_name+'</h4>'
+							+'<p class="FundingConditionRewardItem_description__3Yhpu">'+rewardList.reward_content+'</p>'
+							+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
+							+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
+							+'<div>배송비</div>'
+							+'<div>'+rewardList.reward_delivery_fee+'원</div>'
+							+'</div>'
+							+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
+							+'<div>리워드 발송 시작일</div>'
+							+'<div>'+rewardList.reward_delivery_date+'</div>'
+							+'</div>'
+							+'</div>'
+							+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
+							+'<div>'
+							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+							+'<span>'
+							+'<svg viewBox="0 0 40 40" focusable="false"'
+							+'role="presentation"'
+							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+							+'aria-hidden="true">'
+							+'<path fill="none" d="M0 0h40v40H0z"></path>'
+							+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
+							+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
+							+'</span>'
+							+'</button>'
+							+'</div>'
+							+'<div>'
+							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button" onclick = "rewardDetail('+ rewardList.reward_idx +')">'
+							+'<span>'
+							+'<svg viewBox="0 0 32 32" focusable="false"'
+							+'role="presentation"'
+							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+							+'aria-hidden="true">'
+							+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
+							+'</svg>'
+							+'<span class="Button_children__q9VCZ">수정</span>'
+							+'</span>'
+							+'</button>'
+							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+							+'<span>'
+							+'<svg viewBox="0 0 40 40" focusable="false"'
+							+'role="presentation"'
+							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+							+'aria-hidden="true">'
+							+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
+							+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
+							+'<span class="Button_children__q9VCZ">삭제</span>'
+							+'</span>'
+							+'</button>'
+							+'</div>'
+							+'</div>'
+						);
+				}
+				
+			}
+		});
+		
 		// '리워드를 추가해주세요' 버튼을 누르면 모달창 띄우기
 		$(".AddBox_container__39RWm").on("click", function() {
+			$("#reward_modal_title").html('<div title="리워드 추가" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 추가</div>');
+			$("#rewardModalBtns").html("")
+			$("#rewardModalBtns").append('<button'
+					+' class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"'
+					+'id="reward_modal_cancle" type="button">'
+					+'<span><span class="Button_children__q9VCZ">취소</span></span>'
+					+'</button>'
+					+'<button'
+					+' class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"'
+					+'type="button" id="rewardAddBtn">'
+					+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">추가</span></span>'
+					+'</button>')
 			$("#reward_modal").css("opacity", 1);
 		});
 
@@ -35,73 +192,101 @@
 			$("#reward_modal").css("opacity", 0);
 		});
 		
-		// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 추가된 리워드 append'
-		// 나중에 AJAX 리스트 출력으로 바꿀 것임.
-		$("#rewardAddBtn").on("click", function() {
-			$("#reward_modal").css("opacity", 0);
-			$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
-				+'<div class="FundingConditionRewardItem_header__3LoHV">'
-				+'<div class="FundingConditionRewardItem_amount__13WhI">30,000원</div>'
-				+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
-				+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 1,000개</span>'
-				+'</span>'
-				+'</div>'
-				+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
-				+'<h4 class="FundingConditionRewardItem_name__Q9cMr">리워드명</h4>'
-				+'<p class="FundingConditionRewardItem_description__3Yhpu">리워드 설명</p>'
-				+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
-				+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
-				+'<div>배송비</div>'
-				+'<div>3,000원</div>'
-				+'</div>'
-				+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
-				+'<div>리워드 발송 시작일</div>'
-				+'<div>2023년 06월 초 (1~10일)</div>'
-				+'</div>'
-				+'</div>'
-				+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
-				+'<div>'
-				+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-				+'<span>'
-				+'<svg viewBox="0 0 40 40" focusable="false"'
-				+'role="presentation"'
-				+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-				+'aria-hidden="true">'
-				+'<path fill="none" d="M0 0h40v40H0z"></path>'
-				+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
-				+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
-				+'</span>'
-				+'</button>'
-				+'</div>'
-				+'<div>'
-				+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-				+'<span>'
-				+'<svg viewBox="0 0 32 32" focusable="false"'
-				+'role="presentation"'
-				+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-				+'aria-hidden="true">'
-				+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
-				+'</svg>'
-				+'<span class="Button_children__q9VCZ">수정</span>'
-				+'</span>'
-				+'</button>'
-				+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-				+'<span>'
-				+'<svg viewBox="0 0 40 40" focusable="false"'
-				+'role="presentation"'
-				+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-				+'aria-hidden="true">'
-				+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
-				+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
-				+'<span class="Button_children__q9VCZ">삭제</span>'
-				+'</span>'
-				+'</button>'
-				+'</div>'
-				+'</div>'
-			);
-		});
+		// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 입력된 정보들 reward 테이블에 insert후 다시 리스트 출력'
+		$(document).on("click","#rewardAddBtn",function(){
+			$("#rewardAddBtn").on("click", function() {
+				$("#reward_modal").css("opacity", 0);
+				$.ajax({
+					type: "post",
+					url: "projectRewardAdd",
+					dataType: "json",
+					data: {project_idx:${param.project_idx}
+						   ,reward_name:$("#reward_name").val()
+						   ,reward_amount:$("#reward_amount").val()
+						   ,reward_content:$("#reward_content").val()
+						   ,reward_option:$("#reward_option").val()
+						   ,reward_quantity:$("#reward_quantity").val()
+						   ,reward_delivery:$("#reward_delivery").val()
+						   ,reward_delivery_fee:$("#reward_delivery_fee").val()
+						   ,reward_delivery_date:$("#reward_delivery_date").val()
+					},
+					success: function(jsonRewardList) {
+						$("#rewardAddSection").html("");
+						for(let rewardList of jsonRewardList){
+							$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
+									+'<div class="FundingConditionRewardItem_header__3LoHV">'
+									+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
+									+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
+									+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 '+rewardList.reward_quantity+'개</span>'
+									+'</span>'
+									+'</div>'
+									+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
+									+'<h4 class="FundingConditionRewardItem_name__Q9cMr">'+rewardList.reward_name+'</h4>'
+									+'<p class="FundingConditionRewardItem_description__3Yhpu">'+rewardList.reward_content+'</p>'
+									+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
+									+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
+									+'<div>배송비</div>'
+									+'<div>'+rewardList.reward_delivery_fee+'원</div>'
+									+'</div>'
+									+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
+									+'<div>리워드 발송 시작일</div>'
+									+'<div>'+rewardList.reward_delivery_date+'</div>'
+									+'</div>'
+									+'</div>'
+									+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
+									+'<div>'
+									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+									+'<span>'
+									+'<svg viewBox="0 0 40 40" focusable="false"'
+									+'role="presentation"'
+									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+									+'aria-hidden="true">'
+									+'<path fill="none" d="M0 0h40v40H0z"></path>'
+									+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
+									+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
+									+'</span>'
+									+'</button>'
+									+'</div>'
+									+'<div>'
+									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+									+'<span>'
+									+'<svg viewBox="0 0 32 32" focusable="false"'
+									+'role="presentation"'
+									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+									+'aria-hidden="true">'
+									+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
+									+'</svg>'
+									+'<span class="Button_children__q9VCZ">수정</span>'
+									+'</span>'
+									+'</button>'
+									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+									+'<span>'
+									+'<svg viewBox="0 0 40 40" focusable="false"'
+									+'role="presentation"'
+									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+									+'aria-hidden="true">'
+									+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
+									+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
+									+'<span class="Button_children__q9VCZ">삭제</span>'
+									+'</span>'
+									+'</button>'
+									+'</div>'
+									+'</div>'
+								);
+						}
+						
+					}
+				});
+				
+			});
+			
+		})
 		
-		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경
+		
+		
+		
+		
+		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경, hidden(reward_delivery) value의 값이 배송 누르면  1 배송 없음 누르면 0 
 		$("#deliveryUsedBtn").on("click", function() {
 			$("#deliveryUsedBtn").css("background", "#e7f9f9");
 			$("#deliveryUsedBtn").css("border-color", "#00c4c4");
@@ -110,8 +295,11 @@
 			$("#deliveryNotUsedBtn").css("background", "transparent");
 			$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
 			$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
+			
+			$("#reward_delivery").val(1);
 		});
 
+		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경, hidden(reward_delivery) value의 값이 배송 누르면  1 배송 없음 누르면 0 
 		$("#deliveryNotUsedBtn").on("click", function() {
 			$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
 			$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
@@ -120,7 +308,8 @@
 			$("#deliveryUsedBtn").css("background", "transparent");
 			$("#deliveryUsedBtn").css("border-color", "#cdd3d8");
 			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
-
+			
+			$("#reward_delivery").val(0);
 		});
 		
 		// 리워드 추가 모달창 배송여부에서 배송 누를 시 배송비 입력란 생성
@@ -130,7 +319,7 @@
 				'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
 				+'<label>배송비</label>'
 				+'<div class="TextField_field__1E9vt">'
-				+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="">'
+				+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="" id="reward_delivery_fee" name = "reward_delivery_fee">'
 				+'<span class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>'
 				+'</div>'
 				+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
@@ -166,7 +355,7 @@
 										d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
 							</button>
 						</div>
-						<div title="리워드 추가"
+						<div title="리워드 추가" id="reward_modal_title" 
 							class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드
 							추가</div>
 					</div>
@@ -177,7 +366,7 @@
 								class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">
 								<label>금액</label>
 								<div class="TextField_field__1E9vt">
-									<input placeholder="0" type="text"
+									<input placeholder="0" type="text" name="reward_amount" id="reward_amount"
 										class="Input_input__2kAAL Input_md__3-eZ6"
 										aria-invalid="false" value=""><span
 										class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>
@@ -189,7 +378,7 @@
 							<label>리워드명</label>
 							<div class="TextField_field__1E9vt">
 								<input placeholder="예시) [얼리버드] 베이지 이불∙베개 1세트" maxlength="60"
-									type="text" class="Input_input__2kAAL Input_md__3-eZ6"
+									type="text" class="Input_input__2kAAL Input_md__3-eZ6" name="reward_name" id="reward_name"
 									aria-invalid="false" value="">
 							</div>
 							<em class="HelperMessage_helperMessage__1qZPy">60자 남음</em>
@@ -199,12 +388,9 @@
 							<label>리워드 설명</label>
 							<div class="TextField_field__1E9vt">
 								<textarea placeholder="리워드 구성과 혜택을 간결하게 설명해 주세요."
-									maxlength="400" rows="3"
+									maxlength="400" rows="3" name="reward_content" id="reward_content"
 									class="Textarea_textarea__2swOj undefined"
 									style="height: 106px;"></textarea>
-								<textarea aria-hidden="true" readonly="" tabindex="-1"
-									class="Textarea_textarea__2swOj undefined"
-									style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0px); pointer-events: none; width: 754px;"></textarea>
 							</div>
 							<em class="HelperMessage_helperMessage__1qZPy">400자 남음</em>
 						</div>
@@ -213,28 +399,6 @@
 							<div class=" css-2b097c-container">
 								<span aria-live="polite" aria-atomic="false"
 									aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-								<div class="select-menu__control css-1m205as-control">
-									<div
-										class="select-menu__value-container select-menu__value-container--has-value css-1hwfws3">
-										<div class="select-menu__single-value css-1uccc91-singleValue">직접
-											입력 옵션 (각인, 메시지 등)</div>
-										<input id="react-select-714-input" readonly="" tabindex="0"
-											aria-autocomplete="list" class="css-62g3xt-dummyInput"
-											value="">
-									</div>
-									<div class="select-menu__indicators css-1wy0on6">
-										<span class="select-menu__indicator-separator css-0"></span>
-										<div
-											class="select-menu__indicator select-menu__dropdown-indicator css-egf9x8-indicatorContainer"
-											aria-hidden="true">
-											<svg viewBox="0 0 32 32" focusable="false"
-												role="presentation" class="withIcon_icon__3lrgp"
-												aria-hidden="true" style="color: rgb(134, 142, 150);">
-												<path
-													d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="spacing-8 is-hidden">
@@ -269,7 +433,7 @@
 							class="TextField_textField__23rCe TextField_md__2zsQn spacing-8">
 							<label></label>
 							<div class="TextField_field__1E9vt">
-								<input placeholder="입력해 주세요" type="text"
+								<input placeholder="입력해 주세요" type="text" name="reward_option" id="reward_option"
 									class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
 									value="">
 							</div>
@@ -420,7 +584,6 @@
 									</button>
 								</div>
 							</div>
-							<img alt="" src="${pageContext.request.contextPath }/resources/image/${project_image}">
 							<div class="table">
 								<div class="ant-table-wrapper css-9ntgx0">
 									<div class="ant-spin-nested-loading css-9ntgx0">
@@ -487,7 +650,7 @@
 								class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">
 								<label>제한 수량</label>
 								<div class="TextField_field__1E9vt">
-									<input placeholder="0" type="text"
+									<input placeholder="0" type="text" name="reward_quantity" id="reward_quantity"
 										class="Input_input__2kAAL Input_md__3-eZ6"
 										aria-invalid="false" value=""><span
 										class="TextField_fixedText__2vIuK TextField_endText__3jIeG">개</span>
@@ -522,87 +685,57 @@
 												d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg><span
 										class="Button_children__q9VCZ">배송 없음</span></span>
 								</button>
+								<input type="hidden" value="" name="reward_delivery" id="reward_delivery">
 							</div>
 						</div>
 						<!-- 05-17 배송여부에 따라 배송비 입력란 셍성 및 삭제  -->
-						<div class="spacing-8" style="width: 50%;" id="deliveryCheck">
-						
-						
-							
-						</div>
+						<div class="spacing-8" style="width: 50%;" id="deliveryCheck"></div>
 						<div class="spacing-9">
 							<label class="wz label Label_label__3oH0h">발송 시작일</label>
-							<div
-								class="FundingConditionRewardModalContainer_selectButtonGroup__3KXbf">
-								<div
-									class="select-menu FundingConditionRewardModalContainer_selectMenu__2SdtX">
-									<div class=" css-2b097c-container">
-										<span aria-live="polite" aria-atomic="false"
-											aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-										<div class="select-menu__control css-1m205as-control">
-											<div class="select-menu__value-container css-1hwfws3">
-												<div
-													class="select-menu__placeholder css-1wa3eu0-placeholder">연도/월</div>
-												<input id="react-select-716-input" readonly="" tabindex="0"
-													aria-autocomplete="list" class="css-62g3xt-dummyInput"
-													value="">
-											</div>
-											<div class="select-menu__indicators css-1wy0on6">
-												<span class="select-menu__indicator-separator css-0"></span>
-												<div
-													class="select-menu__indicator select-menu__dropdown-indicator css-egf9x8-indicatorContainer"
-													aria-hidden="true">
-													<svg viewBox="0 0 32 32" focusable="false"
-														role="presentation" class="withIcon_icon__3lrgp"
-														aria-hidden="true" style="color: rgb(134, 142, 150);">
-														<path
-															d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div
-									class="select-menu FundingConditionRewardModalContainer_selectMenu__2SdtX">
-									<div class=" css-2b097c-container">
-										<span aria-live="polite" aria-atomic="false"
-											aria-relevant="additions text" class="css-7pg0cj-a11yText"></span>
-										<div class="select-menu__control css-1m205as-control">
-											<div class="select-menu__value-container css-1hwfws3">
-												<div
-													class="select-menu__placeholder css-1wa3eu0-placeholder">시기</div>
-												<input id="react-select-717-input" readonly="" tabindex="0"
-													aria-autocomplete="list" class="css-62g3xt-dummyInput"
-													value="">
-											</div>
-											<div class="select-menu__indicators css-1wy0on6">
-												<span class="select-menu__indicator-separator css-0"></span>
-												<div
-													class="select-menu__indicator select-menu__dropdown-indicator css-egf9x8-indicatorContainer"
-													aria-hidden="true">
-													<svg viewBox="0 0 32 32" focusable="false"
-														role="presentation" class="withIcon_icon__3lrgp"
-														aria-hidden="true" style="color: rgb(134, 142, 150);">
-														<path
-															d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+							<!-- 배송 시작일 타임피커 -->
+							<input type="text" id="reward_delivery_date" name="reward_delivery_date">
+
+							<script>
+							   $(function() {
+							       //input을 datepicker로 선언
+							       $("#reward_delivery_date").datepicker({
+							           dateFormat: 'yy-mm-dd' //달력 날짜 형태
+							           ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+							           ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+							           ,changeYear: true //option값 년 선택 가능
+							           ,changeMonth: true //option값  월 선택 가능                
+							           ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+							           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+							           ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+							           ,buttonText: "선택" //버튼 호버 텍스트              
+							           ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+							           ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+							           ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+							           ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+							           ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+							           ,minDate: "+5d" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+							           ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+							       });                    
+							       
+							       //초기값을 오늘 날짜로 설정해줘야 합니다.
+							       $('#reward_delivery_date').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+							   });
+							</script>
+
 						</div>
-						<div
+						<div id="rewardModalBtns"
 							class="FundingConditionRewardModalContainer_buttonGroup__3TYhj">
 							<button
 								class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"
 								id="reward_modal_cancle" type="button">
 								<span><span class="Button_children__q9VCZ">취소</span></span>
 							</button>
+							
 							<button
 								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"
 								type="button" id="rewardAddBtn">
-								<span><span class="Button_children__q9VCZ">추가</span></span>
+								<span><span class="Button_children__q9VCZ" id="rewardModalAddText">추가</span></span>
 							</button>
 						</div>
 					</div>

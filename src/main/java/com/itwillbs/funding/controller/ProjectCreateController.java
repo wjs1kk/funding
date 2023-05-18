@@ -7,20 +7,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.ProjectCreateService;
 import com.itwillbs.funding.vo.ProjectVO;
+import com.itwillbs.funding.vo.RewardVO;
 
 @Controller
 public class ProjectCreateController {
@@ -128,6 +134,41 @@ public class ProjectCreateController {
 		}
 		
 		
+	}
+	
+	// 05-18 김동욱 리워드 출력 AJAX
+	@PostMapping("project/getProjectReward")
+	@ResponseBody
+	public String getProjectReward(@RequestParam Map reward) {
+		System.out.println(reward);
+		List rewardList = projectCreateService.getProjectReward(reward);
+		System.out.println(rewardList);
+		JSONArray jsonRewardList = new JSONArray(rewardList);
+		System.out.println(jsonRewardList);
+		
+		return jsonRewardList.toString();
+	}
+	
+	// 05-18 김동욱 리워드 추가 기능
+	@PostMapping("project/projectRewardAdd")
+	@ResponseBody
+	public String projectRewardAdd(@RequestParam Map reward) {
+		int insertCount = projectCreateService.projectRewardAdd(reward);
+		
+		List<RewardVO> rewardList = projectCreateService.getProjectReward(reward);
+		JSONArray jsonRewardList = new JSONArray(rewardList);
+		System.out.println(jsonRewardList);
+		return jsonRewardList.toString();
+	}
+	
+	// 05-18 김동욱 AJAX 리워드 수정 정보 가져오기
+	@PostMapping("project/getRewardDetail")
+	@ResponseBody
+	public RewardVO getRewardDetail(int reward_idx) {
+		System.out.println("reward_idx : " + reward_idx);
+		RewardVO reward = projectCreateService.getRewardDetail(reward_idx);
+		System.out.println(reward);
+		return reward;
 	}
 	
 	
