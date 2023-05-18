@@ -29,4 +29,15 @@
 				WHERE member_idx = #{member_idx}
 	</update>
 	
+	
+<!-- 	0518수정-포인트내역 -->
+	<select id="selectPoint" resultType="com.itwillbs.funding.vo.PointVO">
+		SELECT * 
+			FROM point
+				WHERE member_idx = #{member_idx}
+				ORDER BY point_idx desc
+	</select>
+	
+	
+	
   </mapper>

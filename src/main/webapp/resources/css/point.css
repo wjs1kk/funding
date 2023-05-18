@@ -2139,18 +2139,10 @@ h2.mypage-top-title {
 
 .mybenefit-wrap #emptyProjectText {
     width: 960px;
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: left;
 }
-#emptyProjectText {
-    display: none;
-    padding: 80px 0;
-    text-align: center;
-    line-height: 24px;
-    letter-spacing: -0.5;
-    font-size: 17px;
-    color: #44484B;
-}
+
 
 .bottom-notice{
     width: 960px;
@@ -2181,5 +2173,36 @@ h2.mypage-top-title {
     padding-left: 4px;
     color: #557CF2;
     font-weight: 500;
+}
+
+
+/* 0518 추가-포인트 내역 테이블 css */
+#emptyProjectText {
+    display: "";
+    padding: 80px 0;
+    text-align: center;
+    line-height: 24px;
+    letter-spacing: -0.5;
+    font-size: 17px;
+    color: #44484B;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid  #00c4c4 !important;
+  background-color: #00c4c4;
+  color: white;
+  
+}
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #00c4c4 !important;
 }
 

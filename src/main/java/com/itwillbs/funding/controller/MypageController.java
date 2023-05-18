@@ -1,5 +1,7 @@
 package com.itwillbs.funding.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.MypageService;
 import com.itwillbs.funding.vo.MemberVO;
+import com.itwillbs.funding.vo.PointVO;
 
 @Controller
 public class MypageController {
@@ -48,8 +51,18 @@ public class MypageController {
 	public String mypage_coupon() {
 		return "mypage/coupon";
 	}
+	
+//	0518수정 - 포인트 내역
 	@GetMapping("mypage/point")
-	public String mypage_point() {
+	public String mypage_point(HttpSession session, Model model) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<PointVO> point = mypageService.selectPoint(member_idx);
+		String member_point = point.get(0).getMember_point();
+		model.addAttribute("point", point);
+		model.addAttribute("member_point", member_point);
+		System.out.println(point);
+		System.out.println(member_idx);
+		
 		return "mypage/point";
 	}
 //	서포터 문의
@@ -129,5 +142,5 @@ public class MypageController {
 	public String history() {
 		return "mypage/history";
 	}
-	
+
 }

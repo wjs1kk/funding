@@ -1,10 +1,13 @@
 package com.itwillbs.funding.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.funding.mapper.MypageMapper;
 import com.itwillbs.funding.vo.MemberVO;
+import com.itwillbs.funding.vo.PointVO;
 
 @Service
 public class MypageService {
@@ -21,6 +24,9 @@ public class MypageService {
 	public int updateUser(MemberVO memberVO) {
 		System.out.println(memberVO);
 		return mapper.updateUser(memberVO);
-
 	}
+	public List<PointVO> selectPoint(Integer member_idx) {
+		return mapper.selectPoint(member_idx);
+	}
+
 }
