@@ -17,6 +17,10 @@ public interface ProjectCreateMapper {
 	int projectRewardAdd(Map reward);
 	// 05-17 김동욱 프로젝트 추가하면서 리워드 리스트 출력
 	List<RewardVO> getProjectReward(Map reward);
-	// 05-17 김동욱 리워드 상세 정보 가져오기
+	// 05-18 김동욱 리워드 상세 정보 가져오기
 	RewardVO getRewardDetail(int reward_idx);
+	// 05-19 김동욱 리워드 정보 수정하기
+	int rewardModify(RewardVO reward);
+	// 05-19 김동욱 AJAX 리워드 삭제하기
+	int rewardDelete(int reward_idx);
 }

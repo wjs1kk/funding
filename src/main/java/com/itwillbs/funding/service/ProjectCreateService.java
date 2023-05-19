@@ -44,4 +44,14 @@ public class ProjectCreateService {
 		return mapper.getRewardDetail(reward_idx);
 	}
 	
+	// 05-19 김동욱 AJAX 리워드 정보 수정하기
+	public int rewardModify(RewardVO reward) {
+		return mapper.rewardModify(reward);
+	}
+	
+	// 05-19 김동욱 AJAX 리워드 삭제하기
+	public int rewardDelete(int reward_idx) {
+		return mapper.rewardDelete(reward_idx);
+	}
+	
 }

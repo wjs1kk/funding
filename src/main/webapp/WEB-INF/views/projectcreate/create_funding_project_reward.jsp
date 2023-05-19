@@ -25,161 +25,239 @@
 </head>
 
 <script type="text/javascript">
-	
-	$(function() {
-		$(document).on("click","#rewardModifyBtn",function(){
-			alert("수정 버튼 클릭");
-		})
-		
-	})
-	
-	// 05-18 김동욱 리워드 수정버튼을 누를 시 리워드 정보를 가져와 모달창에 출력
-	function rewardDetail(reward_idx) {
-		$.ajax({
-			type: "post",
-			url: "getRewardDetail",
-			dataType: "json",
-			data: {"reward_idx" : reward_idx},
-			success: function(rewardDetail) {
-					$("#reward_modal_title").html('<div title="리워드 수정" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 수정</div>');
-					$("#rewardModalBtns").html("")
-					$("#rewardModalBtns").append('<button'
-							+' class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"'
-							+'id="reward_modal_cancle" type="button">'
-							+'<span><span class="Button_children__q9VCZ">취소</span></span>'
-							+'</button>'
-							+'<button'
-							+' class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"'
-							+'type="button" id="rewardModifyBtn">'
-							+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">수정</span></span>'
-							+'</button>')
-				
-					$("#reward_name").val(rewardDetail.reward_name)
-					$("#reward_amount").val(rewardDetail.reward_amount)
-					$("#reward_content").val(rewardDetail.reward_content)
-					$("#reward_option").val(rewardDetail.reward_option)
-					$("#reward_quantity").val(rewardDetail.reward_quantity)
-					$("#reward_delivery").val(rewardDetail.reward_delivery)
-					
-					// 리워드 배송 값이 1일 경우 배송 버튼 CSS가 클릭된 스타일로 변경후 배송란이 생성되고 기존에 입력된 배송비 값 적용 
-					if(rewardDetail.reward_delivery == 1){
-						$("#deliveryUsedBtn").css("background", "#e7f9f9");
-						$("#deliveryUsedBtn").css("border-color", "#00c4c4");
-						$("#deliveryUsedCheckIcon").css("color", "#00c4c4");
-						$("#deliveryCheck").html("");
-						$("#deliveryCheck").append(
-							'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
-							+'<label>배송비</label>'
-							+'<div class="TextField_field__1E9vt">'
-							+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="'+ rewardDetail.reward_delivery_fee +'" id="reward_delivery_fee" name = "reward_delivery_fee">'
-							+'<span class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>'
-							+'</div>'
-							+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
-							+'</div>'
-						);
-						
-					}else if(rewardDetail.reward_delivery == 0) {
-						$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
-						$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
-						$("#deliveryNotUsedCheckIcon").css("color", "#00c4c4");
-					}
-					
-					$("#reward_delivery_date").val(rewardDetail.reward_delivery_date)
-					$("#reward_modal").css("opacity", 1)
-				}
-		});
-		
-	}
-	
-	$(function() {
-		
-		// 리워드 ajax 리스트 출력
+	//리워드 ajax 리스트 출력 함수
+	function getProjectReward() {
 		$.ajax({
 			type: "post",
 			url: "getProjectReward",
 			dataType: "json",
 			data: {"project_idx" : ${param.project_idx}},
 			success: function(jsonRewardList) {
+				$("#rewardAddSection").html("");
 				for(let rewardList of jsonRewardList){
+					// 배송비가 있으면 '배송비 + 원' 배송비가 없으면 '없음' 배송비가 0원이면 '무료'
+					let reward_delivery_fee = rewardList.reward_delivery_fee;
+					let delivery = "배송비";
+					if(reward_delivery_fee == null){
+						reward_delivery_fee = "";
+						delivery = "배송 없음";
+					}else if(reward_delivery_fee == 0){
+						reward_delivery_fee = "무료";
+					}else {
+						reward_delivery_fee += "원";
+					}
 					$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
-							+'<div class="FundingConditionRewardItem_header__3LoHV">'
-							+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
-							+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
-							+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 '+rewardList.reward_quantity+'개</span>'
-							+'</span>'
-							+'</div>'
-							+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
-							+'<h4 class="FundingConditionRewardItem_name__Q9cMr">'+rewardList.reward_name+'</h4>'
-							+'<p class="FundingConditionRewardItem_description__3Yhpu">'+rewardList.reward_content+'</p>'
-							+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
-							+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
-							+'<div>배송비</div>'
-							+'<div>'+rewardList.reward_delivery_fee+'원</div>'
-							+'</div>'
-							+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
-							+'<div>리워드 발송 시작일</div>'
-							+'<div>'+rewardList.reward_delivery_date+'</div>'
-							+'</div>'
-							+'</div>'
-							+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
-							+'<div>'
-							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-							+'<span>'
-							+'<svg viewBox="0 0 40 40" focusable="false"'
-							+'role="presentation"'
-							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-							+'aria-hidden="true">'
-							+'<path fill="none" d="M0 0h40v40H0z"></path>'
-							+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
-							+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
-							+'</span>'
-							+'</button>'
-							+'</div>'
-							+'<div>'
-							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button" onclick = "rewardDetail('+ rewardList.reward_idx +')">'
-							+'<span>'
-							+'<svg viewBox="0 0 32 32" focusable="false"'
-							+'role="presentation"'
-							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-							+'aria-hidden="true">'
-							+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
-							+'</svg>'
-							+'<span class="Button_children__q9VCZ">수정</span>'
-							+'</span>'
-							+'</button>'
-							+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-							+'<span>'
-							+'<svg viewBox="0 0 40 40" focusable="false"'
-							+'role="presentation"'
-							+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-							+'aria-hidden="true">'
-							+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
-							+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
-							+'<span class="Button_children__q9VCZ">삭제</span>'
-							+'</span>'
-							+'</button>'
-							+'</div>'
-							+'</div>'
-						);
+						+'<div class="FundingConditionRewardItem_header__3LoHV">'
+						+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
+						+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
+						+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 '+rewardList.reward_quantity+'개</span>'
+						+'</span>'
+						+'</div>'
+						+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
+						+'<h4 class="FundingConditionRewardItem_name__Q9cMr">'+rewardList.reward_name+'</h4>'
+						+'<p class="FundingConditionRewardItem_description__3Yhpu">'+rewardList.reward_content+'</p>'
+						+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
+						+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
+						+'<div>'+ delivery +'</div>'
+						+'<div>'+reward_delivery_fee+'</div>'
+						+'</div>'
+						+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
+						+'<div>리워드 발송 시작일</div>'
+						+'<div>'+rewardList.reward_delivery_date+'</div>'
+						+'</div>'
+						+'</div>'
+						+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
+						+'<div>'
+						+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
+						+'<span>'
+						+'<svg viewBox="0 0 40 40" focusable="false"'
+						+'role="presentation"'
+						+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+						+'aria-hidden="true">'
+						+'<path fill="none" d="M0 0h40v40H0z"></path>'
+						+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
+						+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
+						+'</span>'
+						+'</button>'
+						+'</div>'
+						+'<div>'
+						+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button" onclick = "rewardDetail('+ rewardList.reward_idx +')">'
+						+'<span>'
+						+'<svg viewBox="0 0 32 32" focusable="false"'
+						+'role="presentation"'
+						+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+						+'aria-hidden="true">'
+						+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
+						+'</svg>'
+						+'<span class="Button_children__q9VCZ">수정</span>'
+						+'</span>'
+						+'</button>'
+						+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button" onclick = "rewardDelete('+ rewardList.reward_idx +')">'
+						+'<span>'
+						+'<svg viewBox="0 0 40 40" focusable="false"'
+						+'role="presentation"'
+						+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
+						+'aria-hidden="true">'
+						+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
+						+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
+						+'<span class="Button_children__q9VCZ">삭제</span>'
+						+'</span>'
+						+'</button>'
+						+'</div>'
+						+'</div>'
+					);
 				}
 				
 			}
 		});
 		
-		// '리워드를 추가해주세요' 버튼을 누르면 모달창 띄우기
-		$(".AddBox_container__39RWm").on("click", function() {
-			$("#reward_modal_title").html('<div title="리워드 추가" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 추가</div>');
-			$("#rewardModalBtns").html("")
-			$("#rewardModalBtns").append('<button'
+	}
+
+	// 05-19 김동욱 리워드 수정
+	$(document).on("click","#rewardModifyBtn",function(){
+		$.ajax({
+			type: "post",
+			url: "rewardModify",
+			data: {reward_idx:$("#reward_idx").val()
+			   ,reward_name:$("#reward_name").val()
+			   ,reward_amount:$("#reward_amount").val()
+			   ,reward_content:$("#reward_content").val()
+			   ,reward_option:$("#reward_option").val()
+			   ,reward_quantity:$("#reward_quantity").val()
+			   ,reward_delivery:$("#reward_delivery").val()
+			   ,reward_delivery_fee:$("#reward_delivery_fee").val()
+			   ,reward_delivery_date:$("#reward_delivery_date").val()
+			},
+			success: function() {
+				getProjectReward();
+				$("#reward_modal").css("opacity", 0);
+			}
+			
+		})
+		
+	});
+	
+	// 05-18 김동욱 리워드 삭제
+	function rewardDelete(reward_idx) {
+		let result = confirm("리워드를 삭제하시겠습니까?");
+		if(result == true){
+			$.ajax({
+				type: "post",
+				url: "rewardDelete",
+				data: {reward_idx:reward_idx},
+				success: function() {
+					getProjectReward();
+				}
+			})
+		}
+		
+	}
+	
+	// 05-18 김동욱 리워드 수정버튼을 누를 시 리워드 정보를 가져와 모달창에 출력하면서 타이틀 제목과 버튼 '수정'으로 변경
+	function rewardDetail(reward_idx) {
+		$("#reward_idx").val(reward_idx)
+		$.ajax({
+			type: "post",
+			url: "getRewardDetail",
+			dataType: "json",
+			data: {"reward_idx" : reward_idx},
+			success: function(rewardDetail) {
+				$("#reward_modal_title").html('<div title="리워드 수정" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 수정</div>');
+				$("#rewardModalBtns").html("")
+				$("#rewardModalBtns").append('<button'
 					+' class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"'
 					+'id="reward_modal_cancle" type="button">'
 					+'<span><span class="Button_children__q9VCZ">취소</span></span>'
 					+'</button>'
 					+'<button'
 					+' class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"'
-					+'type="button" id="rewardAddBtn">'
-					+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">추가</span></span>'
+					+'type="button" id="rewardModifyBtn">'
+					+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">수정</span></span>'
 					+'</button>')
+			
+				$("#reward_name").val(rewardDetail.reward_name);
+				$("#reward_amount").val(rewardDetail.reward_amount);
+				$("#reward_content").val(rewardDetail.reward_content);
+				$("#reward_option").val(rewardDetail.reward_option);
+				$("#reward_quantity").val(rewardDetail.reward_quantity);
+				$("#reward_delivery").val(rewardDetail.reward_delivery);
+				
+				// 리워드 배송 값이 1일 경우 배송 버튼 CSS가 클릭된 스타일로 변경후 배송란이 생성되고 기존에 입력된 배송비 값 적용 
+				if(rewardDetail.reward_delivery == 1){
+					$("#deliveryUsedBtn").css("background", "#e7f9f9");
+					$("#deliveryUsedBtn").css("border-color", "#00c4c4");
+					$("#deliveryUsedCheckIcon").css("color", "#00c4c4");
+					
+					$("#deliveryNotUsedBtn").css("background", "transparent");
+					$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
+					$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
+					
+					
+					$("#deliveryCheck").html("");
+					$("#deliveryCheck").append(
+						'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
+						+'<label>배송비</label>'
+						+'<div class="TextField_field__1E9vt">'
+						+'<input placeholder="0" type="text" class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false" value="'+ rewardDetail.reward_delivery_fee +'" id="reward_delivery_fee" name = "reward_delivery_fee">'
+						+'<span class="TextField_fixedText__2vIuK TextField_endText__3jIeG">원</span>'
+						+'</div>'
+						+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
+						+'</div>'
+					);
+					
+				}else if(rewardDetail.reward_delivery == 0) {
+					$("#deliveryCheck").html("");
+					$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
+					$("#deliveryNotUsedBtn").css("border-color", "#00c4c4");
+					$("#deliveryNotUsedCheckIcon").css("color", "#00c4c4");
+					
+					$("#deliveryUsedBtn").css("background", "transparent");
+					$("#deliveryUsedBtn").css("border-color", "#cdd3d8");
+					$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
+					
+				}
+				
+				$("#reward_delivery_date").val(rewardDetail.reward_delivery_date);
+				$("#reward_modal").css("opacity", 1);
+			}
+		});
+		
+	};
+	
+	
+	$(function() {
+		// 리워드 ajax 리스트 출력
+		getProjectReward();
+		
+		// '리워드를 추가해주세요' 버튼을 누르면 모달창 띄우기
+		$(".AddBox_container__39RWm").on("click", function() {
+			$("#reward_modal_title").html('<div title="리워드 추가" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 추가</div>');
+			$("#rewardModalBtns").html("")
+			$("#rewardModalBtns").append('<button'
+				+' class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"'
+				+'id="reward_modal_cancle" type="button">'
+				+'<span><span class="Button_children__q9VCZ">취소</span></span>'
+				+'</button>'
+				+'<button'
+				+' class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"'
+				+'type="button" id="rewardAddBtn">'
+				+'<span><span class="Button_children__q9VCZ" id="rewardModalAddText">추가</span></span>'
+				+'</button>')
+			$("#reward_name").val("")
+		    $("#reward_amount").val("")
+		    $("#reward_content").val("")
+		    $("#reward_option").val("")
+		    $("#reward_quantity").val("")
+		    $("#reward_delivery").val("")
+		    $("#reward_delivery_fee").val("")
+		    $("#reward_delivery_date").val("")
+		    $("#deliveryNotUsedBtn").css("background", "transparent");
+			$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
+			$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
+		    $("#deliveryUsedBtn").css("background", "transparent");
+			$("#deliveryUsedBtn").css("border-color", "#cdd3d8");
+			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
+			$("#deliveryCheck").html("");
 			$("#reward_modal").css("opacity", 1);
 		});
 
@@ -199,7 +277,6 @@
 				$.ajax({
 					type: "post",
 					url: "projectRewardAdd",
-					dataType: "json",
 					data: {project_idx:${param.project_idx}
 						   ,reward_name:$("#reward_name").val()
 						   ,reward_amount:$("#reward_amount").val()
@@ -210,80 +287,15 @@
 						   ,reward_delivery_fee:$("#reward_delivery_fee").val()
 						   ,reward_delivery_date:$("#reward_delivery_date").val()
 					},
-					success: function(jsonRewardList) {
-						$("#rewardAddSection").html("");
-						for(let rewardList of jsonRewardList){
-							$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
-									+'<div class="FundingConditionRewardItem_header__3LoHV">'
-									+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
-									+'<span class="Badge_container__3mdFR Badge_visible__2c54z">'
-									+'<span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">제한 수량 '+rewardList.reward_quantity+'개</span>'
-									+'</span>'
-									+'</div>'
-									+'<hr class="Divider_divider__iEd6P Divider_horizontal__2aRDB Divider_lightBG__1SKWl Divider_spacing5__1JRsJ Divider_caption2__1zTI_">'
-									+'<h4 class="FundingConditionRewardItem_name__Q9cMr">'+rewardList.reward_name+'</h4>'
-									+'<p class="FundingConditionRewardItem_description__3Yhpu">'+rewardList.reward_content+'</p>'
-									+'<div class="FundingConditionRewardItem_shipping__1XIAG">'
-									+'<div class="FundingConditionRewardItem_shippingCharge__J2R07">'
-									+'<div>배송비</div>'
-									+'<div>'+rewardList.reward_delivery_fee+'원</div>'
-									+'</div>'
-									+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
-									+'<div>리워드 발송 시작일</div>'
-									+'<div>'+rewardList.reward_delivery_date+'</div>'
-									+'</div>'
-									+'</div>'
-									+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
-									+'<div>'
-									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-									+'<span>'
-									+'<svg viewBox="0 0 40 40" focusable="false"'
-									+'role="presentation"'
-									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-									+'aria-hidden="true">'
-									+'<path fill="none" d="M0 0h40v40H0z"></path>'
-									+'<path d="M9 6h15V4H7v28h2V6zm17 9h7l-7-7v7z"></path>'
-									+'<path d="M31 34H13V10h11V8H11v28h22V17h-2v17z"></path></svg><span class="Button_children__q9VCZ">복사</span>'
-									+'</span>'
-									+'</button>'
-									+'</div>'
-									+'<div>'
-									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-									+'<span>'
-									+'<svg viewBox="0 0 32 32" focusable="false"'
-									+'role="presentation"'
-									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-									+'aria-hidden="true">'
-									+'<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>'
-									+'</svg>'
-									+'<span class="Button_children__q9VCZ">수정</span>'
-									+'</span>'
-									+'</button>'
-									+'<button class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">'
-									+'<span>'
-									+'<svg viewBox="0 0 40 40" focusable="false"'
-									+'role="presentation"'
-									+'class="withIcon_icon__3lrgp Button_icon__1qsE3"'
-									+'aria-hidden="true">'
-									+'<path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>'
-									+'<path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg>'
-									+'<span class="Button_children__q9VCZ">삭제</span>'
-									+'</span>'
-									+'</button>'
-									+'</div>'
-									+'</div>'
-								);
-						}
-						
+					success: function() {
+						// 성공시 AJAX 리스트 출력
+						getProjectReward();
 					}
 				});
 				
 			});
 			
-		})
-		
-		
-		
+		});
 		
 		
 		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경, hidden(reward_delivery) value의 값이 배송 누르면  1 배송 없음 누르면 0 
@@ -325,6 +337,7 @@
 				+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
 				+'</div>'
 			);
+			$("#reward_delivery_fee").val(0);
 		});
 		
 		// 리워드 추가 모달창 배송여부에서 배송없음 누를 시 배송비 입력란 삭제
@@ -738,6 +751,7 @@
 								<span><span class="Button_children__q9VCZ" id="rewardModalAddText">추가</span></span>
 							</button>
 						</div>
+						<input type="hidden" value="" id="reward_idx" name="reward_idx">
 					</div>
 				</div>
 			</div>

@@ -66,11 +66,30 @@
  		WHERE project_idx = #{project_idx}
  	</select>
  	
- 	<!-- 05-17 김동욱 AJAX 리워드 상세 정보 가져오기 -->
+ 	<!-- 05-18 김동욱 AJAX 리워드 상세 정보 가져오기 -->
  	<select id="getRewardDetail" resultType="com.itwillbs.funding.vo.RewardVO">
  		SELECT *
  		FROM reward
  		WHERE reward_idx = #{reward_idx}
  	</select>
+ 	
+ 	<!-- 05-19 김동욱 AJAX 리워드 정보 수정하기-->
+ 	<update id="rewardModify">
+ 		UPDATE reward SET
+ 			reward_name = #{reward_name}
+ 			, reward_amount = #{reward_amount}
+ 			, reward_content = #{reward_content}
+ 			, reward_option = #{reward_option}
+ 			, reward_quantity = #{reward_quantity}
+ 			, reward_delivery = #{reward_delivery}
+ 			, reward_delivery_fee = #{reward_delivery_fee}
+ 			, reward_delivery_date = #{reward_delivery_date}
+ 			WHERE reward_idx = #{reward_idx}
+ 	</update>
+ 	
+ 	<!-- 05-19 김동욱 AJAX 리워드 삭제하기 -->
+ 	<delete id="rewardDelete">
+ 		DELETE FROM reward WHERE reward_idx = #{reward_idx}
+ 	</delete>
   
   </mapper>

@@ -13,7 +13,43 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jodit.min.js"></script>
 	<!-- 05-15 김동욱 (스토리 상세페이지 작성 폼) 라이브러리 추가 -->
 	<link href="${pageContext.request.contextPath }/resources/css/jodit.min.css" rel="stylesheet" type="text/css">
+	<!-- 05-19 김동욱 jquery 라이브러리 추가 -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
 	
+	
+	// 05-19 김동욱 저장버튼 클릭시 images, project_summary, project_content 업데이트
+	$(function() {
+		$("#saveBtn").on("click", function() {
+			var fileInput = $('#images');
+			// fileInput 개수를 구한다.
+			for (var i = 0; i < fileInput.length; i++) {
+				if (fileInput[i].files.length > 0) {
+					for (var j = 0; j < fileInput[i].files.length; j++) {
+						console.log(" fileInput[i].files[j] :::"+ fileInput[i].files[j]);
+					}
+				}
+			}
+			$.ajax({
+				type: "post",
+				enctype:"multipart/form-data",
+				contentType: false,
+		      	processData: false,
+				url: "projectStoryUpdate",
+				data: {project_idx:${param.project_idx}
+				   ,images: fileInput
+				   ,project_summary: $("#project_summary").val()
+				   ,project_content: $("#project_content").val()
+				},
+				success: function() {
+					alert("성공");
+				}
+			})
+		})
+		
+	})
+</script>
 	
 </head>
 <body class="" style="overflow: auto;">
@@ -102,8 +138,9 @@
 												class="field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
 												<div class="ImageFormField_buttonWrapper__su3pO">
 														<!-- 05-17 김동욱 name : images로 변경 -->
+														<!-- 05-19 김동욱 다중 이미지 업로드를 위해  multiple="true" 추가  -->
 															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
-																name="images" placeholder="" type="file" value="">
+																name="images" placeholder="" type="file" value="" multiple="true">
 													<label
 														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h">
 														<div class="wz input right ImageFileButton_input__1Dnch">
@@ -339,9 +376,14 @@
 								</div>
 									<input type="hidden" name="project_idx" value="${param.project_idx}">
 									<div class="FundingStoryContainer_btnWrapper__32tvJ">
+<!-- 										<button -->
+<!-- 											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD" -->
+<!-- 											type="submit" style="width: 420px; max-width: 100%;"> -->
+<!-- 											<span><span class="Button_children__q9VCZ">저장하기</span></span> -->
+<!-- 										</button> -->
 										<button
 											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
-											type="submit" style="width: 420px; max-width: 100%;">
+											style="width: 420px; max-width: 100%;" id="saveBtn" >
 											<span><span class="Button_children__q9VCZ">저장하기</span></span>
 										</button>
 									</div>

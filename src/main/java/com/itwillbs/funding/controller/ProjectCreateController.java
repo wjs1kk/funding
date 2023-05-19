@@ -2,13 +2,9 @@ package com.itwillbs.funding.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itwillbs.funding.service.MemberService;
 import com.itwillbs.funding.service.ProjectCreateService;
 import com.itwillbs.funding.vo.ProjectVO;
 import com.itwillbs.funding.vo.RewardVO;
@@ -98,41 +93,67 @@ public class ProjectCreateController {
 		return "redirect:/intro";
 	}
 	// 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_images)및 이미지 파일 업로드
+	// 05-19 김동욱 프로젝트 스토리 작성 업데이트 AJAX로 변경 및 이미지 다중 파일로 변경 
 	@PostMapping("project/projectStoryUpdate")
-	public String projectStoryUpdate(HttpSession session, ProjectVO project, MultipartFile images, Model model) {
+	@ResponseBody
+	public void projectStoryUpdate(HttpSession session, ProjectVO project, List<MultipartFile> images, Model model) {
 		
-		
-		System.out.println("업로드 파일명 : " + images.getOriginalFilename());
+		System.out.println(project);
+		System.out.println(images);
 		
 		String uploadDir = "/resources/images/project_images";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
 		
 		System.out.println("실제 업로드 경로 : " + saveDir);
-		
-		String originalFileName = images.getOriginalFilename();
-		
-		String uuid = UUID.randomUUID().toString();
-		
-		project.setProject_images(uuid.substring(0, 8) + "_" + originalFileName);
-		System.out.println("실제 업로드 될 파일명 : " + project.getProject_images());
-		
-		// -------------------------------------------------------------------------------
-		
-		int updateCount = projectCreateService.projectStoryUpdate(project);
-		if(updateCount > 0) {
+		StringJoiner sj = new StringJoiner("|");
+		for(MultipartFile mf : images){
+			String uuid = UUID.randomUUID().toString();
+			System.out.println(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
+			sj.add(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
+			
 			try {
-				images.transferTo(new File(saveDir, project.getProject_images()));
+				mf.transferTo(new File(saveDir, uuid.substring(0, 8) + "_" + mf.getOriginalFilename()));
 			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return "redirect:/project/story?project_idx="+project.getProject_idx();
-		} else { // 실패
-			model.addAttribute("msg", "스토리 업데이트 실패!");
-			return "fail_back";
 		}
+		System.out.println(sj);
+		project.setProject_images(sj.toString());
+		int updateCount = projectCreateService.projectStoryUpdate(project);
 		
+//		System.out.println("업로드 파일명 : " + images.getOriginalFilename());
+//		
+//		String uploadDir = "/resources/images/project_images";
+//		String saveDir = session.getServletContext().getRealPath(uploadDir);
+//		
+//		System.out.println("실제 업로드 경로 : " + saveDir);
+//		
+//		String originalFileName = images.getOriginalFilename();
+//		
+//		String uuid = UUID.randomUUID().toString();
+//		
+//		project.setProject_images(uuid.substring(0, 8) + "_" + originalFileName);
+//		System.out.println("실제 업로드 될 파일명 : " + project.getProject_images());
+//		
+//		// -------------------------------------------------------------------------------
+//		
+//		if(updateCount > 0) {
+//			try {
+//				images.transferTo(new File(saveDir, project.getProject_images()));
+//			} catch (IllegalStateException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			return "redirect:/project/story?project_idx="+project.getProject_idx();
+//		} else { // 실패
+//			model.addAttribute("msg", "스토리 업데이트 실패!");
+//			return "fail_back";
+//		}
 		
 	}
 	
@@ -150,15 +171,11 @@ public class ProjectCreateController {
 	}
 	
 	// 05-18 김동욱 리워드 추가 기능
+	// 05-19 김동욱 리워드 추가하고 리스트 가져오기 삭제
 	@PostMapping("project/projectRewardAdd")
 	@ResponseBody
-	public String projectRewardAdd(@RequestParam Map reward) {
+	public void projectRewardAdd(@RequestParam Map reward) {
 		int insertCount = projectCreateService.projectRewardAdd(reward);
-		
-		List<RewardVO> rewardList = projectCreateService.getProjectReward(reward);
-		JSONArray jsonRewardList = new JSONArray(rewardList);
-		System.out.println(jsonRewardList);
-		return jsonRewardList.toString();
 	}
 	
 	// 05-18 김동욱 AJAX 리워드 수정 정보 가져오기
@@ -169,6 +186,19 @@ public class ProjectCreateController {
 		RewardVO reward = projectCreateService.getRewardDetail(reward_idx);
 		System.out.println(reward);
 		return reward;
+	}
+	// 05-18 김동욱 AJAX 리워드 정보 수정하기
+	@PostMapping("project/rewardModify")
+	@ResponseBody
+	public void rewardModify(RewardVO reward) {
+		int updateCount = projectCreateService.rewardModify(reward);
+	}
+	// 05-18 김동욱 AJAX 리워드 삭제하기
+	@PostMapping("project/rewardDelete")
+	@ResponseBody
+	public void rewardDelete(int reward_idx) {
+		System.out.println("reward_idx : " + reward_idx);
+		int deleteCount = projectCreateService.rewardDelete(reward_idx);
 	}
 	
 	
