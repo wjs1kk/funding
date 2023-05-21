@@ -96,34 +96,9 @@ public class ProjectCreateController {
 	// 05-19 김동욱 프로젝트 스토리 작성 업데이트 AJAX로 변경 및 이미지 다중 파일로 변경 
 	@PostMapping("project/projectStoryUpdate")
 	@ResponseBody
-	public void projectStoryUpdate(HttpSession session, ProjectVO project, List<MultipartFile> images, Model model) {
+	public void projectStoryUpdate(HttpSession session, Model model, ProjectVO project) {
 		
-		System.out.println(project);
-		System.out.println(images);
 		
-		String uploadDir = "/resources/images/project_images";
-		String saveDir = session.getServletContext().getRealPath(uploadDir);
-		
-		System.out.println("실제 업로드 경로 : " + saveDir);
-		StringJoiner sj = new StringJoiner("|");
-		for(MultipartFile mf : images){
-			String uuid = UUID.randomUUID().toString();
-			System.out.println(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
-			sj.add(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
-			
-			try {
-				mf.transferTo(new File(saveDir, uuid.substring(0, 8) + "_" + mf.getOriginalFilename()));
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		System.out.println(sj);
-		project.setProject_images(sj.toString());
-		int updateCount = projectCreateService.projectStoryUpdate(project);
 		
 //		System.out.println("업로드 파일명 : " + images.getOriginalFilename());
 //		
@@ -199,6 +174,38 @@ public class ProjectCreateController {
 	public void rewardDelete(int reward_idx) {
 		System.out.println("reward_idx : " + reward_idx);
 		int deleteCount = projectCreateService.rewardDelete(reward_idx);
+	}
+	// 05-21 김동욱 AJAX 사진 업로드
+	@PostMapping("project/imageUpaload")
+	@ResponseBody
+	public void imageUpaload(ProjectVO project, MultipartFile[] files, HttpSession session) {
+		
+		System.out.println(project);
+		System.out.println(files);
+		
+		String uploadDir = "/resources/images/project_images";
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		
+		System.out.println("실제 업로드 경로 : " + saveDir);
+		StringJoiner sj = new StringJoiner("|");
+		for(MultipartFile mf : files){
+			String uuid = UUID.randomUUID().toString();
+			System.out.println(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
+			sj.add(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
+			
+			try {
+				mf.transferTo(new File(saveDir, uuid.substring(0, 8) + "_" + mf.getOriginalFilename()));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println(sj);
+		project.setProject_images(sj.toString());
+		
 	}
 	
 	

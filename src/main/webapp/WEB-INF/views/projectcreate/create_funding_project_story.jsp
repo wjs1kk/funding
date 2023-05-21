@@ -22,34 +22,76 @@
 	// 05-19 김동욱 저장버튼 클릭시 images, project_summary, project_content 업데이트
 	$(function() {
 		$("#saveBtn").on("click", function() {
-			var fileInput = $('#images');
-			// fileInput 개수를 구한다.
-			for (var i = 0; i < fileInput.length; i++) {
-				if (fileInput[i].files.length > 0) {
-					for (var j = 0; j < fileInput[i].files.length; j++) {
-						console.log(" fileInput[i].files[j] :::"+ fileInput[i].files[j]);
-					}
-				}
-			}
+// 			var fileInput = $('#images');
+// 			// fileInput 개수를 구한다.
+// 			for (var i = 0; i < fileInput.length; i++) {
+// 				if (fileInput[i].files.length > 0) {
+// 					for (var j = 0; j < fileInput[i].files.length; j++) {
+// 						console.log(" fileInput[i].files[j] :::"+ fileInput[i].files[j]);
+// 					}
+// 				}
+// 			}
+			
+			
+			
+			
+// 			$.ajax({
+// 				type: "post",
+// 				enctype:"multipart/form-data",
+// 				contentType: false,
+// 		      	processData: false,
+// 				url: "projectStoryUpdate",
+// 				data: {project_idx:${param.project_idx}
+// 				   ,images: fileInput
+// 				   ,project_summary: $("#project_summary").val()
+// 				   ,project_content: $("#project_content").val()
+// 				},
+// 				success: function() {
+// 					alert("성공");
+// 				}
+// 			})
+
+			var formData = new FormData();
+	        var files = $('#images')[0].files;
+	        
+	        for (var i = 0; i < files.length; i++) {
+	          formData.append('files', files[i]);
+	        }
+	        
+			
 			$.ajax({
-				type: "post",
-				enctype:"multipart/form-data",
-				contentType: false,
-		      	processData: false,
-				url: "projectStoryUpdate",
-				data: {project_idx:${param.project_idx}
-				   ,images: fileInput
-				   ,project_summary: $("#project_summary").val()
-				   ,project_content: $("#project_content").val()
-				},
-				success: function() {
-					alert("성공");
-				}
-			})
+		          url: 'imageUpaload',
+		          type: 'POST',
+		          data: formData,
+		          processData: false,
+		          contentType: false,
+		          success: function(response) {
+		            console.log(response);
+		            // 업로드 완료 후 처리할 작업 수행
+		          },
+		          error: function(xhr, status, error) {
+		            console.log(error);
+		            // 업로드 실패 시 처리할 작업 수행
+		          }
+	        });
+			
+			
 		})
 		
 	})
 </script>
+<style>
+    #preview {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .preview-image {
+      width: 250px;
+      height: 170px;
+      margin: 10px;
+    }
+  </style>
 	
 </head>
 <body class="" style="overflow: auto;">
@@ -97,7 +139,7 @@
 								</div>
 							</div>
 							<!-- 05-17 김동욱 파일 업로드를 위해 enctype="multipart/form-data" 추가 및 action과 method 설정 -->
-							<form action="projectStoryUpdate" method="post" enctype="multipart/form-data"
+							<form 
 								class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
 								<div class="Loader_loader__d9YUC Form_loader__1YJ5I"></div>
 								<section class="Section_container__3md8M"
@@ -139,7 +181,7 @@
 												<div class="ImageFormField_buttonWrapper__su3pO">
 														<!-- 05-17 김동욱 name : images로 변경 -->
 														<!-- 05-19 김동욱 다중 이미지 업로드를 위해  multiple="true" 추가  -->
-															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG"
+															<input accept="image/JPG,image/JPEG,image/GIF,image/PNG" id="images"
 																name="images" placeholder="" type="file" value="" multiple="true">
 													<label
 														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h">
@@ -151,7 +193,41 @@
 														630x400 픽셀 이상</em><em
 														class="helper ImageFormField_helper__3XC5c">여러 장
 														등록돼요.</em>
+													<div id="preview"></div>
 												</div>
+												 <script>
+												    const uploadInput = document.getElementById('images');
+												    const previewContainer = document.getElementById('preview');
+												
+												    uploadInput.addEventListener('change', handleUpload);
+												
+												    function handleUpload(event) {
+												      const files = event.target.files;
+												
+												      // 이전에 미리보기 이미지가 있으면 삭제
+												      while (previewContainer.firstChild) {
+												        previewContainer.firstChild.remove();
+												      }
+												
+												      // 파일을 순회하며 미리보기 이미지 생성
+												      for (let i = 0; i < files.length; i++) {
+												        const file = files[i];
+												        const reader = new FileReader();
+												
+												        reader.onload = function (event) {
+												          const imageUrl = event.target.result;
+												
+												          const previewImage = document.createElement('img');
+												          previewImage.setAttribute('src', imageUrl);
+												          previewImage.setAttribute('class', 'preview-image');
+												
+												          previewContainer.appendChild(previewImage);
+												        }
+												
+												        reader.readAsDataURL(file);
+												      }
+												    }
+												  </script>
 											</div>
 										</div>
 									</div>
@@ -381,13 +457,15 @@
 <!-- 											type="submit" style="width: 420px; max-width: 100%;"> -->
 <!-- 											<span><span class="Button_children__q9VCZ">저장하기</span></span> -->
 <!-- 										</button> -->
-										<button
-											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
-											style="width: 420px; max-width: 100%;" id="saveBtn" >
-											<span><span class="Button_children__q9VCZ">저장하기</span></span>
-										</button>
+
+<!-- 										<button -->
+<!-- 											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD" -->
+<!-- 											style="width: 420px; max-width: 100%;" id="saveBtn" > -->
+<!-- 											<span><span class="Button_children__q9VCZ">저장하기</span></span> -->
+<!-- 										</button> -->
 									</div>
 							</form>
+							<button id="saveBtn" value="저장하기">저장하기</button>
 						</div>
 					</div>
 					<div class="ChannelTalk_container__3OcHU">
