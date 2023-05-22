@@ -18,38 +18,85 @@
 		src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	
+	// 05-22 김동욱 ajax 이미지 리스트 가져오기
+	function getPorjectImages() {
+		$.ajax({
+	          url: 'getProjectImages',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+   	  			$("#addImagesList").html("<br>")
+        	  	for(let imagesList of response) {
+        	  		if(imagesList != ""){
+						$("#addImagesList").append('<img alt="" src="${pageContext.request.contextPath }/resources/images/project_images/'+ imagesList +'" width="300" height="200"><button><img alt="" src="${pageContext.request.contextPath }/resources/images/delete-icon.png" width="15" height="15" onclick="deleteImage(\''+imagesList+'\')"></button>')
+        	  		}else {
+						$("#addImagesList").append('<br><p style="color: lightgray">추가된 이미지가 없습니다!</p><br>')
+        	  		}
+        	  	}
+	          },
+	          error: function(xhr, status, error) {
+	            console.log(error);
+	          }
+      	});
+	}
 	
-	// 05-19 김동욱 저장버튼 클릭시 images, project_summary, project_content 업데이트
+	// 05-22 김동욱 ajax 프로젝트 요약, 프로젝트 컨텐트 정보 가져오기
+	function getProjectStory() {
+		$.ajax({
+	          url: 'getProjectStory',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  $("#project_summary").html(response.project_summary)
+	        	  $(".jodit-wysiwyg").html("");
+	        	  $(".jodit-wysiwyg").html(response.project_content)
+	        	  $(".jodit-wysiwyg").focus();
+	        	  
+	          },
+	          error: function(xhr, status, error) {
+	            console.log(error);
+	          }
+    	});
+		
+	}
+	
+	// 05-22 김동욱 ajax 이미지 리스트 삭제
+	function deleteImage(image) {
+		let result = confirm("이미지를 삭제하시겠습니까?");
+		
+		if(result == true){
+			$.ajax({
+		          url: 'deleteProjectImage',
+		          type: 'POST',
+		          data: {project_idx: ${param.project_idx},
+		        	     deleteImage: image},
+		          success: function() {
+		        	  getPorjectImages();
+		          },
+		          error: function(xhr, status, error) {
+		            console.log(error);
+		          }
+	    	});
+		}
+		
+	}
+	
 	$(function() {
-		$("#saveBtn").on("click", function() {
-// 			var fileInput = $('#images');
-// 			// fileInput 개수를 구한다.
-// 			for (var i = 0; i < fileInput.length; i++) {
-// 				if (fileInput[i].files.length > 0) {
-// 					for (var j = 0; j < fileInput[i].files.length; j++) {
-// 						console.log(" fileInput[i].files[j] :::"+ fileInput[i].files[j]);
-// 					}
-// 				}
-// 			}
-			
-			
-			
-			
-// 			$.ajax({
-// 				type: "post",
-// 				enctype:"multipart/form-data",
-// 				contentType: false,
-// 		      	processData: false,
-// 				url: "projectStoryUpdate",
-// 				data: {project_idx:${param.project_idx}
-// 				   ,images: fileInput
-// 				   ,project_summary: $("#project_summary").val()
-// 				   ,project_content: $("#project_content").val()
-// 				},
-// 				success: function() {
-// 					alert("성공");
-// 				}
-// 			})
+		
+		// 이미지 리스트 출력
+		getPorjectImages()
+		
+		// 프로젝트 요약, 프로젝트 컨텐트 정보 출력
+		getProjectStory()
+		
+		$("#testBtn").on("click", function() {
+			getProjectStory();
+		})
+		
+		// 이미지 추가
+		$("#addImageBtn").on("click", function() {
 
 			var formData = new FormData();
 	        var files = $('#images')[0].files;
@@ -57,24 +104,42 @@
 	        for (var i = 0; i < files.length; i++) {
 	          formData.append('files', files[i]);
 	        }
-	        
 			
 			$.ajax({
-		          url: 'imageUpaload',
+		          url: 'imagesUpaload?project_idx='+${param.project_idx},
 		          type: 'POST',
 		          data: formData,
 		          processData: false,
 		          contentType: false,
 		          success: function(response) {
-		            console.log(response);
-		            // 업로드 완료 후 처리할 작업 수행
+		        	$("#preview").html("");
+	        	  	getPorjectImages()
 		          },
 		          error: function(xhr, status, error) {
 		            console.log(error);
-		            // 업로드 실패 시 처리할 작업 수행
 		          }
 	        });
 			
+		})
+		
+		// 05-22 김동욱 저장버튼 클릭시 project_summary, project_content 업데이트
+		$("#saveBtn").on("click", function() {
+
+			$.ajax({
+		          url: 'projectStoryUpdate',
+		          type: 'POST',
+		          data: {project_idx: ${param.project_idx},
+		        	  	 project_summary: $("#project_summary").val(),
+		        	  	 project_content: $("#project_content").val()
+		          		},
+		          success: function() {
+		        	  alert("프로젝트 스토리 정보가 저장 되었습니다!")
+		        	  getProjectStory()
+		          },
+		          error: function(xhr, status, error) {
+		            console.log(error);
+		          }
+	        });
 			
 		})
 		
@@ -95,6 +160,7 @@
 	
 </head>
 <body class="" style="overflow: auto;">
+
 	<div data-react-modal-body-trap="" tabindex="0"
 		style="position: absolute; opacity: 0;"></div>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
@@ -121,6 +187,7 @@
 							<div class="HeaderLayout_container__3fXkO">
 								<div class="HeaderLayout_contents__F4hlC">
 									<h2 class="FundingStoryContainer_title__1r0ZE">스토리 작성</h2>
+									<button id="testBtn">테스트 버튼</button>
 									<p class="FundingStoryContainer_description__1sMTR">메이커님의
 										프로젝트를 소개해 주세요.</p>
 								</div>
@@ -139,9 +206,6 @@
 								</div>
 							</div>
 							<!-- 05-17 김동욱 파일 업로드를 위해 enctype="multipart/form-data" 추가 및 action과 method 설정 -->
-							<form 
-								class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
-								<div class="Loader_loader__d9YUC Form_loader__1YJ5I"></div>
 								<section class="Section_container__3md8M"
 									style="max-width: 630px;">
 									<div style="" class="Section_header__1qwS7">
@@ -186,14 +250,21 @@
 													<label
 														class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h">
 														<div class="wz input right ImageFileButton_input__1Dnch">
-														</div></label><em class="helper error"></em><em
+														</div></label><em class="helper error"></em>
+														<br>
+														<em
 														class="helper ImageFormField_helper__3XC5c">2MB 이하의
-														JPG, JPEG, GIF, PNG 파일</em><em
+														JPG, JPEG, GIF, PNG 파일</em>
+														<br>
+														<em
 														class="helper ImageFormField_helper__3XC5c">해상도
-														630x400 픽셀 이상</em><em
+														630x400 픽셀 이상</em>
+														<br>
+														<em
 														class="helper ImageFormField_helper__3XC5c">여러 장
 														등록돼요.</em>
 													<div id="preview"></div>
+												
 												</div>
 												 <script>
 												    const uploadInput = document.getElementById('images');
@@ -231,7 +302,22 @@
 											</div>
 										</div>
 									</div>
+									<button id="addImageBtn"
+										class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
+										style="width: 420px; max-width: 100%;" >이미지 추가하기
+									</button>
 								</section>
+								<br>
+								<div style="" class="Section_header__1qwS7">
+									<h3 class="Section_title__ikPIm Section_isRequired__F8rij">
+										추가된 이미지
+										<div id="addImagesList">
+											<br>
+										</div>
+									</h3>
+									<div class="Section_guide__2xeJO"></div>
+								</div>
+								<br>
 								<section class="Section_container__3md8M"
 									style="max-width: 630px;">
 									<div style="" class="Section_header__1qwS7">
@@ -272,7 +358,7 @@
 												<div class="wide column-4">
 													<div class="wz input">
 														<textarea placeholder="내용 입력" helper="[object Object]"
-															maxlength="100" name="project_summary" rows="3"></textarea>
+															maxlength="100" name="project_summary" rows="3" id="project_summary"></textarea>
 													</div>
 													<em class="helper FormFieldTextarea_helper__3-iK_">100자
 														남음</em>
@@ -344,6 +430,7 @@
 														<path
 															d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
 														<path
+
 															d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"></path></svg></a>
 											</div>
 										</div>
@@ -464,12 +551,15 @@
 <!-- 											<span><span class="Button_children__q9VCZ">저장하기</span></span> -->
 <!-- 										</button> -->
 									</div>
-							</form>
-							<button id="saveBtn" value="저장하기">저장하기</button>
+							
+							<button id="saveBtn"
+								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
+								style="width: 420px; max-width: 100%;" id="saveBtn" >저장하기
+							</button>
 						</div>
 					</div>
 					<div class="ChannelTalk_container__3OcHU">
-						<button type="button"></button>
+						<button type="button" ></button>
 					</div>
 				</div>
 			</div>

@@ -23,4 +23,10 @@ public interface ProjectCreateMapper {
 	int rewardModify(RewardVO reward);
 	// 05-19 김동욱 AJAX 리워드 삭제하기
 	int rewardDelete(int reward_idx);
+	// 05-22 김동욱 기존 등록된 이미지 가져오기
+	String getImages(int project_idx);
+	// 05-22 김동욱 AJAX 이미지 추가
+	int projectAddImages(ProjectVO project);
+	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
+	ProjectVO getProjectStory(int project_idx);
 }

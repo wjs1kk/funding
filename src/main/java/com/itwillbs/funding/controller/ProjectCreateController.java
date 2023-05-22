@@ -2,6 +2,7 @@ package com.itwillbs.funding.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -92,44 +93,12 @@ public class ProjectCreateController {
 		int insertCount = projectCreateService.createFundingProject(member_idx);
 		return "redirect:/intro";
 	}
-	// 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_images)및 이미지 파일 업로드
 	// 05-19 김동욱 프로젝트 스토리 작성 업데이트 AJAX로 변경 및 이미지 다중 파일로 변경 
+	// 05-22 김동욱 프로젝트 스토리 작성 업데이트 project_summary와 project_content만 업데이트되게 변경
 	@PostMapping("project/projectStoryUpdate")
 	@ResponseBody
 	public void projectStoryUpdate(HttpSession session, Model model, ProjectVO project) {
-		
-		
-		
-//		System.out.println("업로드 파일명 : " + images.getOriginalFilename());
-//		
-//		String uploadDir = "/resources/images/project_images";
-//		String saveDir = session.getServletContext().getRealPath(uploadDir);
-//		
-//		System.out.println("실제 업로드 경로 : " + saveDir);
-//		
-//		String originalFileName = images.getOriginalFilename();
-//		
-//		String uuid = UUID.randomUUID().toString();
-//		
-//		project.setProject_images(uuid.substring(0, 8) + "_" + originalFileName);
-//		System.out.println("실제 업로드 될 파일명 : " + project.getProject_images());
-//		
-//		// -------------------------------------------------------------------------------
-//		
-//		if(updateCount > 0) {
-//			try {
-//				images.transferTo(new File(saveDir, project.getProject_images()));
-//			} catch (IllegalStateException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			return "redirect:/project/story?project_idx="+project.getProject_idx();
-//		} else { // 실패
-//			model.addAttribute("msg", "스토리 업데이트 실패!");
-//			return "fail_back";
-//		}
-		
+		int updateCouunt = projectCreateService.projectStoryUpdate(project);
 	}
 	
 	// 05-18 김동욱 리워드 출력 AJAX
@@ -146,10 +115,10 @@ public class ProjectCreateController {
 	}
 	
 	// 05-18 김동욱 리워드 추가 기능
-	// 05-19 김동욱 리워드 추가하고 리스트 가져오기 삭제
 	@PostMapping("project/projectRewardAdd")
 	@ResponseBody
 	public void projectRewardAdd(@RequestParam Map reward) {
+		System.out.println("projectRewardAdd: " + reward);
 		int insertCount = projectCreateService.projectRewardAdd(reward);
 	}
 	
@@ -175,19 +144,26 @@ public class ProjectCreateController {
 		System.out.println("reward_idx : " + reward_idx);
 		int deleteCount = projectCreateService.rewardDelete(reward_idx);
 	}
-	// 05-21 김동욱 AJAX 사진 업로드
-	@PostMapping("project/imageUpaload")
+	// 05-22 김동욱 AJAX 이미지 추가
+	@PostMapping("project/imagesUpaload")
 	@ResponseBody
 	public void imageUpaload(ProjectVO project, MultipartFile[] files, HttpSession session) {
 		
 		System.out.println(project);
 		System.out.println(files);
 		
+		String getImages = projectCreateService.getImages(project.getProject_idx());
+		
 		String uploadDir = "/resources/images/project_images";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
 		
+		
 		System.out.println("실제 업로드 경로 : " + saveDir);
 		StringJoiner sj = new StringJoiner("|");
+		// 기존 이미지가 null 스트링이 아니면 StringJoiner에 새로 추가
+		if(!getImages.equals("")) {
+			sj.add(getImages);
+		}
 		for(MultipartFile mf : files){
 			String uuid = UUID.randomUUID().toString();
 			System.out.println(uuid.substring(0, 8) + "_" + mf.getOriginalFilename());
@@ -206,7 +182,58 @@ public class ProjectCreateController {
 		System.out.println(sj);
 		project.setProject_images(sj.toString());
 		
+		int updateCount = projectCreateService.projectAddImages(project);
+		System.out.println(updateCount);
+		
 	}
 	
+	// 05-22 김동욱 AJAX 프로젝트 이미지 가져오기
+	@PostMapping("project/getProjectImages")
+	@ResponseBody
+	public String getProjectImages(int project_idx) {
+		String porjectImages = projectCreateService.getImages(project_idx);
+		String[] projectImagesArr = porjectImages.split("\\|");
+		
+		List<String> imagesList = new ArrayList<String>();
+		for(String projectImages : projectImagesArr) {
+			System.out.println(projectImages);
+			imagesList.add(projectImages);
+		}
+		
+		System.out.println(porjectImages);
+		JSONArray jsonImagesList = new JSONArray(imagesList);
+		return jsonImagesList.toString();
+	}
+	
+	
+	// 05-22 김동욱 AJAX 프로젝트 이미지 지우기
+	@PostMapping("project/deleteProjectImage")
+	@ResponseBody
+	public void deleteProjectImage(ProjectVO project, String deleteImage) {
+		String porjectImages = projectCreateService.getImages(project.getProject_idx());
+		String[] projectImagesArr = porjectImages.split("\\|");
+		
+		System.out.println("지울 이미지 : " + deleteImage);
+		StringJoiner sj = new StringJoiner("|");
+		
+		for(String imageList : projectImagesArr) {
+			if(!imageList.equals(deleteImage)) {
+				sj.add(imageList);
+			}
+		}
+		project.setProject_images(sj.toString());
+		int updateCount = projectCreateService.projectAddImages(project);
+		
+	}
+	
+	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
+	@PostMapping("project/getProjectStory")
+	@ResponseBody
+	public ProjectVO getProjectStory(int project_idx) {
+		System.out.println(project_idx);
+		ProjectVO project = projectCreateService.getProjectStory(project_idx);
+		System.out.println(project);
+		return project;
+	}
 	
 }

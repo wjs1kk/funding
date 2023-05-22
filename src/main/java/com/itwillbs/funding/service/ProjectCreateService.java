@@ -53,5 +53,18 @@ public class ProjectCreateService {
 	public int rewardDelete(int reward_idx) {
 		return mapper.rewardDelete(reward_idx);
 	}
+	// 05-22 김동욱 기존 등록된 이미지 가져오기
+	public String getImages(int project_idx) {
+		return mapper.getImages(project_idx);
+	}
+	// 05-22 김동욱 AJAX 이미지 추가
+	public int projectAddImages(ProjectVO project) {
+		return mapper.projectAddImages(project);
+	}
+	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
+	public ProjectVO getProjectStory(int project_idx) {
+		return mapper.getProjectStory(project_idx);
+	}
+	
 	
 }

@@ -4,8 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.itwillbs.funding.mapper.ProjectCreateMapper">
+  
   	
   	<!-- 05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성 -->
+  	<!-- 05-12 project_images가 프로젝트 생성될 떄 null 스트링이 들어가도록 수정 -->
  	<insert id="createFundingProject">
  		INSERT INTO project VALUES(
  			null
@@ -15,6 +17,7 @@
  			, null
  			, null
  			, null
+ 			, ""
  			, null
  			, null
  			, null
@@ -35,11 +38,11 @@
  	</select>
  	
  	<!-- 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_image) -->
+ 	<!-- 05-22 김동욱 프로젝트 스토리 업데이트에서 project_images 삭제 -->
  	<update id="projectStoryUpdate">
  		UPDATE project SET
  		project_summary = #{project_summary}
  		,project_content = #{project_content}
- 		,project_images = #{project_images}
  		where project_idx = #{project_idx}
  	</update>
  	
@@ -56,6 +59,7 @@
  				   , #{reward_delivery}
  				   , #{reward_delivery_fee}
  				   , #{reward_delivery_date}
+ 				   , "0"
  				   )
  	</insert>
  	
@@ -91,5 +95,24 @@
  	<delete id="rewardDelete">
  		DELETE FROM reward WHERE reward_idx = #{reward_idx}
  	</delete>
-  
+ 	
+ 	<!-- 05-22 김동욱 기존 등록된 이미지 가져오기 -->
+ 	<select id="getImages" resultType="String">
+ 		SELECT project_images
+ 		FROM project
+ 		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
+ 	<!-- 05-22 김동욱 AJAX 이미지 추가 -->
+ 	<update id="projectAddImages">
+ 		UPDATE project SET project_images = #{project_images}
+ 		WHERE project_idx = #{project_idx}
+ 	</update>
+ 	
+ 	<select id="getProjectStory" resultType="com.itwillbs.funding.vo.ProjectVO">
+ 		SELECT project_summary, project_content
+ 		FROM project
+ 		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
   </mapper>
