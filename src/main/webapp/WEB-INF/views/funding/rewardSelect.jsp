@@ -1,23 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko" class="scroll-top scroll-apex">
 
-<head>
-	<title>와디즈 리워드선택</title>
-	
-	<link rel="stylesheet" href="/resources/static/css/common.css?v=20230502">
-	<link rel="stylesheet" href="/resources/static/css/wpurchase_reward.css?v=20230221">
-	<link rel="stylesheet" href="https://static.wadiz.kr/reward/payments.d2c2c5fa.css">
-	<link rel="stylesheet" href="https://static.wadiz.kr/reward/reward-product.b2b4157b.css">
-	<link rel="stylesheet" href="resources/css/rewardSelect.css">
-</head>
+<head>	
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">
+<link rel="stylesheet" href="/resources/static/css/common.css?v=20230502">
+<link rel="stylesheet" href="/resources/static/css/wpurchase_reward.css?v=20230221">
+<link rel="stylesheet" href="https://static.wadiz.kr/reward/payments.d2c2c5fa.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/reward/reward-product.b2b4157b.css">
+<link rel="stylesheet" href="resources/css/rewardSelect.css">
 
-<body class="">
+<script src="resources/js/jquery-3.6.4.js"></script>
+
+</head>
+<body>
 	<div id="page-container">
+
 		<div class="black-bg-wrap" style="display: none;"></div>
-		
+
+		<!-- top.jsp -->
 		<jsp:include page="../inc/top.jsp"></jsp:include>
+
+		<form id="forwardForm" method="get">
+			<input type="hidden" id="returnURL" name="returnURL">
+		</form>
+		<input type="hidden" id="sessionLoginCheck" value="true">
 
 		<div id="newContainer">
 			<div id="wPurchaseWrap">
@@ -27,7 +37,7 @@
 							style="background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0429/20230429094227328_207915.jpg/wadiz/resize/600/format/jpg/quality/80)"></em>해마루파트너스</span>
 					</h2>
 				</div>
-				<div class="wpurchase-wrap " style="">
+				<div class="wpurchase-wrap ">
 					<div class="wpurchase-step">
 						<ol>
 							<li class="active"><em>리워드<br>선택
@@ -38,7 +48,7 @@
 					</div>
 					<form name="purchaseForm" id="purchaseForm" method="post">
 						<input type="hidden" name="secureStateBagKey"
-							value="MDQ5MWVhODMtMGMwYi00NWY1LWFiOGMtZWZmOWE0MjBiZWUxWm1JNE56UTBZbVF0TVRNNE5DMDBPV0l4TFRnek5UY3RZVFprT1dRd1pUYzRPR0pq">
+							value="ZmUzNzQ2ZTEtNjcyOS00YzY3LTkzYmItNWQ3NGE2YjY2Y2UxWVdJMVpXTXhZakV0WVdVMk5pMDBPVEJpTFRrMU1ETXRNR05rWmpVMk5qQm1OelZo">
 						<input type="hidden" name="campaignId" value="207915"> <input
 							type="hidden" name="fundingPrice">
 
@@ -48,33 +58,29 @@
 									<em>리워드 선택</em>
 								</h3>
 							</div>
-							<!-- S : 서포터클럽 가입 -->
-							<div id="supporter-club-subscribe-app"
-								data-is-all-free-shipping-cost="true">
-								<div role="button"
-									class="FundingSupporterClubSubscriptionContainer_subscriptionButton__2HTma">
-									5초 가입, 매달 쿠폰받고 참여하세요.
-									<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-										class="withIcon_icon__3CJLi FundingSupporterClubSubscriptionContainer_chevron__1mWFS"
-										aria-hidden="true">
-										<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-								</div>
-							</div>
+							
 							<div id="reward-product-app" data-campaign-id="207915"
 								data-selected-reward-id="">
 								<ul class="RewardProductList_container__2hIAB">
+								<c:forEach items="${selectReward }" var="selectReward">
 									<li class="RewardProductList_list__2oOvi"><section
 											class="RewardProductItem_container__1wZBW">
-											<label class="RewardProductItem_label__2t2Wd"
-												for="checkbox-reward-product-440551"><div
-													class="RewardProductItem_price__2oEJ1">
+											<label class="RewardProductItem_label__2t2Wd" for="checkbox-reward-product-440551">
+												<div class="RewardProductItem_price__2oEJ1">
 													<label for="checkbox-reward-product-440551"
-														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o"><input
-														data-reward-id="440551"
-														id="checkbox-reward-product-440551" type="checkbox"
-														class="Checkbox_input__3lmLh"><span
-														class="Checkbox_icon__3D5fA" aria-hidden="true"><svg
-																viewBox="0 0 16 2" focusable="false" role="presentation"
+														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o">
+														<c:choose>
+															<c:when test="${param.select eq selectReward.reward_idx}">
+																<input id="${selectReward.reward_idx }" type="checkbox" class="Checkbox_input__3lmLh" checked="checked">
+															</c:when>
+															<c:otherwise>
+																<input id="${selectReward.reward_idx }" type="checkbox" class="Checkbox_input__3lmLh">
+															</c:otherwise>
+														</c:choose>
+														
+														
+														<span class="Checkbox_icon__3D5fA" aria-hidden="true">
+														<svg viewBox="0 0 16 2" focusable="false" role="presentation"
 																class="withIcon_icon__3CJLi Checkbox_removeIcon__yNVvI"
 																aria-hidden="true">
 																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
@@ -84,228 +90,44 @@
 																aria-hidden="true">
 																<path
 																	d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-														class="Checkbox_content__3huvu"></span></label><span>26,900</span>&nbsp;원
+														class="Checkbox_content__3huvu"></span></label><span>${selectReward.reward_amount }</span>&nbsp;원
 												</div>
 												<div class="RewardProductItem_content__Pw7qB">
 													<div class="RewardProductItem_title__en2gj">
-														[얼리버드] 스테이바 일반수박 7kg 이상(1EA)
+														${selectReward.reward_name }
 														<div class="RewardProductItem_remain__XDQPL">
 															<span class="RewardProductItem_limit__5TztV">제한수량
-																200개</span><span class="RewardProductItem_stock__5qZys">164개
+																<fmt:formatNumber value="${selectReward.reward_quantity}" type="Number"/>개</span><span class="RewardProductItem_stock__5qZys">
+																	<fmt:formatNumber value="${selectReward.reward_quantity - selectReward.reward_sell}" type="Number"/>개
 																남음</span>
 														</div>
 													</div>
 													<div class="RewardProductItem_description__1Eenu">(한정수량)
-														1~2인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장 보관해서
-														드시면 더욱 맛있게 드실 수 있어요!</div>
+														${selectReward.reward_content }</div>
 												</div>
 												<div class="RewardProductItem_delivery__3aef7">
 													<div class="RewardProductDelivery_container__1VhfG">
 														<div class="RewardProductDelivery_content__2MqBD">
 															<i class="RewardProductDelivery_icon__31IE8"
-																aria-hidden="true"></i><span>무료배송</span><span
-																class="RewardProductDelivery_divide__36XQt">|</span><span>2023년
-																05월&nbsp;</span><span>말 (21~말일) 리워드 제공 예정</span>
+																aria-hidden="true"></i>
+																<span>
+																	<c:choose>
+																		<c:when test="${selectReward.reward_delivery_fee eq '0'}">
+																			무료배송
+																		</c:when>
+																		<c:otherwise>
+																			${selectReward.reward_delivery_fee} 원
+																		</c:otherwise>
+																	</c:choose>
+																</span><span
+																class="RewardProductDelivery_divide__36XQt">|</span><span>${selectReward.reward_delivery_date } 리워드 제공 예정</span>
 														</div>
 													</div>
 												</div></label>
 											<hr
 												class="Divider_divider__l7BCX Divider_horizontal__1S942 Divider_lightBG__2mucS Divider_spacing1__32SNF Divider_caption2__2nFxr RewardProductItem_divider__1MITY">
 										</section></li>
-									<li class="RewardProductList_list__2oOvi"><section
-											class="RewardProductItem_container__1wZBW">
-											<label class="RewardProductItem_label__2t2Wd"
-												for="checkbox-reward-product-440552"><div
-													class="RewardProductItem_price__2oEJ1">
-													<label for="checkbox-reward-product-440552"
-														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o"><input
-														data-reward-id="440552"
-														id="checkbox-reward-product-440552" type="checkbox"
-														class="Checkbox_input__3lmLh"><span
-														class="Checkbox_icon__3D5fA" aria-hidden="true"><svg
-																viewBox="0 0 16 2" focusable="false" role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_removeIcon__yNVvI"
-																aria-hidden="true">
-																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-															<svg viewBox="0 0 48 48" focusable="false"
-																role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_checkIcon__3zAHS"
-																aria-hidden="true">
-																<path
-																	d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-														class="Checkbox_content__3huvu"></span></label><span>27,900</span>&nbsp;원
-												</div>
-												<div class="RewardProductItem_content__Pw7qB">
-													<div class="RewardProductItem_title__en2gj">
-														[얼리버드] 스테이바 일반수박 8kg 이상(1EA)
-														<div class="RewardProductItem_remain__XDQPL">
-															<span class="RewardProductItem_limit__5TztV">제한수량
-																400개</span><span class="RewardProductItem_stock__5qZys">371개
-																남음</span>
-														</div>
-													</div>
-													<div class="RewardProductItem_description__1Eenu">(한정수량)
-														2~4인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장 보관해서
-														드시면 더욱 맛있게 드실 수 있어요!</div>
-												</div>
-												<div class="RewardProductItem_delivery__3aef7">
-													<div class="RewardProductDelivery_container__1VhfG">
-														<div class="RewardProductDelivery_content__2MqBD">
-															<i class="RewardProductDelivery_icon__31IE8"
-																aria-hidden="true"></i><span>무료배송</span><span
-																class="RewardProductDelivery_divide__36XQt">|</span><span>2023년
-																05월&nbsp;</span><span>말 (21~말일) 리워드 제공 예정</span>
-														</div>
-													</div>
-												</div></label>
-											<hr
-												class="Divider_divider__l7BCX Divider_horizontal__1S942 Divider_lightBG__2mucS Divider_spacing1__32SNF Divider_caption2__2nFxr RewardProductItem_divider__1MITY">
-										</section></li>
-									<li class="RewardProductList_list__2oOvi"><section
-											class="RewardProductItem_container__1wZBW">
-											<label class="RewardProductItem_label__2t2Wd"
-												for="checkbox-reward-product-440553"><div
-													class="RewardProductItem_price__2oEJ1">
-													<label for="checkbox-reward-product-440553"
-														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o"><input
-														data-reward-id="440553"
-														id="checkbox-reward-product-440553" type="checkbox"
-														class="Checkbox_input__3lmLh"><span
-														class="Checkbox_icon__3D5fA" aria-hidden="true"><svg
-																viewBox="0 0 16 2" focusable="false" role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_removeIcon__yNVvI"
-																aria-hidden="true">
-																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-															<svg viewBox="0 0 48 48" focusable="false"
-																role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_checkIcon__3zAHS"
-																aria-hidden="true">
-																<path
-																	d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-														class="Checkbox_content__3huvu"></span></label><span>28,900</span>&nbsp;원
-												</div>
-												<div class="RewardProductItem_content__Pw7qB">
-													<div class="RewardProductItem_title__en2gj">
-														[얼리버드] 스테이바 일반수박 9kg 이상(1EA)
-														<div class="RewardProductItem_remain__XDQPL">
-															<span class="RewardProductItem_limit__5TztV">제한수량
-																200개</span><span class="RewardProductItem_stock__5qZys">143개
-																남음</span>
-														</div>
-													</div>
-													<div class="RewardProductItem_description__1Eenu">(한정수량)
-														2~5인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장 보관해서
-														드시면 더욱 맛있게 드실 수 있어요!</div>
-												</div>
-												<div class="RewardProductItem_delivery__3aef7">
-													<div class="RewardProductDelivery_container__1VhfG">
-														<div class="RewardProductDelivery_content__2MqBD">
-															<i class="RewardProductDelivery_icon__31IE8"
-																aria-hidden="true"></i><span>무료배송</span><span
-																class="RewardProductDelivery_divide__36XQt">|</span><span>2023년
-																05월&nbsp;</span><span>말 (21~말일) 리워드 제공 예정</span>
-														</div>
-													</div>
-												</div></label>
-											<hr
-												class="Divider_divider__l7BCX Divider_horizontal__1S942 Divider_lightBG__2mucS Divider_spacing1__32SNF Divider_caption2__2nFxr RewardProductItem_divider__1MITY">
-										</section></li>
-									<li class="RewardProductList_list__2oOvi"><section
-											class="RewardProductItem_container__1wZBW">
-											<label class="RewardProductItem_label__2t2Wd"
-												for="checkbox-reward-product-440554"><div
-													class="RewardProductItem_price__2oEJ1">
-													<label for="checkbox-reward-product-440554"
-														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o"><input
-														data-reward-id="440554"
-														id="checkbox-reward-product-440554" type="checkbox"
-														class="Checkbox_input__3lmLh"><span
-														class="Checkbox_icon__3D5fA" aria-hidden="true"><svg
-																viewBox="0 0 16 2" focusable="false" role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_removeIcon__yNVvI"
-																aria-hidden="true">
-																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-															<svg viewBox="0 0 48 48" focusable="false"
-																role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_checkIcon__3zAHS"
-																aria-hidden="true">
-																<path
-																	d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-														class="Checkbox_content__3huvu"></span></label><span>53,800</span>&nbsp;원
-												</div>
-												<div class="RewardProductItem_content__Pw7qB">
-													<div class="RewardProductItem_title__en2gj">
-														[얼리버드] 스테이바 일반수박 7kg+9kg 이상(2EA)
-														<div class="RewardProductItem_remain__XDQPL">
-															<span class="RewardProductItem_limit__5TztV">제한수량
-																200개</span><span class="RewardProductItem_stock__5qZys">182개
-																남음</span>
-														</div>
-													</div>
-													<div class="RewardProductItem_description__1Eenu">(한정수량)
-														수박매니아를 위한 특별구성 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장
-														보관해서 드시면 더욱 맛있게 드실 수 있어요! 배송지를 다르게 보내고 싶으시다면 문의 남겨주세요!</div>
-												</div>
-												<div class="RewardProductItem_delivery__3aef7">
-													<div class="RewardProductDelivery_container__1VhfG">
-														<div class="RewardProductDelivery_content__2MqBD">
-															<i class="RewardProductDelivery_icon__31IE8"
-																aria-hidden="true"></i><span>무료배송</span><span
-																class="RewardProductDelivery_divide__36XQt">|</span><span>2023년
-																05월&nbsp;</span><span>말 (21~말일) 리워드 제공 예정</span>
-														</div>
-													</div>
-												</div></label>
-											<hr
-												class="Divider_divider__l7BCX Divider_horizontal__1S942 Divider_lightBG__2mucS Divider_spacing1__32SNF Divider_caption2__2nFxr RewardProductItem_divider__1MITY">
-										</section></li>
-									<li class="RewardProductList_list__2oOvi"><section
-											class="RewardProductItem_container__1wZBW">
-											<label class="RewardProductItem_label__2t2Wd"
-												for="checkbox-reward-product-440555"><div
-													class="RewardProductItem_price__2oEJ1">
-													<label for="checkbox-reward-product-440555"
-														class="Checkbox_checkbox__2pNZT Checkbox_md__13m4z RewardProductItem_check__28u2o"><input
-														data-reward-id="440555"
-														id="checkbox-reward-product-440555" type="checkbox"
-														class="Checkbox_input__3lmLh"><span
-														class="Checkbox_icon__3D5fA" aria-hidden="true"><svg
-																viewBox="0 0 16 2" focusable="false" role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_removeIcon__yNVvI"
-																aria-hidden="true">
-																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-															<svg viewBox="0 0 48 48" focusable="false"
-																role="presentation"
-																class="withIcon_icon__3CJLi Checkbox_checkIcon__3zAHS"
-																aria-hidden="true">
-																<path
-																	d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-														class="Checkbox_content__3huvu"></span></label><span>3,000</span>&nbsp;원
-												</div>
-												<div class="RewardProductItem_content__Pw7qB">
-													<div class="RewardProductItem_title__en2gj">
-														도서/산간 추가배송비
-														<div class="RewardProductItem_remain__XDQPL">
-															<span class="RewardProductItem_limit__5TztV">제한수량
-																100개</span><span class="RewardProductItem_stock__5qZys">98개
-																남음</span>
-														</div>
-													</div>
-													<div class="RewardProductItem_description__1Eenu">제주도외
-														도서산간 추가배송비입니다.</div>
-												</div>
-												<div class="RewardProductItem_delivery__3aef7">
-													<div class="RewardProductDelivery_container__1VhfG">
-														<div class="RewardProductDelivery_content__2MqBD">
-															<i class="RewardProductDelivery_icon__31IE8"
-																aria-hidden="true"></i><span>2023년 05월&nbsp;</span><span>말
-																(21~말일) 리워드 제공 예정</span>
-														</div>
-													</div>
-												</div></label>
-											<hr
-												class="Divider_divider__l7BCX Divider_horizontal__1S942 Divider_lightBG__2mucS Divider_spacing1__32SNF Divider_caption2__2nFxr RewardProductItem_divider__1MITY">
-										</section></li>
+								</c:forEach>
 								</ul>
 							</div>
 							<!-- E : 서포터클럽 가입 -->
@@ -385,7 +207,7 @@
 							꿀이뚝뚝! 찐~수박과즙 팡팡! 첫 수확 고당도 스테비아 수박(책임보상)에 <em id="sumTotalNum">0</em>
 							원을 참여합니다.
 						</p>
-						<button class="wz button primary" onclick="location.href='payment'">
+						<button class="wz button primary" onclick="purchaseNextStep();">
 							다음 단계로 <i class="icon chevron-right"></i>
 						</button>
 					</div>
@@ -409,6 +231,11 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- footer.jsp -->
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+
 	</div>
+
 </body>
 </html>

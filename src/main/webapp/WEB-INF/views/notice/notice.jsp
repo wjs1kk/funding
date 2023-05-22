@@ -30,13 +30,11 @@
 			<div aria-hidden="true"></div>
 			<div class="ui-tabs">
 				<ul>
-					<li class="active"><a href="#">전체</a></li>
-
-					<li><a href="#1">공지</a></li>
-
-					<li><a href="#2">이벤트</a></li>
+					<!-- 전체, 이벤트 메뉴 삭제 -->
+					<li class="active"><a href="#1">공지</a></li>
 
 					<li><a href="#38">보도자료</a></li>
+
 				</ul>
 			</div>
 

@@ -1,10 +1,112 @@
 @charset "utf-8";
 
-/* 경은 추가 */
+/* 경은 추가 시작 */
 .RewardProductList_container__2hIAB {
 	list-style: none;
 }
 
+/* 다음단계 버튼 */
+.wz.button.primary {
+    background-color: #00c4c4;
+    color: #fff;
+}
+.wz.button {
+    transition-property: background-color, border-color, color, opacity;
+    transition-duration: 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0 1.4117647059em;
+    height: 48px;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 17px;
+    font-weight: 400;
+    box-sizing: border-box !important;
+    -webkit-appearance: none;
+}
+
+/* 후원금 text-area */
+.wz.input.inline-block {
+    display: inline-block;
+}
+.wz.input > input {
+    height: 48px;
+    line-height: 1.2em;
+    font-size: 17px;
+    font-weight: 300;
+}
+.wz.input > input, .wz.input > textarea {
+    transition-property: border-color, height, padding-right, color;
+    transition-duration: 0.2s, 0s;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    background: #fff;
+    padding: 0 0.9411764706em;
+    width: 100%;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.84);
+    font-size: 17px;
+    font-weight: 300;
+}
+
+/* 공개여부 체크박스 */
+label.wz.checkbox > span {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding-left: 24px;
+    vertical-align: top;
+}
+label.wz.checkbox > span::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.25s;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    content: "";
+}
+label.wz.checkbox > span::after {
+    display: inline-block;
+    margin-top: -0.2em;
+    vertical-align: middle;
+    text-transform: none;
+    line-height: 1;
+    font-family: "wadizicon" !important;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    speak: none;
+    content: "\e934";
+    position: absolute;
+    top: 5px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+label.wz.checkbox > input:checked + span::before {
+    border-color: transparent;
+    background-color: #00c4c4;
+}
+/* 경은 추가 끝 */
+
+/*
+ * 리워드 결제페이지
+ */
 /*
  * 리워드 결제페이지
  */
