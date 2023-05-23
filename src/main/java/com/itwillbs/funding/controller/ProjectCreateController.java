@@ -2,6 +2,9 @@ package com.itwillbs.funding.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +148,7 @@ public class ProjectCreateController {
 		int deleteCount = projectCreateService.rewardDelete(reward_idx);
 	}
 	// 05-22 김동욱 AJAX 이미지 추가
+	// 05-23 김동욱 AJAX 이미지 추가할 때 업르도되는 파일 경로가 없으면 경로를 생성하는 코드 추가
 	@PostMapping("project/imagesUpaload")
 	@ResponseBody
 	public void imageUpaload(ProjectVO project, MultipartFile[] files, HttpSession session) {
@@ -157,9 +161,18 @@ public class ProjectCreateController {
 		String uploadDir = "/resources/images/project_images";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
 		
-		
+		// Files 클래스의 createDirectories() 메서드를 호출하여 Path 객체가 관리하는 경로 없으면 생성
+		// => 거쳐가는 경로들 중 없는 경로는 모두 생성
 		System.out.println("실제 업로드 경로 : " + saveDir);
+		try {
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		StringJoiner sj = new StringJoiner("|");
+		
 		// 기존 이미지가 null 스트링이 아니면 StringJoiner에 새로 추가
 		if(!getImages.equals("")) {
 			sj.add(getImages);

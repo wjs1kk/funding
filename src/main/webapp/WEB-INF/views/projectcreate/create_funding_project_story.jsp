@@ -91,9 +91,6 @@
 		// 프로젝트 요약, 프로젝트 컨텐트 정보 출력
 		getProjectStory()
 		
-		$("#testBtn").on("click", function() {
-			getProjectStory();
-		})
 		
 		// 이미지 추가
 		$("#addImageBtn").on("click", function() {
@@ -114,6 +111,8 @@
 		          success: function(response) {
 		        	$("#preview").html("");
 	        	  	getPorjectImages()
+	        	  	$("input[id=images]").val("");
+	        	  	alert("이미지가 등록되었습니다!")
 		          },
 		          error: function(xhr, status, error) {
 		            console.log(error);
@@ -145,22 +144,10 @@
 		
 	})
 </script>
-<style>
-    #preview {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    
-    .preview-image {
-      width: 250px;
-      height: 170px;
-      margin: 10px;
-    }
-  </style>
+
 	
 </head>
 <body class="" style="overflow: auto;">
-
 	<div data-react-modal-body-trap="" tabindex="0"
 		style="position: absolute; opacity: 0;"></div>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
@@ -187,7 +174,6 @@
 							<div class="HeaderLayout_container__3fXkO">
 								<div class="HeaderLayout_contents__F4hlC">
 									<h2 class="FundingStoryContainer_title__1r0ZE">스토리 작성</h2>
-									<button id="testBtn">테스트 버튼</button>
 									<p class="FundingStoryContainer_description__1sMTR">메이커님의
 										프로젝트를 소개해 주세요.</p>
 								</div>
@@ -262,43 +248,157 @@
 														<br>
 														<em
 														class="helper ImageFormField_helper__3XC5c">여러 장
-														등록돼요.</em>
+														등록돼요.
+														<br>
+														<span id="error"></span>
 													<div id="preview"></div>
+													
 												
 												</div>
+												
+												<!-- 05-23 김동욱 이미지 해상도 제한 -->
+												<script type="text/javascript">
+													var sel_files = [];
+													
+													$(function() {
+														$("#images").on("change", handleImgFileSelect)
+													})
+													
+													function fileUploadAction() {
+														console.log("fileUploadAction");
+														$("#images").trigger('click');
+														
+													}
+													
+													function handleImgFileSelect(e) {
+														
+														sel_files = [];
+														$("#images").empty();
+														
+														var files = e.target.files;
+														var filesArr = Array.prototype.slice.call(files);
+														
+														var index = 0;
+														$("#preview").html("");
+														filesArr.forEach(function(f) {
+															if(!f.type.match("image.*")){
+																alert("이미지 확장자만 업로드 가능합니다.")
+																return;
+															}
+															
+															sel_files.push(f);
+															
+															var reader = new FileReader();
+															reader.onload = function(e) {
+// 																var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'</a>";
+																var html = "<div id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' style=\"width: 250px; height: 170px;\" class='selProductFile' title='Click to remove'</div>";
+																$("#preview").append(html);
+																index++;
+																
+																// 이미지 해상도 확인 및 용량 확인
+																var img = new Image();
+																img.src = e.target.result;
+																img.onload = function() {
+																	// 업로드된 이미지가 2MB를 초과하면 용량이 초과한다 경고 문구 표시
+																	// 2MB 이하에 해당되면 이미지 해상도 크기 비교후해상도가 630 * 400 미만이면 조건에 맞는 해상도의 이미지를 업로드하라고 경고 문구 표시
+																	if(e.total < 2048000){
+																		if(this.width < 630 && this.height < 400){
+																			$("input[id=images]").val("");
+																			$("#preview").html("업로드된 이미지가 해상도 조건에 적합하지 않습니다! <br> 해상도 630x400 픽셀 이상 이미지를 등록하세요!").css("color", "red");
+																		}
+																	} else {
+																		$("input[id=images]").val("");
+																		$("#preview").html("업로드된 이미지의 용량이 2MB를 초과합니다").css("color", "red");
+																	}
+																	
+																}
+																
+															}
+															reader.readAsDataURL(f);
+														})
+														
+													}
+													
+// 													function deleteImageAction(index) {
+// 														console.log("index : " + index);
+// 														sel_files.splice(index, 1);
+														
+// 														var img_id = "#img_id_"+index;
+// 														$(img_id).remove();
+// 													}
+
+												</script>
+												
+												
+												<script>
+// 												  const inputElement = document.getElementById('images');
+// 												  const errorElement = document.getElementById('error');
+												
+// 												  inputElement.addEventListener('change', (e) => {
+// 												    const file = e.target.files[0];
+// 												    const img = new Image();
+												
+// 												    img.onload = function() {
+// 												      const minWidth = 640; // 허용하는 최대 너비
+// 												      const minHeight = 400; // 허용하는 최대 높이
+												
+// 												      if (img.width < minWidth || img.height < minHeight) {
+// 												        errorElement.textContent = '해상도 640px/400px 이상의 이미지만 등록 가능합니다.';
+// 												        inputElement.value = ''; // 업로드한 이미지 제거
+// 												      } else {
+// 												    	  errorElement.textContent = '';
+// 												      }
+// 												    };
+												
+// 												    img.src = URL.createObjectURL(file);
+// 												  });
+												</script>
+												
 												 <script>
-												    const uploadInput = document.getElementById('images');
-												    const previewContainer = document.getElementById('preview');
+// 												    const uploadInput = document.getElementById('images');
+// 												    const previewContainer = document.getElementById('preview');
 												
-												    uploadInput.addEventListener('change', handleUpload);
+// 												    uploadInput.addEventListener('change', handleUpload);
 												
-												    function handleUpload(event) {
-												      const files = event.target.files;
+// 												    function handleUpload(event) {
+// 												      const files = event.target.files;
 												
-												      // 이전에 미리보기 이미지가 있으면 삭제
-												      while (previewContainer.firstChild) {
-												        previewContainer.firstChild.remove();
-												      }
+// 												      // 이전에 미리보기 이미지가 있으면 삭제
+// 												      while (previewContainer.firstChild) {
+// 												        previewContainer.firstChild.remove();
+// 												      }
 												
-												      // 파일을 순회하며 미리보기 이미지 생성
-												      for (let i = 0; i < files.length; i++) {
-												        const file = files[i];
-												        const reader = new FileReader();
+// 												      // 파일을 순회하며 미리보기 이미지 생성
+// 												      for (let i = 0; i < files.length; i++) {
+// 												        const file = files[i];
+// 												        const reader = new FileReader();
 												
-												        reader.onload = function (event) {
-												          const imageUrl = event.target.result;
+// 												        reader.onload = function (event) {
+// 												          const imageUrl = event.target.result;
 												
-												          const previewImage = document.createElement('img');
-												          previewImage.setAttribute('src', imageUrl);
-												          previewImage.setAttribute('class', 'preview-image');
+// 												          const previewImage = document.createElement('img');
+// 												          previewImage.setAttribute('src', imageUrl);
+// 												          previewImage.setAttribute('class', 'preview-image');
 												
-												          previewContainer.appendChild(previewImage);
-												        }
+// 												          previewContainer.appendChild(previewImage);
+// 												        }
 												
-												        reader.readAsDataURL(file);
-												      }
-												    }
+// 												        reader.readAsDataURL(file);
+// 												      }
+// 												    }
 												  </script>
+												  <style>
+													#preview {
+													  display: flex;
+													  flex-wrap: wrap;
+													}
+													
+													.preview-image {
+													  width: 250px;
+													  height: 170px;
+													  margin: 10px;
+													}
+												</style>
 											</div>
 										</div>
 									</div>
@@ -324,7 +424,7 @@
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											프로젝트 요약
 											<div>
-												<button type="button" class="Tooltip_button__26Zz0"
+												<button type="button" class="Tooltip_button__26Zz0" 
 													aria-describedby="Tooltip_5">
 													<span class="Tooltip_label__1s0-R"></span><span
 														class="Tooltip_helpIconWrap__3JEtO"><svg
