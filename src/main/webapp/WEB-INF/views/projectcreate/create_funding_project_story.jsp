@@ -52,7 +52,10 @@
 	        	  $("#project_summary").html(response.project_summary)
 	        	  $(".jodit-wysiwyg").html("");
 	        	  $(".jodit-wysiwyg").html(response.project_content)
+	        	  // 포커스를 한번 하지 않고 저장하기를 누르면 기존 정보가 null String이 들어가서 기존 정보가 사라지기 때문에 한번 포커스를 함
 	        	  $(".jodit-wysiwyg").focus();
+	        	  // 한번 포커스 이후 페이지 스크롤 위로 이동
+	        	  $("#AppLayout_Contents").scrollTop(0);
 	        	  
 	          },
 	          error: function(xhr, status, error) {
@@ -91,7 +94,6 @@
 		// 프로젝트 요약, 프로젝트 컨텐트 정보 출력
 		getProjectStory()
 		
-		
 		// 이미지 추가
 		$("#addImageBtn").on("click", function() {
 
@@ -110,8 +112,8 @@
 		          contentType: false,
 		          success: function(response) {
 		        	$("#preview").html("");
-	        	  	getPorjectImages()
 	        	  	$("input[id=images]").val("");
+	        	  	getPorjectImages()
 	        	  	alert("이미지가 등록되었습니다!")
 		          },
 		          error: function(xhr, status, error) {
@@ -144,7 +146,6 @@
 		
 	})
 </script>
-
 	
 </head>
 <body class="" style="overflow: auto;">
@@ -155,10 +156,8 @@
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<div class="AppLayout_main__14bCi">
 				<div class="AppSidebarLayout_contents__2thGr" id="sidebar">
-					<nav class="AppSidebarMenuList_container__199gJ">
-						<!-- 05-17 김동욱 사이드바 삭제 후 include로 변경 -->
-						<jsp:include page="../inc/create_project_side.jsp"></jsp:include>
-					</nav>
+					<!-- 05-17 김동욱 사이드바 삭제 후 include로 변경 -->
+					<jsp:include page="../inc/create_project_side.jsp"></jsp:include>
 				</div>
 				<div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
 					<div id="container" class="ContentsLayout_container__11k-W">
@@ -253,7 +252,6 @@
 														<span id="error"></span>
 													<div id="preview"></div>
 													
-												
 												</div>
 												
 												<!-- 05-23 김동욱 이미지 해상도 제한 -->
@@ -290,8 +288,8 @@
 															
 															var reader = new FileReader();
 															reader.onload = function(e) {
-// 																var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'</a>";
-																var html = "<div id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' style=\"width: 250px; height: 170px;\" class='selProductFile' title='Click to remove'</div>";
+																var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_" + index + "\"><img style=\"width: 250px; height: 170px;\" src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'</a>";
+// 																var html = "<div id=\"img_id_" + index + "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' style=\"width: 250px; height: 170px;\" class='selProductFile' title='Click to remove'</div>";
 																$("#preview").append(html);
 																index++;
 																
@@ -308,7 +306,7 @@
 																		}
 																	} else {
 																		$("input[id=images]").val("");
-																		$("#preview").html("업로드된 이미지의 용량이 2MB를 초과합니다").css("color", "red");
+																		$("#preview").html("업로드된 이미지 파일의 용량이 2MB를 초과합니다").css("color", "red");
 																	}
 																	
 																}
@@ -319,13 +317,13 @@
 														
 													}
 													
-// 													function deleteImageAction(index) {
-// 														console.log("index : " + index);
-// 														sel_files.splice(index, 1);
-														
-// 														var img_id = "#img_id_"+index;
-// 														$(img_id).remove();
-// 													}
+													function deleteImageAction(index) {
+														console.log("index : " + index);
+														var img_id = "#img_id_"+index;
+														$(img_id).remove();
+														sel_files.splice(index, 1);
+														console.log(sel_files);
+													}
 
 												</script>
 												

@@ -115,4 +115,60 @@
  		WHERE project_idx = #{project_idx}
  	</select>
  	
+ 	<!-- 김동욱 05-25 메이커 리스트 가져오기 -->
+ 	<select id="getMakerList" resultType="com.itwillbs.funding.vo.MakerVO">
+ 		SELECT *
+ 		FROM maker
+ 		WHERE member_idx = #{member_idx}
+ 	</select>
+ 	
+ 	<!-- 김동욱 05-25 메이커 정보 등록 -->
+ 	<insert id="makerInfoInsert">
+ 		INSERT
+ 			INTO maker
+ 				VALUES(
+ 					null
+ 					, #{member_idx}
+ 					, "1"
+ 					, #{maker_name}
+ 					, #{maker_image}
+ 					, #{maker_phone}
+ 					, #{maker_email}
+ 				)
+ 	</insert>
+ 	
+ 	<!-- 김동욱 05-25 메이커 정보 가져오기 -->
+ 	<select id="getMakerInfo" resultType="com.itwillbs.funding.vo.MakerVO">
+ 		SELECT *
+ 		FROM maker
+ 		WHERE maker_idx = #{maker_idx}
+ 	</select>
+ 	
+ 	<!-- 김동욱 05-25 메이커 정보 수정 -->
+ 	<update id="makerInfoUpdate">
+ 		UPDATE maker
+ 			SET
+ 				maker_name = #{maker_name}
+ 				<if test="maker_image != '' and maker_image != null">
+ 					, maker_image = #{maker_image}
+ 				</if>
+ 				, maker_phone = #{maker_phone}
+ 				, maker_email = #{maker_email}
+ 			WHERE maker_idx = #{maker_idx}
+ 	</update>
+ 	
+ 	<!-- 05-26 김동욱 maker정보를 클릭하면 프로젝트 테이블에 maker_idx 업데이트 -->
+ 	<update id="projectMakerIdxUpdate">
+ 		UPDATE project SET maker_idx = #{maker_idx}
+ 		WHERE project_idx = ${project_idx}
+ 	</update>
+ 	
+ 	<!-- 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기 -->
+ 	<select id="myProjectMakerInfo" resultType="com.itwillbs.funding.vo.MakerVO">
+ 		SELECT p.maker_idx, maker_name
+		FROM project p JOIN maker m
+		ON p.maker_idx = m.maker_idx
+		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
   </mapper>

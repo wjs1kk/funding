@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.funding.service.ProjectCreateService;
+import com.itwillbs.funding.vo.MakerVO;
 import com.itwillbs.funding.vo.ProjectVO;
 import com.itwillbs.funding.vo.RewardVO;
 
@@ -220,9 +221,10 @@ public class ProjectCreateController {
 	
 	
 	// 05-22 김동욱 AJAX 프로젝트 이미지 지우기
+	// 05-25 김동욱 이미지를 DB에서만 지우는 게 아닌 실제 업로드된 파일도 삭제되도록 수정
 	@PostMapping("project/deleteProjectImage")
 	@ResponseBody
-	public void deleteProjectImage(ProjectVO project, String deleteImage) {
+	public void deleteProjectImage(ProjectVO project, String deleteImage, HttpSession session) {
 		String porjectImages = projectCreateService.getImages(project.getProject_idx());
 		String[] projectImagesArr = porjectImages.split("\\|");
 		
@@ -237,6 +239,23 @@ public class ProjectCreateController {
 		project.setProject_images(sj.toString());
 		int updateCount = projectCreateService.projectAddImages(project);
 		
+		try {
+			String uploadDir = "/resources/images/project_images"; // 프로젝트 상의 업로드 경로
+			String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+			// 실제 업로드 경로에 서브 디렉토리명 결합
+			
+			// Paths.get() 메서드를 호출하여 파일 경로 관리 객체(Path) 생성
+			// => 업로드 디렉토리와 파일명 결합하여 전달
+			Path path = Paths.get(saveDir + "/" + deleteImage);
+			// Files 클래스의 deleteIfExists() 메서드를 호출하여 파일 존재 시 삭제
+			// => 파라미터 : 경로
+			Files.deleteIfExists(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
@@ -248,5 +267,77 @@ public class ProjectCreateController {
 		System.out.println(project);
 		return project;
 	}
+	
+	// 05-25 김동욱 메이커 정보 입력 및 수정
+	@PostMapping("project/makerInsertUpdate")
+	public String makerInsertUpdate(HttpSession session, MakerVO makerInfo, Model model, int project_idx, MultipartFile makerImage) {
+		
+		System.out.println(makerImage);
+		
+		String uuid = UUID.randomUUID().toString();
+		System.out.println(uuid.substring(0, 8) + "_" + makerImage.getOriginalFilename());
+		
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		makerInfo.setMember_idx(member_idx);
+		
+		String uploadDir = "/resources/images/maker_images"; // 프로젝트 상의 업로드 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		System.out.println(saveDir);
+		
+		if(!makerImage.getOriginalFilename().equals("")) {
+			makerInfo.setMaker_image(uuid.substring(0, 8) + "_" + makerImage.getOriginalFilename());
+			
+			try {
+				Path path = Paths.get(saveDir);
+				Files.createDirectories(path);
+				makerImage.transferTo(new File(saveDir, uuid.substring(0, 8) + "_" + makerImage.getOriginalFilename()));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		System.out.println(makerInfo);
+		
+		if(makerInfo.getMaker_idx() == 0) {
+			int insertCount = projectCreateService.makerInfoInsert(makerInfo);
+		}else {
+			int updateCount = projectCreateService.makerInfoUpdate(makerInfo);
+		}
+		
+		// 메이커 정보 등록하기
+		
+		return "redirect:/project/makerInfo?project_idx=" + project_idx;
+	}
+	
+	// 05-25 김동욱 AJAX 자신이 등록한 메이커 리스트 가져오기
+	@PostMapping("project/getMakerList")
+	@ResponseBody
+	public String getMakerList(int member_idx) {
+		List<MakerVO> myMakerList = projectCreateService.getMakerList(member_idx);
+		JSONArray jsonArray = new JSONArray(myMakerList);
+		return jsonArray.toString();
+	}
+	
+	// 05-25 김동욱 AJAX maker 정보 가져오기 및 project 테이블에 maker_idx 업데이트
+	@PostMapping("project/getMakerInfo")
+	@ResponseBody
+	public MakerVO getMakerInfo(int maker_idx, int project_idx) {
+		int updateCount = projectCreateService.projectMakerIdxUpdate(maker_idx, project_idx);
+		MakerVO myMakerInfo = projectCreateService.getMakerInfo(maker_idx);
+		return myMakerInfo;
+	}
+	
+	// 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기
+	@PostMapping("project/myProjectMakerInfo")
+	@ResponseBody
+	public MakerVO myProjectMakerInfo(int project_idx) {
+		System.out.println(project_idx);
+		MakerVO myProjectMakerInfo = projectCreateService.myProjectMakerInfo(project_idx);
+		return myProjectMakerInfo;
+	}
+	
 	
 }

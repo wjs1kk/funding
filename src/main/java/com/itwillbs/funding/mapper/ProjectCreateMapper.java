@@ -3,6 +3,9 @@ package com.itwillbs.funding.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.itwillbs.funding.vo.MakerVO;
 import com.itwillbs.funding.vo.ProjectVO;
 import com.itwillbs.funding.vo.RewardVO;
 
@@ -29,4 +32,16 @@ public interface ProjectCreateMapper {
 	int projectAddImages(ProjectVO project);
 	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
 	ProjectVO getProjectStory(int project_idx);
+	// 05-25 김동욱 등록된 메이커 리스트 가져오기
+	List<MakerVO> getMakerList(int member_idx);
+	// 05-25 김동욱 메이커 등록하기
+	int makerInfoInsert(MakerVO makerInfo);
+	// 05-25 김동욱 등록된 메이커 정보 가져오기
+	MakerVO getMakerInfo(int maker_idx);
+	// 05-25 김동욱 메이커 정보 수정
+	int makerInfoUpdate(MakerVO makerInfo);
+	// 05-25 김동욱 maker정보를 클릭하면 프로젝트 테이블에 maker_idx 업데이트
+	int projectMakerIdxUpdate(@Param("maker_idx") int maker_idx, @Param("project_idx") int project_idx);
+	// 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기
+	MakerVO myProjectMakerInfo(int project_idx);
 }

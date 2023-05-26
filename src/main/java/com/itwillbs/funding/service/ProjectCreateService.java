@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.funding.mapper.MemberMapper;
 import com.itwillbs.funding.mapper.ProjectCreateMapper;
+import com.itwillbs.funding.vo.MakerVO;
 import com.itwillbs.funding.vo.MemberVO;
 import com.itwillbs.funding.vo.ProjectVO;
 import com.itwillbs.funding.vo.RewardVO;
@@ -64,6 +65,36 @@ public class ProjectCreateService {
 	// 05-22 김동욱 AJAX 프로젝트 스토리 정보 가져오기
 	public ProjectVO getProjectStory(int project_idx) {
 		return mapper.getProjectStory(project_idx);
+	}
+	
+	// 05-25 김동욱 등록된 메이커 리스트 가져오기
+	public List<MakerVO> getMakerList(int member_idx) {
+		return mapper.getMakerList(member_idx);
+	}
+
+	// 05-25 김동욱 메이커 정보 등록하기
+	public int makerInfoInsert(MakerVO makerInfo) {
+		return mapper.makerInfoInsert(makerInfo);
+	}
+
+	// 05-25 김동욱 등록된 메이커 정보 가져오기
+	public MakerVO getMakerInfo(int maker_idx) {
+		return mapper.getMakerInfo(maker_idx);
+	}
+
+	// 05-25 김동욱 메이커 정보 수정
+	public int makerInfoUpdate(MakerVO makerInfo) {
+		return mapper.makerInfoUpdate(makerInfo);
+	}
+	
+	// 05-25 김동욱 maker정보를 클릭하면 프로젝트 테이블에 maker_idx 업데이트
+	public int projectMakerIdxUpdate(int maker_idx, int project_idx) {
+		return mapper.projectMakerIdxUpdate(maker_idx, project_idx);
+	}
+
+	// 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기
+	public MakerVO myProjectMakerInfo(int project_idx) {
+		return mapper.myProjectMakerInfo(project_idx);
 	}
 	
 	
