@@ -22,6 +22,19 @@ public interface ProjectCreateMapper {
 	List<RewardVO> getProjectReward(Map reward);
 	// 05-18 김동욱 리워드 상세 정보 가져오기
 	RewardVO getRewardDetail(int reward_idx);
+
+	//05-19 강정운 요금제 선택 업데이트
+	int projectPlanUpdate(ProjectVO project);
+	//05-22 강정운 프로젝트 정보 업데이트
+	int InfoUpdate(ProjectVO project);
+	//05-23 강정운 기본정보 업데이트
+	int projectBaseInfoUpdate(ProjectVO project);
+	//05-23 강정운 기본정보 파일업데이트	
+	int projectBaseInfoFileUpdate(ProjectVO project);
+	
+	int projectInfoFileUpdate(ProjectVO project);
+
+
 	// 05-19 김동욱 리워드 정보 수정하기
 	int rewardModify(RewardVO reward);
 	// 05-19 김동욱 AJAX 리워드 삭제하기
@@ -44,4 +57,8 @@ public interface ProjectCreateMapper {
 	int projectMakerIdxUpdate(@Param("maker_idx") int maker_idx, @Param("project_idx") int project_idx);
 	// 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기
 	MakerVO myProjectMakerInfo(int project_idx);
+	// 05-26 김동욱 메이커 정보 삭제
+	int deleteMakerInfo(int maker_idx);
+	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
+	String getProjectPlan(int project_idx);
 }

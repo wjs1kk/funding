@@ -4,11 +4,16 @@
 <html lang="ko" class="">
 
 <head>
-	<title>와디즈 프로젝트만들기 스토리작성</title>
+<title>와디즈 프로젝트만들기 스토리작성</title>
 
-	<link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
-	<link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/17.52f297e3.chunk.css">
+<link
+	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"
+	rel="stylesheet">
+<link
+	href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/studio/funding/static/css/17.52f297e3.chunk.css">
 </head>
 
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -54,14 +59,14 @@
 										<div class="MakerAgreementField_agreement__2RpZ_ spacing-6">
 											<label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
-												type="checkbox" class="Checkbox_input__304VX"><span
+												type="checkbox" class="Checkbox_input__304VX"
+												id="check_1"><span
 												class="Checkbox_icon__3gYsg" aria-hidden="true"><svg
 														viewBox="0 0 16 2" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 														aria-hidden="true">
-														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-													<svg viewBox="0 0 48 48" focusable="false"
-														role="presentation"
+														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg> <svg
+														viewBox="0 0 48 48" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_checkIcon__165W2"
 														aria-hidden="true">
 														<path
@@ -70,14 +75,14 @@
 														제출하거나 프로젝트 페이지에 공지한 내용 등이 모두 사실임을 보증하며, 이에 반하는 사실이 발견된 경우
 														모든 책임을 부담하겠습니다(제10조).</span></span></label><label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
-												type="checkbox" class="Checkbox_input__304VX"><span
+												type="checkbox" class="Checkbox_input__304VX"
+												id="check_2"><span
 												class="Checkbox_icon__3gYsg" aria-hidden="true"><svg
 														viewBox="0 0 16 2" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 														aria-hidden="true">
-														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-													<svg viewBox="0 0 48 48" focusable="false"
-														role="presentation"
+														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg> <svg
+														viewBox="0 0 48 48" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_checkIcon__165W2"
 														aria-hidden="true">
 														<path
@@ -87,13 +92,13 @@
 														계약이 해제 또는 해지될 수 있음(제31조, 제40조)을 확인했습니다.</span></span></label><label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
 												type="checkbox" class="Checkbox_input__304VX"><span
-												class="Checkbox_icon__3gYsg" aria-hidden="true"><svg
+												class="Checkbox_icon__3gYsg" aria-hidden="true"
+												id="check_3"><svg
 														viewBox="0 0 16 2" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 														aria-hidden="true">
-														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-													<svg viewBox="0 0 48 48" focusable="false"
-														role="presentation"
+														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg> <svg
+														viewBox="0 0 48 48" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_checkIcon__165W2"
 														aria-hidden="true">
 														<path
@@ -102,14 +107,14 @@
 														필요하다 인정되는 경우 리워드 배송 전 결제 취소가 이뤄질 수 있고(제28조), 환불 사유에 해당하는
 														경우 개별 또는 일괄로 환불이 이뤄질 수 있음(제30조, 제39조)을 확인했습니다.</span></span></label><label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
-												type="checkbox" class="Checkbox_input__304VX"><span
+												type="checkbox" class="Checkbox_input__304VX"
+												id="check_4"><span
 												class="Checkbox_icon__3gYsg" aria-hidden="true"><svg
 														viewBox="0 0 16 2" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 														aria-hidden="true">
-														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-													<svg viewBox="0 0 48 48" focusable="false"
-														role="presentation"
+														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg> <svg
+														viewBox="0 0 48 48" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_checkIcon__165W2"
 														aria-hidden="true">
 														<path
@@ -1851,13 +1856,13 @@
 										<label
 											class="Checkbox_checkbox__27KzI Checkbox_lg__15YJd Checkbox_labeled__uRUNZ"><input
 											disabled="" type="checkbox" class="Checkbox_input__304VX"><span
-											class="Checkbox_icon__3gYsg" aria-hidden="true"><svg
+											class="Checkbox_icon__3gYsg" aria-hidden="true"
+											id="check_result"><svg
 													viewBox="0 0 16 2" focusable="false" role="presentation"
 													class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 													aria-hidden="true">
-													<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg>
-												<svg viewBox="0 0 48 48" focusable="false"
-													role="presentation"
+													<path fill-rule="evenodd" d="M0 0h16v2H0z"></path></svg> <svg
+													viewBox="0 0 48 48" focusable="false" role="presentation"
 													class="withIcon_icon__1Oal1 Checkbox_checkIcon__165W2"
 													aria-hidden="true">
 													<path
@@ -1867,47 +1872,7 @@
 									</div>
 								</div>
 							</section>
-							<section class="Section_container__3md8M spacing-9" style="">
-								<div style="max-width: 630px;">
-									<div class="Section_header__1qwS7">
-										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">리워드
-											정보 제공 고시</h2>
-										<div class="Section_guide__2xeJO"></div>
-									</div>
-									<div class="Section_description__10Uwo">서포터님들에게 제공하는 모든
-										제품/서비스의 상세한 정보를 입력해 주세요. 허위 사실을 기재하거나, 상품 정보 제공 고시를 지키지 않는 경우의
-										모든 책임은 메이커에게 있으므로 정확한 정보로 작성해 주세요.</div>
-									<div class="Section_content__3OkLZ">
-										<div>
-											<div class="AddBox_container__39RWm">
-												<div>
-													<svg viewBox="0 0 32 32" focusable="false"
-														role="presentation"
-														class="withIcon_icon__3lrgp AddBox_icon__1HBNk"
-														aria-hidden="true"
-														style="width: 40px; height: 40px; color: rgb(173, 181, 189);">
-														<path
-															d="M16 1.6C8.047 1.6 1.6 8.047 1.6 16S8.047 30.4 16 30.4 30.4 23.953 30.4 16 23.953 1.6 16 1.6zm8 15.2h-7.2V24h-1.6v-7.2H8v-1.6h7.2V8h1.6v7.2H24z"></path></svg>
-													<p>추가하기</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="Section_guideMessage__3XqrM">
-									<h4>리워드 정보 제공 고시, 이렇게 입력하세요.</h4>
-									<ul>
-										<li>한 가지 품목의 리워드가 여러 개라면? 모든 리워드의 내용을 함께 작성해 주세요.</li>
-										<li>다양한 품목의 리워드로 진행한다면? 품목별 리워드 정보 제공 고시를 작성해 주세요.</li>
-										<li>해당되지 않는 문항에는 '해당 사항 없음'으로 입력해 주세요.</li>
-										<li>스토리에 모든 내용을 기재했나요? '스토리 상세 내용 참조'로 입력해 주세요.</li>
-										<li>그래도 잘 모르겠다면? <a class="link"
-											href="https://www.wadiz.kr/link/reward_info" target="_blank"
-											rel="nofollow noopener noreferrer">작성 가이드</a>를 참고해 보세요.
-										</li>
-									</ul>
-								</div>
-							</section>
+
 							<section class="Section_container__3md8M spacing-9"
 								style="max-width: 630px;">
 								<div class="Section_header__1qwS7 spacing-4">
@@ -1917,20 +1882,25 @@
 								</div>
 								<div class="Section_content__3OkLZ">
 									<div class="RefundPolicyField_container__ltHLf">
-										<div color="danger"
-											class="MessageBox_messageBox__3acWS MessageBox_danger__2ZmKO MessageBox_vertical__1mezf">
-											<span><svg viewBox="0 0 40 40" focusable="false"
-													role="presentation"
-													class="withIcon_icon__1Oal1 MessageBox_icon__31KWI MessageBox_withoutTitle__2S2r8"
-													aria-hidden="true">
-													<path fill="none" d="M0 0h40v40H0z"></path>
-													<path
-														d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm1 28.6h-2v-13h2zm-1-15.84A1.8 1.8 0 1 1 21.8 12a1.8 1.8 0 0 1-1.8 1.76z"></path></svg></span>
-											<div class="MessageBox_content__3db50">
-												<div class="MessageBox_description__1bCQv">프로젝트 유형에 따라
-													환불 정책이 달라요. 프로젝트 정보에서 프로젝트 유형을 선택해 주세요.</div>
+										<div color="basic"
+											class="MessageBox_messageBox__2uiL- MessageBox_basic__33eeL RefundPolicyField_messageBox__4qusN">
+
+											<div class="MessageBox_content__1LidS">
+												<div class="MessageBox_description__1fIpe">
+													<p>
+														이 프로젝트는 <strong>펀딩 환불 정책</strong>이 적용돼요.
+													</p>
+													<a class="RefundPolicyField_link__3DhMI link"
+														href="/web/wterms/funding_refund" target="_blank"
+														rel="nofollow noopener noreferrer">환불 정책 확인하기</a>
+												</div>
 											</div>
 										</div>
+										<ul>
+											<li>약속한 리워드 발송 예정일까지 리워드가 출발하지 않았다면? 서포터는 환불 신청할 수 있어요.</li>
+											<li>리워드 수령 후 하자가 발견되었다면? 서포터는 환불 신청할 수 있어요.</li>
+											<li>메이커는 서포터의 환불 신청 내역을 먼저 확인한 후 승인할 수 있어요.</li>
+										</ul>
 									</div>
 								</div>
 							</section>

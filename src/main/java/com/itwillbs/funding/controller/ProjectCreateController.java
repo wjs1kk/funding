@@ -2,6 +2,7 @@ package com.itwillbs.funding.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -48,7 +50,7 @@ public class ProjectCreateController {
 		return "projectcreate/create_funding";
 	}
 	@GetMapping("project/plan")
-	public String create_funding_plan_select() {
+	public String create_funding_plan_select(Model model, ProjectVO project) {
 		return "projectcreate/create_funding_plan_select";
 	}
 //	프로젝트 정보
@@ -202,20 +204,22 @@ public class ProjectCreateController {
 	}
 	
 	// 05-22 김동욱 AJAX 프로젝트 이미지 가져오기
+	// 05-26 김동욱 오타가 있어서 수정
 	@PostMapping("project/getProjectImages")
 	@ResponseBody
 	public String getProjectImages(int project_idx) {
-		String porjectImages = projectCreateService.getImages(project_idx);
-		String[] projectImagesArr = porjectImages.split("\\|");
+		String projectImages = projectCreateService.getImages(project_idx);
+		
+		String[] projectImagesArr = projectImages.split("\\|");
 		
 		List<String> imagesList = new ArrayList<String>();
-		for(String projectImages : projectImagesArr) {
-			System.out.println(projectImages);
-			imagesList.add(projectImages);
+		for(String projectImages2 : projectImagesArr) {
+			System.out.println(projectImages2);
+			imagesList.add(projectImages2);
 		}
 		
-		System.out.println(porjectImages);
 		JSONArray jsonImagesList = new JSONArray(imagesList);
+		
 		return jsonImagesList.toString();
 	}
 	
@@ -336,7 +340,63 @@ public class ProjectCreateController {
 	public MakerVO myProjectMakerInfo(int project_idx) {
 		System.out.println(project_idx);
 		MakerVO myProjectMakerInfo = projectCreateService.myProjectMakerInfo(project_idx);
+		
 		return myProjectMakerInfo;
+	}
+	
+	// 05-19 강정운 요금제 저장 후
+	@PostMapping("project/projectPlanUpdate")
+	@ResponseBody
+	public void projectPlanUpdate(ProjectVO project) {
+		int updateCount = projectCreateService.planUpdate(project);
+	}
+	
+	// 05-22 강정운 프로젝트 정보 업데이트
+	@PostMapping("project/projectInfoUpdate")
+	@ResponseBody
+	public void projectInfoUpdate(ProjectVO project) {
+		int updateCount = projectCreateService.InfoUpdate(project);
+	}
+	
+	// 05-23 강정운 기본정보 업데이트
+	@PostMapping("project/projectBaseInfoFileUpdate")
+	@ResponseBody
+	public void projectBaseInfoFileUpdate(ProjectVO project, MultipartFile files) {
+		project.setProject_thumbnail(files.getOriginalFilename());
+		int updateCount = projectCreateService.projectBaseInfoFileUpdate(project);
+	}
+	
+	@PostMapping("project/projectBaseInfoUpdate")
+	@ResponseBody
+	public void projectBaseInfoUpdate(ProjectVO project, MultipartFile files) {
+		int updateCount = projectCreateService.projectBaseInfoUpdate(project);
+	}
+	
+	// 05-22 강정운 프로젝트 정보 업데이트
+	@PostMapping("project/projectInfoFileUpdate")
+	@ResponseBody
+	public void projectInfoFileUpdate(ProjectVO project, MultipartFile identity, MultipartFile documents) {
+		project.setProject_identity(identity.getOriginalFilename());
+		project.setProject_documents(documents.getOriginalFilename());
+		int updateCount = projectCreateService.projectInfoFileUpdate(project);
+	}
+	
+	// 05-26 김동욱 메이커 정보 삭제
+	@PostMapping("project/deleteMakerInfo")
+	@ResponseBody
+	public void deleteMakerInfo(int maker_idx) {
+		System.out.println("deleteMakerInfo maker_idx : " + maker_idx);
+		int deleteCount = projectCreateService.deleteMakerInfo(maker_idx);
+	}
+	
+	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
+	@PostMapping("project/getProjectPlan")
+	@ResponseBody
+	public String getProjectPlan(int project_idx) {
+		System.out.println(project_idx);
+		String myProjectPlan = projectCreateService.getProjectPlan(project_idx);
+		return myProjectPlan;
+		
 	}
 	
 	

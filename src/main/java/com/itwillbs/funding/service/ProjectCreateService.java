@@ -44,6 +44,27 @@ public class ProjectCreateService {
 	public RewardVO getRewardDetail(int reward_idx) {
 		return mapper.getRewardDetail(reward_idx);
 	}
+	//05-19 강정운 요금제 선택 업데이트
+	public int planUpdate(ProjectVO project) {
+		return mapper.projectPlanUpdate(project);
+	}
+	//05-22 강정운 프로젝트 정보 업데이트
+	public int InfoUpdate(ProjectVO project) {
+		return mapper.InfoUpdate(project);
+	}
+	//05-23 강정운 기본정보 업데이트
+	public int projectBaseInfoUpdate(ProjectVO project) {
+		return mapper.projectBaseInfoUpdate(project);
+	}	
+	//05-23 강정운 기본정보 파일업데이트
+	public int projectBaseInfoFileUpdate(ProjectVO project) {
+		return mapper.projectBaseInfoFileUpdate(project);
+	}
+
+	public int projectInfoFileUpdate(ProjectVO project) {
+		return mapper.projectInfoFileUpdate(project);
+	}
+
 	
 	// 05-19 김동욱 AJAX 리워드 정보 수정하기
 	public int rewardModify(RewardVO reward) {
@@ -97,5 +118,13 @@ public class ProjectCreateService {
 		return mapper.myProjectMakerInfo(project_idx);
 	}
 	
-	
+	// 05-26 김동욱 메이커 정보 삭제
+	public int deleteMakerInfo(int maker_idx) {
+		return mapper.deleteMakerInfo(maker_idx);
+	}
+	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
+	public String getProjectPlan(int project_idx) {
+		return mapper.getProjectPlan(project_idx);
+	}
+		
 }

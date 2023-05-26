@@ -1,15 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/studio/funding/static/css/19.b3b957fa.chunk.css">
+<link
+	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"
+	rel="stylesheet">
+<link
+	href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css"
+	rel="stylesheet">
+	
+<script type="text/javascript">
+	$(function() {
+		$(".not_selected").on("click", function() {
+			$('.not_selected').css('display', 'none');
+			$('.selected').css('display', 'block');
+			
+			$('.not_selected2').css('display', 'block');
+			$('.not_selected3').css('display', 'block');
+			
+			$('.selected2').css('display', 'none');
+			$('.selected3').css('display', 'none');
+			
+			$("#project_plan").val(1);
+			
+		})
+	})
+	
+	$(function() {
+		$(".not_selected2").on("click", function() {
+			$('.not_selected2').css('display', 'none');
+			$('.selected2').css('display', 'block');
+			
+			$('.not_selected').css('display', 'block');
+			$('.not_selected3').css('display', 'block');
+			
+			$('.selected').css('display', 'none');
+			$('.selected3').css('display', 'none');
+			$("#project_plan").val(2);
+		})
+	})
+	
+	$(function() {
+		$(".not_selected3").on("click", function() {
+			$('.not_selected3').css('display', 'none');
+			$('.selected3').css('display', 'block');	
+			
+			$('.not_selected').css('display', 'block');
+			$('.not_selected2').css('display', 'block');
+			
+			$('.selected').css('display', 'none');
+			$('.selected2').css('display', 'none');
+			$("#project_plan").val(3);
+		})
+	})
+	
+	$(function() {
+		$('#save').click(function(){			
+			if($(".selected").css('display') == ('none') &&
+			   $(".selected2").css('display') == ('none') &&
+			   $(".selected3").css('display') == ('none')){
+				alert("요금제를 선택해 주세요")
+			} else {
+				$.ajax({
+					type: "post",
+					url: "projectPlanUpdate",
+					data: { project_idx:${param.project_idx},
+						project_plan: $("#project_plan").val()
+					},
+					success: function() {
+						location.href = "main?project_idx="+${param.project_idx};
+					}
+				});
+			}
+		})
+	})
+	
+	
+	// 05-26 김동욱 기존에 저장된 플랜정보가 있으면 거기에 해당되는 플랜을 클릭된 CSS 적용로
+	$(function() {
+		$.ajax({
+			type: "post",
+			url: "getProjectPlan",
+			data: { project_idx:${param.project_idx},
+			},
+			success: function(response) {
+				if(response == "1"){
+					$(".not_selected").click();
+				}else if(response == "2"){
+					$(".not_selected2").click();
+				}else if(response == "3"){
+					$(".not_selected3").click();
+				}
+			}
+		});
+	})
+	
 
-<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/19.b3b957fa.chunk.css">
-<link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
-<link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
+</script>
+<style type="text/css">
 
+.selected {
+	display : none;
+}
+.selected2 {
+	display : none;
+}
+.selected3 {
+	display : none;
+}
+
+</style>
 </head>
 <body class="ReactModal__Body--open package-plan" aria-hidden="true"
 	style="margin-bottom: -4px !important;">
@@ -23,10 +130,10 @@
 							<li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
 							<li class="Breadcrumb_item__2r9Ym">요금제 선택</li>
 						</ol>
+						
+						
 						<form>
-							<input type="hidden" name="packagePlanType" value="LIGHT"><input
-								type="hidden" name="questionAnswers">
-							<!-- 05-17 김동욱 모든 프로젝트 페이지 상단탭 project_top.jsp include로 변경 -->
+							<input type="hidden" value="" id="project_plan" name="project_plan">
 							<nav class="DetailNavbar_container__3SkEf">
 								<jsp:include page="../inc/project_top.jsp"></jsp:include>
 							</nav>
@@ -131,8 +238,15 @@
 											</div>
 											<div
 												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
+												
 												<button
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_startIcon__19sdm Button_block__2mEqp FundingPlanPackageCard_selected__3POWd"
+													class="not_selected Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
+													type="button">
+													<span><span class="Button_children__q9VCZ">이걸로	할게요</span></span>
+												</button>
+																																				
+												<button
+													class="selected Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_startIcon__19sdm Button_block__2mEqp FundingPlanPackageCard_selected__3POWd"
 													type="button">
 													<span><svg viewBox="0 0 48 48" focusable="false"
 															role="presentation"
@@ -142,6 +256,7 @@
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg><span
 														class="Button_children__q9VCZ">이걸로 골랐어요</span></span>
 												</button>
+												
 											</div>
 										</div>
 									</article></li>
@@ -198,10 +313,21 @@
 											<div
 												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
 												<button
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
+													class="not_selected2 Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
 													type="button">
-													<span><span class="Button_children__q9VCZ">이걸로
-															할게요</span></span>
+													<span><span class="Button_children__q9VCZ">이걸로 할게요</span></span>
+												</button>
+												
+												<button
+													class="selected2 Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_startIcon__19sdm Button_block__2mEqp FundingPlanPackageCard_selected__3POWd"
+													type="button">
+													<span><svg viewBox="0 0 48 48" focusable="false"
+															role="presentation"
+															class="withIcon_icon__3lrgp Button_icon__1qsE3"
+															aria-hidden="true">
+															<path
+																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg><span
+														class="Button_children__q9VCZ">이걸로 골랐어요</span></span>
 												</button>
 											</div>
 										</div>
@@ -264,108 +390,22 @@
 												</button>
 											</div>
 											<div
-												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
+												class=" FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
 												<button
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
+													class="not_selected3 Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
 													type="button">
-													<span><span class="Button_children__q9VCZ">이걸로
-															할게요</span></span>
+													<span><span class="Button_children__q9VCZ">이걸로	할게요</span></span>
 												</button>
-											</div>
-										</div>
-									</article></li>
-								<li><article
-										class="FundingPlanPackageCard_packageCard__3DZcn FundingPlanPackageCard_expert__2M2AB"
-										data-type="expert">
-										<div
-											class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_header__8Ai7N">
-											<h1>
-												expert<small>(엑스퍼트)</small>
-											</h1>
-											<div class="FundingPlanPackageCard_fee__2KkSS">
-												<span>수수료 </span><strong>별도 협의
-													<div>
-														<button type="button"
-															class="Tooltip_button__26Zz0 FundingPlanPackageCard_tooltip__2mtGK"
-															aria-describedby="packageCardTooltip">
-															<span class="Tooltip_label__1s0-R"></span><span
-																class="Tooltip_helpIconWrap__3JEtO"><svg
-																	viewBox="0 0 40 40" focusable="false"
-																	role="presentation"
-																	class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-																	aria-hidden="true">
-																	<path fill="none" d="M0 0h40v40H0z"></path>
-																	<path
-																		d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-																	<path
-																		d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-																<svg viewBox="0 0 40 40" focusable="false"
-																	role="presentation"
-																	class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-																	aria-hidden="true">
-																	<path fill="none" d="M0 0h40v40H0z"></path>
-																	<path
-																		d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-														</button>
-													</div>
-												</strong><small>(VAT 별도)</small>
-											</div>
-										</div>
-										<div class="FundingPlanPackageCard_bodyWrapper__1DsSN">
-											<div
-												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_body__1kwNJ">
-												<p class="FundingPlanPackageCard_description__EH_Vy">
-													<span>프로젝트의 성공을 도와 줄<br></span><span>프로젝트 담당
-														디렉터를 만나고 싶은 메이커님<br>
-													</span>
-												</p>
-												<p class="FundingPlanPackageCard_lightFeesInfo__2z-Do">Light
-													요금제의 모든 서비스에 추가로</p>
-												<ul>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>📣
-														오픈예정 서비스</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>✨
-														공간 와디즈 쇼룸</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>🔊
-														마케팅 가이드 서비스</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>👨‍💻
-														프로젝트 담당 디렉터 가이드</li>
-												</ul>
 												<button
-													class="Button_button__1e2A2 Button_text__3KyLl Button_lg__3vRQD FundingPlanPackageCard_afterActionButton__3jsMR"
+													class="selected3 Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_startIcon__19sdm Button_block__2mEqp FundingPlanPackageCard_selected__3POWd"
 													type="button">
-													<span><span class="Button_children__q9VCZ">자세히
-															알아보기 <svg viewBox="0 0 40 40" focusable="false"
-																role="presentation" class="withIcon_icon__3lrgp"
-																aria-hidden="true">
-																<path
-																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-													</span></span>
-												</button>
-											</div>
-											<div
-												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
-												<button
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_lg__3vRQD Button_block__2mEqp"
-													type="button">
-													<span><span class="Button_children__q9VCZ">이걸로
-															할게요</span></span>
+													<span><svg viewBox="0 0 48 48" focusable="false"
+															role="presentation"
+															class="withIcon_icon__3lrgp Button_icon__1qsE3"
+															aria-hidden="true">
+															<path
+																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg><span
+														class="Button_children__q9VCZ">이걸로 골랐어요</span></span>
 												</button>
 											</div>
 										</div>
@@ -386,11 +426,7 @@
 										수수료(PG사)가 포함된 요금제입니다. (VAT 별도)</div>
 								</div>
 							</div>
-							<button
-								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj"
-								type="submit">
-								<span><span class="Button_children__q9VCZ">저장하기</span></span>
-							</button>
+							<input type="button" id="save" name="savePlan" value="저장하기" class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
 						</form>
 					</div>
 				</div>

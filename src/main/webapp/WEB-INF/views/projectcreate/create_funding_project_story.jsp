@@ -36,7 +36,6 @@
         	  	}
 	          },
 	          error: function(xhr, status, error) {
-	            console.log(error);
 	          }
       	});
 	}
@@ -96,7 +95,6 @@
 		
 		// 이미지 추가
 		$("#addImageBtn").on("click", function() {
-
 			var formData = new FormData();
 	        var files = $('#images')[0].files;
 	        
@@ -125,6 +123,20 @@
 		
 		// 05-22 김동욱 저장버튼 클릭시 project_summary, project_content 업데이트
 		$("#saveBtn").on("click", function() {
+			let project_summary = $("#project_summary").val();
+			let project_content = $("#project_content").val();
+			
+			if(project_summary == null || project_summary == ""){
+				alert("프로젝트 요약 정보를 입력해주세요!")
+				return false;
+			}
+			
+			// 아래 if문에 공백으로 보이지만 project_content값에 아무것도 입력하지 않으면 저런 공백값들이 들어가기 떄문에 저 값들이 들어가면 return false
+			if(project_content == "														" || project_content == "<p><br></p>"){
+				alert("프로젝트 내용을 입력해주세요!")
+				return false;
+			}
+			
 
 			$.ajax({
 		          url: 'projectStoryUpdate',
@@ -143,6 +155,9 @@
 	        });
 			
 		})
+		
+		
+		
 		
 	})
 </script>

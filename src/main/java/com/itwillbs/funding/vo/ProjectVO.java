@@ -18,6 +18,60 @@ public class ProjectVO {
 	private String project_type;
 	private String project_target;
 	private String project_approve;
+	private String project_introduce;
+	private String project_adult;
+	private String project_identity;
+	private String project_reward_category;
+	private int project_reward_produce_type;
+	private String project_documents;
+	
+	
+	
+
+	public String getProject_target() {
+		return project_target;
+	}
+	public void setProject_target(String project_target) {
+		this.project_target = project_target;
+	}
+	public void setProject_reward_produce_type(int project_reward_produce_type) {
+		this.project_reward_produce_type = project_reward_produce_type;
+	}
+	public String getProject_identity() {
+		return project_identity;
+	}
+	public void setProject_identity(String project_identity) {
+		this.project_identity = project_identity;
+	}
+	public String getProject_reward_category() {
+		return project_reward_category;
+	}
+	public void setProject_reward_category(String project_reward_category) {
+		this.project_reward_category = project_reward_category;
+	}
+
+	public int getProject_reward_produce_type() {
+		return project_reward_produce_type;
+	}
+	public String getProject_documents() {
+		return project_documents;
+	}
+	public void setProject_documents(String project_documents) {
+		this.project_documents = project_documents;
+	}
+	
+	public String getProject_adult() {
+		return project_adult;
+	}
+	public void setProject_adult(String project_adult) {
+		this.project_adult = project_adult;
+	}
+	public String getProject_introduce() {
+		return project_introduce;
+	}
+	public void setProject_introduce(String project_introduce) {
+		this.project_introduce = project_introduce;
+	}
 	public int getProject_idx() {
 		return project_idx;
 	}
@@ -96,12 +150,7 @@ public class ProjectVO {
 	public void setProject_type(String project_type) {
 		this.project_type = project_type;
 	}
-	public String getProject_target() {
-		return project_target;
-	}
-	public void setProject_target(String project_target) {
-		this.project_target = project_target;
-	}
+
 	public String getProject_approve() {
 		return project_approve;
 	}
@@ -116,8 +165,12 @@ public class ProjectVO {
 				+ ", project_images=" + project_images + ", project_start_date=" + project_start_date
 				+ ", project_end_date=" + project_end_date + ", project_coming_soon_date=" + project_coming_soon_date
 				+ ", project_plan=" + project_plan + ", project_type=" + project_type + ", project_target="
-				+ project_target + ", project_approve=" + project_approve + "]";
+				+ project_target + ", project_approve=" + project_approve + ", project_introduce=" + project_introduce
+				+ ", project_adult=" + project_adult + ", project_identity=" + project_identity
+				+ ", project_reward_category=" + project_reward_category + ", project_reward_produce_type="
+				+ project_reward_produce_type + ", project_documents=" + project_documents + "]";
 	}
+	
 	
 	
 }

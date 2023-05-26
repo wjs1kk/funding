@@ -26,6 +26,12 @@
  			, null
  			, null
  			, null
+ 			, null
+ 			, 0
+ 			, null
+ 			, null
+ 			, 0
+ 			, null
  			, now()
  			)
  	</insert>
@@ -76,6 +82,44 @@
  		FROM reward
  		WHERE reward_idx = #{reward_idx}
  	</select>
+  
+  	<update id="projectPlanUpdate">
+	  	UPDATE project SET
+	 		project_plan = #{project_plan}
+	 	WHERE project_idx = #{project_idx}
+  	</update>
+  	
+  	<update id="InfoUpdate">
+	  	UPDATE project SET
+			project_category = #{project_category},
+			project_introduce = #{project_introduce},
+			project_type = #{project_type},
+			project_target = #{project_target},
+			project_reward_produce_type = #{project_reward_produce_type},
+			project_reward_category = #{project_reward_category}
+	 	WHERE project_idx = #{project_idx}
+  	</update>
+  	
+  	<update id="projectBaseInfoFileUpdate">
+	  	UPDATE project SET
+			project_thumbnail = #{project_thumbnail}
+	 	WHERE project_idx = #{project_idx}
+  	</update>
+  	
+  	<update id="projectBaseInfoUpdate">
+	  	UPDATE project SET
+			project_title = #{project_title},
+			project_adult = #{project_adult},
+			project_end_date = #{project_end_date}
+	 	WHERE project_idx = #{project_idx}
+  	</update>
+  	
+  	<update id="projectInfoFileUpdate">
+	  	UPDATE project SET
+			project_identity = #{project_identity},
+			project_documents = #{project_documents}
+	 	WHERE project_idx = #{project_idx}
+  	</update> 	
  	
  	<!-- 05-19 김동욱 AJAX 리워드 정보 수정하기-->
  	<update id="rewardModify">
@@ -169,6 +213,18 @@
 		FROM project p JOIN maker m
 		ON p.maker_idx = m.maker_idx
 		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
+ 	<!-- 05-26 김동욱 메이커 정보 삭제 -->
+ 	<delete id="deleteMakerInfo">
+ 		DELETE from maker WHERE maker_idx = #{maker_idx}
+ 	</delete>
+ 	
+ 	<!-- 05-26 김동욱 프로젝트 플랜 정보 가져오기 --> 
+ 	<select id="getProjectPlan" resultType="String">
+ 		SELECT project_plan
+ 		FROM project
+ 		WHERE project_idx = #{project_idx}
  	</select>
  	
   </mapper>

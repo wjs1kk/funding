@@ -12,70 +12,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 
 <script type="text/javascript">
-
-
-	$(function() {
-		
-		$("#makerAddbtn").on("click", function() {
-			$("#maker_name").val("");
-			$("#maker_phone").val("");
-			$("#maker_email").val("");
-			$("#maker_idx").val(0);
-			$("#preview").html("");
-			$("#saveBtn").text("추가하기");
-		});
-		
-		$.ajax({
-			type: "post",
-			url: "getMakerList",
-			dataType: "JSON",
-			data: {member_idx:${sessionScope.member_idx}
-			},
-			success: function(response) {
-				for(let myMakerList of response){
-					$("#makerAddList").append('<button type="button" class="wz button primary" onclick="getMakerInfo('+myMakerList.maker_idx+')">' + myMakerList.maker_name+ '</button>')
-				}
-			}
-		});
-		
-
-		$.ajax({
-			type: "post",
-			url: "myProjectMakerInfo",
-			dataType: "JSON",
-			data: {project_idx:${param.project_idx}
-			},
-			success: function(response) {
-				$("#myPorjectMakerInfo").append('<button type="button" class="wz button primary" onclick="getMakerInfo('+response.maker_idx+')">' + response.maker_name+ '</button>')
-			}
-		});
-		
-				
-	});
 	
-	function getMakerInfo(maker_idx) {
-		
-		$.ajax({
-			type: "post",
-			url: "getMakerInfo",
-			dataType: "JSON",
-			data: {maker_idx:maker_idx,
-				   project_idx:${param.project_idx}
-			},
-			success: function(response) {
-				
-				let root = '/funding/resources/images/maker_images/' + response.maker_image
-				$("#maker_name").val(response.maker_name)
-				$("#maker_phone").val(response.maker_phone)
-				$("#maker_email").val(response.maker_email)
-				$("#maker_idx").val(response.maker_idx)
-				$("#preview").html('<a href="javascript:void(0);" onclick="deleteImageAction(0)" id="img_id_0"><img style="width: 250px; height: 170px;" src="'+ root +'" class="selProductFile" title="Click to remove"></a>');
-				$("#saveBtn").text("수정하기");
-				alert("해당 프로젝트에 메이커 정보가 등록되었습니다!")
-				
-			}
-		});
-		
+	//현재 프로젝트에 등록된 메이커 정보 가져오기
+	function getMyProjectMakerInfo() {
 		$.ajax({
 			type: "post",
 			url: "myProjectMakerInfo",
@@ -85,9 +24,126 @@
 			success: function(response) {
 				$("#myPorjectMakerInfo").html('')
 				$("#myPorjectMakerInfo").html('<button type="button" class="wz button primary" onclick="getMakerInfo('+response.maker_idx+')">' + response.maker_name+ '</button>')
+			},
+			error: function() {
+				$("#myPorjectMakerInfo").html('<br><h4 style="color: lightgray" >등록된 메이커 정보가 없습니다!</h4><br>')
+			}
+		});
+	}
+	
+	
+	// 메이커 리스트 가져오기
+	function getMyMakerList() {
+		$.ajax({
+			type: "post",
+			url: "getMakerList",
+			dataType: "JSON",
+			data: {member_idx:${sessionScope.member_idx}
+			},
+			success: function(response) {
+				$("#makerAddList").html('')
+				for(let myMakerList of response){
+					$("#makerAddList").append('<button type="button" class="wz button primary" onclick="getMakerInfo('+myMakerList.maker_idx+')">' + myMakerList.maker_name+ '</button>&nbsp')
+				}
+			}
+		});
+	}
+
+	$(function() {
+		
+		// 현재 프로젝트에 등록된 메이커 정보 가져오기
+		getMyProjectMakerInfo();
+		
+		// 메이커 리스트 가져오기
+		getMyMakerList()
+		
+		// 메이커 정보 추가하기 버튼 클릭시 각 항목의 value들이 null 스트링과 0이 들이가고 submit 버튼 문구가 추가하기로 바뀜
+		$("#makerAddbtn").on("click", function() {
+			$("#maker_name").val("");
+			$("#maker_phone").val("");
+			$("#maker_email").val("");
+			$("#maker_idx").val(0);
+			$("#preview").html("");
+			$("#saveBtn").text("추가하기");
+			$("#deleteBtnAdd").html("");
+		});
+		
+		
+		// 메이커 정보 삭제하기
+		$(document).on("click","#deleteBtn",function(){
+			
+			let result = confirm("메이커 정보를 삭제하시겠습니까?")
+			
+			if(result == true){
+				$.ajax({
+					type: "post",
+					url: "deleteMakerInfo",
+					data: {maker_idx:$("#maker_idx").val()
+					},
+					success: function() {
+						alert("해당 메이커 정보가 삭제되었습니다!");
+						getMyProjectMakerInfo();
+						getMyMakerList();
+						$("#makerAddbtn").click();
+					}
+				});
+			}
+			
+		})
+				
+	});
+	
+	// 추가된 메이커버튼 클릭시 해당 메이커정보가 project테이블 maker_idx에 등록되고 아래 항목에 값을 입력한 후 버튼의 텍스트가 수정하기로 바뀜
+	function getMakerInfo(maker_idx) {
+		$.ajax({
+			type: "post",
+			url: "getMakerInfo",
+			dataType: "JSON",
+			data: {maker_idx:maker_idx,
+				   project_idx:${param.project_idx}
+			},
+			success: function(response) {
+				
+				$("#preview").html("");
+				let root = '/funding/resources/images/maker_images/' + response.maker_image
+				$("#maker_name").val(response.maker_name)
+				$("#maker_phone").val(response.maker_phone)
+				$("#maker_email").val(response.maker_email)
+				$("#maker_idx").val(response.maker_idx)
+				if(response.maker_image != null){
+					$("#preview").html('<a href="javascript:void(0);" onclick="deleteImageAction(0)" id="img_id_0"><img style="width: 250px; height: 170px;" src="'+ root +'" class="selProductFile" title="Click to remove"></a>');
+				}else {
+					$("#preview").html('<br><h4>등록된 이미지가 없습니다!</h4>');
+				}
+				$("#saveBtn").text("수정하기");
+				$("#deleteBtnAdd").html('<button type="button" class="wz button primary" id="deleteBtn">삭제하기</button>');
+				alert("해당 프로젝트에 메이커 정보가 등록되었습니다!")
+				getMyProjectMakerInfo()
 			}
 		});
 		
+	}
+	
+	
+	// 05-26 김동욱 항목이 입력되지 않았을 경우 입력을 해달라는 경고문구 출력
+	function checkNull() {
+		let maker_name = $("#maker_name").val();
+		
+		let maker_phone = $("#maker_phone").val();
+		let maker_email = $("#maker_email").val();
+		
+		if(maker_name == null || maker_name == ""){
+			alert("메이커 이름을 입력해주세요!")
+			return false;
+		}
+		if(maker_email == null || maker_email == ""){
+			alert("메이커 이메일을 입력해주세요!")
+			return false;
+		}
+		if(maker_phone == null || maker_phone == ""){
+			alert("메이커 전화번호를 입력해주세요!")
+			return false;
+		}
 		
 	}
 
@@ -105,7 +161,7 @@
 					<div id="container" class="ContentsLayout_container__11k-W">
 						<div>
 							<ol class="Breadcrumb_container__3YjD4">
-								<li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
+								<li class="Breadcrumb_item__2r9Ym" >프로젝트 관리</li>
 								<li class="Breadcrumb_item__2r9Ym">메이커 정보</li>
 							</ol>
 							<!-- 05-17 김동욱 모든 프로젝트 페이지 상단탭 project_top.jsp include로 변경 -->
@@ -142,17 +198,25 @@
 								</div>
 							</div>
 							<div >
-								<h3>해당 프로젝트에 등록된 메이커 정보</h3>
-								<div id="myPorjectMakerInfo"></div>
+								<h3>현재 프로젝트에 등록된 메이커 정보</h3>
+								<br>
+								<div id="myPorjectMakerInfo">
+									<br>
+								</div>
 							</div>
-							<div id="makerAddList">
+							<br>
+							<div>
 								<h3>추가된 메이커 정보</h3>
+								<br>
+								<div id="makerAddList"></div>
+								<br>
 							</div>
-							<button type="button" id="makerAddbtn">메이커 정보 추가</button>
+							<br>
+							<button type="button" class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" id="makerAddbtn">메이커 정보 추가하기</button>
 							<br>
 							<br>
 							<hr>
-							<form class="wz form" action="makerInsertUpdate" method="post" enctype="multipart/form-data">
+							<form class="wz form" action="makerInsertUpdate" method="post" enctype="multipart/form-data" onsubmit="return checkNull()">
 								<div class="MakerInfoWrapper_container__VyCZ5">
 									<div class="MouseOverGuide_container__3jDBz">
 										<div class="MouseOverGuide_contents__APrXG">
@@ -411,6 +475,7 @@
 								<input type="hidden" name="maker_idx" id="maker_idx" value="0">
 								<div class="MakerInfoFormContainer_btnWrapper__2EVfb">
 									<button type="submit" class="wz button primary" id="saveBtn">추가하기</button>
+									<span id="deleteBtnAdd"></span>
 								</div>
 							</form>
 						</div>

@@ -50,7 +50,8 @@
 										<div
 											class="PageMenuList_card__1VyAW PageMenuList_wadizColor__3nQuN">
 											<div class="PageMenuList_container__1xz-L">
-												<div class="PageMenuList_name__2nKKm">요금제 선택</div>
+												<div class="PageMenuList_name__2nKKm"
+												href="plan?project_idx=${param.project_idx }">요금제 선택</div>
 												<div
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													중</div>
