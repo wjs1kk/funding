@@ -9,6 +9,57 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
+<!-- 05-29 김동욱 jquery 라이브러리 추가 -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+
+<script type="text/javascript">
+	
+	
+	// 05-29 김동욱 각 항목 업데이트 여부 확인후 작성중 -> 작성 완료로 변경
+	$(function() {
+		$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  if(response.project_plan != null || response.project_plan != 0){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(0).text("작성 완료");
+	        	  }
+	        	  
+	        	  if(response.project_category != null || response.project_category != ""){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(1).text("작성 완료");
+	        	  }
+	        	  
+	        	  if(response.project_title != null || response.project_title != ""){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(2).text("작성 완료");
+	        	  }
+	        	  
+	        	  if(response.project_story != null || response.project_story != ""){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(3).text("작성 완료");
+	        	  }
+	        	  
+	        	  // 리워드 설계 추가해야 함
+	        	  
+	        	  
+	        	  // 리워드 정책 추가해야 함
+	        	  
+	        	  
+	        	  if(response.maker_idx != null || response.maker_idx != 0){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(6).text("작성 완료");
+	        	  }
+	        	  
+	        	  // 대표자 정산 정보 추가해야 함
+	        	  
+	        	  
+	          },
+	          error: function(xhr, status, error) {
+	          }
+		})
+	})
+
+</script>
 
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -56,7 +107,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													중</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="plan"><button
+													href="plan?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -68,7 +119,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="screening"><button
+													href="screening?project_idx=${param.project_idx }"><button
 													
 														type="button" class="wz button">작성하기</button></a>
 											</div>
@@ -81,7 +132,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="baseinfo"><button
+													href="baseinfo?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -93,7 +144,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="story"><button
+													href="story?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -106,7 +157,7 @@
 													전</div>
 													<!-- 05-16 김동욱 리워드 설계 페이지 추가 -->
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="reward"><button
+													href="reward?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -118,7 +169,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="project/policy"><button
+													href="policy?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -130,7 +181,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="project/makerInfo"><button
+													href="makerInfo?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>
@@ -142,7 +193,7 @@
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
 													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
-													href="project/contractInfo"><button
+													href="contractInfo?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
 											</div>
 										</div>

@@ -156,18 +156,15 @@ public class ProjectCreateController {
 	@ResponseBody
 	public void imageUpaload(ProjectVO project, MultipartFile[] files, HttpSession session) {
 		
-		System.out.println(project);
-		System.out.println(files);
-		
 		String getImages = projectCreateService.getImages(project.getProject_idx());
 		
 		String uploadDir = "/resources/images/project_images";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
 		
-		// Files 클래스의 createDirectories() 메서드를 호출하여 Path 객체가 관리하는 경로 없으면 생성
-		// => 거쳐가는 경로들 중 없는 경로는 모두 생성
 		System.out.println("실제 업로드 경로 : " + saveDir);
 		try {
+			// Files 클래스의 createDirectories() 메서드를 호출하여 Path 객체가 관리하는 경로 없으면 생성
+			// => 거쳐가는 경로들 중 없는 경로는 모두 생성
 			Path path = Paths.get(saveDir);
 			Files.createDirectories(path);
 		} catch (IOException e1) {
@@ -209,20 +206,16 @@ public class ProjectCreateController {
 	@ResponseBody
 	public String getProjectImages(int project_idx) {
 		String projectImages = projectCreateService.getImages(project_idx);
-		
 		String[] projectImagesArr = projectImages.split("\\|");
-		
 		List<String> imagesList = new ArrayList<String>();
+		
 		for(String projectImages2 : projectImagesArr) {
 			System.out.println(projectImages2);
 			imagesList.add(projectImages2);
 		}
-		
 		JSONArray jsonImagesList = new JSONArray(imagesList);
-		
 		return jsonImagesList.toString();
 	}
-	
 	
 	// 05-22 김동욱 AJAX 프로젝트 이미지 지우기
 	// 05-25 김동욱 이미지를 DB에서만 지우는 게 아닌 실제 업로드된 파일도 삭제되도록 수정
@@ -246,19 +239,12 @@ public class ProjectCreateController {
 		try {
 			String uploadDir = "/resources/images/project_images"; // 프로젝트 상의 업로드 경로
 			String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
-			// 실제 업로드 경로에 서브 디렉토리명 결합
-			
-			// Paths.get() 메서드를 호출하여 파일 경로 관리 객체(Path) 생성
-			// => 업로드 디렉토리와 파일명 결합하여 전달
 			Path path = Paths.get(saveDir + "/" + deleteImage);
-			// Files 클래스의 deleteIfExists() 메서드를 호출하여 파일 존재 시 삭제
-			// => 파라미터 : 경로
 			Files.deleteIfExists(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
@@ -290,7 +276,6 @@ public class ProjectCreateController {
 		
 		if(!makerImage.getOriginalFilename().equals("")) {
 			makerInfo.setMaker_image(uuid.substring(0, 8) + "_" + makerImage.getOriginalFilename());
-			
 			try {
 				Path path = Paths.get(saveDir);
 				Files.createDirectories(path);
@@ -300,19 +285,15 @@ public class ProjectCreateController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
-		System.out.println(makerInfo);
 		
 		if(makerInfo.getMaker_idx() == 0) {
+			// 메이커 정보 등록하기
 			int insertCount = projectCreateService.makerInfoInsert(makerInfo);
 		}else {
+			// 메이커 정보 수정하기
 			int updateCount = projectCreateService.makerInfoUpdate(makerInfo);
 		}
-		
-		// 메이커 정보 등록하기
-		
 		return "redirect:/project/makerInfo?project_idx=" + project_idx;
 	}
 	
@@ -340,7 +321,6 @@ public class ProjectCreateController {
 	public MakerVO myProjectMakerInfo(int project_idx) {
 		System.out.println(project_idx);
 		MakerVO myProjectMakerInfo = projectCreateService.myProjectMakerInfo(project_idx);
-		
 		return myProjectMakerInfo;
 	}
 	
@@ -382,11 +362,15 @@ public class ProjectCreateController {
 	}
 	
 	// 05-26 김동욱 메이커 정보 삭제
+	// 05-27 김동욱 메이커 정보를 삭제하면 프로젝트에 등록된 메이커 정보들 모두 null로 업데이트 기능 추가
 	@PostMapping("project/deleteMakerInfo")
 	@ResponseBody
 	public void deleteMakerInfo(int maker_idx) {
 		System.out.println("deleteMakerInfo maker_idx : " + maker_idx);
+		// 메이커 테이블에서 삭제
 		int deleteCount = projectCreateService.deleteMakerInfo(maker_idx);
+		// 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트
+		int updateCount = projectCreateService.deleteProjeckMaker(maker_idx);
 	}
 	
 	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
@@ -396,7 +380,27 @@ public class ProjectCreateController {
 		System.out.println(project_idx);
 		String myProjectPlan = projectCreateService.getProjectPlan(project_idx);
 		return myProjectPlan;
-		
+	}
+	
+	// 05-27 김동욱 AJAX 메이커명 중복 체크
+	@PostMapping("project/makerNameDuplicateCheck")
+	@ResponseBody
+	public String makerNameDuplicateCheck(String maker_name) {
+		String makerName = projectCreateService.makerNameDuplicateCheck(maker_name);
+		if(makerName == null) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
+	
+	// 05-29 김동욱 프로젝트 테이블에서 각 테이블이 업데이트가 되었는 지 체크용
+	@PostMapping("project/projectUpdateCheck")
+	@ResponseBody
+	public Map projectUpdateCheck(int project_idx) {
+		System.out.println(project_idx);
+		Map projectMap = projectCreateService.projectUpdateCheck(project_idx);
+		return projectMap;
 	}
 	
 	

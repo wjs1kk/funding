@@ -115,25 +115,30 @@
 
 	// 05-19 김동욱 리워드 수정
 	$(document).on("click","#rewardModifyBtn",function(){
-		$.ajax({
-			type: "post",
-			url: "rewardModify",
-			data: {reward_idx:$("#reward_idx").val()
-			   ,reward_name:$("#reward_name").val()
-			   ,reward_amount:$("#reward_amount").val()
-			   ,reward_content:$("#reward_content").val()
-			   ,reward_option:$("#reward_option").val()
-			   ,reward_quantity:$("#reward_quantity").val()
-			   ,reward_delivery:$("#reward_delivery").val()
-			   ,reward_delivery_fee:$("#reward_delivery_fee").val()
-			   ,reward_delivery_date:$("#reward_delivery_date").val()
-			},
-			success: function() {
-				getProjectReward();
-				$("#reward_modal").css("opacity", 0);
-			}
+		
+		//  05-29 김동욱 null 값과 정규표현식 확인 후 수정
+		if(regexCheck() != false){
+			$.ajax({
+				type: "post",
+				url: "rewardModify",
+				data: {reward_idx:$("#reward_idx").val()
+				   ,reward_name:$("#reward_name").val()
+				   ,reward_amount:$("#reward_amount").val()
+				   ,reward_content:$("#reward_content").val()
+				   ,reward_option:$("#reward_option").val()
+				   ,reward_quantity:$("#reward_quantity").val()
+				   ,reward_delivery:$("#reward_delivery").val()
+				   ,reward_delivery_fee:$("#reward_delivery_fee").val()
+				   ,reward_delivery_date:$("#reward_delivery_date").val()
+				},
+				success: function() {
+					getProjectReward();
+					$("#reward_modal").css("opacity", 0);
+				}
+				
+			})
 			
-		})
+		}
 		
 	});
 	
@@ -225,6 +230,83 @@
 	};
 	
 	
+	// 05-29 김동욱 null값과 정규표현식 확인
+	function regexCheck() {
+		
+		if($("#reward_amount").val() == ""){
+			alert("리워드 금액을 입력해주세요!")
+			return false;
+		}
+		if($("#reward_name").val() == ""){
+			alert("리워드명을 입력해주세요!")
+			return false;
+		}
+		if($("#reward_content").val() == ""){
+			alert("리워드 설명을 입력해주세요!")
+			return false;
+		}
+		if($("#reward_option").val() == ""){
+			alert("리워드 옵션을 입력해주세요!")
+			return false;
+		}
+		if($("#reward_quantity").val() == ""){
+			alert("리워드 제한 수량을 입력해주세요!")
+			return false;
+		}
+		if($("#reward_delivery").val() == ""){
+			alert("리워드 배송여부를 선택해주세요")
+			return false;
+		}
+		if($("#reward_delivery_fee").val() == ""){
+			alert("리워드 배송비를 입력해주세요!")
+			return false;
+		}
+		if($("#reward_delivery_date").val() == ""){
+			alert("리워드 발송 날짜를 입력해주세요!")
+			return false;
+		}
+		
+		// 숫자
+	 	var check_num = /[0-9]/;
+		// 숫자, 한글 영어
+	 	var check_eng_hangul_num = /[a-zA-Z가-힣0-9]/;
+	 	
+//	 	var check_num = /[0-9a-zA-Z가-힣+_()-]{2,30}/;    // 숫자 
+//	 	var check_num = /[0-9]/;    // 숫자 
+//	 	var check_eng = /[a-zA-Z]/;    // 문자 
+//	 	var check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+//	 	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+		
+		if(!check_num.exec($("#reward_amount").val())){
+			alert("리워드 금액은 숫자만 입력 가능합니다!")
+			return false;
+		}
+		
+		if(!check_eng_hangul_num.exec($("#reward_name").val())){
+			alert("리워드명은 한글, 영어, 숫자만 입력 가능합니다!")
+			return false;
+		}
+		
+		if(!check_eng_hangul_num.exec($("#reward_option").val())){
+			alert("리워드 옵션은 한글, 영어, 숫자만 입력 가능합니다!")
+			return false;
+		}
+		
+		if(!check_num.exec($("#reward_quantity").val())){
+			alert("리워드 제한 수량은 숫자만 입력 가능합니다!")
+			return false;
+		}
+		
+		if(!check_num.exec($("#reward_delivery_fee").val())){
+			alert("배송비는 숫자만 입력 가능합니다!")
+			return false;
+		}
+		
+		$("#reward_modal").css("opacity", 0);
+		
+	}
+	
+	
 	$(function() {
 		// 리워드 ajax 리스트 출력
 		getProjectReward();
@@ -259,6 +341,7 @@
 			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
 			$("#deliveryCheck").html("");
 			$("#reward_modal").css("opacity", 1);
+			
 		});
 
 		//모달창 X 버튼 누를 시 닫힘
@@ -272,8 +355,9 @@
 		
 		// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 입력된 정보들 reward 테이블에 insert후 다시 리스트 출력'
 		$(document).on("click","#rewardAddBtn",function(){
-			$("#rewardAddBtn").on("click", function() {
-				$("#reward_modal").css("opacity", 0);
+			
+			// 05-29 김동욱 null 값과 정규표현식 확인 후 추가
+			if(regexCheck() != false){
 				$.ajax({
 					type: "post",
 					url: "projectRewardAdd",
@@ -292,9 +376,7 @@
 						getProjectReward();
 					}
 				});
-				
-			});
-			
+			}
 		});
 		
 		

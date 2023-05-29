@@ -126,5 +126,20 @@ public class ProjectCreateService {
 	public String getProjectPlan(int project_idx) {
 		return mapper.getProjectPlan(project_idx);
 	}
+	
+	// 05-27 김동욱 AJAX 메이커명 중복 체크
+	public String makerNameDuplicateCheck(String maker_name) {
+		return mapper.makerNameDuplicateCheck(maker_name);
+	}
+
+	// 05-27 김동욱 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트
+	public int deleteProjeckMaker(int maker_idx) {
+		return mapper.deleteProjeckMaker(maker_idx);
+	}
+
+	// 05-29 김동욱 프로젝트 테이블에서 각 테이블이 업데이트가 되었는 지 체크용
+	public Map projectUpdateCheck(int project_idx) {
+		return mapper.projectUpdateCheck(project_idx);
+	}
 		
 }

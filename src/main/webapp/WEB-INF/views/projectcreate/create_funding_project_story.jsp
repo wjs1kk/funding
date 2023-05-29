@@ -26,11 +26,17 @@
 	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
+	        	if(response == ""){
+	        		$("#imageCheck").val("N");
+	        	}else {
+	        		$("#imageCheck").val("Y");
+	        	}
+	        	
    	  			$("#addImagesList").html("<br>")
         	  	for(let imagesList of response) {
         	  		if(imagesList != ""){
 						$("#addImagesList").append('<img alt="" src="${pageContext.request.contextPath }/resources/images/project_images/'+ imagesList +'" width="300" height="200"><button><img alt="" src="${pageContext.request.contextPath }/resources/images/delete-icon.png" width="15" height="15" onclick="deleteImage(\''+imagesList+'\')"></button>')
-        	  		}else {
+        	  		}else if(imagesList == "" || imagesList == null){
 						$("#addImagesList").append('<br><p style="color: lightgray">추가된 이미지가 없습니다!</p><br>')
         	  		}
         	  	}
@@ -121,43 +127,7 @@
 			
 		})
 		
-		// 05-22 김동욱 저장버튼 클릭시 project_summary, project_content 업데이트
-		$("#saveBtn").on("click", function() {
-			let project_summary = $("#project_summary").val();
-			let project_content = $("#project_content").val();
 			
-			if(project_summary == null || project_summary == ""){
-				alert("프로젝트 요약 정보를 입력해주세요!")
-				return false;
-			}
-			
-			// 아래 if문에 공백으로 보이지만 project_content값에 아무것도 입력하지 않으면 저런 공백값들이 들어가기 떄문에 저 값들이 들어가면 return false
-			if(project_content == "														" || project_content == "<p><br></p>"){
-				alert("프로젝트 내용을 입력해주세요!")
-				return false;
-			}
-			
-
-			$.ajax({
-		          url: 'projectStoryUpdate',
-		          type: 'POST',
-		          data: {project_idx: ${param.project_idx},
-		        	  	 project_summary: $("#project_summary").val(),
-		        	  	 project_content: $("#project_content").val()
-		          		},
-		          success: function() {
-		        	  alert("프로젝트 스토리 정보가 저장 되었습니다!")
-		        	  getProjectStory()
-		          },
-		          error: function(xhr, status, error) {
-		            console.log(error);
-		          }
-	        });
-			
-		})
-		
-		
-		
 		
 	})
 </script>
@@ -590,10 +560,57 @@
 													<script>
 														var editor = new Jodit('#project_content', {
 														  uploader: {
-														    insertImageAsBase64URI: true,
-														    url: 'path/to/image/upload/endpoint'
+														    insertImageAsBase64URI: true
 														  }
 														});
+														
+														
+															
+															
+															window.onload = function() {
+																
+																
+																// 05-22 김동욱 저장버튼 클릭시 project_summary, project_content 업데이트
+																// 05-28 김동욱 저장버튼 클릭시 project_content의 null값을 인식할 수 없어 아래로 이동
+																$("#saveBtn").on("click", function() {
+																	let project_summary = $("#project_summary").val();
+																	
+																	if(project_summary == null || project_summary == ""){
+																		alert("프로젝트 요약 정보를 입력해주세요!")
+																		return false;
+																	}
+																	
+																	// 값을 입력하지 않으면 아래의 공백으로 보이는 값이 들어가 있는데 아래 값이 들어가면 return false
+																	if(editor.value == "<p><br></p>" || editor.value == "														"){
+																		alert("프로젝트 내용을 입력해주세요!")
+																		return false;
+																	}
+																	
+																	if($("#imageCheck").val() == "N"){
+																		alert("프로젝트 이미지를 등록해주세요!")
+																		return false;
+																	}
+																	
+																	$.ajax({
+																          url: 'projectStoryUpdate',
+																          type: 'POST',
+																          data: {project_idx: ${param.project_idx},
+																        	  	 project_summary: $("#project_summary").val(),
+																        	  	 project_content: $("#project_content").val()
+																          		},
+																          success: function() {
+																        	  alert("프로젝트 스토리 정보가 저장 되었습니다!")
+																        	  getProjectStory()
+																          },
+																          error: function(xhr, status, error) {
+																            console.log(error);
+																          }
+															        });
+																});
+																
+															}
+															
+														
 														
 													</script>
 
@@ -664,7 +681,7 @@
 <!-- 											<span><span class="Button_children__q9VCZ">저장하기</span></span> -->
 <!-- 										</button> -->
 									</div>
-							
+							<input type="hidden" id="imageCheck" value="">
 							<button id="saveBtn"
 								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
 								style="width: 420px; max-width: 100%;" id="saveBtn" >저장하기

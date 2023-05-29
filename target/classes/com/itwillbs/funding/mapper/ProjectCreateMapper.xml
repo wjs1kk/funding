@@ -227,4 +227,23 @@
  		WHERE project_idx = #{project_idx}
  	</select>
  	
+ 	<!-- 05-27 김동욱 AJAX 메이커명 중복 체크 -->
+ 	<select id="makerNameDuplicateCheck" resultType="String">
+ 		SELECT maker_name
+ 		FROM maker
+ 		WHERE maker_name = #{maker_name}
+ 	</select>
+ 	
+ 	<!-- 05-27 김동욱 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트 -->
+ 	<update id="deleteProjeckMaker">
+ 		UPDATE project SET maker_idx = null
+ 		WHERE maker_idx = #{maker_idx}
+ 	</update>
+ 	
+ 	<select id="projectUpdateCheck" resultType="map">
+ 		SELECT *
+ 		FROM project
+ 		WHERE project_idx = #{project_idx}
+ 	</select>
+ 	
   </mapper>

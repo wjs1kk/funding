@@ -42,10 +42,17 @@
 			},
 			success: function(response) {
 				$("#makerAddList").html('')
+				if(response == "" || response == null){
+					$("#makerAddList").append('<br><h4 style="color: lightgray">추가된 메이커 정보가 없습니다.</h4><br>')
+				}
 				for(let myMakerList of response){
 					$("#makerAddList").append('<button type="button" class="wz button primary" onclick="getMakerInfo('+myMakerList.maker_idx+')">' + myMakerList.maker_name+ '</button>&nbsp')
 				}
+			},
+			error: function() {
+				$("#makerAddList").append('<br><h4 style="color: lightgray">추가된 메이커 정보가 없습니다.</h4><br>')
 			}
+			
 		});
 	}
 
@@ -57,6 +64,7 @@
 		// 메이커 리스트 가져오기
 		getMyMakerList()
 		
+		
 		// 메이커 정보 추가하기 버튼 클릭시 각 항목의 value들이 null 스트링과 0이 들이가고 submit 버튼 문구가 추가하기로 바뀜
 		$("#makerAddbtn").on("click", function() {
 			$("#maker_name").val("");
@@ -66,8 +74,9 @@
 			$("#preview").html("");
 			$("#saveBtn").text("추가하기");
 			$("#deleteBtnAdd").html("");
+			$("#maker_name").attr("readonly",false);
+			$("#makerNameDuplicateCheckResult").html("");
 		});
-		
 		
 		// 메이커 정보 삭제하기
 		$(document).on("click","#deleteBtn",function(){
@@ -90,11 +99,30 @@
 			}
 			
 		})
+		
+		// 05-27 김동욱 메이커명 중복체크
+		$("#maker_name").on("change", function() {
+			$.ajax({
+				type: "post",
+				url: "makerNameDuplicateCheck",
+				data: {maker_name:$("#maker_name").val()
+				},
+				success: function(response) {
+					$("#makerNameDuplicateCheck").val(response);
+					if(response == "false"){
+						$("#makerNameDuplicateCheckResult").html("이미 사용중인 메이커명 입니다.").css("color", "red");
+					}else if(response == "true"){
+						$("#makerNameDuplicateCheckResult").html("사용 가능한 메이커명 입니다.").css("color", "blue");
+					}
+				}
+			});
+		})
 				
 	});
 	
 	// 추가된 메이커버튼 클릭시 해당 메이커정보가 project테이블 maker_idx에 등록되고 아래 항목에 값을 입력한 후 버튼의 텍스트가 수정하기로 바뀜
 	function getMakerInfo(maker_idx) {
+		
 		$.ajax({
 			type: "post",
 			url: "getMakerInfo",
@@ -115,44 +143,81 @@
 				}else {
 					$("#preview").html('<br><h4>등록된 이미지가 없습니다!</h4>');
 				}
+				$("#maker_name").attr("readonly",true);
 				$("#saveBtn").text("수정하기");
 				$("#deleteBtnAdd").html('<button type="button" class="wz button primary" id="deleteBtn">삭제하기</button>');
 				alert("해당 프로젝트에 메이커 정보가 등록되었습니다!")
+				$("#makerNameDuplicateCheckResult").html("");
 				getMyProjectMakerInfo()
+				
 			}
 		});
 		
 	}
 	
 	
-	// 05-26 김동욱 항목이 입력되지 않았을 경우 입력을 해달라는 경고문구 출력
-	function checkNull() {
-		let maker_name = $("#maker_name").val();
-		
-		let maker_phone = $("#maker_phone").val();
-		let maker_email = $("#maker_email").val();
-		
-		if(maker_name == null || maker_name == ""){
-			alert("메이커 이름을 입력해주세요!")
+// 05-26 김동욱 항목이 입력되지 않았을 경우 입력을 해달라는 경고문구 출력
+// 05-29 김동욱 정규표현식 추가
+function checkNull() {
+	let maker_name = $("#maker_name").val();
+	let maker_phone = $("#maker_phone").val();
+	let maker_email = $("#maker_email").val();
+	let maker_image = $("#maker_image")[0].files.length;
+	let makerNameDuplicateCheck = $("#makerNameDuplicateCheck").val();
+	
+	let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	let phoneReg = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
+	
+// 	var check_num = /[0-9a-zA-Z가-힣+_()-]{2,30}/;    // 숫자 
+// 	var check_num = /[0-9]/;    // 숫자 
+// 	var check_eng = /[a-zA-Z]/;    // 문자 
+// 	var check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+// 	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크	
+	
+	if(maker_name == null || maker_name == ""){
+		alert("메이커 이름을 입력해주세요!")
+		return false;
+	}
+	
+	if($("#img_id_0").html() == null){
+		if(maker_image == 0){
+			alert("메이커 이미지를 등록해주세요!")
 			return false;
 		}
-		if(maker_email == null || maker_email == ""){
-			alert("메이커 이메일을 입력해주세요!")
-			return false;
-		}
-		if(maker_phone == null || maker_phone == ""){
-			alert("메이커 전화번호를 입력해주세요!")
-			return false;
-		}
+	}
+	
+	if(maker_email == null || maker_email == ""){
+		alert("메이커 문의 이메일을 입력해주세요!")
+		return false;
+	}
+	if(maker_phone == null || maker_phone == ""){
+		alert("메이커 문의 전화번호를 입력해주세요!")
+		return false;
+	}
+	
+	if(makerNameDuplicateCheck == "false"){
+		alert("이미 사용중인 메이커명 입니다.");
+		return false;
+	}
+	
+	if(!emailReg.exec(maker_email)){
+		alert("이메일 형식을 올바르게 입력해주세요! \n ex) abc123@naver.com");
+		return false;
+	}
+	
+	if(!phoneReg.exec(maker_phone)){
+		alert("문의 전화번호는 하이픈(-)을 포함하여 입력해주세요! \n ex) 010-0000-0000");
+		return false;
 		
 	}
+	
+}
 
 </script>
 
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
 	
-
 	<div id="root">
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<div class="AppLayout_main__14bCi">
@@ -205,10 +270,13 @@
 								</div>
 							</div>
 							<br>
+							<br>
 							<div>
 								<h3>추가된 메이커 정보</h3>
 								<br>
 								<div id="makerAddList"></div>
+								<br>
+								<span>메이커 정보를 클릭하면 해당 프로젝트에 선택한 메이커 정보가 등록됩니다.</span>
 								<br>
 							</div>
 							<br>
@@ -217,6 +285,7 @@
 							<br>
 							<hr>
 							<form class="wz form" action="makerInsertUpdate" method="post" enctype="multipart/form-data" onsubmit="return checkNull()">
+								<input type="hidden" id="makerNameDuplicateCheck">
 								<div class="MakerInfoWrapper_container__VyCZ5">
 									<div class="MouseOverGuide_container__3jDBz">
 										<div class="MouseOverGuide_contents__APrXG">
@@ -236,6 +305,7 @@
 															maxlength="64" type="text" id="maker_name"
 															class="Input_input__2kAAL Input_md__3-eZ6"
 															aria-invalid="false">
+															<div id="makerNameDuplicateCheckResult"></div>
 													</div>
 													<em class="HelperMessage_helperMessage__1qZPy">61자 남음</em>
 												</div>
@@ -292,8 +362,6 @@
 														class="helper ImageFormField_helper__3XC5c">3MB 이하의
 														JPG, JPEG, PNG 파일, 해상도 300x300 픽셀 이상</em>
 														<div id="preview">
-															<img alt="" src="">
-														
 														</div>
 														
 														<script type="text/javascript">
@@ -356,14 +424,6 @@
 																	reader.readAsDataURL(f);
 																})
 																
-															}
-															
-															function deleteImageAction(index) {
-																console.log("index : " + index);
-																var img_id = "#img_id_"+index;
-																$(img_id).remove();
-																sel_files.splice(index, 1);
-																console.log(sel_files);
 															}
 	
 													</script>
