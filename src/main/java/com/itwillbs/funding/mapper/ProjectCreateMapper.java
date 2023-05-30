@@ -67,4 +67,10 @@ public interface ProjectCreateMapper {
 	int deleteProjeckMaker(int maker_idx);
 	// 05-29 김동욱 프로젝트 테이블에서 각 테이블이 업데이트가 되었는 지 체크용
 	Map projectUpdateCheck(int project_idx);
+	// 05-30 김동욱 대표자 및 정산 정보 INSERT
+	int repInfoInsert(Map repInfo);
+	// 05-30 김동욱 대표자 및 정산 정보 불러오기
+	Map getMyRepresentativeInfo(int member_idx);
+	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
+	int projectApproveSubmit(int project_idx);
 }

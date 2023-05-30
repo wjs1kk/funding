@@ -240,10 +240,38 @@
  		WHERE maker_idx = #{maker_idx}
  	</update>
  	
+ 	<!-- 05-29 김동욱 프로젝트 테이블에서 각 테이블이 업데이트가 되었는 지 체크용  -->
  	<select id="projectUpdateCheck" resultType="map">
  		SELECT *
  		FROM project
  		WHERE project_idx = #{project_idx}
  	</select>
+ 	
+ 	<!-- 05-30 김동욱 대표자 및 정산 정보 INSERT  -->
+ 	<insert id="repInfoInsert">
+ 		INSERT INTO representative
+ 		VALUES (
+ 			null
+ 			, #{member_idx}
+ 			, #{rep_name}
+ 			, #{rep_email}
+ 			, #{rep_tax_email}
+ 			, #{rep_tax_bank}
+ 			, #{rep_tax_account}
+ 			, #{rep_tax_depositor}
+ 		)
+ 	</insert>
+ 	
+ 	<!-- 05-30 김동욱 대표자 및 정산 정보 불러오기  -->
+ 	<select id="getMyRepresentativeInfo" resultType="map">
+ 		SELECT *
+ 		FROM representative
+ 		WHERE member_idx = #{member_idx}
+ 	</select>
+ 	
+ 	<!-- 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)  -->
+ 	<update id="projectApproveSubmit">
+ 		UPDATE project SET project_approve = "0" WHERE project_idx = #{project_idx}
+ 	</update>
  	
   </mapper>

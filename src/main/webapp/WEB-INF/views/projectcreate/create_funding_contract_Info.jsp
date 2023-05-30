@@ -9,6 +9,35 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/12.b2563d3d.chunk.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+
+<script type="text/javascript">
+
+
+	$(function() {
+		$("#saveBtn").on("click", function() {
+			$.ajax({
+				 url: 'repInfoInsert',
+		          type: 'POST',
+		          data: {rep_name: $("#rep_name").val(),
+		        	  	 rep_email: $("#rep_email").val(),
+		        	  	 rep_tax_email: $("#rep_tax_email").val(),
+		        	  	 rep_tax_bank: $("#rep_tax_bank").val(),
+		        	  	 rep_tax_account: $("#rep_tax_account").val(),
+		        	  	 rep_tax_depositor: $("#rep_tax_depositor").val()
+		          },
+		          success: function(response) {
+		        	  alert("성공");
+		          },
+		          error: function(xhr, status, error) {
+		          }
+			})
+			
+			
+		})
+	})
+
+</script>
 
 </head>
 <body class="">
@@ -65,7 +94,7 @@
 											<div class="TextField_textField__23rCe TextField_sm__lHdDB">
 												<label></label>
 												<div class="TextField_field__1E9vt">
-													<input placeholder="대표자명" maxlength="64" type="text"
+													<input placeholder="대표자명" maxlength="64" type="text" id="rep_name" name="reo_name"
 														class="Input_input__2kAAL Input_sm__3Y9Qi"
 														aria-invalid="false" value="">
 												</div>
@@ -85,7 +114,7 @@
 											<div class="TextField_textField__23rCe TextField_sm__lHdDB">
 												<label>대표자 이메일</label>
 												<div class="TextField_field__1E9vt">
-													<input placeholder="대표자 이메일" maxlength="64" type="text"
+													<input placeholder="대표자 이메일" maxlength="64" type="text" id="rep_email" name="reo_email"
 														class="Input_input__2kAAL Input_sm__3Y9Qi"
 														aria-invalid="false" value="">
 												</div>
@@ -171,7 +200,7 @@
 											<div class="TextField_textField__23rCe TextField_sm__lHdDB">
 												<label>세금계산서 발행 이메일</label>
 												<div class="TextField_field__1E9vt">
-													<input placeholder="이메일" type="text"
+													<input placeholder="이메일" type="text" id="rep_tax_email" name="rep_tax_email"
 														class="Input_input__2kAAL Input_sm__3Y9Qi"
 														aria-invalid="false" value="">
 												</div>
@@ -200,26 +229,43 @@
 															aria-relevant="additions text"
 															class="css-7pg0cj-a11yText"></span>
 														<div class="select-menu__control css-1y74jpo-control">
-															<div class="select-menu__value-container css-1hwfws3">
-																<div
-																	class="select-menu__placeholder css-1wa3eu0-placeholder">은행
-																	선택</div>
-																<input id="react-select-16-input" readonly=""
-																	tabindex="0" aria-autocomplete="list"
-																	class="css-62g3xt-dummyInput" value="">
-															</div>
-															<div class="select-menu__indicators css-1wy0on6">
-																<span class="select-menu__indicator-separator css-0"></span>
-																<div
-																	class="select-menu__indicator select-menu__dropdown-indicator css-egf9x8-indicatorContainer"
-																	aria-hidden="true">
-																	<svg viewBox="0 0 32 32" focusable="false"
-																		role="presentation" class="withIcon_icon__3lrgp"
-																		aria-hidden="true" style="color: rgb(134, 142, 150);">
-																		<path
-																			d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-																</div>
-															</div>
+															<select style="width: 100%; height: 30px; color:#BBBBBB; padding-left: 13px; font-family: inherit; font-size:14px; border: none;"
+															  id="rep_tax_bank" name="rep_tax_bank">
+																<option value="" hidden>은행 선택</option>
+																<option value="신한은행">신한은행</option>
+																<option value="국민은행">국민은행</option>
+																<option value="농협은행">농협은행</option>
+																<option value="우리은행">우리은행</option>
+																<option value="하나은행">KEB하나은행</option>
+																<option value="기업은행">기업은행</option>
+																<option value="SC은행">SC은행</option>
+																<option value="카카오뱅크">카카오뱅크</option>
+																<option value="부산은행">부산은행</option>
+																<option value="대구은행">대구은행</option>
+																<option value="한국씨티은행">한국씨티은행</option>
+																<option value="경남은행">경남은행</option>
+																<option value="광주은행">광주은행</option>
+																<option value="전북은행">전북은행</option>
+																<option value="산업은행">KDB산업은행</option>
+																<option value="제주은행">제주은행</option>
+																<option value="우체국">우체국</option>
+																<option value="수협중앙회">수협중앙회</option>
+																<option value="신협중앙회">신협중앙회</option>
+																<option value="새마을금고중앙회">새마을금고중앙회</option>
+																<option value="상호저축은행중앙회">상호저축은행중앙회</option>
+																<option value="산림조합중앙회">산림조합중앙회</option>
+																<option value="지역농.축협">지역농.축협</option>
+																<option value="BNP파리바은">BNP파리바은행</option>
+																<option value="도이치은행">도이치은행</option>
+																<option value="HSBC은행">HSBC은행</option>
+																<option value="JP모간체이스은행">JP모간체이스은행</option>
+																<option value="뱅크오브아메리카">뱅크오브아메리카</option>
+																<option value="중국공상은행">중국공상은행</option>
+																<option value="케이뱅크">케이뱅크</option>
+																<option value="신한금융투자">신한금융투자</option>
+																<option value="KB증권">KB증권</option>
+																<option value="미래에셋대우">미래에셋대우</option>
+															</select>
 														</div>
 													</div>
 												</div>
@@ -240,7 +286,8 @@
 														<input placeholder="계좌번호 ‘-’ 없이 숫자만 입력"
 															data-testid="accountNumber" type="tel"
 															class="Input_input__2kAAL Input_sm__3Y9Qi"
-															aria-invalid="false" value="">
+															aria-invalid="false" value=""
+															id="rep_tax_account" name="rep_tax_account">
 													</div>
 													<em class="HelperMessage_helperMessage__1qZPy">특수
 														문자(-)없이 숫자만 입력해 주세요.</em>
@@ -261,7 +308,7 @@
 											<div class="TextField_textField__23rCe TextField_sm__lHdDB">
 												<label></label>
 												<div class="TextField_field__1E9vt">
-													<input placeholder="예금주명" type="text"
+													<input placeholder="예금주명" type="text" id="rep_tax_depositor" name="rep_tax_depositor"
 														class="Input_input__2kAAL Input_sm__3Y9Qi"
 														aria-invalid="false" value="">
 												</div>
@@ -277,43 +324,11 @@
 											</div>
 										</div>
 									</div>
-									<div>
-										<div class="CopyOfAccountField_title__5fERV">통장사본</div>
-										<p class="CopyOfAccountField_desc__1vc0t">
-											위 계좌 정보와 동일한 명의의 통장 사본을 제출해 주세요.<br>- 10MB 이하의 JPG,
-											JPEG, PNG 파일
-										</p>
-										<div class="MouseOverGuide_container__3jDBz"
-											style="margin-bottom: 16px;">
-											<div class="MouseOverGuide_contents__APrXG">
-												<div class="FileUpload_container__2vj8X container">
-													<div class="FileUpload_labelWrapper__9njRs">첨부 파일을
-														업로드해 주세요</div>
-													<div class="FileUpload_fileInputWrapper__2YJVE">
-														<button
-															class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_contained__TTXSM Button_sm__dnvmq Button_circular__3NpOv"
-															type="button">
-															<span><span class="Button_children__q9VCZ">업로드<input
-																	type="file" name="copyOfAccount" accept="*/*"
-																	data-testid="fileUpload-input"></span></span>
-														</button>
-													</div>
-												</div>
-											</div>
-											<div class="MouseOverGuide_guideWrapper__28wbb">
-												<div
-													class="MouseOverGuide_guide__13NEZ MouseOverGuide_isEmpty__2pOmW">
-													<h5 class="MouseOverGuide_title__1sJjC"></h5>
-													<div class="MouseOverGuide_content__I9HrE"></div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 								<div class="SettlementInfoContainer_btnWrapper__RI9SY">
 									<button
 										class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD"
-										type="button">
+										type="button" id="saveBtn">
 										<span><span class="Button_children__q9VCZ">저장하기</span></span>
 									</button>
 								</div>

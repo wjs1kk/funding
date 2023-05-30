@@ -403,5 +403,37 @@ public class ProjectCreateController {
 		return projectMap;
 	}
 	
+	// 05-30 김동욱 대표자 및 정산 정보 INSERT
+	@PostMapping("project/repInfoInsert")
+	@ResponseBody
+	public void repInfoInsert(@RequestParam Map repInfo, HttpSession session) {
+		System.out.println(repInfo);
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		repInfo.put("member_idx", member_idx);
+		int insertCount = projectCreateService.repInfoInsert(repInfo);
+	}
+	
+	// 05-30 김동욱 대표자 및 정산 정보 불러오기
+	@PostMapping("project/getMyRepresentativeInfo")
+	@ResponseBody
+	public Map getMyRepresentativeInfo(HttpSession session) {
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		System.out.println("getMyRepresentativeInfo - member_idx : " + member_idx);
+		
+		Map myRepresentative = projectCreateService.getMyRepresentativeInfo(member_idx);
+		System.out.println(myRepresentative);
+		return myRepresentative;
+	}
+	
+	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
+	@PostMapping("project/projectApproveSubmit")
+	@ResponseBody
+	public void projectApproveSubmit(int project_idx) {
+		int updateCount = projectCreateService.projectApproveSubmit(project_idx);
+	}
+	
+	
+	
+	
 	
 }

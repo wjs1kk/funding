@@ -17,6 +17,7 @@
 	
 	// 05-29 김동욱 각 항목 업데이트 여부 확인후 작성중 -> 작성 완료로 변경
 	$(function() {
+		
 		$.ajax({
 			 url: 'projectUpdateCheck',
 	          type: 'POST',
@@ -26,37 +27,103 @@
 	        	  
 	        	  if(response.project_plan != null || response.project_plan != 0){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(0).text("작성 완료");
+	        		  $("#project_plan").val("Y");
 	        	  }
 	        	  
 	        	  if(response.project_category != null || response.project_category != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(1).text("작성 완료");
+	        		  $("#project_info").val("Y");
 	        	  }
 	        	  
 	        	  if(response.project_title != null || response.project_title != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(2).text("작성 완료");
+	        		  $("#project_baseInfo").val("Y");
 	        	  }
 	        	  
 	        	  if(response.project_story != null || response.project_story != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(3).text("작성 완료");
+	        		  $("#project_story").val("Y");
 	        	  }
-	        	  
-	        	  // 리워드 설계 추가해야 함
-	        	  
-	        	  
+	        		
 	        	  // 리워드 정책 추가해야 함
 	        	  
 	        	  
 	        	  if(response.maker_idx != null || response.maker_idx != 0){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(6).text("작성 완료");
+	        		  $("#project_maker").val("Y");
 	        	  }
 	        	  
-	        	  // 대표자 정산 정보 추가해야 함
-	        	  
+	        	  // 값이 있으면 hidden에 값이 들어가고 그 값이 모두 Y이면 버튼 활성화
+	        	  if($("#project_plan").val() == "Y"
+	        		&& $("#project_info").val() == "Y"
+	        		&& $("#project_baseInfo").val() == "Y"
+	        		&& $("#project_reward").val() == "Y"
+	        	 	// 리워드 정책 추가해야 함
+	        	 	
+	        		&& $("#project_story").val() == "Y"
+	        		&& $("#project_maker").val() == "Y"
+	        		&& $("#representative_info").val() == "Y"
+	        	  ){
+		      		$("#submitBtn").attr("disabled", false);
+	        	  }
 	        	  
 	          },
 	          error: function(xhr, status, error) {
 	          }
 		})
+		
+		// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
+  	 	 $.ajax({
+    			 url: 'getMyRepresentativeInfo',
+    	          type: 'POST',
+    	          dataType: "json",
+    	          success: function(response) {
+    	        	  
+		        	  if(response != null){
+		        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
+		        		  $("#representative_info").val("Y");
+		        	  }
+    	        	  
+    	          },
+    	          error: function(xhr, status, error) {
+    	          }
+    		})
+    		
+    		
+   		// 05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
+   		$.ajax({
+	   			 url: 'getProjectReward',
+	   	          type: 'POST',
+	   	          data: {project_idx: ${param.project_idx}},
+	   	          dataType: "json",
+	   	          success: function(response) {
+	   	        	  
+	   	        	  if(response != null){
+	   	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
+	       				  $("#project_reward").val("Y");
+	   	        	  }
+	   	        	  
+	   	          },
+	   	          error: function(xhr, status, error) {
+	   	          }
+   		})
+		
+		
+   		// 05-30 김동욱 프로젝트 제출하기
+		$("#submitBtn").on("click", function() {
+			$.ajax({
+	   			 url: 'projectApproveSubmit',
+	   	          type: 'POST',
+	   	          data: {project_idx: ${param.project_idx}},
+	   	          success: function() {
+	   	        	  
+	   	          },
+	   	          error: function(xhr, status, error) {
+	   	          }
+  			})
+		})
+		
+		
 	})
 
 </script>
@@ -200,69 +267,20 @@
 									</div>
 								</div>
 								<div class="FundingSubmit_container__3kwkh">
-									<button type="button" disabled=""
+									<button type="button" disabled="" id="submitBtn"
 										class="wz button primary FundingSubmit_button__1Qs0d">제출하기</button>
 								</div>
 							</div>
+							<input type="hidden" id="project_plan">
+							<input type="hidden" id="project_info">
+							<input type="hidden" id="project_baseInfo">
+							<input type="hidden" id="project_story">
+							<input type="hidden" id="project_reward">
+							<input type="hidden" id="project_maker">
+							<input type="hidden" id="representative_info">
 							
 							
 							<!-- 오른쪽 (공간 와디즈 쇼룸 신청하기, 필수 서류 확인하기 등 배너) -->
-							<div class="FundingLayout_guideWrapper__3ad2H">
-								<button class="BannerLinkButton_container__3MHMT" type="button">
-									<div class="BannerLinkButton_icon__UDYk2">
-										<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-									</div>
-									<div class="BannerLinkButton_content__BzS52">
-										<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다 본다는</div>
-										<div class="BannerLinkButton_description__yl6rf">필수 가이드
-											모음집</div>
-									</div>
-								</button>
-								<button class="BannerLinkButton_container__3MHMT" type="button">
-									<div class="BannerLinkButton_icon__UDYk2">
-										<i class="BannerGuide_gptIcon__7mV_j" aria-hidden="true"></i>
-									</div>
-									<div class="BannerLinkButton_content__BzS52">
-										<div class="BannerLinkButton_title__rE4Eg">매력적인 콘텐츠 작성이
-											고민이라면</div>
-										<div class="BannerLinkButton_description__yl6rf">
-											GPT 어드바이저 <i class="BannerGuide_gptDescription__2i3cE"
-												aria-label="beta"></i>
-										</div>
-									</div>
-								</button>
-								
-								<div class="SpaceWadizBanner_container__3uIQ6">
-									<button class="SpaceWadizBanner_containerButton__ZkmBK"
-										type="button">
-										<div class="SpaceWadizBanner_bannerWrap__3G5ib"></div>
-									</button>
-								</div>
-								<div class="FundingAdList_adWrapper__w174g">
-									<ul>
-										<li class="FundingAdList_adItem__2L_vx"><a
-											href="https://makercenter.wadiz.kr/board/basic/245?_refer_section_st=RA1_1"
-											target="_blank" rel="nofollow noopener noreferrer"><div
-													class="FundingAdList_adSection__5D9qV"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2022/0412/20220412005530271_4102.png&quot;);"></div></a></li>
-										<li class="FundingAdList_adItem__2L_vx"><a
-											href="https://www.partnerzone.wadiz.kr/?utm_source=studio&amp;utm_medium=organic&amp;utm_campaign=partner-service-2.0&amp;utm_content=main-banner&amp;_refer_section_st=RA1_3"
-											target="_blank" rel="nofollow noopener noreferrer"><div
-													class="FundingAdList_adSection__5D9qV"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0317/20230317180828755_1991.jpg&quot;);"></div></a></li>
-										<li class="FundingAdList_adItem__2L_vx"><a
-											href="https://www.wadiz.kr/web/store/detail/1?_refer_section_st=RA1_5"
-											target="_blank" rel="nofollow noopener noreferrer"><div
-													class="FundingAdList_adSection__5D9qV"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0202/20230202120020047_2536.jpg&quot;);"></div></a></li>
-										<li class="FundingAdList_adItem__2L_vx"><a
-											href="https://makercenter.wadiz.kr/menu/20?_refer_section_st=RA1_2"
-											target="_blank" rel="nofollow noopener noreferrer"><div
-													class="FundingAdList_adSection__5D9qV"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2022/0811/20220811173819392_1730.jpg&quot;);"></div></a></li>
-									</ul>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="ChannelTalk_container__3OcHU">

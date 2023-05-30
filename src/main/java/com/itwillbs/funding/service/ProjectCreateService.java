@@ -141,5 +141,20 @@ public class ProjectCreateService {
 	public Map projectUpdateCheck(int project_idx) {
 		return mapper.projectUpdateCheck(project_idx);
 	}
+	
+	// 05-30 김동욱 대표자 및 정산 정보 INSERT
+	public int repInfoInsert(Map repInfo) {
+		return mapper.repInfoInsert(repInfo);
+	}
+	
+	// 05-30 김동욱 대표자 및 정산 정보 불러오기
+	public Map getMyRepresentativeInfo(int member_idx) {
+		return mapper.getMyRepresentativeInfo(member_idx);
+	}
+
+	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
+	public int projectApproveSubmit(int project_idx) {
+		return mapper.projectApproveSubmit(project_idx);
+	}
 		
 }
