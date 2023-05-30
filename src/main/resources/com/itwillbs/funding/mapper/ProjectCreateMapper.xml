@@ -6,33 +6,57 @@
   <mapper namespace="com.itwillbs.funding.mapper.ProjectCreateMapper">
   
   	
+  	               
+                 
+           
+              
+            
+            
+          
+             
+         
+           
+               
+               
+             
+            
+          
+              
+    
+
+          
+                 
+                  
+        
+  	
   	<!-- 05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성 -->
   	<!-- 05-12 project_images가 프로젝트 생성될 떄 null 스트링이 들어가도록 수정 -->
  	<insert id="createFundingProject">
  		INSERT INTO project VALUES(
- 			null
+ 			null  
  			, ${member_idx}
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, ""
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, null
- 			, 0
- 			, null
- 			, null
- 			, 0
- 			, null
- 			, now()
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "0" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, "" 
+ 			, 0 
+ 			, now() 
  			)
  	</insert>
  	

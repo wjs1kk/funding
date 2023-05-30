@@ -25,22 +25,22 @@
 	          dataType: "json",
 	          success: function(response) {
 	        	  
-	        	  if(response.project_plan != null || response.project_plan != 0){
+	        	  if(response.project_plan != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(0).text("작성 완료");
 	        		  $("#project_plan").val("Y");
 	        	  }
 	        	  
-	        	  if(response.project_category != null || response.project_category != ""){
+	        	  if(response.project_category != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(1).text("작성 완료");
 	        		  $("#project_info").val("Y");
 	        	  }
 	        	  
-	        	  if(response.project_title != null || response.project_title != ""){
+	        	  if(response.project_title != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(2).text("작성 완료");
 	        		  $("#project_baseInfo").val("Y");
 	        	  }
 	        	  
-	        	  if(response.project_story != null || response.project_story != ""){
+	        	  if(response.project_story != null){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(3).text("작성 완료");
 	        		  $("#project_story").val("Y");
 	        	  }
@@ -48,7 +48,7 @@
 	        	  // 리워드 정책 추가해야 함
 	        	  
 	        	  
-	        	  if(response.maker_idx != null || response.maker_idx != 0){
+	        	  if(response.maker_idx != 0){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(6).text("작성 완료");
 	        		  $("#project_maker").val("Y");
 	        	  }
@@ -72,6 +72,24 @@
 	          }
 		})
 		
+   		// 05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
+   		$.ajax({
+	   			 url: 'getProjectReward',
+	   	          type: 'POST',
+	   	          data: {project_idx: ${param.project_idx}},
+	   	          dataType: "json",
+	   	          success: function(response) {
+	   	        	  alert(response)
+	   	        	  if(response != ""){
+	   	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
+	       				  $("#project_reward").val("Y");
+	   	        	  }
+	   	        	  
+	   	          },
+	   	          error: function(xhr, status, error) {
+	   	          }
+   		})
+		
 		// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
   	 	 $.ajax({
     			 url: 'getMyRepresentativeInfo',
@@ -79,7 +97,7 @@
     	          dataType: "json",
     	          success: function(response) {
     	        	  
-		        	  if(response != null){
+		        	  if(response != ""){
 		        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
 		        		  $("#representative_info").val("Y");
 		        	  }
@@ -90,23 +108,6 @@
     		})
     		
     		
-   		// 05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
-   		$.ajax({
-	   			 url: 'getProjectReward',
-	   	          type: 'POST',
-	   	          data: {project_idx: ${param.project_idx}},
-	   	          dataType: "json",
-	   	          success: function(response) {
-	   	        	  
-	   	        	  if(response != null){
-	   	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
-	       				  $("#project_reward").val("Y");
-	   	        	  }
-	   	        	  
-	   	          },
-	   	          error: function(xhr, status, error) {
-	   	          }
-   		})
 		
 		
    		// 05-30 김동욱 프로젝트 제출하기
@@ -172,7 +173,7 @@
 												href="plan?project_idx=${param.project_idx }">요금제 선택</div>
 												<div
 													class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">작성
-													중</div>
+													전</div>
 												<a class="PageMenuList_buttonWrapper__3PXAt"
 													href="plan?project_idx=${param.project_idx }"><button
 														type="button" class="wz button">작성하기</button></a>
