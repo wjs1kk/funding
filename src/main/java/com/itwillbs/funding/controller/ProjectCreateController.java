@@ -360,7 +360,12 @@ public class ProjectCreateController {
 		project.setProject_documents(documents.getOriginalFilename());
 		int updateCount = projectCreateService.projectInfoFileUpdate(project);
 	}
-	
+	// 05-26 강정운 정책 업데이트
+		@PostMapping("project/projectPolicyUpdate")
+		@ResponseBody
+		public void projectPolicyUpdate(ProjectVO project) {
+			int updateCount = projectCreateService.projectPolicyUpdate(project);
+		}
 	// 05-26 김동욱 메이커 정보 삭제
 	// 05-27 김동욱 메이커 정보를 삭제하면 프로젝트에 등록된 메이커 정보들 모두 null로 업데이트 기능 추가
 	@PostMapping("project/deleteMakerInfo")
@@ -431,9 +436,6 @@ public class ProjectCreateController {
 	public void projectApproveSubmit(int project_idx) {
 		int updateCount = projectCreateService.projectApproveSubmit(project_idx);
 	}
-	
-	
-	
-	
+
 	
 }

@@ -117,6 +117,11 @@ public class ProjectCreateService {
 	public MakerVO myProjectMakerInfo(int project_idx) {
 		return mapper.myProjectMakerInfo(project_idx);
 	}
+
+	// 05-26 강정운 정책 업데이트
+	public int projectPolicyUpdate(ProjectVO project) {
+		return mapper.projectPolicyUpdate(project);
+	}
 	
 	// 05-26 김동욱 메이커 정보 삭제
 	public int deleteMakerInfo(int maker_idx) {
@@ -155,6 +160,7 @@ public class ProjectCreateService {
 	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
 	public int projectApproveSubmit(int project_idx) {
 		return mapper.projectApproveSubmit(project_idx);
+
 	}
 		
 }

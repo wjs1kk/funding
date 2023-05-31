@@ -57,6 +57,10 @@ public interface ProjectCreateMapper {
 	int projectMakerIdxUpdate(@Param("maker_idx") int maker_idx, @Param("project_idx") int project_idx);
 	// 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기
 	MakerVO myProjectMakerInfo(int project_idx);
+
+	//05-26 강정운 정책 업데이트
+	int projectPolicyUpdate(ProjectVO project);
+
 	// 05-26 김동욱 메이커 정보 삭제
 	int deleteMakerInfo(int maker_idx);
 	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
@@ -73,4 +77,5 @@ public interface ProjectCreateMapper {
 	Map getMyRepresentativeInfo(int member_idx);
 	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
 	int projectApproveSubmit(int project_idx);
+
 }

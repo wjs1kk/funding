@@ -297,9 +297,13 @@
 			return false;
 		}
 		
-		if(!check_num.exec($("#reward_delivery_fee").val())){
-			alert("배송비는 숫자만 입력 가능합니다!")
-			return false;
+		
+		// 05-31 김동욱 배송 없음을 선택해도 배송비를 입력하라고 나와서 수정
+		if($("#reward_delivery").val() == "1"){
+			if(!check_num.exec($("#reward_delivery_fee").val())){
+				alert("배송비는 숫자만 입력 가능합니다!")
+				return false;
+			}
 		}
 		
 		$("#reward_modal").css("opacity", 0);
@@ -930,12 +934,6 @@
 												</div>
 											</div>
 										</section>
-										
-										<button
-											class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_ Button_block__2mEqp"
-											type="button">
-											<span><span class="Button_children__q9VCZ">저장하기</span></span>
-										</button>
 									</div>
 								</div>
 								<div class="Section_guideMessage__3XqrM">

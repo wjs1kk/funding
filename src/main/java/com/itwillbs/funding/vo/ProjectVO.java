@@ -24,10 +24,17 @@ public class ProjectVO {
 	private String project_reward_category;
 	private int project_reward_produce_type;
 	private String project_documents;
+	private String project_AS;
 	
 	
 	
 
+	public String getProject_AS() {
+		return project_AS;
+	}
+	public void setProject_AS(String project_AS) {
+		this.project_AS = project_AS;
+	}
 	public String getProject_target() {
 		return project_target;
 	}
@@ -168,8 +175,10 @@ public class ProjectVO {
 				+ project_target + ", project_approve=" + project_approve + ", project_introduce=" + project_introduce
 				+ ", project_adult=" + project_adult + ", project_identity=" + project_identity
 				+ ", project_reward_category=" + project_reward_category + ", project_reward_produce_type="
-				+ project_reward_produce_type + ", project_documents=" + project_documents + "]";
+				+ project_reward_produce_type + ", project_documents=" + project_documents + ", project_AS="
+				+ project_AS + "]";
 	}
+
 	
 	
 	

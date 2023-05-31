@@ -5,6 +5,7 @@
 
 <head>
 <title>와디즈 프로젝트만들기 스토리작성</title>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 
 <link
 	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"
@@ -14,6 +15,43 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/studio/funding/static/css/17.52f297e3.chunk.css">
+<script type="text/javascript">
+	$(function() {
+		$('.check').on('click', function() {	
+			if($('#check_1').is(':checked') 
+					&& $('#check_2').is(':checked') 
+					&& $('#check_3').is(':checked') 
+					&& $('#check_4').is(':checked')){
+				$('#check_result').attr('disabled', false);
+			} else if(!$('#check_1').is(':checked') 
+					|| !$('#check_2').is(':checked') 
+					|| !$('#check_3').is(':checked') 
+					|| !$('#check_4').is(':checked')){
+				$('#check_result').attr('disabled', true);
+			}
+		})		
+	})
+
+	$(function() {
+		$('#save').click(function(){
+			 if(!$('#check_result').is(':checked')){
+				 alert("약관에 동의해주세요");
+				 return false;
+			 }	
+				$.ajax({
+					type: "post",
+					url: "projectPolicyUpdate",
+					data: {
+						project_idx:${param.project_idx},
+						project_AS:$("#project_AS").val()
+						},
+					success: function() {
+						location.href = "main?project_idx="+${param.project_idx};	
+					}
+				})
+		})
+	})
+</script>
 </head>
 
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -56,7 +94,7 @@
 									주세요.</div>
 								<div class="Section_content__3OkLZ">
 									<div class="MakerAgreementField_container__fANOB">
-										<div class="MakerAgreementField_agreement__2RpZ_ spacing-6">
+										<div class="MakerAgreementField_agreement__2RpZ_ spacing-6 check">
 											<label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
 												type="checkbox" class="Checkbox_input__304VX"
@@ -91,9 +129,10 @@
 														정책에 반하는 행위를 하는 경우 회사에 의해 프로젝트가 취소될 수 있고(제26조, 제35조), 이용
 														계약이 해제 또는 해지될 수 있음(제31조, 제40조)을 확인했습니다.</span></span></label><label
 												class="Checkbox_checkbox__27KzI Checkbox_sm__3f7_0 Checkbox_labeled__uRUNZ"><input
-												type="checkbox" class="Checkbox_input__304VX"><span
+												type="checkbox" class="Checkbox_input__304VX"
+												id="check_3"><span
 												class="Checkbox_icon__3gYsg" aria-hidden="true"
-												id="check_3"><svg
+												><svg
 														viewBox="0 0 16 2" focusable="false" role="presentation"
 														class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 														aria-hidden="true">
@@ -1855,9 +1894,10 @@
 										</main>
 										<label
 											class="Checkbox_checkbox__27KzI Checkbox_lg__15YJd Checkbox_labeled__uRUNZ"><input
-											disabled="" type="checkbox" class="Checkbox_input__304VX"><span
-											class="Checkbox_icon__3gYsg" aria-hidden="true"
-											id="check_result"><svg
+											disabled="" type="checkbox" class="Checkbox_input__304VX"
+											id="check_result"><span
+											class="Checkbox_icon__3gYsg" aria-hidden="true"	><svg
+
 													viewBox="0 0 16 2" focusable="false" role="presentation"
 													class="withIcon_icon__1Oal1 Checkbox_removeIcon__3mPDx"
 													aria-hidden="true">
@@ -1904,40 +1944,7 @@
 									</div>
 								</div>
 							</section>
-							<section class="Section_container__3md8M spacing-9" style="">
-								<div style="max-width: 630px;">
-									<div class="Section_header__1qwS7">
-										<h2 class="Section_title__ikPIm Section_isOptional__DtcQ8">하자로
-											인정되지 않는 경우</h2>
-										<div class="Section_guide__2xeJO"></div>
-									</div>
-									<div class="Section_description__10Uwo">
-										<p>서포터가 하자라고 오해할 수 있는 상황을 미리 작성해 주세요.</p>
-									</div>
-									<div class="Section_content__3OkLZ">
-										<div class="TextField_textField__23rCe TextField_md__2zsQn">
-											<label></label>
-											<div class="TextField_field__1E9vt">
-												<textarea placeholder="내용을 입력해 주세요" maxlength="800" rows="4"
-													class="Textarea_textarea__2swOj undefined"></textarea>
-												<textarea aria-hidden="true" readonly="" tabindex="-1"
-													class="Textarea_textarea__2swOj undefined"
-													style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0px); pointer-events: none;"></textarea>
-											</div>
-											<em class="HelperMessage_helperMessage__1qZPy">800자 남음</em>
-										</div>
-									</div>
-								</div>
-								<div class="Section_guideMessage__3XqrM">
-									예시)<br>
-									<ul>
-										<li>봉제되어 제공되는 포켓은 공장 제작 과정상 벌어짐 방지를 위한 것입니다.</li>
-										<li>색상, 사이즈 측정 방식, 가공 환경에 따라 1-3mm 정도 차이가 날 수 있습니다.</li>
-										<li>파일 양말의 특성상 실이 튀어나오거나 줄이 간 것처럼 보이는 현상이 있을 수 있습니다.</li>
-										<li>겉면에 하얀 가루는 당분이 농축된 것이니 그냥 드셔도 괜찮습니다.</li>
-									</ul>
-								</div>
-							</section>
+							
 							<section class="Section_container__3md8M spacing-9" style="">
 								<div style="max-width: 630px;">
 									<div class="Section_header__1qwS7">
@@ -1952,7 +1959,8 @@
 											<label></label>
 											<div class="TextField_field__1E9vt">
 												<textarea placeholder="내용을 입력해 주세요" maxlength="800" rows="4"
-													class="Textarea_textarea__2swOj undefined"></textarea>
+													class="Textarea_textarea__2swOj undefined"
+													id="project_AS"></textarea>
 												<textarea aria-hidden="true" readonly="" tabindex="-1"
 													class="Textarea_textarea__2swOj undefined"
 													style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0px); pointer-events: none;"></textarea>
@@ -1999,11 +2007,11 @@
 									</div>
 								</div>
 							</section>
-							<button
-								class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_"
-								type="button" style="width: 420px; max-width: 100%;">
-								<span><span class="Button_children__q9VCZ">저장하기</span></span>
-							</button>
+							<div class="ProjectTypeFormContainer_buttonWrapper__3fh_J">
+									<input type="button" style="width: 420px; max-width: 100%;"
+										id="save" name="savePlan" value="저장하기"
+										class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
+								</div>
 						</div>
 					</section>
 					<div class="ChannelTalk_container__3OcHU">

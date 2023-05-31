@@ -127,8 +127,6 @@
 			
 		})
 		
-			
-		
 	})
 </script>
 	
@@ -600,7 +598,7 @@
 																          		},
 																          success: function() {
 																        	  alert("프로젝트 스토리 정보가 저장 되었습니다!")
-																        	  getProjectStory()
+																        	  location.href = "main?project_idx="+${param.project_idx};
 																          },
 																          error: function(xhr, status, error) {
 																            console.log(error);

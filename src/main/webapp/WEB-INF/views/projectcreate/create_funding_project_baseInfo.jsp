@@ -26,17 +26,6 @@
 <script type="text/javascript">
 
 	$(function() {
-		$("#project_adult").on("click", function() {
-			if($('#project_adult').is(':checked')){			
-				$('#project_adult').val(1);
-			}else{
-				$('#project_adult').val(0);			
-			}
-		})
-	})
-
-	$(function() {
-		$('#project_adult').val(0);
 		$('#save').click(function(){
 			var formData = new FormData();
 			var files = $('#project_thumbnail')[0].files;
@@ -55,19 +44,25 @@
 		          	contentType: false,
 					data: formData,
 					success: function() {
-						$.ajax({
-							type: "post",
-							url: "projectBaseInfoUpdate",
-							data:{
-								project_idx: ${param.project_idx},
-								project_title: $("#project_title").val(),
-								project_end_date: $("#project_end_date").val(),
-								project_adult: $("#project_adult").val()
-							},
-							success: function() {
-								location.href = "main?project_idx=" + ${param.project_idx};
-							}
-						})
+						if($('#project_adult').is(':checked')){
+							$('#project_adult').val(1);
+						}else{
+							$('#project_adult').val(0);			
+						}
+						
+					$.ajax({
+						type: "post",
+						url: "projectBaseInfoUpdate",
+						data:{
+							project_idx: ${param.project_idx},
+							project_title: $("#project_title").val(),
+							project_end_date: $("#project_end_date").val(),
+							project_adult: $("#project_adult").val()
+						},
+						success: function() {
+							location.href = "main?project_idx=" + ${param.project_idx};
+						}
+					})
 					}
 				});
 			})

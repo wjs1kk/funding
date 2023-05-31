@@ -57,6 +57,7 @@
  			, "" 
  			, 0 
  			, now() 
+
  			)
  	</insert>
  	
@@ -237,8 +238,15 @@
 		FROM project p JOIN maker m
 		ON p.maker_idx = m.maker_idx
 		WHERE project_idx = #{project_idx}
- 	</select>
+ 	</select>	
  	
+
+ 	<update id="projectPolicyUpdate">
+ 		UPDATE project
+ 		SET project_AS = #{project_AS}
+ 		WHERE project_idx = #{project_idx}
+ 	</update>
+
  	<!-- 05-26 김동욱 메이커 정보 삭제 -->
  	<delete id="deleteMakerInfo">
  		DELETE from maker WHERE maker_idx = #{maker_idx}
@@ -259,8 +267,9 @@
  	</select>
  	
  	<!-- 05-27 김동욱 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트 -->
+ 	<!-- 05-30 김동욱 메이커 정보를 삭제하면 프로젝트 테이블에서 0으로 업데이트되게 수정-->
  	<update id="deleteProjeckMaker">
- 		UPDATE project SET maker_idx = null
+ 		UPDATE project SET maker_idx = 0
  		WHERE maker_idx = #{maker_idx}
  	</update>
  	
@@ -297,5 +306,5 @@
  	<update id="projectApproveSubmit">
  		UPDATE project SET project_approve = "0" WHERE project_idx = #{project_idx}
  	</update>
- 	
+
   </mapper>

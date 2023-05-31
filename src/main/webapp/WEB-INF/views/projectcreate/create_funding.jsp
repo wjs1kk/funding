@@ -14,6 +14,36 @@
 
 <script type="text/javascript">
 	
+	//05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
+	$.ajax({
+			 url: 'getProjectReward',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  if(response != ""){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
+   				  $("#project_reward").val("Y");
+	        	  }
+	          },
+	          error: function(xhr, status, error) {
+	          }
+	})
+
+	// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
+	 $.ajax({
+		 url: 'getMyRepresentativeInfo',
+          type: 'POST',
+          dataType: "json",
+          success: function(response) {
+        	  if(response != ""){
+        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
+        		  $("#representative_info").val("Y");
+        	  }
+          },
+          error: function(xhr, status, error) {
+          }
+	})
 	
 	// 05-29 김동욱 각 항목 업데이트 여부 확인후 작성중 -> 작성 완료로 변경
 	$(function() {
@@ -40,14 +70,15 @@
 	        		  $("#project_baseInfo").val("Y");
 	        	  }
 	        	  
-	        	  if(response.project_story != null){
+	        	  // 05-31 김동욱 스토리쪽 코드를 잘못 적어서 수정
+	        	  if(response.project_content != ""){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(3).text("작성 완료");
 	        		  $("#project_story").val("Y");
 	        	  }
 	        		
 	        	  // 리워드 정책 추가해야 함
 	        	  
-	        	  
+	        	  // 05-31 김동욱 메이커 정보가 0값이 아니면 작성 완료로 표기되도록 수정
 	        	  if(response.maker_idx != 0){
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(6).text("작성 완료");
 	        		  $("#project_maker").val("Y");
@@ -64,52 +95,23 @@
 	        		&& $("#project_maker").val() == "Y"
 	        		&& $("#representative_info").val() == "Y"
 	        	  ){
-		      		$("#submitBtn").attr("disabled", false);
+	        		 // 버튼 활성화
+					$("#submitBtn").attr("disabled", false);
+	        		 // 프로젝트 준비상태 Green색으로 변경후 작성 완료로 변경
+					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 작성 완료')
+	        	  }
+	        	  
+	        	  // project_approve가 제출전인 null 스트링이 아니면 제출하기 버튼 비활성화 및 제출 완료로 변경
+	        	  if(response.project_approve != ""){
+		        	  $("#submitBtn").attr("disabled", true).text("제출 완료");
+					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 제출 완료')
 	        	  }
 	        	  
 	          },
 	          error: function(xhr, status, error) {
 	          }
 		})
-		
-   		// 05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
-   		$.ajax({
-	   			 url: 'getProjectReward',
-	   	          type: 'POST',
-	   	          data: {project_idx: ${param.project_idx}},
-	   	          dataType: "json",
-	   	          success: function(response) {
-	   	        	  alert(response)
-	   	        	  if(response != ""){
-	   	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
-	       				  $("#project_reward").val("Y");
-	   	        	  }
-	   	        	  
-	   	          },
-	   	          error: function(xhr, status, error) {
-	   	          }
-   		})
-		
-		// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
-  	 	 $.ajax({
-    			 url: 'getMyRepresentativeInfo',
-    	          type: 'POST',
-    	          dataType: "json",
-    	          success: function(response) {
-    	        	  
-		        	  if(response != ""){
-		        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
-		        		  $("#representative_info").val("Y");
-		        	  }
-    	        	  
-    	          },
-    	          error: function(xhr, status, error) {
-    	          }
-    		})
     		
-    		
-		
-		
    		// 05-30 김동욱 프로젝트 제출하기
 		$("#submitBtn").on("click", function() {
 			$.ajax({
@@ -117,13 +119,14 @@
 	   	          type: 'POST',
 	   	          data: {project_idx: ${param.project_idx}},
 	   	          success: function() {
+   	        	 	alert("프로젝트 제출이 완료되었습니다!")
+					$("#submitBtn").attr("disabled", true).text("제출 완료");
 	   	        	  
 	   	          },
 	   	          error: function(xhr, status, error) {
 	   	          }
   			})
 		})
-		
 		
 	})
 
@@ -279,7 +282,6 @@
 							<input type="hidden" id="project_reward">
 							<input type="hidden" id="project_maker">
 							<input type="hidden" id="representative_info">
-							
 							
 							<!-- 오른쪽 (공간 와디즈 쇼룸 신청하기, 필수 서류 확인하기 등 배너) -->
 						</div>

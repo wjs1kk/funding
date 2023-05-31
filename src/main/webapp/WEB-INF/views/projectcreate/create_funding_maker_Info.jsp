@@ -22,6 +22,7 @@
 			data: {project_idx:${param.project_idx}
 			},
 			success: function(response) {
+
 				$("#myPorjectMakerInfo").html('')
 				$("#myPorjectMakerInfo").html('<button type="button" class="wz button primary" onclick="getMakerInfo('+response.maker_idx+')">' + response.maker_name+ '</button>')
 			},
@@ -150,8 +151,22 @@
 				$("#makerNameDuplicateCheckResult").html("");
 				getMyProjectMakerInfo()
 				
+
+				$.ajax({
+					type: "post",
+					url: "myProjectMakerInfo",
+					dataType: "JSON",
+					data: {project_idx:${param.project_idx}
+					},
+					success: function(response) {
+						$("#myPorjectMakerInfo").html('')
+						$("#myPorjectMakerInfo").html('<button type="button" class="wz button primary" onclick="getMakerInfo('+response.maker_idx+')">' + response.maker_name+ '</button>')
+					}
+				});
+				
 			}
 		});
+
 		
 	}
 	
