@@ -436,6 +436,7 @@ public class ProjectCreateController {
 	public void projectApproveSubmit(int project_idx) {
 		int updateCount = projectCreateService.projectApproveSubmit(project_idx);
 	}
+	
 
 	
 }

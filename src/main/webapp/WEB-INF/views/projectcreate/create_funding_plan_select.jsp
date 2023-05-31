@@ -100,6 +100,25 @@
 				}
 			}
 		});
+		
+		
+		// 05-31 김동욱 승인 여부 확인 후 저장버튼 비활성화
+		$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  if(response.project_approve != ""){
+	        		  $("#save").attr("disabled", true);
+	        	  }
+	        	  
+	          },
+	          error: function(xhr, status, error) {
+	          }
+		})
+		
 	})
 	
 

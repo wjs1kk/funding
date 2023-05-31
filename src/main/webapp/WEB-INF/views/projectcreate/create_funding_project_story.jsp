@@ -35,7 +35,7 @@
    	  			$("#addImagesList").html("<br>")
         	  	for(let imagesList of response) {
         	  		if(imagesList != ""){
-						$("#addImagesList").append('<img alt="" src="${pageContext.request.contextPath }/resources/images/project_images/'+ imagesList +'" width="300" height="200"><button><img alt="" src="${pageContext.request.contextPath }/resources/images/delete-icon.png" width="15" height="15" onclick="deleteImage(\''+imagesList+'\')"></button>')
+						$("#addImagesList").append('<img alt="" src="${pageContext.request.contextPath }/resources/images/project_images/'+ imagesList +'" width="300" height="200"><button id="deleteBtn" onclick="deleteImage(\''+imagesList+'\')"><img alt="" src="${pageContext.request.contextPath }/resources/images/delete-icon.png" width="15" height="15" ></button>')
         	  		}else if(imagesList == "" || imagesList == null){
 						$("#addImagesList").append('<br><p style="color: lightgray">추가된 이미지가 없습니다!</p><br>')
         	  		}
@@ -71,6 +71,7 @@
 	}
 	
 	// 05-22 김동욱 ajax 이미지 리스트 삭제
+	
 	function deleteImage(image) {
 		let result = confirm("이미지를 삭제하시겠습니까?");
 		
@@ -126,6 +127,26 @@
 	        });
 			
 		})
+		
+		// 05-31 김동욱 승인 여부 확인 후 저장버튼, 이미지 추가버튼, 이미지 삭제버튼 비활성화
+		$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  if(response.project_approve != ""){
+	        		  $("#addImageBtn").attr("disabled", true);
+	        		  $("#saveBtn").attr("disabled", true);
+	        		  $("#deleteBtn").attr("onclick", "alert('제출이 완료된 프로젝트는 수정이 불가능합니다')");
+	        	  }
+	        	  
+	          },
+	          error: function(xhr, status, error) {
+	          }
+		})
+		
 		
 	})
 </script>
