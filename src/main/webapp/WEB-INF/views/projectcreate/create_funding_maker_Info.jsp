@@ -65,7 +65,6 @@
 		// 메이커 리스트 가져오기
 		getMyMakerList()
 		
-		
 		// 메이커 정보 추가하기 버튼 클릭시 각 항목의 value들이 null 스트링과 0이 들이가고 submit 버튼 문구가 추가하기로 바뀜
 		$("#makerAddbtn").on("click", function() {
 			$("#maker_name").val("");
@@ -88,10 +87,16 @@
 				$.ajax({
 					type: "post",
 					url: "deleteMakerInfo",
-					data: {maker_idx:$("#maker_idx").val()
+					data: {maker_idx:$("#maker_idx").val(),
+						project_idx:${param.project_idx}
 					},
-					success: function() {
-						alert("해당 메이커 정보가 삭제되었습니다!");
+					success: function(approveProjectCount) {
+						
+						if(approveProjectCount > 0){
+							alert("진행이 됐었던 프로젝트에 등록된 메이커 정보는 삭제할 수 없습니다.")
+						}else {
+							alert("해당 메이커 정보가 삭제되었습니다!");
+						}
 						getMyProjectMakerInfo();
 						getMyMakerList();
 						$("#makerAddbtn").click();
@@ -134,6 +139,7 @@
 			success: function(response) {
 				
 				$("#preview").html("");
+				// 이미지 경로
 				let root = '/funding/resources/images/maker_images/' + response.maker_image
 				$("#maker_name").val(response.maker_name)
 				$("#maker_phone").val(response.maker_phone)
@@ -147,86 +153,71 @@
 				$("#maker_name").attr("readonly",true);
 				$("#saveBtn").text("수정하기");
 				$("#deleteBtnAdd").html('<button type="button" class="wz button primary" id="deleteBtn">삭제하기</button>');
-				alert("해당 프로젝트에 메이커 정보가 등록되었습니다!")
 				$("#makerNameDuplicateCheckResult").html("");
 				getMyProjectMakerInfo()
 				
-
-				$.ajax({
-					type: "post",
-					url: "myProjectMakerInfo",
-					dataType: "JSON",
-					data: {project_idx:${param.project_idx}
-					},
-					success: function(response) {
-						$("#myPorjectMakerInfo").html('')
-						$("#myPorjectMakerInfo").html('<button type="button" class="wz button primary" onclick="getMakerInfo('+response.maker_idx+')">' + response.maker_name+ '</button>')
-					}
-				});
-				
 			}
 		});
-
 		
 	}
 	
 	
-// 05-26 김동욱 항목이 입력되지 않았을 경우 입력을 해달라는 경고문구 출력
-// 05-29 김동욱 정규표현식 추가
-function checkNull() {
-	let maker_name = $("#maker_name").val();
-	let maker_phone = $("#maker_phone").val();
-	let maker_email = $("#maker_email").val();
-	let maker_image = $("#maker_image")[0].files.length;
-	let makerNameDuplicateCheck = $("#makerNameDuplicateCheck").val();
-	
-	let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	let phoneReg = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
-	
-// 	var check_num = /[0-9a-zA-Z가-힣+_()-]{2,30}/;    // 숫자 
-// 	var check_num = /[0-9]/;    // 숫자 
-// 	var check_eng = /[a-zA-Z]/;    // 문자 
-// 	var check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-// 	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크	
-	
-	if(maker_name == null || maker_name == ""){
-		alert("메이커 이름을 입력해주세요!")
-		return false;
-	}
-	
-	if($("#img_id_0").html() == null){
-		if(maker_image == 0){
-			alert("메이커 이미지를 등록해주세요!")
+	// 05-26 김동욱 항목이 입력되지 않았을 경우 입력을 해달라는 경고문구 출력
+	// 05-29 김동욱 정규표현식 추가
+	function checkNull() {
+		let maker_name = $("#maker_name").val();
+		let maker_phone = $("#maker_phone").val();
+		let maker_email = $("#maker_email").val();
+		let maker_image = $("#maker_image")[0].files.length;
+		let makerNameDuplicateCheck = $("#makerNameDuplicateCheck").val();
+		
+		let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		let phoneReg = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
+		
+	// 	var check_num = /[0-9a-zA-Z가-힣+_()-]{2,30}/;    // 숫자 
+	// 	var check_num = /[0-9]/;    // 숫자 
+	// 	var check_eng = /[a-zA-Z]/;    // 문자 
+	// 	var check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+	// 	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크	
+		
+		if(maker_name == null || maker_name == ""){
+			alert("메이커 이름을 입력해주세요!")
 			return false;
 		}
-	}
-	
-	if(maker_email == null || maker_email == ""){
-		alert("메이커 문의 이메일을 입력해주세요!")
-		return false;
-	}
-	if(maker_phone == null || maker_phone == ""){
-		alert("메이커 문의 전화번호를 입력해주세요!")
-		return false;
-	}
-	
-	if(makerNameDuplicateCheck == "false"){
-		alert("이미 사용중인 메이커명 입니다.");
-		return false;
-	}
-	
-	if(!emailReg.exec(maker_email)){
-		alert("이메일 형식을 올바르게 입력해주세요! \n ex) abc123@naver.com");
-		return false;
-	}
-	
-	if(!phoneReg.exec(maker_phone)){
-		alert("문의 전화번호는 하이픈(-)을 포함하여 입력해주세요! \n ex) 010-0000-0000");
-		return false;
+		
+		if($("#img_id_0").html() == null){
+			if(maker_image == 0){
+				alert("메이커 이미지를 등록해주세요!")
+				return false;
+			}
+		}
+		
+		if(maker_email == null || maker_email == ""){
+			alert("메이커 문의 이메일을 입력해주세요!")
+			return false;
+		}
+		if(maker_phone == null || maker_phone == ""){
+			alert("메이커 문의 전화번호를 입력해주세요!")
+			return false;
+		}
+		
+		if(makerNameDuplicateCheck == "false"){
+			alert("이미 사용중인 메이커명 입니다.");
+			return false;
+		}
+		
+		if(!emailReg.exec(maker_email)){
+			alert("이메일 형식을 올바르게 입력해주세요! \n ex) abc123@naver.com");
+			return false;
+		}
+		
+		if(!phoneReg.exec(maker_phone)){
+			alert("문의 전화번호는 하이픈(-)을 포함하여 입력해주세요! \n ex) 010-0000-0000");
+			return false;
+			
+		}
 		
 	}
-	
-}
 
 </script>
 

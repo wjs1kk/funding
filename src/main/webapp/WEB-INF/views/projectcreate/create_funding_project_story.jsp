@@ -73,22 +73,59 @@
 	// 05-22 김동욱 ajax 이미지 리스트 삭제
 	
 	function deleteImage(image) {
-		let result = confirm("이미지를 삭제하시겠습니까?");
 		
-		if(result == true){
-			$.ajax({
-		          url: 'deleteProjectImage',
-		          type: 'POST',
-		          data: {project_idx: ${param.project_idx},
-		        	     deleteImage: image},
-		          success: function() {
-		        	  getPorjectImages();
-		          },
-		          error: function(xhr, status, error) {
-		            console.log(error);
-		          }
-	    	});
-		}
+		$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  
+        		  let result = confirm("이미지를 삭제하시겠습니까?");
+	        	  
+	        	  if(response.project_approve_status == "2" && response.project_update_status == "2"){
+	        			if(result == true){
+	        				$.ajax({
+	        			          url: 'deleteProjectImage',
+	        			          type: 'POST',
+	        			          data: {project_idx: ${param.project_idx},
+	        			        	     deleteImage: image},
+	        			          success: function() {
+	        			        	  getPorjectImages();
+	        			          },
+	        			          error: function(xhr, status, error) {
+	        			            console.log(error);
+	        			          }
+	        		    	});
+	        			}
+					}else if(response.project_approve_status == "2" || response.project_approve_status == "3"){
+						
+						alert("이미 진행이된 프로젝트는 수정이 불가능합니다");
+						
+					}else if(response.project_approve_status == "0" || response.project_approve_status == "1"){
+						
+						if(result == true){
+	        				$.ajax({
+	        			          url: 'deleteProjectImage',
+	        			          type: 'POST',
+	        			          data: {project_idx: ${param.project_idx},
+	        			        	     deleteImage: image},
+	        			          success: function() {
+	        			        	  getPorjectImages();
+	        			          },
+	        			          error: function(xhr, status, error) {
+	        			            console.log(error);
+	        			          }
+	        		    	});
+	        			}
+						
+					}
+	        	  
+	          },
+	          error: function(xhr, status, error) {
+	          }
+		})
 		
 	}
 	
@@ -136,17 +173,23 @@
 	          dataType: "json",
 	          success: function(response) {
 	        	  
-	        	  if(response.project_approve != ""){
+	        		// project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
+					if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 	        		  $("#addImageBtn").attr("disabled", true);
 	        		  $("#saveBtn").attr("disabled", true);
-	        		  $("#deleteBtn").attr("onclick", "alert('제출이 완료된 프로젝트는 수정이 불가능합니다')");
-	        	  }
+					}
+					
+					// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 저장하기 버튼 활성화
+					if(response.project_approve_status == "2" && response.project_update_status == "2"){
+	        		  $("#addImageBtn").attr("disabled", false);
+	        		  $("#saveBtn").attr("disabled", false);
+					}
+	        	  
 	        	  
 	          },
 	          error: function(xhr, status, error) {
 	          }
 		})
-		
 		
 	})
 </script>

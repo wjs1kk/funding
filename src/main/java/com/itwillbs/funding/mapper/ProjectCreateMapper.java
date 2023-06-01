@@ -77,5 +77,9 @@ public interface ProjectCreateMapper {
 	Map getMyRepresentativeInfo(int member_idx);
 	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
 	int projectApproveSubmit(int project_idx);
+	// 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기
+	int approveProjectCount(int maker_idx);
+	// 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기(오버로딩)
+	int approveProjectCount(@Param("maker_idx") int maker_idx, @Param("project_idx") int project_idx);
 
 }

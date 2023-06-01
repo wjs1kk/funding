@@ -160,7 +160,16 @@ public class ProjectCreateService {
 	// 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)
 	public int projectApproveSubmit(int project_idx) {
 		return mapper.projectApproveSubmit(project_idx);
-
+	}
+	
+	// 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기
+	public int approveProjectCount(int maker_idx) {
+		return mapper.approveProjectCount(maker_idx);
+	}
+	
+	// 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기(오버로딩)
+	public int approveProjectCount(int maker_idx, int project_idx) {
+		return mapper.approveProjectCount(maker_idx, project_idx);
 	}
 		
 }

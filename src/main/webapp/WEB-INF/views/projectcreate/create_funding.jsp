@@ -102,7 +102,7 @@
 	        	  }
 	        	  
 	        	  // project_approve가 제출전인 null 스트링이 아니면 제출하기 버튼 비활성화 및 제출 완료로 변경
-	        	  if(response.project_approve != ""){
+	        	  if(response.project_approve_status != "0"){
 		        	  $("#submitBtn").attr("disabled", true).text("제출 완료");
 					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 제출 완료')
 	        	  }
@@ -121,7 +121,6 @@
 	   	          success: function() {
    	        	 	alert("프로젝트 제출이 완료되었습니다!")
 					$("#submitBtn").attr("disabled", true).text("제출 완료");
-	   	        	  
 	   	          },
 	   	          error: function(xhr, status, error) {
 	   	          }

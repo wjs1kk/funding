@@ -5,30 +5,6 @@
   
   <mapper namespace="com.itwillbs.funding.mapper.ProjectCreateMapper">
   
-  	
-  	               
-                 
-           
-              
-            
-            
-          
-             
-         
-           
-               
-               
-             
-            
-          
-              
-    
-
-          
-                 
-                  
-        
-  	
   	<!-- 05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성 -->
   	<!-- 05-12 project_images가 프로젝트 생성될 떄 null 스트링이 들어가도록 수정 -->
  	<insert id="createFundingProject">
@@ -303,8 +279,20 @@
  	</select>
  	
  	<!-- 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기)  -->
+ 	<!-- 06-01 김동욱 프로젝트 제출하면 project_approve_status가 1으로 업데이트되게 변경  -->
  	<update id="projectApproveSubmit">
- 		UPDATE project SET project_approve = "0" WHERE project_idx = #{project_idx}
+ 		UPDATE project SET project_approve_status = "1" WHERE project_idx = #{project_idx}
  	</update>
+ 	
+ 	<!-- 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기 --> 
+ 	<select id="approveProjectCount" resultType="int">
+ 		SELECT COUNT(project_approve_status)
+		FROM project
+		WHERE maker_idx = #{maker_idx} AND
+		<if test="project_idx != null">
+			project_idx = 4 AND
+		</if>
+			project_approve_status = "2";
+ 	</select>
 
   </mapper>

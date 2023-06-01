@@ -307,10 +307,21 @@ public class ProjectCreateController {
 	}
 	
 	// 05-25 김동욱 AJAX maker 정보 가져오기 및 project 테이블에 maker_idx 업데이트
+	// 06-01 김동욱 제출한 상태에서 메이커 정보를 클릭하면 해당 프로젝트에는 클릭된 메이커 정보가 등록되지 않게 수정
 	@PostMapping("project/getMakerInfo")
 	@ResponseBody
 	public MakerVO getMakerInfo(int maker_idx, int project_idx) {
-		int updateCount = projectCreateService.projectMakerIdxUpdate(maker_idx, project_idx);
+		System.out.println("getMakerInfo project_idx : " + project_idx);
+//		int approveProjectCount = projectCreateService.approveProjectCount(maker_idx, project_idx);
+//		System.out.println("getMakerInfo approveProjectCount : "+ approveProjectCount);
+		Map projectMap = projectCreateService.projectUpdateCheck(project_idx);
+		System.out.println(projectMap.get("project_approve_status").toString());
+		
+		// project_approve_status가 2와 3이 아니면 project 테이블의 maker_idx 등록
+		if(!projectMap.get("project_approve_status").toString().equals("2") && !projectMap.get("project_approve_status").toString().equals("3")) {
+			int updateCount = projectCreateService.projectMakerIdxUpdate(maker_idx, project_idx);
+		}
+		
 		MakerVO myMakerInfo = projectCreateService.getMakerInfo(maker_idx);
 		return myMakerInfo;
 	}
@@ -319,7 +330,6 @@ public class ProjectCreateController {
 	@PostMapping("project/myProjectMakerInfo")
 	@ResponseBody
 	public MakerVO myProjectMakerInfo(int project_idx) {
-		System.out.println(project_idx);
 		MakerVO myProjectMakerInfo = projectCreateService.myProjectMakerInfo(project_idx);
 		return myProjectMakerInfo;
 	}
@@ -361,21 +371,30 @@ public class ProjectCreateController {
 		int updateCount = projectCreateService.projectInfoFileUpdate(project);
 	}
 	// 05-26 강정운 정책 업데이트
-		@PostMapping("project/projectPolicyUpdate")
-		@ResponseBody
-		public void projectPolicyUpdate(ProjectVO project) {
-			int updateCount = projectCreateService.projectPolicyUpdate(project);
-		}
+	@PostMapping("project/projectPolicyUpdate")
+	@ResponseBody
+	public void projectPolicyUpdate(ProjectVO project) {
+		int updateCount = projectCreateService.projectPolicyUpdate(project);
+	}
+	
 	// 05-26 김동욱 메이커 정보 삭제
 	// 05-27 김동욱 메이커 정보를 삭제하면 프로젝트에 등록된 메이커 정보들 모두 null로 업데이트 기능 추가
+	// 06-01 김동욱 메이커 정보 삭제를 할 때 프로젝트에 사용된 메이커 정보가 제출을 했거나 승인이 되었을 때에는 삭제 불가능
 	@PostMapping("project/deleteMakerInfo")
 	@ResponseBody
-	public void deleteMakerInfo(int maker_idx) {
-		System.out.println("deleteMakerInfo maker_idx : " + maker_idx);
-		// 메이커 테이블에서 삭제
-		int deleteCount = projectCreateService.deleteMakerInfo(maker_idx);
-		// 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트
-		int updateCount = projectCreateService.deleteProjeckMaker(maker_idx);
+	public int deleteMakerInfo(int maker_idx, int project_idx) {
+		
+		int approveProjectCount = projectCreateService.approveProjectCount(maker_idx);
+		System.out.println("deleteMakerInfo approveProjectCount : " + approveProjectCount);
+	
+		if(approveProjectCount == 0) {
+			// 메이커 테이블에서 삭제
+			int deleteCount = projectCreateService.deleteMakerInfo(maker_idx);
+			// 삭제했던 메이커 정보를 프로젝트 테이블에서 0으로 업데이트
+			int updateCount = projectCreateService.deleteProjeckMaker(maker_idx);
+		}
+		
+		return approveProjectCount;
 	}
 	
 	// 05-26 김동욱 프로젝트 플랜 정보 가져오기
@@ -436,7 +455,6 @@ public class ProjectCreateController {
 	public void projectApproveSubmit(int project_idx) {
 		int updateCount = projectCreateService.projectApproveSubmit(project_idx);
 	}
-	
 
 	
 }
