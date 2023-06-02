@@ -129,8 +129,9 @@
 			},
 			success: function(response) {
 				$("#preview").html("");
+				
 				// 이미지 경로
-				let root = '/funding/resources/images/maker_images/' + response.maker_image
+				let root = '/ifund/resources/images/maker_images/' + response.maker_image
 				$("#maker_name").val(response.maker_name)
 				$("#maker_phone").val(response.maker_phone)
 				$("#maker_email").val(response.maker_email)
