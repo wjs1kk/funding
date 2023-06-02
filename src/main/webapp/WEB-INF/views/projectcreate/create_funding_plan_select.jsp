@@ -100,8 +100,9 @@
 				}
 			}
 		});
-		
-		
+	})
+	
+	$(function() {
 		// 05-31 김동욱 승인 여부 확인 후 저장버튼 비활성화
 		$.ajax({
 			 url: 'projectUpdateCheck',
@@ -120,11 +121,8 @@
 	        		  $("#save").attr("disabled", false);
 	        	  }
 	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
-		
 	})
 	
 
@@ -167,36 +165,7 @@
 									<h2 class="FundingPlanFormContainer_title__3OWgM">요금제 선택</h2>
 									<p>원하는 요금제를 선택해 주세요.</p>
 								</div>
-								<div class="HeaderLayout_guideWrapper__WXeX-">
-									<button class="BannerLinkButton_container__3MHMT" type="button">
-										<div class="BannerLinkButton_icon__UDYk2">
-											<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-										</div>
-										<div class="BannerLinkButton_content__BzS52">
-											<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다
-												본다는</div>
-											<div class="BannerLinkButton_description__yl6rf">필수 가이드
-												모음집</div>
-										</div>
-									</button>
-								</div>
-							</div>
-							<div class="FundingPlanAllMakerServiceInfo_serviceInfo__yeXWf">
-								<p class="FundingPlanAllMakerServiceInfo_title__3PLiS">다양한
-									서비스를 구경해 보세요!</p>
-								<div class="FundingPlanAllMakerServiceInfo_linkBox__3tFnv">
-									<a class="FundingPlanAllMakerServiceInfo_link__1nw_9"
-										href="/studio/reward/213704/ads">광고·콘텐츠 제작 자세히 보기 <svg
-											viewBox="0 0 40 40" focusable="false" role="presentation"
-											class="withIcon_icon__3lrgp" aria-hidden="true">
-											<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></a><a
-										class="FundingPlanAllMakerServiceInfo_link__1nw_9"
-										href="/studio/reward/213704/maker_service">요금제 서비스 상세보기 <svg
-											viewBox="0 0 40 40" focusable="false" role="presentation"
-											class="withIcon_icon__3lrgp" aria-hidden="true">
-											<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></a>
-								</div>
-							</div>
+							</div>						
 							<ul class="FundingPlanLayout_packageList__p1BYm">
 								<li><article
 										class="FundingPlanPackageCard_packageCard__3DZcn"
@@ -249,17 +218,7 @@
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>인증
 														마크</li>
 												</ul>
-												<button
-													class="Button_button__1e2A2 Button_text__3KyLl Button_lg__3vRQD FundingPlanPackageCard_afterActionButton__3jsMR"
-													type="button">
-													<span><span class="Button_children__q9VCZ">자세히
-															알아보기 <svg viewBox="0 0 40 40" focusable="false"
-																role="presentation" class="withIcon_icon__3lrgp"
-																aria-hidden="true">
-																<path
-																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-													</span></span>
-												</button>
+												
 											</div>
 											<div
 												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
@@ -321,19 +280,8 @@
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>👩‍💻
 														1:1 프로젝트 매니저 온라인 상담</li>
 												</ul>
-												<p class="FundingPlanPackageCard_serviceInfo__3kCh6">온라인
-													상담은 2022.08.30 이후 제출 건에 한하여 제공됩니다</p>
-												<button
-													class="Button_button__1e2A2 Button_text__3KyLl Button_lg__3vRQD FundingPlanPackageCard_afterActionButton__3jsMR"
-													type="button">
-													<span><span class="Button_children__q9VCZ">자세히
-															알아보기 <svg viewBox="0 0 40 40" focusable="false"
-																role="presentation" class="withIcon_icon__3lrgp"
-																aria-hidden="true">
-																<path
-																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-													</span></span>
-												</button>
+												
+												
 											</div>
 											<div
 												class="FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">
@@ -400,19 +348,8 @@
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>👩‍💻
 														1:1 프로젝트 매니저 온라인 상담</li>
 												</ul>
-												<p class="FundingPlanPackageCard_serviceInfo__3kCh6">온라인
-													상담은 2022.08.30 이후 제출 건에 한하여 제공됩니다</p>
-												<button
-													class="Button_button__1e2A2 Button_text__3KyLl Button_lg__3vRQD FundingPlanPackageCard_afterActionButton__3jsMR"
-													type="button">
-													<span><span class="Button_children__q9VCZ">자세히
-															알아보기 <svg viewBox="0 0 40 40" focusable="false"
-																role="presentation" class="withIcon_icon__3lrgp"
-																aria-hidden="true">
-																<path
-																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-													</span></span>
-												</button>
+												
+												
 											</div>
 											<div
 												class=" FundingPlanPackageCard_container__Z08e_ FundingPlanPackageCard_footer__3SlKP">

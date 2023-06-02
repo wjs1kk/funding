@@ -23,6 +23,63 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <script type="text/javascript">
+	
+	// 중복코드를 줄이기 위한 리워드 수정 함수
+	function rwModify() {
+		$.ajax({
+			type: "post",
+			url: "rewardModify",
+			data: {reward_idx:$("#reward_idx").val()
+			   ,reward_name:$("#reward_name").val()
+			   ,reward_amount:$("#reward_amount").val()
+			   ,reward_content:$("#reward_content").val()
+			   ,reward_option:$("#reward_option").val()
+			   ,reward_quantity:$("#reward_quantity").val()
+			   ,reward_delivery:$("#reward_delivery").val()
+			   ,reward_delivery_fee:$("#reward_delivery_fee").val()
+			   ,reward_delivery_date:$("#reward_delivery_date").val()
+			},
+			success: function() {
+				getProjectReward();
+				$("#reward_modal").css("opacity", 0);
+			}
+		})
+	}
+	// 중복코드를 줄이기 위한 리워드 추가 함수
+	function rwAdd() {
+		$.ajax({
+			type: "post",
+			url: "projectRewardAdd",
+			data: {project_idx:${param.project_idx}
+				   ,reward_name:$("#reward_name").val()
+				   ,reward_amount:$("#reward_amount").val()
+				   ,reward_content:$("#reward_content").val()
+				   ,reward_option:$("#reward_option").val()
+				   ,reward_quantity:$("#reward_quantity").val()
+				   ,reward_delivery:$("#reward_delivery").val()
+				   ,reward_delivery_fee:$("#reward_delivery_fee").val()
+				   ,reward_delivery_date:$("#reward_delivery_date").val()
+			},
+			success: function() {
+				// 성공시 AJAX 리스트 출력
+				getProjectReward();
+			}
+		});
+	}
+	// 중복코드를 줄이기 위한 리워드 삭제 함수
+	function rwDelete(reward_idx) {
+		let result = confirm("리워드를 삭제하시겠습니까?");
+		if(result == true){
+			$.ajax({
+				type: "post",
+				url: "rewardDelete",
+				data: {reward_idx:reward_idx},
+				success: function() {
+					getProjectReward();
+				}
+			});
+		};
+	}
 	//리워드 ajax 리스트 출력 함수
 	function getProjectReward() {
 		$.ajax({
@@ -105,10 +162,8 @@
 						+'</div>'
 					);
 				}
-				
 			}
 		});
-		
 		// 06-01 김동욱 수정권한과 프로젝트 승인여부 확인 후 비활성화
 		$.ajax({
 			 url: 'projectUpdateCheck',
@@ -116,59 +171,24 @@
 	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
-	        	  
-	        	// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 저장하기 버튼 활성화
+	        	// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 리워드 수정 버튼 활성화
 					if(response.project_approve_status == "2" && response.project_update_status == "2"){
-						
 						$(document).on("click","#rewardModifyBtn",function(){
 	        				//  05-29 김동욱 null 값과 정규표현식 확인 후 수정
 	        				if(regexCheck() != false){
-	        					$.ajax({
-	        						type: "post",
-	        						url: "rewardModify",
-	        						data: {reward_idx:$("#reward_idx").val()
-	        						   ,reward_name:$("#reward_name").val()
-	        						   ,reward_amount:$("#reward_amount").val()
-	        						   ,reward_content:$("#reward_content").val()
-	        						   ,reward_option:$("#reward_option").val()
-	        						   ,reward_quantity:$("#reward_quantity").val()
-	        						   ,reward_delivery:$("#reward_delivery").val()
-	        						   ,reward_delivery_fee:$("#reward_delivery_fee").val()
-	        						   ,reward_delivery_date:$("#reward_delivery_date").val()
-	        						},
-	        						success: function() {
-	        							getProjectReward();
-	        							$("#reward_modal").css("opacity", 0);
-	        						}
-	        					})
+	        					// 리워드 수정
+	        					rwModify();
 	        				}
 	        			});
-	        		
+		        	// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 리워드 추가 버튼 활성화
 	        			// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 입력된 정보들 reward 테이블에 insert후 다시 리스트 출력'
 	        			$(document).on("click","#rewardAddBtn",function(){
 	        				// 05-29 김동욱 null 값과 정규표현식 확인 후 추가
 	        				if(regexCheck() != false){
-	        					$.ajax({
-	        						type: "post",
-	        						url: "projectRewardAdd",
-	        						data: {project_idx:${param.project_idx}
-	        							   ,reward_name:$("#reward_name").val()
-	        							   ,reward_amount:$("#reward_amount").val()
-	        							   ,reward_content:$("#reward_content").val()
-	        							   ,reward_option:$("#reward_option").val()
-	        							   ,reward_quantity:$("#reward_quantity").val()
-	        							   ,reward_delivery:$("#reward_delivery").val()
-	        							   ,reward_delivery_fee:$("#reward_delivery_fee").val()
-	        							   ,reward_delivery_date:$("#reward_delivery_date").val()
-	        						},
-	        						success: function() {
-	        							// 성공시 AJAX 리스트 출력
-	        							getProjectReward();
-	        						}
-	        					});
+	        					// 리워드 추가
+	        					rwAdd()
 	        				}
 	        			});
-						
 					}else if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 	        			$(document).on("click","#rewardModifyBtn",function(){
 	        				alert("이미 진행이된 프로젝트는 수정이 불가능합니다");
@@ -176,69 +196,28 @@
 	        			$(document).on("click","#rewardAddBtn",function(){
 	        				alert("이미 진행이된 프로젝트는 수정이 불가능합니다");
 	        			});
-					}else if (response.project_approve_status == "0" || response.project_update_status == "1"){
-						
+					}else if (response.project_approve_status == "0" || response.project_approve_status == "1"){
 						$(document).on("click","#rewardModifyBtn",function(){
 	        				//  05-29 김동욱 null 값과 정규표현식 확인 후 수정
 	        				if(regexCheck() != false){
-	        					$.ajax({
-	        						type: "post",
-	        						url: "rewardModify",
-	        						data: {reward_idx:$("#reward_idx").val()
-	        						   ,reward_name:$("#reward_name").val()
-	        						   ,reward_amount:$("#reward_amount").val()
-	        						   ,reward_content:$("#reward_content").val()
-	        						   ,reward_option:$("#reward_option").val()
-	        						   ,reward_quantity:$("#reward_quantity").val()
-	        						   ,reward_delivery:$("#reward_delivery").val()
-	        						   ,reward_delivery_fee:$("#reward_delivery_fee").val()
-	        						   ,reward_delivery_date:$("#reward_delivery_date").val()
-	        						},
-	        						success: function() {
-	        							getProjectReward();
-	        							$("#reward_modal").css("opacity", 0);
-	        						}
-	        					})
+	        					// 리워드 수정
+	        					rwModify()
 	        				}
 	        			});
-	        		
 	        			// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 입력된 정보들 reward 테이블에 insert후 다시 리스트 출력'
 	        			$(document).on("click","#rewardAddBtn",function(){
 	        				// 05-29 김동욱 null 값과 정규표현식 확인 후 추가
 	        				if(regexCheck() != false){
-	        					$.ajax({
-	        						type: "post",
-	        						url: "projectRewardAdd",
-	        						data: {project_idx:${param.project_idx}
-	        							   ,reward_name:$("#reward_name").val()
-	        							   ,reward_amount:$("#reward_amount").val()
-	        							   ,reward_content:$("#reward_content").val()
-	        							   ,reward_option:$("#reward_option").val()
-	        							   ,reward_quantity:$("#reward_quantity").val()
-	        							   ,reward_delivery:$("#reward_delivery").val()
-	        							   ,reward_delivery_fee:$("#reward_delivery_fee").val()
-	        							   ,reward_delivery_date:$("#reward_delivery_date").val()
-	        						},
-	        						success: function() {
-	        							// 성공시 AJAX 리스트 출력
-	        							getProjectReward();
-	        						}
-	        					});
+	        					// 리워드 추가
+	        					rwAdd()
 	        				}
 	        			});
-						
 					}
-	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
-		
 	}
-	
 	// 05-18 김동욱 리워드 삭제
 	function rewardDelete(reward_idx) {
-		
 		// 05-31 김동욱 승인 여부 확인 후 저장버튼, 이미지 추가버튼, 이미지 삭제버튼 비활성화
 		$.ajax({
 			 url: 'projectUpdateCheck',
@@ -246,47 +225,19 @@
 	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
-					
 					// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 저장하기 버튼 활성화
 					if(response.project_approve_status == "2" && response.project_update_status == "2"){
-	        		  let result = confirm("리워드를 삭제하시겠습니까?");
-	        			if(result == true){
-	        				$.ajax({
-	        					type: "post",
-	        					url: "rewardDelete",
-	        					data: {reward_idx:reward_idx},
-	        					success: function() {
-	        						getProjectReward();
-	        					}
-	        				});
-	        			};
+						// 리워드 삭제
+						rwDelete(reward_idx);
 					}else if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 						alert("이미 진행이된 프로젝트는 수정이 불가능합니다");
 					}else if(response.project_approve_status == "0" || response.project_approve_status == "1"){
-						let result = confirm("리워드를 삭제하시겠습니까?");
-	        			if(result == true){
-	        				$.ajax({
-	        					type: "post",
-	        					url: "rewardDelete",
-	        					data: {reward_idx:reward_idx},
-	        					success: function() {
-	        						getProjectReward();
-	        					}
-	        				});
-	        			};
+						// 리워드 삭제
+						rwDelete(reward_idx);
 					}
-					
-	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
-		
-		
-		
-		
 	};
-	
 	// 05-18 김동욱 리워드 수정버튼을 누를 시 리워드 정보를 가져와 모달창에 출력하면서 타이틀 제목과 버튼 '수정'으로 변경
 	function rewardDetail(reward_idx) {
 		$("#reward_idx").val(reward_idx)
@@ -326,7 +277,6 @@
 					$("#deliveryNotUsedBtn").css("border-color", "#cdd3d8");
 					$("#deliveryNotUsedCheckIcon").css("color", "#adb5bd");
 					
-					
 					$("#deliveryCheck").html("");
 					$("#deliveryCheck").append(
 						'<div class="TextField_textField__23rCe TextField_md__2zsQn TextField_right__1qt_G">'
@@ -338,7 +288,6 @@
 						+'<em class="HelperMessage_helperMessage__1qZPy">무료배송인 경우 0원을 입력해 주세요.</em>'
 						+'</div>'
 					);
-					
 				}else if(rewardDetail.reward_delivery == 0) {
 					$("#deliveryCheck").html("");
 					$("#deliveryNotUsedBtn").css("background", "#e7f9f9");
@@ -350,18 +299,14 @@
 					$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
 					
 				}
-				
 				$("#reward_delivery_date").val(rewardDetail.reward_delivery_date);
 				$("#reward_modal").css("opacity", 1);
 			}
 		});
 		
 	};
-	
-	
 	// 05-29 김동욱 null값과 정규표현식 확인
 	function regexCheck() {
-		
 		if($("#reward_amount").val() == ""){
 			alert("리워드 금액을 입력해주세요!")
 			return false;
@@ -394,39 +339,26 @@
 			alert("리워드 발송 날짜를 입력해주세요!")
 			return false;
 		}
-		
 		// 숫자
 	 	var check_num = /[0-9]/;
 		// 숫자, 한글 영어
 	 	var check_eng_hangul_num = /[a-zA-Z가-힣0-9]/;
-	 	
-//	 	var check_num = /[0-9a-zA-Z가-힣+_()-]{2,30}/;    // 숫자 
-//	 	var check_num = /[0-9]/;    // 숫자 
-//	 	var check_eng = /[a-zA-Z]/;    // 문자 
-//	 	var check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-//	 	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-		
 		if(!check_num.exec($("#reward_amount").val())){
 			alert("리워드 금액은 숫자만 입력 가능합니다!")
 			return false;
 		}
-		
 		if(!check_eng_hangul_num.exec($("#reward_name").val())){
 			alert("리워드명은 한글, 영어, 숫자만 입력 가능합니다!")
 			return false;
 		}
-		
 		if(!check_eng_hangul_num.exec($("#reward_option").val())){
 			alert("리워드 옵션은 한글, 영어, 숫자만 입력 가능합니다!")
 			return false;
 		}
-		
 		if(!check_num.exec($("#reward_quantity").val())){
 			alert("리워드 제한 수량은 숫자만 입력 가능합니다!")
 			return false;
 		}
-		
-		
 		// 05-31 김동욱 배송 없음을 선택해도 배송비를 입력하라고 나와서 수정
 		if($("#reward_delivery").val() == "1"){
 			if(!check_num.exec($("#reward_delivery_fee").val())){
@@ -434,17 +366,12 @@
 				return false;
 			}
 		}
-		
 		$("#reward_modal").css("opacity", 0);
-		
 	}
 	
-	
 	$(function() {
-		
 		// 리워드 ajax 리스트 출력
 		getProjectReward();
-		
 		// '리워드를 추가해주세요' 버튼을 누르면 모달창 띄우기
 		$(".AddBox_container__39RWm").on("click", function() {
 			$("#reward_modal_title").html('<div title="리워드 추가" id="reward_modal_title" class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">리워드 추가</div>');
@@ -475,7 +402,6 @@
 			$("#deliveryUsedCheckIcon").css("color", "#adb5bd");
 			$("#deliveryCheck").html("");
 			$("#reward_modal").css("opacity", 1);
-			
 		});
 
 		//모달창 X 버튼 누를 시 닫힘
@@ -486,8 +412,6 @@
 		$("#reward_modal_cancle").on("click", function() {
 			$("#reward_modal").css("opacity", 0);
 		});
-		
-		
 		
 		// 모달창에서 배송 여부(배송, 배송 없음) 클릭시 버튼 색상 변경, hidden(reward_delivery) value의 값이 배송 누르면  1 배송 없음 누르면 0 
 		$("#deliveryUsedBtn").on("click", function() {
@@ -535,10 +459,7 @@
 		$("#deliveryNotUsedBtn").on("click", function() {
 			$("#deliveryCheck").html("");
 		});
-		
-		
 	});
-	
 </script>
 <body class="">
 	<div data-react-modal-body-trap="" tabindex="0"

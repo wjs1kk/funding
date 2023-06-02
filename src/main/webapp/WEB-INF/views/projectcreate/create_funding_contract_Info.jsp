@@ -36,14 +36,12 @@
 			
 		})
 		
-		
 		// 05-31 김동욱 대표자 정보 가져오기를 성공하면 값 입력 후 비활성화
 		 $.ajax({
 			url: 'getMyRepresentativeInfo',
 			type: 'POST',
 			dataType: "json",
 			success: function(response) {
-				
 				$("#rep_name").val(response.rep_name);
 				$("#rep_name").attr("disabled", true);
 				$("#rep_email").val(response.rep_email);
@@ -61,12 +59,8 @@
 				 	$(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
 				 	$("#representative_info").val("Y");
 				 }
-			},
-			error: function(xhr, status, error) {
 			}
 		})
-		
-		
 	})
 
 </script>

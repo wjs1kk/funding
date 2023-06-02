@@ -19,7 +19,6 @@
 	$(function() {
 		$('.check').on('click', function() {	
 			if($('#check_1').is(':checked') 
-					&& $('#check_2').is(':checked') 
 					&& $('#check_3').is(':checked') 
 					&& $('#check_4').is(':checked')){
 				$('#check_result').attr('disabled', false);
@@ -36,8 +35,12 @@
 		$('#save').click(function(){
 			 if(!$('#check_result').is(':checked')){
 				 alert("약관에 동의해주세요");
+				 
 				 return false;
-			 }	
+			 } else if($('#project_AS').val() == ""){
+				 alert("A/S정책을 입력해주세요");
+				 return false;
+			 }
 				$.ajax({
 					type: "post",
 					url: "projectPolicyUpdate",
@@ -1948,7 +1951,7 @@
 							<section class="Section_container__3md8M spacing-9" style="">
 								<div style="max-width: 630px;">
 									<div class="Section_header__1qwS7">
-										<h2 class="Section_title__ikPIm Section_isOptional__DtcQ8">A/S
+										<h2 class="Section_title__ikPIm ">A/S
 											정책</h2>
 										<div class="Section_guide__2xeJO"></div>
 									</div>
@@ -1965,7 +1968,6 @@
 													class="Textarea_textarea__2swOj undefined"
 													style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0px); pointer-events: none;"></textarea>
 											</div>
-											<em class="HelperMessage_helperMessage__1qZPy">800자 남음</em>
 										</div>
 									</div>
 								</div>

@@ -25,8 +25,6 @@
 	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
    				  $("#project_reward").val("Y");
 	        	  }
-	          },
-	          error: function(xhr, status, error) {
 	          }
 	})
 
@@ -40,8 +38,6 @@
         		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
         		  $("#representative_info").val("Y");
         	  }
-          },
-          error: function(xhr, status, error) {
           }
 	})
 	
@@ -76,7 +72,10 @@
 	        		  $("#project_story").val("Y");
 	        	  }
 	        		
-	        	  // 리워드 정책 추가해야 함
+	        	  if(response.project_AS != ""){
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(5).text("작성 완료");
+	        		  $("#project_policy").val("Y");
+	        	  }
 	        	  
 	        	  // 05-31 김동욱 메이커 정보가 0값이 아니면 작성 완료로 표기되도록 수정
 	        	  if(response.maker_idx != 0){
@@ -89,8 +88,7 @@
 	        		&& $("#project_info").val() == "Y"
 	        		&& $("#project_baseInfo").val() == "Y"
 	        		&& $("#project_reward").val() == "Y"
-	        	 	// 리워드 정책 추가해야 함
-	        	 	
+	        		&& $("#project_policy").val() == "Y"
 	        		&& $("#project_story").val() == "Y"
 	        		&& $("#project_maker").val() == "Y"
 	        		&& $("#representative_info").val() == "Y"
@@ -107,8 +105,6 @@
 					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 제출 완료')
 	        	  }
 	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
     		
@@ -121,8 +117,6 @@
 	   	          success: function() {
    	        	 	alert("프로젝트 제출이 완료되었습니다!")
 					$("#submitBtn").attr("disabled", true).text("제출 완료");
-	   	          },
-	   	          error: function(xhr, status, error) {
 	   	          }
   			})
 		})
@@ -279,6 +273,7 @@
 							<input type="hidden" id="project_baseInfo">
 							<input type="hidden" id="project_story">
 							<input type="hidden" id="project_reward">
+							<input type="hidden" id="project_policy">
 							<input type="hidden" id="project_maker">
 							<input type="hidden" id="representative_info">
 							

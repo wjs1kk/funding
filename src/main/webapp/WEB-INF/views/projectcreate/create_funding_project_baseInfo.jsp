@@ -19,10 +19,15 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <!-- 데이트피커를 위한 라이브러리 -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <!-- 데이트피커를 위한 라이브러리 -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 
 	$(function() {
@@ -86,11 +91,9 @@
 					 $("#save").attr("disabled", false);
 					}
 		        	  
-		        	  
-		          },
-		          error: function(xhr, status, error) {
-		          }
+	          	}
 			})
+			
 			
 		})	
 </script>
@@ -115,46 +118,9 @@
 							정보</div>
 						<div class="Page_description__VzZod">프로젝트를 대표하는 중요한 정보들을 입력해
 							주세요.</div>
-						<div class="Page_guide__3JgBF">
-							<button class="BannerLinkButton_container__3MHMT" type="button">
-								<div class="BannerLinkButton_icon__UDYk2">
-									<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-								</div>
-								<div class="BannerLinkButton_content__BzS52">
-									<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다 본다는</div>
-									<div class="BannerLinkButton_description__yl6rf">필수 가이드
-										모음집</div>
-								</div>
-							</button>
-						</div>
 						<div class="Page_content__1d0Vb">
 							<section class="Section_container__3md8M spacing-9" style="">
 								<div style="max-width: 630px;">
-									<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
-										프로젝트 제목
-										<div>
-											<button type="button" class="Tooltip_button__26Zz0"
-												aria-describedby="Tooltip_1">
-												<span class="Tooltip_label__1s0-R"></span><span
-													class="Tooltip_helpIconWrap__3JEtO"><svg
-														viewBox="0 0 40 40" focusable="false" role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-														<path
-															d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-											</button>
-										</div>
-									</h2>
 									<div class="Section_header__1qwS7 spacing-4">
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">프로젝트
 											제목</h2>
@@ -188,26 +154,7 @@
 									<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 										대표 이미지
 										<div>
-											<button type="button" class="Tooltip_button__26Zz0"
-												aria-describedby="Tooltip_2">
-												<span class="Tooltip_label__1s0-R"></span><span
-													class="Tooltip_helpIconWrap__3JEtO"><svg
-														viewBox="0 0 40 40" focusable="false" role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-														<path
-															d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-											</button>
+											
 										</div>
 									</h2>
 									<div class="Section_guide__2xeJO"></div>
@@ -231,26 +178,7 @@
 									<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 										프로젝트 종료일
 										<div>
-											<button type="button" class="Tooltip_button__26Zz0"
-												aria-describedby="Tooltip_3">
-												<span class="Tooltip_label__1s0-R"></span><span
-													class="Tooltip_helpIconWrap__3JEtO"><svg
-														viewBox="0 0 40 40" focusable="false" role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-														<path
-															d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation"
-														class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-														aria-hidden="true">
-														<path fill="none" d="M0 0h40v40H0z"></path>
-														<path
-															d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-											</button>
+											
 										</div>
 									</h2>
 									<div class="Section_guide__2xeJO"></div>
@@ -279,7 +207,7 @@
 												style="width: 100%;">
 												<div class="ant-picker-input">
 
-													<input type="text" id="project_end_date" name="project_end_date" placeholder="여기">
+													<input type="text" id="project_end_date" name="project_end_date" placeholder="">
 													<script>
 													   $(function() {
 													       //input을 datepicker로 선언

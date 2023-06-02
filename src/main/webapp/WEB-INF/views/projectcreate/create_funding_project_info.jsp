@@ -211,6 +211,7 @@
 							})
 						})
 						
+						
 						// 05-31 김동욱 승인 여부 확인 후 저장버튼 비활성화
 						$.ajax({
 							 url: 'projectUpdateCheck',
@@ -230,15 +231,8 @@
 					        	  }
 					        	  
 					        	  
-					          },
-					          error: function(xhr, status, error) {
 					          }
 						})
-						
-						
-						
-						
-						
 						
 					});
 
@@ -275,19 +269,7 @@
 								<div class="HeaderLayout_contents__F4hlC">
 									<h2 class="ProjectTypeFormContainer_title__3Zn37">프로젝트 정보</h2>
 								</div>
-								<div class="HeaderLayout_guideWrapper__WXeX-">
-									<button class="BannerLinkButton_container__3MHMT" type="button">
-										<div class="BannerLinkButton_icon__UDYk2">
-											<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-										</div>
-										<div class="BannerLinkButton_content__BzS52">
-											<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다
-												본다는</div>
-											<div class="BannerLinkButton_description__yl6rf">필수 가이드
-												모음집</div>
-										</div>
-									</button>
-								</div>
+
 							</div>
 							<form class="ProjectTypeFormContainer_form__3kGVN">
 								<input type="hidden" value="0" id="project_type">
@@ -297,26 +279,6 @@
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											카테고리
 											<div>
-												<button type="button" class="Tooltip_button__26Zz0"
-													aria-describedby="Tooltip_6">
-													<span class="Tooltip_label__1s0-R"></span><span
-														class="Tooltip_helpIconWrap__3JEtO"><svg
-															viewBox="0 0 40 40" focusable="false" role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-												</button>
 											</div>
 										</h2>
 										<div class="Section_guide__2xeJO"></div>
@@ -361,45 +323,10 @@
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											프로젝트 유형
 											<div>
-												<button type="button" class="Tooltip_button__26Zz0"
-													aria-describedby="Tooltip_8">
-													<span class="Tooltip_label__1s0-R"></span><span
-														class="Tooltip_helpIconWrap__3JEtO"><svg
-															viewBox="0 0 40 40" focusable="false" role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-												</button>
+											
 											</div>
 										</h2>
-										<div class="Section_guide__2xeJO">
-											<div class="Section_helperMessage__3V6GQ">
-												<a class="link"
-													href="https://www.wadiz.kr/link/service_guide1"
-													target="_blank" rel="nofollow noopener noreferrer"
-													data-ga-category="펀딩·프리오더_통합_가이드" data-ga-action="클릭">펀딩·프리오더
-													통합 가이드<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation"
-														class="withIcon_icon__3lrgp withIcon_inline__3A3d_ icon"
-														aria-hidden="true" style="width: 14px; height: 14px;">
-														<path
-															d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
-														<path
-															d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"></path></svg>
-												</a>
-											</div>
-										</div>
+										
 									</div>
 									<div class="Section_content__3OkLZ">
 										<div class="Radios_box__3GDo6 spacing-5">
@@ -409,7 +336,7 @@
 												class="Radio_icon__twaSu"></span><span
 												class="Radio_label__C-Uvs"><span
 													class="Radios_labelContent__3ueO3"><strong
-														class="Radios_catogory__1-L3j">펀딩</strong>첫 출시예요.<span
+														class="Radios_catogory__1-L3j">펀딩</strong><span
 														class="Badge_container__3mdFR Badge_visible__2c54z Radios_badge__2FN4r"><span
 															class="Badge_badge__zKi0D Badge_label__2iNzD Badge_md__YzReR Badge_primary__3jwLR Badge_tertiary__-ciUe">💰
 																프로젝트 성공 시 바로 정산받을 수 있어요</span></span></span><span
@@ -420,7 +347,7 @@
 												class="Radio_icon__twaSu"></span><span
 												class="Radio_label__C-Uvs"><span
 													class="Radios_labelContent__3ueO3"><strong
-														class="Radios_catogory__1-L3j">공동구매</strong>공동구매임당~!~!~!~!</span><span
+														class="Radios_catogory__1-L3j">공동구매</strong></span><span
 													class="Radios_moreInfo__2mm0t"></span></span></label>
 										</div>
 									</div>
@@ -455,27 +382,7 @@
 											<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 												메이커 유형
 												<div>
-													<button type="button" class="Tooltip_button__26Zz0"
-														aria-describedby="Tooltip_3">
-														<span class="Tooltip_label__1s0-R"></span><span
-															class="Tooltip_helpIconWrap__3JEtO"><svg
-																viewBox="0 0 40 40" focusable="false"
-																role="presentation"
-																class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-																aria-hidden="true">
-																<path fill="none" d="M0 0h40v40H0z"></path>
-																<path
-																	d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-																<path
-																	d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-															<svg viewBox="0 0 40 40" focusable="false"
-																role="presentation"
-																class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-																aria-hidden="true">
-																<path fill="none" d="M0 0h40v40H0z"></path>
-																<path
-																	d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-													</button>
+													
 												</div>
 											</h2>
 											<div class="Section_guide__2xeJO"></div>
@@ -513,26 +420,7 @@
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											심사 서류
 											<div>
-												<button type="button" class="Tooltip_button__26Zz0"
-													aria-describedby="Tooltip_4">
-													<span class="Tooltip_label__1s0-R"></span><span
-														class="Tooltip_helpIconWrap__3JEtO"><svg
-															viewBox="0 0 40 40" focusable="false" role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-												</button>
+												
 											</div>
 										</h2>
 										<div class="Section_guide__2xeJO"></div>
