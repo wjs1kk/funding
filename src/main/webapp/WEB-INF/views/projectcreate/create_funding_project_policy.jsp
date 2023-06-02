@@ -53,6 +53,28 @@
 					}
 				})
 		})
+		
+		// 06-02 김동욱 승인 여부 확인 후 저장버튼 비활성화
+		$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  // project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
+	        	  if(response.project_approve_status == "2" || response.project_approve_status == "3"){
+	        		  $("#save").attr("disabled", true);
+	        	  }
+	        	  
+	        	  // project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 저장하기 버튼 활성화
+	        	  if(response.project_approve_status == "2" && response.project_update_status == "2"){
+	        		  $("#save").attr("disabled", false);
+	        	  }
+	        	  
+	          }
+		})
+		
 	})
 </script>
 </head>
