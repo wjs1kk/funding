@@ -5,14 +5,15 @@ import java.sql.Date;
 public class RewardVO {
 	private int reward_idx;
 	private int project_idx;
-	private String reward_name;
+	private	String reward_name;
 	private String reward_amount;
 	private String reward_content;
 	private String reward_option;
 	private String reward_quantity;
 	private String reward_delivery;
 	private String reward_delivery_fee;
-	private String reward_delivery_date;
+	private Date reward_delivery_date;
+	private String reward_sell;
 	public int getReward_idx() {
 		return reward_idx;
 	}
@@ -67,21 +68,18 @@ public class RewardVO {
 	public void setReward_delivery_fee(String reward_delivery_fee) {
 		this.reward_delivery_fee = reward_delivery_fee;
 	}
-	public String getReward_delivery_date() {
+	public Date getReward_delivery_date() {
 		return reward_delivery_date;
 	}
-	public void setReward_delivery_date(String reward_delivery_date) {
+	public void setReward_delivery_date(Date reward_delivery_date) {
 		this.reward_delivery_date = reward_delivery_date;
 	}
-	@Override
-	public String toString() {
-		return "RewardVO [reward_idx=" + reward_idx + ", project_idx=" + project_idx + ", reward_name=" + reward_name
-				+ ", reward_amount=" + reward_amount + ", reward_content=" + reward_content + ", reward_option="
-				+ reward_option + ", reward_quantity=" + reward_quantity + ", reward_delivery=" + reward_delivery
-				+ ", reward_delivery_fee=" + reward_delivery_fee + ", reward_delivery_date=" + reward_delivery_date
-				+ "]";
+	public String getReward_sell() {
+		return reward_sell;
 	}
-	
+	public void setReward_sell(String reward_sell) {
+		this.reward_sell = reward_sell;
+	}
 	
 	
 }

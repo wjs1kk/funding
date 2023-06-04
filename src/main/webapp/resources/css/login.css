@@ -10,6 +10,7 @@
     border-color: #00c4c4;
 }
 .wz.button.block, .wz.button.fluid {
+	margin-top:10px;
     width: 100%;
     text-align: center;
 }
@@ -360,17 +361,10 @@ input {
     display: block;
     position: relative;
     font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-.wz.input {
-    display: block;
-    position: relative;
-    font-size: 17px;
-}
-.wz.input {
-    display: block;
-    position: relative;
-    font-size: 17px;
-}
+
 .wz.container {
     position: relative;
     padding: 40px 16px;
