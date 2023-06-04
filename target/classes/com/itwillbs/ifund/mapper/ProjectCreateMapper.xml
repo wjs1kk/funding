@@ -7,33 +7,34 @@
   
   	<!-- 05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성 -->
   	<!-- 05-12 project_images가 프로젝트 생성될 떄 null 스트링이 들어가도록 수정 -->
+  	
  	<insert id="createFundingProject">
  		INSERT INTO project VALUES(
- 			null  
- 			, ${member_idx}
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "0" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, "" 
- 			, 0 
- 			, now() 
-
+ 			null  <!--project_idx-->
+ 			, ${member_idx} <!--member_idx-->
+ 			, "" <!--project_category-->
+ 			, "" <!--project_title-->
+ 			, "" <!--project_content-->
+ 			, "" <!--project_summary-->
+ 			, "" <!--project_thumbnail-->
+ 			, "" <!--project_images-->
+ 			, "" <!--project_start_date-->
+ 			, "" <!--project_end_date-->
+ 			, "" <!--project_coming_soon_date-->
+ 			, "" <!--project_plan-->
+ 			, "" <!--project_type-->
+ 			, "" <!--project_target-->
+ 			, "0" <!--project_approve_status-->
+ 			, "" <!--project_introduce-->
+ 			, "" <!--project_adult-->
+ 			, "" <!--project_identity-->
+ 			, "" <!--project_reward_category-->
+ 			, "" <!--project_reward_produce_type-->
+ 			, "" <!--project_documents-->
+ 			, "" <!--project_AS-->
+ 			, 0 <!--maker_idx-->
+ 			, now() <!--project_create_date-->
+ 			, "0"<!--project_update_status-->
  			)
  	</insert>
  	

@@ -13,27 +13,89 @@
 
 <script type="text/javascript">
 
+	
+	
+	function checkNull() {
+		let rep_name = $("#rep_name").val();
+		let rep_email = $("#rep_email").val();
+		let rep_tax_email = $("#rep_tax_email").val();
+		let rep_tax_bank = $("#rep_tax_bank").val();
+		let rep_tax_account = $("#rep_tax_account").val();
+		let rep_tax_depositor = $("#rep_tax_depositor").val();
+		
+		let numReg = /^[0-9]*$/;
+		let hangulReg = /[가-힣]/;
+		let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		let phoneReg = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
+		
+		if(rep_name == null || rep_name == ""){
+			alert("대표자명을 입력해주세요.")
+			return false;
+		}
+		if(rep_email == null || rep_email == ""){
+			alert("대표자 이메일을 입력해주세요.")
+			return false;
+		}
+		if(rep_tax_email == null || rep_tax_email == ""){
+			alert("세금계산서 발행 이메일을 입력해주세요. \n Ex) ifund@ifund.com")
+			return false;
+		}
+		if(rep_tax_bank == null || rep_tax_bank == ""){
+			alert("세금계산서 발행 은행을 선택해주세요.")
+			return false;
+		}
+		if(rep_tax_bank == null || rep_tax_bank == ""){
+			alert("세금계산서 발행 계좌번호를 입력해주세요.")
+			return false;
+		}
+		if(rep_tax_depositor == null || rep_tax_depositor == ""){
+			alert("세금계산서 발행 계좌번호의 예금주명를 입력해주세요.")
+			return false;
+		}
+		if(!hangulReg.exec(rep_name)){
+			alert("대표자명은 한글만 입력 가능합니다.")
+			return false;
+		}
+		if(!emailReg.exec(rep_email)){
+			alert("대표자 이메일 형식을 확인해주세요")
+			return false;
+		}
+		if(!emailReg.exec(rep_tax_email)){
+			alert("세금계산서 발행 이메일 형식을 확인해주세요 \n Ex) ifund@ifund.com")
+			return false;
+		}
+		if(!numReg.exec(rep_tax_account)){
+			alert("계좌번호는 '-' 제외한 숫자만 입력해주세요")
+			return false;
+		}
+		if(!hangulReg.exec(rep_tax_depositor)){
+			alert("세금계산서 발행 계좌의 예금주명은 한글만 입력 가능합니다.")
+			return false;
+		}
+		
+		
+	}
+	
+	
 
 	$(function() {
 		$("#saveBtn").on("click", function() {
-			$.ajax({
-				 url: 'repInfoInsert',
-		          type: 'POST',
-		          data: {rep_name: $("#rep_name").val(),
-		        	  	 rep_email: $("#rep_email").val(),
-		        	  	 rep_tax_email: $("#rep_tax_email").val(),
-		        	  	 rep_tax_bank: $("#rep_tax_bank").val(),
-		        	  	 rep_tax_account: $("#rep_tax_account").val(),
-		        	  	 rep_tax_depositor: $("#rep_tax_depositor").val()
-		          },
-		          success: function(response) {
-		        	  alert("성공");
-		          },
-		          error: function(xhr, status, error) {
-		          }
-			})
-			
-			
+			if(checkNull() != false){
+				$.ajax({
+					 url: 'repInfoInsert',
+			          type: 'POST',
+			          data: {rep_name: $("#rep_name").val(),
+			        	  	 rep_email: $("#rep_email").val(),
+			        	  	 rep_tax_email: $("#rep_tax_email").val(),
+			        	  	 rep_tax_bank: $("#rep_tax_bank").val(),
+			        	  	 rep_tax_account: $("#rep_tax_account").val(),
+			        	  	 rep_tax_depositor: $("#rep_tax_depositor").val()
+			          },
+			          success: function(response) {
+			        	  alert("대표자 및 정산정보가 등록되었습니다!");
+			          }
+				})
+			}
 		})
 		
 		// 05-31 김동욱 대표자 정보 가져오기를 성공하면 값 입력 후 비활성화
@@ -42,22 +104,20 @@
 			type: 'POST',
 			dataType: "json",
 			success: function(response) {
-				$("#rep_name").val(response.rep_name);
-				$("#rep_name").attr("disabled", true);
-				$("#rep_email").val(response.rep_email);
-				$("#rep_email").attr("disabled", true);
-				$("#rep_tax_email").val(response.rep_tax_email);
-				$("#rep_tax_email").attr("disabled", true);
-				$("#rep_tax_bank").val(response.rep_tax_bank);
-				$("#rep_tax_bank").attr("disabled", true);
-				$("#rep_tax_account").val(response.rep_tax_account);
-				$("#rep_tax_account").attr("disabled", true);
-				$("#rep_tax_depositor").val(response.rep_tax_depositor);
-				$("#rep_tax_depositor").attr("disabled", true);
-				$("#saveBtn").attr("disabled", true);
 				 if(response != ""){
-				 	$(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
-				 	$("#representative_info").val("Y");
+					$("#rep_name").val(response.rep_name);
+					$("#rep_name").attr("disabled", true);
+					$("#rep_email").val(response.rep_email);
+					$("#rep_email").attr("disabled", true);
+					$("#rep_tax_email").val(response.rep_tax_email);
+					$("#rep_tax_email").attr("disabled", true);
+					$("#rep_tax_bank").val(response.rep_tax_bank);
+					$("#rep_tax_bank").attr("disabled", true);
+					$("#rep_tax_account").val(response.rep_tax_account);
+					$("#rep_tax_account").attr("disabled", true);
+					$("#rep_tax_depositor").val(response.rep_tax_depositor);
+					$("#rep_tax_depositor").attr("disabled", true);
+					$("#saveBtn").attr("disabled", true);
 				 }
 			}
 		})

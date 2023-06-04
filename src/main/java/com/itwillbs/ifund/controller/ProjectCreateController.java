@@ -44,11 +44,8 @@ public class ProjectCreateController {
 		}
 		int member_idx = (Integer)session.getAttribute("member_idx");
 		int projectCheckCount = projectCreateService.myProjectCheck(member_idx, project_idx);
-		if(session.getAttribute("member_idx") == null) {
-			return "redirect:/login";
-		}
 		if(projectCheckCount == 0) {
-			model.addAttribute("msg", "해당 프로젝트에 대한 권한이 없습니다.");
+			model.addAttribute("msg", "해당 프로젝트에 대한 접근 권한이 없습니다.");
 			return "fail_back";
 		}
 		return target;
