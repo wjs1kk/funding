@@ -171,5 +171,10 @@ public class ProjectCreateService {
 	public int approveProjectCount(int maker_idx, int project_idx) {
 		return mapper.approveProjectCount(maker_idx, project_idx);
 	}
+	
+	// 06-04 김동욱 해당 프로젝트가 자신의 세션값과 동일한 지 확인
+	public int myProjectCheck(Integer member_idx, int project_idx) {
+		return mapper.myProjectCheck(member_idx, project_idx);
+	}
 		
 }

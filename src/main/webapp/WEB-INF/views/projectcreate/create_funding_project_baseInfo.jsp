@@ -79,7 +79,12 @@
 		          data: {project_idx: ${param.project_idx}},
 		          dataType: "json",
 		          success: function(response) {
-		        	  
+		        	 
+		        	 $("#project_title").val(response.project_title);
+		        	 
+		        	 if(response.project_adult == "1"){
+			        	 $("#project_adult").prop("checked", true);
+		        	 }
 		        	  
 					// project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
 					if(response.project_approve_status == "2" || response.project_approve_status == "3"){

@@ -220,6 +220,21 @@
 					          dataType: "json",
 					          success: function(response) {
 					        	  
+					        	  // 카테고리 정보 출력
+					        	  $("#project_category").val(response.project_category);
+					        	  
+					        	  // 프로젝트 타입에 해당하는 라디오 버튼 체크
+					        	  if(response.project_type == "1"){
+					        		  $("#FUNDING").prop('checked', true)
+					        	  }else if(response.project_type == "2"){
+					        		  $("#PREORDER").prop('checked', true)
+					        	  }
+					        	  // 프로젝트 소개 출력
+					        	  $("#project_introduce").val(response.project_introduce)
+					        	  
+					        	  // 프로젝트 목표금액 출력
+					        	  $("#project_target").val(response.project_target);
+					        	  
 					        	  // project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
 					        	  if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 					        		  $("#save").attr("disabled", true);

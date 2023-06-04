@@ -41,8 +41,6 @@
         	  		}
         	  	}
 	          },
-	          error: function(xhr, status, error) {
-	          }
       	});
 	}
 	
@@ -62,29 +60,20 @@
 	        	  // 한번 포커스 이후 페이지 스크롤 위로 이동
 	        	  $("#AppLayout_Contents").scrollTop(0);
 	        	  
-	          },
-	          error: function(xhr, status, error) {
-	            console.log(error);
 	          }
     	});
-		
 	}
-	
 	// 05-22 김동욱 ajax 이미지 리스트 삭제
 	
 	function deleteImage(image) {
-		
 		$.ajax({
 			 url: 'projectUpdateCheck',
 	          type: 'POST',
 	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
-	        	  
-	        	  
         		  let result = confirm("이미지를 삭제하시겠습니까?");
-	        	  
-	        	  if(response.project_approve_status == "2" && response.project_update_status == "2"){
+	        	  if(response.project_approve_status == "2" && response.project_update_status == "2"){ // project_approve_status가 이미 승인된 상태이지만 수정신청을 해서 승인이 되면 수정 가능
 	        			if(result == true){
 	        				$.ajax({
 	        			          url: 'deleteProjectImage',
@@ -99,12 +88,9 @@
 	        			          }
 	        		    	});
 	        			}
-					}else if(response.project_approve_status == "2" || response.project_approve_status == "3"){
-						
+					}else if(response.project_approve_status == "2" || response.project_approve_status == "3"){ // project_approve_status가 승인상태이거나 거부 상태이면 수정 불가능
 						alert("이미 진행이된 프로젝트는 수정이 불가능합니다");
-						
-					}else if(response.project_approve_status == "0" || response.project_approve_status == "1"){
-						
+					}else if(response.project_approve_status == "0" || response.project_approve_status == "1"){ // project_approve_status가 제출하기 전이나 제출상태이면 삭제 가능
 						if(result == true){
 	        				$.ajax({
 	        			          url: 'deleteProjectImage',
@@ -119,33 +105,23 @@
 	        			          }
 	        		    	});
 	        			}
-						
 					}
-	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
-		
 	}
 	
 	$(function() {
-		
 		// 이미지 리스트 출력
 		getPorjectImages()
-		
 		// 프로젝트 요약, 프로젝트 컨텐트 정보 출력
 		getProjectStory()
-		
 		// 이미지 추가
 		$("#addImageBtn").on("click", function() {
 			var formData = new FormData();
 	        var files = $('#images')[0].files;
-	        
 	        for (var i = 0; i < files.length; i++) {
 	          formData.append('files', files[i]);
 	        }
-			
 			$.ajax({
 		          url: 'imagesUpaload?project_idx='+${param.project_idx},
 		          type: 'POST',
@@ -157,12 +133,8 @@
 	        	  	$("input[id=images]").val("");
 	        	  	getPorjectImages()
 	        	  	alert("이미지가 등록되었습니다!")
-		          },
-		          error: function(xhr, status, error) {
-		            console.log(error);
 		          }
 	        });
-			
 		})
 		
 		// 05-31 김동욱 승인 여부 확인 후 저장버튼, 이미지 추가버튼, 이미지 삭제버튼 비활성화
@@ -172,7 +144,6 @@
 	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
-	        	  
 	        		// project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
 					if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 	        		  $("#addImageBtn").attr("disabled", true);
@@ -184,13 +155,8 @@
 	        		  $("#addImageBtn").attr("disabled", false);
 	        		  $("#saveBtn").attr("disabled", false);
 					}
-	        	  
-	        	  
-	          },
-	          error: function(xhr, status, error) {
 	          }
 		})
-		
 	})
 </script>
 	

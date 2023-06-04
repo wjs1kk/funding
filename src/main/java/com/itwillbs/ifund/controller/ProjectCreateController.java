@@ -33,10 +33,26 @@ import com.itwillbs.ifund.vo.RewardVO;
 @Controller
 public class ProjectCreateController {
 	
-	//05-16 김동욱 projectCreateService 추가
+	// 05-16 김동욱 projectCreateService 추가
 	@Autowired
 	private ProjectCreateService projectCreateService;
 	
+	// 06-04 김동욱 해당 프로젝트가 자신의 세션값과 동일한 지 확인 메서드
+	private String myProjectCheck(int project_idx, HttpSession session, Model model, String target) {
+		if(session.getAttribute("member_idx") == null) {
+			return "redirect:/login";
+		}
+		int member_idx = (Integer)session.getAttribute("member_idx");
+		int projectCheckCount = projectCreateService.myProjectCheck(member_idx, project_idx);
+		if(session.getAttribute("member_idx") == null) {
+			return "redirect:/login";
+		}
+		if(projectCheckCount == 0) {
+			model.addAttribute("msg", "해당 프로젝트에 대한 권한이 없습니다.");
+			return "fail_back";
+		}
+		return target;
+	}
 	@GetMapping("intro")
 	public String intro(HttpSession session) {
 		if(session.getAttribute("member_idx") == null) {
@@ -45,43 +61,42 @@ public class ProjectCreateController {
 		return "projectcreate/intro";
 	}
 	@GetMapping("project/main")
-	public String create_funding() {
-		
-		return "projectcreate/create_funding";
+	public String create_funding(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding");
 	}
 	@GetMapping("project/plan")
-	public String create_funding_plan_select(Model model, ProjectVO project) {
-		return "projectcreate/create_funding_plan_select";
+	public String create_funding_plan_select(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_plan_select");
 	}
 //	프로젝트 정보
 	@GetMapping("project/screening")
-	public String create_funding_project_info() {
-		return "projectcreate/create_funding_project_info";
+	public String create_funding_project_info(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_project_info");
 	}
 	@GetMapping("project/makerInfo")
-	public String create_funding_maker_Info() {
-		return "projectcreate/create_funding_maker_Info";
+	public String create_funding_maker_Info(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_maker_Info");
 	}
 	@GetMapping("project/contractInfo")
-	public String create_funding_contract_Info() {
-		return "projectcreate/create_funding_contract_Info";
+	public String create_funding_contract_Info(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_contract_Info");
 	}
 	@GetMapping("project/story")
-	public String create_funding_project_story() {
-		return "projectcreate/create_funding_project_story";
+	public String create_funding_project_story(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_project_story");
 	}
 	@GetMapping("project/policy")
-	public String create_funding_project_policy() {
-		return "projectcreate/create_funding_project_policy";
+	public String create_funding_project_policy(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_project_policy");
 	}
 	@GetMapping("project/baseinfo")
-	public String create_funding_project_baseInfo() {
-		return "projectcreate/create_funding_project_baseInfo";
+	public String create_funding_project_baseInfo(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_project_baseInfo");
 	}
 	// 05-16 김동욱 리워드 설계 페이지 추가
 	@GetMapping("project/reward")
-	public String create_funding_project_reward() {
-		return "projectcreate/create_funding_project_reward";
+	public String create_funding_project_reward(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/create_funding_project_reward");
 	}
 	//05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성
 	@GetMapping("projectCreate")

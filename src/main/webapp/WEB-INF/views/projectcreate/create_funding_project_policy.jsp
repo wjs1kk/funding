@@ -62,6 +62,16 @@
 	          dataType: "json",
 	          success: function(response) {
 	        	  
+	        	  // project_AS 값이 널스트링이 아니면 project_AS에 값 출력 및 정책 체크
+	        	  if(response.project_AS != ""){
+		        	  $("#project_AS").val(response.project_AS)
+		        	  
+		        	  for(let i = 1; i <= 4; i++){
+		        	 	 $("#check_"+i).prop("checked", true);
+		        	  }
+	        	 	  $("#check_result").prop("checked", true);
+		        	  
+	        	  }
 	        	  // project_approve_status가 2(승인)또는 3(거부)이면 저장버튼 비활성화
 	        	  if(response.project_approve_status == "2" || response.project_approve_status == "3"){
 	        		  $("#save").attr("disabled", true);

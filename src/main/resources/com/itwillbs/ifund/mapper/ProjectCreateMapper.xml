@@ -294,5 +294,12 @@
 		</if>
 			project_approve_status = "2";
  	</select>
+ 	
+ 	<!--  06-04 김동욱 해당 프로젝트가 자신의 세션값과 동일한 지 확인 -->
+ 	<select id="myProjectCheck" resultType="int">
+ 		SELECT COUNT(*)
+		FROM project
+		WHERE project_idx = #{project_idx} and member_idx = #{member_idx};
+ 	</select>
 
   </mapper>
