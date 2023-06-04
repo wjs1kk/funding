@@ -215,7 +215,7 @@ window.onload = function() {
 									<tbody class="table-border-bottom-0">
 										<c:forEach var="projectList" items="${projectList }">
 											<tr class="cursor-pointer"
-												onclick="location.href='projectList/${projectList.project_idx}'">
+												onclick="location.href='projectList/detail/${projectList.project_idx}'">
 												<td>${projectList.project_idx }</td>
 												<c:choose>
 													<c:when test="${projectList.project_type eq 0}">
