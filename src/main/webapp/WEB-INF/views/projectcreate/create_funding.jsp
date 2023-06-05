@@ -14,36 +14,36 @@
 
 <script type="text/javascript">
 	
-	
-	
-	// 05-29 김동욱 각 항목 업데이트 여부 확인후 작성중 -> 작성 완료로 변경
-	$(function() {
-		//05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
-		$.ajax({
-				 url: 'getProjectReward',
-		          type: 'POST',
-		          data: {project_idx: ${param.project_idx}},
-		          dataType: "json",
-		          success: function(response) {
-		        	  if(response != ""){
-		        		 $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
-	   				 	 $("#project_reward").val("Y");
-		        	  }
-		          }
-		})
-
-		// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
-		 $.ajax({
-			 url: 'getMyRepresentativeInfo',
+	//05-30 김동욱 리워드 설계를 작성했는 지 확인 후 작성 완료로 변경
+	$.ajax({
+			 url: 'getProjectReward',
 	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
 	          dataType: "json",
 	          success: function(response) {
 	        	  if(response != ""){
-	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
-	        		  $("#representative_info").val("Y");
+	        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(4).text("작성 완료");
+   				  $("#project_reward").val("Y");
 	        	  }
 	          }
-		})
+	})
+
+	// 05-30 김동욱 대표자 정산 정보가 있는지 확인 후 작성완료로 변경
+	 $.ajax({
+		 url: 'getMyRepresentativeInfo',
+          type: 'POST',
+          dataType: "json",
+          success: function(response) {
+        	  if(response != ""){
+        		  $(".PageMenuList_card__1VyAW>.PageMenuList_container__1xz-L>.PageMenuList_status__3M6fF").eq(7).text("작성 완료");
+        		  $("#representative_info").val("Y");
+        	  }
+          }
+	})
+	
+	// 05-29 김동욱 각 항목 업데이트 여부 확인후 작성중 -> 작성 완료로 변경
+	$(function() {
+		
 		$.ajax({
 			 url: 'projectUpdateCheck',
 	          type: 'POST',
@@ -98,13 +98,22 @@
 	        		 // 프로젝트 준비상태 Green색으로 변경후 작성 완료로 변경
 					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 작성 완료')
 	        	  }
+	        	  
 	        	  // project_approve가 제출전인 null 스트링이 아니면 제출하기 버튼 비활성화 및 제출 완료로 변경
-	        	  if(response.project_approve_status != "0"){
-		        	  $("#submitBtn").attr("disabled", true).text("제출 완료");
-					$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 제출 완료')
+	        	  if(response.project_approve_status == "1"){
+			        	$("#submitBtn").attr("disabled", true).text("제출 완료");
+						$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 제출 완료')
+	        	  }else if(response.project_approve_status == "2"){
+		        	 	$("#submitBtn").attr("disabled", true).text("승인 완료");
+						$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx green"></div> 승인 완료')
+	        	  }else if(response.project_approve_status == "3"){
+			        	$("#submitBtn").attr("disabled", true).text("비승인");
+						$(".FundingStatus_statusView__D10Ag").eq(1).html('<div class="FundingStatus_icon__1Xrqx red"></div> 프로젝트를 승인 받지 못 하였습니다.')
 	        	  }
+	        	  
 	          }
 		})
+    		
    		// 05-30 김동욱 프로젝트 제출하기
 		$("#submitBtn").on("click", function() {
 			$.ajax({
