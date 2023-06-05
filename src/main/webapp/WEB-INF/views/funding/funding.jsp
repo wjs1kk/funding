@@ -48,7 +48,6 @@
 		location.href="detail?num="+project_idx;	
 	}
 </script>
-
 </head>
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
@@ -390,16 +389,29 @@
 												</span></span>
 											</div>
 										</div>
-										<div class="PreorderMainCard_title__XlTJk">
-											${projectDetailList.project_title }</div>
-										<div class="PreorderMainCard_subText__1LB5l">
-											<span class="PreorderMainCard_makerName__2Ufj1">${projectDetailList.maker_name }</span>
+										<div class="PreorderMainCard_headerRight__3rRNi">
+											<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
+												class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
+												<script type="text/javascript">
+													var project_end_date = new Date("${projectDetailList.project_end_date}");
+													var now = new Date();
+													var diff = project_end_date - now;
+													var diffDay = Math.ceil(diff/(1000*60*60*24));
+													document.write(diffDay)
+												</script>
+												일 남음</span></span>
+												
 										</div>
 									</div>
-									<div class="CardSpinner_container__1cKRs">
-										<div class="CardSpinner_loader__2-LrZ"
-											style="width: 32px; height: 32px;">
-											<svg viewBox="25 25 50 50" aria-label="Loading">
+									<div class="PreorderMainCard_title__XlTJk">${projectDetailList.project_title }</div>
+									<div class="PreorderMainCard_subText__1LB5l">
+										<span class="PreorderMainCard_makerName__2Ufj1">${projectDetailList.maker_name }</span>
+									</div>
+								</div>
+								<div class="CardSpinner_container__1cKRs">
+									<div class="CardSpinner_loader__2-LrZ"
+										style="width: 32px; height: 32px;">
+										<svg viewBox="25 25 50 50" aria-label="Loading">
 											<g class="Loader_circular__2dy3E">
 											<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
 													fill="none" stroke-width="4" stroke-miterlimit="10"></circle></g></svg>
@@ -419,8 +431,9 @@
 									</button>
 								</div>
 							</div>
+						</div>
 						</c:forEach>
-						<!-- 						funding project 목록 끝 -->
+<!-- 						funding project 목록 끝 -->
 					</div>
 				</div>
 			</div>

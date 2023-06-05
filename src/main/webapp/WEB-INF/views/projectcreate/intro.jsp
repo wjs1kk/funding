@@ -194,7 +194,8 @@
 												class="withIcon_icon__3lrgp" aria-hidden="true">
 												<path d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>이전</span></span>
 								</button>
-								<button class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD" onclick="location.href='project/main'">
+								<button class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD" 
+								onclick="main()">
 									<span><span class="Button_children__q9VCZ">시작하기</span></span>
 								</button>
 							</div>
@@ -204,7 +205,6 @@
 				</div>
 			</div>
 		</div>
-
 <script type="text/javascript">
 <!-- 좋아요 누르면 진행단계나옴 -->
 	$("#nextstep").on("click", function() {
@@ -216,6 +216,10 @@
 		$('#step1').show();
 		$('#step2').hide();
 	});
+	
+	function main() {
+		location.href="project/main?project_idx=" + ${projectNum}
+	}
 </script>
 </body>
 </html>

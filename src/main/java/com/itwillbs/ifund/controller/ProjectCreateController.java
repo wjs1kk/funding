@@ -51,10 +51,13 @@ public class ProjectCreateController {
 		return target;
 	}
 	@GetMapping("intro")
-	public String intro(HttpSession session) {
+	public String intro(HttpSession session, Model model) {
 		if(session.getAttribute("member_idx") == null) {
 			return "redirect:/login";
 		}
+		int projectNum = projectCreateService.projectStart();
+		System.out.println(projectNum);
+		model.addAttribute("projectNum", projectNum);
 		return "projectcreate/intro";
 	}
 	@GetMapping("project/main")

@@ -115,7 +115,7 @@
 							<c:otherwise>
 								<div>
 									<div>
-										<button onclick="location.href='intro'" aria-label="프로젝트 만들기"
+										<button onclick="location.href='projectCreate'" aria-label="프로젝트 만들기"
 											class="Button_button__2FuOU Button_primary__2mZni Button_md__46Ai- funding-open-button"
 											type="button">
 											<span><span class="Button_children__ilFun">프로젝트

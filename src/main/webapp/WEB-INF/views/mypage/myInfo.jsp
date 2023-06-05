@@ -51,6 +51,7 @@
 
 		<div id="accountWrap">
 			<div id="newContainer">
+				<!-- account-wrap -->
 				<div class="account-wrap" style="padding: 80px 20px;">
 					<h2>기본 정보 설정</h2>
 					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
@@ -117,6 +118,12 @@
 								<div class="" style="width: 310px">
 									<input type="email" id="userName" name="userName"
 										class="disable input-text" placeholder="이메일 계정" value="${member.member_email}" disabled="">
+								</div>
+								<div id="emailCheckBtn" class="emailAuthBtn btn" style="display: none;" data-status="check">
+									<a href="#" onclick="return false;"> <span>인증하기</span> </a>
+								</div>
+								<div id="emailRetryBtn" class="emailAuthBtn btn" style="display: none;" data-status="retry">
+									<a href="#" onclick="return false;"> <span>재전송</span></a>
 								</div>
 							</div>
 

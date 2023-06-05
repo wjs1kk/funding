@@ -176,5 +176,10 @@ public class ProjectCreateService {
 	public int myProjectCheck(Integer member_idx, int project_idx) {
 		return mapper.myProjectCheck(member_idx, project_idx);
 	}
+
+	// 06-02 강정운 프로젝트 제작시 생성된 프로젝트로 이동
+	public int projectStart() {
+		return mapper.projectStart();		
+	}
 		
 }

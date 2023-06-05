@@ -39,10 +39,8 @@
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizHeader_switch__2WQSt" role="tablist">
 									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true" onclick="location.href='supporter'"
 										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ MyWadizUserTypeSwitch_active__dwn-k"></button>
-									<!-- 05-16 김동욱 메이커 페이지로 이동하는 href 추가 -->
-									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false"
-										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"
-										onclick="location.href = 'maker'"></button>
+									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false" onclick="location.href='maker'"
+										aria-label="maker" data-event="maker_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_maker__3C77T"></button>
 								</div>
 							</div>
 						</div>
@@ -53,8 +51,14 @@
 								<div class="MyWadizSupporterProfile_profileContainer__1q7eh">
 									<h3 class="BlindText_textHidden__ovQb4">나의 프로필</h3>
 									<div class="MyWadizSupporterProfile_profileImage__1eEvS">
-										<button class="MyWadizSupporterProfile_detailProfile__1JImc profileImg" aria-label="프로필 상세 보기" data-event="profile"
-											style="background-image: profileImg"></button>
+										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
+											aria-label="프로필 상세 보기" data-event="profile"
+											style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-4.png&quot;);"></button>
+										<button onclick="location.href='myInfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
+											aria-label="프로필 편집하기" data-event="profile_edit">
+											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+												<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path></svg>
+										</button>
 									</div>
 									<div class="MyWadizSupporterProfile_profileUser__a_r1P">
 										<button data-event="profile">

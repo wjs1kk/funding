@@ -302,5 +302,12 @@
 		FROM project
 		WHERE project_idx = #{project_idx} and member_idx = #{member_idx};
  	</select>
+ 	
+ 	<!-- 		// 06-02 강정운 프로젝트 제작시 생성된 프로젝트로 이동 -->
+	<select id="projectStart" resultType="int">
+		SELECT MAX(project_idx)
+		FROM project
+	</select>
+ 	
 
   </mapper>

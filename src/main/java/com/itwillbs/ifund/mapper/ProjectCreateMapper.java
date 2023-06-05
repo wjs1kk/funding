@@ -83,5 +83,7 @@ public interface ProjectCreateMapper {
 	int approveProjectCount(@Param("maker_idx") int maker_idx, @Param("project_idx") int project_idx);
 	// 06-04 김동욱 해당 프로젝트가 자신의 세션값과 동일한 지 확인
 	int myProjectCheck(@Param("member_idx") int member_idx, @Param("project_idx") int project_idx);
+	// 06-02 강정운 프로젝트 제작시 생성된 프로젝트로 이동
+	int projectStart();
 
 }

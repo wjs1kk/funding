@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,9 @@
 					<div class="RewardDetailDesktop_header__23GTQ">
 						<div class="Tabs_container__3W2T2">
 							<ul class="Tabs_tabs__2Zild">
-								<li class="Tabs_tab__uDNaK Tabs_active__18kjj"><a>스토리</a></li>
+								<li class="Tabs_tab__uDNaK Tabs_active__18kjj">
+								<a>스토리</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -38,8 +40,7 @@
 								<div class="RewardImageSlider_container__17EBj">
 									<div class="RewardImageSlider_slickList__2wKh0">
 										<div class="slick-slider slick-initialized" dir="ltr">
-											<button type="button"
-												class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>
+											<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>
 											<div class="slick-list" style="height: 386px;">
 												<div class="slick-track"
 													style="width: 5472px; opacity: 1; transform: translate3d(-608px, 0px, 0px);">
@@ -212,7 +213,8 @@
 									<div class="Story_expandable__hnbsV">
 										<div>
 											<div class="inner-contents fr-view">
-												${selectFundingDetail.project_content }</div>
+												${selectFundingDetail.project_content }
+											</div>
 										</div>
 									</div>
 									<div class="Story_button__AG0eO">
@@ -337,35 +339,25 @@
 											<div class="BaseFundingInfo_rate__1uMoD">
 												<div class="BaseFundingInfo_infoWrapper__23LoT">
 													<span class="BaseFundingInfo_achivementRate__1Cnsy">
-														<fmt:formatNumber
-															value="${(selectFundingDetail.project_detail_amount/selectFundingDetail.project_target)}"
-															type="percent" />
-													</span><span class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
+													<fmt:formatNumber value="${(selectFundingDetail.project_detail_amount/selectFundingDetail.project_target)}" type="percent"/>
+													</span><span
+														class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
 												</div>
 												<span
 													class="Badge_container__9G9PS Badge_visible__3LNXv BaseFundingInfo_remainingDay__2ooL6"><span
 													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_md__1Ck0w Badge_primary__tTdjx Badge_tertiary__3uYKh">
-														<script type="text/javascript">
-															var project_end_date = new Date(
-																	"${selectFundingDetail.project_end_date}");
-															var now = new Date();
-															var diff = project_end_date
-																	- now;
-															var diffDay = Math
-																	.ceil(diff
-																			/ (1000 * 60 * 60 * 24));
-															document
-																	.write(
-																			diffDay)
-														</script> 일 남음
-												</span></span>
+													<script type="text/javascript">
+														var project_end_date = new Date("${selectFundingDetail.project_end_date}");
+														var now = new Date();
+														var diff = project_end_date - now;
+														var diffDay = Math.ceil(diff/(1000*60*60*24));
+														document.write(diffDay)
+													</script>
+														일 남음</span></span>
 											</div>
 											<div class="BaseFundingInfo_rate__1uMoD">
 												<p class="BaseFundingInfo_totalBackedAmount__1ezH_">
-													<fmt:formatNumber
-														value="${selectFundingDetail.project_detail_amount}"
-														type="Number" />
-													<span>원</span>
+													<fmt:formatNumber value="${selectFundingDetail.project_detail_amount}" type="Number"/><span>원</span>
 												</p>
 												<span
 													class="Badge_container__9G9PS Badge_visible__3LNXv BaseFundingInfo_remainingDay__2ooL6"><span
@@ -374,7 +366,7 @@
 											</div>
 										</div>
 										<div class="BaseFundingInfo_divider__3U_IP"></div>
-
+										
 									</div>
 									<div class="CommonInfo_popBanner__1Y1Y_"></div>
 									<div class="RewardCTA_container__1F4fy">
@@ -395,10 +387,8 @@
 															</div></span></span>
 												</button>
 											</div>
-
 										</div>
-										<div class="RewardCTA_right__2UBW-"
-											onclick="location.href='rewardSelect?num=${param.num}'">
+										<div class="RewardCTA_right__2UBW-" onclick="location.href='rewardSelect?num=${param.num}'">
 											<div class="RewardCTA_buttonWrap__wNKI4">
 												<button
 													class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_md__46Ai- Button_block__1-g8w RewardCTA_button__2rh9i"
@@ -420,8 +410,10 @@
 														</div>
 														<div class="MakerInfoHeader_texts__2IMv2">
 															<span class="MakerInfoHeader_makerName__jLMZK">
-																${selectMaker.maker_name } </span>
-														</div></a>
+																${selectMaker.maker_name }
+															</span>
+														</div>
+													</a>
 												</div>
 												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_sm__16X6h Button_startIcon__3p6wN" 
 													type="button">
@@ -434,7 +426,6 @@
 												</button>
 
 											</div>
-
 										</section>
 									</section>
 									<div class="RewardProjectReportContainer_container__1ssCQ">
@@ -458,8 +449,7 @@
 												<p>리워드 선택</p>
 												<div class="Rewards_period__Mo1m-">
 													<p>진행기간</p>
-													<p>${selectFundingDetail.project_start_date }~
-														${selectFundingDetail.project_end_date }</p>
+													<p>${selectFundingDetail.project_start_date } ~ ${selectFundingDetail.project_end_date }</p>
 												</div>
 											</div>
 											<div class="Rewards_listBox__182Ct">
@@ -522,7 +512,57 @@
 															</div>
 														</div>
 													</c:forEach>
-													<!-- 													리워드카드 끝 -->
+												
+<!-- 												리워드 카드 -->
+													<c:forEach items="${selectReward }" var="selectReward">
+													<div style="position: relative;">
+														<div class="Reward_container__2wOvB Reward_expand__37mL_" onclick="location.href='rewardSelect?num=${param.num}&select=${selectReward.reward_idx }'">
+															<div class="Reward_header__vFj8i">
+																<div class="Reward_headerLeft__JbqPa">
+																	<div class="Reward_amount__3JffI">
+																		<fmt:formatNumber value="${selectReward.reward_amount }" type="Number"/>원<span
+																			class="Badge_container__9G9PS Badge_visible__3LNXv Reward_remainQty__1XU3v"><span
+																			class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_md__1Ck0w Badge_primary__tTdjx Badge_tertiary__3uYKh">현재
+																				<fmt:formatNumber value="${selectReward.reward_quantity - selectReward.reward_sell}" type="Number"/>개 남음!</span></span>
+																	</div>
+																	<p class="Reward_name__36iTj">${selectReward.reward_name }</p>
+																</div>
+															</div>
+															<div class="Reward_divider__36X-n"></div>
+															<div class="Reward_content__2w7cv">
+																<div class="Reward_innerContent__1_sHz">
+																	${selectReward.reward_content }
+																	<div class="Reward_subInfoContainer__2xWOx">
+																		<div class="Reward_divider__36X-n"></div>
+																		<div class="Reward_subInfo__1ahoF">
+																			<span>배송비</span>
+																				<c:choose>
+																					<c:when test="${selectReward.reward_delivery_fee eq '0'}">
+																						<span class="Reward_infoValue__1_qLb">무료배송</span>
+																					</c:when>
+																					<c:otherwise>
+																						<span class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_fee} 원</span>
+																					</c:otherwise>
+																				</c:choose>
+																			
+																		</div>
+																		<div class="Reward_divider__36X-n"></div>
+																		<div class="Reward_subInfo__1ahoF">
+																			<span>발송 시작일</span>
+																			<span class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_date } 예정</span>
+																		</div>
+																		<div class="Reward_divider__36X-n"></div>
+																		<div class="Reward_subInfo__1ahoF">
+																			<span>제한 수량</span><span
+																				class="Reward_infoValue__1_qLb"><fmt:formatNumber value="${selectReward.reward_quantity }" type="Number"/>개</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													</c:forEach>
+<!-- 													리워드카드 끝 -->
 												</div>
 											</div>
 										</div>
@@ -544,7 +584,6 @@
 																</div></span></span>
 													</button>
 												</div>
-
 											</div>
 											<div class="RewardCTA_right__2UBW-">
 												<div class="RewardCTA_buttonWrap__wNKI4"
