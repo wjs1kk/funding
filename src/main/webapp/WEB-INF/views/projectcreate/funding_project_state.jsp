@@ -9,8 +9,14 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
+
+
+
+
 <!-- 05-29 김동욱 jquery 라이브러리 추가 -->
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+
+
+
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
@@ -28,14 +34,13 @@
 						<div class="FundingLayout_container___Cixh">
 							<div class="FundingLayout_contents__12sTn">
 								<div class="FundingContainer_listContainer__1jw_z">
-									<div>
 									
 									
 									<h3>funding_project_state.jsp</h3>
 									
 									
 									
-									</div>
+									
 								</div>
 							</div>
 						</div>
