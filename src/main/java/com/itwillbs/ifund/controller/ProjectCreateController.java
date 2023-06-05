@@ -470,6 +470,19 @@ public class ProjectCreateController {
 	public void projectApproveSubmit(int project_idx) {
 		int updateCount = projectCreateService.projectApproveSubmit(project_idx);
 	}
+	
+	@GetMapping("project/fundingProjectState")
+	public String fundingProjectState(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_state");
+	}
+	@GetMapping("project/projectShipmentRefund")
+	public String projectShipmentRefund(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_shipmentRefund");
+	}
+	@GetMapping("project/projectFeeCalculate")
+	public String projectFeeCalculate(int project_idx, HttpSession session, Model model) {
+		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_feeCalculate");
+	}
 
 	
 }
