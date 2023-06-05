@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html lang="ko" class="">
 <head>
 
@@ -21,13 +23,9 @@
 						<h2 class="CouponHeader_title__3c4F1">쿠폰</h2>
 						<nav class="CouponHeader_nav__RB-oN CouponHeader_large__3awJs">
 							<ul>
-								<li><a aria-current="page"
-									class="CouponHeader_link__1-ZCz CouponHeader_active__343sL"
-									href="/web/wmypage/mybenefit/coupon/my">나의 쿠폰<em>2</em></a></li>
-<!-- 								<li><a class="CouponHeader_link__1-ZCz" -->
-<!-- 									href="/web/coupon-zone">쿠폰존<em>4</em></a></li> -->
-								<li><a class="CouponHeader_link__1-ZCz"
-									href="/web/wmypage/mybenefit/coupon/last">지난 쿠폰 내역</a></li>
+								<li><a aria-current="page" class="CouponHeader_link__1-ZCz CouponHeader_active__343sL"
+									href="/web/wmypage/mybenefit/coupon/my">나의 쿠폰<em></em></a></li>
+								<li><a class="CouponHeader_link__1-ZCz" href="couponzone">쿠폰존<em></em></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -65,6 +63,10 @@
 										</div>
 									</div>
 								</div>
+								
+<%-- 								<c:forEach items="${coupon }" var="coupon"> --%>
+								
+								
 								<div class="ListContainer_container__2W37J">
 									<div class="MyCouponList_item__39RZo">
 										<div class="CouponItem_container__UnsjV">
@@ -108,48 +110,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="MyCouponList_item__39RZo">
-										<div class="CouponItem_container__UnsjV">
-											<p class="CouponItem_campaign__1O-2L">스토어</p>
-											<div class="StoreCouponItem_container__vV51o">
-												<dl>
-													<dt class="BlindText_textHidden__ovQb4">할인 정보</dt>
-													<dd class="StoreCouponItem_conditional__Sq7iw">
-														<span class="StoreCouponItem_text__1hXx1">5%</span>
-													</dd>
-													<dt class="BlindText_textHidden__ovQb4">쿠폰명</dt>
-													<dd class="StoreCouponItem_title__8KAlp">스토어 ONLY 5% 쿠폰</dd>
-													<dt class="BlindText_textHidden__ovQb4">쿠폰 상세 정보</dt>
-													<dd>
-														<div class="CouponInfoTable_table__3Keqy">
-															<table>
-																<tbody>
-																	<tr>
-																		<th scope="row">유효기간</th>
-																		<td>2023.05.31 23시 59분</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">사용조건</th>
-																		<td>최대 50,000원 할인 가능</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">적용대상</th>
-																		<td><p>
-																				<a href="/web/store/collection/wadizonly" target="_blank" class="RewardCollectionLink_link__2CSYP">wadizonly
-																					<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-																						class="withIcon_icon__3VTbq withIcon_inline__1lwwX" aria-hidden="true">
-																						<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></a>
-																			</p></td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</dd>
-												</dl>
-											</div>
-										</div>
-									</div>
 								</div>
+<%-- 								</c:forEach> --%>
 							</div>
 						</div>
 					</div>

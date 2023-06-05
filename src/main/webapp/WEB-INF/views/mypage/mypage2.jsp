@@ -54,45 +54,12 @@ function maker() {
 											<button class="MyWadizMakerProfile_makerName__RJLqx" aria-label="메이커 정보 수정하기">
 												<b class="MyWadizMakerProfile_text__8kdAr"><span>와디즈 메이커님</span></b>
 											</button>
-											<button class="MyWadizMakerProfile_myFollower__13Qbd">
-												<span>내 팔로워</span>
-												<span class="MyWadizMakerProfile_value__3q2bE">0</span>
-											</button>
 										</div>
 									</div>
-									<button class="MyWadizMakerPageCompletion_container__-uhDn">
-										<strong class="BlindText_textHidden__ovQb4">페이지 만들기</strong>
-										<div class="MyWadizMakerPageCompletion_content__3vzUj">
-											<div class="MyWadizMakerPageCompletion_header__23t_l">
-												<div class="MyWadizMakerPageCompletion_titleWrapper__38DCM">
-													<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNyAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iI0NERDNEOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLjkzNCkiLz4KICAgICAgICA8ZyBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8cGF0aCBkPSJNOC45MzQgOGExLjk5NSAxLjk5NSAwIDAgMS0yLTIuMDI4YzAtMS4wNzcuODk4LTEuOTcyIDItMS45NzIgMS4xMDIgMCAyIC44OTUgMiAxLjk3MiAwIDEuMTYtLjg5OCAyLjAzNS0yIDIuMDI4ek0xMi40NzUgMTJINS4zOTNjLS4zMTYgMC0uNDU5LS4yMDEtLjQ1OS0uNDg0IDAtLjgzNCAxLjI3OC0zLjAxNiA0LTMuMDE2czQgMi4xODIgNCAzLjAxNmMwIC4yODMtLjE0My40ODQtLjQ1OS40ODR6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
-														alt="" class="MyWadizMakerPageCompletion_profileIcon__13-7j" aria-hidden="true"><span
-														class="MyWadizMakerPageCompletion_title__dKDis">메이커 페이지</span>
-												</div>
-												<span class="Badge_container__9G9PS Badge_visible__3LNXv">
-													<span class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_secondary__UV-TU Badge_circular__imzqr Badge_outlined__3DYIX">없음</span></span>
-											</div>
-											<p class="MyWadizMakerPageCompletion_description__34P_w">메이커 페이지 만들고 팔로워를 늘려보세요</p>
-										</div>
-										<div class="MyWadizMakerPageCompletion_button__2Zdp5">
-											<span class="MyWadizMakerPageCompletion_text__1Nn34">페이지 만들기</span>
-											<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-												class="withIcon_icon__3VTbq MyWadizMakerPageCompletion_arrowIcon__nAjwH" aria-hidden="true">
-												<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-										</div>
+									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
 									</button>
 									<div class="MyWadizMakerProfile_setting__3yxCI">
-										<p class="MyWadizLoginMode_loginMode__2smkD">
-											<span>
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-													<g fill="none" fill-rule="evenodd">
-													<path d="M0.8 0.645H15.600000000000001V15.355H0.8z"></path>
-													<path fill="#4285F4" d="M13.471 6.598c.085.388.129.79.129 1.202 0 .204-.01.405-.032.603-.158 1.478-.89 2.79-1.976 3.727L9.65 10.575c.568-.393 1.01-.944 1.257-1.587h-3.27v-2.39h5.834z"></path>
-													<path fill="#34A853" d="M7.4 11.61c.82 0 1.573-.29 2.161-.773l1.89 1.515C10.404 13.372 8.975 14 7.4 14c-2.35 0-4.373-1.397-5.284-3.406L4.1 9.061c.381 1.466 1.714 2.549 3.3 2.549z"></path>
-													<path fill="#FBBC05" d="M2.385 5.187l1.734 1.58c-.188.435-.294.92-.294 1.433 0 .408.067.799.19 1.161l-1.773 1.585c-.177-.354-.321-.73-.428-1.124l-.206-1.95c.051-.98.329-1.894.777-2.685z"></path>
-													<path fill="#EA4335" d="M7.6 2c1.662 0 3.166.653 4.253 1.708L10.11 5.405C9.47 4.778 8.582 4.39 7.6 4.39c-1.66 0-3.051 1.108-3.427 2.6L2.126 5.421C3.066 3.404 5.163 2 7.6 2z"></path></g></svg></span>
-													구글로 로그인 중
-										</p>
 										<button class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 											<span><span class="Button_children__lqBGI">로그아웃</span></span>
 										</button>
@@ -141,6 +108,21 @@ function maker() {
 																			<path d="M36.89 6.66H3.61a2 2 0 0 0-1.94 1.95v23.26a1.94 1.94 0 0 0 1.94 1.95h33.28a2 2 0 0 0 2-1.95V8.61a2 2 0 0 0-2-1.95zM3.67 31.87V8.66l33.17-.05v23.21z"></path>
 																			<path d="M21.15 22a1.33 1.33 0 0 1-1.8 0L8.07 11.69l-1.34 1.48L18 23.46a3.3 3.3 0 0 0 4.49 0l11.13-10.15-1.35-1.48z"></path></g></svg></span>
 																			<span class="MyWadizMenu_text__9ryGW">서포터 문의</span>
+																			<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
+																			<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+																			<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>
+														</ul>
+														<ul>
+															<li class="MyWadizMenu_menu__3b-H-">
+																<a href="maker_coupon">
+																	<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
+																	<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+																		<g data-name="레이어 2">
+																		<path d="M37.64 17.54l.86-.12V8.5a2 2 0 0 0-2-2h-33a2 2 0 0 0-2 2v8.92l.86.12a2.48 2.48 0 0 1 0 4.92l-.86.12v8.92a2 2 0 0 0 2 2h33a2 2 0 0 0 2-2v-8.92l-.86-.12a2.48 2.48 0 0 1 0-4.92zm-1.14 6.69v7.27h-33v-7.27a4.48 4.48 0 0 0 0-8.46V8.5h33v7.27a4.48 4.48 0 0 0 0 8.46z"></path>
+																		<path d="M18.16 16.73a2.66 2.66 0 1 0-2.66 2.66 2.66 2.66 0 0 0 2.66-2.66zm-3.8 0a1.14 1.14 0 1 1 1.14 1.14 1.14 1.14 0 0 1-1.14-1.14zm12.14 4.34a2.66 2.66 0 1 0 2.66 2.66 2.66 2.66 0 0 0-2.66-2.66zm0 3.8a1.14 1.14 0 1 1 1.14-1.14 1.14 1.14 0 0 1-1.14 1.14zm.43-10.45l-1.08-.98-10.99 12.01-.09.09 1.08.98 10.99-12.01.09-.09z"></path>
+																		<path fill="none" d="M0 0h40v40H0z"></path></g></svg>
+																			</span>
+																			<span class="MyWadizMenu_text__9ryGW">쿠폰 신청</span>
 																			<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
 																			<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																			<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>

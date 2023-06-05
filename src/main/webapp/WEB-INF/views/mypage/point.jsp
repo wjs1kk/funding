@@ -18,10 +18,7 @@
 	<div class="black-bg-wrap" style="display: none;"></div>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 	
-	<form id="forwardForm" method="get">
-		<input type="hidden" id="returnURL" name="returnURL">
-	</form>
-	<input type="hidden" id="sessionLoginCheck" value="true">
+
 
 	<div id="wadizContainer">
 		<div id="mypageWrap">
