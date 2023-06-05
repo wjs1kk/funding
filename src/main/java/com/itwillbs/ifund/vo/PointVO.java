@@ -56,6 +56,13 @@ public class PointVO {
 	public void setPoint_save(String point_save) {
 		this.point_save = point_save;
 	}
+	@Override
+	public String toString() {
+		return "PointVO [point_idx=" + point_idx + ", member_idx=" + member_idx + ", point_content=" + point_content
+				+ ", member_point=" + member_point + ", point_used=" + point_used + ", point_save=" + point_save + "]";
+	}
+	
+	
 	
 	
 	

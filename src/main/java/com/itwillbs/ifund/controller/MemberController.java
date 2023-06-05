@@ -1,7 +1,5 @@
 package com.itwillbs.ifund.controller;
 
-import java.util.List;import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,17 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.ifund.service.MemberService;
-import com.itwillbs.ifund.service.ProjectCreateService;
 import com.itwillbs.ifund.vo.MemberVO;
-import com.itwillbs.ifund.vo.ProjectVO;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private ProjectCreateService projectCreateService;
-	
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -73,48 +66,5 @@ public class MemberController {
 			return "signup";
 		}
 		return "redirect:/login";
-	}
-	
-	@GetMapping("mypage/supporter")
-	public String mypage() {
-		return "mypage/mypage";
-	}
-	//05-16 김동욱 메이커 마이페이지에서 생성된 프로젝트 리스트 출력 기능 추가
-	@GetMapping("mypage/maker")
-	public String mypage2(HttpSession session, Model model) {
-		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
-		List<ProjectVO> projectList = projectCreateService.getProjectList(member_idx);
-		System.out.println(projectList);
-		model.addAttribute("projectList", projectList);
-		return "mypage/mypage2";
-	}
-	@GetMapping("mypage/coupon")
-	public String mypage_coupon() {
-		return "mypage/coupon";
-	}
-	@GetMapping("mypage/point")
-	public String mypage_point() {
-		return "mypage/point";
-	}
-	@GetMapping("mypage/myinfo")
-	public String mypage_myinfo() {
-		return "mypage/myInfo";
-	}
-//	서포터 문의
-	@GetMapping("mypage/supinquiry")
-	public String sup_inquiry() {
-		return "mypage/sup_inquiry";
-	}
-	@GetMapping("mypage/makerinquiry")
-	public String maker_inquiry() {
-		return "mypage/maker_inquiry";
-	}
-	@GetMapping("mypage/wish")
-	public String like() {
-		return "mypage/wish";
-	}
-	@GetMapping("mypage/myInfo")
-	public String myInfo() {
-		return "mypage/myInfo"; 
 	}
 }

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
 <link rel="stylesheet" href="resources/css/mypage.css">
@@ -10,11 +12,22 @@
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
 
+<script type="text/javascript">
+
+	$(function() {
+// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
+		$('#profileImg').css({'background-image': 'url(${pageContext.request.contextPath }/resources/images/profile/' + $("#member_image").val() + ')'});
+
+	});
+
+</script>
 </head>
 <body>
 	<div id="page-container">
 		<main id="main-app">
 			<jsp:include page="../inc/top.jsp"></jsp:include>
+			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+			
 			<div class="MainWrapper_content__GZkTa">
 				<section class="MyWadizPage_myWadizPage__wOTdS">
 					<div class="MyWadizPage_profileBackground__T_LTr"
@@ -24,7 +37,7 @@
 						<div class="MyWadizPage_popperBox__113hj">
 							<div class="MyWadizHeader_wadizHeader__8fJ9f">
 								<div class="MyWadizUserTypeSwitch_container__8B_kv MyWadizHeader_switch__2WQSt" role="tablist">
-									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true"
+									<button role="tab" id="myWadizTab_supporter" aria-controls="myWadizPanel_supporter" aria-selected="true" onclick="location.href='supporter'"
 										aria-label="supporter" data-event="supporter_mode" class="MyWadizUserTypeSwitch_button__BYDWf MyWadizUserTypeSwitch_supporter__1yivJ MyWadizUserTypeSwitch_active__dwn-k"></button>
 									<!-- 05-16 김동욱 메이커 페이지로 이동하는 href 추가 -->
 									<button role="tab" id="myWadizTab_maker" aria-controls="myWadizPanel_maker" aria-selected="false"
@@ -32,16 +45,6 @@
 										onclick="location.href = 'maker'"></button>
 								</div>
 							</div>
-<!-- 							<div class="PopperRenew_container__1PprA PopperRenew_hasOutsideChildren__3F_zW"> -->
-<!-- 								<div class="PopperRenew_popperContainer__2aDcn MyWadizPage_popperContent__3LnCT PopperRenew_bottom-right__3C1jr PopperRenew_fixed__295ce"> -->
-<!-- 									<div class="PopperRenew_popperBox__14vki PopperRenew_whiteMode__1YNfF"> -->
-<!-- 										<div class="PopperRenew_arrow__1XC5N" aria-hidden="true"></div> -->
-<!-- 										<div class="PopperRenew_popperContent__1wOqH" role="tooltip" id="Popper_9"> -->
-<!-- 											서포터 ↔ 메이커 모드를 전환해서<br>사용해 보세요 -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
 						</div>
 						<div class="MyWadizPage_contentsWrapper__1dzMJ">
 							<div class="MyWadizSupporter_supporterMode__2XDQZ"
@@ -50,43 +53,25 @@
 								<div class="MyWadizSupporterProfile_profileContainer__1q7eh">
 									<h3 class="BlindText_textHidden__ovQb4">나의 프로필</h3>
 									<div class="MyWadizSupporterProfile_profileImage__1eEvS">
-										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
-											aria-label="프로필 상세 보기" data-event="profile"
-											style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-4.png&quot;);"></button>
-										<button onclick="location.href='myinfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
-											aria-label="프로필 편집하기" data-event="profile_edit">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-												<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path></svg>
-										</button>
+										<button class="MyWadizSupporterProfile_detailProfile__1JImc profileImg" aria-label="프로필 상세 보기" data-event="profile"
+											style="background-image: profileImg"></button>
 									</div>
 									<div class="MyWadizSupporterProfile_profileUser__a_r1P">
 										<button data-event="profile">
-											<b class="MyWadizSupporterProfile_userName__3hSE4">익명의 서포터 22<span aria-label="프로필 상세 보기">님</span>
-											</b>
+											<b class="MyWadizSupporterProfile_userName__3hSE4">${member.member_name}
+												<span aria-label="프로필 상세 보기">님</span></b>
 										</button>
 										<dl class="MyWadizSupporterProfile_profileUserLabel__1fiU3">
 											<dt class="BlindText_textHidden__ovQb4">내 회원 정보</dt>
-											<dd>서포터 ∙ 개인 회원</dd>
 										</dl>
 									</div>
 									
-									<button onclick="location.href='myinfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
 									</button>
 									
 									<div class="MyWadizSupporterProfile_setting__n8-M7">
-										<p class="MyWadizLoginMode_loginMode__2smkD">
-											<span>
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-													<g fill="none" fill-rule="evenodd">
-													<path d="M0.8 0.645H15.600000000000001V15.355H0.8z"></path>
-													<path fill="#4285F4" d="M13.471 6.598c.085.388.129.79.129 1.202 0 .204-.01.405-.032.603-.158 1.478-.89 2.79-1.976 3.727L9.65 10.575c.568-.393 1.01-.944 1.257-1.587h-3.27v-2.39h5.834z"></path>
-													<path fill="#34A853" d="M7.4 11.61c.82 0 1.573-.29 2.161-.773l1.89 1.515C10.404 13.372 8.975 14 7.4 14c-2.35 0-4.373-1.397-5.284-3.406L4.1 9.061c.381 1.466 1.714 2.549 3.3 2.549z"></path>
-													<path fill="#FBBC05" d="M2.385 5.187l1.734 1.58c-.188.435-.294.92-.294 1.433 0 .408.067.799.19 1.161l-1.773 1.585c-.177-.354-.321-.73-.428-1.124l-.206-1.95c.051-.98.329-1.894.777-2.685z"></path>
-													<path fill="#EA4335" d="M7.6 2c1.662 0 3.166.653 4.253 1.708L10.11 5.405C9.47 4.778 8.582 4.39 7.6 4.39c-1.66 0-3.051 1.108-3.427 2.6L2.126 5.421C3.066 3.404 5.163 2 7.6 2z"></path></g></svg></span>구글로 로그인 중
-										</p>
-											
-										<button onclick="location.href='logout'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+										<button onclick="location.href='../logout'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 											<span><span class="Button_children__lqBGI">로그아웃</span></span>
 										</button>
 									</div>
@@ -107,8 +92,9 @@
 																		<path fill="none" d="M0 0h40v40H0z"></path></g></svg>
 																	<span class="MyWadizSupporterAccumulate_name__1mWXC">포인트</span>
 																</dt>
-																<dd class="MyWadizSupporterAccumulate_value__1oBSj">0 P</dd>
-															</dl></a>
+																<dd class="MyWadizSupporterAccumulate_value__1oBSj">${member_point}  P</dd>
+															</dl>
+														</a>
 														<hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__1qDCv">
 														<a class="MyWadizSupporterAccumulate_container__h_OVK" href="coupon">
 														<dl class="MyWadizSupporterAccumulate_info__2_7Is">
@@ -128,7 +114,7 @@
 													<div class="MyWadizSupporterProjectInfo_project__3Vaun">
 														<div class="MyWadizSupporterProjectInfo_projectLink__2K77b" style="height: 104px">
 															<strong class="BlindText_textHidden__ovQb4">결제 건수</strong>
-															<a href="/web/mywadiz/participation"><span>펀딩·프리오더</span><b>0</b></a>
+															<a href="history"><span>펀딩·프리오더</span><b>0</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
 															<a href="/web/mywadiz/store/order"><span>공동구매</span><b>0</b></a>
 														</div>
@@ -142,7 +128,7 @@
 										<div>
 											<ul>
 												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="/web/social/followingmaker">
+													<a href="follow">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path fill="none" d="M0 0h40v40H0z"></path>
@@ -193,7 +179,7 @@
 													</a>
 												</li>
 												<li class="MyWadizMenu_menu__3b-H-">
-													<button data-event="inquire">
+													<a href="supinquiry">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path fill="none" d="M0 0h40v40H0z"></path>
@@ -205,7 +191,7 @@
 														<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span>
-													</button>
+													</a>
 												</li>
 											</ul>
 										</div>
@@ -236,7 +222,7 @@
 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>
 												<li class="MyWadizMenu_menu__3b-H- ">
-													<a href="/web/waccount/wAccountUpdateBasicInfoIntro">
+													<a href="checkInfo">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M17.84 3.2l.4 2.56.16.88.88.32a9.55 9.55 0 0 1 2.893 1.691l.707.549.88-.32 2.4-.88L28 11.2l-2 1.68-.72.56.16.88a9.022 9.022 0 0 1-.009 3.336l-.151.824.72.56 2 1.76-1.84 3.2-3.28-1.2-.72.56a9.485 9.485 0 0 1-2.814 1.658l-.946.342-.16.88-.4 2.56h-3.68l-.4-2.56-.16-.88-.88-.32a9.55 9.55 0 0 1-2.893-1.691L9.12 22.8l-.88.32-2.4.88L4 20.8l2-1.68.72-.56-.16-.88a9.022 9.022 0 0 1 .009-3.336l.151-.824-.72-.56-2-1.76L5.84 8l3.28 1.2.72-.56a9.485 9.485 0 0 1 2.814-1.658l.946-.342.16-.88.4-2.56h3.68zM16 21.6a5.6 5.6 0 1 0 0-11.2 5.6 5.6 0 0 0 0 11.2zm2.56-20h-5.136a.8.8 0 0 0-.783.635L12.08 5.44a11.21 11.21 0 0 0-3.292 2.011L5.76 6.24h-.267a.798.798 0 0 0-.691.397L2.24 10.961a.798.798 0 0 0 .238 1.038l2.562 2.082a10.647 10.647 0 0 0 .01 3.906l-2.57 2.014a.8.8 0 0 0-.158 1.044L4.8 25.362a.8.8 0 0 0 .693.4h.347l2.96-1.2c.956.798 2.07 1.448 3.282 1.895l.638 3.225c.077.368.399.64.784.64h5.072a.8.8 0 0 0 .783-.635l.561-3.205a11.212 11.212 0 0 0 3.296-1.934l3.024 1.134h.347a.798.798 0 0 0 .691-.397l2.562-4.404a.8.8 0 0 0-.159-1.039l-2.561-2.081a10.647 10.647 0 0 0-.01-3.906l2.41-1.854a.8.8 0 0 0 .158-1.044L27.2 6.64a.8.8 0 0 0-.693-.4h-.347l-2.96 1.2a11.163 11.163 0 0 0-3.282-1.895L19.28 2.32a.801.801 0 0 0-.784-.64h-.017zM16 20a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path></svg></span>

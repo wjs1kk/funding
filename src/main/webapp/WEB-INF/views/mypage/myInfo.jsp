@@ -1,71 +1,124 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <html lang="ko">
 <head>
 <title>기본정보설정 : 와디즈 MY 정보설정</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
-<link rel="stylesheet" href="../resources/css/myinfo.css">
 <link rel="stylesheet" href="../resources/css/login.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">
+
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/css/vendor.5f64dbd5.chunk.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?201f1414">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?e1e51710">
+<link rel="stylesheet" href="/resources/static/css/style.css">
+
+<link href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=20230502" rel="stylesheet">
+<link rel="stylesheet" href="/resources/static/css/account.css?v=20230502">
+<link rel="stylesheet" href="/resources/static/css/waccount.css?v=20230502">
+<link rel="stylesheet" href="/resources/static/css/common.css?v=20230502">
+<link rel="stylesheet" href="/resources/static/css/style.css">
+<link rel="Stylesheet" type="text/css" href="/resources/static/lib/cropper.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/floating-buttons/main.8755d521.css">
+
+<script src="/resources/static/lib/cropper.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+
+
+<style>
+    .default-profile-img {
+        background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png);
+    }
+</style>
+
+<script type="text/javascript">
+
+	$(function() {
+// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
+		$('#profileImg').css({'background-image': 'url(${pageContext.request.contextPath }/resources/images/profile/' + $("#member_image").val() + ')'});
+		
+	});
+
+</script>
+
 </head>
 <body>
 	<div id="page-container">
 		<div class="black-bg-wrap" style="display: none;"></div>
+		<jsp:include page="../inc/top.jsp"></jsp:include>
 
-		<!-- S : #accountWrap -->
 		<div id="accountWrap">
-			<!-- S : #newContainer -->
 			<div id="newContainer">
-				<!-- account-wrap -->
-				<div class="account-wrap">
+				<div class="account-wrap" style="padding: 80px 20px;">
 					<h2>기본 정보 설정</h2>
-					<form id="saveForm">
+					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
+						<div class="profileimg-wrap">
+							<button type="button" id="resultProfileImg" class="profileimg" >
+<!-- 								<em style="background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png)"></em> -->
+							<em id="profileImg" class=""></em>
+							</button>
+							<p class="setting-profileimg">
+								<button type="button" onclick="$('#uploadProfileImg').click()" id="btn_updatePhoto">
+									<span>바꾸기</span>
+								</button>
+								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button>
+							</p>
+						</div>
+						
+						<input type="file" name="image" id="uploadProfileImg" style="display: none;">
+						
+						
+<script>
+    $('#uploadProfileImg').on('change', function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var imageURL = e.target.result;
+            $('#profileImg').removeClass('default-profile-img');
+            $('#profileImg').css('background-image', 'url(' + imageURL + ')');
+            uploadAndSaveImage(file);
+        }
+
+        reader.readAsDataURL(file);
+    });
+    
+    function uploadAndSaveImage(file) {
+        var formData = new FormData();
+        formData.append('image', file);
+
+        $.ajax({
+            url: '/mypage/myInfoPro',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // 이미지 업로드 및 DB 저장 성공 후 처리 로직
+                console.log('이미지 업로드 성공');
+            },
+            error: function(xhr, status, error) {
+                // 이미지 업로드 및 DB 저장 실패 시 처리 로직
+                console.error('이미지 업로드 실패:', error);
+            }
+        });
+    }
+</script>
+						
+						
+						<input type="hidden" id="member_image" value="${member.member_image }">
+						
 						<div class="email-input-wrap">
-							<input type="text" name="nickName" class="input-text" maxlength="20" placeholder="닉네임" value="익명의 서포터 22"> 
-							<input type="text" name="realName" class="input-text disable hide"
-								maxlength="20" placeholder="이름" value="" disabled="" style="display: none;">
+							<input type="text" name="realName" class="input-text disable" 
+								placeholder="이름" value="${member.member_name}" disabled="" >
 							<div class="input-btn-wrap">
-								<div class="input" style="width: 218px;">
+								<div class="" style="width: 310px">
 									<input type="email" id="userName" name="userName"
-										class="disable input-text" placeholder="이메일 계정" value="lfodmik@gmail.com" disabled="">
-								</div>
-								<div id="emailChangeBtn" class="emailAuthBtn btn" data-status="change">
-									<a href="#" onclick="return false;"> <span>변경</span> </a>
-								</div>
-								<div id="emailCheckBtn" class="emailAuthBtn btn" style="display: none;" data-status="check">
-									<a href="#" onclick="return false;"> <span>인증하기</span> </a>
-								</div>
-								<div id="emailRetryBtn" class="emailAuthBtn btn" style="display: none;" data-status="retry">
-									<a href="#" onclick="return false;"> <span>재전송</span></a>
+										class="disable input-text" placeholder="이메일 계정" value="${member.member_email}" disabled="">
 								</div>
 							</div>
-							<div id="emailConfirmArea" class="input-btn-wrap" style="display: none;">
-								<div class="input">
-									<input type="text" id="emailAuthCode" class="input-text" placeholder="인증번호"> 
-									<input type="hidden" id="emailConfirmId" value="">
-									<time class="limit_time" style="position: relative; top: -39px; left: 85%; text-align: right;">
-										<span id="emailMs_timer" style="color: #50e3c2; font-size: 13px;"></span>
-									</time>
-								</div>
-								<div id="emailConfirmBtn" class="emailAuthBtn btn" data-status="confirm">
-									<a href="#" onclick="return false;"> <span>인증완료</span>
-									</a>
-								</div>
-							</div>
-							<p id="emailCheckNumberError" class="error-text emailMsg">
-								인증번호를 잘못 입력하셨습니다. 다시 입력해주세요.</p>
-							<p id="emailTimeOutTokenError" class="error-text emailMsg">
-								기간이 만료된 인증번호입니다. 다시 입력해주세요.</p>
-							<p id="emailTimeOutError" class="error-text emailMsg">
-								시간이 종료되었습니다. 다시 인증해주세요.</p>
-							<p id="emailSuccessNumberCheckMsg" class="error-text emailMsg" style="color: #50e3c2;">
-								인증이 완료되었습니다.</p>
-							<p id="emailError" class="error-text emailMsg">
-								이메일 형식이 올바르지 않습니다.</p>
-							<p id="emailJoinedError" class="error-text emailMsg">
-								이미 회원가입된 계정입니다. 다른 이메일을 입력해주세요.</p>
-							<p id="emailDropOutError" class="error-text emailMsg">
-								90일 이내에 탈퇴한 이력이 있는 계정은 사용하실 수 없습니다. 다른 이메일을 입력해주세요.</p>
 
 							<div class="input-btn-wrap">
 								<div class="input" style="width: 218px;">
@@ -105,21 +158,81 @@
 							<div class="email-input-wrap">
 		                        <input type="password" id="newPassword" name="newPassword" class="input-text" placeholder="새 비밀번호" maxlength="17">
 		                        <p id="passwordError" class="pwd-text">영문, 숫자, 특수문자 (!@#$%^&amp;*+=-)를 모두 조합한 8자 이상</p>
-		                        <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" class="input-text" placeholder="새 비밀번호 확인" maxlength="17">
+		                        <input type="password" id="newPassword2" name="newPassword2" class="input-text" placeholder="새 비밀번호 확인" maxlength="17">
 		                        <p class="error-text">비밀번호가 같지 않습니다.</p>
                    			 </div>
+							<div class="waccount-wrap">
+								<h5>관심사</h5>
+								<p class="sub-text">최소 5개 이상 관심사를 선택해주세요.</p>
+								<div class="check-list-wrap">
+									<ul>
+										<li><input type="checkbox" id="interest_1"
+											name="interestGroup" value="SRV0001_01"> <label
+											class="input-check" for="interest_1"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>교육∙키즈</label></li>
+		
+										<li><input type="checkbox" id="interest_2"
+											name="interestGroup" value="SRV0001_02"> <label
+											class="input-check" for="interest_2"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>패션∙잡화∙뷰티</label></li>
+		
+										<li><input type="checkbox" id="interest_3"
+											name="interestGroup" value="SRV0001_03"> <label
+											class="input-check" for="interest_3"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>홈리빙∙디자인소품</label></li>
+		
+										<li><input type="checkbox" id="interest_4"
+											name="interestGroup" value="SRV0001_04"> <label
+											class="input-check" for="interest_4"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>공연∙컬쳐</label></li>
+		
+										<li><input type="checkbox" id="interest_5"
+											name="interestGroup" value="SRV0001_05"> <label
+											class="input-check" for="interest_5"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>스포츠∙모빌리티</label></li>
+		
+										<li><input type="checkbox" id="interest_6"
+											name="interestGroup" value="SRV0001_06"> <label
+											class="input-check" for="interest_6"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>출판</label></li>
+		
+										<li><input type="checkbox" id="interest_7"
+											name="interestGroup" value="SRV0001_07"> <label
+											class="input-check" for="interest_7"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>반려동물</label></li>
+		
+										<li><input type="checkbox" id="interest_8"
+											name="interestGroup" value="SRV0001_08"> <label
+											class="input-check" for="interest_8"><i
+												class="icon-radio-button-unchecked unchecked"></i><i
+												class="icon-check-circle checked"></i>테크∙가전</label></li>
+		
+									</ul>
+								</div>
+							</div>
+                   			 
+                   			 
+                   			 
 							<div class="email-input-wrap small">
 								<div class="btn-wrap">
-									<button type="button" id="saveBtn" class="wz button primary block btn-block-mint">확인</button>
+									<button type="submit" id="saveBtn" class="wz button primary block btn-block-mint">확인</button>
 								</div>
 							</div>
 							
-							<div class="my-info" style="text-align: end">
-                       			 <h3><a href="/web/waccount/wAccountDropOutUser">회원 탈퇴</a></h3>
+							<div class="my-info" style="text-align: end"
+							onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
+                       			 <h3><a href="deleteMember">회원 탈퇴</a></h3>
                     		</div>
 							
 						</div>
-						<input type="hidden" id="validEmailFirstCheck" value="Y">
+						
 						<input type="hidden" id="validEmail" value="1">
 					</form>
 				</div>
@@ -129,5 +242,200 @@
 		</div>
 
 	</div>
+	
+	<script src="/resources/static/lib/cropper.min.js"></script>
+	<script type="text/javascript">
+	   		$(document).ready(function() {
+
+	   			if (0 < "0") {
+	   				
+	   			}
+
+	   			var defaultPhotoUrl = 'https://static.wadiz.kr/assets/icon/profile-icon-4.png';
+	   			if (defaultPhotoUrl == undefined || defaultPhotoUrl == '') {
+	   				$('#btn_updatePhoto').text('프로필 사진 등록');
+	   				$('#btn_deletePhoto').hide();
+	   			}
+
+			
+				$('#uploadProfileImg').on('change', function () {
+					readFile(this);
+					this.value = null;
+				});
+
+				// toBlob ployfill
+				// https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+				if (!HTMLCanvasElement.prototype.toBlob) {
+					 Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+					  value: function (callback, type, quality) {
+
+					    var binStr = atob( this.toDataURL(type, quality).split(',')[1] ),
+					        len = binStr.length,
+					        arr = new Uint8Array(len);
+
+					    for (var i = 0; i < len; i++ ) {
+					     arr[i] = binStr.charCodeAt(i);
+					    }
+
+					    callback( new Blob( [arr], {type: type || 'image/png'} ) );
+					  }
+					 });
+					}
+
+				$('#registProfileImg').on('click', function() {
+					if (window.cropper) {
+						cropper.getCroppedCanvas({ width: 300, height: 300 }).toBlob(function (blob) {
+							ajaxChangeProfilePhoto(blob, cropper._fileName);
+							closeLyPop('profileImg');
+							$('#profileimgCrop').empty();
+						});
+					}
+					return false;
+				});
+			});
+
+	   		function readFile(input) {
+	   			var file = input.files && input.files[0];
+	   		  if (file) {
+	   			  var extPattern = /\.(png|jpe?g|gif)$/i;
+	   			  if (!extPattern.test(file.name)) {
+	   				  alertify.alert('프로필 사진은 이미지(JPG,PNG,GIF)만 등록이 가능합니다.');
+	   			  } else {
+	   				  showProfilePictureEditor(file);
+	   			  }
+	   	    }
+			}
+
+			function showProfilePictureEditor(file) {
+				if (!file) return;
+				var crop = $('#profileimgCrop');
+				loadImage(
+					file,
+					function (img) {
+						crop.html(img);
+						var isTouchEvent = 'ontouchstart' in window;
+						var touchedOptions = isTouchEvent ? {
+							guides: false,
+							cropBoxMovable: false,
+							cropBoxResizable: false
+						} : {};
+						if (isTouchEvent) {
+							crop.addClass('touch-mode');
+						}
+						window.cropper = new Cropper(img, $.extend({
+							aspectRatio: 1,
+							viewMode: 1,
+							dragMode: 'move',
+							minContainerWidth: 240,
+							minContainerHeight: 240,
+							autoCropArea: 1
+						}, touchedOptions));
+						cropper._fileName = file.name;
+						showLyPop('profileImg');
+					},
+					{ orientation: true } // Options
+				);
+			}
+
+			function ajaxChangeProfilePhoto(newImage, fileName){
+				var formData = new FormData();
+				formData.append('uploadfile1', newImage, fileName);
+				$.ajax({
+					url: '/web/waccount/ajaxChangeProfilePhoto',
+					type: 'POST',
+			    contentType: false,
+			    processData: false,
+					data: formData,
+					success: function(result) {
+						var jsonObj = $.parseJSON(result);
+						var getData = jsonObj.data;
+						$('#resultProfileImg em, #myMenuNav em.profile-img, #headerBar em.profile-img').css('background-image', 'url('+getData.photoUrl+')');
+						$('#btn_updatePhoto').text('바꾸기');
+						$('#btn_deletePhoto').show();
+						wadiz.toast("프로필 사진이 등록되었습니다.");
+						setTimeout(function () {
+							location.reload();
+					  }, 1500);
+					}
+				});
+			}
+
+			function deletePhoto() {
+				 alertify.confirm("프로필 사진을 삭제 하시겠습니까?", function (e) {
+		         	if (e) {
+		         		$.ajax({
+							url: '/web/waccount/ajaxDeleteProfilePhoto',
+							type: 'POST',
+					    contentType: false,
+					    processData: false,
+					    data:{},
+							success: function(result) {
+								alertify.alert("프로필 사진이 삭제되었습니다.");
+								$('#resultProfileImg em').css('background-image', 'url(/resources/static/img/common/img_blank.png)');
+								$('#btn_deletePhoto').hide();
+								$('#btn_updatePhoto').text('프로필 사진 등록');
+							}
+						});
+		         	}
+				 });
+			}
+
+			function cancelModify() {
+				 alertify.confirm("취소 시, 설정하신 프로필 정보가 적용되지 않습니다.<br>취소하시겠습니까?", function (e) {
+		         	if (e) {
+						var myTarget = '';
+						wdzLink.close("/web/wmypage/myprofile/fundinglist/"+myTarget);
+		         	}
+				 });
+			}
+
+			function modify() {
+				var interestCodeList = new Array();
+				$('input:checkbox[name=interestGroup]:checked').each( function(index, checkbox) {
+					interestCodeList.push($(this).val());
+				});
+
+				if (0 < interestCodeList.length && interestCodeList.length < 5) {
+					alertify.alert("관심사는 5개 이상 선택하셔야 합니다.");
+					return false;
+				}
+
+				var modifyDatas = {};
+				modifyDatas.interestCodeList = interestCodeList;
+				modifyDatas.belongsTo = $('#belongsTo').val();
+				modifyDatas.position = $('#position').val();
+				modifyDatas.school = $('#school').val();
+				modifyDatas.major = $('#major').val();
+				modifyDatas.introduceme = $('#introduceme').val();
+				modifyDatas.mainActivityCityCode = $('#city').val();
+				modifyDatas.mainActivityRegionCode = $('#region').val();
+
+				Wmask.on({spinner: true});
+				$.ajaxSettings.traditional = true;
+                ajax.post('/web/wmypage/myprofile/ajaxModifyProfile', modifyDatas)
+                .done(function(result) {
+                    if (result.code == "ERR0000") {
+                    	alertify.alert("정보 수정중 오류가 발생했습니다.");
+                    	return false;
+                    }
+                    else {
+                    	alertify.alert("프로필 설정이 성공적으로 변경되었습니다.", function (e) {
+                    		if (e) {
+                    			var myTarget = '';
+                    			wdzLink.close("/web/wmypage/myprofile/fundinglist/"+myTarget);
+                    		}
+                    	});
+                    }
+                })
+                .fail(function(err) {
+                    alertify.alert('정보 수정중 오류가 발생했습니다.');
+                })
+                .always(function() {
+                	Wmask.off();
+                });
+			}
+		</script>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	
 </body>
 </html>
