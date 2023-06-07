@@ -9,14 +9,8 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
-
-
-
-
-<!-- 05-29 김동욱 jquery 라이브러리 추가 -->
-
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
@@ -37,6 +31,29 @@
 									
 									
 									<h3>funding_project_state.jsp</h3>
+									 <canvas id="myChart" style="width: 100px;"></canvas>
+									<script>
+										const ctx = document.getElementById('myChart').getContext('2d'); 
+									    // const 변수타입과 ctx 변수명은 Chart.js 기본문서에서 사용하고 있으니 따라했다.
+									    // ctx는 sample 코드들에서 다 사용하기 때문에 불편하지 않게 ctx로 연습하자.
+									    
+									    const myChart = new Chart( ctx, {
+									        type: 'line', 
+									        data: {
+									            labels: ['2020','2021','2022','2023','2024','2025','2026'],    // x축의 이름
+									            datasets: [     // y축에 들어갈 데이터들
+									                {    
+									                label: '연봉',  //범례
+									                data: [3000,3300,3500,4000,4200,4500,4800] // 값
+									                }
+									            ]
+									        }
+									    });
+
+
+								    </script>
+
+										
 									
 									
 									

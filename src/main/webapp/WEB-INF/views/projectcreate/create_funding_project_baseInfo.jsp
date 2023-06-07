@@ -18,10 +18,7 @@
 	href="https://static.wadiz.kr/studio/funding/static/css/18.725773c4.chunk.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
-<!-- 데이트피커를 위한 라이브러리 -->
-<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
-<!-- 데이트피커를 위한 라이브러리 -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -295,3 +292,7 @@
 
 </body>
 </html>
+<!-- 데이트피커를 위한 라이브러리 -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- 데이트피커를 위한 라이브러리 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

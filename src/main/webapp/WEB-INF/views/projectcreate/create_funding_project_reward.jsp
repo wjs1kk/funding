@@ -17,10 +17,11 @@
 	href="https://static.wadiz.kr/studio/funding/static/css/18.725773c4.chunk.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
-<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
 </head>
 <script type="text/javascript">
 	
@@ -840,8 +841,8 @@
 							           ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
 							           ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
 							           ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-							           ,minDate: "+5d" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-							           ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+							           ,minDate: "+14d" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+							           ,maxDate: "+2y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
 							       });                    
 							       
 							       //초기값을 오늘 날짜로 설정해줘야 합니다.
@@ -988,3 +989,7 @@
 	<script src="https://www.amcharts.com/lib/4/core.js"></script>
 </body>
 </html>
+<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- 05-18 김동욱 데이트피커를 위한 라이브러리 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
