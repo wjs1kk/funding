@@ -2,6 +2,8 @@ package com.itwillbs.ifund.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwillbs.ifund.vo.CouponUsedVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.InquiryVO;
@@ -25,9 +27,10 @@ public interface MypageMapper {
 	public List<InquiryVO> selectInquiry(Integer member_idx);
 	public List<CouponVO> selectCoupon(Integer member_idx);
 	public int insertCoupon(CouponVO couponVO);
-	public MakerVO selectMaker(Integer member_idx);
-	public Integer checkCoupon(int coupon_idx, Integer member_idx);
-	public int downCoupon(int coupon_idx, Integer member_idx);
-	public List<CouponUsedVO> myCoupon(Integer member_idx);
+	public List<MakerVO> selectMaker(Integer member_idx);
+	public Integer checkCoupon(@Param("coupon_idx") String coupon_idx, @Param("member_idx") Integer member_idx);
+	public int downCoupon(@Param("coupon_idx") String coupon_idx, @Param("member_idx") Integer member_idx);
+	public List<CouponVO> myCoupon(Integer member_idx);
+	public int joinPoint(String member_email);
 	
 }

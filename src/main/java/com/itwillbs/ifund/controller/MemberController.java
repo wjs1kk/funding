@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.itwillbs.ifund.service.MemberService;
+import com.itwillbs.ifund.service.MypageService;
 import com.itwillbs.ifund.vo.MemberVO;
+import com.itwillbs.ifund.vo.PointVO;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MypageService mypageService;
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -54,7 +58,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("signupPro")
-	public String joinPro(MemberVO member,Model model) {
+	public String joinPro(MemberVO member,Model model, PointVO pointVO) {
 		if(memberService.selectUser(member.getMember_email()) != null) {
 			model.addAttribute("msg", "이미 가입한 이메일입니다");
 			return "fail_back";
@@ -65,6 +69,10 @@ public class MemberController {
 		if (memberService.insertUser(member) == 0 ) {
 			return "signup";
 		}
+		
+		// 0607 김애리 추가 - 가입시 포인트 적립
+		mypageService.joinPoint(member.getMember_email());
+		
 		return "redirect:/login";
 	}
 }

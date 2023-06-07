@@ -60,17 +60,20 @@ public class MypageService {
 	public int insertCoupon(CouponVO couponVO) {
 		return mapper.insertCoupon(couponVO);
 	}
-	public MakerVO selectMaker(Integer member_idx) {
+	public List<MakerVO> selectMaker(Integer member_idx) {
 		return mapper.selectMaker(member_idx);
 	}
-	public Integer checkCoupon(int coupon_idx, Integer member_idx) {
+	public Integer checkCoupon(String coupon_idx, Integer member_idx) {
 		return mapper.checkCoupon(coupon_idx, member_idx);
 	}
-	public int downCoupon(int coupon_idx, Integer member_idx) {
-		return mapper.downCoupon(coupon_idx, member_idx);
+	public int downCoupon(String coupon_idx, Integer member_idx) {
+	    return mapper.downCoupon(coupon_idx, member_idx);
 	}
-	public List<CouponUsedVO> myCoupon(Integer member_idx) {
+	public List<CouponVO> myCoupon(Integer member_idx) {
 		return mapper.myCoupon(member_idx);
+	}
+	public int joinPoint(String member_email) {
+	    return mapper.joinPoint(member_email);
 	}
 
 }

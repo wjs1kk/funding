@@ -67,7 +67,7 @@ public class MypageController {
 	@GetMapping("mypage/coupon")
 	public String mypage_coupon(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<CouponUsedVO> coupon = mypageService.myCoupon(member_idx);
+		List<CouponVO> coupon = mypageService.myCoupon(member_idx);
 		model.addAttribute("coupon", coupon);
 		System.out.println(coupon);
 

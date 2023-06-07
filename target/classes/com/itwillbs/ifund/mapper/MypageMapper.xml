@@ -26,18 +26,18 @@
 			FROM member
 				WHERE member_idx = #{member_idx}
 	</select>
-	
+
 <!-- 0516수정 패스워드 수정 -->
 	<update id="updateUser">
 		UPDATE member			
 			SET member_passwd = #{member_passwd}
 				,member_image = #{member_image}
 				, member_image_path = #{member_image_path}
-			
+
 				WHERE member_idx = #{member_idx}
 	</update>
-	
-	
+
+
 <!-- 	0518수정-포인트내역 -->
 	<select id="selectPoint" resultType="com.itwillbs.ifund.vo.PointVO">
 		SELECT * 
@@ -45,27 +45,39 @@
 				WHERE member_idx = #{member_idx}
 				ORDER BY point_idx desc
 	</select>
-	
+	<insert id="joinPoint">
+		INSERT INTO point(point_idx, member_idx, point_content, point_used, point_save, member_point)
+			VALUES (
+				null,
+				(SELECT member_idx FROM member WHERE member_email = '${member_email}'),
+				"가입",
+				0,
+				2000,
+				2000
+			)
+	</insert>
+
+
 	<delete id="deleteMember">
 		DELETE
 			FROM member
 				WHERE member_idx = #{member_idx}
 	</delete>
-	
+
 	<select id="selectWish" resultType="com.itwillbs.ifund.vo.ProjectVO">
 		SELECT *
 			FROM project
 				WHERE project_idx IN 
 					(SELECT project_idx FROM wish WHERE member_idx = #{member_idx})
 	</select>
-	
+
 	<select id="selectHistory" resultType="com.itwillbs.ifund.vo.ProjectVO">
 		SELECT *
 			FROM project
 				WHERE project_idx IN 
 					(SELECT project_idx FROM project_detail WHERE member_idx = #{member_idx})
 	</select>
-	
+
 	<update id="updateProfile">
 		UPDATE member
 			SET <if test="member_image != null and !member_image.equals('')">
@@ -75,7 +87,7 @@
 			WHERE
 				member_idx = #{member_idx}
 	</update>
-	
+
 	<select id="selectInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
 		SELECT *
 			FROM inquiry
@@ -92,21 +104,22 @@
 			FROM inquiry
 				WHERE receive_idx = #{member_idx}
 	</select>
-	
+
   	<select id="selectCoupon" resultType="com.itwillbs.ifund.vo.CouponVO">
 		SELECT * 
 			FROM coupon
 				WHERE coupon_isadmin = "1" 
 	</select>
-  	<select id="myCoupon" resultType="com.itwillbs.ifund.vo.CouponUsedVO">
+  	<select id="myCoupon" resultType="com.itwillbs.ifund.vo.CouponVO">
 		SELECT * 
-			FROM coupon_used
-				WHERE member_idx = #{member_idx}
+			FROM coupon
+				WHERE coupon_idx 
+					IN (SELECT coupon_idx FROM coupon_used WHERE member_idx = #{member_idx})
 	</select>
 	<insert id="insertCoupon">
 		INSERT INTO coupon
         	(coupon_idx, coupon_name, coupon_code, coupon_start, 
-        		coupon_end, coupon_percent, coupon_isadmin, member_idx)
+        		coupon_end, coupon_percent, coupon_isadmin, maker_idx)
 			VALUES (
 				null,
 				#{coupon_name},
@@ -115,7 +128,7 @@
 				#{coupon_end},
 				#{coupon_percent},
 				0,
-				#{member_idx}
+				#{maker_idx}
 			)
 	</insert>
 	<insert id="downCoupon">
@@ -123,18 +136,20 @@
 			VALUES( (SELECT coupon_idx
 					 	FROM coupon
 							 WHERE coupon_idx = #{coupon_idx}),
-					#{member_idx},
+					(SELECT member_idx
+						FROM member
+							WHERE member_idx = #{member_idx}),
 					'Y'
 		)
 	</insert>
-	
+
 	<select id="checkCoupon" resultType="Integer">
 		SELECT coupon_idx
 			FROM coupon_used
 				WHERE coupon_idx = #{coupon_idx}
 			 		  AND member_idx = #{member_idx}
 	</select>
-
+	
 	
 	
   </mapper>
