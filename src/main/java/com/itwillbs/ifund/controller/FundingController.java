@@ -29,15 +29,13 @@ public class FundingController {
 	}
 	@GetMapping("detail")
 	public String funding_detail(Model model, String num) {
-		Map<String, Object> selectFundingDetail = fundingService.selectFundingDetail(Integer.parseInt(num));
-		Map<String, Object> selectMaker = fundingService.selectMaker(Integer.parseInt(num));
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
-		List selectFunding = fundingService.selectFunding(Integer.parseInt(num));
+		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 		
-		model.addAttribute("selectMaker", selectMaker);
-		model.addAttribute("selectFundingDetail",selectFundingDetail);
 		model.addAttribute("selectReward", selectReward);
-		model.addAttribute("fundingDetail", selectFunding);
+		model.addAttribute("fundingDetail", fundingDetail);
+		
+		System.out.println(fundingDetail);
 
 		return "funding/funding_detail";
 	}
