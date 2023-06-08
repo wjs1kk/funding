@@ -8,7 +8,7 @@
 <script type="text/javascript">
 window.onload = function() {
 	<!-- 0520 관리자 메뉴 active 추가 -->
-	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'noticeList', 'newsList'];
+	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'couponList', 'noticeList', 'newsList'];
 	let url = window.location.href.split('/')[5];
 	menuIds.forEach(id => {
 		let menu = document.getElementById(id);
@@ -102,13 +102,17 @@ window.onload = function() {
 						class="menu-link">
 							<div data-i18n="Without menu">회원목록</div>
 					</a></li>
-					<li id="projectList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/projectList"
+					<li id="projectList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/projectList/all"
 						class="menu-link">
 							<div data-i18n="Without navbar">프로젝트 관리</div>
 					</a></li>
 					<li id="approveList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/approveList"
 						class="menu-link">
 							<div data-i18n="Container">승인대기 목록</div>
+					</a></li>
+					<li id="couponList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/couponList"
+						class="menu-link">
+							<div data-i18n="Fluid">쿠폰관리</div>
 					</a></li>
 					<li id="noticeList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/noticeList"
 						class="menu-link">
@@ -117,6 +121,10 @@ window.onload = function() {
 					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/newsList"
 						class="menu-link">
 							<div data-i18n="Blank">보도자료</div>
+					</a></li>
+					<li id="accountInfo"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/accountInfo"
+						class="menu-link">
+							<div data-i18n="Blank">계좌관리(수정예정)</div>
 					</a></li>
 				</ul>
 			</li>

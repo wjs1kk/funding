@@ -180,7 +180,7 @@ ul li {
 					<input type="hidden" id="label" name="label" value="">
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light"></span> 프로젝트 목록 구분 추가@@@@펀딩/공구를다른걸로구분
+							<span class="text-muted fw-light"></span> 프로젝트 목록 구분 추가@@@@펀딩/공구를다른걸로구분/취합
 						</h4>
 						<div class="Main_category__3sabq">
 								<ul class="sortContainer" style="display: flex">
@@ -266,5 +266,6 @@ ul li {
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
 </body>
 </html>

@@ -15,9 +15,36 @@
 	href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/reward-story.1b2d2b3c.chunk.css">
+<!-- <script src="/node_modules/readmore-js/readmore.min.js"></script> -->
+<script src="resources/js/jquery-3.6.4.js"></script>
+
+<!-- slick-slide 사용 -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <title>Insert title here</title>
 </head>
+<script>
+	$(function(){
+		$('.slick-slider').slick({
+			slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+			infinite : true, 	//무한 반복 옵션	 
+			slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+			slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+			speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+			arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+			dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+			autoplay : true,			// 자동 스크롤 사용 여부
+			autoplaySpeed : 2000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+			pauseOnHover : false,		// 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
+			vertical : false,		// 세로 방향 슬라이드 옵션
+			prevArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>',		// 이전 화살표 모양 설정
+			nextArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickNext__382fX">Next</button>',		// 다음 화살표 모양 설정
+			dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+			draggable : true, 	//드래그 가능 여부 
+		});
+	});
+</script>
 <body style="margin-bottom: 49px !important; overflow: auto;" class="">
 	<div id="page-container">
 		<main id="main-app">
@@ -213,23 +240,37 @@
 									<div class="Story_expandable__hnbsV">
 										<div>
 											<div class="inner-contents fr-view">
-												${selectFundingDetail.project_content }
+												${fundingDetail.project_content }
 											</div>
 										</div>
 									</div>
+									<script>
+// 									$(function () {
+// 									    $('.Story_button__AG0eO').readmore({
+// 									        blockCSS: 'display: block; width: 250px;',
+// 									        collapsedHeight: 18,
+// 									        moreLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_더보기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 더보기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>',
+// 									        lessLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_접기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 접기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>'
+// 									    });
+// 									});
+									</script>
 									<div class="Story_button__AG0eO">
 										<button data-ga-category="펀딩_상세" data-ga-action="클릭"
 											data-ga-label="스토리_더보기"
 											class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg"
 											type="button">
-											<span><span class="Button_children__ilFun">스토리
-													더보기</span> <svg viewBox="0 0 32 32" focusable="false"
+											<span>
+												<span class="Button_children__ilFun">스토리
+													더보기
+												</span>
+													<svg viewBox="0 0 32 32" focusable="false"
 													role="presentation"
 													class="withIcon_icon__3VTbq Button_icon__t6yp6"
 													aria-hidden="true">
 													<path
-														d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
-										</button>
+														d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
+											</span>
+										</button>	
 									</div>
 								</div>
 								<div class="DetailPageRecommendationContainer_container__2dyco">
@@ -309,7 +350,7 @@
 														class="Button_button__2FuOU Button_tertiaryGrey__3jJV7 Button_contained__2SIAT Button_xs__2DWsb Button_circular__1cdcJ ProjectSearchTags_hashTagButton__fCndq ProjectSearchTags_gaElement__1mZHZ"><span><span
 															class="Button_children__ilFun"><div
 																	class="ProjectSearchTags_hashTag__2UMo_">
-																	<span class="ProjectSearchTags_hash__IgbO9">#</span><span>${selectFundingDetail.project_category }</span>
+																	<span class="ProjectSearchTags_hash__IgbO9">#</span><span>${fundingDetail.project_category }</span>
 																</div></span></span></a>
 												</div>
 											</div>
@@ -333,13 +374,13 @@
 												<span class="FundingTypeBadge_funding__4BhpK">펀딩</span>
 											</div>
 										</div>
-										<p class="BaseFundingInfo_title__1Dw42">${selectFundingDetail.project_titlie }</p>
-										<p class="BaseFundingInfo_description__1XXyy">${selectFundingDetail.project_summary }</p>
+										<p class="BaseFundingInfo_title__1Dw42">${fundingDetail.project_titlie }</p>
+										<p class="BaseFundingInfo_description__1XXyy">${fundingDetail.project_summary }</p>
 										<div class="BaseFundingInfo_rateWrapper__32WcC">
 											<div class="BaseFundingInfo_rate__1uMoD">
 												<div class="BaseFundingInfo_infoWrapper__23LoT">
 													<span class="BaseFundingInfo_achivementRate__1Cnsy">
-													<fmt:formatNumber value="${(selectFundingDetail.project_detail_amount/selectFundingDetail.project_target)}" type="percent"/>
+													<fmt:formatNumber value="${fundingDetail.project_percent }" type="percent"/>
 													</span><span
 														class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
 												</div>
@@ -357,11 +398,11 @@
 											</div>
 											<div class="BaseFundingInfo_rate__1uMoD">
 												<p class="BaseFundingInfo_totalBackedAmount__1ezH_">
-													<fmt:formatNumber value="${selectFundingDetail.project_detail_amount}" type="Number"/><span>원</span>
+													<fmt:formatNumber value="${fundingDetail.project_detail_amount}" type="Number"/><span>원</span>
 												</p>
 												<span
 													class="Badge_container__9G9PS Badge_visible__3LNXv BaseFundingInfo_remainingDay__2ooL6"><span
-													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_md__1Ck0w Badge_secondary__UV-TU Badge_tertiary__3uYKh">${selectFundingDetail.project_detail_person }명
+													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_md__1Ck0w Badge_secondary__UV-TU Badge_tertiary__3uYKh">${fundingDetail.project_detail_person }명
 														참여</span></span>
 											</div>
 										</div>
@@ -406,11 +447,11 @@
 														href="/web/maker/detail/1783696?path=reward_detail"><div
 															class="Avatar_avatar__1d9Wt Avatar_xs__3q9gb MakerInfoHeader_avatar__3YTtH">
 															<span class="Avatar_hasImage__2TKl6"
-																style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0321/20230321174243169_199429.jpg/wadiz/resize/100/format/jpg/quality/90/&quot;), url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYzl1cmF3eHIyYSIgZD0iTTAgMGg4MHY4MEgweiIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8Zz4KICAgICAgICAgICAgPG1hc2sgaWQ9IjZ2emt3OXN5NWIiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYzl1cmF3eHIyYSIvPgogICAgICAgICAgICA8L21hc2s+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik04MCA0MGMwIDIyLjA5Mi0xNy45MDkgNDAtNDAgNDBTMCA2Mi4wOTIgMCA0MCAxNy45MDkgMCA0MCAwczQwIDE3LjkwOCA0MCA0MCIgZmlsbD0iI0U5RUNFRiIgbWFzaz0idXJsKCM2dnprdzlzeTViKSIvPgogICAgICAgIDwvZz4KICAgICAgICA8cGF0aCBkPSJtMjIuMzA1IDI2LjkxNC4yMyAyLjEyMWMtLjAxLjI5LjA0OS41NTkuMTgxLjgwNy4wODUuMjYxLjIyOC40ODUuNDMzLjY3Ni4xOS4yMDMuNDEzLjM0OC42NzQuNDMyLjI0OS4xMzIuNTE5LjE5MS44MDYuMThsLjU1Ny0uMDc1Yy4zNTUtLjA5OS42NjMtLjI3OS45MjQtLjUzN2wuMzI4LS40MjVjLjE5LS4zMjYuMjg1LS42OC4yODctMS4wNTgtLjA3OC0uNzA2LS4xNTQtMS40MTUtLjIzLTIuMTIxLjAxLS4yOS0uMDUtLjU1OS0uMTgtLjgwN2ExLjU3IDEuNTcgMCAwIDAtLjQzNC0uNjc1IDEuNTUzIDEuNTUzIDAgMCAwLS42NzQtLjQzMyAxLjU4NCAxLjU4NCAwIDAgMC0uODA3LS4xOGMtLjE4NS4wMjYtLjM3Mi4wNS0uNTU3LjA3NWEyLjA4MyAyLjA4MyAwIDAgMC0uOTI1LjUzOGwtLjMyNi40MjRjLS4xOS4zMjctLjI4NS42NzktLjI4NyAxLjA1OE01My44ODIgMjcuMzI4djIuNTIyYzAgLjUzOC4yMzMgMS4xMDIuNjEzIDEuNDgyLjE5LjIwMy40MTQuMzQ4LjY3NC40MzMuMjUuMTMuNTE4LjE5LjgwNy4xOC41NDItLjAyNCAxLjEwNC0uMjAyIDEuNDgxLS42MTMuMzc2LS40MS42MTQtLjkxNC42MTQtMS40ODJ2LTIuNTIyYzAtLjUzNi0uMjM0LTEuMS0uNjE0LTEuNDhhMS41NzYgMS41NzYgMCAwIDAtLjY3NC0uNDM0IDEuNTczIDEuNTczIDAgMCAwLS44MDctLjE4Yy0uNTQyLjAyNC0xLjEwNC4yMDItMS40ODEuNjE0LS4zNzYuNDA5LS42MTMuOTEzLS42MTMgMS40OE0zNi4yOTcgMjUuOTQ1Yy0uNzQzIDQuMzM1LTEuNDg0IDguNjczLTIuMjI1IDEzLjAxLS4xODQgMS4wNzUuMjg1IDIuMzA3IDEuNDYzIDIuNTc2IDEuMDE0LjIzIDIuMzc4LS4zMDkgMi41NzYtMS40NjJsMi4yMjUtMTMuMDExYy4xODQtMS4wNzUtLjI4NS0yLjMwOC0xLjQ2My0yLjU3Ny0xLjAxNS0uMjMtMi4zOC4zMDgtMi41NzYgMS40NjRNNDUuMTU4IDUwLjM4NmMtLjE2LS4zMy0uMTAxLS40NzctLjA0NS0uODA2LS4xMTEuMTc1LS4xMjUuMjAxLS4wNDIuMDc3YS4zNy4zNyAwIDAgMSAuMjAzLS4xNzhjLS4yMi4xMTctLjIzNS4xMzgtLjA0Ny4wNjRhMy40MyAzLjQzIDAgMCAxLS4zOTMuMTE2Yy0uMDgyLjAyLS42NTkuMS0uMjY1LjA1Ny0xLjExNS4xMjQtMi4yNC4xOS0zLjM2LjI4NWwtNi44NzcuNTc3Yy0xLjA4OS4wOTItMi4xNDguODk3LTIuMDk1IDIuMDk0LjA0OCAxLjA1Ni45MjYgMi4xOTIgMi4wOTUgMi4wOTNsOC44NC0uNzRjMS40NS0uMTIzIDMuMDQxLS4xMyA0LjI4Ny0uOTggMS42LTEuMDkzIDIuMTYzLTMuMDI4IDEuMzE2LTQuNzcyLS40OC0uOTktMS45NjYtMS4zMzMtMi44NjYtLjc1Mi0xLjAxMy42NTQtMS4yNjMgMS44MDctLjc1IDIuODY1IiBmaWxsPSIjQ0REM0Q4Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=&quot;); border: 1px solid rgb(221, 226, 230);"></span>
+																style="background-image: ${pageContext.request.contextPath }/resources/images/maker_images/${fundingDetail.maker_image};"></span>
 														</div>
 														<div class="MakerInfoHeader_texts__2IMv2">
 															<span class="MakerInfoHeader_makerName__jLMZK">
-																${selectMaker.maker_name }
+																${fundingDetail.maker_name }
 															</span>
 														</div>
 													</a>
