@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
@@ -21,15 +22,12 @@
 	
 	
 	// 06-07 김동욱 해당 리워드 클릭시 해당 리워드_idx에 해당하는 리워드 수량 입력창 오픈
-	function rewardDisplay(reward_idx, reward_name){
-		if($('#rewardCheckbox_'+reward_idx).is(':checked') == true){
-			$("#rewardDisplay_"+reward_idx).css("display", "block")
-// 			$("#reward_name").val()
-		}else if($('#rewardCheckbox_'+reward_idx).is(':checked') == false){
-			$("#rewardDisplay_"+reward_idx).css("display", "none")
+	function rewardDisplay(index, reward_name){
+		if($('#rewardCheckbox_'+index).is(':checked') == true){
+			$("#rewardDisplay_"+index).css("display", "block")
+		}else if($('#rewardCheckbox_'+index).is(':checked') == false){
+			$("#rewardDisplay_"+index).css("display", "none")
 		}
-		
-		$("#reward_name").val(reward_name)
 	}
 	$(function() {
 		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
@@ -37,27 +35,27 @@
 	})
 	
 	// 06-07 김동욱 리워드 수량 증가 버튼
-	function rewardIncrease(reward_idx, reward_amount, reward_name) {
+	function rewardIncrease(reward_idx, reward_amount, index, length) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+reward_idx).val());
 		rewardQuantity += 1
 		$("#rewardQuantity_"+reward_idx).val(rewardQuantity);
-		rewardOnchange(reward_idx, reward_amount, reward_name)
+		rewardOnchange(reward_idx, reward_amount, index, length)
 	}
 	
 	// 06-07 김동욱 리워드 수량 감소 버튼
-	function rewardDecrease(reward_idx, reward_amount, reward_name) {
+	function rewardDecrease(reward_idx, reward_amount, index, length) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+reward_idx).val());
 		rewardQuantity -= 1
 		if(rewardQuantity < 1){
 			rewardQuantity = 1
 		}
 		$("#rewardQuantity_"+reward_idx).val(rewardQuantity);
-		rewardOnchange(reward_idx, reward_amount, reward_name)
+		rewardOnchange(reward_idx, reward_amount, index, length)
 		
 	}
 	
 	// 06-07 김동욱 리워드 수량이 바뀔 때 수량 * 리워드 금액 계산
-	function rewardOnchange(reward_idx, reward_amount, reward_name) {
+	function rewardOnchange(reward_idx, reward_amount, index, length) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+reward_idx).val());
 		let rewardAmount = Math.floor(reward_amount);
 		let numCheck = /[0-9]/;
@@ -74,9 +72,22 @@
 			$("#rewardQuantity_"+reward_idx).val(1)
 		}
 		
+		
+		
+		for(let l = 0; l < length; l++){
+			
+			if($("#rewardCheckbox_"+l).is(':checked') == true){
+				$("#reward_name").val($("#reward_name_"+l).val() + " x " + rewardQuantity + ", ")
+				$("#reward_amount").val($("#reward_amount_"+l).val() + reward_amount)
+				
+			}
+			
+		}
+		alert($("#reward_name").val());
+		
+		
+		
 		$("#rewardAmount_"+reward_idx).text(rewardAmount * rewardQuantity);
-		$("#reward_name").val(reward_name + " x " + rewardQuantity);
-		alert($("#reward_name").val())
 		
 	}
 	
@@ -138,20 +149,25 @@ input[type="number"]::-webkit-inner-spin-button {
 									<em>리워드 선택</em>
 								</h3>
 							</div>
+								
+								<c:set var="length" value="${fn:length(selectReward) - 1}"></c:set>
 							<div id="reward-product-app" data-campaign-id="215321"
 								data-selected-reward-id="">
 								<ul class="RewardProductList_container__2hIAB">
 								
-								
-									<c:forEach items="${selectReward }" var="selectReward">
+									<c:forEach items="${selectReward }" var="selectReward" varStatus="status">
+									
+										<input type="hidden" id="reward_name_${status.index}" value="${selectReward.reward_name }"></input>
+										<input type="hidden" id="reward_amount_${status.index}" value="${selectReward.reward_amount }"></input>
+									
 										<li class="RewardProductList_list__2oOvi">
 											<section
 												class="RewardProductItem_container__1wZBW">
 												<label class="RewardProductItem_label__2t2Wd"
 													for="checkbox-reward-product-445400"><div
 														class="RewardProductItem_price__2oEJ1">
-														<input type="hidden" id="" value="">
-														<input type="checkbox" id="rewardCheckbox_${selectReward.reward_idx }"  onclick="rewardDisplay('${selectReward.reward_idx}', '${selectReward.reward_name}')">
+														<input type="hidden" id="reward_name_${selectReward.reward_idx }" value="${selectReward.reward_name }">
+														<input type="checkbox" id="rewardCheckbox_${status.index}"  onclick="rewardDisplay('${status.index}', '${selectReward.reward_name}')">
 														<span>${selectReward.reward_amount }</span>&nbsp;원
 													</div>
 													<div class="RewardProductItem_content__Pw7qB">
@@ -193,7 +209,7 @@ input[type="number"]::-webkit-inner-spin-button {
 													</div></label>
 												<ul>
 													<li class="RewardProductItem_item__3va6f" ><section
-															class="RewardProductCard_container__3N2S2" id="rewardDisplay_${selectReward.reward_idx}" style="display: none;">
+															class="RewardProductCard_container__3N2S2" id="rewardDisplay_${status.index}" style="display: none;">
 															<div>
 																<div class="RewardProductCard_title__32DP6">
 																	<div class="RewardProductCard_name__1Mz6S">${selectReward.reward_name }</div>
@@ -212,11 +228,11 @@ input[type="number"]::-webkit-inner-spin-button {
 																<div class="RewardProductCard_quantity__2CSmq">
 																	<div class="ProductQuantity_container__1_106">
 																		<button type="button" aria-label="감소 버튼" id="rewardDecreaseBtn_${selectReward.reward_idx}"
-																			class="ProductQuantity_minusButton__22tR8" onclick="rewardDecrease('${selectReward.reward_idx}', '${selectReward.reward_amount }', ${selectReward.reward_name})"></button>
-																		<input type="number" aria-label="수량 입력" id="rewardQuantity_${selectReward.reward_idx }" onchange="rewardOnchange(${selectReward.reward_idx}, ${selectReward.reward_amount}, ${selectReward.reward_name} )"
+																			class="ProductQuantity_minusButton__22tR8" onclick="rewardDecrease('${selectReward.reward_idx}', ${selectReward.reward_amount }, ${status.index}, ${length})"></button>
+																		<input type="number" aria-label="수량 입력" id="rewardQuantity_${selectReward.reward_idx }" onchange="rewardOnchange(${selectReward.reward_idx}, ${selectReward.reward_amount}, ${status.index}, ${length})"
 																			data-testid="quantity" value="1">
 																		<button type="button" aria-label="증가 버튼" id="rewardIncreaseBtn_${selectReward.reward_idx }"
-																			class="ProductQuantity_plusButton__2TJ7g" onclick="rewardIncrease('${selectReward.reward_idx }', ${selectReward.reward_amount }, '${selectReward.reward_name}')"></button>
+																			class="ProductQuantity_plusButton__2TJ7g" onclick="rewardIncrease('${selectReward.reward_idx }', ${selectReward.reward_amount }, ${status.index}, ${length})"></button>
 																	</div>
 																	<p class="RewardProductCard_price__3t1PE" id="rewardAmount_${selectReward.reward_idx }">${selectReward.reward_amount }</p>
 																</div>
