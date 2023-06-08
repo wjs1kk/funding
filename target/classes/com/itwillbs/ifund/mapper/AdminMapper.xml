@@ -26,9 +26,11 @@
 		SELECT member_idx
 		, member_name
 		, member_email
+		, member_phone
 		FROM member
 		WHERE member_idx = #{member_idx}
 	</select>
+	
 	<!-- 2023-05-30 박경은 - 판매자 정보 조회 -->
 	<select id="selectRep" resultType="map">
 		SELECT member_idx
@@ -42,7 +44,32 @@
 		FROM representative
 		WHERE member_idx = #{member_idx}
 	</select>
-
+	
+	<!-- 2023-06-07 박경은 - 쿠폰관리 목록 -->
+	<select id="selectCouponList" resultType="map">
+		SELECT coupon_idx
+			 , coupon_name
+			 , coupon_code
+			 , coupon_start
+			 , coupon_end
+			 , coupon_percent
+			 , maker_idx
+			 , coupon_isadmin
+			FROM coupon
+			ORDER BY coupon_idx DESC
+	</select>
+	<select id="selectCoupon"
+		resultType="com.itwillbs.ifund.vo.CouponVO">
+		SELECT *
+		FROM coupon
+		WHERE coupon_idx = #{coupon_idx}
+	</select>
+	<update id="updateCoupon">
+		UPDATE coupon
+		SET coupon_isadmin = #{coupon_isadmin}
+		WHERE coupon_idx = #{coupon_idx}
+	</update>
+	
 	<!-- 2023-05-16 박경은 - 관리자 공지사항목록 조회 -->
 	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
 	<select id="noticeList"
@@ -181,7 +208,7 @@
 
 	<!-- =============================================================== -->
 	
-	 <!-- 0516 은산 프로젝트 목록 	-->  
+	  <!-- 0516 은산 프로젝트 목록 	-->  
 	<select id="selectAllProjectList" resultType="map">
 		SELECT p.project_idx,
 			   p.project_type,
@@ -212,7 +239,7 @@
 			   m.member_name
 			FROM project p 
 				JOIN member m ON p.member_idx = m.member_idx
-					WHERE p.project_approve_status = 0;
+					WHERE p.project_approve_status = 1;
 	</select>
 	
   	<!-- 0521 은산 프로젝트 상세-->
@@ -233,9 +260,17 @@
 			   p.project_target,
 			   p.project_create_date,
 			   p.project_approve_status,
-			   m.member_name
-			FROM project p JOIN member m 
+			   m.member_name,
+			   pd.project_detail_person,
+			   pd.project_detail_amount,
+			   pd.project_detail_target,
+			   (pd.project_detail_amount/p.project_target)*100 AS target_rate,
+			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day
+			FROM project p 
+				JOIN member m 
 				ON p.member_idx = m.member_idx
+				JOIN project_detail pd
+				ON p.project_idx = pd.project_idx
 					WHERE p.project_idx = #{project_idx};
   	</select>
 	
@@ -245,14 +280,14 @@
 			 SET p.project_start_date = #{project_start_date}
 			    ,p.project_end_date = #{project_end_date}
 			    ,p.project_coming_soon_date = #{project_coming_soon_date}
-			    ,p.project_approve_status = 1
+			    ,p.project_approve_status = 2
 	    WHERE p.project_idx = #{project_idx}
 	</update>
 	
 	<!-- 0518 은산 프로젝트 승인 거부--> 
 	<update id="updateApproveDenied">
 		UPDATE project p
-			 SET p.project_approve_status = 2
+			 SET p.project_approve_status = 3
 				WHERE p.project_idx = #{project_idx};
 				
 	</update>
@@ -267,6 +302,7 @@
 					,project_idx
 					,admin_name
 					,approve_date
+					,approve_reason
 					,approve_status
 					)
 				VALUES(
@@ -274,10 +310,23 @@
 					,#{project_idx}
 					,#{admin_name}
 					,now()
-					,1
+					,
+					<choose>
+						<when test="project_approve_status == '2'">
+							'승인'
+						</when>
+						<when test="project_approve_status == '3'">
+							#{approve_reason}
+						</when>
+						<otherwise>
+							'기타'
+						</otherwise>
+					</choose>
+					,#{project_approve_status}
 				)
 	</insert>
 	
+	<!-- 승인하면 디테일 생성 -->
 	<insert id="insertProjectDetail">
 		<selectKey keyProperty="project_detail_idx" resultType="int" order="BEFORE">
 			SELECT IFNULL(MAX(project_detail_idx), 0) FROM project_detail
@@ -320,9 +369,14 @@
 								WHERE CURRENT_DATE >= p.project_start_date 
 									AND p.project_end_date > CURRENT_DATE
 							</when>
+							<when test="label == 'closed'">
+								WHERE  CURRENT_DATE > p.project_end_date
+							</when>
+							<when test="label == 'denied'">
+								WHERE p.project_approve_status = 3
+							</when>
 						</choose>
 					</if>
-	
 	</select>
 
 </mapper>

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.AdminService;
+import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.NoticeVO;
 import com.itwillbs.ifund.vo.PageInfo;
@@ -122,7 +123,32 @@ public class AdminController {
 		model.addAttribute("repInfo", repInfo);
 		return "admin/memberList_detail";
 	}
-
+	
+	// 2023-06-07 박경은 - 쿠폰관리 목록
+	@GetMapping("admin/couponList")
+	public String couponList(Model model, HttpSession session, CouponVO coupon) {
+		List couponList = adminService.selectCouponList(coupon);
+		model.addAttribute("couponList", couponList);
+		
+		return "admin/couponList";
+	}
+	
+	@PostMapping("admin/couponListPro")
+	public String couponListPro(Model model, CouponVO coupon, @RequestParam String coupon_idx) {
+		CouponVO couponDetail = adminService.selectCoupon(coupon_idx);
+		model.addAttribute("couponDetail", couponDetail);
+		
+		int updateCount = adminService.updateCoupon(coupon);
+		
+		if(updateCount > 0) {
+			
+			return "redirect:/admin/couponList";
+		} else {
+			model.addAttribute("msg", "상태수정 실패");
+			return "fail_back";
+		}
+	}
+	
 	// 관리자 공지사항목록
 	// 2023-06-02 박경은 - 검색기능(searchKeyword) 추가
 	@GetMapping("admin/noticeList")
@@ -496,78 +522,131 @@ public class AdminController {
 	// ---------------------------------------
 
 	// 프로젝트 목록
-	@GetMapping("admin/projectList")
-	public String projectList(Model model) {
-		List projectList = adminService.getAllProjectList();
-		model.addAttribute("projectList", projectList);
-		return "admin/projectList";
-	}
-
-	// 프로젝트 목록 필터링
-	@GetMapping("admin/projectList/{label}")
-	public String projectListByLabel(@PathVariable("label") String label, Model model) {
-		List projectList = adminService.sortProjectList(label);
-		model.addAttribute("projectList", projectList);
-		return "admin/projectList";
-	}
-
-	// 프로젝트 목록 상세
-	@GetMapping("admin/projectList/detail/{project_idx}")
-	public String projectListDetail(Model model, ProjectVO project, @PathVariable("project_idx") String project_idx) {
-		Map projectDetail = adminService.getDetailList(project);
-		model.addAttribute("project", projectDetail);
-		return "admin/projectList_detail";
-	}
-
-	// 0517 은산
-	// 관리자 승인대기목록
-	@GetMapping("admin/approveList")
-	public String approveList(Model model, ProjectVO project, HttpSession session) {
-		List pendingList = adminService.getPendingList(project);
-		model.addAttribute("pendingList", pendingList);
-		return "admin/approveList";
-	}
-
-	// 0518 은산
-	// 프로젝트 승인
-	@PostMapping("admin/approve")
-	public String approve(Model model, HttpSession session, ProjectVO project) {
-		String isAdmin = (String) session.getAttribute("isAdmin");
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		MemberVO member = adminService.selectMember(member_idx);
-		// 관리자 이름
-		String admin_name = member.getMember_name();
-		// 승인
-		int updateCount = adminService.updateApproveList(project);
-
-		if (updateCount > 0) {
-			model.addAttribute("project_idx", project.getProject_idx());
-			model.addAttribute("admin_name", admin_name);
-			adminService.insertApproveHistory(model);
-
-			Map projectDetail = adminService.getDetailList(project);
-			String status = (String) projectDetail.get("project_approve_status");
-
-			if (status.equals(ApproveStatus.APPROVE.code)) {
-				adminService.createProjectDetail(model);
-			}
-
-			return "redirect:/admin/approveList";
-
-		} else {
-			model.addAttribute("msg", "승인 실패");
-			return "fail_back";
+		@GetMapping("admin/projectList/all")
+		public String projectList(Model model) {
+			List projectList = adminService.getAllProjectList();
+			model.addAttribute("projectList", projectList);
+			return "admin/projectList";
 		}
+		
+		// 프로젝트 목록 필터링
+		@GetMapping("admin/projectList/{label}")
+	    public String projectListByLabel(@PathVariable("label") String label, Model model) {
+	        List projectList = adminService.sortProjectList(label);
+			model.addAttribute("projectList", projectList);
+	        return "admin/projectList";
+	    }
+		
+		// 프로젝트 목록 상세
+		@GetMapping("admin/projectList/detail/{project_idx}")
+		public String projectListDetail(Model model, ProjectVO project, @PathVariable("project_idx") String project_idx) {
+			Map projectDetail = adminService.getDetailList(project);
+			model.addAttribute("project", projectDetail);
+			return "admin/projectList_detail";
+		}
+		
+		// 0517 은산
+		// 관리자 승인대기목록
+		@GetMapping("admin/approveList")
+		public String approveList(Model model, ProjectVO project,HttpSession session) {
+			List pendingList = adminService.getPendingList(project);
+			model.addAttribute("pendingList", pendingList);
+			return "admin/approveList";
+		}
+		
+		// 0518 은산
+		// 프로젝트 승인
+		@PostMapping("admin/approve")
+		public String approve(Model model,HttpSession session ,ProjectVO project) {
+//			String isAdmin = (String)session.getAttribute("isAdmin");
+			Integer member_idx = (Integer)session.getAttribute("member_idx");
+			MemberVO member = adminService.selectMember(member_idx);
+			System.out.println("project " + project);
+			// 관리자 이름
+			String admin_name = member.getMember_name();
+			// 1. 승인
+			int updateCount = adminService.updateApproveList(project);
+			System.out.println("updateCount " + updateCount);
+			
+			if(updateCount > 0) {
+				model.addAttribute("project_idx", project.getProject_idx());
+				// 3.디테일 생성
+				adminService.createProjectDetail(model);
+				Map projectDetail = adminService.getDetailList(project);
+				
+				System.out.println("projectDetail: " + projectDetail);
+//				model.addAttribute("project_idx", project.getProject_idx());
+				model.addAttribute("admin_name", admin_name);
+				
+//				System.out.println("project_idx: " + projectDetail.get("project_idx"));
+				
+				System.out.println("project_approve_status: " + projectDetail.get("project_approve_status"));
+				model.addAttribute("project_approve_status", projectDetail.get("project_approve_status"));
+				// 2. 히스토리 생성
+				adminService.insertApproveHistory(model);
+				
+				// 3.디테일 생성
+//				adminService.createProjectDetail(model);
+				
+//				if(status.equals(ApproveStatus.APPROVE.code)) {
+//					adminService.createProjectDetail(model);
+//				}
+				
+				return "redirect:/admin/approveList";
+				
+			} else {
+				model.addAttribute("msg", "승인 실패");
+				return "fail_back";
+			}		
+			
 
-	}
-
-	// 0525은산
-	// 프로젝트 승인 거부
-	@PostMapping("admin/approveDenied")
-	public String approveDenied(Model model, ProjectVO project, @RequestParam("approve_reason") String approve_reason) {
-		adminService.approveDenied(project);
-
-		return "admin/approveList";
-	}
+		}
+		
+		// 0525은산
+		// 프로젝트 승인 거부
+		@PostMapping("admin/approveDenied")
+		public String approveDenied(Model model ,ProjectVO project, HttpSession session,
+									@RequestParam("approve_reason") String approve_reason ) {
+									
+//			String isAdmin = (String)session.getAttribute("isAdmin");
+			Integer member_idx = (Integer)session.getAttribute("member_idx");
+			MemberVO member = adminService.selectMember(member_idx);
+			// 관리자 이름
+			String admin_name = member.getMember_name();
+					
+			// 거부
+			int updateCount = adminService.approveDenied(project);
+			System.out.println(project);
+			if(updateCount > 0) {
+				// 프로젝트 디테일이 없으면 실행안됨 
+//				Map projectDetail = adminService.getDetailList(project);
+				System.out.println("status: " + project.getProject_approve_status());
+				model.addAttribute("project_idx", project.getProject_idx());
+				model.addAttribute("admin_name", admin_name);
+				model.addAttribute("approve_reason",approve_reason);
+				model.addAttribute("project_approve_status", project.getProject_approve_status());
+				
+				adminService.insertApproveHistory(model);
+				
+				return "redirect:/admin/approveList";
+				
+			} else {
+				model.addAttribute("msg", "승인 거부 실패");
+				return "fail_back";
+			}		
+		}
+		
+		// 관리자 계좌관리(수정예정)
+		@GetMapping("admin/accountInfo")
+		public String bankInfo(Model model, HttpSession session) {
+			Integer member_idx = (Integer)session.getAttribute("member_idx");
+			MemberVO member = adminService.selectMember(member_idx);
+			System.out.println(member.getAccount_auth_status());
+			
+			model.addAttribute("member", member);
+			model.addAttribute("client_id", client_id);
+			model.addAttribute("member", member);
+			return "admin/account_info";
+		}
 
 }

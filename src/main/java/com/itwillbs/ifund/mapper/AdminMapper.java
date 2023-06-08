@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 
+import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.NoticeVO;
 import com.itwillbs.ifund.vo.ProjectVO;
@@ -21,6 +22,10 @@ public interface AdminMapper {
 	// 2023-05-16 박경은 - 관리자 회원 조회
 	public MemberVO selectMember(int member_idx);
 	public Map selectRep(RepresentativeVO rep);
+	// 2023-06-07 박경은 - 쿠폰관리 목록
+	public List selectCouponList(CouponVO coupon);
+	public CouponVO selectCoupon(@Param("coupon_idx") String coupon_idx);
+	public int updateCoupon(CouponVO coupon);
 	// 2023-05-25 박경은 - 관리자 공지사항목록 조회
 	// 2023-06-02 박경은 - 검색기능(searchKeyword) 추가
 	public List<NoticeVO> noticeList(@Param("searchKeyword") String searchKeyword, @Param("startRow")int startRow, @Param("listLimit")int listLimit);
@@ -66,14 +71,13 @@ public interface AdminMapper {
 	// 05-21 은산 프로젝트 상세
 	Map selectDetailList(ProjectVO project);
 	// 05-25 은산 프로젝트 승인 거부
-	public void updateApproveDenied(ProjectVO project);
+	public int updateApproveDenied(ProjectVO project);
 	// 은산 승인 내역
 	public void insertApproveHistory(Model model);
 	// 은산 프로젝트 승인 시 프로젝트 디테일 생성
 	public void insertProjectDetail(Model model);
 	// 은산 프로젝트 필터링
 	public List selectSortedProjectList(String label);
-	
-	
-	
+
+
 }

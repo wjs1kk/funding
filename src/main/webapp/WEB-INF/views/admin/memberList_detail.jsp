@@ -157,7 +157,7 @@
 												<div class="col-sm-10">
 													<input type="text" id="basic-default-phone"
 														class="form-control phone-mask" aria-label="658 799 8941"
-														readonly="readonly" aria-describedby="basic-default-phone">
+														readonly="readonly" value="${memberInfo.member_phone}">
 												</div>
 											</div>
 

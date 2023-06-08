@@ -111,11 +111,11 @@
 
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
+
 					<!-- Content -->
-
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4">프로젝트 목록</h4>
 
+						<h4 class="fw-bold py-3 mb-4">프로젝트 목록</h4>
 						<!-- Basic Layout & Basic with Icons -->
 						<div class="row">
 							<!-- Basic Layout -->
@@ -162,17 +162,19 @@
 												<label class="col-sm-1 col-form-label"
 													for="basic-default-phone">타입 / 카테고리</label>
 												<c:choose>
-													<c:when test="${project.project_type eq 1}">
+													<c:when test="${project.project_type eq 0}">
 														<div class="col-sm-3">
 															<input type="text" id="basic-default-phone" readonly
-																class="form-control phone-mask" value="펀딩 / ${project.project_category}"
+																class="form-control phone-mask"
+																value="펀딩 / ${project.project_category}"
 																aria-label="658 799 8941">
 														</div>
 													</c:when>
 													<c:otherwise>
 														<div class="col-sm-3">
 															<input type="text" id="basic-default-phone" readonly
-																class="form-control phone-mask" value="공동 구매 / ${project.project_category}"
+																class="form-control phone-mask"
+																value="공동 구매 / ${project.project_category}"
 																aria-label="658 799 8941">
 														</div>
 													</c:otherwise>
@@ -247,7 +249,7 @@
 
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+														value="<fmt:formatNumber value="${project.project_detail_amount}" pattern="#,###" />원"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -260,7 +262,7 @@
 
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+														value="<fmt:formatNumber value="${project.target_rate}" pattern="#,###" /> %"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -273,7 +275,7 @@
 
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+														value="${project.d_day}일"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -281,12 +283,12 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">@명 참여</label>
+													for="basic-default-phone">참여인원</label>
 												<div class="col-sm-10">
 
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+														value="${project.project_detail_person}명"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -304,7 +306,128 @@
 								</div>
 							</div>
 							<!-- Basic with Icons -->
-
+							<h4 class="fw-bold py-3 mb-4">메이커 정보</h4>
+							<div class="row">
+								<div class="col-xl">
+									<div class="card mb-4">
+										<div
+											class="card-header d-flex justify-content-between align-items-center">
+											<h5 class="mb-0">메이커</h5>
+											<small class="text-muted float-end">Default label</small>
+										</div>
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">Full
+														Name</label> <input type="text" class="form-control"
+														id="basic-default-fullname" placeholder="John Doe">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-company">Company</label>
+													<input type="text" class="form-control"
+														id="basic-default-company" placeholder="ACME Inc.">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-email">Email</label>
+													<div class="input-group input-group-merge">
+														<input type="text" id="basic-default-email"
+															class="form-control" placeholder="john.doe"
+															aria-label="john.doe"
+															aria-describedby="basic-default-email2"> <span
+															class="input-group-text" id="basic-default-email2">@example.com</span>
+													</div>
+													<div class="form-text">You can use letters, numbers
+														&amp; periods</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-phone">Phone
+														No</label> <input type="text" id="basic-default-phone"
+														class="form-control phone-mask" placeholder="658 799 8941">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-message">Message</label>
+													<textarea id="basic-default-message" class="form-control"
+														placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl">
+									<div class="card mb-4">
+										<div
+											class="card-header d-flex justify-content-between align-items-center">
+											<h5 class="mb-0">정산(계좌,세금계산서 정보 넣기)</h5>
+											<small class="text-muted float-end">Merged input
+												group</small>
+										</div>
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+													<label class="form-label" for="basic-icon-default-fullname">Full
+														Name</label>
+													<div class="input-group input-group-merge">
+														<span id="basic-icon-default-fullname2"
+															class="input-group-text"><i class="bx bx-user"></i></span>
+														<input type="text" class="form-control"
+															id="basic-icon-default-fullname" placeholder="John Doe"
+															aria-label="John Doe"
+															aria-describedby="basic-icon-default-fullname2">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-icon-default-company">Company</label>
+													<div class="input-group input-group-merge">
+														<span id="basic-icon-default-company2"
+															class="input-group-text"><i
+															class="bx bx-buildings"></i></span> <input type="text"
+															id="basic-icon-default-company" class="form-control"
+															placeholder="ACME Inc." aria-label="ACME Inc."
+															aria-describedby="basic-icon-default-company2">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-icon-default-email">Email</label>
+													<div class="input-group input-group-merge">
+														<span class="input-group-text"><i
+															class="bx bx-envelope"></i></span> <input type="text"
+															id="basic-icon-default-email" class="form-control"
+															placeholder="john.doe" aria-label="john.doe"
+															aria-describedby="basic-icon-default-email2"> <span
+															id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+													</div>
+													<div class="form-text">You can use letters, numbers
+														&amp; periods</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-icon-default-phone">Phone
+														No</label>
+													<div class="input-group input-group-merge">
+														<span id="basic-icon-default-phone2"
+															class="input-group-text"><i class="bx bx-phone"></i></span>
+														<input type="text" id="basic-icon-default-phone"
+															class="form-control phone-mask"
+															placeholder="658 799 8941" aria-label="658 799 8941"
+															aria-describedby="basic-icon-default-phone2">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-icon-default-message">Message</label>
+													<div class="input-group input-group-merge">
+														<span id="basic-icon-default-message2"
+															class="input-group-text"><i class="bx bx-comment"></i></span>
+														<textarea id="basic-icon-default-message"
+															class="form-control"
+															placeholder="Hi, Do you have a moment to talk Joe?"
+															aria-label="Hi, Do you have a moment to talk Joe?"
+															aria-describedby="basic-icon-default-message2"></textarea>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
