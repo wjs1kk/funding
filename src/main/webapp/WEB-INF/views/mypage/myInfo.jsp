@@ -106,6 +106,48 @@
             }
         });
     }
+    
+ // 2023-06-05 박경은 - 휴대폰 인증
+ 	// 2023-06-07 박경은 - ("value", $("#member_phone").val()); 수정
+ 	$(function () {
+ 		$('#mobileCheckBtn').css('display','block');	
+	});
+
+ 	function sendSMS() {
+		alert('인증번호가 전송되었습니다.');
+		let form = document.createElement('form');
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute('method', 'post');
+		form.setAttribute('action', 'message');
+		
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "member_phone");
+        hiddenField.setAttribute("value", $("#member_phone").val());
+        form.appendChild(hiddenField);
+		
+		document.body.appendChild(form);
+		form.submit();
+		
+		$('#mobileRetryBtn').css('display','block');
+		$('#mobileCheckBtn').css('display','none');
+		
+		$('#mobileConfirmArea').css('display','block');
+	}
+//  	function authSMS() {
+//  		let form = document.createElement('form');
+// 		form.setAttribute("charset", "UTF-8");
+// 		form.setAttribute('method', 'post');
+ 		
+//  		var hiddenField = document.createElement("input");
+//  		hiddenField.setAttribute("type", "hidden");
+// 	     hiddenField.setAttribute("name", "authCode");
+// 	     hiddenField.setAttribute("value", $("#authCode").val());
+// 	     form.appendChild(hiddenField);
+ 		
+// 	     document.body.appendChild(form);
+// 	 		form.submit();
+// 	}
 </script>
 						
 						
@@ -119,31 +161,24 @@
 									<input type="email" id="userName" name="userName"
 										class="disable input-text" placeholder="이메일 계정" value="${member.member_email}" disabled="">
 								</div>
-								<div id="emailCheckBtn" class="emailAuthBtn btn" style="display: none;" data-status="check">
-									<a href="#" onclick="return false;"> <span>인증하기</span> </a>
-								</div>
-								<div id="emailRetryBtn" class="emailAuthBtn btn" style="display: none;" data-status="retry">
-									<a href="#" onclick="return false;"> <span>재전송</span></a>
-								</div>
 							</div>
 
 							<div class="input-btn-wrap">
 								<div class="input" style="width: 218px;">
-									<input id="mobileNumber" name="mobileNumber" type="tel" class=" input-text" placeholder="휴대폰 번호" value="">
+									<!-- 2023-06-05 박경은 - 휴대폰 인증 - id, name, class, value 값 수정 -->
+									<input id="member_phone" name="member_phone" type="tel" class="member_phone input-text" placeholder="휴대폰 번호" value="${member.member_phone}">
 								</div>
-								<div id="mobileCheckBtn" class="mobileAuthBtn btn" data-status="check">
-									<a href="#" onclick="return false;"> <span>인증하기</span></a>
-								</div>
-								<div id="mobileChangeBtn" class="mobileAuthBtn btn" style="display: none;" data-status="change">
-									<a href="#" onclick="return false;"> <span>변경</span></a>
+								<div id="mobileCheckBtn" class="mobileAuthBtn btn" style="display: none;" data-status="check">
+									<!-- 2023-06-05 박경은 - 휴대폰 인증 onclick="sendSMS()" 추가 -->
+									<a onclick="sendSMS()"> <span>인증하기</span></a>
 								</div>
 								<div id="mobileRetryBtn" class="mobileAuthBtn btn" style="display: none;" data-status="retry">
-									<a href="#" onclick="return false;"> <span>재전송</span></a>
+									<a onclick="sendSMS()"> <span>재전송</span></a>
 								</div>
 							</div>
 							<div id="mobileConfirmArea" class="input-btn-wrap" style="display: none;">
 								<div class="input">
-									<input type="text" id="authCode" class="input-text" placeholder="인증번호"> 
+									<input type="text" id="authCode" name="authCode" class="input-text" placeholder="인증번호" style="width: 218px;"> 
 									<input type="hidden" id="confirmId" value="">
 									<time class="limit_time" style="position: relative; top: -39px; left: 85%; text-align: right;">
 										<span id="smsMs_timer" style="color: #50e3c2; font-size: 13px;"></span>

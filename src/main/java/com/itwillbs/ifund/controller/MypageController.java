@@ -35,9 +35,8 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private ProjectCreateService projectCreateService;
-	
-	
-	//0516수정 로그인정보 가져오기
+
+	// 0516수정 로그인정보 가져오기
 	@GetMapping("mypage/supporter")
 	public String mypage(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -48,7 +47,7 @@ public class MypageController {
 		model.addAttribute("member_point", member_point);
 		return "mypage/mypage";
 	}
-	
+
 	@GetMapping("mypage/maker")
 	public String mypage2(HttpSession session, Model model) {
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
@@ -56,14 +55,17 @@ public class MypageController {
 		model.addAttribute("projectList", projectList);
 		return "mypage/mypage2";
 	}
+
 	@GetMapping("supporter")
 	public String suppoter() {
 		return "mypage";
 	}
+
 	@GetMapping("maker")
 	public String maker() {
 		return "mypage2";
 	}
+
 	@GetMapping("mypage/coupon")
 	public String mypage_coupon(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -73,6 +75,7 @@ public class MypageController {
 
 		return "mypage/coupon";
 	}
+
 	@GetMapping("mypage/couponzone")
 	public String couponzone(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -89,29 +92,30 @@ public class MypageController {
 	public String maker_coupon() {
 		return "mypage/maker_coupon";
 	}
+
 	@PostMapping("mypage/couponPro")
 	public String couponPro(HttpServletRequest request, CouponVO couponVO, HttpSession session, Model model) {
-		Integer member_idx = (Integer)session.getAttribute("member_idx");
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
 //		if(mypageService.selectCoupon(member_idx) != null) {
 //			model.addAttribute("msg", "이미 신청하셨습니다.");
 //			return "fail_back";
 //		}
-		
+
 		couponVO.setMember_idx(member_idx);
 		Random random = new Random();
 		String couponCode = String.format("%06d", random.nextInt(1000000));
 		couponVO.setCoupon_code(couponCode);
-		
+
 		int insertCount = mypageService.insertCoupon(couponVO);
-		if(insertCount > 0) {
+		if (insertCount > 0) {
 			model.addAttribute("msg", "쿠폰 발급 신청 완료");
 			model.addAttribute("target", "maker_coupon");
 			return "mypage/maker_coupon";
-		}  else {
+		} else {
 			model.addAttribute("msg", "쿠폰 발급 신청 실패");
 			return "fail_back";
 		}
-		
+
 //		return "mypage/maker_coupon";
 	}
 //	@SuppressWarnings("unused")
@@ -145,7 +149,6 @@ public class MypageController {
 //		}											
 //	}
 
-	
 //	0518수정 - 포인트 내역
 	@GetMapping("mypage/point")
 	public String mypage_point(HttpSession session, Model model) {
@@ -153,22 +156,25 @@ public class MypageController {
 		List<PointVO> point = mypageService.selectPoint(member_idx);
 		model.addAttribute("point", point);
 		System.out.println(point);
-		
+
 		String member_point = point.get(0).getMember_point();
 		model.addAttribute("member_point", member_point);
 		System.out.println(member_idx);
-		
+
 		return "mypage/point";
 	}
+
 //	서포터 문의
 	@GetMapping("mypage/supinquiry")
 	public String sup_inquiry() {
 		return "mypage/sup_inquiry";
 	}
+
 	@GetMapping("mypage/makerinquiry")
 	public String maker_inquiry() {
 		return "mypage/maker_inquiry";
 	}
+
 	@GetMapping("mypage/makerinquiry2")
 	public String maker_inquiry2(HttpSession session, Model model) {
 //		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -178,17 +184,10 @@ public class MypageController {
 //		model.addAttribute("inq", inq);
 //		model.addAttribute("send_inq", send_inq);
 //		model.addAttribute("receive_inq", receive_inq);
-		
+
 		return "mypage/maker_inquiry2";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping("mypage/wish")
 	public String wish(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -198,35 +197,36 @@ public class MypageController {
 
 		return "mypage/wish";
 	}
-	
+
 //	0516수정 회원정보수정
 	@GetMapping("mypage/myInfo")
 	public String myInfo(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		model.addAttribute("member", mypageService.selectUser(member_idx));
-		return "mypage/myInfo"; 
+		return "mypage/myInfo";
 	}
+
 	@PostMapping("mypage/myInfoPro")
-	public String myInfoPro(Model model, HttpServletRequest request, HttpSession session, MemberVO memberVO, 
-							MultipartFile image, String newPassword, String newPassword2) {
-		
+	public String myInfoPro(Model model, HttpServletRequest request, HttpSession session, MemberVO memberVO,
+			MultipartFile image, String newPassword, String newPassword2) {
+
 		System.out.println(image);
-		
-		Integer member_idx = (Integer)session.getAttribute("member_idx");
+
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		model.addAttribute("member", mypageService.selectUser(member_idx));
-		
-	    if (!newPassword.equals(newPassword2)) {
-	        model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-	        return "fail_back";
-	    }
-	    
+
+		if (!newPassword.equals(newPassword2)) {
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			return "fail_back";
+		}
+
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(newPassword);
 		memberVO.setMember_passwd(securePasswd);
 		memberVO.setMember_idx(member_idx);
-		
+
 		// 프로핑사진 등록
-		if(image != null) {
+		if (image != null) {
 			String uploadDir = "/resources/images/profile";
 			String saveDir = session.getServletContext().getRealPath(uploadDir);
 //			MultipartFile mFile = memberVO.getFile();
@@ -248,13 +248,30 @@ public class MypageController {
 		}
 
 		int updateCount = mypageService.updateUser(memberVO);
-		
+
 		if (updateCount > 0) {
-	        return "redirect:/mypage/myInfo";
+			return "redirect:/mypage/myInfo";
 		} else {
 			model.addAttribute("msg", "회원 정보 수정 실패!");
 			return "fail_back";
 		}
+	}
+
+	// 2023-06-05 박경은 - 휴대폰 인증
+	@PostMapping("mypage/message")
+	public String checkMessage(Model model, MemberVO member) {
+		model.addAttribute("member_phone", member.getMember_phone());
+		// 난수
+		Random rand = new Random();
+		String numStr = "";
+		for (int i = 0; i < 6; i++) {
+			String ran = Integer.toString(rand.nextInt(10));
+			numStr += ran;
+		}
+
+		NaverCloud.sendSMS(member.getMember_phone(), numStr);
+		return "redirect:/mypage/myInfo";
+
 	}
 
 //	0516 정보수정 전 비밀번호 확인
@@ -262,42 +279,45 @@ public class MypageController {
 	public String checkInfo() {
 		return "mypage/checkInfo";
 	}
-	
+
 	@PostMapping("mypage/checkInfoPro")
 	public String checkInfoPro(HttpSession session, Model model, @RequestParam("password") String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		String member_passwd = mypageService.selectPasswd(member_idx);
-		if(member_passwd == null || !passwordEncoder.matches(password, member_passwd)) {
+		if (member_passwd == null || !passwordEncoder.matches(password, member_passwd)) {
 			model.addAttribute("msg", "비밀번호가 일치하지 않습니다!");
 			return "fail_back";
 		} else {
 			return "redirect:/mypage/myInfo";
 		}
 	}
+
 //	0516 정보수정 전 비밀번호 확인
 	@GetMapping("mypage/maker_checkInfo")
 	public String maker_checkInfo() {
-		return "mypage/maker_checkInfo"; 
+		return "mypage/maker_checkInfo";
 	}
+
 	@PostMapping("mypage/maker_checkInfo")
 	public String maker_checkInfoPro(HttpSession session, Model model, @RequestParam("password") String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		String member_passwd = mypageService.selectPasswd(member_idx);
-		if(member_passwd == null || !passwordEncoder.matches(password, member_passwd)) {
+		if (member_passwd == null || !passwordEncoder.matches(password, member_passwd)) {
 			model.addAttribute("msg", "비밀번호가 일치하지 않습니다!");
 			return "fail_back";
 		} else {
 			return "redirect:/mypage/myInfo";
 		}
 	}
-	
+
 //	0517 추가! 팔로잉 매핑
 	@GetMapping("mypage/follow")
 	public String follow() {
 		return "mypage/follow";
 	}
+
 //	0522 수정! 펀딩참여내역 매핑
 	@GetMapping("mypage/history")
 	public String history(HttpSession session, Model model) {
@@ -305,24 +325,25 @@ public class MypageController {
 		List<ProjectVO> history = mypageService.selectHistory(member_idx);
 		model.addAttribute("history", history);
 		System.out.println(history);
-		
+
 		return "mypage/history";
 	}
+
 	@GetMapping("mypage/history2")
 	public String history2() {
 		return "mypage/history2";
 	}
-	
+
 	@GetMapping("mypage/test")
 	public String test() {
 		return "mypage/test";
 	}
-	
+
 	@GetMapping("mypage/deleteMember")
 	public String deleteMember(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		int deleteCount = mypageService.deleteMember(member_idx);
-		
+
 		if (deleteCount > 0) {
 			model.addAttribute("msg", "회원 탈퇴 완료!");
 			session.invalidate();
@@ -331,25 +352,26 @@ public class MypageController {
 			System.out.println(deleteCount);
 			System.out.println(member_idx);
 			model.addAttribute("msg", "회원 탈퇴 실패!");
-			return "fail_back"; 
+			return "fail_back";
 		}
-		
+
 	}
-	
+
 	@PostMapping("mypage/updateProfile")
-	public String updateProfile(MemberVO memberVO, HttpSession session, Model model, @RequestParam("member_image") MultipartFile memberImage) {
-	    String uploadDir = "/resources/images/profile"; // 프로젝트 상의 업로드 경로
-	    String saveDir = session.getServletContext().getRealPath(uploadDir);
+	public String updateProfile(MemberVO memberVO, HttpSession session, Model model,
+			@RequestParam("member_image") MultipartFile memberImage) {
+		String uploadDir = "/resources/images/profile"; // 프로젝트 상의 업로드 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
 
-	    String originalFilename = memberImage.getOriginalFilename();
-	    String filePath = saveDir + File.separator + originalFilename;
+		String originalFilename = memberImage.getOriginalFilename();
+		String filePath = saveDir + File.separator + originalFilename;
 
-	    memberVO.setMember_image(originalFilename.split("\\.")[0]);
-	    mypageService.updateProfile(memberVO);
-		
+		memberVO.setMember_image(originalFilename.split("\\.")[0]);
+		mypageService.updateProfile(memberVO);
+
 		try {
 			// 이미지 파일 업로드
-	        memberImage.transferTo(new File(filePath));
+			memberImage.transferTo(new File(filePath));
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -359,8 +381,7 @@ public class MypageController {
 		}
 		return "redirect:/myInfo";
 	}
-	
-	
+
 //	@GetMapping("/checkPhone")
 //	@ResponseBody
 //	public String checkPhone(@RequestParam("mobileNumber") String mobileNumber) { // 휴대폰 문자보내기
@@ -384,6 +405,5 @@ public class MypageController {
 //        mypageService.checkPhone(phoneNum,numStr);
 //        return numStr;
 //    }
-	
 
 }

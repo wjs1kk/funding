@@ -10,7 +10,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-<title>와디즈 관리자 - 회원목록</title>
+<title>와디즈 관리자 - 쿠폰관리</title>
 <meta name="description" content="" />
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath }/resources/assets/img/favicon/favicon.ico" />
@@ -131,7 +131,7 @@
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light"></span> 쿠폰관리 목록
+							<span class="text-muted fw-light"></span> 쿠폰관리
 						</h4>
 						<div class="card">
 							<div class="table-responsive text-nowrap"

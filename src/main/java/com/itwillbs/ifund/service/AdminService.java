@@ -39,11 +39,12 @@ public class AdminService {
 	public Map selectRep(RepresentativeVO rep) {
 		return mapper.selectRep(rep);
 	}
-	
+
 	// 2023-06-06 박경은 - 쿠폰관리 목록
 	public List selectCouponList(CouponVO coupon) {
 		return mapper.selectCouponList(coupon);
 	}
+
 	public CouponVO selectCoupon(String coupon_idx) {
 		return mapper.selectCoupon(coupon_idx);
 	}
@@ -125,8 +126,9 @@ public class AdminService {
 	public int deleteNews(int board_idx) {
 		return mapper.deleteNews(board_idx);
 	}
+
 	// --------------------------------------
-	
+
 	// 05-16 은산 프로젝트 목록
 	public List<ProjectVO> getAllProjectList() {
 		return mapper.selectAllProjectList();
@@ -136,28 +138,33 @@ public class AdminService {
 	public List getPendingList(ProjectVO project) {
 		return mapper.selectPendingList(project);
 	}
-	
+
 	// 05-18 은산 프로젝트 승인
 	public int updateApproveList(ProjectVO project) {
 		return mapper.updateApproveList(project);
 	}
+
 	// 05-21 은산 프로젝트 상세
 	public Map getDetailList(ProjectVO project) {
 		return mapper.selectDetailList(project);
 	}
+
 	// 05-25 은산 프로젝트 승인거부
 	public int approveDenied(ProjectVO project) {
 		return mapper.updateApproveDenied(project);
 	}
+
 	// 은산 승인 내역
 	public void insertApproveHistory(Model model) {
 		mapper.insertApproveHistory(model);
 	}
+
 	// 은산 프로젝트 승인 시 프로젝트 디테일 생성
 	public void createProjectDetail(Model model) {
 		mapper.insertProjectDetail(model);
-		
+
 	}
+
 	public List sortProjectList(String label) {
 		return mapper.selectSortedProjectList(label);
 	}

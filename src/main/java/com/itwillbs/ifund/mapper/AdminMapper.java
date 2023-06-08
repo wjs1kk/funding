@@ -58,9 +58,9 @@ public interface AdminMapper {
 	public int deleteNewsFile(int board_idx);
 	// 2023-05-22 박경은 - 관리자 보도자료 삭제
 	public int deleteNews(@Param("board_idx")int board_idx);
-	
-	
-	// ----------------------------------------
+		
+		
+		// ----------------------------------------
 	
 	// 05-16 은산 프로젝트 목록
 	List<ProjectVO> selectAllProjectList();

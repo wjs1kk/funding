@@ -8,7 +8,7 @@
 <script type="text/javascript">
 window.onload = function() {
 	<!-- 0520 관리자 메뉴 active 추가 -->
-	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'noticeList', 'newsList'];
+	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'couponList', 'noticeList', 'newsList'];
 	let url = window.location.href.split('/')[5];
 	menuIds.forEach(id => {
 		let menu = document.getElementById(id);
@@ -109,6 +109,10 @@ window.onload = function() {
 					<li id="approveList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/approveList"
 						class="menu-link">
 							<div data-i18n="Container">승인대기 목록</div>
+					</a></li>
+					<li id="couponList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/couponList"
+						class="menu-link">
+							<div data-i18n="Fluid">쿠폰관리</div>
 					</a></li>
 					<li id="noticeList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/noticeList"
 						class="menu-link">
