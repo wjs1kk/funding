@@ -42,28 +42,125 @@
 							<div class="FundingLayout_contents__12sTn">
 								<div class="FundingContainer_listContainer__1jw_z">
 									<div>
-
-
-										<div class="HeaderLayout_container__3fXkO">
+										<div class="HeaderLayout_container__3fXkO">											
 											<div class="HeaderLayout_contents__F4hlC">
-												<h2 class="ProjectTypeFormContainer_title__3Zn37">수수료∙정산 관리</h2>
-											</div>
-
+									<h2 class="ProjectTypeFormContainer_title__3Zn37">수수료∙정산 관리</h2>
+								</div>
 										</div>
+										<br>
+										<br>
 										<form class="ProjectTypeFormContainer_form__3kGVN">
-											<!-- 저장하기 버튼 -->
+										<div class="MouseOverGuide_container__3jDBz">
+										<div class="MouseOverGuide_contents__APrXG">
+											<div class="MakerInfoInputField_container__4b8t-">
+												<div class="TextField_textField__23rCe TextField_md__2zsQn">
+													<label><div>
+															<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																<div class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">프로젝트 번호</div>
+															</div>
+														</div></label>
+													<div class="TextField_field__1E9vt">
+														<input maxlength="64" type="text" id="project_num" 
+														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
+														style="width: 50%">
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>
+									<br>
+										<div class="MouseOverGuide_container__3jDBz">
+										<div class="MouseOverGuide_contents__APrXG">
+											<div class="MakerInfoInputField_container__4b8t-">
+												<div class="TextField_textField__23rCe TextField_md__2zsQn">
+													<label><div>
+															<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																<div class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">프로젝트 명</div>
+															</div>
+														</div></label>
+													<div class="TextField_field__1E9vt">
+														<input maxlength="64" type="text" id="project_name" 
+														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
+														style="width: 50%">
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>
+									<br>
+										<div class="MouseOverGuide_container__3jDBz">
+										<div class="MouseOverGuide_contents__APrXG">
+											<div class="MakerInfoInputField_container__4b8t-">
+												<div class="TextField_textField__23rCe TextField_md__2zsQn">
+													<label><div>
+															<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																<span class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">지급요청 금액</span>
+												<input type="button" style="width: 20%; max-width: 100%;"
+													id="calculate_save" name="savePlan" value="정산 내역서 보기"
+													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">											
+															</div>
+														</div></label>
+													<span class="TextField_field__1E9vt">
+														<input maxlength="64" type="text" id="project_money" 
+														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
+														style="width: 50%">
+													</span>
+												</div>
+											</div>
+										</div>									
+									</div>
+									<br>
+										<div class="MouseOverGuide_container__3jDBz">
+										<div class="MouseOverGuide_contents__APrXG">
+											<div class="MakerInfoInputField_container__4b8t-">
+												<div class="TextField_textField__23rCe TextField_md__2zsQn">
+													<label><div>
+															<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																<div class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">사업자 등록번호</div>
+															</div>
+														</div></label>
+													<div class="TextField_field__1E9vt">
+														<input maxlength="64" type="text" id="project_Bnum" 
+														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
+														style="width: 50%">
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>
+									<br>
+										<div class="MouseOverGuide_container__3jDBz">
+										<div class="MouseOverGuide_contents__APrXG">
+											<div class="MakerInfoInputField_container__4b8t-">
+												<div class="TextField_textField__23rCe TextField_md__2zsQn">
+													<label><div>
+															<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																<div class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">상호/법인명(단체명)</div>
+															</div>
+														</div></label>
+													<div class="TextField_field__1E9vt">
+														<input maxlength="64" type="text" id="project_Bname" 
+														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
+														style="width: 50%">
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>		
+									<br>
+									<br>																			
+										
+											<!-- 정산금 신청 및 내역서 버튼 -->
 											<div class="ProjectTypeFormContainer_buttonWrapper__3fh_J">
 												<input type="button" style="width: 420px; max-width: 100%;"
 													id="calculate_apply" name="savePlan" value="정산금 지급 신청하기"
 													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
-												<input type="button" style="width: 420px; max-width: 100%;"
-													id="calculate_save" name="savePlan" value="정산 내역서 보기"
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
-											</div>
+												</div>
 										</form>
 									</div>
 								</div>
-								<!-- 					심사서류 모달 -->
+								</form>
+								<!-- 					정산내역서 모달 -->
 								<div class="ModalWrapper_modalWrapPortal__3hqCw" id="modal"
 									style="display: none">
 									<div
@@ -107,7 +204,7 @@
 														<p>아이펀드 중개 수수료 + 카드 결제 (PG 등) 대행 수수료</p>
 													</div>
 													<hr>
-													<div align="center">
+													<div>
 														<p>아이펀드 중개 수수료(기본수수료, 데이터 플러스)</p>
 														<b>~~원</b>
 														<p>(최종 결제완료 금액 - 배송료 합계) X 7.7%</p>
@@ -126,6 +223,7 @@
 														day = date.getDate();
 														document.getElementById("current_date").innerHTML = year + "." + month + "." + day;
 														</script>
+														<br>
 														<p>아이펀드 (주)</p>
 													</div>
 												</div>
