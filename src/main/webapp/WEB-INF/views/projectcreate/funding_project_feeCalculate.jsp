@@ -18,9 +18,17 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
+// 	정산금 내역서 확인
 	$(function() {
 		$("#calculate_save").on("click", function() {
 			$('#modal').css('display', 'block');			
+		})
+	})
+	
+	$(function() {
+		$("#apply").on("click", function() {
+			$('#modal').css('display', 'none');
+			$('#project_money').val($("#money").text());	
 		})
 	})
 </script>
@@ -95,19 +103,19 @@
 													<label><div>
 															<div class="ToolTipMobile_toolTipContainer__2tYPd">
 																<span class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn">지급요청 금액</span>
-												<input type="button" style="width: 20%; max-width: 100%;"
-													id="calculate_save" name="savePlan" value="정산 내역서 보기"
-													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">											
 															</div>
 														</div></label>
 													<span class="TextField_field__1E9vt">
-														<input maxlength="64" type="text" id="project_money" 
+														<input maxlength="64" type="text" id="project_money" readonly="readonly"
 														class="Input_input__2kAAL Input_md__3-eZ6" aria-invalid="false"
-														style="width: 50%">
+														style="width: 50%; display:inline-block;">
+												<input type="button" style="width: 20%;" 
+													id="calculate_save" name="savePlan" value="정산 내역서 보기"
+													class=" Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">											
 													</span>
 												</div>
 											</div>
-										</div>									
+										</div>										
 									</div>
 									<br>
 										<div class="MouseOverGuide_container__3jDBz">
@@ -188,7 +196,7 @@
 													<hr>
 													<div>
 														<h4>정산 지급금액(① - ②)</h4>
-														<p style="color: red;">000원</p>
+														<span style="color: red; display:inline-block;" id="money">12345</span><span>원</span>
 														<p>해당 프로젝트의 정산금은 일괄정산되어 지급됩니다.</p>
 													</div>
 													<hr>
@@ -207,7 +215,7 @@
 													<div>
 														<p>아이펀드 중개 수수료(기본수수료, 데이터 플러스)</p>
 														<b>~~원</b>
-														<p>(최종 결제완료 금액 - 배송료 합계) X 7.7%</p>
+														<p>(최종 결제완료 금액 - 배송료 합계) X 플랜 수수료@@@%</p>
 														<br>
 														<p>카드 결제 (PG 등) 대행 수수료</p>
 														<b>~~원</b>
@@ -225,6 +233,13 @@
 														</script>
 														<br>
 														<p>아이펀드 (주)</p>
+														<br>
+														<div class="ProjectTypeFormContainer_buttonWrapper__3fh_J">
+												<input type="button" style="width: 50%; max-width: 100%;"
+													id="apply" name="savePlan" value="확인"
+													class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
+												
+												</div>
 													</div>
 												</div>
 										</div>
