@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/wishes.065b7ca5.chunk.css">
 <title>찜하기</title>
-
 </head>
 <body>
 	<div id="page-container">
