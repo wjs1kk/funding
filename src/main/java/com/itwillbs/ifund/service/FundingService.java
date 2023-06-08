@@ -19,12 +19,6 @@ public class FundingService {
 //	public List<ProjectListVO> selectFundingProject(){
 //		return mapper.selectFundingProject() != null ? mapper.selectFundingProject() : null;
 //	}
-	public Map<String, Object> selectFundingDetail(int project_idx) {
-		return mapper.selectFundingDetail(project_idx);
-	}
-	public Map<String, Object> selectMaker(int member_idx){
-		return mapper.selectMaker(member_idx);
-	}
 	public List<RewardVO> selectReward(int project_idx){
 		return mapper.selectReward(project_idx);
 	}
@@ -39,5 +33,11 @@ public class FundingService {
 	}
 	public List categoryList() {
 		return mapper.categoryList();
+	}
+	public List selectComingsoonProject(String category, String order) {
+		return mapper.selectComingsoonProject(category, order);
+	}
+	public Map<String, Object> fundingDetail(int project_idx) {
+		return mapper.fundingDetail(project_idx);
 	}
 }

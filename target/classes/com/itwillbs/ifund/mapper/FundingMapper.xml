@@ -4,24 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.ifund.mapper.FundingMapper">
 	<!-- funding 페이지 쿼리 -->
-	<select id="selectFundingProject" resultType="com.itwillbs.ifund.vo.ProjectListVO">					
-		SELECT 
-			DISTINCT
-				p.project_idx, p.project_category, p.project_thumbnail,	p.project_plan, pd.project_detail_amount, p.project_target, p.project_start_date, p.project_end_date, p.project_title, m.maker_name FROM project p 
-		INNER 
-			JOIN 
-				project_detail pd ON p.project_idx = pd.project_idx
+	<select id="selectFundingProject"
+		resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
 		INNER
-			JOIN
-				maker m ON p.member_idx = m.member_idx 
-		WHERE 
-			p.project_approve_status = '2'
-		  AND 
-			p.project_type = '1'
-		  AND 
-			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
-		  AND 
-		 	p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -35,7 +38,8 @@
 		<if test="!order.equals('')">
 			<choose>
 				<when test="order.equals('인기순')">
-					ORDER BY (pd.project_detail_amount / p.project_target * 100) DESC
+					ORDER BY (pd.project_detail_amount /
+					p.project_target * 100) DESC
 				</when>
 				<when test="order.equals('모집금액순')">
 					ORDER BY pd.project_detail_amount DESC
@@ -59,14 +63,18 @@
 		project_title, maker_name
 		FROM project p
 		INNER JOIN
-		project_detail pd ON p.project_idx = pd.project_idx
+		project_detail pd ON
+		p.project_idx = pd.project_idx
 		INNER JOIN
-		maker m ON p.member_idx = m.member_idx
+		maker m ON p.maker_idx =
+		m.maker_idx
 		WHERE
 		project_approve_status = '2'
 		AND project_type = '2'
-		AND project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
-		AND DATE_FORMAT(NOW(), '%Y-%m-%d') >= project_start_date
+		AND
+		project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= project_start_date
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -95,19 +103,24 @@
 			</choose>
 		</if>
 	</select>
-	
+
 	<!-- 오픈 예정 분류 -->
-	<select id="selectComingsoonProject"
-		resultType="com.itwillbs.ifund.vo.ProjectListVO">
+	<select id="selectComingsoonProject" resultType="map">
 		SELECT DISTINCT p.project_idx, project_category, project_thumbnail,
-		project_plan, project_title, m.maker_name
+		project_plan, project_title, m.maker_name, project_start_date,
+		project_coming_soon_date
 		FROM project p
 		INNER JOIN
-		project_detail pd ON p.project_idx = pd.project_idx
+		project_detail pd ON p.project_idx =
+		pd.project_idx
 		INNER JOIN
-		maker m ON p.member_idx = m.member_idx
+		maker m ON p.maker_idx = m.maker_idx
 		WHERE
 		project_approve_status = '2'
+		AND project_plan != '1'
+		AND
+		project_coming_soon_date != ""
+		AND project_start_date > DATE(NOW())
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -121,7 +134,8 @@
 		<if test="!order.equals('')">
 			<choose>
 				<when test="order.equals('오픈임박순')">
-					AND project_coming_soon >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+					AND project_coming_soon >= DATE_FORMAT(NOW(),
+					'%Y-%m-%d')
 					ORDER BY p.project_coming_soon DESC;
 				</when>
 				<when test="order.equals('최신순')">
@@ -130,26 +144,28 @@
 			</choose>
 		</if>
 	</select>
-	
-	<!-- 	funding detail 페이지 쿼리 -->
-	<select id="selectFundingDetail" resultType="map">
-		select * from project p 
-				 inner join project_detail pd on p.project_idx = pd.project_idx  
-				 WHERE p.project_idx = #{project_idx};
-	</select>
-	<select id="selectMaker" resultType="map">
-		select m.maker_idx ,m.member_idx ,maker_type ,maker_name ,maker_image ,maker_phone ,maker_email  from maker m 
-			inner join project p on p.maker_idx = m.maker_idx 
-				where p.project_idx = #{project_idx};
 
-					  
-	</select>
+	<!-- funding detail 페이지 쿼리 -->
 	<select id="selectReward" resultType="com.itwillbs.ifund.vo.RewardVO">
-		select * from reward
-				 where project_idx = #{project_idx}
+		SELECT * 
+		  FROM reward
+		 WHERE project_idx = #{project_idx}
 	</select>
 	<select id="categoryList" resultType="map">
-		SELECT *
-		  FROM category
+	SELECT *
+	FROM category
+	</select>
+	<select id="fundingDetail" resultType="map">
+		SELECT 
+			DISTINCT
+				p.project_idx, p.project_category, p.project_reward_category, p.project_content,
+				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images,
+				pd.project_detail_amount, pd.project_detail_person,	m.maker_image, m.maker_name, p.project_summary
+		 FROM 
+			project p
+		INNER JOIN project_detail pd ON p.project_idx = pd.project_idx
+		INNER JOIN maker m ON p.maker_idx = m.maker_idx
+		WHERE 
+			p.project_idx = ${project_idx};
 	</select>
 </mapper>

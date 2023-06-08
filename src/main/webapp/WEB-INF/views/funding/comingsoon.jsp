@@ -20,7 +20,6 @@
 	href="https://static.wadiz.kr/main/css/Welcome-coupon~comingsoon-main~earlybird-app~equity-main~iplicense~main-page~my-wadiz~planned-app~pr~9c6fdc35.25425818.chunk.css">
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/comingsoon-main.4000c0a3.chunk.css">
-
 <script src="resources/js/jquery-3.6.4.js"></script>
 </head>
 <script>
@@ -355,20 +354,20 @@ function prev() {
 					<div class="TableLayout_container__1_Ap4 Main_table__UHAm-"
 						style="grid-template-columns: repeat(3, calc(33.3333% - 20px)); gap: 30px;">
 						<!-- 오픈 예정 목록 -->
-						<c:forEach items="${projectDetailList }" var="projectDetailList">
+						<c:forEach items="${comingsoon }" var="comingsoon">
 							<div class="Main_cardWrap__qlCoY">
 								<div class="ComingsoonMainCard_root__2PH89">
 									<a class="ComingsoonMainCard_item__3F1bJ"
-										href="detail?num=${projectDetailList.project_idx }">
+										href="detail?num=${comingsoon.project_idx }">
 										<div class="ComingsoonMainCard_thumbnailWrap__pO-gp">
 											<div aria-hidden="true"
 												class="CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-												style="background-image: url(resources/images/project_thumbnail/${projectDetailList.project_thumbnail};); border-radius: 8px;"></div>
+												style="background-image: url(resources/images/project_thumbnail/${comingsoon.project_thumbnail};); border-radius: 8px;"></div>
 											<div class="ComingsoonMainCard_ad__2R4c0">AD</div>
 										</div>
 										<div class="ComingsoonMainCard_contentContainer__3Dps9">
-											<div class="ComingsoonMainCard_title__3iBTH">${projectDetailList.project_title }</div>
-											<div class="ComingsoonMainCard_subText__3frwn">${projectDetailList.maker_name }</div>
+											<div class="ComingsoonMainCard_title__3iBTH">${comingsoon.project_title }</div>
+											<div class="ComingsoonMainCard_subText__3frwn">${comingsoon.maker_name }</div>
 										</div>
 										<div class="CardSpinner_container__1cKRs">
 											<div class="CardSpinner_loader__2-LrZ"
@@ -390,9 +389,7 @@ function prev() {
 											<path fill="none" d="M0 0h40v40H0z"></path>
 											<path
 													d="M36.78 32l-.89-1.56a16.92 16.92 0 0 1-2.18-8.68v-7.12A12.78 12.78 0 0 0 30 5.54a13.86 13.86 0 0 0-9.91-4 14.05 14.05 0 0 0-9.95 4 12.74 12.74 0 0 0-3.76 9.1v7.14a16.92 16.92 0 0 1-2.18 8.68L3.22 32h10.91a5.58 5.58 0 0 0 .2 2.8 5.75 5.75 0 0 0 4.44 3.86 5.52 5.52 0 0 0 1 .09 5.79 5.79 0 0 0 3.71-1.36 5.7 5.7 0 0 0 2-4.38 4.88 4.88 0 0 0-.11-1zM8.37 21.78v-7.14A10.66 10.66 0 0 1 11.52 7 11.81 11.81 0 0 1 20 3.66 11.92 11.92 0 0 1 28.48 7a10.65 10.65 0 0 1 3.14 7.62v7.14a19.52 19.52 0 0 0 1.67 8.16H6.71a19.52 19.52 0 0 0 1.66-8.14zM23.42 33a3.64 3.64 0 0 1-7.11 1.13 3.41 3.41 0 0 1 0-2.14h7a3.18 3.18 0 0 1 .11 1.01z"></path></svg><span
-											class="Button_children__ilFun"><span
-												class="ComingNotificationButton_text__1hTeS">${projectDetailList.project_coming_soon}일
-													오픈 알림 신청</span></span></span>
+											class="Button_children__ilFun"><span class="ComingNotificationButton_text__1hTeS">${comingsoon.project_start_date} 오픈</span></span></span>
 									</button>
 								</div>
 							</div>
