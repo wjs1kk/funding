@@ -32,17 +32,22 @@ public class FundingController {
 		Map<String, Object> selectFundingDetail = fundingService.selectFundingDetail(Integer.parseInt(num));
 		Map<String, Object> selectMaker = fundingService.selectMaker(Integer.parseInt(num));
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
+		List selectFunding = fundingService.selectFunding(Integer.parseInt(num));
 		
 		model.addAttribute("selectMaker", selectMaker);
 		model.addAttribute("selectFundingDetail",selectFundingDetail);
 		model.addAttribute("selectReward", selectReward);
+		model.addAttribute("fundingDetail", selectFunding);
 
 		return "funding/funding_detail";
 	}
 	@GetMapping("comingsoon")
-	public String comingsoon(Model model) {
+	public String comingsoon(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
+		List comingsoonProject = fundingService.selectComingsoonProject(category, order);
 		List categoryList = fundingService.categoryList();
+		
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("comingsoon", comingsoonProject);
 		return "funding/comingsoon";
 	}
 	@GetMapping("rewardSelect")

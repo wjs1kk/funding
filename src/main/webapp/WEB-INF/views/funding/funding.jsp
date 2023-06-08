@@ -37,10 +37,6 @@
 				location.href = "funding?category=" + "${param.category}" + "&order=" + $(this).text();
 			});
 		}
- 		
- 		if(document.location.href.match('테크/가전')) {
-            $('li#menu-brand > a').addClass('ImageTab_active__BGdXu');
-        }
 	});
 </script>
 <script type="text/javascript">
@@ -48,6 +44,7 @@
 		location.href="detail?num="+project_idx;	
 	}
 </script>
+
 </head>
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
@@ -266,7 +263,7 @@
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
-							<li data-index="0"><button
+							<li data-index="00"><button
 									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
@@ -275,17 +272,6 @@
 									</div>
 									<div class="ImageTab_labelContainer__2apP3">
 										<span class="ImageTab_label__SvWW9 text">전체</span>
-									</div>
-								</button></li>
-							<li data-index="1"><button class="ImageTab_tab__3siCY">
-									<div class="ImageTab_thumbnailContainer__3Polb">
-										<div class="ImageTab_thumbnailPlaceholder__3mluI">
-											<div class="ImageTab_thumbnail__3mZWA"
-												style="background-image: url(&quot;https://www.wadiz.kr/ft/images/green001/2023/0406/20230406091759797_null.png&quot;);"></div>
-										</div>
-									</div>
-									<div class="ImageTab_labelContainer__2apP3">
-										<span class="ImageTab_label__SvWW9">BEST 펀딩</span>
 									</div>
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
@@ -389,29 +375,16 @@
 												</span></span>
 											</div>
 										</div>
-										<div class="PreorderMainCard_headerRight__3rRNi">
-											<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
-												class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
-												<script type="text/javascript">
-													var project_end_date = new Date("${projectDetailList.project_end_date}");
-													var now = new Date();
-													var diff = project_end_date - now;
-													var diffDay = Math.ceil(diff/(1000*60*60*24));
-													document.write(diffDay)
-												</script>
-												일 남음</span></span>
-												
+										<div class="PreorderMainCard_title__XlTJk">
+											${projectDetailList.project_title }</div>
+										<div class="PreorderMainCard_subText__1LB5l">
+											<span class="PreorderMainCard_makerName__2Ufj1">${projectDetailList.maker_name }</span>
 										</div>
 									</div>
-									<div class="PreorderMainCard_title__XlTJk">${projectDetailList.project_title }</div>
-									<div class="PreorderMainCard_subText__1LB5l">
-										<span class="PreorderMainCard_makerName__2Ufj1">${projectDetailList.maker_name }</span>
-									</div>
-								</div>
-								<div class="CardSpinner_container__1cKRs">
-									<div class="CardSpinner_loader__2-LrZ"
-										style="width: 32px; height: 32px;">
-										<svg viewBox="25 25 50 50" aria-label="Loading">
+									<div class="CardSpinner_container__1cKRs">
+										<div class="CardSpinner_loader__2-LrZ"
+											style="width: 32px; height: 32px;">
+											<svg viewBox="25 25 50 50" aria-label="Loading">
 											<g class="Loader_circular__2dy3E">
 											<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
 													fill="none" stroke-width="4" stroke-miterlimit="10"></circle></g></svg>
@@ -431,9 +404,8 @@
 									</button>
 								</div>
 							</div>
-						</div>
 						</c:forEach>
-<!-- 						funding project 목록 끝 -->
+						<!-- 						funding project 목록 끝 -->
 					</div>
 				</div>
 			</div>

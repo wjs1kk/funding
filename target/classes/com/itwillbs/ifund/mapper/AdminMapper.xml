@@ -212,7 +212,7 @@
 			   m.member_name
 			FROM project p 
 				JOIN member m ON p.member_idx = m.member_idx
-					WHERE p.project_approve_status = 0;
+					WHERE p.project_approve_status = 1;
 	</select>
 	
   	<!-- 0521 은산 프로젝트 상세-->

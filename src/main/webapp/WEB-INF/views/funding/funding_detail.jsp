@@ -15,16 +15,43 @@
 	href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/reward-story.1b2d2b3c.chunk.css">
+<!-- <script src="/node_modules/readmore-js/readmore.min.js"></script> -->
+<script src="resources/js/jquery-3.6.4.js"></script>
+
+<!-- slick-slide 사용 -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <title>Insert title here</title>
 </head>
+<script>
+	$(function(){
+		$('.slick-slider').slick({
+			slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+			infinite : true, 	//무한 반복 옵션	 
+			slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+			slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+			speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+			arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+			dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+			autoplay : true,			// 자동 스크롤 사용 여부
+			autoplaySpeed : 2000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+			pauseOnHover : false,		// 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
+			vertical : false,		// 세로 방향 슬라이드 옵션
+			prevArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>',		// 이전 화살표 모양 설정
+			nextArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickNext__382fX">Next</button>',		// 다음 화살표 모양 설정
+			dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+			draggable : true, 	//드래그 가능 여부 
+		});
+	});
+</script>
 <body style="margin-bottom: 49px !important; overflow: auto;" class="">
 	<div id="page-container">
 		<main id="main-app">
 			<!-- top.jsp -->
 			<jsp:include page="../inc/top.jsp"></jsp:include>
 			<div class="MainWrapper_content__GZkTa">
-				<div class="RewardDetailDesktop_container__dnnWt">
+				<div class="RewardDetailDesktop_container__dnnWt">	
 					<div class="RewardDetailDesktop_header__23GTQ">
 						<div class="Tabs_container__3W2T2">
 							<ul class="Tabs_tabs__2Zild">
@@ -217,19 +244,33 @@
 											</div>
 										</div>
 									</div>
+									<script>
+// 									$(function () {
+// 									    $('.Story_button__AG0eO').readmore({
+// 									        blockCSS: 'display: block; width: 250px;',
+// 									        collapsedHeight: 18,
+// 									        moreLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_더보기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 더보기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>',
+// 									        lessLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_접기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 접기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>'
+// 									    });
+// 									});
+									</script>
 									<div class="Story_button__AG0eO">
 										<button data-ga-category="펀딩_상세" data-ga-action="클릭"
 											data-ga-label="스토리_더보기"
 											class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg"
 											type="button">
-											<span><span class="Button_children__ilFun">스토리
-													더보기</span> <svg viewBox="0 0 32 32" focusable="false"
+											<span>
+												<span class="Button_children__ilFun">스토리
+													더보기
+												</span>
+													<svg viewBox="0 0 32 32" focusable="false"
 													role="presentation"
 													class="withIcon_icon__3VTbq Button_icon__t6yp6"
 													aria-hidden="true">
 													<path
-														d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
-										</button>
+														d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
+											</span>
+										</button>	
 									</div>
 								</div>
 								<div class="DetailPageRecommendationContainer_container__2dyco">

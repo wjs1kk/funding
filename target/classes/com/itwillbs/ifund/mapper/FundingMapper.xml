@@ -13,7 +13,7 @@
 				project_detail pd ON p.project_idx = pd.project_idx
 		INNER
 			JOIN
-				maker m ON p.member_idx = m.member_idx 
+				maker m ON p.maker_idx = m.maker_idx 
 		WHERE 
 			p.project_approve_status = '2'
 		  AND 
@@ -61,7 +61,7 @@
 		INNER JOIN
 		project_detail pd ON p.project_idx = pd.project_idx
 		INNER JOIN
-		maker m ON p.member_idx = m.member_idx
+		maker m ON p.maker_idx = m.maker_idx
 		WHERE
 		project_approve_status = '2'
 		AND project_type = '2'
@@ -98,16 +98,19 @@
 	
 	<!-- 오픈 예정 분류 -->
 	<select id="selectComingsoonProject"
-		resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		resultType="map">
 		SELECT DISTINCT p.project_idx, project_category, project_thumbnail,
-		project_plan, project_title, m.maker_name
+		project_plan, project_title, m.maker_name, project_start_date, project_coming_soon_date 
 		FROM project p
 		INNER JOIN
 		project_detail pd ON p.project_idx = pd.project_idx
 		INNER JOIN
-		maker m ON p.member_idx = m.member_idx
+		maker m ON p.maker_idx = m.maker_idx
 		WHERE
 		project_approve_status = '2'
+		AND project_plan != '1'
+		AND project_coming_soon_date != ""
+		AND project_start_date > DATE(NOW())
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -139,10 +142,8 @@
 	</select>
 	<select id="selectMaker" resultType="map">
 		select m.maker_idx ,m.member_idx ,maker_type ,maker_name ,maker_image ,maker_phone ,maker_email  from maker m 
-			inner join project p on p.maker_idx = m.maker_idx 
+			inner join project p on p.maker_idx = m.maker_idx
 				where p.project_idx = #{project_idx};
-
-					  
 	</select>
 	<select id="selectReward" resultType="com.itwillbs.ifund.vo.RewardVO">
 		select * from reward
@@ -151,5 +152,10 @@
 	<select id="categoryList" resultType="map">
 		SELECT *
 		  FROM category
+	</select>
+	<select id="selectFunding" resultType="map">
+		SELECT *
+		  FROM funding
+		 WHERE project_idx = #{project_idx}
 	</select>
 </mapper>

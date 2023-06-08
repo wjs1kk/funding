@@ -40,4 +40,10 @@ public class FundingService {
 	public List categoryList() {
 		return mapper.categoryList();
 	}
+	public List selectComingsoonProject(String category, String order) {
+		return mapper.selectComingsoonProject(category, order);
+	}
+	public List selectFunding(int project_idx) {
+		return mapper.selectFunding(project_idx);
+	}
 }

@@ -18,4 +18,6 @@ public interface FundingMapper {
 	public List<ProjectListVO> selectFundingProject(@Param("category") String category, @Param("order") String order);
 	public List<ProjectListVO> selectPreorderProject(@Param("category") String category, @Param("order") String order);
 	public List categoryList();
+	public List selectComingsoonProject(@Param("category") String category, @Param("order") String order);
+	public List selectFunding(int project_idx);
 }
