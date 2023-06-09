@@ -343,6 +343,7 @@ input[type="number"]::-webkit-inner-spin-button {
 							원을 참여합니다.
 						</p>
 						<form action="payment" method="post">
+							<input type="hidden" id="project_idx" name="project_idx" value="${param.num }">
 							<input type="hidden" id="reward_name" name="reward_name">
 							<input type="hidden" id="reward_amount" name="reward_amount">
 							<input type="hidden" id="reward_idx" name="reward_idx">
