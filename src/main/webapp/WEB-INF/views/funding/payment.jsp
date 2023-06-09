@@ -18,6 +18,17 @@
 <link rel="stylesheet" href="resources/css/payment_style.css">
 <script src="resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+
+<script type="text/javascript">
+	function pointInputOnchange(myPoint) {
+		if($("#pointInput").val() > myPoint){
+			$("#pointInput").val(myPoint)
+			alert("현재 사용가능한 포인트는 " + myPoint + "P 입니다.")
+		}
+		$(".TitleValuePrice_danger__3Sy33").eq(1).text($("#pointInput").val()+"원")
+	}
+
+</script>
 </head>
 <body>
 	<div id="page-container">
@@ -58,11 +69,15 @@
 									<ul>
 										<li>
 											<p class="title">${rewardList.reward_name }</p>
-											<p class="text">${rewardList.reward_content }</p>
+											<p class="text">
+											${rewardList.reward_option }
+											<br>
+											${rewardList.reward_content }
+											</p>
 											<div class="info">
 	
 												<p class="sum">
-													<em>수량 : ${rewardList.rewardQuantity }</em>${rewardList.reward_amount }
+													<em>수량 : ${rewardList.rewardQuantity }</em>${rewardList.reward_amount * rewardList.rewardQuantity}원
 												</p>
 											</div>
 										</li>
@@ -86,7 +101,7 @@
 								</dl>
 								<dl>
 									<dt>배송비</dt>
-									<dd>${param.reward_delivery_fee}원</dd>
+									<dd>${map.reward_delivery_fee}원</dd>
 								</dl>
 								<div class="point">
 									<dl id="coupon-field" class="disabled">
@@ -112,10 +127,10 @@
 										<dd>
 											<label class="wz checkbox"> <input type="checkbox"
 												id="ckptAll"><span>모두 사용 (보유 포인트 <span
-													id="usablePoint">0</span>P)
+													id="usablePoint">${myPoint }</span>P)
 											</span>
-											</label> <input type="text" id="pointInput"
-												class="numOnly pointInput" maxlength="8" disabled="disabled">
+											</label> <input type="text" id="pointInput" onchange="pointInputOnchange(${myPoint })"
+												class="numOnly pointInput" maxlength="8">
 										</dd>
 									</dl>
 									<input type="hidden" id="limitPoint" value="0">
@@ -139,7 +154,7 @@
 										<dl class="">
 											<dt>리워드 금액</dt>
 											<dd>
-												<span><em class="TitleValuePrice_money__2q48W">${param.reward_amount }</em>원</span>
+												<span><em class="TitleValuePrice_money__2q48W">${map.reward_amount }</em>원</span>
 											</dd>
 										</dl>
 									</div>
@@ -171,7 +186,7 @@
 										<dl class="">
 											<dt>배송비</dt>
 											<dd>
-												<span><em class="TitleValuePrice_money__2q48W">0</em>원</span>
+												<span><em class="TitleValuePrice_money__2q48W">${map.reward_delivery_fee }</em>원</span>
 											</dd>
 										</dl>
 									</div>
@@ -180,7 +195,7 @@
 										<dl class="TitleValuePrice_total__2cGge">
 											<dt>최종 결제 금액</dt>
 											<dd>
-												<span><em class="">26,900 원</em></span>
+												<span><em class="">${map.reward_amount + map.reward_delivery_fee}원</em></span>
 											</dd>
 										</dl>
 									</div>

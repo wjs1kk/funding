@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.ifund.vo.ProjectListVO;
@@ -57,8 +60,9 @@ public class FundingController {
 		return "funding/rewardSelect";
 	}
 	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
-	@GetMapping("payment")
-	public String payment(@RequestParam Map map, Model model) {
+	@PostMapping("payment")
+	public String payment(@RequestParam Map map, Model model, HttpSession session) {
+		int member_idx = (Integer)session.getAttribute("member_idx");
 		
 		String[] reward_idx = ((String)map.get("reward_idx")).split(", ");
 		String[] reward_quantity = ((String)map.get("reward_quantity")).split(", ");
@@ -72,16 +76,15 @@ public class FundingController {
 			rewardList.add(rewardMap);
 		}
 		
+		// 내 포인트 가져오기
+		int myPoint = fundingService.getMyPoint(member_idx);
 		
-//		for(String reward_idx_split : reward_idx) {
-//			System.out.println(Integer.parseInt(reward_idx_split));
-//			Map rewardMap = fundingService.getPayReward(Integer.parseInt(reward_idx_split));
-//			rewardMap.put("rewardQuantity", rewardList);
-//			
-//			rewardList.add(rewardMap);
-//		}
+		System.out.println("내 포인트 : " + myPoint);
 		
+		
+		model.addAttribute("map", map);
 		model.addAttribute("rewardList", rewardList);
+		model.addAttribute("myPoint", myPoint);
 		
 		return "funding/payment";
 	}

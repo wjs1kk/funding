@@ -44,4 +44,8 @@ public class FundingService {
 	public Map getPayReward(int reward_idx) {
 		return mapper.getPayReward(reward_idx);
 	}
+	// 06-09 김동욱 포인트 가져오기
+	public int getMyPoint(int member_idx) {
+		return mapper.getMyPoint(member_idx);
+	}
 }

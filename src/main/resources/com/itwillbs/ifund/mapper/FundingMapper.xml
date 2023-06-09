@@ -169,10 +169,22 @@
 			p.project_idx = ${project_idx};
 	</select>
 	
+	<!--  06-09 김동욱 결제할 리워드 가져오기  -->
 	<select id="getPayReward" resultType="map">
 		SELECT *
 		FROM reward
 		WHERE reward_idx = #{reward_idx}
+	</select>
+	
+	<!--  06-09 김동욱 포인트 가져오기  -->
+	<select id="getMyPoint" resultType="int">
+		SELECT member_point
+		FROM point
+		WHERE point_idx =
+			(SELECT MAX(point_idx)
+			FROM `point` p
+			WHERE member_idx = #{member_idx}
+			GROUP BY member_idx);
 	</select>
 	
 </mapper>

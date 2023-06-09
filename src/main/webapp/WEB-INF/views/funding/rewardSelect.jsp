@@ -30,10 +30,10 @@
 		}
 		rewardOnchange(reward_amount, index, length);
 	}
-	$(function() {
-		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
-		$("#rewardCheckbox_"+${param.select}).click();
-	})
+// 	$(function() {
+// 		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
+// 		$("#rewardCheckbox_"+${param.select}).click();
+// 	})
 	
 	// 06-07 김동욱 리워드 수량 증가 버튼
 	function rewardIncrease(reward_amount, index, length) {
@@ -342,7 +342,7 @@ input[type="number"]::-webkit-inner-spin-button {
 							[레전드 복숭아] 다시 돌아온 분홍이와 노랑이! 첫 수확이라 더 달콤해요에 <em id="sumTotalNum">5,852,000</em>
 							원을 참여합니다.
 						</p>
-						<form action="payment">
+						<form action="payment" method="post">
 							<input type="hidden" id="reward_name" name="reward_name">
 							<input type="hidden" id="reward_amount" name="reward_amount">
 							<input type="hidden" id="reward_idx" name="reward_idx">

@@ -19,4 +19,6 @@ public interface FundingMapper {
 	public Map<String, Object> fundingDetail(int project_idx);
 	// 06-09 김동욱 결제할 리워드 가져오기
 	public Map getPayReward(int reward_idx);
+	// 06-09 김동욱 포인트 가져오기
+	public int getMyPoint(int member_idx);
 }
