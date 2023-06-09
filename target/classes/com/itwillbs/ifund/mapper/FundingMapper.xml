@@ -168,4 +168,11 @@
 		WHERE 
 			p.project_idx = ${project_idx};
 	</select>
+	
+	<select id="getPayReward" resultType="map">
+		SELECT *
+		FROM reward
+		WHERE reward_idx = #{reward_idx}
+	</select>
+	
 </mapper>

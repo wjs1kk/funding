@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +17,11 @@
 <link rel="stylesheet" href="resources/css/payment_wpurchase_reward.css">
 <link rel="stylesheet" href="resources/css/payment_style.css">
 <script src="resources/js/jquery-3.6.4.js"></script>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 </head>
 <body>
 	<div id="page-container">
+		<input type="text" id="test">
 
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 
@@ -53,30 +54,30 @@
 
 						<div class="wpurchase-order">
 							<div class="order-list" data-choiced-legnth="1">
-								<ul>
-
-									<li>
-										<p class="title">[얼리버드] 스테이바 일반수박 7kg 이상(1EA)</p>
-										<p class="text">(한정수량) 1~2인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신
-											분들에게 추천~상온 후숙 후 냉장 보관해서 드시면 더욱 맛있게 드실 수 있어요!</p>
-										<div class="info">
-
-											<p class="sum">
-												<em>수량 : 1개</em>26,900원
-											</p>
-										</div>
-									</li>
-									<input type="hidden" name="choiceRewards[0].rewardId"
-										value="440551">
-									<input type="hidden" name="choiceRewards[0].rewardName"
-										value="(한정수량) 1~2인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장 보관해서 드시면 더욱 맛있게 드실 수 있어요!">
-									<input type="hidden" name="choiceRewards[0].qty" value="1">
-									<input type="hidden" name="choiceRewards[0].sumAmount"
-										value="26900">
-									<input type="hidden" name="choiceRewards[0].memo" value="">
-
-
-								</ul>
+								<c:forEach var="rewardList" items="${rewardList }">
+									<ul>
+										<li>
+											<p class="title">${rewardList.reward_name }</p>
+											<p class="text">${rewardList.reward_content }</p>
+											<div class="info">
+	
+												<p class="sum">
+													<em>수량 : ${rewardList.rewardQuantity }</em>${rewardList.reward_amount }
+												</p>
+											</div>
+										</li>
+										<input type="hidden" name="choiceRewards[0].rewardId"
+											value="440551">
+										<input type="hidden" name="choiceRewards[0].rewardName"
+											value="(한정수량) 1~2인가족 추천 초특당도 프리미엄 수박을 드시고 싶으신 분들에게 추천~상온 후숙 후 냉장 보관해서 드시면 더욱 맛있게 드실 수 있어요!">
+										<input type="hidden" name="choiceRewards[0].qty" value="1">
+										<input type="hidden" name="choiceRewards[0].sumAmount"
+											value="26900">
+										<input type="hidden" name="choiceRewards[0].memo" value="">
+	
+	
+									</ul>
+								</c:forEach>
 							</div>
 							<div class="order-addinfo">
 								<dl>
@@ -85,7 +86,7 @@
 								</dl>
 								<dl>
 									<dt>배송비</dt>
-									<dd>0원</dd>
+									<dd>${param.reward_delivery_fee}원</dd>
 								</dl>
 								<div class="point">
 									<dl id="coupon-field" class="disabled">
@@ -138,7 +139,7 @@
 										<dl class="">
 											<dt>리워드 금액</dt>
 											<dd>
-												<span><em class="TitleValuePrice_money__2q48W">26,900</em>원</span>
+												<span><em class="TitleValuePrice_money__2q48W">${param.reward_amount }</em>원</span>
 											</dd>
 										</dl>
 									</div>

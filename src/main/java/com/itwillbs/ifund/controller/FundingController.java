@@ -1,5 +1,6 @@
 package com.itwillbs.ifund.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,8 +56,33 @@ public class FundingController {
 		model.addAttribute("selectReward", selectReward);
 		return "funding/rewardSelect";
 	}
+	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
 	@GetMapping("payment")
-	public String payment() {
+	public String payment(@RequestParam Map map, Model model) {
+		
+		String[] reward_idx = ((String)map.get("reward_idx")).split(", ");
+		String[] reward_quantity = ((String)map.get("reward_quantity")).split(", ");
+		
+		List rewardList = new ArrayList();
+		
+		
+		for(int i = 0; i < reward_idx.length; i++) {
+			Map rewardMap = fundingService.getPayReward(Integer.parseInt(reward_idx[i]));
+			rewardMap.put("rewardQuantity", Integer.parseInt(reward_quantity[i]));
+			rewardList.add(rewardMap);
+		}
+		
+		
+//		for(String reward_idx_split : reward_idx) {
+//			System.out.println(Integer.parseInt(reward_idx_split));
+//			Map rewardMap = fundingService.getPayReward(Integer.parseInt(reward_idx_split));
+//			rewardMap.put("rewardQuantity", rewardList);
+//			
+//			rewardList.add(rewardMap);
+//		}
+		
+		model.addAttribute("rewardList", rewardList);
+		
 		return "funding/payment";
 	}
 	@GetMapping("preorder")
