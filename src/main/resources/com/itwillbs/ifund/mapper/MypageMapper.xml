@@ -134,13 +134,13 @@
 	</select>
 	
 <!-- 	0609 김애리 추가 - 문의내역 -->
-	<select id="selectInquiry" resultType="com.itwillbs.funding.vo.InquiryVO">
+	<select id="selectInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
 		SELECT *
 			FROM inquiry
 				WHERE member_idx = #{member_idx}	
 				ORDER BY inq_idx desc
 	</select>
-	<select id="getInquiry" resultType="com.itwillbs.funding.vo.InquiryVO">
+	<select id="getInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
 		SELECT *
 			FROM inquiry
 				WHERE inq_idx = #{inq_idx}
