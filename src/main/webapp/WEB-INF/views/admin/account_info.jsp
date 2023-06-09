@@ -17,7 +17,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>계좌 관리</title>
+    <title>계좌 관리 테스트</title>
 
     <meta name="description" content="" />
 
