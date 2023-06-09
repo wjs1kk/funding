@@ -22,9 +22,6 @@ public interface MypageMapper {
 	public List<ProjectVO> selectWish(Integer member_idx);
 	public List<ProjectVO> selectHistory(Integer member_idx);
 	public int updateProfile(MemberVO memberVO);
-	public List<InquiryVO> sendInquiry(Integer member_idx);
-	public List<InquiryVO> receiveInquiry(Integer member_idx);
-	public List<InquiryVO> selectInquiry(Integer member_idx);
 	public List<CouponVO> selectCoupon(Integer member_idx);
 	public int insertCoupon(CouponVO couponVO);
 	public List<MakerVO> selectMaker(Integer member_idx);
@@ -32,5 +29,8 @@ public interface MypageMapper {
 	public int downCoupon(@Param("coupon_idx") String coupon_idx, @Param("member_idx") Integer member_idx);
 	public List<CouponVO> myCoupon(Integer member_idx);
 	public int joinPoint(String member_email);
-	
+//	0609 김애리 추가 - 문의내역
+	public List<InquiryVO> selectInquiry(Integer member_idx);
+	public InquiryVO getInquiry(@Param("inq_idx") String inq_idx);
+	public String inqMaker(Integer member_idx);
 }

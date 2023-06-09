@@ -528,17 +528,14 @@
 																						<span class="Reward_infoValue__1_qLb">무료배송</span>
 																					</c:when>
 																					<c:otherwise>
-																						<span class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_fee}
-																							원</span>
+																						<span class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_fee} 원</span>
 																					</c:otherwise>
 																				</c:choose>
 
 																			</div>
 																			<div class="Reward_divider__36X-n"></div>
 																			<div class="Reward_subInfo__1ahoF">
-																				<span>발송 시작일</span> <span
-																					class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_date }
-																					예정</span>
+																				<span>발송 시작일</span> <span class="Reward_infoValue__1_qLb">${selectReward.reward_delivery_date } 예정</span>
 																			</div>
 																			<div class="Reward_divider__36X-n"></div>
 																			<div class="Reward_subInfo__1ahoF">
