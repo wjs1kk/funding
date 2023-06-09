@@ -31,6 +31,7 @@
 		, "" <!--project_reward_category -->
 		, "" <!--project_reward_produce_type -->
 		, "" <!--project_documents -->
+		, "" <!--project_like -->
 		, "" <!--project_AS -->
 		, 0 <!--maker_idx -->
 		, now() <!--project_create_date -->
