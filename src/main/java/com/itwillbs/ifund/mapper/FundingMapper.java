@@ -17,4 +17,6 @@ public interface FundingMapper {
 	public List categoryList();
 	public List selectComingsoonProject(@Param("category") String category, @Param("order") String order);
 	public Map<String, Object> fundingDetail(int project_idx);
+	// 06-09 김동욱 결제할 리워드 가져오기
+	public Map getPayReward(int reward_idx);
 }

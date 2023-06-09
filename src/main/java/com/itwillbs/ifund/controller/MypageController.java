@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.ifund.service.MemberService;
 import com.itwillbs.ifund.service.MypageService;
 import com.itwillbs.ifund.service.ProjectCreateService;
-import com.itwillbs.ifund.vo.CouponUsedVO;
 import com.itwillbs.ifund.vo.CouponVO;
-import com.itwillbs.ifund.vo.PointVO;
-import com.itwillbs.ifund.service.MemberService;
+import com.itwillbs.ifund.vo.InquiryVO;
+import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
+import com.itwillbs.ifund.vo.PointVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 
 @Controller
@@ -66,16 +67,18 @@ public class MypageController {
 		return "mypage2";
 	}
 
+//	0609 김애리 수정 - 발급받은 쿠폰 리스트
 	@GetMapping("mypage/coupon")
-	public String mypage_coupon(HttpSession session, Model model) {
+	public String coupon(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<CouponVO> coupon = mypageService.myCoupon(member_idx);
-		model.addAttribute("coupon", coupon);
-		System.out.println(coupon);
+		List<CouponVO> myCoupon = mypageService.myCoupon(member_idx);
+		model.addAttribute("myCoupon", myCoupon);
+		System.out.println(myCoupon);
 
 		return "mypage/coupon";
 	}
-
+	
+//	0607 김애리 수정 - 쿠폰존 쿠폰리스트
 	@GetMapping("mypage/couponzone")
 	public String couponzone(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -88,66 +91,66 @@ public class MypageController {
 		return "mypage/couponzone";
 	}
 
+//	0609 김애리 수정 - 메이커 쿠폰 신청
 	@GetMapping("mypage/maker_coupon")
-	public String maker_coupon() {
+	public String maker_coupon(HttpSession session, Model model) {
+		Integer member_idx = (Integer)session.getAttribute("member_idx");
+		List<MakerVO> makerList = mypageService.selectMaker(member_idx);
+		model.addAttribute("makerList", makerList);
+		
 		return "mypage/maker_coupon";
 	}
 
 	@PostMapping("mypage/couponPro")
 	public String couponPro(HttpServletRequest request, CouponVO couponVO, HttpSession session, Model model) {
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-//		if(mypageService.selectCoupon(member_idx) != null) {
-//			model.addAttribute("msg", "이미 신청하셨습니다.");
-//			return "fail_back";
-//		}
-
-		couponVO.setMember_idx(member_idx);
+		Integer member_idx = (Integer)session.getAttribute("member_idx");
 		Random random = new Random();
 		String couponCode = String.format("%06d", random.nextInt(1000000));
 		couponVO.setCoupon_code(couponCode);
-
+		
 		int insertCount = mypageService.insertCoupon(couponVO);
-		if (insertCount > 0) {
+		if(insertCount > 0) {
 			model.addAttribute("msg", "쿠폰 발급 신청 완료");
 			model.addAttribute("target", "maker_coupon");
 			return "mypage/maker_coupon";
-		} else {
+		}  else {
 			model.addAttribute("msg", "쿠폰 발급 신청 실패");
 			return "fail_back";
 		}
-
-//		return "mypage/maker_coupon";
 	}
-//	@SuppressWarnings("unused")
-//	@GetMapping("mypage/coupon_down")
-//	public String coupon_down( Model model, HttpSession session, @RequestParam int coupon_idx) {
-//
-//		Integer member_idx = (Integer)session.getAttribute("member_idx");
-//		
-//		if(member_idx == null){
-//			model.addAttribute("msg", "로그인 필수!");
-//			return "fail_back";
-//		} else {			
-//			//이미 발급받은 쿠폰인지 확인
-//			Integer checkIdx = mypageService.checkCoupon(coupon_idx, member_idx);
-//			if(checkIdx == null) {
+	
+	
+//	0609 김애리 수정 - 쿠폰발급
+	@SuppressWarnings("unused")
+	@GetMapping("mypage/coupon_down")
+	public String coupon_down( Model model, HttpSession session, @RequestParam String coupon_idx) {
+		Integer member_idx = (Integer)session.getAttribute("member_idx");
+		if(member_idx == null){
+			model.addAttribute("msg", "로그인 필수!");
+			return "fail_back";
+		}
+		else {			
+//			이미 발급받은 쿠폰인지 확인
+			Integer checkIdx = mypageService.checkCoupon(coupon_idx, member_idx);
+			if(checkIdx == null) {
 //					//발급					
-//					int downCount = mypageService.downCoupon(coupon_idx, member_idx);
-//					
-//					if(downCount > 0) {
-//						model.addAttribute("msg", "등록 완료!");							
-//						model.addAttribute("target", "event");
-//						return "success";
-//					} else{
-//						model.addAttribute("msg", "등록 실패!");
-//						return "fail_back";
-//					}
-//				}else {
-//					model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
-//					return "fail_back";
-//			}
-//		}											
-//	}
+					int downCount = mypageService.downCoupon(coupon_idx, member_idx);
+					
+					if(downCount > 0) {
+						model.addAttribute("msg", "등록 완료!");							
+						model.addAttribute("target", "couponzone");
+						return "success";
+					} else{
+						model.addAttribute("msg", "등록 실패!");
+						return "fail_back";
+					}
+				}else {
+					model.addAttribute("msg", "이미 발급 받으신 쿠폰입니다");
+					return "fail_back";
+			}
+		}											
+	}
+
 
 //	0518수정 - 포인트 내역
 	@GetMapping("mypage/point")
@@ -163,6 +166,16 @@ public class MypageController {
 
 		return "mypage/point";
 	}
+	
+//	0609 김애리 추가 - 가입시 포인트 적립
+	@GetMapping("mypage/join_point")
+	public String join_point(HttpSession session, Model model, PointVO pointVO, MemberVO memberVO) {
+		String member_email = memberVO.getMember_email();
+		int insertCount =  mypageService.joinPoint(member_email);
+		
+		return "mypage/login";
+	}
+	
 
 //	서포터 문의
 	@GetMapping("mypage/supinquiry")
@@ -170,24 +183,47 @@ public class MypageController {
 		return "mypage/sup_inquiry";
 	}
 
+//	0609 김애리 추가 - 서포터 문의 (수정중)
 	@GetMapping("mypage/makerinquiry")
-	public String maker_inquiry() {
+	public String maker_inquiry(HttpSession session, Model model) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		String maker_name = mypageService.inqMaker(member_idx);
+		model.addAttribute("maker_name", maker_name);
+		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
+		model.addAttribute("inquiryList", inquiryList);
 		return "mypage/maker_inquiry";
 	}
 
+	//0609 김애리 추가 - 서포터 문의 목록 (수정중)
 	@GetMapping("mypage/makerinquiry2")
 	public String maker_inquiry2(HttpSession session, Model model) {
-//		Integer member_idx = (Integer) session.getAttribute("member_idx");
-//		List<InquiryVO> inq = mypageService.selectInquiry(member_idx);
-//		List<InquiryVO> send_inq = mypageService.sendInquiry(member_idx);
-//		List<InquiryVO> receive_inq = mypageService.receiveInquiry(member_idx);
-//		model.addAttribute("inq", inq);
-//		model.addAttribute("send_inq", send_inq);
-//		model.addAttribute("receive_inq", receive_inq);
-
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
+		model.addAttribute("inquiryList", inquiryList);
+		
 		return "mypage/maker_inquiry2";
 	}
 
+	@GetMapping("mypage/inquiry_form")
+	public String inquiry_form() {
+		return "mypage/inquiry_form";
+	}
+	
+	@GetMapping("mypage/inquiry_view")
+	public String inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, InquiryVO inquiryVO2, String inq_idx) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
+		model.addAttribute("inquiryList", inquiryList);
+		
+		inquiryVO = mypageService.getInquiry(inq_idx);
+		inquiryVO2 = mypageService.getInquiry(inq_idx + 1);
+		model.addAttribute("inquiryVO", inquiryVO);
+		model.addAttribute("inquiryVO2", inquiryVO2);
+
+		return "mypage/inquiry_view";
+	}	
+	
+	
 	@GetMapping("mypage/wish")
 	public String wish(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -334,11 +370,6 @@ public class MypageController {
 		return "mypage/history2";
 	}
 
-	@GetMapping("mypage/test")
-	public String test() {
-		return "mypage/test";
-	}
-
 	@GetMapping("mypage/deleteMember")
 	public String deleteMember(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -381,29 +412,4 @@ public class MypageController {
 		}
 		return "redirect:/myInfo";
 	}
-
-//	@GetMapping("/checkPhone")
-//	@ResponseBody
-//	public String checkPhone(@RequestParam("mobileNumber") String mobileNumber) { // 휴대폰 문자보내기
-//		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
-//
-//		mypageService.checkPhone(mobileNumber,randomNumber);
-//		
-//		return Integer.toString(randomNumber);
-//	}
-//    public @ResponseBody String sendSMS(String phoneNum) {
-//
-//        Random rand  = new Random();
-//        String numStr = "";
-//        for(int i=0; i<4; i++) {
-//            String ran = Integer.toString(rand.nextInt(10));
-//            numStr+=ran;
-//        }
-//
-//        System.out.println("수신자 번호 : " + phoneNum);
-//        System.out.println("인증번호 : " + numStr);
-//        mypageService.checkPhone(phoneNum,numStr);
-//        return numStr;
-//    }
-
 }

@@ -181,6 +181,7 @@
 	        					rwModify();
 	        				}
 	        			});
+						
 		        	// project_approve_status가 2(승인)가 된 상태에서 project_update_status(수정 권한)가 2(승인)가 되면 리워드 추가 버튼 활성화
 	        			// 리워드 추가 모달창에서 '추가 버튼 누를 시 모달창이 꺼지고 입력된 정보들 reward 테이블에 insert후 다시 리스트 출력'
 	        			$(document).on("click","#rewardAddBtn",function(){
