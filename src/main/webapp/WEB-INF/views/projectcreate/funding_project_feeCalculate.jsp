@@ -21,16 +21,51 @@
 // 	정산금 내역서 확인
 	$(function() {
 		$("#calculate_save").on("click", function() {
-			$('#modal').css('display', 'block');			
-		})
+			$('#modal').css('display', 'block');
+			$.ajax({
+				 url: 'showFeeCalculate',
+		          type: 'POST',
+		          data: {
+		        	  project_idx: ${param.project_idx},
+		        	  },
+		          success: function(List) {
+		        	  // 총 결제금액(포인트 & 쿠폰 할인금 + 배송비)
+		        	  var resultMoney = $("#resultMoney").text(List.project_detail_amount);
+		        	  // 세금계산서 발행 금액
+		        	  $("#planChargeMoney").text((List.project_detail_amount - 30000) * 0.05)
+		        	  // 아이펀드 중개 수수료 (요금제에 따른 수수료 표시)
+		        	  if(List.project_plan == 1){
+		        		  $("#planChargeMoney").text((List.project_detail_amount - 30000) * 0.05)
+		        		  $("#planCharge").text("5");
+		        	  } else if(List.project_plan == 2){
+		        		  $("#planChargeMoney").text((List.project_detail_amount - 30000) * 0.08)
+		        		  $("#planCharge").text("8");
+		        	  } else if(List.project_plan == 3){
+		        		  $("#planChargeMoney").text((List.project_detail_amount - 30000) * 0.13)
+		        		  $("#planCharge").text("13");
+		        	  }
+		        	  // 카드결제 수수료
+		        	  $("#pointChargeMoney").text((List.project_detail_amount - 30000) * 0.033);
+		        	  
+		        	  var planChargeMoney = parseInt($("#planChargeMoney").text(), 10);
+		        	  var pointChargeMoney = parseInt($("#pointChargeMoney").text(), 10);
+		        	  
+		        	  var chargeMoney = $("#chargeMoney").text(planChargeMoney + pointChargeMoney);
+	        	 	  // 정산 지급 금액
+		        	  $("#money").text(resultMoney.text() - chargeMoney.text());
+		        	  
+		          }
+			})
+			
+		});
 	})
-	
+	//정산 내역서 확인 후 자동으로 정산금액을 지급요청 금액에 입력
 	$(function() {
 		$("#apply").on("click", function() {
 			$('#modal').css('display', 'none');
 			$('#project_money').val($("#money").text());	
 		})
-	})
+	})		
 </script>
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -196,29 +231,29 @@
 													<hr>
 													<div>
 														<h4>정산 지급금액(① - ②)</h4>
-														<span style="color: red; display:inline-block;" id="money">12345</span><span>원</span>
+														<b style="color: red;" id="money"></b><b style="color: red;">원</b>
 														<p>해당 프로젝트의 정산금은 일괄정산되어 지급됩니다.</p>
 													</div>
 													<hr>
 													<div>
 														<h4>① 최종 결제완료 금액</h4>
-														<b>~~원</b>
+														<b id="resultMoney"></b><b>원</b>
 														<p>포인트 & 쿠폰 결제분 ~~원 / 배송료 합계 ~~원 포함</p>
 													</div>
 													<hr>
 													<div>
 														<h4>② 세금계산서 발행금액</h4>
-														<b>~~원</b>
+														<b id="chargeMoney"></b><b>원</b>
 														<p>아이펀드 중개 수수료 + 카드 결제 (PG 등) 대행 수수료</p>
 													</div>
 													<hr>
 													<div>
 														<p>아이펀드 중개 수수료(기본수수료, 데이터 플러스)</p>
-														<b>~~원</b>
-														<p>(최종 결제완료 금액 - 배송료 합계) X 플랜 수수료@@@%</p>
+														<b id="planChargeMoney"></b><b>원</b>
+														<span>(최종 결제완료 금액 - 배송료 합계) X <span id="planCharge"></span>%</span>
 														<br>
 														<p>카드 결제 (PG 등) 대행 수수료</p>
-														<b>~~원</b>
+														<b id="pointChargeMoney"></b><b>원</b>
 														<p>(최종 결제완료 금액 - 포인트 & 쿠폰 결제분) X 3.3%</p>
 													</div>
 													<hr>
