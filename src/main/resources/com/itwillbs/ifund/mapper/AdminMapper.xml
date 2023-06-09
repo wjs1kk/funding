@@ -268,10 +268,10 @@
 			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day
 			FROM project p 
 				JOIN member m 
-				ON p.member_idx = m.member_idx
+					ON p.member_idx = m.member_idx
 				JOIN project_detail pd
-				ON p.project_idx = pd.project_idx
-					WHERE p.project_idx = #{project_idx};
+					ON p.project_idx = pd.project_idx
+				WHERE p.project_idx = #{project_idx};
   	</select>
 	
 	<!-- 0518 은산 프로젝트 승인--> 

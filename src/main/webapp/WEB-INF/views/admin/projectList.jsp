@@ -197,6 +197,7 @@ ul li {
 										<tr>
 											<th>NO</th>
 											<th>구분</th>
+											<th>유형</th>
 											<th>프로젝트명</th>
 											<th>시작일</th>
 											<th>마감일</th>
@@ -213,6 +214,9 @@ ul li {
 											<tr class="cursor-pointer"
 												onclick="location.href='detail/${projectList.project_idx}'">
 												<td>${projectList.project_idx }</td>
+												<td>
+													${projectList.project_idx }
+												</td>
 												<c:choose>
 													<c:when test="${projectList.project_type eq 0}">
 														<td>펀딩</td>
