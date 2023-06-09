@@ -62,6 +62,12 @@ public class FundingController {
 	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
 	@PostMapping("payment")
 	public String payment(@RequestParam Map map, Model model, HttpSession session) {
+		
+		if(session.getAttribute("member_idx") == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("target", "login");
+			return "success";
+		}
 		int member_idx = (Integer)session.getAttribute("member_idx");
 		
 		String[] reward_idx = ((String)map.get("reward_idx")).split(", ");
