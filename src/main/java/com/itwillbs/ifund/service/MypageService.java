@@ -45,15 +45,6 @@ public class MypageService {
 	public int updateProfile(MemberVO memberVO) {
 		return mapper.updateProfile(memberVO);
 	}
-	public List<InquiryVO> sendInquiry(Integer member_idx) {
-		return mapper.sendInquiry(member_idx);
-	}
-	public List<InquiryVO> receiveInquiry(Integer member_idx) {
-		return mapper.receiveInquiry(member_idx);
-	}
-	public List<InquiryVO> selectInquiry(Integer member_idx) {
-		return mapper.selectInquiry(member_idx);
-	}
 	public List<CouponVO> selectCoupon(Integer member_idx) {
 		return mapper.selectCoupon(member_idx);
 	}
@@ -75,5 +66,15 @@ public class MypageService {
 	public int joinPoint(String member_email) {
 	    return mapper.joinPoint(member_email);
 	}
-
+	
+//	0609 김애리 추가 - 문의내역 조회
+	public List<InquiryVO> selectInquiry(Integer member_idx) {
+		return mapper.selectInquiry(member_idx);
+	}
+	public InquiryVO getInquiry(String inq_idx) {
+		return mapper.getInquiry(inq_idx);
+	}
+	public String inqMaker(Integer member_idx) {
+		return mapper.inqMaker(member_idx);
+	}
 }
