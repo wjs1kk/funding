@@ -333,18 +333,18 @@
 											<th>NO</th>
 											<th>등록일</th>
 											<th>요금제</th>
-											<th>구분</th>
+											<th>유형</th>
 											<th>카테고리</th>
 											<th>프로젝트명</th>
 											<th>목표금액</th>
-											<th>오픈예정 날짜</th>
 											<th>작성자</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody id="titleElement" class="table-border-bottom-0">
 										<c:forEach var="pendingList" items="${pendingList }">
-											<tr>
+											<tr class="cursor-pointer"
+												onclick="location.href='projectList/detail/${pendingList.project_idx}'">
 												<td>${pendingList.project_idx }</td>
 												<td>${pendingList.project_create_date }</td>
 												<c:choose>
@@ -372,7 +372,6 @@
 												<td>${pendingList.project_category }</td>
 												<td id="td_project_title">${pendingList.project_title }</td>
 												<td>${pendingList.project_target }원</td>
-												<td>${pendingList.project_coming_soon_date }</td>
 												<td>${pendingList.member_name }</td>
 												<td>
 													<div class="input-group">

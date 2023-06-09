@@ -114,8 +114,93 @@
 
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
-
-						<h4 class="fw-bold py-3 mb-4">프로젝트 목록</h4>
+						<!-- Basic with Icons -->
+							<h4 class="fw-bold py-3 mb-4">프로젝트 정보</h4>
+							<div class="row">
+								<div class="col-xl">
+									<div class="card mb-4">
+										<div
+											class="card-header d-flex justify-content-between align-items-center">
+											<h5 class="mb-0">메이커</h5>
+										</div>
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">Full
+														Name</label> <input type="text" class="form-control"
+														id="basic-default-fullname" placeholder="John Doe">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-company">Company</label>
+													<input type="text" class="form-control"
+														id="basic-default-company" placeholder="ACME Inc.">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-email">Email</label>
+													<div class="input-group input-group-merge">
+														<input type="text" id="basic-default-email"
+															class="form-control" placeholder="john.doe"
+															aria-label="john.doe"
+															aria-describedby="basic-default-email2"> <span
+															class="input-group-text" id="basic-default-email2">@example.com</span>
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-phone">Phone
+														No</label> <input type="text" id="basic-default-phone"
+														class="form-control phone-mask" placeholder="658 799 8941">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-message">Message</label>
+													<textarea id="basic-default-message" class="form-control"
+														placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl">
+									<div class="card mb-4">
+										<div
+											class="card-header d-flex justify-content-between align-items-center">
+											<h5 class="mb-0">일정</h5>
+										</div>
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">시작일</label>
+														 <input type="text" class="form-control" value="${project.project_start_date }"
+														id="basic-default-fullname" placeholder="John Doe">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-company">마감일</label>
+													<input type="text" class="form-control" value="${project.project_end_date }"
+														id="basic-default-company" placeholder="ACME Inc.">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-email">오픈예정일</label>
+													<div class="input-group input-group-merge">
+													<!-- null일 경우 예외처리 추가 -->
+														<input type="text" class="form-control" value="${project.project_coming_soon_date}"
+														id="basic-default-company" placeholder="ACME Inc.">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-phone">Phone
+														No</label> <input type="text" id="basic-default-phone"
+														class="form-control phone-mask" placeholder="658 799 8941">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-message">Message</label>
+													<textarea id="basic-default-message" class="form-control"
+														placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						<h4 class="fw-bold py-3 mb-4">프로젝트 내용</h4>
 						<!-- Basic Layout & Basic with Icons -->
 						<div class="row">
 							<!-- Basic Layout -->
@@ -143,23 +228,8 @@
 									<div class="card-body">
 										<form>
 											<div class="row mb-3">
+												
 												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">일정</label>
-												<div class="col-sm-3">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_start_date} ~ ${project.project_end_date}"
-														aria-label="658 799 8941">
-												</div>
-												<label class="col-sm-1 col-form-label"
-													for="basic-default-phone" style="text-align: center;">오픈예정+</label>
-												<div class="col-sm-2">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_coming_soon_date}"
-														aria-label="658 799 8941">
-												</div>
-												<label class="col-sm-1 col-form-label"
 													for="basic-default-phone">타입 / 카테고리</label>
 												<c:choose>
 													<c:when test="${project.project_type eq 0}">
@@ -306,7 +376,7 @@
 								</div>
 							</div>
 							<!-- Basic with Icons -->
-							<h4 class="fw-bold py-3 mb-4">메이커 정보</h4>
+							<h4 class="fw-bold py-3 mb-4">정산 계좌 정보</h4>
 							<div class="row">
 								<div class="col-xl">
 									<div class="card mb-4">
