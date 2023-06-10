@@ -146,10 +146,10 @@ public class FundingController {
 		int insertCount = fundingService.payment(map);
 		
 		int project_idx = Integer.parseInt(map.get("project_idx").toString());
-		int totalAmount = Integer.parseInt(map.get("total_amount").toString());
+		int total_amount = Integer.parseInt(map.get("total_amount").toString());
 		
-		// 06-10 김동욱 프로젝트 디테일 금액 업데이트
-		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, totalAmount);
+		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트
+		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount);
 		
 		int point = Integer.parseInt(map.get("used_point_amount").toString());
 		
