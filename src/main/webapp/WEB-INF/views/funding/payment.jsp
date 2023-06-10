@@ -29,45 +29,45 @@
 
 
 	function pointInputOnchange(myPoint, reward_amount) {
-// 		$("#usedPoint").val($("#pointInput").val());
-// 		console.log("usedPoint : " + $("#usedPoint").val() )
+// 		$("#used_point_amount").val($("#pointInput").val());
+// 		console.log("used_point_amount : " + $("#used_point_amount").val() )
 		let numCheck = /^[0-9]+$/;
 		
 		if($("#pointInput").val() > myPoint){
 			$("#pointInput").val(myPoint)
 			alert("현재 사용가능한 포인트는 " + myPoint + "P 입니다.")
-			$("#usedPoint").val(myPoint);
+			$("#used_point_amount").val(myPoint);
 		}else if($("#pointInput").val() < 0){
 			$("#pointInput").val(0)
-			$("#usedPoint").val(0);
+			$("#used_point_amount").val(0);
 		}else if(!numCheck.exec($("#pointInput").val())) {
 			$("#pointInput").val(0);
-			$("#usedPoint").val(0);
+			$("#used_point_amount").val(0);
 		}else {
-			$("#usedPoint").val($("#pointInput").val());
+			$("#used_point_amount").val($("#pointInput").val());
 		}
 		
 		
 		$(".TitleValuePrice_danger__3Sy33").eq(1).text($("#pointInput").val()+" 원")
 		
 		if($("#couponUsedFee").val() != 0){
-			$(".finalAmount").text($("#couponUsedFee").val() - $("#pointInput").val() + Math.floor($("#addDonation").val()) + " 원")
-			$("#reward_amount_total").val($("#couponUsedFee").val() - $("#pointInput").val()  + Math.floor($("#addDonation").val()));
+			$(".finalAmount").text($("#couponUsedFee").val() - $("#pointInput").val() + Math.floor($("#donation").val()) + " 원")
+			$("#total_amount").val($("#couponUsedFee").val() - $("#pointInput").val()  + Math.floor($("#donation").val()));
 		}else {
-			$(".finalAmount").text(reward_amount - $("#pointInput").val() + Math.floor($("#addDonation").val()) + " 원")
-			$("#reward_amount_total").val(reward_amount - $("#pointInput").val() + Math.floor($("#addDonation").val()));
+			$(".finalAmount").text(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()) + " 원")
+			$("#total_amount").val(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()));
 		}
 		
 		console.log("project_idx : " + $("#project_idx").val())
 		console.log("reward_name : " + $("#reward_name").val())
 		console.log("reward_amount : " + $("#reward_amount").val())
-		console.log("reward_amount_total : " + $("#reward_amount_total").val())
+		console.log("total_amount : " + $("#total_amount").val())
 		console.log("reward_idx : " + $("#reward_idx").val())
 		console.log("reward_quantity : " + $("#reward_quantity").val())
-		console.log("reward_delivery_fee : " + $("#reward_delivery_fee").val())
-		console.log("usedPoint : " + $("#usedPoint").val())
-		console.log("usedCoupon : " + $("#usedCoupon").val())
-		console.log("addDonation : " + $("#addDonation").val())
+		console.log("delivery_fee : " + $("#delivery_fee").val())
+		console.log("used_point_amount : " + $("#used_point_amount").val())
+		console.log("used_coupon_amount : " + $("#used_coupon_amount").val())
+		console.log("donation : " + $("#donation").val())
 		console.log("coupon_idx : " + $("#coupon_idx").val())
 	}
 	
@@ -82,28 +82,28 @@
 		})
 	})
 	
-	function couponUse(coupon_percent, reward_amount, reward_delivery_fee, coupon_name, coupon_idx) {
+	function couponUse(coupon_percent, reward_amount, delivery_fee, coupon_name, coupon_idx) {
 		$("#coupon_idx").val(coupon_idx)
-		$("#usedCoupon").val(reward_amount * coupon_percent);
+		$("#used_coupon_amount").val(reward_amount * coupon_percent);
 		$("#couponSelect").val(coupon_name + " " + (coupon_percent * 100) + "% 할인 쿠폰");
 		$(".ModalWrapper_modalWrapPortal__3hqCw").css("display", "none");
 		$(".TitleValuePrice_danger__3Sy33").eq(0).text(reward_amount * coupon_percent + " 원")
 		
-		$(".finalAmount").text(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#addDonation").val()) + " 원")
-		$("#reward_amount_total").val(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#addDonation").val()))
+		$(".finalAmount").text(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) + " 원")
+		$("#total_amount").val(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()))
 		
 		$("#couponUsedFee").val(reward_amount - (reward_amount * coupon_percent));
 		
 		console.log("project_idx : " + $("#project_idx").val())
 		console.log("reward_name : " + $("#reward_name").val())
 		console.log("reward_amount : " + $("#reward_amount").val())
-		console.log("reward_amount_total : " + $("#reward_amount_total").val())
+		console.log("total_amount : " + $("#total_amount").val())
 		console.log("reward_idx : " + $("#reward_idx").val())
 		console.log("reward_quantity : " + $("#reward_quantity").val())
-		console.log("reward_delivery_fee : " + $("#reward_delivery_fee").val())
-		console.log("usedPoint : " + $("#usedPoint").val())
-		console.log("usedCoupon : " + $("#usedCoupon").val())
-		console.log("addDonation : " + $("#addDonation").val())
+		console.log("delivery_fee : " + $("#delivery_fee").val())
+		console.log("used_point_amount : " + $("#used_point_amount").val())
+		console.log("used_coupon_amount : " + $("#used_coupon_amount").val())
+		console.log("donation : " + $("#donation").val())
 		console.log("coupon_idx : " + $("#coupon_idx").val())
 	}
 
@@ -366,7 +366,7 @@
 												<p class="title">이름</p>
 												<input type="text" id="recipient">
 												<p class="title">휴대폰 번호</p>
-												<input type="tel" id="newContactNumber" maxlength="13">
+												<input type="tel" id="newContactNumber" maxlength="13" name="delivery_phone_number">
 												<em class="error-message" id="errorPhoneNum">휴대폰 번호를 정확히
 													입력해주세요.</em>
 												<p class="title">주소</p>
@@ -385,21 +385,23 @@
 		<!-- 											placeholder="상세주소"> <input type="hidden" -->
 		<!-- 											id="newZipCode"> -->
 		
+													
+		
 		
 		
 		
 												<input type="hidden" id="project_idx" name="project_idx" value = "${map.project_idx}">
 												<input type="hidden" id="reward_name" name="reward_name" value = "${map.reward_name}">
 												<input type="hidden" id="reward_amount" name="reward_amount" value="${map.reward_amount}">
-												<input type="hidden" id="reward_amount_total" name="reward_amount_total" value="${map.reward_amount}">
+												<input type="hidden" id="total_amount" name="total_amount" value="${map.reward_amount}">
 												<input type="hidden" id="reward_idx" name="reward_idx" value = "${map.reward_idx}">
 												<input type="hidden" id="reward_quantity" name="reward_quantity" value = "${map.reward_quantity}">
-												<input type="hidden" id="reward_delivery_fee" name="reward_delivery_fee" value = "${map.reward_delivery_fee}">
-												<input type="hidden" id="usedPoint" name="usedPoint" value="0">
-												<input type="hidden" id="usedCoupon" name="usedCoupon" value="0">
-												<input type="hidden" id="addDonation" name="addDonation" value="${map.addDonation }">
+												<input type="hidden" id="delivery_fee" name="delivery_fee" value = "${map.reward_delivery_fee}">
+												<input type="hidden" id="used_point_amount" name="used_point_amount" value="0">
+												<input type="hidden" id="used_coupon_amount" name="used_coupon_amount" value="0">
+												<input type="hidden" id="donation" name="donation" value="${map.addDonation }">
 												<input type="hidden" id="coupon_idx" name="coupon_idx" = value="0">
-												<input type="hidden" id="addressMerge" name="addressMerge" = value="0">
+												<input type="hidden" id="delivery_address" name="delivery_address" = value="0">
 											</div>
 										</div>
 									</div>
@@ -943,7 +945,7 @@
     }
     
     function detailAddressOnchange() {
-		$("#addressMerge").val($("#postcode").val() + " " + $("#address").val() + " " + $("#detailAddress").val() + " " + $("#extraAddress").val() )
-		alert($("#addressMerge").val())
+		$("#delivery_address").val($("#postcode").val() + " " + $("#address").val() + " " + $("#detailAddress").val() + " " + $("#extraAddress").val() )
+		alert($("#delivery_address").val())
 	}
 </script>

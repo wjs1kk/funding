@@ -118,9 +118,40 @@ public class FundingController {
 		return "funding/preorder";
 	}
 	
+	// 06-10 김동욱 결제하기
 	@PostMapping("paymentPro")
-	public String paymentPro(@RequestParam Map map) {
+	public String paymentPro(@RequestParam Map map, HttpSession session) {
+		int member_idx = (Integer)session.getAttribute("member_idx");
+		map.put("member_idx", member_idx);
+		
 		System.out.println(map);
+		
+		String[] reward_idx = map.get("reward_idx").toString().split(", ");
+		String[] reward_quantity = map.get("reward_quantity").toString().split(", ");
+		for(int i = 0; i < reward_idx.length; i++) {
+			// 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트
+			int updateCount = fundingService.rewardSellUpdate(Integer.parseInt(reward_idx[i]) , Integer.parseInt(reward_quantity[i]));
+		}
+		
+		int coupon_idx = Integer.parseInt(map.get("coupon_idx").toString()) ;
+		System.out.println(coupon_idx);
+		
+		// 06-10 김동욱 사용한 쿠폰 N으로 업데이트
+		if(coupon_idx != 0) {
+			int couponUsedUpdateCount = fundingService.couponUsedUpdate(coupon_idx);
+			System.out.println("couponUsedUpdateCount : " + couponUsedUpdateCount);
+		}
+		
+		// 06-10 김동욱 펀딩 결제하기
+		int insertCount = fundingService.payment(map);
+		
+		int point = Integer.parseInt(map.get("used_point_amount").toString());
+		
+		if(point != 0) {
+			// 06-10 김동욱 포인트 사용하기
+			int pointUpdateCount = fundingService.usingPoint(member_idx, point);
+		}
+		
 		return "redirect:/";
 	}
 }

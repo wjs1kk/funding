@@ -23,4 +23,12 @@ public interface FundingMapper {
 	public int getMyPoint(int member_idx);
 	// 06-09 김동욱 사용가능한 쿠폰리스트 가져오기
 	public List getMyCouponList(int member_idx);
+	// 06-10 김동욱 펀딩 결제하기
+	public int payment(Map map);
+	// 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트
+	public int rewardSellUpdate(@Param("reward_idx") int reward_idx, @Param("reward_quantity") int reward_quantity);
+	// 06-10 김동욱 사용한 쿠폰 N으로 업데이트
+	public int couponUsedUpdate(int coupon_idx);
+	// 06-10 김동욱 포인트 사용하기
+	public int usingPoint(@Param("member_idx") int member_idx, @Param("point") int point);
 }

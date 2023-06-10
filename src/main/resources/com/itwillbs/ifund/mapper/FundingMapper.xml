@@ -195,4 +195,56 @@
 		WHERE member_idx = #{member_idx} and coupon_useable = "Y";
 	</select>
 	
+	<!-- 06-10 김동욱 펀딩 결제하기 -->
+	<insert id="payment">
+		INSERT INTO payment
+			VALUES(
+				null
+				, #{member_idx}
+				, #{project_idx}
+				, #{reward_name}
+				, #{reward_amount}
+				, #{used_point_amount}
+				, #{used_coupon_amount}
+				, #{delivery_fee}
+				, #{donation}
+				, #{total_amount}
+				, #{delivery_address}
+				, #{delivery_phone_number}
+				, ""
+			)
+	</insert>
+	
+	<!-- 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트 -->
+	<update id="rewardSellUpdate">
+		UPDATE reward 
+			SET reward_sell = reward_sell + #{reward_quantity}
+			WHERE reward_idx = #{reward_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 사용한 쿠폰 N으로 업데이트 -->
+	<update id="couponUsedUpdate">
+		UPDATE coupon_used
+			SET coupon_useable = "N"
+			WHERE coupon_idx = #{coupon_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 포인트 사용하기 -->
+	<insert id="usingPoint">
+		INSERT INTO point
+		VALUES(NULL,
+			#{member_idx},
+			'결제',
+			#{point},
+			0,
+			(SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) - #{point}
+			);
+	</insert>
+	
 </mapper>

@@ -52,4 +52,20 @@ public class FundingService {
 	public List getMyCouponList(int member_idx) {
 		return mapper.getMyCouponList(member_idx);
 	}
+	// 06-10 김동욱 펀딩 결제하기
+	public int payment(Map map) {
+		return mapper.payment(map);
+	}
+	// 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트
+	public int rewardSellUpdate(int reward_idx, int reward_quantity) {
+		return mapper.rewardSellUpdate(reward_idx, reward_quantity);
+	}
+	// 06-10 김동욱 사용한 쿠폰 N으로 업데이트
+	public int couponUsedUpdate(int coupon_idx) {
+		return mapper.couponUsedUpdate(coupon_idx);
+	}
+	// 06-10 김동욱 포인트 사용하기
+	public int usingPoint(int member_idx, int point) {
+		return mapper.usingPoint(member_idx, point);
+	}
 }
