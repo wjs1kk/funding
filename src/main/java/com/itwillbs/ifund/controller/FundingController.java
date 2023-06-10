@@ -145,6 +145,12 @@ public class FundingController {
 		// 06-10 김동욱 펀딩 결제하기
 		int insertCount = fundingService.payment(map);
 		
+		int project_idx = Integer.parseInt(map.get("project_idx").toString());
+		int totalAmount = Integer.parseInt(map.get("total_amount").toString());
+		
+		// 06-10 김동욱 프로젝트 디테일 금액 업데이트
+		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, totalAmount);
+		
 		int point = Integer.parseInt(map.get("used_point_amount").toString());
 		
 		if(point != 0) {

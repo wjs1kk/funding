@@ -68,4 +68,9 @@ public class FundingService {
 	public int usingPoint(int member_idx, int point) {
 		return mapper.usingPoint(member_idx, point);
 	}
+	
+	// 06-10 김동욱 프로젝트 디테일 총금액 업데이트
+	public int projectDetailAmountUpdate(int project_idx, int total_amount) {
+		return mapper.projectDetailAmountUpdate(project_idx, total_amount);
+	}
 }

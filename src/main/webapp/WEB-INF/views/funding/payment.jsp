@@ -51,11 +51,11 @@
 		$(".TitleValuePrice_danger__3Sy33").eq(1).text($("#pointInput").val()+" 원")
 		
 		if($("#couponUsedFee").val() != 0){
-			$(".finalAmount").text($("#couponUsedFee").val() - $("#pointInput").val() + Math.floor($("#donation").val()) + " 원")
-			$("#total_amount").val($("#couponUsedFee").val() - $("#pointInput").val()  + Math.floor($("#donation").val()));
+			$(".finalAmount").text($("#couponUsedFee").val() - $("#pointInput").val() + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()) + " 원")
+			$("#total_amount").val($("#couponUsedFee").val() - $("#pointInput").val()  + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()));
 		}else {
-			$(".finalAmount").text(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()) + " 원")
-			$("#total_amount").val(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()));
+			$(".finalAmount").text(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()) + " 원")
+			$("#total_amount").val(reward_amount - $("#pointInput").val() + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()));
 		}
 		
 		console.log("project_idx : " + $("#project_idx").val())
@@ -89,8 +89,8 @@
 		$(".ModalWrapper_modalWrapPortal__3hqCw").css("display", "none");
 		$(".TitleValuePrice_danger__3Sy33").eq(0).text(reward_amount * coupon_percent + " 원")
 		
-		$(".finalAmount").text(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) + " 원")
-		$("#total_amount").val(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()))
+		$(".finalAmount").text(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) +  Math.floor($("#delivery_fee").val()) + " 원")
+		$("#total_amount").val(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()))
 		
 		$("#couponUsedFee").val(reward_amount - (reward_amount * coupon_percent));
 		
@@ -393,7 +393,7 @@
 												<input type="hidden" id="project_idx" name="project_idx" value = "${map.project_idx}">
 												<input type="hidden" id="reward_name" name="reward_name" value = "${map.reward_name}">
 												<input type="hidden" id="reward_amount" name="reward_amount" value="${map.reward_amount}">
-												<input type="hidden" id="total_amount" name="total_amount" value="${map.reward_amount}">
+												<input type="hidden" id="total_amount" name="total_amount" value="${map.reward_amount + map.addDonation + map.reward_delivery_fee}">
 												<input type="hidden" id="reward_idx" name="reward_idx" value = "${map.reward_idx}">
 												<input type="hidden" id="reward_quantity" name="reward_quantity" value = "${map.reward_quantity}">
 												<input type="hidden" id="delivery_fee" name="delivery_fee" value = "${map.reward_delivery_fee}">
