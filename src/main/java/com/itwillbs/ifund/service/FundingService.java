@@ -48,4 +48,8 @@ public class FundingService {
 	public int getMyPoint(int member_idx) {
 		return mapper.getMyPoint(member_idx);
 	}
+	// 06-09 김동욱 사용가능한 쿠폰리스트 가져오기
+	public List getMyCouponList(int member_idx) {
+		return mapper.getMyCouponList(member_idx);
+	}
 }

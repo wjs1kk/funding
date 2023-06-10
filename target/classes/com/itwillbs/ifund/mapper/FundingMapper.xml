@@ -187,4 +187,12 @@
 			GROUP BY member_idx);
 	</select>
 	
+	<!-- 06-09 김동욱 사용가능한 쿠폰리스트 가져오기  -->
+	<select id="getMyCouponList" resultType="map">
+		select c.coupon_idx, coupon_name, coupon_start, coupon_end, coupon_percent
+		FROM coupon c JOIN coupon_used cu
+		on c.coupon_idx = cu.coupon_idx
+		WHERE member_idx = #{member_idx} and coupon_useable = "Y";
+	</select>
+	
 </mapper>

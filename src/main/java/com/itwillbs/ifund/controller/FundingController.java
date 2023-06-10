@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.service.FundingService;
+import com.itwillbs.ifund.service.MypageService;
 import com.itwillbs.ifund.vo.RewardVO;
 
 @Controller
 public class FundingController {
 	@Autowired
 	private FundingService fundingService;
+	
+	@Autowired
+	private MypageService mypageService;
 	
 	@GetMapping("funding")
 	public String funding(Model model, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
@@ -63,6 +68,8 @@ public class FundingController {
 	@PostMapping("payment")
 	public String payment(@RequestParam Map map, Model model, HttpSession session) {
 		
+		System.out.println(map);
+		
 		if(session.getAttribute("member_idx") == null) {
 			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
 			model.addAttribute("target", "login");
@@ -75,7 +82,6 @@ public class FundingController {
 		
 		List rewardList = new ArrayList();
 		
-		
 		for(int i = 0; i < reward_idx.length; i++) {
 			Map rewardMap = fundingService.getPayReward(Integer.parseInt(reward_idx[i]));
 			rewardMap.put("rewardQuantity", Integer.parseInt(reward_quantity[i]));
@@ -85,12 +91,18 @@ public class FundingController {
 		// 내 포인트 가져오기
 		int myPoint = fundingService.getMyPoint(member_idx);
 		
-		System.out.println("내 포인트 : " + myPoint);
+		// 사용 가능한 쿠폰 리스트 가져오기
+		List myCouponList = fundingService.getMyCouponList(member_idx);
 		
+		// 내 정보 가져오기
+
+		MemberVO myInfo = mypageService.selectUser(member_idx);
 		
 		model.addAttribute("map", map);
 		model.addAttribute("rewardList", rewardList);
+		model.addAttribute("myCouponList", myCouponList);
 		model.addAttribute("myPoint", myPoint);
+		model.addAttribute("myInfo", myInfo);
 		
 		return "funding/payment";
 	}
@@ -104,5 +116,11 @@ public class FundingController {
 		model.addAttribute("categoryList", categoryList);
 		
 		return "funding/preorder";
+	}
+	
+	@PostMapping("paymentPro")
+	public String paymentPro(@RequestParam Map map) {
+		System.out.println(map);
+		return "redirect:/";
 	}
 }

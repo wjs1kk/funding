@@ -21,4 +21,6 @@ public interface FundingMapper {
 	public Map getPayReward(int reward_idx);
 	// 06-09 김동욱 포인트 가져오기
 	public int getMyPoint(int member_idx);
+	// 06-09 김동욱 사용가능한 쿠폰리스트 가져오기
+	public List getMyCouponList(int member_idx);
 }
