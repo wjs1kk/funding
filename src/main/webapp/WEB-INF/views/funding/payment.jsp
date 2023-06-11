@@ -76,13 +76,40 @@
 	
 	
 	$(function() {
+		
+		// 쿠폰 리스트 모달 띄우기
 		$("#couponSelect").on("click", function() {
 			$(".ModalWrapper_modalWrapPortal__3hqCw").css("display", "block");
 		})
 		
+		// 쿠폰 리스트 모달 닫기
 		$("#modal_close").on("click", function() {
 			$(".ModalWrapper_modalWrapPortal__3hqCw").css("display", "none");
 		})
+		
+		// 약관동의 보기 모달창 띄우기
+		$(".show-term").eq(0).on("click", function() {
+			$("#personalInfoAgreementForThirdPartiesLypop").css("display", "block");
+			$("#AcceptanceOfLiabilityLypop").css("display", "none");
+		})
+		
+		// 약관동의 보기 모달창 띄우기
+		$(".show-term").eq(1).on("click", function() {
+			$("#AcceptanceOfLiabilityLypop").css("display", "block");
+			$("#personalInfoAgreementForThirdPartiesLypop").css("display", "none");
+		})
+		
+		// 약관동의 보기 모달창 닫기
+		$("#modalClose1").on("click", function() {
+			$("#personalInfoAgreementForThirdPartiesLypop").css("display", "none");
+		})
+		
+		// 약관동의 보기 모달창 끄기
+		$("#modalClose2").on("click", function() {
+			$("#AcceptanceOfLiabilityLypop").css("display", "none");
+		})
+		
+		
 	})
 	
 	function couponUse(coupon_percent, reward_amount, delivery_fee, coupon_name, coupon_idx) {
@@ -364,25 +391,6 @@
 											<dt>휴대폰 번호</dt>
 											<dd>${myInfo.member_phone }</dd>
 										</dl>
-										<div class="wpurchase-terms">
-											<p class="check-area">
-												<label class="wz checkbox"> <input type="checkbox"
-													id="cktm04" class="checkcbox" checked="checked"> <span>(필수)
-														프로젝트 진행에 대한 새소식 및 결제 관련 안내를 받습니다.</span>
-												</label>
-											</p>
-										</div>
-										<p id="timeError" class="error-text">
-											시간이 종료되었습니다.<br>다시 요청해주세요.
-										</p>
-										<p id="phoneNumError" class="error-text">유효한 전화번호를 입력해주세요.</p>
-										<p id="confirmError" class="error-text">
-											인증번호가 맞지 않습니다.<br>다시 요청해주세요.
-										</p>
-										<input type="hidden" id="confirmId" value="">
-										<div id="supporterCertBtn" class="btn-wrap">
-											<button type="button" onclick="confirmSmsCode()">확인</button>
-										</div>
 									</div>
 								</div>
 								
@@ -454,11 +462,11 @@
 								$("#acceptAllCheckBox").click(function() {
 									if($("#acceptAllCheckBox").is(":checked")) {
 										$("input[name=check1]").prop("checked", true);
-	// 									btnSubmit.disabled = true;	
+										$("#btn-submit").prop("disabled", false);
 									}
 									else {
 										$("input[name=check1]").prop("checked", false);
-	// 									btnSubmit.disabled = false;
+										$("#btn-submit").prop("disabled", true);
 									}
 								});
 								
@@ -501,8 +509,7 @@
 											class="notice-confirm-checkbox" type="checkbox" name="check1"
 											value="Y" autocomplete="off">
 											<span>개인정보 제3자 제공 동의</span>
-										</label> <span class="show-term"
-											onclick="showLyPop('personalInfoAgreementForThirdParties');">보기</span>
+										</label> <span class="show-term">보기</span>
 										<div id="personalInfoAgreementForThirdPartiesLypop"
 											class="agree-popup" style="display: none;">
 											<div class="agree-popup-header">
@@ -546,8 +553,7 @@
 												</table>
 											</div>
 											<div class="agree-popup-footer">
-												<button type="button" class="wz button less primary"
-													onclick="closeAgreePopup('personalInfoAgreementForThirdParties');">확인
+												<button type="button" class="wz button less primary" id="modalClose1">확인
 												</button>
 											</div>
 										</div>
@@ -562,8 +568,7 @@
 											class="notice-confirm-checkbox" type="checkbox" name="check1"
 											value="Y" autocomplete="off">
 											<span>책임 규정에 대한 동의</span>
-										</label> <span class="show-term"
-											onclick="showLyPop('AcceptanceOfLiability');">보기</span>
+										</label> <span class="show-term">보기</span>
 										<div id="AcceptanceOfLiabilityLypop" class="agree-popup"
 											style="display: none;">
 											<div class="agree-popup-header">
@@ -576,8 +581,7 @@
 													있습니다.</p>
 											</div>
 											<div class="agree-popup-footer">
-												<button type="button" class="wz button less primary"
-													onclick="closeAgreePopup('AcceptanceOfLiability');">확인
+												<button type="button" class="wz button less primary" id="modalClose2">확인
 												</button>
 											</div>
 										</div>
@@ -893,8 +897,7 @@
 												</article>
 											</div>
 											<div class="agree-popup-footer">
-												<button type="button" class="wz button less primary"
-													onclick="closeAgreePopup('electronicFinancialTransaction');">확인
+												<button type="button" class="wz button less primary">확인
 												</button>
 											</div>
 										</div>
@@ -903,7 +906,7 @@
 							</div>
 						</div>
 						<div class="btn-wrap">
-							<button type="submit" id="btn-submit" class="wz primary button" onclick="requestPay()">결제 예약하기</button>
+							<button type="submit" id="btn-submit" class="wz primary button" onclick="requestPay()" disabled="disabled">결제 예약하기</button>
 						</div>
 						<!-- 간편결제 예약 앱 -->
 					</div>
