@@ -107,6 +107,15 @@
 		
 	}
 	
+	
+	// 리워드 선택값 확인
+	function rewardCheck() {
+		if($("#reward_name").val() == null || $("#reward_name").val() == ""){
+			alert("리워드가 선택되지 않았습니다.")
+			return false;
+		}
+	}
+	
 </script>
 
 <!-- input type="number" 오른쪽 증가,감소 화살표 없애기 -->
@@ -266,7 +275,7 @@ input[type="number"]::-webkit-inner-spin-button {
 							<!-- E : 서포터클럽 가입 -->
 						</div>
 
-						<form action="payment" method="post">
+						<form action="payment" method="post" onsubmit="return rewardCheck()">
 							<div class="wpurchase-donation">
 								
 								<h3>
