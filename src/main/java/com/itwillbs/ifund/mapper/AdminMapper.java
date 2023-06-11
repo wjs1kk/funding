@@ -63,7 +63,7 @@ public interface AdminMapper {
 		// ----------------------------------------
 	
 	// 05-16 은산 프로젝트 목록
-	List<ProjectVO> selectAllProjectList();
+	List<Map<String, Object>> selectAllProjectList();
 	// 05-17 은산 승인대기 목록
 	List selectPendingList(ProjectVO project);
 	// 05-18 은산 프로젝트 승인
@@ -78,6 +78,8 @@ public interface AdminMapper {
 	public void insertProjectDetail(Model model);
 	// 은산 프로젝트 필터링
 	public List selectSortedProjectList(String label);
+	// 
+	public int updateProjectStatus(@Param("projectIdx") Integer projectIdx, @Param("projectStatus")String projectStatus);
 
 
 }
