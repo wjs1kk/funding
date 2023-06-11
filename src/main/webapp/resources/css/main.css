@@ -1,4 +1,13 @@
 @charset "UTF-8";
+/* 2023-06-11 박경은 - 메인 스토어 추천제품 css 깨짐 수정 시작 */
+.RecommendationStore_container__3macz .RecommendationStore_cardList__1FZ5m .RecommendationStore_tableWrap__2rBP7 .RecommendationStore_tableContent__yUkCF {
+    flex-wrap: wrap;
+}
+.CardTable_itemContainer__v9-cW {
+	width: calc((100% - 100px) / 6);
+}
+/* 2023-06-11 박경은 - 메인 스토어 추천제품 css 깨짐 수정 끝 */
+
 .ab-pause-scrolling, body.ab-pause-scrolling, html.ab-pause-scrolling {
 	overflow: hidden;
 	touch-action: none

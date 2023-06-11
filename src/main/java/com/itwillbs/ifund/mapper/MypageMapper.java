@@ -32,5 +32,6 @@ public interface MypageMapper {
 	public int downCoupon(@Param("coupon_idx") String coupon_idx, @Param("member_idx") Integer member_idx);
 	public List<CouponVO> myCoupon(Integer member_idx);
 	public int joinPoint(String member_email);
+	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
 	
 }

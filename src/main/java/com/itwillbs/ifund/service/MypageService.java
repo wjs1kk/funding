@@ -75,5 +75,6 @@ public class MypageService {
 	public int joinPoint(String member_email) {
 	    return mapper.joinPoint(member_email);
 	}
+	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
 
 }

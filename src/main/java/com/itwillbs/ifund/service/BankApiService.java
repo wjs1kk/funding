@@ -13,7 +13,7 @@ import com.itwillbs.ifund.vo.ResponseUserInfoVO;
 public class BankApiService {
 	
 	@Autowired
-	private BankApiClient apiClient;
+	BankApiClient apiClient;
 
 	
 	// 토큰 요청
