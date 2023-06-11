@@ -200,6 +200,7 @@
 		INSERT INTO payment
 			VALUES(
 				null
+				, now()
 				, #{member_idx}
 				, #{project_idx}
 				, #{reward_name}
@@ -253,5 +254,25 @@
 			SET project_detail_amount = project_detail_amount + #{total_amount}
 			WHERE project_idx = #{project_idx}
 	</update>
+	
+	
+	<!-- 06-10 김동욱 결제 금액 5프로 포인트 적립 -->
+	<insert id="pointSaving">
+		INSERT INTO point
+		VALUES (
+			null
+			, #{member_idx}
+			, "결제 금액 5% 포인트 적립"
+			, 0
+			, #{point}
+			, (SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) + #{point}
+		)
+	</insert>
 	
 </mapper>

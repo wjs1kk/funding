@@ -33,4 +33,6 @@ public interface FundingMapper {
 	public int usingPoint(@Param("member_idx") int member_idx, @Param("point") int point);
 	// 06-10 김동욱 프로젝트 디테일 총금액 업데이트
 	public int projectDetailAmountUpdate(@Param("project_idx") int project_idx, @Param("total_amount") int total_amount);
+	// 06-11 김동욱 결제 금액의 5프로 포인트 적립
+	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
 }

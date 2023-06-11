@@ -18,35 +18,38 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/coupon-zone.ba4c0b7f.chunk.css">
+<!-- iamport.payment.js -->
 
-
-<link rel="stylesheet" type="text/css"
-	href="https://static.wadiz.kr/main/css/coupon-zone.ba4c0b7f.chunk.css">
 
 
 <script type="text/javascript">
 
-
-
 	function pointInputOnchange(myPoint, reward_amount) {
-// 		$("#used_point_amount").val($("#pointInput").val());
-// 		console.log("used_point_amount : " + $("#used_point_amount").val() )
 		let numCheck = /^[0-9]+$/;
-		
 		if($("#pointInput").val() > myPoint){
-			$("#pointInput").val(myPoint)
-			alert("현재 사용가능한 포인트는 " + myPoint + "P 입니다.")
-			$("#used_point_amount").val(myPoint);
+			if(Math.floor($("#total_amount").val()) < $("#pointInput").val()){
+				alert("포인트는 결제금액을 초과하여 사용할 수 없습니다.")
+				$("#pointInput").val(0)
+				$("#used_point_amount").val(0);
+			}else {
+				alert("현재 사용가능한 포인트는 " + myPoint + "P 입니다.")
+				$("#pointInput").val(0)
+				$("#used_point_amount").val(0);
+			}
 		}else if($("#pointInput").val() < 0){
 			$("#pointInput").val(0)
 			$("#used_point_amount").val(0);
 		}else if(!numCheck.exec($("#pointInput").val())) {
 			$("#pointInput").val(0);
 			$("#used_point_amount").val(0);
+		}else if(Math.floor($("#total_amount").val()) < $("#pointInput").val()){
+			alert("포인트는 결제금액을 초과하여 사용할 수 없습니다.2");
+			$("#pointInput").val(0);
+			$("#used_point_amount").val(0);
 		}else {
 			$("#used_point_amount").val($("#pointInput").val());
 		}
-		
 		
 		$(".TitleValuePrice_danger__3Sy33").eq(1).text($("#pointInput").val()+" 원")
 		
@@ -83,11 +86,19 @@
 	})
 	
 	function couponUse(coupon_percent, reward_amount, delivery_fee, coupon_name, coupon_idx) {
+		
+		if((reward_amount - $("#used_point_amount").val() + Math.floor($("#delivery_fee").val())) < (reward_amount * coupon_percent)){
+			alert("쿠폰할인 금액이 결제금액을 초과하면 사용이 불가능합니다.")
+			return false;
+		}
+		
 		$("#coupon_idx").val(coupon_idx)
 		$("#used_coupon_amount").val(reward_amount * coupon_percent);
 		$("#couponSelect").val(coupon_name + " " + (coupon_percent * 100) + "% 할인 쿠폰");
 		$(".ModalWrapper_modalWrapPortal__3hqCw").css("display", "none");
 		$(".TitleValuePrice_danger__3Sy33").eq(0).text(reward_amount * coupon_percent + " 원")
+		
+		
 		
 		$(".finalAmount").text(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) +  Math.floor($("#delivery_fee").val()) + " 원")
 		$("#total_amount").val(reward_amount - $("#pointInput").val() - (reward_amount * coupon_percent) + Math.floor($("#donation").val()) + Math.floor($("#delivery_fee").val()))
@@ -106,11 +117,27 @@
 		console.log("donation : " + $("#donation").val())
 		console.log("coupon_idx : " + $("#coupon_idx").val())
 	}
+	
+	$(function() {
+		$("#ckptAll").on("click", function() {
+			
+			if($("#ckptAll").is(":checked")){
+				
+				
+			}
+			
+		})
+	})
 
 </script>
+
+
+
+
 </head>
 <body>
 	<div id="page-container">
+		
 		<input type="hidden" id="couponUsedFee" value="0">
 
 		<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -130,7 +157,6 @@
 							style="background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0429/20230429094227328_207915.jpg/wadiz/resize/600/format/jpg/quality/80)"></em>해마루파트너스</span>
 					</h2>
 				</div>
-				<form name="purchaseForm" id="purchaseForm" method="post" action="paymentPro">
 					<div class="wpurchase-wrap">
 						<div class="wpurchase-step">
 							<ol>
@@ -186,7 +212,17 @@
 	
 											</dt>
 											<dd>
-												<input type="text" value="사용 가능한 쿠폰 2장" id="couponSelect" style="width: 450px; text-align: center;" readonly="readonly">
+												<c:set var="couponListlength" value="${fn:length(myCouponList)}"></c:set>
+												
+												
+												<c:choose>
+													<c:when test="${couponListlength eq 0 }">
+														<input type="text" value="사용 가능한 쿠폰이 없습니다."  style="width: 450px; text-align: center;" readonly="readonly">
+													</c:when>
+													<c:otherwise>
+														<input type="text" value="사용 가능한 쿠폰 ${couponListlength }장" id="couponSelect" style="width: 450px; text-align: center;" readonly="readonly">
+													</c:otherwise>
+												</c:choose>
 												<div class="ModalWrapper_modalWrapPortal__3hqCw" id="modal" style="display: none;">
 													<div class="ModalWrapper_modalWrapOverlay__25q_n ModalWrapper_modalWrapOverlayAfterOpen__2TRqO">
 														<div class="ModalWrapper_modalWrapContent__27xIR ModalWrapper_modalWrapContentAfterOpen__2OfUs" tabindex="-1" role="dialog">
@@ -233,8 +269,7 @@
 										<dl>
 											<dt>포인트 사용</dt>
 											<dd>
-												<label class="wz checkbox"> <input type="checkbox"
-													id="ckptAll"><span>모두 사용 (보유 포인트 <span
+												<label><span>(보유 포인트 <span
 														id="usablePoint">${myPoint }</span>P)
 												</span>
 												</label> <input type="text" id="pointInput" onchange="pointInputOnchange(${myPoint }, ${map.reward_amount })"
@@ -366,12 +401,13 @@
 												<p class="title">이름</p>
 												<input type="text" id="recipient">
 												<p class="title">휴대폰 번호</p>
-												<input type="tel" id="newContactNumber" maxlength="13" name="delivery_phone_number">
+												<input type="tel" id="delivery_phone_number" maxlength="13"  name="delivery_phone_number">
 												<em class="error-message" id="errorPhoneNum">휴대폰 번호를 정확히
 													입력해주세요.</em>
 												<p class="title">주소</p>
-												<button type="button" onclick="execDaumPostcode()">우편번호
-													검색</button>
+												<button type="button" onclick="execDaumPostcode()">우편번호 검색</button>
+												<br>
+												<br>
 												
 												<input type="text" id="postcode" placeholder="우편번호" readonly="readonly">
 												<input type="text" id="address" placeholder="주소" readonly="readonly"><br>
@@ -867,14 +903,10 @@
 							</div>
 						</div>
 						<div class="btn-wrap">
-							<button type="submit" id="btn-submit" class="wz primary button">결제
-								예약하기</button>
+							<button type="submit" id="btn-submit" class="wz primary button" onclick="requestPay()">결제 예약하기</button>
 						</div>
 						<!-- 간편결제 예약 앱 -->
-						<div id="reward-reservation-app" data-reservation-info="null"></div>
 					</div>
-				
-				</form>
 			</div>
 		</div>
 		
@@ -892,8 +924,11 @@
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</div>
 </html>
+
+<!-- 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+<!-- 주소 API 함수 -->
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -946,6 +981,86 @@
     
     function detailAddressOnchange() {
 		$("#delivery_address").val($("#postcode").val() + " " + $("#address").val() + " " + $("#detailAddress").val() + " " + $("#extraAddress").val() )
-		alert($("#delivery_address").val())
+	}
+    
+    
+</script>
+
+
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 06-11 김동욱 카카오페이 -->
+<<script type="text/javascript">
+	function requestPay() {
+		var IMP = window.IMP; // 생략 가능
+		IMP.init("imp08756266"); // 예시 : imp00000000
+		
+		console.log($("#recipient").val())
+		console.log($("#delivery_phone_number").val())
+		console.log($("#postcode").val())
+		console.log($("#detailAddress").val())
+		
+		if($("#recipient").val() == null || $("#recipient").val() == ""){
+			alert("배송지 정보가 모두 입력되지 않았습니다.")
+			return false;
+		}
+		
+		if($("#delivery_phone_number").val() == null || $("#delivery_phone_number").val() == ""){
+			alert("배송지 정보가 모두 입력되지 않았습니다.")
+			return false;
+		}
+		
+		if($("#postcode").val() == null || $("#postcode").val() == ""){
+			alert("배송지 정보가 모두 입력되지 않았습니다.")
+			return false;
+		}
+		
+		if($("#detailAddress").val() == null || $("#detailAddress").val() == "") {
+			alert("배송지 정보가 모두 입력되지 않았습니다.")
+			return false;
+		}
+	
+		IMP.request_pay({
+		    pg : 'TC0ONETIME',
+		    pay_method : 'card', //생략 가능
+		    merchant_uid: "order_no_"+"${uuid}", // 상점에서 관리하는 주문 번호
+		    name : "아이펀드 : "+"${map.reward_name }",
+		    amount : $("#total_amount").val(),
+		    buyer_email : "${myInfo.member_email }",
+		    buyer_name : "${myInfo.member_name }",
+		    buyer_tel : "${myInfo.member_phone }",
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456'
+		}, function(rsp) { // callback 로직
+			console.log(rsp.success)
+			if(rsp.success == true){
+				$.ajax({
+					type: "post",
+					url: "paymentPro",
+					data: {project_idx:$("#project_idx").val()
+					   ,reward_name:$("#reward_name").val()
+					   ,reward_amount:$("#reward_amount").val()
+					   ,total_amount:$("#total_amount").val()
+					   ,reward_idx:$("#reward_idx").val()
+					   ,reward_quantity:$("#reward_quantity").val()
+					   ,delivery_fee:$("#delivery_fee").val()
+					   ,used_point_amount:$("#used_point_amount").val()
+					   ,used_coupon_amount:$("#used_coupon_amount").val()
+					   ,donation:$("#donation").val()
+					   ,coupon_idx:$("#coupon_idx").val()
+					   ,delivery_address:$("#delivery_address").val()
+					   ,recipient:$("#recipient").val()
+					   ,delivery_phone_number:$("#delivery_phone_number").val()
+					},
+					success: function() {
+						alert("결제가 완료되었습니다.")
+						location.href = "/ifund/";
+					}
+				})
+				
+			}
+		});
 	}
 </script>
+
+

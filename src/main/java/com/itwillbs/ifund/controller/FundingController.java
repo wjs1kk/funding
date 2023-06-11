@@ -1,8 +1,18 @@
 package com.itwillbs.ifund.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectListVO;
@@ -67,8 +81,7 @@ public class FundingController {
 	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
 	@PostMapping("payment")
 	public String payment(@RequestParam Map map, Model model, HttpSession session) {
-		
-		System.out.println(map);
+		String uuid = UUID.randomUUID().toString();
 		
 		if(session.getAttribute("member_idx") == null) {
 			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
@@ -95,7 +108,6 @@ public class FundingController {
 		List myCouponList = fundingService.getMyCouponList(member_idx);
 		
 		// 내 정보 가져오기
-
 		MemberVO myInfo = mypageService.selectUser(member_idx);
 		
 		model.addAttribute("map", map);
@@ -103,6 +115,7 @@ public class FundingController {
 		model.addAttribute("myCouponList", myCouponList);
 		model.addAttribute("myPoint", myPoint);
 		model.addAttribute("myInfo", myInfo);
+		model.addAttribute("uuid", uuid.substring(0, 8));
 		
 		return "funding/payment";
 	}
@@ -120,7 +133,8 @@ public class FundingController {
 	
 	// 06-10 김동욱 결제하기
 	@PostMapping("paymentPro")
-	public String paymentPro(@RequestParam Map map, HttpSession session) {
+	@ResponseBody
+	public void paymentPro(@RequestParam Map map, HttpSession session) {
 		int member_idx = (Integer)session.getAttribute("member_idx");
 		map.put("member_idx", member_idx);
 		
@@ -134,7 +148,6 @@ public class FundingController {
 		}
 		
 		int coupon_idx = Integer.parseInt(map.get("coupon_idx").toString()) ;
-		System.out.println(coupon_idx);
 		
 		// 06-10 김동욱 사용한 쿠폰 N으로 업데이트
 		if(coupon_idx != 0) {
@@ -145,19 +158,17 @@ public class FundingController {
 		// 06-10 김동욱 펀딩 결제하기
 		int insertCount = fundingService.payment(map);
 		
-		int project_idx = Integer.parseInt(map.get("project_idx").toString());
-		int total_amount = Integer.parseInt(map.get("total_amount").toString());
-		
-		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트
-		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount);
-		
 		int point = Integer.parseInt(map.get("used_point_amount").toString());
-		
 		if(point != 0) {
 			// 06-10 김동욱 포인트 사용하기
 			int pointUpdateCount = fundingService.usingPoint(member_idx, point);
 		}
 		
-		return "redirect:/";
+		int project_idx = Integer.parseInt(map.get("project_idx").toString());
+		int total_amount = Integer.parseInt(map.get("total_amount").toString());
+		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트 및 결제 금액 5% 포인트 적립
+		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
+		
 	}
+	
 }

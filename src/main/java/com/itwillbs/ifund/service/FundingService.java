@@ -70,7 +70,11 @@ public class FundingService {
 	}
 	
 	// 06-10 김동욱 프로젝트 디테일 총금액 업데이트
-	public int projectDetailAmountUpdate(int project_idx, int total_amount) {
+	public int projectDetailAmountUpdate(int project_idx, int total_amount, int member_idx) {
+		// 06-11 김동욱 결제 금액의 5프로 포인트 적립
+		mapper.pointSaving(total_amount * 0.05, member_idx);
 		return mapper.projectDetailAmountUpdate(project_idx, total_amount);
 	}
+	
+	// 06-11 김동욱 포인트 적립
 }
