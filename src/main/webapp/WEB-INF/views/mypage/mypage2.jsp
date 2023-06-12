@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
-
+<script
+	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 function supporter() {
   window.location.href = 'supporter';
@@ -60,12 +61,14 @@ function maker() {
 									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
 									</button>
+									
 									<div class="MyWadizMakerProfile_setting__3yxCI">
 										<button class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 											<span><span class="Button_children__lqBGI">로그아웃</span></span>
 										</button>
 									</div>
 								</div>
+								
 								<div class="MyWadizMaker_contents__1blQZ">
 									<div class="MyWadizSection_section__3FCv1">
 										<div>

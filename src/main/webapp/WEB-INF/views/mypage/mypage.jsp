@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
-
+<script
+	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 
 	$(function() {
@@ -73,6 +74,39 @@
 									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
 									</button>
+									
+									<!-- 2023-06-11 박경은 - 계좌 인증 -->
+									<script type="text/javascript">
+										$(function() {
+											$("#btnAccountAuth").on("click", function() {
+												let authWindow = window.open("about:blank",  "authWindow", "width=500, height=700");
+													authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
+																		+ "?response_type=code"
+																		+ "&client_id=${client_id}"
+																		+ "&redirect_uri=http://localhost:8082/ifund/callback"
+																		+ "&scope=login inquiry transfer oob"
+																		+ "&state=12345678901234567890123456789012"
+																		+ "&auth_type=0";
+																		// 산업은행 - 12345678 계좌 입력했음
+											});
+										});
+									</script>
+							
+									<!-- 2023-06-11 박경은 - 계좌 인증 -->
+									<div class="input-btn-wrap" style="margin-top: 5px;">
+										<c:choose>
+											<c:when test="${empty member.account_auth_status or member.account_auth_status eq 'N'}">
+												<button id="btnAccountAuth" class="btnAccountAuth btn Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+													<span>계좌인증</span>
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button class="btnAccountAuth btn Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button" disabled="disabled">
+													<span>계좌인증완료</span>
+												</button>
+											</c:otherwise>
+										</c:choose>
+									</div>
 									
 									<div class="MyWadizSupporterProfile_setting__n8-M7">
 										<button onclick="location.href='../logout'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">

@@ -35,4 +35,6 @@ public interface FundingMapper {
 	public int projectDetailAmountUpdate(@Param("project_idx") int project_idx, @Param("total_amount") int total_amount);
 	// 06-11 김동욱 결제 금액의 5프로 포인트 적립
 	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
+	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
+	public List<ProjectListVO> selectOpenProject();
 }
