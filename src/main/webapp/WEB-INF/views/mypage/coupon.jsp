@@ -15,7 +15,7 @@
 	<div id="page-container">
 
 		<main id="main-app">
-		<jsp:include page="../inc/top.jsp"></jsp:include>
+		<jsp:include page="../inc/mypage_top.jsp"></jsp:include>
 			<div class="MainWrapper_content__GZkTa">
 			
 				<section class="MyCouponPage_container__16vr_">
@@ -32,53 +32,32 @@
 					<div class="CouponWrapper_container__15SYM">
 						<div class="CouponWrapper_wrapper__bZyG7">
 							<div class="MyCouponPage_header__3Dpto">
-								<strong class="MyCouponPage_title__xxx6i">현재 사용가능 쿠폰 <span>2장</span></strong>
+								<strong class="MyCouponPage_title__xxx6i">현재 사용가능 쿠폰 <span></span></strong>
 							</div>
 						</div>
 					</div>
-					<div
-						class="CouponWrapper_container__15SYM MyCouponPage_list__3KJEz">
+					<div class="CouponWrapper_container__15SYM MyCouponPage_list__3KJEz">
 						<div class="CouponWrapper_wrapper__bZyG7">
 							<div class="MyCouponList_container__3vNxk">
 								<div class="MyCouponList_header__2Z9XN">
-									<div class="MyCouponList_left__264D_">
-										<button type="button" class="MyCouponList_add__13b0h">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-												class="withIcon_icon__3VTbq MyCouponList_icon__1MC5K" aria-hidden="true">
-												<path d="M24 15.2h-7.2V8h-1.6v7.2H8v1.6h7.2V24h1.6v-7.2H24v-1.6z"></path>
-												<path d="M16 3.2c7.069 0 12.8 5.731 12.8 12.8S23.069 28.8 16 28.8C8.931 28.8 3.2 23.069 3.2 16S8.931 3.2 16 3.2zm0-1.6C8.047 1.6 1.6 8.047 1.6 16S8.047 30.4 16 30.4 30.4 23.953 30.4 16 23.953 1.6 16 1.6z"></path></svg>
-												쿠폰 등록하기
-										</button>
-									</div>
 									<div class="MyCouponList_right__2KDgp">
-										<div class="SortingSelect_container__3S_A7"> 전체
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-												class="withIcon_icon__3VTbq SortingSelect_icon__1XW5Q" aria-hidden="true">
-												<path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-											<select class="SortingSelect_select__2rq3X">
-												<option value="">전체</option>
-												<option value="reward">펀딩・프리오더</option>
-												<option value="store">스토어</option>
-												<option value="equity">투자</option></select>
-										</div>
 									</div>
 								</div>
 								
-<%-- 								<c:forEach items="${coupon }" var="coupon"> --%>
-								
+								<c:forEach items="${myCoupon }" var="myCoupon" varStatus="status">
 								
 								<div class="ListContainer_container__2W37J">
 									<div class="MyCouponList_item__39RZo">
 										<div class="CouponItem_container__UnsjV">
-											<p class="CouponItem_campaign__1O-2L">스토어</p>
 											<div class="StoreCouponItem_container__vV51o">
 												<dl>
 													<dt class="BlindText_textHidden__ovQb4">할인 정보</dt>
 													<dd class="StoreCouponItem_conditional__Sq7iw">
-														<span class="StoreCouponItem_text__1hXx1">40,000원</span>
+														<span class="StoreCouponItem_text__1hXx1">
+														${Math.round(myCoupon.coupon_percent * 100)}% 할인 쿠폰</span>
 													</dd>
 													<dt class="BlindText_textHidden__ovQb4">쿠폰명</dt>
-													<dd class="StoreCouponItem_title__8KAlp">제누이오 얼리버드 4만원 쿠폰</dd>
+													<dd class="StoreCouponItem_title__8KAlp">${myCoupon.coupon_name }</dd>
 													<dt class="BlindText_textHidden__ovQb4">쿠폰 상세 정보</dt>
 													<dd>
 														<div class="CouponInfoTable_table__3Keqy">
@@ -86,12 +65,12 @@
 																<tbody>
 																	<tr>
 																		<th scope="row">유효기간</th>
-																		<td>2023.05.22 23시 59분</td>
+																		<td>${myCoupon.coupon_end }</td>
 																	</tr>
-																	<tr>
-																		<th scope="row">사용조건</th>
-																		<td>396,000원 이상 상품 구매 시</td>
-																	</tr>
+<!-- 																	<tr> -->
+<!-- 																		<th scope="row">사용조건</th> -->
+<!-- 																		<td>396,000원 이상 상품 구매 시</td> -->
+<!-- 																	</tr> -->
 																	<tr>
 																		<th scope="row">적용대상</th>
 																		<td><p>
@@ -111,7 +90,7 @@
 										</div>
 									</div>
 								</div>
-<%-- 								</c:forEach> --%>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

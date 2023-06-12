@@ -24,10 +24,12 @@ public class ProjectVO {
 	private String project_reward_category;
 	private int project_reward_produce_type;
 	private String project_documents;
+	private String project_like;
 	private String project_AS;
 	private int maker_idx;
 	private String project_create_date;
 	private String project_update_status;
+	
 	public int getProject_idx() {
 		return project_idx;
 	}
@@ -154,6 +156,12 @@ public class ProjectVO {
 	public void setProject_documents(String project_documents) {
 		this.project_documents = project_documents;
 	}
+	public String getProject_like() {
+		return project_like;
+	}
+	public void setProject_like(String project_like) {
+		this.project_like = project_like;
+	}
 	public String getProject_AS() {
 		return project_AS;
 	}
@@ -189,9 +197,8 @@ public class ProjectVO {
 				+ project_target + ", project_approve_status=" + project_approve_status + ", project_introduce="
 				+ project_introduce + ", project_adult=" + project_adult + ", project_identity=" + project_identity
 				+ ", project_reward_category=" + project_reward_category + ", project_reward_produce_type="
-				+ project_reward_produce_type + ", project_documents=" + project_documents + ", project_AS="
-				+ project_AS + ", maker_idx=" + maker_idx + ", project_create_date=" + project_create_date
-				+ ", project_update_status=" + project_update_status + "]";
+				+ project_reward_produce_type + ", project_documents=" + project_documents + ", project_like="
+				+ project_like + ", project_AS=" + project_AS + ", maker_idx=" + maker_idx + ", project_create_date="
+				+ project_create_date + ", project_update_status=" + project_update_status + "]";
 	}
-	
 }

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.ProjectCreateService;
 import com.itwillbs.ifund.vo.MakerVO;
+import com.itwillbs.ifund.vo.ProjectDetailVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RewardVO;
 
@@ -483,6 +484,13 @@ public class ProjectCreateController {
 	public String projectFeeCalculate(int project_idx, HttpSession session, Model model) {
 		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_feeCalculate");
 	}
-
+//	06-09 강정운 정산내역서
+	@PostMapping("project/showFeeCalculate")
+	@ResponseBody
+	public Map showFeeCalculate(@RequestParam int project_idx) {
+		Map List = projectCreateService.showFeeCalculate(project_idx);
+		System.out.println(List);
+		return List;
+	}
 	
 }

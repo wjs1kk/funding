@@ -85,5 +85,7 @@ public interface ProjectCreateMapper {
 	int myProjectCheck(@Param("member_idx") int member_idx, @Param("project_idx") int project_idx);
 	// 06-02 강정운 프로젝트 제작시 생성된 프로젝트로 이동
 	int projectStart();
+	// 06-09 강정운 정산내역서	
+	Map showFeeCalculate(int project_idx);
 
 }
