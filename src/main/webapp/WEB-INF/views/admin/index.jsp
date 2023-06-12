@@ -745,14 +745,9 @@
 .contract-trigger:before {
   width: 200%;
   height: 200%;
-}</style>
-<!-- 관리자 메뉴 active -->
-<script type="text/javascript">
-window.onload = function(){
-	var li = document.getElementById('adminMain');
-	li.className += ' active';
 }
-</script>
+</style>
+
 </head>
 
   <body>
@@ -1412,25 +1407,27 @@ window.onload = function(){
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="resources/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/libs/popper/popper.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="resources/assets/vendor/js/menu.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="resources/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="resources/assets/js/main.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="resources/assets/js/dashboards-analytics.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
   
 
-<svg id="SvgjsSvg1283" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1284"></defs><polyline id="SvgjsPolyline1285" points="0,0"></polyline><path id="SvgjsPath1286" d="M-1 217.1625L-1 217.1625C-1 217.1625 38.662144252232146 217.1625 38.662144252232146 217.1625C38.662144252232146 217.1625 77.32428850446429 217.1625 77.32428850446429 217.1625C77.32428850446429 217.1625 115.98643275669643 217.1625 115.98643275669643 217.1625C115.98643275669643 217.1625 154.64857700892858 217.1625 154.64857700892858 217.1625C154.64857700892858 217.1625 193.31072126116072 217.1625 193.31072126116072 217.1625C193.31072126116072 217.1625 231.97286551339286 217.1625 231.97286551339286 217.1625C231.97286551339286 217.1625 270.635009765625 217.1625 270.635009765625 217.1625C270.635009765625 217.1625 270.635009765625 217.1625 270.635009765625 217.1625 "></path></svg></body></html>
+	<svg id="SvgjsSvg1283" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1284"></defs><polyline id="SvgjsPolyline1285" points="0,0"></polyline><path id="SvgjsPath1286" d="M-1 217.1625L-1 217.1625C-1 217.1625 38.662144252232146 217.1625 38.662144252232146 217.1625C38.662144252232146 217.1625 77.32428850446429 217.1625 77.32428850446429 217.1625C77.32428850446429 217.1625 115.98643275669643 217.1625 115.98643275669643 217.1625C115.98643275669643 217.1625 154.64857700892858 217.1625 154.64857700892858 217.1625C154.64857700892858 217.1625 193.31072126116072 217.1625 193.31072126116072 217.1625C193.31072126116072 217.1625 231.97286551339286 217.1625 231.97286551339286 217.1625C231.97286551339286 217.1625 270.635009765625 217.1625 270.635009765625 217.1625C270.635009765625 217.1625 270.635009765625 217.1625 270.635009765625 217.1625 "></path></svg>
+	</body>
+</html>

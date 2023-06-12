@@ -130,7 +130,7 @@ public class AdminService {
 	// --------------------------------------
 
 	// 05-16 은산 프로젝트 목록
-	public List<ProjectVO> getAllProjectList() {
+	public List<Map<String, Object>> getAllProjectList() {
 		return mapper.selectAllProjectList();
 	}
 
@@ -168,4 +168,10 @@ public class AdminService {
 	public List sortProjectList(String label) {
 		return mapper.selectSortedProjectList(label);
 	}
+
+	public int updateProjectStatus(Integer projectIdx, String projectStatus) {
+		return mapper.updateProjectStatus(projectIdx, projectStatus);
+		
+	}
+
 }

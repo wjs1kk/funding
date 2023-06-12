@@ -332,13 +332,10 @@
 										<tr>
 											<th>NO</th>
 											<th>등록일</th>
-											<th>요금제</th>
+											<th>프로젝트명</th>
 											<th>유형</th>
 											<th>카테고리</th>
-											<th>프로젝트명</th>
-											<th>목표금액</th>
-											<th>작성자</th>
-											<th></th>
+											<th>메이커</th>
 										</tr>
 									</thead>
 									<tbody id="titleElement" class="table-border-bottom-0">
@@ -347,20 +344,7 @@
 												onclick="location.href='projectList/detail/${pendingList.project_idx}'">
 												<td>${pendingList.project_idx }</td>
 												<td>${pendingList.project_create_date }</td>
-												<c:choose>
-													<c:when test="${pendingList.project_plan eq 3 }">
-														<td id="td_project_plan"><span
-															class="badge rounded-pill bg-info">Pro</span></td>
-													</c:when>
-													<c:when test="${pendingList.project_plan eq 2 }">
-														<td id="td_project_plan"><span
-															class="badge rounded-pill bg-warning">Basic</span></td>
-													</c:when>
-													<c:otherwise>
-														<td id="td_project_plan"><span
-															class="badge rounded-pill bg-label-secondary">Light</span></td>
-													</c:otherwise>
-												</c:choose>
+												<td id="td_project_title">${pendingList.project_title }</td>
 												<c:choose>
 													<c:when test="${pendingList.project_type eq 1}">
 														<td>펀딩</td>
@@ -370,11 +354,9 @@
 													</c:otherwise>
 												</c:choose>
 												<td>${pendingList.project_category }</td>
-												<td id="td_project_title">${pendingList.project_title }</td>
-												<td>${pendingList.project_target }원</td>
 												<td>${pendingList.member_name }</td>
 												<td>
-													<div class="input-group">
+													<div class="input-group" onclick="event.stopPropagation();">
 														<button class="btn btn-outline-primary dropdown-toggle"
 															type="button" data-bs-toggle="dropdown"
 															aria-expanded="false">Dropdown</button>
@@ -385,7 +367,6 @@
 																onclick="modalDenied(${pendingList.project_idx}, '${pendingList.project_title}')">거부</a></li>
 														</ul>
 													</div>
-												
 												</td>
 											</tr>
 										</c:forEach>
