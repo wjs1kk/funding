@@ -16,6 +16,18 @@
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/main-page.bc53c07e.chunk.css">
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/static/web/wui.css?bc8acc52">
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/main/main.3858b619.css">
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/main/css/main-page.ca7ed471.chunk.css">
+<!-- <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?bc8acc52"> -->
+<!-- <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?16adbba1"> -->
+<!-- <link rel="stylesheet" href="https://static.wadiz.kr/main/main.3858b619.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/0.9e265a0e.chunk.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/1.aab0e1b7.chunk.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/main-page.ca7ed471.chunk.css"> -->
 <script src="resources/js/jquery-3.6.4.js"></script>
 
 </head>
@@ -203,22 +215,22 @@
 						</div>
 
 						<!-- 팝 슬라이드 아래 (취향 맞춤 프로젝트) -->
+						<!-- 2023-06-11 박경은 - 메인 css 깨짐 수정  -->
 						<div class="RecommendationDesktop_container__3RLMb">
 							<div class="Main_wrap__2jKMu">
 								<div
 									class="RecommendationDesktop_innerGroup__as4jB Main_innerWrap__7-_Vm">
-									<section
-										class="SectionContainerLayout_container__1f8kt RecommendFundingWrap_container__3LDiq RecommendationDesktop_recommendFunding__1dKi1">
+									<div
+										class="RecommendFundingWrap_container__3LDiq RecommendationDesktop_recommendFunding__1dKi1">
 										<div
 											class="title_contentWrapper__1P-q0 RecommendFundingWrap_titleBox__1k7fj">
 											<div class="RecommendFundingWrap_subTitle__1SaNL">
-												<h2 class="RecommendFundingWrap_title__1b9i3">취향 맞춤
-													프로젝트</h2>
+												<h2 class="RecommendFundingWrap_title__1b9i3">주목할 만한 프로젝트</h2>
 												<p class="RecommendFundingWrap_description__5xAKe">지금 함께
 													만드는 성공</p>
 											</div>
 											<div
-												class="Tooltip_container__1OVpV RecommendFundingWrap_tooltip__3dL8Q">
+												class="Tooltip_container__1OVpV RecommendFundingWrap_tooltip__3dL8Q" style="dispaly: none">
 												<div class="Tooltip_symbol__3cGy0"
 													aria-describedby="recommendationFundingWaAiTooltip">
 													<span class="AITooltip_icon__wd6n9"></span>
@@ -255,31 +267,31 @@
 												<div>
 													<a
 														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
-														href="/web/campaign/detail/208773?_refer_section_st=PersonalCurator_0"
-														data-ec-list="홈_추천_프리오더" data-ec-id="208773"
-														data-ec-name="[앵콜] 책상위 필기구를 관리하는 귀여운 고슴도치 집사를 고용하세요!"
-														data-ec-position="0" data-ec-category="홈·리빙"
-														data-ec-brand="스노마드" data-ec-contenttype="PREORDER"
-														data-gtm-vis-recent-on-screen-11319722_2115="4401"
-														data-gtm-vis-first-on-screen-11319722_2115="4401"
-														data-gtm-vis-total-visible-time-11319722_2115="2000"
-														data-gtm-vis-recent-on-screen-11319722_2073="4405"
-														data-gtm-vis-first-on-screen-11319722_2073="4405"
+														href="/web/campaign/detail/209772?_refer_section_st=PersonalCurator_0"
+														data-ec-list="홈_추천_프리오더" data-ec-id="209772"
+														data-ec-name="[앵콜요청쇄도] 5일만에 37.5% 모공 쪼여버리는 오디앰플 8중임상화제"
+														data-ec-position="0" data-ec-category="뷰티"
+														data-ec-brand="루트리" data-ec-contenttype="PREORDER"
+														data-gtm-vis-recent-on-screen-11319722_2073="393"
+														data-gtm-vis-first-on-screen-11319722_2073="393"
 														data-gtm-vis-total-visible-time-11319722_2073="2000"
+														data-gtm-vis-recent-on-screen-11319722_2115="394"
+														data-gtm-vis-first-on-screen-11319722_2115="394"
+														data-gtm-vis-total-visible-time-11319722_2115="2000"
 														data-gtm-vis-has-fired-11319722_2073="1"
 														data-gtm-vis-has-fired-11319722_2115="1"><article>
 															<div
 																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																<div aria-hidden="true"
 																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0422/20230422180715371_208773.png/wadiz/resize/300/format/jpg/quality/85/&quot;);"></div>
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0526/20230526100648736_209772.jpg/wadiz/resize/600/format/jpg/quality/85/&quot;);"></div>
 															</div>
 															<div
 																class="commons_content__2K1SH CardType_content__1Pavj">
-																<em class="commons_title__1yGWm">[앵콜] 책상위 필기구를 관리하는
-																	귀여운 고슴도치 집사를 고용하세요!</em>
+																<em class="commons_title__1yGWm">[앵콜요청쇄도] 5일만에
+																	37.5% 모공 쪼여버리는 오디앰플 8중임상화제</em>
 																<p class="commons_summary__2Ynez">
-																	<span class="commons_rate__10tOH">11%</span>홈·리빙
+																	<span class="commons_rate__10tOH">10,107%</span>뷰티
 																</p>
 															</div>
 														</article></a>
@@ -289,31 +301,31 @@
 												<div>
 													<a
 														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
-														href="/web/campaign/detail/209372?_refer_section_st=PersonalCurator_1"
-														data-ec-list="홈_추천_프리오더" data-ec-id="209372"
-														data-ec-name="[M.N.M] 최저가보장 포항 구룡포 홍게 !! 후회없는 게 맛보세요 !"
-														data-ec-position="1" data-ec-category="푸드"
-														data-ec-brand="앰엔앰" data-ec-contenttype="PREORDER"
-														data-gtm-vis-recent-on-screen-11319722_2115="4401"
-														data-gtm-vis-first-on-screen-11319722_2115="4401"
-														data-gtm-vis-total-visible-time-11319722_2115="2000"
-														data-gtm-vis-recent-on-screen-11319722_2073="4405"
-														data-gtm-vis-first-on-screen-11319722_2073="4405"
+														href="/web/campaign/detail/197756?_refer_section_st=PersonalCurator_1"
+														data-ec-list="홈_추천_펀딩" data-ec-id="197756"
+														data-ec-name="'옷이 날개입니다!' 신발에도 날개가 있다면 어떤 일이 일어날까요?"
+														data-ec-position="1" data-ec-category="패션·잡화"
+														data-ec-brand="cloak" data-ec-contenttype="REWARD"
+														data-gtm-vis-recent-on-screen-11319722_2073="394"
+														data-gtm-vis-first-on-screen-11319722_2073="394"
 														data-gtm-vis-total-visible-time-11319722_2073="2000"
+														data-gtm-vis-recent-on-screen-11319722_2115="394"
+														data-gtm-vis-first-on-screen-11319722_2115="394"
+														data-gtm-vis-total-visible-time-11319722_2115="2000"
 														data-gtm-vis-has-fired-11319722_2073="1"
 														data-gtm-vis-has-fired-11319722_2115="1"><article>
 															<div
 																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																<div aria-hidden="true"
 																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0428/20230428190248954_209372.jpg/wadiz/resize/300/format/jpg/quality/85/&quot;);"></div>
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0419/20230419091834760_197756.jpg/wadiz/resize/600/format/jpg/quality/85/&quot;);"></div>
 															</div>
 															<div
 																class="commons_content__2K1SH CardType_content__1Pavj">
-																<em class="commons_title__1yGWm">[M.N.M] 최저가보장 포항
-																	구룡포 홍게 !! 후회없는 게 맛보세요 !</em>
+																<em class="commons_title__1yGWm">'옷이 날개입니다!' 신발에도
+																	날개가 있다면 어떤 일이 일어날까요?</em>
 																<p class="commons_summary__2Ynez">
-																	<span class="commons_rate__10tOH">17%</span>푸드
+																	<span class="commons_rate__10tOH">181%</span>패션·잡화
 																</p>
 															</div>
 														</article></a>
@@ -323,31 +335,31 @@
 												<div>
 													<a
 														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
-														href="/web/campaign/detail/196995?_refer_section_st=PersonalCurator_2"
-														data-ec-list="홈_추천_펀딩" data-ec-id="196995"
-														data-ec-name="[단독/한정] 마케팅 핵심개념부터 실무까지, 하루10분 마케팅 입문 완성"
-														data-ec-position="2" data-ec-category="클래스·컨설팅"
-														data-ec-brand="베어유" data-ec-contenttype="REWARD"
-														data-gtm-vis-recent-on-screen-11319722_2115="4401"
-														data-gtm-vis-first-on-screen-11319722_2115="4401"
-														data-gtm-vis-total-visible-time-11319722_2115="2000"
-														data-gtm-vis-recent-on-screen-11319722_2073="4405"
-														data-gtm-vis-first-on-screen-11319722_2073="4405"
+														href="/web/campaign/detail/215108?_refer_section_st=PersonalCurator_2"
+														data-ec-list="홈_추천_펀딩" data-ec-id="215108"
+														data-ec-name="[푸른 나무] 사진가 이흥렬의 태평양섬나무사진 프로젝트_피지"
+														data-ec-position="2" data-ec-category="후원"
+														data-ec-brand="이흥렬" data-ec-contenttype="REWARD"
+														data-gtm-vis-recent-on-screen-11319722_2073="394"
+														data-gtm-vis-first-on-screen-11319722_2073="394"
 														data-gtm-vis-total-visible-time-11319722_2073="2000"
+														data-gtm-vis-recent-on-screen-11319722_2115="394"
+														data-gtm-vis-first-on-screen-11319722_2115="394"
+														data-gtm-vis-total-visible-time-11319722_2115="2000"
 														data-gtm-vis-has-fired-11319722_2073="1"
 														data-gtm-vis-has-fired-11319722_2115="1"><article>
 															<div
 																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																<div aria-hidden="true"
 																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0403/20230403184435869_196995.png/wadiz/resize/300/format/jpg/quality/85/&quot;);"></div>
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0517/20230517174752466_215108.jpg/wadiz/resize/600/format/jpg/quality/85/&quot;);"></div>
 															</div>
 															<div
 																class="commons_content__2K1SH CardType_content__1Pavj">
-																<em class="commons_title__1yGWm">[단독/한정] 마케팅 핵심개념부터
-																	실무까지, 하루10분 마케팅 입문 완성</em>
+																<em class="commons_title__1yGWm">[푸른 나무] 사진가 이흥렬의
+																	태평양섬나무사진 프로젝트_피지</em>
 																<p class="commons_summary__2Ynez">
-																	<span class="commons_rate__10tOH">177%</span>클래스·컨설팅
+																	<span class="commons_rate__10tOH">173%</span>후원
 																</p>
 															</div>
 														</article></a>
@@ -357,49 +369,273 @@
 												<div>
 													<a
 														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
-														href="/web/campaign/detail/197406?_refer_section_st=PersonalCurator_3"
-														data-ec-list="홈_추천_프리오더" data-ec-id="197406"
-														data-ec-name="<뇌과학 프레임워크를 다 때려 박은> 갓생 성장 노션 템플릿"
-														data-ec-position="3" data-ec-category="클래스·컨설팅"
-														data-ec-brand="저스트 그로우" data-ec-contenttype="PREORDER"
-														data-gtm-vis-recent-on-screen-11319722_2115="4402"
-														data-gtm-vis-first-on-screen-11319722_2115="4402"
-														data-gtm-vis-total-visible-time-11319722_2115="2000"
-														data-gtm-vis-recent-on-screen-11319722_2073="4406"
-														data-gtm-vis-first-on-screen-11319722_2073="4406"
+														href="/web/campaign/detail/212807?_refer_section_st=PersonalCurator_3"
+														data-ec-list="홈_추천_프리오더" data-ec-id="212807"
+														data-ec-name="[1억 펀딩] 여름 드로즈 '에어라이트'가 더 얇고 시원하게 돌아왔어요!"
+														data-ec-position="3" data-ec-category="패션·잡화"
+														data-ec-brand="플레인플렌티" data-ec-contenttype="PREORDER"
+														data-gtm-vis-recent-on-screen-11319722_2073="394"
+														data-gtm-vis-first-on-screen-11319722_2073="394"
 														data-gtm-vis-total-visible-time-11319722_2073="2000"
+														data-gtm-vis-recent-on-screen-11319722_2115="394"
+														data-gtm-vis-first-on-screen-11319722_2115="394"
+														data-gtm-vis-total-visible-time-11319722_2115="2000"
 														data-gtm-vis-has-fired-11319722_2073="1"
 														data-gtm-vis-has-fired-11319722_2115="1"><article>
 															<div
 																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																<div aria-hidden="true"
 																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0309/20230309175636438_197406.png/wadiz/resize/300/format/jpg/quality/85/&quot;);"></div>
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0518/20230518003008585_212807.jpg/wadiz/resize/600/format/jpg/quality/85/&quot;);"></div>
 															</div>
 															<div
 																class="commons_content__2K1SH CardType_content__1Pavj">
-																<em class="commons_title__1yGWm">&lt;뇌과학 프레임워크를 다
-																	때려 박은&gt; 갓생 성장 노션 템플릿</em>
+																<em class="commons_title__1yGWm">[1억 펀딩] 여름 드로즈
+																	'에어라이트'가 더 얇고 시원하게 돌아왔어요!</em>
 																<p class="commons_summary__2Ynez">
-																	<span class="commons_rate__10tOH">728%</span>클래스·컨설팅
+																	<span class="commons_rate__10tOH">1,411%</span>패션·잡화
 																</p>
 															</div>
 														</article></a>
 												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/205300?_refer_section_st=PersonalCurator_4"
+														data-ec-list="홈_추천_프리오더" data-ec-id="205300"
+														data-ec-name="[7만원대]역대급 가성비 반팔&amp;맨투맨&amp;팬츠 3종 풀세트ㅣ푸마골프 만능셋업"
+														data-ec-position="4" data-ec-category="패션·잡화"
+														data-ec-brand="코웰패션주식회사" data-ec-contenttype="PREORDER"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[7만원대]역대급 가성비
+																	반팔&amp;맨투맨&amp;팬츠 3종 풀세트ㅣ푸마골프 만능셋업</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">2,561%</span>패션·잡화
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/188802?_refer_section_st=PersonalCurator_5"
+														data-ec-list="홈_추천_펀딩" data-ec-id="188802"
+														data-ec-name="<스즈메의 문단속> 굿즈! 포스터달력/토이카메라/마스킹테이프/문진/타월"
+														data-ec-position="5" data-ec-category="캐릭터·굿즈"
+														data-ec-brand="북엔" data-ec-contenttype="REWARD"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">&lt;스즈메의 문단속&gt;
+																	굿즈! 포스터달력/토이카메라/마스킹테이프/문진/타월</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">4,932%</span>캐릭터·굿즈
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/211991?_refer_section_st=PersonalCurator_6"
+														data-ec-list="홈_추천_펀딩" data-ec-id="211991"
+														data-ec-name="살균까지 되는 조명! 라파비 살균조명으로 안전하게 살균해요~"
+														data-ec-position="6" data-ec-category="홈·리빙"
+														data-ec-brand="(주)엘이디소프트" data-ec-contenttype="REWARD"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">살균까지 되는 조명! 라파비
+																	살균조명으로 안전하게 살균해요~</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">91%</span>홈·리빙
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/216499?_refer_section_st=PersonalCurator_7"
+														data-ec-list="홈_추천_펀딩" data-ec-id="216499"
+														data-ec-name="[9만원대] 이중연소 캠핑 화로대의 반란! 조립식 화로대 진화의 끝"
+														data-ec-position="7" data-ec-category="레저·아웃도어"
+														data-ec-brand="홀리파이어" data-ec-contenttype="REWARD"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[9만원대] 이중연소 캠핑
+																	화로대의 반란! 조립식 화로대 진화의 끝</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">3,238%</span>레저·아웃도어
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/208681?_refer_section_st=PersonalCurator_8"
+														data-ec-list="홈_추천_펀딩" data-ec-id="208681"
+														data-ec-name="부의 상징ㅣ전통 옻칠과 자개의 현대적 해석, 우리 집 첫 가보 #자개스툴"
+														data-ec-position="8" data-ec-category="홈·리빙"
+														data-ec-brand="스펙트우드" data-ec-contenttype="REWARD"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">부의 상징ㅣ전통 옻칠과 자개의
+																	현대적 해석, 우리 집 첫 가보 #자개스툴</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">259%</span>홈·리빙
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/215006?_refer_section_st=PersonalCurator_9"
+														data-ec-list="홈_추천_프리오더" data-ec-id="215006"
+														data-ec-name="캐논 PowerShot V10 크리에이터를 위한 올인원 카메라"
+														data-ec-position="9" data-ec-category="테크·가전"
+														data-ec-brand="(주)반도영상" data-ec-contenttype="PREORDER"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">캐논 PowerShot V10
+																	크리에이터를 위한 올인원 카메라</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">125%</span>테크·가전
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/203734?_refer_section_st=PersonalCurator_10"
+														data-ec-list="홈_추천_펀딩" data-ec-id="203734"
+														data-ec-name="정품)리그오브레전드 '아리'현실소환 피규어 디퓨저 향과 함께 승리의 길로"
+														data-ec-position="10" data-ec-category="홈·리빙"
+														data-ec-brand="인테코에이티" data-ec-contenttype="REWARD"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">정품)리그오브레전드
+																	'아리'현실소환 피규어 디퓨저 향과 함께 승리의 길로</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">3,885%</span>홈·리빙
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_card___LnVO RecommendFundingWrap_hide__2ptZg">
+												<div>
+													<a
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks"
+														href="/web/campaign/detail/217822?_refer_section_st=PersonalCurator_11"
+														data-ec-list="홈_추천_프리오더" data-ec-id="217822"
+														data-ec-name="3차앵콜 l 집보다 안전한 반려견 호텔, 바우라움을 1박 2만원대로"
+														data-ec-position="11" data-ec-category="반려동물"
+														data-ec-brand="(주)바우라움" data-ec-contenttype="PREORDER"><article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">3차앵콜 l 집보다 안전한 반려견
+																	호텔, 바우라움을 1박 2만원대로</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">335%</span>반려동물
+																</p>
+															</div>
+														</article></a>
+												</div>
+											</div>
+											<div
+												class="RecommendFundingWrap_showMoreRecommendWrap__1LWUo">
+												<button data-event="web.main.recommendation.more"
+													class="Button_button__2FuOU Button_secondary__LNLsN Button_startIcon__3p6wN Button_block__1-g8w RecommendFundingWrap_googleTaggedButton__2mK7y"
+													type="button">
+													<span><svg viewBox="0 0 40 40" focusable="false"
+															role="presentation"
+															class="withIcon_icon__3VTbq Button_icon__t6yp6"
+															aria-hidden="true">
+															<path
+																d="M35 16V7l-3.5 3.5A15 15 0 1 0 34.4 24h-2.1a13 13 0 1 1-2.2-12.1L26 16z"></path></svg><span
+														class="Button_children__ilFun"><span
+															class="RecommendFundingWrap_fontHighlight__2LEw7">AI
+														</span>추천 더보기<span class="RecommendFundingWrap_pageNum__1yoDT"><span
+																class="RecommendFundingWrap_fontHighlight__2LEw7">1</span>/3</span></span></span>
+												</button>
 											</div>
 											<div class="RecommendFundingWrap_plannedCard__2e9vM">
 												<div
 													class="CardType_projectCard__3xhjb CardType_plannedCard__Yyg0B RecommendFundingWrap_collectionCard__QQv01">
-													<a href="/web/wreward/collection/bingrae"
-														data-promo-acid="1677"
-														data-promo-id="/web/wreward/collection/bingrae"
-														data-promo-name="The 귀여운 빙그레 아이템 기획전"
-														data-promo-position="MRB1"
-														data-gtm-vis-recent-on-screen-11319722_2047="4303"
-														data-gtm-vis-first-on-screen-11319722_2047="4303"
+													<a href="/web/wreward/collection/upgradelife"
+														data-promo-acid="1599"
+														data-promo-id="/web/wreward/collection/upgradelife"
+														data-promo-name="삶의 질 수직상승" data-promo-position="MRB1"
+														data-gtm-vis-recent-on-screen-11319722_2047="393"
+														data-gtm-vis-first-on-screen-11319722_2047="393"
 														data-gtm-vis-total-visible-time-11319722_2047="2000"
-														data-gtm-vis-recent-on-screen-11319722_2115="4402"
-														data-gtm-vis-first-on-screen-11319722_2115="4402"
+														data-gtm-vis-recent-on-screen-11319722_2115="394"
+														data-gtm-vis-first-on-screen-11319722_2115="394"
 														data-gtm-vis-total-visible-time-11319722_2115="2000"
 														data-gtm-vis-has-fired-11319722_2047="1"
 														data-gtm-vis-has-fired-11319722_2115="1"><article>
@@ -407,12 +643,11 @@
 																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																<div aria-hidden="true"
 																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0503/20230503144805805_null.png/wadiz/resize/600/format/jpg/quality/85/&quot;);"></div>
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0525/20230525171309723_null.jpg/wadiz/resize/1200/format/jpg/quality/85/&quot;);"></div>
 															</div>
 															<div>
 																<span class="CardType_badge__OjSmY">기획전</span><span
-																	class="CardType_title__2qEmh">The 귀여운 빙그레 아이템
-																	기획전</span>
+																	class="CardType_title__2qEmh">삶의 질 수직상승</span>
 															</div>
 														</article></a>
 												</div>
@@ -435,11 +670,9 @@
 															class="RecommendFundingWrap_fontHighlight__2LEw7">1</span>/3</span></span></span>
 											</button>
 										</div>
-									</section>
-
-									<!-- 실시간 랭킹 -->
-									<section
-										class="SectionContainerLayout_container__1f8kt RankingFundingWrap_container__16_A3 RecommendationDesktop_rankingFunding__2ccRd">
+									</div>
+									<div
+										class="RankingFundingWrap_container__16_A3 RecommendationDesktop_rankingFunding__2ccRd">
 										<div
 											class="title_contentWrapper__1P-q0 RankingFundingWrap_titleBox__16I2D">
 											<h2 class="RankingFundingWrap_title__1fllE">실시간 랭킹</h2>
@@ -462,1516 +695,2166 @@
 													<li class="TabContainer_listItem__2nO5j"><div>
 															<a
 																class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																href="/web/campaign/detail/194433?_refer_section_st=ranking_0"
-																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="194433"
-																data-ec-name="선크림이라고? 프라이머+베이스+톤보정까지! 모공 쫘악 메꾸는 프라이머선"
-																data-ec-position="0" data-ec-category="뷰티"
-																data-ec-brand="감성글로벌 주식회사" data-ec-contenttype="REWARD"
+																href="/web/campaign/detail/110059?_refer_section_st=ranking_0"
+																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="110059"
+																data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
+																data-ec-position="0" data-ec-category="출판"
+																data-ec-brand="(주)학산문화사" data-ec-contenttype="REWARD"
 																index="0"
-																data-gtm-vis-recent-on-screen-11319722_2115="4402"
-																data-gtm-vis-first-on-screen-11319722_2115="4402"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-recent-on-screen-11319722_2073="4406"
-																data-gtm-vis-first-on-screen-11319722_2073="4406"
+																data-gtm-vis-recent-on-screen-11319722_2073="394"
+																data-gtm-vis-first-on-screen-11319722_2073="394"
 																data-gtm-vis-total-visible-time-11319722_2073="2000"
+																data-gtm-vis-recent-on-screen-11319722_2115="394"
+																data-gtm-vis-first-on-screen-11319722_2115="394"
+																data-gtm-vis-total-visible-time-11319722_2115="2000"
 																data-gtm-vis-has-fired-11319722_2073="1"
 																data-gtm-vis-has-fired-11319722_2115="1"><article>
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">1</div>
-																		<em class="commons_title__1yGWm">선크림이라고?
-																			프라이머+베이스+톤보정까지! 모공 쫘악 메꾸는 프라이머선</em>
+																		<em class="commons_title__1yGWm">[슈가슈가룬] 오리지널 초판본
+																			완벽 복간 + 한정 굿즈</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH">23,810%</span>뷰티
+																			<span class="commons_rate__10tOH">10,512%</span>출판
 																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0327/20230327154241234_194433.jpg/wadiz/resize/100/format/jpg/quality/85/&quot;);"></div>
+																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0524/20230524164452061_110059.jpg/wadiz/resize/200/format/jpg/quality/85/&quot;);"></div>
 																	</div>
 																</article></a>
 														</div></li>
 													<li class="TabContainer_listItem__2nO5j"><div>
 															<a
 																class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																href="/web/campaign/detail/205128?_refer_section_st=ranking_1"
-																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="205128"
-																data-ec-name="[아토피인증] 이거 모기기피제 맞아요? 한번 분사로 4시간을 안전하게!"
-																data-ec-position="1" data-ec-category="홈·리빙"
-																data-ec-brand="주식회사 아이앤디디" data-ec-contenttype="REWARD"
+																href="/web/campaign/detail/209390?_refer_section_st=ranking_1"
+																data-ec-list="홈_실시간랭킹_프리오더" data-ec-id="209390"
+																data-ec-name="[2.7억 앵콜] 없어서 못먹는 트러플 후라이드 오징어 먹물&amp;치킨 한정판"
+																data-ec-position="1" data-ec-category="푸드"
+																data-ec-brand="대한제분(주)" data-ec-contenttype="PREORDER"
 																index="1"
-																data-gtm-vis-recent-on-screen-11319722_2115="4402"
-																data-gtm-vis-first-on-screen-11319722_2115="4402"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-recent-on-screen-11319722_2073="4406"
-																data-gtm-vis-first-on-screen-11319722_2073="4406"
+																data-gtm-vis-recent-on-screen-11319722_2073="394"
+																data-gtm-vis-first-on-screen-11319722_2073="394"
 																data-gtm-vis-total-visible-time-11319722_2073="2000"
+																data-gtm-vis-recent-on-screen-11319722_2115="394"
+																data-gtm-vis-first-on-screen-11319722_2115="394"
+																data-gtm-vis-total-visible-time-11319722_2115="2000"
 																data-gtm-vis-has-fired-11319722_2073="1"
 																data-gtm-vis-has-fired-11319722_2115="1"><article>
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">2</div>
-																		<em class="commons_title__1yGWm">[아토피인증] 이거 모기기피제
-																			맞아요? 한번 분사로 4시간을 안전하게!</em>
+																		<em class="commons_title__1yGWm">[2.7억 앵콜] 없어서
+																			못먹는 트러플 후라이드 오징어 먹물&amp;치킨 한정판</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH">6,964%</span>홈·리빙
+																			<span class="commons_rate__10tOH">22,529%</span>푸드
 																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0419/20230419110910330_205128.jpg/wadiz/resize/100/format/jpg/quality/85/&quot;);"></div>
+																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0425/20230425144313108_209390.jpg/wadiz/resize/200/format/jpg/quality/85/&quot;);"></div>
 																	</div>
 																</article></a>
 														</div></li>
 													<li class="TabContainer_listItem__2nO5j"><div>
 															<a
 																class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																href="/web/campaign/detail/195094?_refer_section_st=ranking_2"
-																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="195094"
-																data-ec-name="&quot;11억 특허 원료&quot;로 피부 하얘지는법! 기획자 얼굴걸고 잡티 -195개"
-																data-ec-position="2" data-ec-category="뷰티"
-																data-ec-brand="주식회사 성분에디터" data-ec-contenttype="REWARD"
+																href="/web/campaign/detail/210541?_refer_section_st=ranking_2"
+																data-ec-list="홈_실시간랭킹_프리오더" data-ec-id="210541"
+																data-ec-name="1만원대 | 냉각패드가 달린 손풍기, 이번 여름에 땀 걱정은 마세요."
+																data-ec-position="2" data-ec-category="홈·리빙"
+																data-ec-brand="(주)에이오스타" data-ec-contenttype="PREORDER"
 																index="2"
-																data-gtm-vis-recent-on-screen-11319722_2115="4402"
-																data-gtm-vis-first-on-screen-11319722_2115="4402"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-recent-on-screen-11319722_2073="4406"
-																data-gtm-vis-first-on-screen-11319722_2073="4406"
+																data-gtm-vis-recent-on-screen-11319722_2073="394"
+																data-gtm-vis-first-on-screen-11319722_2073="394"
 																data-gtm-vis-total-visible-time-11319722_2073="2000"
+																data-gtm-vis-recent-on-screen-11319722_2115="394"
+																data-gtm-vis-first-on-screen-11319722_2115="394"
+																data-gtm-vis-total-visible-time-11319722_2115="2000"
 																data-gtm-vis-has-fired-11319722_2073="1"
 																data-gtm-vis-has-fired-11319722_2115="1"><article>
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">3</div>
-																		<em class="commons_title__1yGWm">"11억 특허 원료"로 피부
-																			하얘지는법! 기획자 얼굴걸고 잡티 -195개</em>
+																		<em class="commons_title__1yGWm">1만원대 | 냉각패드가 달린
+																			손풍기, 이번 여름에 땀 걱정은 마세요.</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH">15,836%</span>뷰티
+																			<span class="commons_rate__10tOH">8,618%</span>홈·리빙
 																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0512/20230512192731787_195094.jpeg/wadiz/resize/100/format/jpg/quality/85/&quot;);"></div>
+																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0504/20230504143637830_210541.jpg/wadiz/resize/200/format/jpg/quality/85/&quot;);"></div>
 																	</div>
 																</article></a>
 														</div></li>
 													<li class="TabContainer_listItem__2nO5j"><div>
 															<a
 																class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																href="/web/campaign/detail/195010?_refer_section_st=ranking_3"
-																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="195010"
-																data-ec-name="뿔테와 티타늄테의 장점만을 합친 프리미엄 안경, DENBER"
-																data-ec-position="3" data-ec-category="패션·잡화"
-																data-ec-brand="(주)라티그래" data-ec-contenttype="REWARD"
+																href="/web/campaign/detail/193739?_refer_section_st=ranking_3"
+																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="193739"
+																data-ec-name="탈모성분 그냥 바르지 마세요. 나노그래핀 기술로 두피 깊숙히 흡수시키세요"
+																data-ec-position="3" data-ec-category="뷰티"
+																data-ec-brand="케이엠제약(주)" data-ec-contenttype="REWARD"
 																index="3"
-																data-gtm-vis-recent-on-screen-11319722_2115="4402"
-																data-gtm-vis-first-on-screen-11319722_2115="4402"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-recent-on-screen-11319722_2073="4406"
-																data-gtm-vis-first-on-screen-11319722_2073="4406"
+																data-gtm-vis-recent-on-screen-11319722_2073="394"
+																data-gtm-vis-first-on-screen-11319722_2073="394"
 																data-gtm-vis-total-visible-time-11319722_2073="2000"
+																data-gtm-vis-recent-on-screen-11319722_2115="394"
+																data-gtm-vis-first-on-screen-11319722_2115="394"
+																data-gtm-vis-total-visible-time-11319722_2115="2000"
 																data-gtm-vis-has-fired-11319722_2073="1"
 																data-gtm-vis-has-fired-11319722_2115="1"><article>
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">4</div>
-																		<em class="commons_title__1yGWm">뿔테와 티타늄테의 장점만을
-																			합친 프리미엄 안경, DENBER</em>
+																		<em class="commons_title__1yGWm">탈모성분 그냥 바르지 마세요.
+																			나노그래핀 기술로 두피 깊숙히 흡수시키세요</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH">2,278%</span>패션·잡화
+																			<span class="commons_rate__10tOH">12,820%</span>뷰티
 																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418143028463_195010.jpg/wadiz/resize/100/format/jpg/quality/85/&quot;);"></div>
+																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0508/20230508093437118_193739.jpg/wadiz/resize/200/format/jpg/quality/85/&quot;);"></div>
 																	</div>
 																</article></a>
 														</div></li>
 													<li class="TabContainer_listItem__2nO5j"><div>
 															<a
 																class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																href="/web/campaign/detail/207078?_refer_section_st=ranking_4"
-																data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="207078"
-																data-ec-name="시원함, 스타일! 둘 다 갖춘 인견으로 만든  [쿨 아키텍쳐 니트]"
-																data-ec-position="4" data-ec-category="패션·잡화"
-																data-ec-brand="210에디트" data-ec-contenttype="REWARD"
-																index="4"
-																data-gtm-vis-recent-on-screen-11319722_2115="4403"
-																data-gtm-vis-first-on-screen-11319722_2115="4403"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-recent-on-screen-11319722_2073="4407"
-																data-gtm-vis-first-on-screen-11319722_2073="4407"
+																href="/web/campaign/detail/213368?_refer_section_st=ranking_4"
+																data-ec-list="홈_실시간랭킹_프리오더" data-ec-id="213368"
+																data-ec-name="[앵콜]텀블러 맞아요? 버튼 한번으로 &quot;우유 거품-가열-스팀-보온 까지&quot;"
+																data-ec-position="4" data-ec-category="테크·가전"
+																data-ec-brand="Lactose Planet"
+																data-ec-contenttype="PREORDER" index="4"
+																data-gtm-vis-recent-on-screen-11319722_2073="394"
+																data-gtm-vis-first-on-screen-11319722_2073="394"
 																data-gtm-vis-total-visible-time-11319722_2073="2000"
+																data-gtm-vis-recent-on-screen-11319722_2115="394"
+																data-gtm-vis-first-on-screen-11319722_2115="394"
+																data-gtm-vis-total-visible-time-11319722_2115="2000"
 																data-gtm-vis-has-fired-11319722_2073="1"
 																data-gtm-vis-has-fired-11319722_2115="1"><article>
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">5</div>
-																		<em class="commons_title__1yGWm">시원함, 스타일! 둘 다 갖춘
-																			인견으로 만든 [쿨 아키텍쳐 니트]</em>
+																		<em class="commons_title__1yGWm">[앵콜]텀블러 맞아요? 버튼
+																			한번으로 "우유 거품-가열-스팀-보온 까지"</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH">3,437%</span>패션·잡화
+																			<span class="commons_rate__10tOH">6,405%</span>테크·가전
 																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0509/20230509161859714_207078.jpg/wadiz/resize/100/format/jpg/quality/85/&quot;);"></div>
+																			style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0522/20230522164007786_213368.jpg/wadiz/resize/200/format/jpg/quality/85/&quot;);"></div>
 																	</div>
 																</article></a>
 														</div></li>
-												</ol>
-											</div>
-										</div>
-									</section>
-								</div>
-							</div>
-
-							<!-- 스토어 추천 제품 -->
-							<div class="Main_wrap__2jKMu">
-								<div
-									class="RecommendationStore_innerGroup__tYMzy Main_innerWrap__7-_Vm">
-									<div class="RecommendationStore_container__3macz">
-										<div class="RecommendationStore_header__VkYC6">
-											<div class="RecommendationStore_headerText__2_8B0">
-												<h2>스토어 추천 제품</h2>
-												<p class="RecommendationStore_description__3PZ1S">팬들이
-													인정한 성공 펀딩 집합샵</p>
-											</div>
-											<div
-												class="Tooltip_container__1OVpV RecommendationStore_tooltip__3MCiq">
-												<div class="Tooltip_symbol__3cGy0"
-													aria-describedby="recommendationStoreWaAiTooltip">
-													<span class="AITooltip_icon__wd6n9"></span>
-													<div aria-hidden="true" style="display: none;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
-													</div>
-													<div aria-hidden="true" style="display: block;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													</div>
-												</div>
-												<div role="tooltip" id="recommendationStoreWaAiTooltip"
-													class="Tooltip_messagebox__2TW_p"
-													style="width: 235px; display: none;">
-													<p>와디즈 AI가 서포터님들의 취향을 분석하여 맞춤 프로젝트를 추천해요</p>
-												</div>
-											</div>
-										</div>
-										<div class="RecommendationStore_cardList__1FZ5m">
-											<div class="RecommendationStore_tableWrap__2rBP7">
-												<div class="RecommendationStore_tableContent__yUkCF">
-													<div
-														class="CardTable_container__1H8Vc RecommendationStore_cardTable__-AvHK"
-														style="width: calc(100% - 0px);">
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 0px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/35?_refer_section_st=storeCurator_0"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="35"
-																data-ec-name="내 손안의 스마트한 스튜디오, 저스트모바일 셔터그립2"
-																data-ec-position="0" data-ec-price="59900"
-																data-ec-category="테크·가전" data-ec-brand="주식회사 시티파이브"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5591"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/11/11/26e66aab-d1f2-44bf-941d-1b3bcbe70d95.png/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																		<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
-																	</div>
-																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">내
-																		손안의 스마트한 스튜디오, 저스트모바일 셔터그립2</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">59,900</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
-																			<div
-																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
-																				<div class="RatingScore_icon__rIS_k"></div>
-																				<span class="RatingScore_score__2a-SN">4.5</span>
-																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
+													<li
+														class="TabContainer_listItem__2nO5j TabContainer_hide__23Qqu"><a
+														class="RankingStoreCard_container__1DhWa"
+														href="/web/store/detail/4483?_refer_section_st=ranking_0"
+														data-ec-id="4483"
+														data-ec-name="[미래형 급수기] 반려인을 대신할 셀프케어 S9"
+														data-ec-brand="퓨어나인 스테이션" data-ec-category="반려동물"
+														data-ec-price="59800" data-ec-list="홈_실시간랭킹_스토어"
+														data-ec-position="0" data-ec-contenttype="STORE"><div
+																class="RankingStoreCard_content__1VG1o">
+																<div class="RankingStoreCard_rank__3qArO">1</div>
+																<div class="RankingStoreCard_information__1KGPP">
+																	<div class="RankingStoreCard_title__3_VPv">[미래형
+																		급수기] 반려인을 대신할 셀프케어 S9</div>
+																	<div class="RankingStoreCard_subText__3Rq9c">
+																		<div class="RankingStoreCard_priceContainer__wmAIc">
+																			<span class="RankingStoreCard_price__3d7wb">1,935명
+																				인증</span>
 																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
-																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
-																				<div class="DeliveryBadge_badge__14MYK">무료배송</div>
-																			</div>
-																		</div>
-																	</div>
-																</div></a>
-														</div>
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/105?_refer_section_st=storeCurator_1"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="105"
-																data-ec-name="블루라이트 차단 렌즈+풀 티타늄 티에어 명품 안경테"
-																data-ec-position="1" data-ec-price="65000"
-																data-ec-category="패션·잡화" data-ec-brand="와디즈 주식회사"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5591"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/3a931185-c760-49d3-b5ef-6305e67e80a6.png/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																		<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
-																	</div>
-																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">블루라이트
-																		차단 렌즈+풀 티타늄 티에어 명품 안경테</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">65,000</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
-																			<div
-																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
-																				<div class="RatingScore_icon__rIS_k"></div>
-																				<span class="RatingScore_score__2a-SN">4.5</span>
-																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
-																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
-																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
-																				<div class="DeliveryBadge_badge__14MYK">무료배송</div>
-																				<div class="DeliveryBadge_badge__14MYK">
-																					<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div></a>
-														</div>
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/190?_refer_section_st=storeCurator_2"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="190"
-																data-ec-name="좁은 냉장고에 쏙 들어가는 이중밀폐 이유식 얼음틀 멀티큐브"
-																data-ec-position="2" data-ec-price="9900"
-																data-ec-category="리빙·베이비" data-ec-brand="와디즈 주식회사"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5591"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/7444dc06-e59c-496a-bd15-774b39bbadea.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																	</div>
-																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">좁은
-																		냉장고에 쏙 들어가는 이중밀폐 이유식 얼음틀 멀티큐브</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">9,900</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="StoreCardHorizontalFooter_container__3mv3N RankingStoreCard_satisfaction__dT8Vj">
 																			<div
 																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
 																				<div class="RatingScore_icon__rIS_k"></div>
 																				<span class="RatingScore_score__2a-SN">4.8</span>
 																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
+																			<div class="DeliveryBadge_container__3XB44"></div>
 																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
+																	</div>
+																</div>
+															</div>
+															<div class="RankingStoreCard_thumbnailPlaceholder__2mJVt">
+																<div aria-hidden="true"
+																	class="RankingStoreCard_thumbnail__3C5k7 CardThumbnail_thumbnail__3bDBJ"></div>
+															</div></a></li>
+													<li
+														class="TabContainer_listItem__2nO5j TabContainer_hide__23Qqu"><a
+														class="RankingStoreCard_container__1DhWa"
+														href="/web/store/detail/4429?_refer_section_st=ranking_1"
+														data-ec-id="4429"
+														data-ec-name="[📅예약판매]한국적 아름다움+여권범죄 예방까지,한소품<자개 여권케이스>"
+														data-ec-brand="와디즈 주식회사" data-ec-category="여행·스포츠"
+														data-ec-price="36800" data-ec-list="홈_실시간랭킹_스토어"
+														data-ec-position="1" data-ec-contenttype="STORE"><div
+																class="RankingStoreCard_content__1VG1o">
+																<div class="RankingStoreCard_rank__3qArO">2</div>
+																<div class="RankingStoreCard_information__1KGPP">
+																	<div class="RankingStoreCard_title__3_VPv">[📅예약판매]한국적
+																		아름다움+여권범죄 예방까지,한소품&lt;자개 여권케이스&gt;</div>
+																	<div class="RankingStoreCard_subText__3Rq9c">
+																		<div class="RankingStoreCard_priceContainer__wmAIc">
+																			<span class="RankingStoreCard_price__3d7wb">2,095명
+																				인증</span>
+																		</div>
+																		<div
+																			class="StoreCardHorizontalFooter_container__3mv3N RankingStoreCard_satisfaction__dT8Vj">
 																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																				<div class="RatingScore_icon__rIS_k"></div>
+																				<span class="RatingScore_score__2a-SN">4.8</span>
+																			</div>
+																			<div class="DeliveryBadge_container__3XB44">
 																				<div class="DeliveryBadge_badge__14MYK">
 																					<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
 																				</div>
 																			</div>
 																		</div>
 																	</div>
-																</div></a>
-														</div>
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/418?_refer_section_st=storeCurator_3"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="418"
-																data-ec-name="낮은각도의 편안함! 123g초경량 올인원 태블릿&amp;노트북 거치대"
-																data-ec-position="3" data-ec-price="16900"
-																data-ec-category="리빙·베이비" data-ec-brand="와디즈 주식회사"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5591"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/07/22/47331db5-90b4-4ec4-864a-01ca02fd20fd.png/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																		<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
-																	</div>
 																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">낮은각도의
-																		편안함! 123g초경량 올인원 태블릿&amp;노트북 거치대</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">16,900</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
+															</div>
+															<div class="RankingStoreCard_thumbnailPlaceholder__2mJVt">
+																<div aria-hidden="true"
+																	class="RankingStoreCard_thumbnail__3C5k7 CardThumbnail_thumbnail__3bDBJ"></div>
+															</div></a></li>
+													<li
+														class="TabContainer_listItem__2nO5j TabContainer_hide__23Qqu"><a
+														class="RankingStoreCard_container__1DhWa"
+														href="/web/store/detail/3812?_refer_section_st=ranking_2"
+														data-ec-id="3812"
+														data-ec-name="[가꾸는여름] 야식먹고45kg유지?ㅣ먹고싶은거 먹고 날씬한 체질되는 법"
+														data-ec-brand="수성일기 이상수" data-ec-category="취미·클래스"
+														data-ec-price="119000" data-ec-list="홈_실시간랭킹_스토어"
+														data-ec-position="2" data-ec-contenttype="STORE"><div
+																class="RankingStoreCard_content__1VG1o">
+																<div class="RankingStoreCard_rank__3qArO">3</div>
+																<div class="RankingStoreCard_information__1KGPP">
+																	<div class="RankingStoreCard_title__3_VPv">[가꾸는여름]
+																		야식먹고45kg유지?ㅣ먹고싶은거 먹고 날씬한 체질되는 법</div>
+																	<div class="RankingStoreCard_subText__3Rq9c">
+																		<div class="RankingStoreCard_priceContainer__wmAIc">
+																			<span class="RankingStoreCard_price__3d7wb">4,546명
+																				인증</span>
+																		</div>
+																		<div
+																			class="StoreCardHorizontalFooter_container__3mv3N RankingStoreCard_satisfaction__dT8Vj">
 																			<div
 																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
 																				<div class="RatingScore_icon__rIS_k"></div>
-																				<span class="RatingScore_score__2a-SN">4.7</span>
+																				<span class="RatingScore_score__2a-SN">4.8</span>
 																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
-																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
-																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
-																				<div class="DeliveryBadge_badge__14MYK">
-																					<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div></a>
-														</div>
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/1101?_refer_section_st=storeCurator_4"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="1101"
-																data-ec-name="모공청소 고체팩 대왕 흑당고 150g" data-ec-position="4"
-																data-ec-price="28900" data-ec-category="뷰티"
-																data-ec-brand="와디즈 주식회사" data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5592"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/a1532d1d-a4d5-4e84-a7ad-f842ba4abf66.png/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																		<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
-																	</div>
-																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">모공청소
-																		고체팩 대왕 흑당고 150g</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">28,900</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
-																			<div
-																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
-																				<div class="RatingScore_icon__rIS_k"></div>
-																				<span class="RatingScore_score__2a-SN">4.6</span>
-																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
-																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
-																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
-																				<div class="DeliveryBadge_badge__14MYK">
-																					<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div></a>
-														</div>
-														<div role="presentation"
-															class="CardTable_itemContainer__v9-cW"
-															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 0px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/2169?_refer_section_st=storeCurator_5"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="2169"
-																data-ec-name="겨울이 두렵지 않은 2in1 아우터! 방수+방풍+투습 [페트 드라이코트]"
-																data-ec-position="5" data-ec-price="258000"
-																data-ec-category="패션·잡화" data-ec-brand="그릴스 유니온"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2115="5593"
-																data-gtm-vis-total-visible-time-11319722_2115="400"><div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
-																	<div
-																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
-																		style="padding-top: calc(100% - 0px);">
-																		<div aria-hidden="true"
-																			class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/03/30/c09cb232-9113-42f0-92d8-9436378a9097.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
-																	</div>
-																</div>
-																<div
-																	class="RecommendationStoreCard_contentContainer__aDF-5">
-																	<div class="RecommendationStoreCard_projectName__kIgBJ">겨울이
-																		두렵지 않은 2in1 아우터! 방수+방풍+투습 [페트 드라이코트]</div>
-																	<div
-																		class="RecommendationStoreCard_priceContainer__1Aa_1">
-																		<span class="RecommendationStoreCard_price__2irFK">258,000</span><span>원</span>
-																	</div>
-																	<div class="StoreCardFooter_container__X5rH8">
-																		<div class="StoreCardFooter_upperFooter__kvjJa">
-																			<div
-																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
-																				<div class="RatingScore_icon__rIS_k"></div>
-																				<span class="RatingScore_score__2a-SN">4.7</span>
-																			</div>
-																			<div
-																				class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
-																				<div class="ParticipantScore_peopleIcon__22zg8"></div>
-																				<span
-																					class="ParticipantScore_peopleCountText__1oHUl">0명
-																					참여</span>
-																			</div>
-																		</div>
-																		<div class="StoreCardFooter_bottomFooter__MhVou">
-																			<div
-																				class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_container__3XB44">
 																				<div class="DeliveryBadge_badge__14MYK">무료배송</div>
 																			</div>
 																		</div>
 																	</div>
-																</div></a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="RecommendationStore_buttonWrap__Eqi5W">
-												<button
-													class="RecommendationStore_arrow__cssCM RecommendationStore_left__XKgw5"
-													aria-label="이전 목록" style="display: none;">
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation" class="withIcon_icon__3VTbq"
-														aria-hidden="true">
-														<path
-															d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
-												</button>
-											</div>
-											<div class="RecommendationStore_buttonWrap__Eqi5W">
-												<button
-													class="RecommendationStore_arrow__cssCM RecommendationStore_right__3bbhb"
-													aria-label="다음 목록" style="display: block;">
-													<svg viewBox="0 0 40 40" focusable="false"
-														role="presentation" class="withIcon_icon__3VTbq"
-														aria-hidden="true">
-														<path
-															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-												</button>
+																</div>
+															</div>
+															<div class="RankingStoreCard_thumbnailPlaceholder__2mJVt">
+																<div aria-hidden="true"
+																	class="RankingStoreCard_thumbnail__3C5k7 CardThumbnail_thumbnail__3bDBJ"></div>
+															</div></a></li>
+													<li
+														class="TabContainer_listItem__2nO5j TabContainer_hide__23Qqu"><a
+														class="RankingStoreCard_container__1DhWa"
+														href="/web/store/detail/748?_refer_section_st=ranking_3"
+														data-ec-id="748"
+														data-ec-name="평범한 이니셜 목걸이에 지친분들께ㅣ한글 명조체 목걸이"
+														data-ec-brand="테시" data-ec-category="패션·잡화"
+														data-ec-price="216000" data-ec-list="홈_실시간랭킹_스토어"
+														data-ec-position="3" data-ec-contenttype="STORE"><div
+																class="RankingStoreCard_content__1VG1o">
+																<div class="RankingStoreCard_rank__3qArO">4</div>
+																<div class="RankingStoreCard_information__1KGPP">
+																	<div class="RankingStoreCard_title__3_VPv">평범한
+																		이니셜 목걸이에 지친분들께ㅣ한글 명조체 목걸이</div>
+																	<div class="RankingStoreCard_subText__3Rq9c">
+																		<div class="RankingStoreCard_priceContainer__wmAIc">
+																			<span class="RankingStoreCard_price__3d7wb">225명
+																				인증</span>
+																		</div>
+																		<div
+																			class="StoreCardHorizontalFooter_container__3mv3N RankingStoreCard_satisfaction__dT8Vj">
+																			<div
+																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																				<div class="RatingScore_icon__rIS_k"></div>
+																				<span class="RatingScore_score__2a-SN">5.0</span>
+																			</div>
+																			<div class="DeliveryBadge_container__3XB44">
+																				<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="RankingStoreCard_thumbnailPlaceholder__2mJVt">
+																<div aria-hidden="true"
+																	class="RankingStoreCard_thumbnail__3C5k7 CardThumbnail_thumbnail__3bDBJ"></div>
+															</div></a></li>
+													<li
+														class="TabContainer_listItem__2nO5j TabContainer_hide__23Qqu"><a
+														class="RankingStoreCard_container__1DhWa"
+														href="/web/store/detail/3003?_refer_section_st=ranking_4"
+														data-ec-id="3003"
+														data-ec-name="[가꾸는여름ㅣ-25%] 비긴#히알붐 1알로, 속건조 끝! 물광피부 완성!"
+														data-ec-brand="와디즈 주식회사" data-ec-category="뷰티"
+														data-ec-price="26900" data-ec-list="홈_실시간랭킹_스토어"
+														data-ec-position="4" data-ec-contenttype="STORE"><div
+																class="RankingStoreCard_content__1VG1o">
+																<div class="RankingStoreCard_rank__3qArO">5</div>
+																<div class="RankingStoreCard_information__1KGPP">
+																	<div class="RankingStoreCard_title__3_VPv">[가꾸는여름ㅣ-25%]
+																		비긴#히알붐 1알로, 속건조 끝! 물광피부 완성!</div>
+																	<div class="RankingStoreCard_subText__3Rq9c">
+																		<div class="RankingStoreCard_priceContainer__wmAIc">
+																			<span class="RankingStoreCard_price__3d7wb">1,679명
+																				인증</span>
+																		</div>
+																		<div
+																			class="StoreCardHorizontalFooter_container__3mv3N RankingStoreCard_satisfaction__dT8Vj">
+																			<div
+																				class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																				<div class="RatingScore_icon__rIS_k"></div>
+																				<span class="RatingScore_score__2a-SN">4.7</span>
+																			</div>
+																			<div class="DeliveryBadge_container__3XB44">
+																				<div class="DeliveryBadge_badge__14MYK">
+																					<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="RankingStoreCard_thumbnailPlaceholder__2mJVt">
+																<div aria-hidden="true"
+																	class="RankingStoreCard_thumbnail__3C5k7 CardThumbnail_thumbnail__3bDBJ"></div>
+															</div></a></li>
+												</ol>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
-							<!-- 회원님이 좋아할 프로젝트 -->
-							<div class="Main_wrap__2jKMu">
-								<div
-									class="RecommendationDesktop_innerGroup__as4jB Main_innerWrap__7-_Vm">
-									<section
-										class="SectionContainerLayout_container__1f8kt LikableFundingWrap_container__3mzG6 undefined">
-										<div
-											class="title_contentWrapper__1P-q0 LikableFundingWrap_titleBox__31QnF">
-											<h3>
-												회원님이 <em>좋아할</em> 프로젝트
-											</h3>
-										</div>
-										<div class="LikableFundingWrap_wrap__1ZPJw">
-											<ul class="LikableFundingWrap_cardList__aExBc">
-												<li class="LikableCard_card__kI_2A"><a
-													href="/web/campaign/detail/202556?_refer_section_st=likeable_0"
-													data-ec-list="홈_#좋아할 프로젝트_프리오더" data-ec-id="202556"
-													data-ec-name="몸보신 끝판왕ㅣ울산 오리백숙 1위 '냄비 없이 15분 내로 끓여드세요'"
-													data-ec-position="0" data-ec-category="푸드"
-													data-ec-brand="창궁(힙한오리)" data-ec-contenttype="PREORDER"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-															<article>
-																<div
-																	class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-																	<div aria-hidden="true"
-																		class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-																</div>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj">
-																	<em class="commons_title__1yGWm">몸보신 끝판왕ㅣ울산 오리백숙
-																		1위 '냄비 없이 15분 내로 끓여드세요'</em>
-																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH">778%</span>프리오더
-																	</p>
-																</div>
-															</article>
-														</div></a></li>
-												<li class="LikableCard_card__kI_2A"><a
-													href="/web/campaign/detail/194433?_refer_section_st=likeable_1"
-													data-ec-list="홈_#좋아할 프로젝트_펀딩" data-ec-id="194433"
-													data-ec-name="선크림이라고? 프라이머+베이스+톤보정까지! 모공 쫘악 메꾸는 프라이머선"
-													data-ec-position="1" data-ec-category="뷰티"
-													data-ec-brand="감성글로벌 주식회사" data-ec-contenttype="REWARD"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-															<article>
-																<div
-																	class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-																	<div aria-hidden="true"
-																		class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-																</div>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj">
-																	<em class="commons_title__1yGWm">선크림이라고?
-																		프라이머+베이스+톤보정까지! 모공 쫘악 메꾸는 프라이머선</em>
-																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH">23817%</span>펀딩
-																	</p>
-																</div>
-															</article>
-														</div></a></li>
-												<li class="LikableCard_card__kI_2A"><a
-													href="/web/campaign/detail/204037?_refer_section_st=likeable_2"
-													data-ec-list="홈_#좋아할 프로젝트_펀딩" data-ec-id="204037"
-													data-ec-name="밀폐와 보냉은 기본, 돌돌 접히는 휴대성까지ㅣ100% 실리콘 돌돌 텀블러"
-													data-ec-position="2" data-ec-category="홈·리빙"
-													data-ec-brand="주식회사 신성실리콘" data-ec-contenttype="REWARD"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-															<article>
-																<div
-																	class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-																	<div aria-hidden="true"
-																		class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-																</div>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj">
-																	<em class="commons_title__1yGWm">밀폐와 보냉은 기본, 돌돌
-																		접히는 휴대성까지ㅣ100% 실리콘 돌돌 텀블러</em>
-																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH">8426%</span>펀딩
-																	</p>
-																</div>
-															</article>
-														</div></a></li>
-											</ul>
-											<div
-												class="CardType_projectCard__3xhjb CardType_plannedCard__Yyg0B LikableFundingWrap_plannedCard__ZG4TD">
-												<a href="/web/wreward/comingsoon/collection/preview21"
-													data-promo-acid="505"
-													data-promo-id="/web/wreward/comingsoon/collection/preview21"
-													data-promo-name="와디즈 체험단 이벤트" data-promo-position="MRB2"><article>
-														<div
-															class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-															<div aria-hidden="true"
-																class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-														</div>
-														<div>
-															<span class="CardType_badge__OjSmY">기획전</span><span
-																class="CardType_title__2qEmh">와디즈 체험단 이벤트</span>
-														</div>
-													</article></a>
-											</div>
-										</div>
-									</section>
-								</div>
-							</div>
-
-
-							<!-- 회원님이 좋아할 프로젝트 아래 (정은혜 작가도 메이커였어!) -->
-							<div class="Main_wrap__2jKMu">
-								<div
-									class="RecommendationDesktop_innerGroup__as4jB RecommendationDesktop_visualBanners__13p13 Main_innerWrap__7-_Vm">
-									<section
-										class="SectionContainerLayout_container__1f8kt VisualBanner_container__3MB_0 Ads_visualBanner__fYh_g">
-										<div>
-											<div class="banner_videoBanner__3D8TE">
-												<div class="banner_videoWrapper__3KpjM">
-													<video class="banner_video__2jZtq"
-														poster="https://cdn.wadiz.kr/ft/images/green001/2023/0201/20230201171150835_6345.jpg/wadiz/"
-														loop="" playsinline="true">
-														<source
-															src="https://cdn.wadiz.kr/wwwwadiz/clips/green001/2023/0201/20230201171202276_6345.mp4"
-															type="video/mp4">
-													</video>
-													<div class="banner_progressBarWrapper__oxkX7">
-														<div class="banner_progressBar__30jU8" style="width: 0%;"></div>
-													</div>
-													<button class="banner_playController__27skq">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation" class="withIcon_icon__3VTbq"
-															aria-hidden="true">
-															<path d="M32 20L12 35V5z"></path></svg>
-													</button>
-													<button
-														class="banner_muteController__22ie4 banner_hide__uX-Pj">
-														<svg viewBox="0 0 24 24" focusable="false"
-															role="presentation" class="withIcon_icon__3VTbq"
-															aria-hidden="true">
-															<path
-																d="M21.684 20.802l-.846.846L17.1 17.91v3.768L8.334 15.6H4.5V8.4h3.09L2.364 3.174l.846-.846 18.474 18.474zM8.1 14.4V9.6H5.7v4.8h2.4zm7.8 4.986V16.71l-6.6-6.6v4.698l6.6 4.578zM15.8 4.39l-5.606 3.764-.936-.9L17.1 1.986v12.858l-1.3-1.259V4.39z"></path></svg>
-													</button>
-												</div>
-												<div class="banner_content__2HQ8i">
-													<a class="banner_linkBtn__1lQjm"
-														href="http://bit.ly/3JzhlgD?_refer_section_st=MM1_6"
-														data-promo-acid="6345"
-														data-promo-id="http://bit.ly/3JzhlgD?_refer_section_st=MM1_6"
-														data-promo-name="정은혜 작가도 메이커였어!" data-promo-position="MM1">정은혜
-														작가도 메이커였어! <svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
-															aria-hidden="true">
-															<path
-																d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-													</a>
-												</div>
-											</div>
-										</div>
-									</section>
-									<section
-										class="SectionContainerLayout_container__1f8kt VisualBanner_container__3MB_0 Ads_visualBanner__fYh_g">
-										<div>
-											<a
-												href="https://www.wadiz.kr/web/wevent/wadiz_welcomecoupon?_refer_section_st=MM1_5"
-												class="banner_imageBanner__3x6lO" data-promo-acid="5835"
-												data-promo-id="https://www.wadiz.kr/web/wevent/wadiz_welcomecoupon?_refer_section_st=MM1_5"
-												data-promo-name="신규회원 웰컴 혜택" data-promo-position="MM1"><article>
-													<div
-														class="commons_thumbnail__3wYGv banner_thumbnail__3VPaQ">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div class="banner_content__2HQ8i">
-														<div class="banner_textWrapper__2zjfa">
-															<h1 class="banner_mainCopy__1rYe7">신규회원 웰컴 혜택</h1>
-															<p class="banner_subCopy__2ZvNy">최대 6만 5천원 쿠폰받기</p>
-														</div>
-														<button aria-label="바로가기"
-															class="Button_button__2FuOU Button_primary__2mZni Button_xs__2DWsb banner_bannerBtn__3ntRR"
-															type="button">
-															<span><span class="Button_children__ilFun">바로가기</span></span>
-														</button>
-													</div>
-												</article></a>
-										</div>
-									</section>
-									<section
-										class="SectionContainerLayout_container__1f8kt VisualBanner_container__3MB_0 Ads_visualBanner__fYh_g">
-										<div>
-											<a
-												href="https://www.wadiz.kr/web/wreward/collection/spacewadiz?order=recommend&amp;endYn=N&amp;keyword=&amp;_refer_section_st=RMK_6&amp;utm_medium=gonggan_insta&amp;utm_source=social&amp;utm_campaign=1234&amp;_refer_section_st=MM1_1"
-												class="banner_imageBanner__3x6lO" data-promo-acid="4735"
-												data-promo-id="https://www.wadiz.kr/web/wreward/collection/spacewadiz?order=recommend&amp;endYn=N&amp;keyword=&amp;_refer_section_st=RMK_6&amp;utm_medium=gonggan_insta&amp;utm_source=social&amp;utm_campaign=1234&amp;_refer_section_st=MM1_1"
-												data-promo-name="스즈메의문단속 굿즈 전시" data-promo-position="MM1"><article>
-													<div
-														class="commons_thumbnail__3wYGv banner_thumbnail__3VPaQ">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div class="banner_content__2HQ8i">
-														<div class="banner_textWrapper__2zjfa">
-															<h1 class="banner_mainCopy__1rYe7">스즈메의문단속 굿즈 전시</h1>
-															<p class="banner_subCopy__2ZvNy">공간와디즈에서 만나보세요</p>
-														</div>
-														<button aria-label="보러가기"
-															class="Button_button__2FuOU Button_primary__2mZni Button_xs__2DWsb banner_bannerBtn__3ntRR"
-															type="button">
-															<span><span class="Button_children__ilFun">보러가기</span></span>
-														</button>
-													</div>
-												</article></a>
-										</div>
-									</section>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- 얼리버드 -->
-					<div class="Main_wrap__2jKMu">
-						<div class="Main_innerWrap__7-_Vm">
-							<div class="EarlybirdDesktop_container__1IoRp">
-								<div class="EarlybirdDesktop_wrap__314kI">
-									<div class="title_titleWrapper__1ggAh">
-										<h2 class="title_title__2rv2M">얼리버드</h2>
-										<p>먼저 참여하는 분들께 드리는 얼리버드 혜택</p>
-									</div>
-								</div>
-								<ul class="EarlybirdDesktop_earlybirdList__2XjA6">
-									<li class="EarlybirdDesktop_listItem__2j7AD"><div
-											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
-											<div class="CardType_skeletonThumbnail__27V9b"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<div>
-													<div class="CardType_skeletonContent__2pe6l">
-														<div class="CardType_skeletonText__2cSL5"></div>
-														<div class="CardType_skeletonSubText__2rjGC"></div>
-													</div>
-												</div>
-												<div class="CardType_earlybirdContent__1b8VN">
-													<div class="CardType_title__2qEmh"></div>
-													<div class="CardType_description__2BtXk"></div>
-													<div class="CardType_subContent__3QETf"></div>
-												</div>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												<div class="CardType_skeletonTextCenter__3chuI"></div>
-											</div>
-										</div></li>
-									<li class="EarlybirdDesktop_listItem__2j7AD"><div
-											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
-											<div class="CardType_skeletonThumbnail__27V9b"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<div>
-													<div class="CardType_skeletonContent__2pe6l">
-														<div class="CardType_skeletonText__2cSL5"></div>
-														<div class="CardType_skeletonSubText__2rjGC"></div>
-													</div>
-												</div>
-												<div class="CardType_earlybirdContent__1b8VN">
-													<div class="CardType_title__2qEmh"></div>
-													<div class="CardType_description__2BtXk"></div>
-													<div class="CardType_subContent__3QETf"></div>
-												</div>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												<div class="CardType_skeletonTextCenter__3chuI"></div>
-											</div>
-										</div></li>
-									<li class="EarlybirdDesktop_listItem__2j7AD"><div
-											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
-											<div class="CardType_skeletonThumbnail__27V9b"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<div>
-													<div class="CardType_skeletonContent__2pe6l">
-														<div class="CardType_skeletonText__2cSL5"></div>
-														<div class="CardType_skeletonSubText__2rjGC"></div>
-													</div>
-												</div>
-												<div class="CardType_earlybirdContent__1b8VN">
-													<div class="CardType_title__2qEmh"></div>
-													<div class="CardType_description__2BtXk"></div>
-													<div class="CardType_subContent__3QETf"></div>
-												</div>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												<div class="CardType_skeletonTextCenter__3chuI"></div>
-											</div>
-										</div></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- 기획전 -->
-					<div class="Main_wrap__2jKMu">
-						<div class="Main_innerWrap__7-_Vm">
-							<div class="PlannedDesktop_container__IA4T1">
-								<div class="PlannedDesktop_wrap__3ASwL">
-									<div class="title_titleWrapper__1ggAh">
-										<h2 class="title_title__2rv2M">기획전</h2>
-									</div>
-									<div
-										class="Pagination_container__28uaq PlannedDesktop_pagination__EpHF9">
-										<div class="Pagination_btnGroup__3o2gm">
-											<button
-												class="Pagination_paginationBtn__31dPl Pagination_prev__OAUZT Pagination_isFirstPage__1nscH"
-												disabled="" aria-label="이전 목록">
-												<svg viewBox="0 0 40 40" focusable="false"
-													role="presentation" class="withIcon_icon__3VTbq"
-													aria-hidden="true">
-													<path
-														d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
-											</button>
-											<button
-												class="Pagination_paginationBtn__31dPl Pagination_next__2VEGc Pagination_isLastPage__35UZw"
-												disabled="" aria-label="다음 목록">
-												<svg viewBox="0 0 40 40" focusable="false"
-													role="presentation" class="withIcon_icon__3VTbq"
-													aria-hidden="true">
-													<path
-														d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-											</button>
-										</div>
-										<ul class="Pagination_pageList__KyPel" aria-label="pagination"></ul>
-									</div>
-								</div>
-								<ul class="PlannedDesktop_plannedList__2_PKM">
-									<li class="PlannedDesktop_listItem__1bdQe"><div
-											class="CardType_projectCard__3xhjb CardType_cardTypePlanned__5H09T CardType_skeleton__1Kjxr">
-											<div class="CardType_skeletonKeyVisual__3pCmA"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<strong class="CardType_title__2qEmh"></strong>
-												<ul>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-												</ul>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												더보기
-												<svg viewBox="0 0 40 40" focusable="false"
-													role="presentation"
-													class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
-													aria-hidden="true">
-													<path
-														d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-											</div>
-										</div></li>
-									<li class="PlannedDesktop_listItem__1bdQe"><div
-											class="CardType_projectCard__3xhjb CardType_cardTypePlanned__5H09T CardType_skeleton__1Kjxr">
-											<div class="CardType_skeletonKeyVisual__3pCmA"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<strong class="CardType_title__2qEmh"></strong>
-												<ul>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-												</ul>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												더보기
-												<svg viewBox="0 0 40 40" focusable="false"
-													role="presentation"
-													class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
-													aria-hidden="true">
-													<path
-														d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-											</div>
-										</div></li>
-									<li class="PlannedDesktop_listItem__1bdQe"><div
-											class="CardType_projectCard__3xhjb CardType_cardTypePlanned__5H09T CardType_skeleton__1Kjxr">
-											<div class="CardType_skeletonKeyVisual__3pCmA"></div>
-											<div class="CardType_cardContent__3UMOr">
-												<strong class="CardType_title__2qEmh"></strong>
-												<ul>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-													<li class="CardType_cardList__3AqkY"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP">
-															<article>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-																	<em class="commons_title__1yGWm"></em>
-																	<p class="commons_summary__2Ynez"></p>
-																</div>
-																<div
-																	class="skeleton_skeleton__2LnNv skeleton_thumbnail__2XllH CardType_thumbnail__2dtTe"></div>
-															</article>
-														</div></li>
-												</ul>
-											</div>
-											<div class="CardType_linkBtn__1QHvM">
-												더보기
-												<svg viewBox="0 0 40 40" focusable="false"
-													role="presentation"
-													class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
-													aria-hidden="true">
-													<path
-														d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-											</div>
-										</div></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- 트랜드 -->
-					<article class="TrendApp_container__2IOnt">
-						<div class="Main_wrap__2jKMu">
-							<div class="TrendApp_wrapper__3MC4K Main_innerWrap__7-_Vm">
-								<h2 class="TrendApp_title__2AMXT">트렌드</h2>
-								<section class="HotFundingList_container__2lxqE">
-									<div class="HotFundingList_titleWrap__2am7E">
-										<div class="HotFundingList_title__3SJz-">
-											<div class="title_contentWrapper__1P-q0 title_trend__3KsC2">
-												<p>
-													<em>#급상승</em> 프로젝트
-												</p>
-											</div>
-										</div>
-										<div class="HotFundingList_tooltip__3lfUW">
-											<div class="Tooltip_container__1OVpV">
-												<div class="Tooltip_symbol__3cGy0"
-													aria-describedby="trendHotFundingProjectTooltip">
-													<div aria-hidden="true" style="display: none;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
-													</div>
-													<div aria-hidden="true" style="display: block;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													</div>
-												</div>
-												<div role="tooltip" id="trendHotFundingProjectTooltip"
-													class="Tooltip_messagebox__2TW_p"
-													style="width: 241px; display: none;">
-													<p>
-														<em>급상승 프로젝트</em><br>24시간을 기준으로 전날 대비 달성률이 높은 프로젝트가
-														노출됩니다. 단, 의도적으로 악용되는 경우 노출에서 제외될 수 있습니다.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<ul class="HotFundingList_content__3tCoi">
-										<li class="HotFundingList_card__3v3CA"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="HotFundingList_card__3v3CA"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="HotFundingList_card__3v3CA"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="HotFundingList_card__3v3CA"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-									</ul>
-								</section>
-								<section class="LikeFundingList_container__1Rxcy">
-									<div class="LikeFundingList_titleWrap__2f8J6">
-										<div class="LikeFundingList_title__chh50">
-											<div class="title_contentWrapper__1P-q0 title_trend__3KsC2">
-												<p>
-													오늘 가장 많은 사람들이<br class="LikeFundingList_break__8Di6F">
-													<em> #좋아한</em> 프로젝트
-												</p>
-											</div>
-										</div>
-										<div class="LikeFundingList_tooltip__1yCue">
-											<div class="Tooltip_container__1OVpV">
-												<div class="Tooltip_symbol__3cGy0"
-													aria-describedby="trendLikeFundingProjectTooltip">
-													<div aria-hidden="true" style="display: none;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
-													</div>
-													<div aria-hidden="true" style="display: block;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													</div>
-												</div>
-												<div role="tooltip" id="trendLikeFundingProjectTooltip"
-													class="Tooltip_messagebox__2TW_p"
-													style="width: 241px; display: none;">
-													<p>
-														<em>오늘 가장 많은 사람들이 좋아한 프로젝트</em><br>진행중인 프로젝트 중 24시간 내
-														좋아요를 가장 많이 받은 프로젝트가 노출됩니다.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<ul class="LikeFundingList_content__cgPUb">
-										<li class="LikeFundingList_card__2wgnO"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="LikeFundingList_card__2wgnO"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="LikeFundingList_card__2wgnO"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-										<li class="LikeFundingList_card__2wgnO"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<div class="CardType_skeletonThumbnail__27V9b"></div>
-												<div class="CardType_skeletonContent__2pe6l">
-													<div class="CardType_skeletonText__2cSL5"></div>
-													<div class="CardType_skeletonSubText__2rjGC"></div>
-												</div>
-											</div></li>
-									</ul>
-								</section>
-								<section class="SupportedFundingList_container__3dZhk">
-									<div class="SupportedFundingList_titleWrap__2u1I0">
-										<div class="SupportedFundingList_title__2-wyq">
-											<div class="title_contentWrapper__1P-q0 title_trend__3KsC2">
-												<p>
-													오늘 가장 많은 사람들이<br class="SupportedFundingList_break__3ti9Q">
-													<em> #지지서명한</em> 프로젝트
-												</p>
-											</div>
-										</div>
-										<div class="SupportedFundingList_tooltip__3CCEe">
-											<div class="Tooltip_container__1OVpV">
-												<div class="Tooltip_symbol__3cGy0"
-													aria-describedby="trendSupportedFundingProjectTooltip">
-													<div aria-hidden="true" style="display: none;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
-													</div>
-													<div aria-hidden="true" style="display: block;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													</div>
-												</div>
-												<div role="tooltip" id="trendSupportedFundingProjectTooltip"
-													class="Tooltip_messagebox__2TW_p"
-													style="width: 215px; display: none;">
-													<p>
-														<em>지지서명이란</em><br>프로젝트 스토리가 세상에 알려질 수 있도록 페이스북을 이용한
-														공유 서비스입니다. 참여 시 최대 1,100 포인트를 적립해드립니다.<a
-															href="http://help.wadiz.kr/7-%EA%B8%B0%ED%83%80-%EB%8B%A4%EB%A5%B8-%EB%82%B4%EC%9A%A9%EC%9D%B4-%EA%B6%81%EA%B8%88%ED%95%98%EB%8B%A4%EB%A9%B4%2F%EC%A7%80%EC%A7%80%EC%84%9C%EB%AA%85-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%A7%80%EA%B8%89-%EC%A0%95%EC%B1%85-%EC%95%88%EB%82%B4">
-															자세히 보기</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<ul class="SupportedFundingList_content__142pc">
-										<li class="SupportedFundingList_card__3UZJW"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<article>
-													<div
-														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div
-														class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-														<em class="commons_title__1yGWm"></em>
-														<p class="commons_summary__2Ynez"></p>
-													</div>
-												</article>
-											</div></li>
-										<li class="SupportedFundingList_card__3UZJW"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<article>
-													<div
-														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div
-														class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-														<em class="commons_title__1yGWm"></em>
-														<p class="commons_summary__2Ynez"></p>
-													</div>
-												</article>
-											</div></li>
-										<li class="SupportedFundingList_card__3UZJW"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<article>
-													<div
-														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div
-														class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-														<em class="commons_title__1yGWm"></em>
-														<p class="commons_summary__2Ynez"></p>
-													</div>
-												</article>
-											</div></li>
-										<li class="SupportedFundingList_card__3UZJW"><div
-												class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-												<article>
-													<div
-														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
-													</div>
-													<div
-														class="commons_content__2K1SH CardType_content__1Pavj commons_skeleton__2nBNJ">
-														<em class="commons_title__1yGWm"></em>
-														<p class="commons_summary__2Ynez"></p>
-													</div>
-												</article>
-											</div></li>
-									</ul>
-								</section>
-							</div>
 						</div>
 
-						<!-- 주목하세요! 오늘 오픈한 프로젝트 -->
-						<div class="Main_wrap__2jKMu">
-							<div class="TrendApp_wrapper__3MC4K Main_innerWrap__7-_Vm">
-								<section class="DebutFundingList_container__3LljC">
-									<div class="DebutFundingList_inner__3FSDV">
-										<div class="title_contentWrapper__1P-q0 title_trend__3KsC2">
-											<h2 class="DebutFundingList_titleDesktop__2-ijZ">주목하세요!
-												오늘 오픈한 프로젝트</h2>
-										</div>
-										<div class="DebutFundingList_content__1SqH7">
-											<div class="DebutFundingDesktop_content__19ypd">
-												<div class="DebutFundingDesktop_page__WMtxm">
-													<div class="Pagination_container__28uaq">
-														<div class="Pagination_btnGroup__3o2gm">
-															<button
-																class="Pagination_paginationBtn__31dPl Pagination_prev__OAUZT Pagination_isFirstPage__1nscH"
-																disabled="" aria-label="이전 목록">
-																<svg viewBox="0 0 40 40" focusable="false"
-																	role="presentation" class="withIcon_icon__3VTbq"
-																	aria-hidden="true">
-																	<path
-																		d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
-															</button>
-															<button
-																class="Pagination_paginationBtn__31dPl Pagination_next__2VEGc Pagination_isLastPage__35UZw"
-																disabled="" aria-label="다음 목록">
-																<svg viewBox="0 0 40 40" focusable="false"
-																	role="presentation" class="withIcon_icon__3VTbq"
-																	aria-hidden="true">
-																	<path
-																		d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-															</button>
-														</div>
-														<ul class="Pagination_pageList__KyPel"
-															aria-label="pagination"></ul>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-												<div class="DebutFundingDesktop_card__8YXhV">
-													<div
-														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-														<div class="CardType_skeletonThumbnail__27V9b"></div>
-														<div class="CardType_skeletonContent__2pe6l">
-															<div class="CardType_skeletonText__2cSL5"></div>
-															<div class="CardType_skeletonSubText__2rjGC"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section>
-							</div>
-						</div>
-					</article>
-
-					<!-- 와디즈에서 프로젝트 오픈하기 -->
-					<div class="RecommendationDesktop_container__3RLMb">
-						<div class="Main_wrap__2jKMu">
-							<div class="Main_innerWrap__7-_Vm">
-								<div class="RecommendationDesktop_innerGroup__as4jB"></div>
-							</div>
-						</div>
-						<div class="Main_wrap__2jKMu"></div>
+						<!-- 스토어 추천 제품 -->
 						<div class="Main_wrap__2jKMu">
 							<div
-								class="RecommendationDesktop_innerGroup__as4jB RecommendationDesktop_staticBanner__2pqG8 Main_innerWrap__7-_Vm">
-								<section>
-									<a class="FundingOpenStaticBanner_container__12jOH"
-										data-ga-category="홈_최하단배너" data-ga-action="클릭"
-										data-ga-label="프로젝트 오픈하기" href="/web/wsub/openfunding"><h4
-											class="FundingOpenStaticBanner_title__2SGnU">와디즈에서 프로젝트
-											오픈하기</h4>
-										<p class="FundingOpenStaticBanner_desc__34zp5">당신의 이야기를
-											소개하고 투자자와 서포터를 만나보세요</p>
-										<button
-											class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_lg__1Dftp"
-											type="button">
-											<span><span class="Button_children__ilFun">바로가기&nbsp;<svg
-														viewBox="0 0 40 40" focusable="false" role="presentation"
-														class="withIcon_icon__3VTbq" aria-hidden="true">
-														<path
-															d="M6 21h24.2L19.6 31.6 21 33l13-13L21 7l-1.4 1.4L30.2 19H6v2z"></path></svg></span></span>
-										</button></a>
-								</section>
-								<section></section>
+								class="RecommendationStore_innerGroup__tYMzy Main_innerWrap__7-_Vm">
+								<div class="RecommendationStore_container__3macz">
+									<div class="RecommendationStore_header__VkYC6">
+										<div class="RecommendationStore_headerText__2_8B0">
+											<h2>최근 본 프로젝트</h2>
+											<p class="RecommendationStore_description__3PZ1S">팬들이 인정한
+												성공 펀딩 집합샵</p>
+										</div>
+										<div
+											class="Tooltip_container__1OVpV RecommendationStore_tooltip__3MCiq" style="display: none">
+											<div class="Tooltip_symbol__3cGy0"
+												aria-describedby="recommendationStoreWaAiTooltip">
+												<span class="AITooltip_icon__wd6n9"></span>
+												<div aria-hidden="true" style="display: none;">
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
+														aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+															d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
+												</div>
+												<div aria-hidden="true" style="display: block;">
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
+														aria-hidden="true">
+															<path fill="none" d="M0 0h40v40H0z"></path>
+															<path
+															d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
+															<path
+															d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
+												</div>
+											</div>
+											<div role="tooltip" id="recommendationStoreWaAiTooltip"
+												class="Tooltip_messagebox__2TW_p"
+												style="width: 235px; display: none;">
+												<p>와디즈 AI가 서포터님들의 취향을 분석하여 맞춤 프로젝트를 추천해요</p>
+											</div>
+										</div>
+									</div>
+									<div class="RecommendationStore_cardList__1FZ5m">
+										<div class="RecommendationStore_tableWrap__2rBP7">
+											<div class="RecommendationStore_tableContent__yUkCF">
+												<div
+													class="CardTable_container__1H8Vc RecommendationStore_cardTable__-AvHK"
+													style="width: calc(100% - 0px);">
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 0px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/35?_refer_section_st=storeCurator_0"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="35"
+															data-ec-name="내 손안의 스마트한 스튜디오, 저스트모바일 셔터그립2"
+															data-ec-position="0" data-ec-price="59900"
+															data-ec-category="테크·가전" data-ec-brand="주식회사 시티파이브"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28392"
+															data-gtm-vis-recent-on-screen-11319722_2073="66766"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-recent-on-screen-11319722_2115="66766"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-has-fired-11319722_2073="1"
+															data-gtm-vis-has-fired-11319722_2115="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/11/11/26e66aab-d1f2-44bf-941d-1b3bcbe70d95.png/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">내
+																	손안의 스마트한 스튜디오, 저스트모바일 셔터그립2</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">4,033명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.5</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0"></div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/105?_refer_section_st=storeCurator_1"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="105"
+															data-ec-name="블루라이트 차단 렌즈+풀 티타늄 티에어 명품 안경테"
+															data-ec-position="1" data-ec-price="65000"
+															data-ec-category="패션·잡화" data-ec-brand="와디즈 주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28392"
+															data-gtm-vis-recent-on-screen-11319722_2073="66766"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-recent-on-screen-11319722_2115="66766"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-has-fired-11319722_2073="1"
+															data-gtm-vis-has-fired-11319722_2115="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/3a931185-c760-49d3-b5ef-6305e67e80a6.png/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">블루라이트
+																	차단 렌즈+풀 티타늄 티에어 명품 안경테</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">4,103명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.5</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/142?_refer_section_st=storeCurator_2"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="142"
+															data-ec-name="5.1억, 돌아온 에이블러 롤링, 이제 주문하면 바로 옵니다!"
+															data-ec-position="2" data-ec-price="148000"
+															data-ec-category="패션·잡화"
+															data-ec-brand="엠케이컴퍼니(MK COMPANY)"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28392"
+															data-gtm-vis-recent-on-screen-11319722_2073="66766"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-recent-on-screen-11319722_2115="66766"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-has-fired-11319722_2073="1"
+															data-gtm-vis-has-fired-11319722_2115="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2021/09/01/5372333c-13ed-4fc5-921a-735482b38069.jpg/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">5.1억,
+																	돌아온 에이블러 롤링, 이제 주문하면 바로 옵니다!</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">619명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.1</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/190?_refer_section_st=storeCurator_3"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="190"
+															data-ec-name="좁은 냉장고에 쏙 들어가는 이중밀폐 이유식 얼음틀 멀티큐브"
+															data-ec-position="3" data-ec-price="9900"
+															data-ec-category="리빙·베이비" data-ec-brand="와디즈 주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28392"
+															data-gtm-vis-recent-on-screen-11319722_2073="66766"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-recent-on-screen-11319722_2115="66766"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-has-fired-11319722_2073="1"
+															data-gtm-vis-has-fired-11319722_2115="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/7444dc06-e59c-496a-bd15-774b39bbadea.jpg/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">좁은
+																	냉장고에 쏙 들어가는 이중밀폐 이유식 얼음틀 멀티큐브</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">13,052명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.8</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/504?_refer_section_st=storeCurator_4"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="504"
+															data-ec-name="1만원대 기모슬랙스ㅣ바지전문 공장이 자신있게 선보이는 슬랙스!"
+															data-ec-position="4" data-ec-price="19900"
+															data-ec-category="패션·잡화" data-ec-brand="이퀄스킨"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28393"
+															data-gtm-vis-recent-on-screen-11319722_2073="66766"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-recent-on-screen-11319722_2115="66766"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-has-fired-11319722_2073="1"
+															data-gtm-vis-has-fired-11319722_2115="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2021/10/27/5d3e918c-6cee-483f-9fc0-c66d715f8ca2.jpg/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">1만원대
+																	기모슬랙스ㅣ바지전문 공장이 자신있게 선보이는 슬랙스!</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">3,405명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.4</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0"></div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 0px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/599?_refer_section_st=storeCurator_5"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="599"
+															data-ec-name="[누적 11,600%] 진짜 그릭요거트, 그릭오"
+															data-ec-position="5" data-ec-price="14600"
+															data-ec-category="푸드" data-ec-brand="앤드식스주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="28326"
+															data-gtm-vis-first-on-screen-11319722_2115="28393"
+															data-gtm-vis-recent-on-screen-11319722_2115="348905"
+															data-gtm-vis-total-visible-time-11319722_2115="2000"
+															data-gtm-vis-recent-on-screen-11319722_2073="348905"
+															data-gtm-vis-total-visible-time-11319722_2073="2000"
+															data-gtm-vis-has-fired-11319722_2115="1"
+															data-gtm-vis-has-fired-11319722_2073="1"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2021/11/16/9316e0ac-0be7-467e-8bf4-816f5a81803c.jpg/wadiz/resize/800/format/jpg/quality/85/&quot;);"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">[누적
+																	11,600%] 진짜 그릭요거트, 그릭오</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">1,619명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.5</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0"></div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+												</div>
+												<div
+													class="CardTable_container__1H8Vc RecommendationStore_cardTable__-AvHK"
+													style="width: calc(100% - 0px);">
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 0px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/1413?_refer_section_st=storeCurator_6"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="1413"
+															data-ec-name="내 발에 3초만에 착감기는 남녀공용 벨롭 티바트 런닝화"
+															data-ec-position="6" data-ec-price="65000"
+															data-ec-category="패션·잡화" data-ec-brand="와디즈 주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/04/27/9e920ef3-2adf-4059-8f52-ce10abc8aa66.png/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">내
+																	발에 3초만에 착감기는 남녀공용 벨롭 티바트 런닝화</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">4,623명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.7</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/2169?_refer_section_st=storeCurator_7"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="2169"
+															data-ec-name="겨울이 두렵지 않은 2in1 아우터! 방수+방풍+투습 [페트 드라이코트]"
+															data-ec-position="7" data-ec-price="258000"
+															data-ec-category="패션·잡화" data-ec-brand="그릴스 유니온"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/03/30/c09cb232-9113-42f0-92d8-9436378a9097.jpg/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">겨울이
+																	두렵지 않은 2in1 아우터! 방수+방풍+투습 [페트 드라이코트]</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">1,227명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.7</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/2282?_refer_section_st=storeCurator_8"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="2282"
+															data-ec-name="펠체아주라 145년 향수가문의 바디워시 650ml"
+															data-ec-position="8" data-ec-price="10900"
+															data-ec-category="뷰티" data-ec-brand="와디즈 주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/06/01/98d45415-1395-4761-b597-9e96720cbd12.jpg/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">펠체아주라
+																	145년 향수가문의 바디워시 650ml</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">15,816명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.7</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/2396?_refer_section_st=storeCurator_9"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="2396"
+															data-ec-name="피스코리아 60년 기술력 한식도 중식도 평화 주방가위"
+															data-ec-position="9" data-ec-price="9900"
+															data-ec-category="리빙·베이비" data-ec-brand="와디즈 주식회사"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/09/14/443af02e-9424-458e-9730-c53ab811a9a6.png/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">피스코리아
+																	60년 기술력 한식도 중식도 평화 주방가위</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">12,703명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.8</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 8px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/2479?_refer_section_st=storeCurator_10"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="2479"
+															data-ec-name="피스코리아 자석 택배박스커터 3컬러" data-ec-position="10"
+															data-ec-price="8900" data-ec-category="리빙·베이비"
+															data-ec-brand="와디즈 주식회사" data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/03/16/26006190-19ec-452f-9b81-89347e94bd12.jpg/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">피스코리아
+																	자석 택배박스커터 3컬러</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">15,055명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.9</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">
+																				<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+													<div role="presentation"
+														class="CardTable_itemContainer__v9-cW"
+														style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 8px; margin-right: 0px; margin-bottom: 0px;">
+														<a
+															href="/web/store/detail/2669?_refer_section_st=storeCurator_11"
+															class="RecommendationStoreCard_item__3iMMQ"
+															data-ec-list="홈_추천_스토어" data-ec-id="2669"
+															data-ec-name="[입는침낭] 캠핑은 이거 하나면 끝! 하와스 워커블 슬리핑 백"
+															data-ec-position="11" data-ec-price="260000"
+															data-ec-category="여행·스포츠" data-ec-brand="주식회사 네이처폴"
+															data-ec-contenttype="STORE"
+															data-gtm-vis-first-on-screen-11319722_2073="112167"
+															data-gtm-vis-first-on-screen-11319722_2115="112167"><div
+																class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																<div
+																	class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
+																	style="padding-top: calc(100% - 0px);">
+																	<div aria-hidden="true"
+																		class="RecommendationStoreCard_thumbnail__mis5O CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																		style="background-image: url(&quot;https://cdn2.wadiz.kr/2022/04/04/8737138a-2bef-4256-823b-57edc356bd47.jpg/wadiz/resize/4000/format/jpg/quality/85/&quot;);"></div>
+																	<div class="RecommendationStoreCard_wadizOnly__zxtNd"></div>
+																</div>
+															</div>
+															<div
+																class="RecommendationStoreCard_contentContainer__aDF-5">
+																<div class="RecommendationStoreCard_projectName__kIgBJ">[입는침낭]
+																	캠핑은 이거 하나면 끝! 하와스 워커블 슬리핑 백</div>
+																<div
+																	class="RecommendationStoreCard_participantsContainer__234hX">
+																	<span
+																		class="RecommendationStoreCard_participants__21h4r">254명
+																		인증</span>
+																</div>
+																<div class="StoreCardFooter_container__X5rH8">
+																	<div class="StoreCardFooter_upperFooter__kvjJa">
+																		<div
+																			class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+																			<div class="RatingScore_icon__rIS_k"></div>
+																			<span class="RatingScore_score__2a-SN">4.8</span>
+																		</div>
+																		<div
+																			class="ParticipantScore_container__JH3e_ ParticipantScore_hide__3hFyW">
+																			<div class="ParticipantScore_peopleIcon__22zg8"></div>
+																			<span class="ParticipantScore_peopleCountText__1oHUl">0명
+																				참여</span>
+																		</div>
+																	</div>
+																	<div class="StoreCardFooter_bottomFooter__MhVou">
+																		<div
+																			class="DeliveryBadge_container__3XB44 StoreCardFooter_badgeFooter__3H1v0">
+																			<div class="DeliveryBadge_badge__14MYK">무료배송</div>
+																		</div>
+																	</div>
+																</div>
+															</div></a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- 회원님이 좋아할 프로젝트 -->
+						<!-- 2023-06-11 박경은 - 메인 깨짐 수정 -->
+						<div class="Main_wrap__2jKMu">
+							<div
+								class="RecommendationDesktop_innerGroup__as4jB Main_innerWrap__7-_Vm">
+								<div class="LikableFundingWrap_container__3mzG6 undefined">
+									<div
+										class="title_contentWrapper__1P-q0 LikableFundingWrap_titleBox__31QnF">
+										<h3>
+											회원님이 <em>좋아할</em> 프로젝트
+										</h3>
+									</div>
+									<div class="LikableFundingWrap_wrap__1ZPJw">
+										<ul class="LikableFundingWrap_cardList__aExBc">
+											<li class="LikableCard_card__kI_2A"><a
+												href="/web/campaign/detail/209390?_refer_section_st=likeable_0"
+												data-ec-list="홈_#좋아할 프로젝트_프리오더" data-ec-id="209390"
+												data-ec-name="[2.7억 앵콜] 없어서 못먹는 트러플 후라이드 오징어 먹물&amp;치킨 한정판"
+												data-ec-position="0" data-ec-category="푸드"
+												data-ec-brand="대한제분(주)" data-ec-contenttype="PREORDER"
+												data-gtm-vis-recent-on-screen-11319722_2115="382285"
+												data-gtm-vis-first-on-screen-11319722_2115="382285"
+												data-gtm-vis-total-visible-time-11319722_2115="2000"
+												data-gtm-vis-recent-on-screen-11319722_2073="382285"
+												data-gtm-vis-first-on-screen-11319722_2073="382285"
+												data-gtm-vis-total-visible-time-11319722_2073="2000"
+												data-gtm-vis-has-fired-11319722_2073="1"
+												data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0425/20230425144313108_209390.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[2.7억 앵콜] 없어서 못먹는
+																	트러플 후라이드 오징어 먹물&amp;치킨 한정판</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">22529%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a></li>
+											<li class="LikableCard_card__kI_2A"><a
+												href="/web/campaign/detail/214600?_refer_section_st=likeable_1"
+												data-ec-list="홈_#좋아할 프로젝트_프리오더" data-ec-id="214600"
+												data-ec-name="[장마철] 내 신발 물에 안 젖게 해주세요! 휴대용 방수방탄 슈즈 커버"
+												data-ec-position="1" data-ec-category="홈·리빙"
+												data-ec-brand="우리민트" data-ec-contenttype="PREORDER"
+												data-gtm-vis-recent-on-screen-11319722_2115="382285"
+												data-gtm-vis-first-on-screen-11319722_2115="382285"
+												data-gtm-vis-total-visible-time-11319722_2115="2000"
+												data-gtm-vis-recent-on-screen-11319722_2073="382285"
+												data-gtm-vis-first-on-screen-11319722_2073="382285"
+												data-gtm-vis-total-visible-time-11319722_2073="2000"
+												data-gtm-vis-has-fired-11319722_2073="1"
+												data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0516/20230516141706944_214600.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[장마철] 내 신발 물에 안 젖게
+																	해주세요! 휴대용 방수방탄 슈즈 커버</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">7290%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a></li>
+											<li class="LikableCard_card__kI_2A"><a
+												href="/web/campaign/detail/210077?_refer_section_st=likeable_2"
+												data-ec-list="홈_#좋아할 프로젝트_펀딩" data-ec-id="210077"
+												data-ec-name="4시간만에 껍질까지 강력분쇄!냄새X  한뼘음처기 에콥미니 20만원대"
+												data-ec-position="2" data-ec-category="테크·가전"
+												data-ec-brand="(주)포레" data-ec-contenttype="REWARD"
+												data-gtm-vis-recent-on-screen-11319722_2115="382285"
+												data-gtm-vis-first-on-screen-11319722_2115="382285"
+												data-gtm-vis-total-visible-time-11319722_2115="2000"
+												data-gtm-vis-recent-on-screen-11319722_2073="382286"
+												data-gtm-vis-first-on-screen-11319722_2073="382286"
+												data-gtm-vis-total-visible-time-11319722_2073="2000"
+												data-gtm-vis-has-fired-11319722_2073="1"
+												data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0526/20230526161002472_210077.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">4시간만에 껍질까지
+																	강력분쇄!냄새X 한뼘음처기 에콥미니 20만원대</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">23483%</span>펀딩
+																</p>
+															</div>
+														</article>
+													</div></a></li>
+											<li class="LikableCard_card__kI_2A"><a
+												href="/web/campaign/detail/110059?_refer_section_st=likeable_3"
+												data-ec-list="홈_#좋아할 프로젝트_펀딩" data-ec-id="110059"
+												data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
+												data-ec-position="3" data-ec-category="출판"
+												data-ec-brand="(주)학산문화사" data-ec-contenttype="REWARD"
+												data-gtm-vis-recent-on-screen-11319722_2115="382285"
+												data-gtm-vis-first-on-screen-11319722_2115="382285"
+												data-gtm-vis-total-visible-time-11319722_2115="2000"
+												data-gtm-vis-recent-on-screen-11319722_2073="382286"
+												data-gtm-vis-first-on-screen-11319722_2073="382286"
+												data-gtm-vis-total-visible-time-11319722_2073="2000"
+												data-gtm-vis-has-fired-11319722_2073="1"
+												data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0524/20230524164452061_110059.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[슈가슈가룬] 오리지널 초판본
+																	완벽 복간 + 한정 굿즈</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">10513%</span>펀딩
+																</p>
+															</div>
+														</article>
+													</div></a></li>
+										</ul>
+										<div
+											class="CardType_projectCard__3xhjb CardType_plannedCard__Yyg0B LikableFundingWrap_plannedCard__ZG4TD">
+											<a href="/web/wreward/collection/projectclose"
+												data-promo-acid="1641"
+												data-promo-id="/web/wreward/collection/projectclose"
+												data-promo-name="수량 마감 임박 프로젝트" data-promo-position="MRB2"
+												data-gtm-vis-recent-on-screen-11319722_2047="382264"
+												data-gtm-vis-first-on-screen-11319722_2047="382264"
+												data-gtm-vis-total-visible-time-11319722_2047="2000"
+												data-gtm-vis-recent-on-screen-11319722_2115="382267"
+												data-gtm-vis-first-on-screen-11319722_2115="382267"
+												data-gtm-vis-total-visible-time-11319722_2115="2000"
+												data-gtm-vis-has-fired-11319722_2047="1"
+												data-gtm-vis-has-fired-11319722_2115="1"><article>
+													<div
+														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+														<div aria-hidden="true"
+															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+															style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0405/20230405172505393_null.jpg/wadiz/resize/1000/format/jpg/quality/85/&quot;);"></div>
+													</div>
+													<div>
+														<span class="CardType_badge__OjSmY">기획전</span><span
+															class="CardType_title__2qEmh">수량 마감 임박 프로젝트</span>
+													</div>
+												</article></a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- footer.jsp -->
-				<jsp:include page="inc/footer.jsp"></jsp:include>
+				<!-- 얼리버드 -->
+				<!-- 2023-06-11 박경은 - 메인 css 깨짐 수정  -->
+				<div class="Main_wrap__2jKMu">
+					<div class="Main_innerWrap__7-_Vm">
+						<div class="EarlybirdDesktop_container__1IoRp">
+							<div class="EarlybirdDesktop_wrap__314kI">
+								<div class="title_titleWrapper__1ggAh">
+									<h2 class="title_title__2rv2M">얼리버드</h2>
+									<p>먼저 참여하는 분들께 드리는 얼리버드 혜택</p>
+								</div>
+								<div
+									class="Pagination_container__28uaq EarlybirdDesktop_pagination__1CGN5" style="display: none">
+									<div class="Pagination_btnGroup__3o2gm">
+										<button
+											class="Pagination_paginationBtn__31dPl Pagination_prev__OAUZT Pagination_isFirstPage__1nscH"
+											disabled="" aria-label="이전 목록">
+											<svg viewBox="0 0 40 40" focusable="false"
+												role="presentation" class="withIcon_icon__3VTbq"
+												aria-hidden="true">
+												<path d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
+										</button>
+										<button
+											class="Pagination_paginationBtn__31dPl Pagination_next__2VEGc"
+											aria-label="다음 목록">
+											<svg viewBox="0 0 40 40" focusable="false"
+												role="presentation" class="withIcon_icon__3VTbq"
+												aria-hidden="true">
+												<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+										</button>
+									</div>
+									<ul class="Pagination_pageList__KyPel" aria-label="pagination">
+										<li
+											class="Pagination_listItem__1atqr Pagination_active__3Lx2R"><button
+												type="button">1</button></li>
+										<li class="Pagination_listItem__1atqr"><button
+												type="button">2</button></li>
+										<li class="Pagination_listItem__1atqr"><button
+												type="button">3</button></li>
+										<li class="Pagination_listItem__1atqr"><button
+												type="button">4</button></li>
+									</ul>
+								</div>
+							</div>
+							<ul class="EarlybirdDesktop_earlybirdList__2XjA6">
+								<li class="EarlybirdDesktop_listItem__2j7AD"><a
+									href="/web/campaign/detail/192567?_refer_section_st=earlyBird_0"
+									data-ec-list="홈_얼리버드_펀딩" data-ec-id="192567"
+									data-ec-name="한번의 빗질로 만드는 골골송 제조기 [털제거 브러시] 목욕부터 털관리까지"
+									data-ec-position="0" data-ec-category="반려동물"
+									data-ec-brand="주식회사 몬도미오" data-ec-contenttype="REWARD"
+									data-gtm-vis-first-on-screen-11319722_2073="411"
+									data-gtm-vis-first-on-screen-11319722_2115="411"
+									data-gtm-vis-recent-on-screen-11319722_2073="437913"
+									data-gtm-vis-total-visible-time-11319722_2073="2000"
+									data-gtm-vis-recent-on-screen-11319722_2115="437913"
+									data-gtm-vis-total-visible-time-11319722_2115="2000"
+									data-gtm-vis-has-fired-11319722_2073="1"
+									data-gtm-vis-has-fired-11319722_2115="1"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+													style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0531/20230531144501953_192567.jpg/wadiz/resize/1000/format/jpg/quality/85/&quot;);"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">펀딩</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">한번의 빗질로 만드는 골골송 제조기
+															[털제거 브러시] 목욕부터 털관리까지</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">1677%</span>반려동물
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">*한정수량* [스페셜 얼리버드
+															45%] 효율 끝판왕! 전문가 세트</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">▶ 더콤마V2
+															브러시_2개(컬러 선택) + 미스트_2개 + 샴푸_2개 새싹보리 발효 미스트 200ml 새싹보리 발효
+															샴푸 300ml ⭢ 양손으로 케어해서 목욕, 빗질 효율성을 50.000% 높여보세요! [45% 혜택]
+															정가 138,000원, 정가 대비 62.100원 혜택 - - - - - - - - - - - - - -
+															- - - - - - - - - -양손 브러시로 꼼꼼하고 빠르게 꿀피모 만들기 냥득템 *미스트&amp;
+															샴푸는 유통기한 2025년 06월26일까지로 사용기간이 넉넉하니, 미리 챙겨둘수록 개이득~</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">75,900원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li class="EarlybirdDesktop_listItem__2j7AD"><a
+									href="/web/campaign/detail/215440?_refer_section_st=earlyBird_1"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="215440"
+									data-ec-name="&quot;몇 번을 흔들어도 떨어지지 않아&quot; 이중피팅 선글라스, 써보면 신세계~!"
+									data-ec-position="1" data-ec-category="스포츠·모빌리티"
+									data-ec-brand="제이엔씨" data-ec-contenttype="PREORDER"
+									data-gtm-vis-first-on-screen-11319722_2073="411"
+									data-gtm-vis-first-on-screen-11319722_2115="411"
+									data-gtm-vis-recent-on-screen-11319722_2073="437913"
+									data-gtm-vis-total-visible-time-11319722_2073="2000"
+									data-gtm-vis-recent-on-screen-11319722_2115="437913"
+									data-gtm-vis-total-visible-time-11319722_2115="2000"
+									data-gtm-vis-has-fired-11319722_2073="1"
+									data-gtm-vis-has-fired-11319722_2115="1"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+													style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0518/20230518171655315_215440.jpg/wadiz/resize/1000/format/jpg/quality/85/&quot;);"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">"몇 번을 흔들어도 떨어지지 않아"
+															이중피팅 선글라스, 써보면 신세계~!</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">269%</span>스포츠·모빌리티
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">5. [35% OFF] AF-305
+															BK GRAY [변색렌즈]</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">본제품,하드케이스,닦이천,제품설명서</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">182,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li class="EarlybirdDesktop_listItem__2j7AD"><a
+									href="/web/campaign/detail/214961?_refer_section_st=earlyBird_2"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="214961"
+									data-ec-name="와인과 가장 잘 어울리는 멜론! 14브릭스 이상 진한 달콤함 오렌지허니듀"
+									data-ec-position="2" data-ec-category="푸드"
+									data-ec-brand="베리베리 싱글 [by비플]" data-ec-contenttype="PREORDER"
+									data-gtm-vis-first-on-screen-11319722_2073="411"
+									data-gtm-vis-first-on-screen-11319722_2115="411"
+									data-gtm-vis-recent-on-screen-11319722_2073="437913"
+									data-gtm-vis-total-visible-time-11319722_2073="2000"
+									data-gtm-vis-recent-on-screen-11319722_2115="437913"
+									data-gtm-vis-total-visible-time-11319722_2115="2000"
+									data-gtm-vis-has-fired-11319722_2073="1"
+									data-gtm-vis-has-fired-11319722_2115="1"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+													style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0522/20230522102428090_214961.png/wadiz/resize/1000/format/jpg/quality/85/&quot;);"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">와인과 가장 잘 어울리는 멜론!
+															14브릭스 이상 진한 달콤함 오렌지허니듀</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">374%</span>푸드
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[와디즈 특별] 멜론하몽 세트
+															1+1</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">포장 : 멜론 1개입 +
+															하몽 1개입 멜론 과수 무게 : 2.2kg 내외 (특대과) 하몽 포장 무게 : 40g 정상가 _____
+															55,000원 혜택가 _____ 37,500원 (-17,500원 / 32% 할인) 6월 하순 순차 출고
+															예정</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">37,500원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/207363?_refer_section_st=earlyBird_3"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="207363"
+									data-ec-name="5in1 멀티 스프레이! 더 강력한 수압! HOTO 무선 고압세척기 프로"
+									data-ec-position="3" data-ec-category="테크·가전"
+									data-ec-brand="주식회사위즈굿" data-ec-contenttype="PREORDER"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">5in1 멀티 스프레이! 더 강력한
+															수압! HOTO 무선 고압세척기 프로</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">4272%</span>테크·가전
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[슈퍼 얼리버드] HOTO 아웃도어
+															워시 키트</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">구성 : 다목적 접이식
+															버킷백 + 스펀지 + 타올(x2) 정가 대비 할인율 18%</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">17,900원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/217863?_refer_section_st=earlyBird_4"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="217863"
+									data-ec-name="수많은 요청으로 만들어진 데일리백! 365일, 어디서든 레나테백과 함께!"
+									data-ec-position="4" data-ec-category="패션·잡화"
+									data-ec-brand="swai [스와이] " data-ec-contenttype="PREORDER"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">수많은 요청으로 만들어진 데일리백!
+															365일, 어디서든 레나테백과 함께!</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">543%</span>패션·잡화
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[슈퍼 얼리버드] 레나테백 1EA
+															+ 더스트백 1EA set</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">[슈퍼 얼리버드] 20개
+															한정 수량! - 47% 할인 -&nbsp;레나테백 1EA + 더스트백 1EA set 컬러 3개 중,
+															선택 1개 가능합니다 - 무료배송&nbsp;</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">247,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/218058?_refer_section_st=earlyBird_5"
+									data-ec-list="홈_얼리버드_펀딩" data-ec-id="218058"
+									data-ec-name="완벽한 통기성으로[여름에도 시원하게] 구름위에 앉은 듯한 푹신함 애견방석"
+									data-ec-position="5" data-ec-category="반려동물"
+									data-ec-brand="주식회사 개과천선" data-ec-contenttype="REWARD"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">펀딩</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">완벽한 통기성으로[여름에도 시원하게]
+															구름위에 앉은 듯한 푹신함 애견방석</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">379%</span>반려동물
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[슈퍼얼리버드]다크블루 L</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">원 사이즈 원
+															색상입니다. 3D 매트리스로 만들어진 쿨한 방석</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">90,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/213029?_refer_section_st=earlyBird_6"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="213029"
+									data-ec-name="달 뒷면이 궁금해? 돌아가는 달을 보여줄께! 아이스페이스 루나"
+									data-ec-position="6" data-ec-category="테크·가전"
+									data-ec-brand="인플러스코리아" data-ec-contenttype="PREORDER"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">달 뒷면이 궁금해? 돌아가는 달을
+															보여줄께! 아이스페이스 루나</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">290%</span>테크·가전
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">도서산간 비용</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">[제주도 및 도서산간]
+															지역이신 분들은 이 옵션과 함께 펀딩 부탁드립니다.</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">3,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/194197?_refer_section_st=earlyBird_7"
+									data-ec-list="홈_얼리버드_펀딩" data-ec-id="194197"
+									data-ec-name="어린 미세주름  [실시간 개선] 단1회 사용 즉각 주름 개선이 된다구요?"
+									data-ec-position="7" data-ec-category="뷰티"
+									data-ec-brand="(주)파인다이브" data-ec-contenttype="REWARD"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">펀딩</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">어린 미세주름 [실시간 개선] 단1회
+															사용 즉각 주름 개선이 된다구요?</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">386%</span>뷰티
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[울트라 얼리버드] #어린주름 입문</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">앰플크림 30ml x
+															1개</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">28,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/212832?_refer_section_st=earlyBird_8"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="212832"
+									data-ec-name="[170억 펀딩] 전세계 호환 5cm초소형 3개 동시충전 하이퍼 충전기"
+									data-ec-position="8" data-ec-category="테크·가전"
+									data-ec-brand="엔텍그린 주식회사" data-ec-contenttype="PREORDER"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">[170억 펀딩] 전세계 호환
+															5cm초소형 3개 동시충전 하이퍼 충전기</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">4175%</span>테크·가전
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">스페셜 얼리버드 서브_파워케이블
+															2m</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">하이퍼 드라이브 전용
+															100W 파워 C to C 케이블 2m 1EA</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">28,000원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+								<li
+									class="EarlybirdDesktop_listItem__2j7AD EarlybirdDesktop_hide__3p7jp"><a
+									href="/web/campaign/detail/209523?_refer_section_st=earlyBird_9"
+									data-ec-list="홈_얼리버드_프리오더" data-ec-id="209523"
+									data-ec-name="[장마대비템] 지하철에서도, 버스에서도 뽀송하기! 물받이 캡 우산"
+									data-ec-position="9" data-ec-category="패션·잡화"
+									data-ec-brand="재영유통(썬월드)" data-ec-contenttype="PREORDER"><div
+											class="CardType_projectCard__3xhjb CardType_earlybirdCard__1t1n1">
+											<div
+												class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+												<div aria-hidden="true"
+													class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ"></div>
+											</div>
+											<div class="CardType_cardContent__3UMOr">
+												<div>
+													<p class="CardType_type__El7XP">프리오더</p>
+													<div class="commons_content__2K1SH CardType_content__1Pavj">
+														<em class="commons_title__1yGWm">[장마대비템] 지하철에서도,
+															버스에서도 뽀송하기! 물받이 캡 우산</em>
+														<p class="commons_summary__2Ynez">
+															<span class="commons_rate__10tOH">0%</span>패션·잡화
+														</p>
+													</div>
+												</div>
+												<div class="CardType_earlybirdContent__1b8VN">
+													<dl>
+														<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
+														<dd class="CardType_title__2qEmh">[와디즈 혜택] 캡우산 1개+캡커버
+															1개</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
+														<dd class="CardType_description__2BtXk">캡우산 1개+캡커버 1개
+															세트 상품 색상: 브라운, 핑크, 그린, 그레이, 블루, 블랙</dd>
+														<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
+														<dd class="CardType_subContent__3QETf">12,900원</dd>
+													</dl>
+												</div>
+												<div class="CardType_linkBtn__1QHvM">
+													지금 참여하기
+													<svg viewBox="0 0 40 40" focusable="false"
+														role="presentation"
+														class="withIcon_icon__3VTbq withIcon_inline__1lwwX"
+														aria-hidden="true">
+														<path
+															d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+												</div>
+											</div>
+										</div></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
+
+				<!-- 주목하세요! 오늘 오픈한 프로젝트 -->
+				<!-- 2023-06-11 박경은 - 메인 css 깨짐 수정  -->
+				<article class="TrendApp_container__2IOnt">
+					<div class="Main_wrap__2jKMu">
+						<div class="TrendApp_wrapper__3MC4K Main_innerWrap__7-_Vm">
+							<section class="DebutFundingList_container__3LljC">
+								<div class="DebutFundingList_inner__3FSDV">
+									<div class="title_contentWrapper__1P-q0 title_trend__3KsC2">
+										<h2 class="DebutFundingList_titleDesktop__2-ijZ">주목하세요!
+											오늘 오픈한 프로젝트</h2>
+									</div>
+									<div class="DebutFundingList_content__1SqH7">
+										<div class="DebutFundingDesktop_content__19ypd">
+											<div class="DebutFundingDesktop_page__WMtxm" style="display: none">
+												<div class="Pagination_container__28uaq">
+													<div class="Pagination_btnGroup__3o2gm">
+														<button
+															class="Pagination_paginationBtn__31dPl Pagination_prev__OAUZT Pagination_isFirstPage__1nscH"
+															disabled="" aria-label="이전 목록">
+															<svg viewBox="0 0 40 40" focusable="false"
+																role="presentation" class="withIcon_icon__3VTbq"
+																aria-hidden="true">
+																<path
+																	d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
+														</button>
+														<button
+															class="Pagination_paginationBtn__31dPl Pagination_next__2VEGc"
+															aria-label="다음 목록">
+															<svg viewBox="0 0 40 40" focusable="false"
+																role="presentation" class="withIcon_icon__3VTbq"
+																aria-hidden="true">
+																<path
+																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
+														</button>
+													</div>
+													<ul class="Pagination_pageList__KyPel"
+														aria-label="pagination">
+														<li
+															class="Pagination_listItem__1atqr Pagination_active__3Lx2R"><button
+																type="button">1</button></li>
+														<li class="Pagination_listItem__1atqr"><button
+																type="button">2</button></li>
+														<li class="Pagination_listItem__1atqr"><button
+																type="button">3</button></li>
+														<li class="Pagination_listItem__1atqr"><button
+																type="button">4</button></li>
+													</ul>
+												</div>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/211101?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="211101"
+													data-ec-name="여름엔 소름돋게 쿨~한 아이스 블랙 3종세트! #깃털셔츠 #볼캡 #클러치"
+													data-ec-position="0" data-ec-category="패션·잡화"
+													data-ec-brand="G10(지텐)" data-ec-contenttype="PREORDER"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0517/20230517162916364_211101.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">여름엔 소름돋게 쿨~한 아이스
+																	블랙 3종세트! #깃털셔츠 #볼캡 #클러치</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">717%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/218526?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_펀딩" data-ec-id="218526"
+													data-ec-name="<큐리의 견생역전 프로젝트> 큐리와 유기동물 친구들의 행복을 찾아주세요!"
+													data-ec-position="1" data-ec-category="캐릭터·굿즈"
+													data-ec-brand="유지민" data-ec-contenttype="REWARD"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0602/20230602112305932_218526.png/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">&lt;큐리의 견생역전
+																	프로젝트&gt; 큐리와 유기동물 친구들의 행복을 찾아주세요!</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">0%</span>펀딩
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/197517?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="197517"
+													data-ec-name="[595% 달성 앵콜] 영국 왕실이 보증한 세계 3대원단, 해리스트위드 "
+													data-ec-position="2" data-ec-category="패션·잡화"
+													data-ec-brand="구망드" data-ec-contenttype="PREORDER"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0527/20230527150931476_197517.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">[595% 달성 앵콜] 영국
+																	왕실이 보증한 세계 3대원단, 해리스트위드 </em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">15%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/217030?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="217030"
+													data-ec-name="쌀벌레 고민 아직도 하시나요? 화랑곡나방 전용 트랩이 필요한 때입니다."
+													data-ec-position="3" data-ec-category="홈·리빙"
+													data-ec-brand="주식회사 토비메모리" data-ec-contenttype="PREORDER"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0525/20230525173623619_217030.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">쌀벌레 고민 아직도 하시나요?
+																	화랑곡나방 전용 트랩이 필요한 때입니다.</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">18%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/216260?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="216260"
+													data-ec-name="무대의 주인공이 되어보는 컨셉 화보 촬영 <백스테이지>"
+													data-ec-position="4" data-ec-category="컬쳐·아티스트"
+													data-ec-brand="스튜디오찬란" data-ec-contenttype="PREORDER"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0528/20230528181616751_216260.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">무대의 주인공이 되어보는 컨셉
+																	화보 촬영 &lt;백스테이지&gt;</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">31%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+											<div class="DebutFundingDesktop_card__8YXhV">
+												<a
+													href="/web/campaign/detail/218133?_refer_section_st=trendDebut_undefined"
+													data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="218133"
+													data-ec-name="캠핑 의자가 컴팩트하게! 분해 가능 파인 캠핑 의자+사이드 테이블"
+													data-ec-position="5" data-ec-category="레저·아웃도어"
+													data-ec-brand="(주)만방상사" data-ec-contenttype="PREORDER"
+													data-gtm-vis-recent-on-screen-11319722_2073="84"
+													data-gtm-vis-first-on-screen-11319722_2073="84"
+													data-gtm-vis-total-visible-time-11319722_2073="2000"
+													data-gtm-vis-recent-on-screen-11319722_2115="84"
+													data-gtm-vis-first-on-screen-11319722_2115="84"
+													data-gtm-vis-total-visible-time-11319722_2115="2000"
+													data-gtm-vis-has-fired-11319722_2073="1"
+													data-gtm-vis-has-fired-11319722_2115="1"><div
+														class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
+														<article>
+															<div
+																class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
+																<div aria-hidden="true"
+																	class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0602/20230602152812799_218133.jpg/wadiz/resize/400/format/jpg/quality/85/&quot;);"></div>
+															</div>
+															<div
+																class="commons_content__2K1SH CardType_content__1Pavj">
+																<em class="commons_title__1yGWm">캠핑 의자가 컴팩트하게! 분해
+																	가능 파인 캠핑 의자+사이드 테이블</em>
+																<p class="commons_summary__2Ynez">
+																	<span class="commons_rate__10tOH">19%</span>프리오더
+																</p>
+															</div>
+														</article>
+													</div></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</article>
+
+				<!-- 와디즈에서 프로젝트 오픈하기 -->
+				<div class="RecommendationDesktop_container__3RLMb">
+					<div class="Main_wrap__2jKMu">
+						<div class="Main_innerWrap__7-_Vm">
+							<div class="RecommendationDesktop_innerGroup__as4jB"></div>
+						</div>
+					</div>
+					<div class="Main_wrap__2jKMu"></div>
+					<div class="Main_wrap__2jKMu">
+						<div
+							class="RecommendationDesktop_innerGroup__as4jB RecommendationDesktop_staticBanner__2pqG8 Main_innerWrap__7-_Vm">
+							<section>
+								<a class="FundingOpenStaticBanner_container__12jOH"
+									data-ga-category="홈_최하단배너" data-ga-action="클릭"
+									data-ga-label="프로젝트 오픈하기" href="/web/wsub/openfunding"><h4
+										class="FundingOpenStaticBanner_title__2SGnU">와디즈에서 프로젝트
+										오픈하기</h4>
+									<p class="FundingOpenStaticBanner_desc__34zp5">당신의 이야기를
+										소개하고 투자자와 서포터를 만나보세요</p>
+									<button
+										class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_lg__1Dftp"
+										type="button">
+										<span><span class="Button_children__ilFun">바로가기&nbsp;<svg
+													viewBox="0 0 40 40" focusable="false" role="presentation"
+													class="withIcon_icon__3VTbq" aria-hidden="true">
+														<path
+														d="M6 21h24.2L19.6 31.6 21 33l13-13L21 7l-1.4 1.4L30.2 19H6v2z"></path></svg></span></span>
+									</button></a>
+							</section>
+							<section></section>
+						</div>
+					</div>
+				</div>
 			</div>
-		</main>
+
+			<!-- footer.jsp -->
+			<jsp:include page="inc/footer.jsp"></jsp:include>
+	</div>
+	</main>
 	</div>
 </body>
 </html>
