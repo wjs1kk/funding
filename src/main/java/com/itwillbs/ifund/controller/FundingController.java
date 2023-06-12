@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,11 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.itwillbs.ifund.vo.MemberVO;
-import com.itwillbs.ifund.vo.ProjectListVO;
-import com.itwillbs.ifund.service.FundingService;
-import com.itwillbs.ifund.service.MypageService;
-import com.itwillbs.ifund.vo.RewardVO;
+import com.itwillbs.ifund.service.*;
+import com.itwillbs.ifund.vo.*;
 
 @Controller
 public class FundingController {
@@ -51,16 +48,48 @@ public class FundingController {
 		return "funding/funding";
 	}
 	@GetMapping("detail")
-	public String funding_detail(Model model, String num) {
+	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 		
+		// 디테일 이미지 받아오기
+		String image = (String)fundingDetail.get("project_images");
+		String[] images= image.split("\\|");
+		
+		List imageList = new ArrayList();
+		
+		for(String images2 : images) {
+			imageList.add(images2);
+		}
+		
+		String maker_idx = fundingDetail.get("maker_idx").toString();
+		
+		model.addAttribute("maker_idx", maker_idx);
+		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
 		
-		System.out.println(fundingDetail);
-
 		return "funding/funding_detail";
+	}
+	
+	@PostMapping("inquiryPro")
+	public String inquiryPro(Model model, InquiryVO inquiry, String num, String inq_subject, String inq_content, HttpSession session, int maker_idx) {
+		String member_idx = session.getAttribute("member_idx").toString();
+		
+		inquiry.setMember_idx(Integer.parseInt(member_idx));
+		inquiry.setInq_subject(inq_subject);
+		inquiry.setInq_content(inq_content);
+		
+		int insertCount = fundingService.insertInquiry(inquiry);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg", "문의 완료");
+			model.addAttribute("target", "funding");
+			return "success";
+		} else {
+			model.addAttribute("msg", "문의하기 실패");
+			return "fail_back";
+		}
 	}
 	@GetMapping("comingsoon")
 	public String comingsoon(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
@@ -168,7 +197,15 @@ public class FundingController {
 		int total_amount = Integer.parseInt(map.get("total_amount").toString());
 		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트 및 결제 금액 5% 포인트 적립
 		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
-		
+	}
+	
+	@GetMapping("inquiry")
+	public String inquiry() {
+		return "funding/inquiry_form";
+	}
+	@GetMapping("paySuccess")
+	public String paySuccess() {
+		return "funding/pay_success";
 	}
 	
 }

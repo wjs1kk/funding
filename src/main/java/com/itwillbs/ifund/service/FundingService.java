@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.ifund.mapper.FundingMapper;
-import com.itwillbs.ifund.vo.ProjectListVO;
-import com.itwillbs.ifund.vo.RewardVO;
+import com.itwillbs.ifund.vo.*;
 
 
 @Service
@@ -39,6 +38,10 @@ public class FundingService {
 	}
 	public Map<String, Object> fundingDetail(int project_idx) {
 		return mapper.fundingDetail(project_idx);
+	}
+	
+	public Map<String, Object> fundingDetail() {
+		return mapper.fundingDetail();
 	}
 	// 06-09 김동욱 결제할 리워드 가져오기
 	public Map getPayReward(int reward_idx) {
@@ -74,6 +77,9 @@ public class FundingService {
 		// 06-11 김동욱 결제 금액의 5프로 포인트 적립
 		mapper.pointSaving(total_amount * 0.05, member_idx);
 		return mapper.projectDetailAmountUpdate(project_idx, total_amount);
+	}
+	public int insertInquiry(InquiryVO inquiry) {
+		return mapper.insertInquiry(inquiry);
 	}
 	
 	// 06-11 김동욱 포인트 적립
