@@ -98,7 +98,7 @@ function maker() {
 															</li>
 														</c:forEach>
 													</ul>
-													<a href="/web/wsub/openfunding/reward" class="Button_button__1HNjI Button_primary__2kq3x Button_contained__1Lx6c Button_lg__37Mrj Button_block__3-IpL MyWadizMyProject_button__3WHeG"><span><span
+													<a onclick="location.href='projectCreate'" class="Button_button__1HNjI Button_primary__2kq3x Button_contained__1Lx6c Button_lg__37Mrj Button_block__3-IpL MyWadizMyProject_button__3WHeG"><span><span
 														class="Button_children__lqBGI">프로젝트 만들기</span></span></a>
 													<div class="MyWadizMyProject_infoBox__2vqIx">
 														<a class="MyWadizMyProject_info__1rRr9" href="/web/wterms/funding_plan_policy">요금제 안내 

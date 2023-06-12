@@ -58,6 +58,12 @@ public class MypageController {
 		return "mypage/mypage";
 	}
 
+	// 06-12 김동욱 마이페이지에서 마이페이지로 이동시 기존의 마이페이지 서블릿 주소로 리다이렉트
+	@GetMapping("mypage/mypage/supporter")
+	public String mypageSupporter2(HttpSession session, Model model) {
+		return "redirect:/mypage/supporter";
+	}
+	
 	@GetMapping("mypage/maker")
 	public String mypage2(HttpSession session, Model model) {
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
