@@ -152,19 +152,7 @@
 										서류 작성과 정산이 진행돼요. 대표자 및 정산 정보를 잘못 작성한다면 프로젝트 승인이 지연될 수 있어요. 잘못된
 										내용이 없는지 확인 후 제출해 주세요.</p>
 								</div>
-								<div class="HeaderLayout_guideWrapper__WXeX-">
-									<button class="BannerLinkButton_container__3MHMT" type="button">
-										<div class="BannerLinkButton_icon__UDYk2">
-											<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-										</div>
-										<div class="BannerLinkButton_content__BzS52">
-											<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다
-												본다는</div>
-											<div class="BannerLinkButton_description__yl6rf">필수 가이드
-												모음집</div>
-										</div>
-									</button>
-								</div>
+								
 							</div>
 							<form class="SettlementInfoContainer_form__3HCjb">
 								<div class="MakerInfoSection_container__1mo68">
@@ -252,9 +240,9 @@
 														정산)이 시작됩니다.</li>
 													<li>・ 바로 정산 단계에서는 최종 금액의 일부가 먼저 지급됩니다.
 														<div class="SplitSettlementText_subText__1v-SG">
-															※ 최종 결제 금액 1,000만 원 미만<br>최종 결제 금액에서 와디즈 중개 수수료 +
+															※ 최종 결제 금액 1,000만 원 미만<br>최종 결제 금액에서 아이펀드 중개 수수료 +
 															결제(카드사 수수료 등) 수수료를 제외한 금액의 80% 지급<br>※ 최종 결제 금액
-															1,000만 원 이상<br>최종 결제 금액에서 와디즈 중개 수수료 + 결제(카드사 수수료 등)
+															1,000만 원 이상<br>최종 결제 금액에서 아이펀드 중개 수수료 + 결제(카드사 수수료 등)
 															수수료를 제외한 금액의 60% 지급<br>
 														</div>
 													</li>
@@ -262,10 +250,7 @@
 													<li>・ 최종 정산 금액 확정 5영업일 이내에 최종 정산(2차 정산)이 진행됩니다.</li>
 													<li>・ 바로 정산과 최종 정산이 시작되면 정산 내역서와 함께 정산에 대한 안내가 메일로
 														발송됩니다.</li>
-													<li>・ 정책과 수수료에 대한 더 자세한 내용은<a
-														href="https://www.wadiz.kr/link/makerstudio_settlement"
-														target="_blank" rel="noreferrer">와디즈 정산 정책</a>을 확인해 주세요.
-													</li>
+													
 												</ul>
 											</div>
 										</div>

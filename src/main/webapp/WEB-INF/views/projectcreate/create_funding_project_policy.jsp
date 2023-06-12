@@ -4,7 +4,7 @@
 <html lang="ko" class="">
 
 <head>
-<title>와디즈 프로젝트만들기 스토리작성</title>
+<title>아이펀드 프로젝트만들기 스토리작성</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 
 <link
@@ -105,18 +105,7 @@
 							<li class="Breadcrumb_item__2r9Ym">정책</li>
 						</ol>
 						<div class="Page_title__1tce_" role="heading" aria-level="2">정책</div>
-						<div class="Page_guide__3JgBF">
-							<button class="BannerLinkButton_container__3MHMT" type="button">
-								<div class="BannerLinkButton_icon__UDYk2">
-									<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-								</div>
-								<div class="BannerLinkButton_content__BzS52">
-									<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다 본다는</div>
-									<div class="BannerLinkButton_description__yl6rf">필수 가이드
-										모음집</div>
-								</div>
-							</button>
-						</div>
+						
 						<div class="Page_content__1d0Vb">
 							<section class="Section_container__3md8M spacing-9"
 								style="max-width: 630px;">
@@ -202,7 +191,7 @@
 											class="TermsContent_terms__LvQxR terms MakerAgreementField_terms__cBa04 spacing-6">
 											<article>
 												<h1>메이커 이용약관</h1>
-												<p>와디즈(주)의 메이커 이용약관을 규정합니다.</p>
+												<p>아이펀드(주)의 메이커 이용약관을 규정합니다.</p>
 												<div class="update">
 													<h5>업데이트 노트</h5>
 													<ul>
@@ -349,7 +338,7 @@
 												<h3 id="제1조-목적" style="font-size: 18px; font-weight: bold;">제1조
 													(목적)</h3>
 												<p>
-													본 메이커 이용약관(이하 "본 약관")은 와디즈 주식회사(이하 "회사")가 운영 및 제공하는 인터넷 사이트
+													본 메이커 이용약관(이하 "본 약관")은 아이펀드 주식회사(이하 "회사")가 운영 및 제공하는 인터넷 사이트
 													<a href="https://www.wadiz.kr" target="_blank">https://www.wadiz.kr</a>
 													(이하 "사이트")에 크라우드펀딩, 프리오더 및 스토어 프로젝트를 개설하여 펀딩금을 모집하거나 통신판매의
 													방식으로 상품을 판매하고자 하는 자(이하 "메이커")가 프로젝트의 개설 및 중개 등의 서비스를 이용함에
@@ -369,10 +358,10 @@
 														크라우드펀딩, 통신판매중개 및 통신판매 플랫폼의 개발 및 운영을 통한 크라우드펀딩, 프리오더, 스토어
 														서비스를 의미합니다.</li>
 													<li style="list-style-type: lower-alpha;">"선택 서비스"라 함은
-														오픈예정 서비스, 공간 와디즈 쇼룸 이용, 광고 서비스 등 메이커의 선택 및 관련 정책에 따라 제공되는
+														오픈예정 서비스, 공간 아이펀드 쇼룸 이용, 광고 서비스 등 메이커의 선택 및 관련 정책에 따라 제공되는
 														서비스를 의미합니다.</li>
 													<li style="list-style-type: lower-alpha;">"부가 혜택"이라 함은
-														와디즈 스쿨, 데이터 플러스(beta), 새소식 알림 등 회사가 프로젝트의 성공적 진행을 돕기 위하여
+														아이펀드 스쿨, 데이터 플러스(beta), 새소식 알림 등 회사가 프로젝트의 성공적 진행을 돕기 위하여
 														기본 서비스에 부가하여 관련 정책에 따라 제공하는 혜택을 의미합니다.</li>
 													<li style="list-style-type: lower-alpha;">"사이트"란 회사가
 														재화 또는 용역 등(일정한 시설을 이용하거나 용역을 제공받을 수 있는 권리를 포함)을 회원에게 제공하기
@@ -389,12 +378,12 @@
 														회원가입약관에 따른 회원 중에서 회사에서 제공하는 서비스를 통해 메이커가 개설한 프로젝트에 펀딩을 하거나
 														리워드 또는 상품을 구매하려는 자를 말합니다.</li>
 													<li style="list-style-type: lower-alpha;">“펀딩”이란 메이커가
-														와디즈 사이트를 통해 재화 또는 용역 개발, 생산, 기부 등 특정한 자금조달의 목적을 밝히고 그
+														아이펀드 사이트를 통해 재화 또는 용역 개발, 생산, 기부 등 특정한 자금조달의 목적을 밝히고 그
 														목적달성을 위해 필요한 자금을 제공한 서포터들에게 약속한 재화 또는 용역을 제공하는 서비스를 말합니다.
 														단, 기부를 목적으로 자금을 조달 하는 경우에는 서포터들에게 재화 또는 용역 등의 제공을 약속하지 않을
 														수 있습니다.</li>
 													<li style="list-style-type: lower-alpha;">“프리오더”란 메이커가
-														와디즈 사이트를 통해 전자상거래 등에서의 소비자보호에 관한 법률(이하 “전자상거래법”)이 적용되는
+														아이펀드 사이트를 통해 전자상거래 등에서의 소비자보호에 관한 법률(이하 “전자상거래법”)이 적용되는
 														예약판매의 형식으로 서포터들에게 약속한 재화 또는 용역 등을 제공하는 서비스를 말합니다.</li>
 													<li style="list-style-type: lower-alpha;">“스토어”란 메이커가
 														성공 종료한 펀딩 또는 프리오더 프로젝트의 리워드를 전자상거래법이 적용되는 상시판매의 형식으로
@@ -1336,8 +1325,8 @@
 														결제예약금을 기준으로 한 수수료의 2배 상당액을 의미)을 회사에 지급하여야 합니다. 단, 본 항의 사유로
 														프로젝트가 취소되기 전 메이커가 프로젝트 취소를 명시적으로 회사에게 요청하는 경우에는 제1항의 위약벌은
 														중복 적용되지 않습니다.</li>
-													<li>제1항 내지 제2항에 더불어, 메이커가 이용하는 요금제에 공간와디즈 쇼룸 서비스가 포함된
-														경우, 공간와디즈 쇼룸 서비스 제공 기간이 종료되기 전에 서비스를 취소하기 위해서는 다음 각 호의 기준에
+													<li>제1항 내지 제2항에 더불어, 메이커가 이용하는 요금제에 공간아이펀드 쇼룸 서비스가 포함된
+														경우, 공간아이펀드 쇼룸 서비스 제공 기간이 종료되기 전에 서비스를 취소하기 위해서는 다음 각 호의 기준에
 														따라 회사에게 위약벌을 추가로 지급하여야 합니다.
 														<ol>
 															<li>전시 서비스 진행 시작일 6일 전 취소 : 위약벌 없음</li>
@@ -1437,7 +1426,7 @@
 																	<li style="list-style-type: lower-roman">국내에서는 회사를
 																		통해서만 유통하기로 한 리워드를 타 사이트 또는 회사가 제공하는 서비스 외의 유통채널을 통하여
 																		유통하거나, 실질적으로 리워드와 동일한 것으로 판단되는 상품을 유통하는 경우</li>
-																	<li style="list-style-type: lower-roman">와디즈 서포터만을
+																	<li style="list-style-type: lower-roman">아이펀드 서포터만을
 																		위해 제공되는 리워드의 혜택 또는 구성을 타 사이트 또는 회사 외의 경로를 통해 동일하게 제공하는
 																		경우</li>
 																	<li style="list-style-type: lower-roman">한정된 기간 또는
@@ -1648,7 +1637,7 @@
 																	<li style="list-style-type: lower-roman">국내에서는 회사를
 																		통해서만 유통하기로 한 리워드를 타 사이트 또는 회사가 제공하는 서비스 외의 유통채널을 통하여
 																		유통하거나, 실질적으로 리워드와 동일한 것으로 판단되는 상품을 유통하는 경우</li>
-																	<li style="list-style-type: lower-roman">와디즈 서포터만을
+																	<li style="list-style-type: lower-roman">아이펀드 서포터만을
 																		위해 제공되는 리워드의 혜택 또는 구성을 타 사이트 또는 회사 외의 경로를 통해 동일하게 제공하는
 																		경우</li>
 																	<li style="list-style-type: lower-roman">한정된 기간 또는
@@ -1703,8 +1692,8 @@
 														결제예약금을 기준으로 한 수수료의 2배 상당액을 의미)을 회사에 지급하여야 합니다. 단, 본 항의 사유로
 														프로젝트가 취소되기 전 메이커가 프로젝트 취소를 명시적으로 회사에게 요청하는 경우에는 제1항의 위약벌은
 														중복 적용되지 않습니다.</li>
-													<li>제1항 내지 제2항에 더불어, 메이커가 이용하는 요금제에 공간와디즈 쇼룸 서비스가 포함된
-														경우, 공간와디즈 쇼룸 서비스 제공 기간이 종료되기 전에 서비스를 취소하기 위해서는 다음 각 호의 기준에
+													<li>제1항 내지 제2항에 더불어, 메이커가 이용하는 요금제에 공간아이펀드 쇼룸 서비스가 포함된
+														경우, 공간아이펀드 쇼룸 서비스 제공 기간이 종료되기 전에 서비스를 취소하기 위해서는 다음 각 호의 기준에
 														따라 회사에게 위약벌을 추가로 지급하여야 합니다.
 														<ol>
 															<li>전시 서비스 진행 시작일 6일 전 취소 : 위약벌 없음</li>
@@ -1965,9 +1954,7 @@
 													<p>
 														이 프로젝트는 <strong>펀딩 환불 정책</strong>이 적용돼요.
 													</p>
-													<a class="RefundPolicyField_link__3DhMI link"
-														href="/web/wterms/funding_refund" target="_blank"
-														rel="nofollow noopener noreferrer">환불 정책 확인하기</a>
+													
 												</div>
 											</div>
 										</div>
@@ -2033,9 +2020,7 @@
 													프로젝트가 공개되면 서포터님들에게 환불 정책이 안내돼요.<br>메이커님께 관련 문의가 들어올 수
 													있으니 꼼꼼히 확인해 주세요.
 												</p>
-												<a href="/web/campaign/detail/fundingInfo/214228?preview=Y"
-													class="Button_button__1e2A2 Button_info__Nu98q Button_contained__TTXSM Button_sm__dnvmq"><span><span
-														class="Button_children__q9VCZ">정책 미리 보기</span></span></a>
+												
 											</div>
 										</div>
 									</div>

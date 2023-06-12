@@ -283,7 +283,7 @@
 							<input type="hidden" id="project_maker">
 							<input type="hidden" id="representative_info">
 							
-							<!-- 오른쪽 (공간 와디즈 쇼룸 신청하기, 필수 서류 확인하기 등 배너) -->
+							<!-- 오른쪽 (공간 아이펀드 쇼룸 신청하기, 필수 서류 확인하기 등 배너) -->
 						</div>
 					</div>
 					<div class="ChannelTalk_container__3OcHU">

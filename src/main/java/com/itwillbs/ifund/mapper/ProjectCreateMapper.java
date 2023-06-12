@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RewardVO;
@@ -87,6 +88,12 @@ public interface ProjectCreateMapper {
 	int projectStart();
 	// 06-09 강정운 정산내역서	
 	Map showFeeCalculate(int project_idx);
+	// 06-12 강정운 정산신청
+	int calculateApply(CalculateVO cal);
+	
+	Integer applyCheck(int project_idx);
+	
+	int memberIdxSearch(int project_idx);
 	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
 	List getMyPaymentList(int project_idx);
 	// 06-12 김동욱 운송장 번호 입력
