@@ -2,6 +2,9 @@ package com.itwillbs.ifund.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -185,36 +188,61 @@ public class MypageController {
 
 //	서포터 문의
 	@GetMapping("mypage/supinquiry")
-	public String sup_inquiry() {
+	public String sup_inquiry(HttpSession session, Model model, 
+			InquiryVO inquiryVO, @RequestParam(defaultValue = "1") int pageNum) {
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
+		
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<String> maker = mypageService.selectMakerIdx(member_idx);
+		model.addAttribute("maker", maker);
+		System.out.println(maker);
+
+		List<InquiryVO> inquiryList = mypageService.selectSupInquiry(maker, listLimit, startRow);
+		model.addAttribute("inquiryList", inquiryList);
+		System.out.println(inquiryList);
 		return "mypage/sup_inquiry";
 	}
 
-//	0609 김애리 추가 - 서포터 문의 (수정중)
-	@GetMapping("mypage/makerinquiry")
-	public String maker_inquiry(HttpSession session, Model model) {
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		String maker_name = mypageService.inqMaker(member_idx);
-		model.addAttribute("maker_name", maker_name);
-		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
-		model.addAttribute("inquiryList", inquiryList);
-		return "mypage/maker_inquiry";
-	}
+	
 
-	//0609 김애리 추가 - 서포터 문의 목록 (수정중)
-	@GetMapping("mypage/makerinquiry2")
-	public String maker_inquiry2(HttpSession session, Model model) {
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
-		model.addAttribute("inquiryList", inquiryList);
+//	0609 김애리 추가 - 메이커 문의 (수정중)
+	@GetMapping("mypage/makerinquiry")
+	public String maker_inquiry(HttpSession session, Model model, 
+			InquiryVO inquiryVO, @RequestParam(defaultValue = "1") int pageNum) {
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
 		
-		return "mypage/maker_inquiry2";
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<InquiryVO> myInquiry = mypageService.myInquiry(member_idx, listLimit, startRow);
+		model.addAttribute("myInquiry", myInquiry);
+		Integer myInquiryCount = mypageService.myInquiryCount(member_idx);
+		model.addAttribute("myInquiryCount", myInquiryCount);
+		System.out.println(myInquiry != null);
+		List maker = mypageService.selectMakerIdx(member_idx);
+		model.addAttribute("maker", maker);
+		
+//		model.addAttribute("member", mypageService.selectUser(member_idx));
+//		model.addAttribute("maker", mypageService.selectMakerName(Integer.parseInt(maker)));
+
+		
+		// 페이징
+		int pageListLimit = 5;
+		int maxPage = myInquiryCount / listLimit + (myInquiryCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		return "mypage/maker_inquiry";
+		
 	}
 
 	@GetMapping("mypage/inquiry_form")
 	public String inquiry_form() {
 		return "mypage/inquiry_form";
 	}
-	
 	@GetMapping("mypage/inquiry_view")
 	public String inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, InquiryVO inquiryVO2, String inq_idx) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -229,6 +257,19 @@ public class MypageController {
 		return "mypage/inquiry_view";
 	}	
 	
+	@GetMapping("mypage/sup_inquiry_view")
+	public String sup_inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, InquiryVO inquiryVO2, String inq_idx) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
+		model.addAttribute("inquiryList", inquiryList);
+		
+		inquiryVO = mypageService.getInquiry(inq_idx);
+		inquiryVO2 = mypageService.getInquiry(inq_idx + 1);
+		model.addAttribute("inquiryVO", inquiryVO);
+		model.addAttribute("inquiryVO2", inquiryVO2);
+		
+		return "mypage/sup_inquiry_view";
+	}	
 	
 	@GetMapping("mypage/wish")
 	public String wish(HttpSession session, Model model) {
@@ -274,6 +315,15 @@ public class MypageController {
 			String uploadDir = "/resources/images/profile";
 			String saveDir = session.getServletContext().getRealPath(uploadDir);
 //			MultipartFile mFile = memberVO.getFile();
+			
+			try {
+				// Files 클래스의 createDirectories() 메서드를 호출하여 Path 객체가 관리하는 경로 없으면 생성
+				// => 거쳐가는 경로들 중 없는 경로는 모두 생성
+				Path path = Paths.get(saveDir);
+				Files.createDirectories(path);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 
 			String originalFileName = image.getOriginalFilename();
 			String uuid = UUID.randomUUID().toString();
@@ -283,7 +333,7 @@ public class MypageController {
 //			memberVO.setMember_image(mFile.getOriginalFilename());
 			System.out.println(saveDir);
 			try {
-				image.transferTo(new File(saveDir, image.getOriginalFilename()));
+				image.transferTo(new File(saveDir, uuid.substring(0, 8)+ "_" + image.getOriginalFilename()));
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

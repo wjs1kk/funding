@@ -6,6 +6,7 @@
 <html lang="ko" class="show-footer scroll-top scroll-apex">
 <head>
 <link rel="stylesheet" href="../resources/css/mypage.css">
+<script src="resources/js/jquery-3.6.4.js"></script>
 
 <title>와디즈</title>
 
@@ -18,6 +19,7 @@
 <link rel="stylesheet" href="https://static.wadiz.kr/personal-message/main.6cbfbce5.css">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/floating-buttons/main.2517a310.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css">
+
 
 </head>
 <body>
@@ -33,7 +35,7 @@
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
 				<h1 class="Inbox_title__3XRz2">메이커 문의</h1>
-					<div class="container py-5" style="width: 65%; margin: 0 auto;">
+				<div class="container py-5" style="width: 65%; margin: 0 auto;">
 					<div class="row">
 						<div class="col-md-8 pb-6">
 							<div class="mypage-section on" id="mypage_section_point" style="">
@@ -121,7 +123,7 @@
 									</c:if>
 									<section id="commandList">
 										<input type="button" value="목록" onclick="history.back()" style="background-color: #0d6ffc;">
-			
+										<input type="button" value="답변" onclick="inquiry_form()" style="background-color: #0d6ffc;">
 									</section>
 								</form>
 							</div>

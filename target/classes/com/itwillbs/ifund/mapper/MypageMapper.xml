@@ -142,7 +142,8 @@
 			WHERE
 				member_idx = #{member_idx}
 	</update>
-<!-- 	0609 김애리 추가 - 문의내역 -->
+	
+<!-- 	0609 김애리 추가 - 서포터 문의내역 -->
 	<select id="selectInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
 		SELECT *
 			FROM inquiry
@@ -155,11 +156,48 @@
 				WHERE inq_idx = #{inq_idx}
 	</select>
 	
-  	<select id="inqMaker" resultType="string">
-		SELECT * 
+<!--   	<select id="inqMaker" resultType="string"> -->
+<!-- 		SELECT maker_name  -->
+<!-- 			FROM maker -->
+<!-- 				WHERE maker_idx IN  -->
+<!-- 				(SELECT DISTINCT maker_idx FROM inquiry) -->
+<!-- 	</select> -->
+
+	<select id="myInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE member_idx = #{member_idx}
+				ORDER BY inq_re_ref DESC, inq_re_seq ASC
+				LIMIT #{startRow}, #{listLimit};
+	</select>
+	
+	<select id="myInquiryCount" resultType="Integer">
+		SELECT COUNT(member_idx)
+			FROM inquiry
+				WHERE member_idx = #{member_idx}
+	</select>
+	
+	
+	<select id="selectSupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE maker_idx IN     
+				<foreach item="maker" collection="maker" open="(" separator="," close=")">
+			    	#{maker}
+			    </foreach>
+				ORDER BY inq_re_ref DESC, inq_re_seq ASC
+				LIMIT #{startRow}, #{listLimit};
+	</select>
+
+  	<select id="selectMakerIdx" resultType="map">
+		SELECT maker_idx
 			FROM maker
-				WHERE maker_idx = 
-				(SELECT DISTINCT maker_idx FROM inquiry)
+				WHERE member_idx = #{member_idx} 
+	</select>
+  	<select id="selectMakerName" resultType="map">
+		SELECT maker_name
+			FROM maker
+				WHERE maker_idx = #{maker}
 	</select>
 	
 	

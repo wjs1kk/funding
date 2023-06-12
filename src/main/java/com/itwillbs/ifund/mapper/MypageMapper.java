@@ -1,6 +1,7 @@
 package com.itwillbs.ifund.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -32,5 +33,13 @@ public interface MypageMapper {
 //	0609 김애리 추가 - 문의내역
 	public List<InquiryVO> selectInquiry(Integer member_idx);
 	public InquiryVO getInquiry(@Param("inq_idx") String inq_idx);
+	List<InquiryVO> myInquiry(@Param("member_idx") Integer member_idx, @Param("listLimit") int listLimit, @Param("startRow") int startRow);
+	public Integer myInquiryCount(Integer member_idx);
+	List<InquiryVO> supInquiry(@Param("member_idx") Integer member_idx, @Param("listLimit") int listLimit, @Param("startRow") int startRow);
 	public String inqMaker(Integer member_idx);
+	public List<InquiryVO> selectSupInquiry(@Param("maker") List<String> maker, @Param("listLimit") int listLimit, @Param("startRow") int startRow);
+	public List selectMakerIdx(Integer member_idx);
+	public Map<String, Object> selectMakerName(String maker);
+	
+
 }

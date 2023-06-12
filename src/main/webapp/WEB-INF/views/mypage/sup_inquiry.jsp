@@ -1,57 +1,119 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko" class="show-footer">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<html lang="ko" class="show-footer scroll-top scroll-apex">
 <head>
+<link rel="stylesheet" href="../resources/css/mypage.css">
 
 <title>와디즈</title>
 
-
-<link rel="stylesheet"	href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
-<link rel="stylesheet"	href="https://static.wadiz.kr/static/web/css/vendor.5f64dbd5.chunk.css">
-<link rel="stylesheet"	href="https://static.wadiz.kr/static/web/common.css?6b20ab93">
-<link rel="stylesheet"	href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/css/vendor.5f64dbd5.chunk.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?032bb938">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?3fd5c009">
 <link href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=20230502" rel="stylesheet">
-<link rel="stylesheet"	href="https://static.wadiz.kr/personal-message/main.09e698cb.css">
+<link rel="stylesheet" href="/resources/static/css/style.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/personal-message/main.6cbfbce5.css">
+<link rel="stylesheet" href="https://static.wadiz.kr/static/floating-buttons/main.2517a310.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css">
-<link rel="stylesheet"	href="https://static.wadiz.kr/static/floating-buttons/main.5d60b4ab.css">
 
 </head>
 <body>
 	<div id="page-container">
 		<jsp:include page="../inc/top.jsp"></jsp:include>
+	
+		<div class="black-bg-wrap" style="display: none;"></div>
+		<form id="forwardForm" method="get">
+			<input type="hidden" id="returnURL" name="returnURL">
+		</form>
+		<input type="hidden" id="sessionLoginCheck" value="true">
+
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
-				<h1 class="Inbox_title__3XRz2">메시지</h1>
-				<p class="Inbox_guide__3Yl3H">
-					메시지는 실시간 채팅이 아닙니다. 주기적으로 페이지를 새로고침하세요.<a
-						href="https://www.wadiz.kr/web/wcast/detail/6147" target="_blank"
-						rel="noopener noreferrer">자세히 보기</a>
-				</p>
-				<div class="InboxTab_contents__2kGOM">
-					<div class="InboxTab_listWrapper__2Yakm">
-						<div class="InboxListContainer_contents__2mbd0">
-							<div class="InboxListContainer_listWrapper__H82cE">
-								<ul>
-									<div class="EmptyInboxList_contents__2gxKy">
-										<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-											class="withIcon_icon__INnaZ" aria-hidden="true">
-											<path
-												d="M28.8 6.4v16H8.96L4.8 26.56V6.4h24zm1.6-1.6H3.2v25.6L9.6 24h20.8V4.8z"></path></svg>
-										메시지가 없습니다.
-									</div>
-								</ul>
-								<div
-									class="InboxListBackdrop_contents__1Hon3 InboxListBackdrop_none__3FDoi">
-									<div class=""></div>
-								</div>
-							</div>
-						</div>
-					</div>
+				<h1 class="Inbox_title__3XRz2">서포터 문의</h1>
+				<div class="mypage-section on" id="mypage_section_setting" style="width: 65%; margin: 0 auto;">
+					<table class="tb-list">
+						<colgroup>
+							<col>
+							<col style="width: 18%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">제목</th>
+								<th scope="col">날짜</th>
+							</tr>
+						</thead>
+						<tbody id="notice_list">
+<%-- 							<c:choose> --%>
+<%-- 								<c:when test="${empty sessionScope.member_idxs}"> --%>
+<!-- 									<tr> -->
+<!-- 										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td> -->
+<!-- 									</tr> -->
+<%-- 								</c:when> --%>
+<%-- 								<c:when test="${empty myInquiry }"> --%>
+<!-- 									<tr> -->
+<!-- 										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td> -->
+<!-- 									</tr> -->
+<%-- 								</c:when> --%>
+<%-- 								<c:otherwise> --%>
+									<c:forEach var="inquiryList" items="${inquiryList}">
+										<tr>
+											<td class="tb-subj">
+												<c:if test="${inquiryList.inq_re_lev > 0 }">
+													<c:forEach var="i" begin="1" end="${inquiryList.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
+													<img src="https://static.thenounproject.com/png/88514-200.png"
+														width="10px" height="10px" style="margin: 20px 5px 0 20px;">
+													<a href="sup_inquiry_view?inq_idx=${inquiryList.inq_idx}">
+												</c:if> 
+												<c:if test="${inquiryList.inq_re_lev < 1 }">
+													<c:choose>
+														<c:when test="${inquiryList.inq_progress eq '진행중'}">
+															<span class="it-notice" style="background-color: #ffab00">${inquiryList.inq_progress}</span>
+														</c:when>
+														<c:otherwise>
+															<span class="it-notice" style="background-color: #97cf2f">${inquiryList.inq_progress}</span>
+														</c:otherwise>
+													</c:choose>
+													<a href="sup_inquiry_view?inq_idx=${inquiryList.inq_idx}">
+												</c:if> ${inquiryList.inq_subject} </a></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${inquiryList.inq_date}" /></td>
+										</tr>
+									</c:forEach>
+<%-- 								</c:otherwise> --%>
+<%-- 							</c:choose> --%>
+						</tbody>
+					</table>
+
+<!-- 					<section id="buttonArea"> -->
+<!-- 						<input class="writeBtn" type="button" value="문의하기" onclick="location.href='inquiry_form'"> -->
+<!-- 					</section> -->
+
+						<c:choose>
+						<c:when test="${empty param.pageNum }">
+							<c:set var="pageNum" value="1" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="pageNum" value="${param.pageNum }" />
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${empty param.pageNum }">
+							<c:set var="pageNum" value="1" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="pageNum" value="${param.pageNum }" />
+						</c:otherwise>
+					</c:choose>
+
+
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</div>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	
 </body>
 </html>

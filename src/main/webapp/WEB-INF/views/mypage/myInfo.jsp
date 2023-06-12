@@ -48,16 +48,7 @@
 }
 </style>
 <script type="text/javascript">
-	$(function() {
-		// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
-		$('#profileImg')
-				.css(
-						{
-							'background-image' : 'url(${pageContext.request.contextPath }/resources/images/profile/'
-									+ $("#member_image").val() + ')'
-						});
 
-	});
 </script>
 </head>
 <body>
@@ -73,9 +64,10 @@
 					<form id="saveForm" method="post" action="myInfoPro"
 						enctype="multipart/form-data">
 						<div class="profileimg-wrap">
-							<button type="button" id="resultProfileImg" class="profileimg">
-								<!-- 								<em style="background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png)"></em> -->
-								<em id="profileImg" class=""></em>
+							<button type="button" id="resultProfileImg" class="profileimg" >
+<!-- 								<em style="background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png)"></em> -->
+<%-- 							<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/${member.member_image }"> --%>
+							<em id="profileImg" style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"  class=""></em>
 							</button>
 							<p class="setting-profileimg">
 								<button type="button" onclick="$('#uploadProfileImg').click()"
