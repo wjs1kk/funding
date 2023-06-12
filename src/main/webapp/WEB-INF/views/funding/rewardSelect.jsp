@@ -116,6 +116,17 @@
 		}
 	}
 	
+	
+	// 후원금이 입력되지 않으면 0값 입력
+	$(function() {
+		$("#addDonation").on("change", function() {
+			if($("#addDonation").val() == ""){
+				$("#addDonation").val(0)
+			}
+		})
+	})
+	
+	
 </script>
 
 <!-- input type="number" 오른쪽 증가,감소 화살표 없애기 -->
@@ -286,7 +297,7 @@ input[type="number"]::-webkit-inner-spin-button {
 									<p class="input-area">
 									</p>
 									<div class="wz inline-block input">
-										<input type="text" id="addDonation" name="addDonation"
+										<input type="number" id="addDonation" name="addDonation"
 											class="wz input numOnly" maxlength="8" value="0">
 									</div>
 									원을 추가로 후원합니다.

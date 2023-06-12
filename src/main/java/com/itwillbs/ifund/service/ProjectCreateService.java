@@ -185,5 +185,10 @@ public class ProjectCreateService {
 	public Map showFeeCalculate(int project_idx) {
 		return mapper.showFeeCalculate(project_idx);
 	}
+
+	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
+	public List getMyPaymentList(int project_idx) {
+		return mapper.getMyPaymentList(project_idx);
+	}
 		
 }
