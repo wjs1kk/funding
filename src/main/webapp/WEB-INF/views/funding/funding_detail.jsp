@@ -17,6 +17,9 @@
 	href="https://static.wadiz.kr/main/css/reward-story.1b2d2b3c.chunk.css">
 <!-- <script src="/node_modules/readmore-js/readmore.min.js"></script> -->
 <script src="resources/js/jquery-3.6.4.js"></script>
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 <!-- slick-slide 사용 -->
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -25,25 +28,71 @@
 <title>Insert title here</title>
 </head>
 <script>
-	$(function(){
-		$('.slick-slider').slick({
-			slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-			infinite : true, 	//무한 반복 옵션	 
-			slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-			slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-			speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-			arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-			dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
-			autoplay : true,			// 자동 스크롤 사용 여부
-			autoplaySpeed : 2000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-			pauseOnHover : false,		// 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
-			vertical : false,		// 세로 방향 슬라이드 옵션
-			prevArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>',		// 이전 화살표 모양 설정
-			nextArrow : '<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickNext__382fX">Next</button>',		// 다음 화살표 모양 설정
-			dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
-			draggable : true, 	//드래그 가능 여부 
-		});
+	// 모달창 띄우기
+	$(function(){ 
+		$(".Button_contained__2SIAT").click(function(){
+	    	$(".modal").fadeIn();
+	  	});
+		
+	  	$(".modal_content").click(function(){
+	    	$(".modal").fadeOut();
+	  	});
 	});
+</script>
+<script>
+	function next() {
+		$(".slick-slide").hide();
+		var allSlide = $(".slick-slide");
+		var currentIndex = 0;
+		
+		$(".slick-slide").each(function(index,item){
+			if($(this).hasClass("slick-active")) {
+				currentIndex = index;
+			}
+	        
+		});
+		
+		var newIndex = 0;
+		
+		if(currentIndex >= allSlide.length - 1) {
+			//현재 슬라이드 index가 마지막 순서면 0번째로 보냄
+			newIndex = 0;
+		} else {
+			//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+			newIndex = currentIndex + 1;
+		}
+	
+		$(".slick-slide").removeClass("slick-active");
+		$(".slick-slide").eq(newIndex).addClass("slick-active");
+		$(".slick-slide").eq(newIndex).show();
+		
+	}
+	
+	function prev() {
+		$(".slick-slide").hide(); //모든 div 숨김
+		var allSlide = $(".slick-slide"); //모든 div 객체를 변수에 저장
+		var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+		
+		//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+		$(".slick-slide").each(function(index, item){
+			if($(this).hasClass("slick-active")) {
+				currentIndex = index;
+			}
+		});
+		
+		//새롭게 나타낼 div의 index
+		var newIndex = 0;
+	    
+		if(currentIndex <= 0) {
+			newIndex = allSlide.length - 1;
+		} else {
+			newIndex = currentIndex - 1;
+		}
+	
+		$(".slick-slide").removeClass("slick-active");
+		$(".slick-slide").eq(newIndex).addClass("slick-active");
+		$(".slick-slide").eq(newIndex).show();
+	}
 </script>
 <body style="margin-bottom: 49px !important; overflow: auto;" class="">
 	<div id="page-container">
@@ -67,132 +116,31 @@
 								<div class="RewardImageSlider_container__17EBj">
 									<div class="RewardImageSlider_slickList__2wKh0">
 										<div class="slick-slider slick-initialized" dir="ltr">
-											<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my">Previous</button>
+											<button type="button" class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickPrev__358my" onclick="prev()">Previous</button>
 											<div class="slick-list" style="height: 386px;">
 												<div class="slick-track"
-													style="width: 5472px; opacity: 1; transform: translate3d(-608px, 0px, 0px);">
-													<div data-index="-1" tabindex="-1"
-														class="slick-slide slick-cloned" aria-hidden="true"
-														style="width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152326633_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
+													style="width: 5472px; opacity: 1;">
+													<c:forEach var="images" items="${images }">
+														<div data-index="-1" tabindex="-1"
+															class="slick-slide slick-cloned" aria-hidden="true"
+															style="width: 752px;">
+															<div>
+																<div class="RewardImageSlider_slickListItem__kkFdd"
+																	tabindex="-1"
+																	style="width: 100%; display: inline-block;">
+																	<div
+																		class="RewardImageSlider_slickBackgroundImage__MBaH9"
+																		style="background-image: url('${pageContext.request.contextPath }/resources/images/project_images/${images}'); background-size: contain"></div>
+																</div>
 															</div>
 														</div>
-													</div>
-													<div data-index="0"
-														class="slick-slide slick-active slick-current"
-														tabindex="-1" aria-hidden="false"
-														style="outline: none; width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152301555_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="1" class="slick-slide" tabindex="-1"
-														aria-hidden="true" style="outline: none; width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152320037_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="2" class="slick-slide" tabindex="-1"
-														aria-hidden="true" style="outline: none; width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152323446_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="3" class="slick-slide" tabindex="-1"
-														aria-hidden="true" style="outline: none; width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152326633_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="4" tabindex="-1"
-														class="slick-slide slick-cloned" aria-hidden="true"
-														style="width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152301555_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="5" tabindex="-1"
-														class="slick-slide slick-cloned" aria-hidden="true"
-														style="width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152320037_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="6" tabindex="-1"
-														class="slick-slide slick-cloned" aria-hidden="true"
-														style="width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152323446_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
-													<div data-index="7" tabindex="-1"
-														class="slick-slide slick-cloned" aria-hidden="true"
-														style="width: 608px;">
-														<div>
-															<div class="RewardImageSlider_slickListItem__kkFdd"
-																tabindex="-1"
-																style="width: 100%; display: inline-block;">
-																<div
-																	class="RewardImageSlider_slickBackgroundImage__MBaH9"
-																	style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0418/20230418152326633_199429.jpg/wadiz/format/jpg/quality/80/&quot;);"></div>
-															</div>
-														</div>
-													</div>
+													</c:forEach>
 												</div>
 											</div>
 											<button type="button"
-												class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickNext__382fX">Next</button>
+												class="RewardImageSlider_slickArrow__1KoIJ RewardImageSlider_slickNext__382fX" onclick="next()">Next</button>
 										</div>
 									</div>
-									<span class="RewardImageSlider_slickIndex__1OeOW">1/4</span>
 								</div>
 								<div class="BannerBox_container__1Vo_U">
 									<div class="FundingBannerApp_container__1TVdz">
@@ -244,16 +192,6 @@
 											</div>
 										</div>
 									</div>
-									<script>
-// 									$(function () {
-// 									    $('.Story_button__AG0eO').readmore({
-// 									        blockCSS: 'display: block; width: 250px;',
-// 									        collapsedHeight: 18,
-// 									        moreLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_더보기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 더보기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>',
-// 									        lessLink: '<button data-ga-category="펀딩_상세" data-ga-action="클릭" data-ga-label="스토리_접기" class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg" type="button"><span><span class="Button_children__ilFun">스토리 접기</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq Button_icon__t6yp6" aria-hidden="true"><path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span></button>'
-// 									    });
-// 									});
-									</script>
 									<div class="Story_button__AG0eO">
 										<button data-ga-category="펀딩_상세" data-ga-action="클릭"
 											data-ga-label="스토리_더보기"
@@ -388,7 +326,7 @@
 													class="Badge_container__9G9PS Badge_visible__3LNXv BaseFundingInfo_remainingDay__2ooL6"><span
 													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_md__1Ck0w Badge_primary__tTdjx Badge_tertiary__3uYKh">
 													<script type="text/javascript">
-														var project_end_date = new Date("${selectFundingDetail.project_end_date}");
+														var project_end_date = new Date("${fundingDetail.project_end_date}");
 														var now = new Date();
 														var diff = project_end_date - now;
 														var diffDay = Math.ceil(diff/(1000*60*60*24));
@@ -456,8 +394,26 @@
 														</div>
 													</a>
 												</div>
+												<!-- modal에 띄우고자하는 코드 -->
+												<div id="test" class="modal">
+													<form action="inquiryPro" method="post">
+														<input type="hidden"  name="maker_idx" value="${maker_idx}">
+														<h1 class="d-flex justify-content-center text-secondary">${fundingDetail.maker_name }에게 문의하기</h1>
+														<hr>
+														<h2><input id="inq_subject" name="inq_subject" type="text" placeholder="제목을 입력하세요" class="Input_input__3c0SX Input_md__1_tQH" style="border: medium; width: 433px;"></h2>
+														<h3>문의 내용</h3>
+														<textarea id="inq_content" name="inq_content" rows="10" cols="52" style="resize: none; text-align: left; font-size: 15px; border-color: blue; border: aqua;"></textarea>		
+														<hr>
+														<div align="right">
+															<a href='#' rel=""><button class="Button_button__2FuOU Button_primary__2mZni Button_sm__16X6h Button_startIcon__3p6wN" type="submit">문의하기</button></a>
+														  	<a href="#" rel="modal:close"><button class="Button_button__2FuOU Button_tertiaryGrey__3gRf4 Button_sm__16X6h" type="button">닫기</button></a>    <!-- 닫기버튼 -->
+													  	</div>
+												  	</form>
+												</div>
+												<!-- href 속성값을 사용하여 modal을 띄워주는 링크 -->
+												<p><a href="#test" rel="modal:open">
 												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_sm__16X6h Button_startIcon__3p6wN" 
-													type="button">
+													type="button" id="popButton">
 													<span><svg viewBox="0 0 32 32" focusable="false"
 															role="presentation"
 															class="withIcon_icon__3VTbq Button_icon__t6yp6 MakerInfoHeader_icon__2uRNH"
@@ -465,7 +421,7 @@
 															<path d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path></svg>
 															<span class="Button_children__ilFun">문의하기</span></span>
 												</button>
-
+												</a></p>
 											</div>
 										</section>
 									</section>
@@ -490,13 +446,12 @@
 												<p>리워드 선택</p>
 												<div class="Rewards_period__Mo1m-">
 													<p>진행기간</p>
-													<p>${selectFundingDetail.project_start_date } ~ ${selectFundingDetail.project_end_date }</p>
+													<p>${fundingDetail.project_start_date } ~ ${fundingDetail.project_end_date }</p>
 												</div>
 											</div>
 											<div class="Rewards_listBox__182Ct">
 												<div class="Rewards_list__VD-Af">
-
-													<!-- 												리워드 카드 -->
+													<!-- 리워드 카드 -->
 													<c:forEach items="${selectReward }" var="selectReward">
 														<div style="position: relative;">
 															<div class="Reward_container__2wOvB Reward_expand__37mL_"

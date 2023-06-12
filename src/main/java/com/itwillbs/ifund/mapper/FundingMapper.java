@@ -5,8 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.itwillbs.ifund.vo.ProjectListVO;
-import com.itwillbs.ifund.vo.RewardVO;
+import com.itwillbs.ifund.vo.*;
 
 
 public interface FundingMapper {
@@ -17,6 +16,7 @@ public interface FundingMapper {
 	public List categoryList();
 	public List selectComingsoonProject(@Param("category") String category, @Param("order") String order);
 	public Map<String, Object> fundingDetail(int project_idx);
+	public Map<String, Object> fundingDetail();
 	// 06-09 김동욱 결제할 리워드 가져오기
 	public Map getPayReward(int reward_idx);
 	// 06-09 김동욱 포인트 가져오기
@@ -35,4 +35,6 @@ public interface FundingMapper {
 	public int projectDetailAmountUpdate(@Param("project_idx") int project_idx, @Param("total_amount") int total_amount);
 	// 06-11 김동욱 결제 금액의 5프로 포인트 적립
 	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
+	public int insertInquiry(@Param("inquiry_subject") String inquiry_subject, @Param("inquiry_content") String inquiry_content);
+	public int insertInquiry(InquiryVO inquiry);
 }
