@@ -80,6 +80,7 @@ public interface AdminMapper {
 	public List selectSortedProjectList(String label);
 	// 
 	public int updateProjectStatus(@Param("projectIdx") Integer projectIdx, @Param("projectStatus")String projectStatus);
+	public List selectRewardList(ProjectVO project);
 
 
 }

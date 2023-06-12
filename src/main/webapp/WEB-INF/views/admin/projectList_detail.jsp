@@ -62,8 +62,83 @@
 }
 </style>
 <script type="text/javascript">
+
+	<!-- 모달 실행 -->
+	function showModal(modalId, btnId, inputName) {
+		$("input[name=project_title]").val($("#td_project_title").text());
+		let idx = document.getElementById(btnId).getAttribute("value");
+// 		$("#project_idx").val(idx);
+// 		alert('idx= ' + $("#project_idx").val() + ': ' + modalId);
+// 		$("#project_idx2").val(idx);
+		
+		var modal = document.getElementById(modalId);
+		var closeBtn = document.getElementById('closeBtn' + modalId);
+		var xBtn = document.getElementById('xBtn' + modalId);
+		
+		modal.classList.add('show');
+		modal.style.display = 'block';
+		
+		// 모달 끄는 버튼
+		closeBtn.addEventListener('click', () => {
+			modal.className = 'modal fade';
+			modal.style.display = 'none';
+		})
+		xBtn.addEventListener('click', () => {
+			modal.className = 'modal fade';
+			modal.style.display = 'none';
+		});
+	}
+	
+	<!-- 요금제  -->
+	const Plan = {
+			LIGHT: "1",
+			BASIG: "2",
+			PRO:   "3"
+	};
+	
+	<!-- 승인 -->
+	function modalApprove(project_plan, project_idx, project_title) {
+		showModal('approve', 'approveBtn', 'project_coming_soon_date');
+		let comingSoonDate = $("input[name=project_coming_soon_date]");
+		$("#project_idx").val(project_idx);
+		$("#project_title").val(project_title);
+		
+		// 오픈예정
+		if (project_plan == Plan.LIGHT) {
+		  comingSoonDate.attr('readonly', true);
+		  comingSoonDate.attr('placeholder', '날짜를 지정할 수 없습니다.');
+		} 
+	}
+	
+	<!-- 승인 거부 -->
+	function modalDenied(project_idx, project_title) {
+		showModal('denied', 'deniedBtn', 'approve_reason');
+		$("#project_idx2").val(project_idx);
+		$("#project_title2").val(project_title);
+	}
 	
 </script>
+<!-- 모달 css -->
+<style type="text/css">
+.modal {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu.show {
+	overflow: visible;
+}
+
+.fade {
+    transition: opacity .15s linear;
+}
+
+</style>
+<style type="text/css">
+.form-control:disabled, .form-control[readonly] {
+	background-color: white;
+	opacity: 1;
+}
+</style>
 <body>
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
@@ -111,110 +186,112 @@
 
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
-
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<!-- Basic with Icons -->
-							<h4 class="fw-bold py-3 mb-4">프로젝트 정보</h4>
-							<div class="row">
+						<h4 class="fw-bold py-3 mb-4">프로젝트 정보</h4>
+						<div class="row">
 							<div class="col-xl">
-									<div class="card mb-4">
-										<div class="card-body">
-											<form>
-												<div class="mb-3">
- 													<c:choose>
-														<c:when test="${project.project_update_status eq 2}">
-															<span class="badge bg-danger">마감</span>
-														</c:when>
-														<c:when test="${project.project_update_status eq 1 }">
-															<span class="badge bg-primary">진행중</span>
-														</c:when>
-														<c:otherwise>
-															<span class="badge bg-label-secondary">오픈전</span>
-														</c:otherwise>
-													</c:choose>
-													<span class="badge bg-danger">${project.d_day}일</span>
-													<c:choose>
-															<c:when test="${project.project_plan eq 3 }">
-																<span class="badge bg-info">Pro</span>
-															</c:when>
-															<c:when test="${project.project_plan eq 2 }">
-																<span class="badge bg-warning">Basic</span>
-															</c:when>
-															<c:otherwise>
-																<span class="badge bg-label-secondary">Light</span>
-															</c:otherwise>
-														</c:choose>
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-fullname">유형</label>
-													<c:choose>
-														<c:when test="${project.project_type eq 0}">
-															<input type="text" class="form-control"
-															value="펀딩" id="basic-default-fullname">
-														</c:when>
-														<c:otherwise>
-															<input type="text" class="form-control"
-															value="공동구매" id="basic-default-fullname">
-														</c:otherwise>
-													</c:choose>
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-fullname">카테고리</label>
-													<input type="text" class="form-control"
-														 value="${project.project_category}"
-														id="basic-default-fullname" placeholder="John Doe">
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-fullname">제목</label>
-													<input type="text" class="form-control"
+								<div class="card mb-4">
+									<div class="card-body">
+										<form>
+											<div class="mb-3">
+												<c:choose>
+													<c:when test="${project.project_status eq 2}">
+														<span class="badge bg-danger">마감</span>
+													</c:when>
+													<c:when test="${project.project_status eq 1 }">
+														<span class="badge bg-primary">진행중</span>
+													</c:when>
+													<c:otherwise>
+														<span class="badge bg-label-secondary">오픈전</span>
+													</c:otherwise>
+												</c:choose>
+												<span class="badge bg-danger">${project.d_day}일</span>
+												<c:choose>
+													<c:when test="${project.project_plan eq 3 }">
+														<span class="badge bg-info">Pro</span>
+													</c:when>
+													<c:when test="${project.project_plan eq 2 }">
+														<span class="badge bg-warning">Basic</span>
+													</c:when>
+													<c:otherwise>
+														<span class="badge bg-label-secondary">Light</span>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-fullname">유형</label>
+												<c:choose>
+													<c:when test="${project.project_type eq 0}">
+														<input type="text" class="form-control" value="펀딩"
+															id="basic-default-fullname">
+													</c:when>
+													<c:otherwise>
+														<input type="text" class="form-control" value="공동구매"
+															id="basic-default-fullname">
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-fullname">카테고리</label>
+												<input type="text" class="form-control"
+													value="${project.project_category}"
+													id="basic-default-fullname" placeholder="John Doe">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-fullname">제목</label>
+												<input type="text" class="form-control"
 													value="${project.project_title}"
-														id="basic-default-fullname" placeholder="John Doe">
-												</div>
-												
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-phone">요약</label> 
-													<input type="text" id="basic-default-phone"
+													id="basic-default-fullname" placeholder="John Doe">
+											</div>
+
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-phone">요약</label>
+												<input type="text" id="basic-default-phone"
 													value="${project.project_summary}"
 													class="form-control phone-mask" placeholder="658 799 8941">
-												</div>
-											</form>
-										</div>
+											</div>
+										</form>
 									</div>
 								</div>
-								<div class="col-xl">
-									<div class="card mb-4">
-										<div class="card-body">
-											<form>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-email">오픈예정+</label>
-													<div class="input-group input-group-merge">
-														<input type="text" class="form-control" value="${project.project_coming_soon_date}"
-														id="basic-default-company">
-													</div>
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-fullname">시작일</label>
-														 <input type="text" class="form-control" value="${project.project_start_date }"
-														id="basic-default-fullname">
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-company">마감일</label>
-													<input type="text" class="form-control" value="${project.project_end_date }"
-														id="basic-default-company" >
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-company">목표금액</label>
-													<input type="text" class="form-control" 
-													value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
-														id="basic-default-company" >
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								
 							</div>
+							<div class="col-xl">
+								<div class="card mb-4">
+									<div class="card-body">
+										<form>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-email">오픈예정+</label>
+												<div class="input-group input-group-merge">
+													<input type="text" class="form-control"
+														value="${project.project_coming_soon_date}"
+														id="basic-default-company">
+												</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-fullname">시작일</label>
+												<input type="text" class="form-control"
+													value="${project.project_start_date }"
+													id="basic-default-fullname">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-company">마감일</label>
+												<input type="text" class="form-control"
+													value="${project.project_end_date }"
+													id="basic-default-company">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-company">목표금액</label>
+												<input type="text" class="form-control"
+													value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+													id="basic-default-company">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
 						<h4 class="fw-bold py-3 mb-4">프로젝트 내용</h4>
 						<!-- Basic Layout & Basic with Icons -->
 						<div class="row">
@@ -270,12 +347,12 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">일정 뒤에 @일 남음 붙붙</label>
+													for="basic-default-phone">참여금액</label>
 												<div class="col-sm-10">
 
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
-														value="${project.d_day}일"
+														value="<fmt:formatNumber value="${project.detail_amount}" pattern="#,###" /> %"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -305,136 +382,185 @@
 									</div>
 								</div>
 							</div>
-							<h4 class="fw-bold py-3 mb-4">리워드</h4>
-							<div class="row">
-								<div class="col-xl">
-									<div class="card mb-4">
-										<div
-											class="card-header d-flex justify-content-between align-items-center">
-											<h5 class="mb-0">메이커</h5>
-											<small class="text-muted float-end">Default label</small>
-										</div>
-										<div class="card-body">
-											<form>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-fullname">Full
-														Name</label> <input type="text" class="form-control"
-														id="basic-default-fullname" placeholder="John Doe">
+
+
+						</div>
+						<h4 class="fw-bold py-3 mb-4">리워드</h4>
+						<div class="row">
+							<div class="col-xl">
+								<div class="card mb-4">
+									<div
+										class="card-header d-flex justify-content-between align-items-center">
+										<h5 class="mb-0">Basic Layout</h5>
+										<small class="text-muted float-end">Default label</small>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-fullname">Full
+													Name</label> <input type="text" class="form-control"
+													id="basic-default-fullname" placeholder="John Doe">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-company">Company</label>
+												<input type="text" class="form-control"
+													id="basic-default-company" placeholder="ACME Inc.">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-email">Email</label>
+												<div class="input-group input-group-merge">
+													<input type="text" id="basic-default-email"
+														class="form-control" placeholder="john.doe"
+														aria-label="john.doe"
+														aria-describedby="basic-default-email2"> <span
+														class="input-group-text" id="basic-default-email2">@example.com</span>
 												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-company">Company</label>
-													<input type="text" class="form-control"
-														id="basic-default-company" placeholder="ACME Inc.">
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-email">Email</label>
-													<div class="input-group input-group-merge">
-														<input type="text" id="basic-default-email"
-															class="form-control" placeholder="john.doe"
-															aria-label="john.doe"
-															aria-describedby="basic-default-email2"> <span
-															class="input-group-text" id="basic-default-email2">@example.com</span>
-													</div>
-													<div class="form-text">You can use letters, numbers
-														&amp; periods</div>
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-phone">Phone
-														No</label> <input type="text" id="basic-default-phone"
-														class="form-control phone-mask" placeholder="658 799 8941">
-												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-default-message">Message</label>
-													<textarea id="basic-default-message" class="form-control"
-														placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
-												</div>
-											</form>
-										</div>
+												<div class="form-text">You can use letters, numbers
+													&amp; periods</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-phone">Phone
+													No</label> <input type="text" id="basic-default-phone"
+													class="form-control phone-mask" placeholder="658 799 8941">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-default-message">Message</label>
+												<textarea id="basic-default-message" class="form-control"
+													placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+											</div>
+										</form>
 									</div>
 								</div>
-								<div class="col-xl">
-									<div class="card mb-4">
-										<div
-											class="card-header d-flex justify-content-between align-items-center">
-											<h5 class="mb-0">정산(계좌,세금계산서 정보 넣기)</h5>
-											<small class="text-muted float-end">Merged input
-												group</small>
-										</div>
-										<div class="card-body">
-											<form>
-												<div class="mb-3">
-													<label class="form-label" for="basic-icon-default-fullname">Full
-														Name</label>
-													<div class="input-group input-group-merge">
-														<span id="basic-icon-default-fullname2"
-															class="input-group-text"><i class="bx bx-user"></i></span>
-														<input type="text" class="form-control"
-															id="basic-icon-default-fullname" placeholder="John Doe"
-															aria-label="John Doe"
-															aria-describedby="basic-icon-default-fullname2">
-													</div>
+							</div>
+							<div class="col-xl">
+								<div class="card mb-4">
+									<div
+										class="card-header d-flex justify-content-between align-items-center">
+										<h5 class="mb-0">Basic with Icons</h5>
+										<small class="text-muted float-end">Merged input group</small>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="mb-3">
+												<label class="form-label" for="basic-icon-default-fullname">Full
+													Name</label>
+												<div class="input-group input-group-merge">
+													<span id="basic-icon-default-fullname2"
+														class="input-group-text"><i class="bx bx-user"></i></span>
+													<input type="text" class="form-control"
+														id="basic-icon-default-fullname" placeholder="John Doe"
+														aria-label="John Doe"
+														aria-describedby="basic-icon-default-fullname2">
 												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-icon-default-company">Company</label>
-													<div class="input-group input-group-merge">
-														<span id="basic-icon-default-company2"
-															class="input-group-text"><i
-															class="bx bx-buildings"></i></span> <input type="text"
-															id="basic-icon-default-company" class="form-control"
-															placeholder="ACME Inc." aria-label="ACME Inc."
-															aria-describedby="basic-icon-default-company2">
-													</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-icon-default-company">Company</label>
+												<div class="input-group input-group-merge">
+													<span id="basic-icon-default-company2"
+														class="input-group-text"><i class="bx bx-buildings"></i></span>
+													<input type="text" id="basic-icon-default-company"
+														class="form-control" placeholder="ACME Inc."
+														aria-label="ACME Inc."
+														aria-describedby="basic-icon-default-company2">
 												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-icon-default-email">Email</label>
-													<div class="input-group input-group-merge">
-														<span class="input-group-text"><i
-															class="bx bx-envelope"></i></span> <input type="text"
-															id="basic-icon-default-email" class="form-control"
-															placeholder="john.doe" aria-label="john.doe"
-															aria-describedby="basic-icon-default-email2"> <span
-															id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-													</div>
-													<div class="form-text">You can use letters, numbers
-														&amp; periods</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-icon-default-email">Email</label>
+												<div class="input-group input-group-merge">
+													<span class="input-group-text"><i
+														class="bx bx-envelope"></i></span> <input type="text"
+														id="basic-icon-default-email" class="form-control"
+														placeholder="john.doe" aria-label="john.doe"
+														aria-describedby="basic-icon-default-email2"> <span
+														id="basic-icon-default-email2" class="input-group-text">@example.com</span>
 												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-icon-default-phone">Phone
-														No</label>
-													<div class="input-group input-group-merge">
-														<span id="basic-icon-default-phone2"
-															class="input-group-text"><i class="bx bx-phone"></i></span>
-														<input type="text" id="basic-icon-default-phone"
-															class="form-control phone-mask"
-															placeholder="658 799 8941" aria-label="658 799 8941"
-															aria-describedby="basic-icon-default-phone2">
-													</div>
+												<div class="form-text">You can use letters, numbers
+													&amp; periods</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-icon-default-phone">Phone
+													No</label>
+												<div class="input-group input-group-merge">
+													<span id="basic-icon-default-phone2"
+														class="input-group-text"><i class="bx bx-phone"></i></span>
+													<input type="text" id="basic-icon-default-phone"
+														class="form-control phone-mask" placeholder="658 799 8941"
+														aria-label="658 799 8941"
+														aria-describedby="basic-icon-default-phone2">
 												</div>
-												<div class="mb-3">
-													<label class="form-label" for="basic-icon-default-message">Message</label>
-													<div class="input-group input-group-merge">
-														<span id="basic-icon-default-message2"
-															class="input-group-text"><i class="bx bx-comment"></i></span>
-														<textarea id="basic-icon-default-message"
-															class="form-control"
-															placeholder="Hi, Do you have a moment to talk Joe?"
-															aria-label="Hi, Do you have a moment to talk Joe?"
-															aria-describedby="basic-icon-default-message2"></textarea>
-													</div>
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="basic-icon-default-message">Message</label>
+												<div class="input-group input-group-merge">
+													<span id="basic-icon-default-message2"
+														class="input-group-text"><i class="bx bx-comment"></i></span>
+													<textarea id="basic-icon-default-message"
+														class="form-control"
+														placeholder="Hi, Do you have a moment to talk Joe?"
+														aria-label="Hi, Do you have a moment to talk Joe?"
+														aria-describedby="basic-icon-default-message2"></textarea>
 												</div>
-											</form>
-										</div>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
 						</div>
+						<h4 class="fw-bold py-3 mb-4">리워드</h4>
+						<div class="row">
+							<div class="card">
+								<div class="table-responsive text-nowrap">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>리워드명</th>
+												<th>가격</th>
+												<th>내용</th>
+												<th>옵션</th>
+												<th>수량</th>
+												<th>판매량</th>
+											</tr>
+										</thead>
+										
+										<c:choose>
+											<c:when test="${!empty reward }">
+												<tbody class="table-border-bottom-0">
+													<c:forEach var="reward" items="${reward }">
+														<tr>
+															<td>${reward.reward_name }</td>
+															<td>
+																<fmt:formatNumber value="${reward.reward_amount}" pattern="#,###" />원
+															</td>
+															<td>${reward.reward_content}</td>
+															<td>${reward.reward_option }</td>
+															<td>
+																<fmt:formatNumber value="${reward.reward_quantity}" pattern="#,###" />개
+															</td>
+															<td>
+																<fmt:formatNumber value="${reward.reward_sell}" pattern="#,###" />개
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td>등록된 리워드가 없습니다</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</table>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 
 					<!-- / Content -->
 					<div class="content-backdrop fade"></div>
 				</div>
 				<!-- Content wrapper -->
-			</div>
+ 			</div>
 			<!-- / Layout page -->
 		</div>
 

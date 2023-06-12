@@ -207,12 +207,12 @@ ul li {
 												onclick="location.href='detail/${projects.project_idx}'">
 												<td>${projects.project_idx }</td>
 												<c:choose>
-													<c:when test="${projects.project_update_status eq 2 }">
+													<c:when test="${projects.project_status eq 2 }">
 														<td id="td_project_plan">
-															<span class="badge bg-danger"> 마감 </span>
+															<span class="badge bg-danger">마  감</span>
 														</td>
 													</c:when>
-													<c:when test="${projects.project_update_status eq 1 }">
+													<c:when test="${projects.project_status eq 1 }">
 														<td id="td_project_plan">
 															<span class="badge bg-primary">진행중</span>
 														</td>
@@ -234,22 +234,12 @@ ul li {
 												</c:choose>
 												<c:choose>
 													<c:when test="${projects.project_approve_status eq 3 }">
-<!-- 														<td id="td_project_plan"> -->
-<!-- 															<span class="badge bg-label-danger">거부</span> -->
-<!-- 														</td> -->
 														<td>거부</td>
 													</c:when>
 													<c:when test="${projects.project_approve_status eq 2 }">
-<!-- 														<td id="td_project_plan"> -->
-<!-- 															<span class="badge bg-label-success">승인</span> -->
-															
-<!-- 														</td> -->
 														<td>승인</td>
 													</c:when>
 													<c:when test="${projects.project_approve_status eq 1 }">
-<!-- 														<td id="td_project_plan"> -->
-<!-- 															<span class="badge bg-label-info">대기</span> -->
-<!-- 														</td> -->
 														<td>대기</td>
 													</c:when>
 													<c:otherwise>

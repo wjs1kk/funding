@@ -47,6 +47,7 @@ enum Role {
 }
 
 enum ApproveStatus {
+	WAITING("1"), // 제출
 	APPROVE("2"), // 승인
 	DECLINE("3"); // 거부
 
@@ -554,13 +555,13 @@ public class AdminController {
 				LocalDate startDate = LocalDate.parse(startDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 				LocalDate endDate = LocalDate.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 				
-				// 프로젝트 진행여부 업뎃 0 시작전, 1 진행중 2 종료됨
+				// 프로젝트 진행여부 업뎃 WAITING 시작전, ONGOING 진행중 , COMPLIETED 종료됨
 				String projectStatus = currentDate.isBefore(startDate) ? ProjectStatus.WAITING.code :
 									   currentDate.isAfter(endDate)	   ? ProjectStatus.COMPLIETED.code : ProjectStatus.ONGOING.code;
 				
 				int updateCount = adminService.updateProjectStatus(projectIdx, projectStatus);
 				if(updateCount > 0) {
-					project.put("project_update_status", projectStatus);
+					project.put("project_status", projectStatus);
 					System.out.println(projectIdx +"번 상태 업데이트 0:오픈 전 1:진행중 2:마감 => " + projectStatus);
 				}
 			}
@@ -583,7 +584,11 @@ public class AdminController {
 	@GetMapping("admin/projectList/detail/{project_idx}")
 	public String projectListDetail(Model model, ProjectVO project, @PathVariable("project_idx") String project_idx) {
 		Map projectDetail = adminService.getDetailList(project);
+		
+		List reward = adminService.getRewardList(project);
 		model.addAttribute("project", projectDetail);
+		model.addAttribute("reward", reward);
+		
 		return "admin/projectList_detail";
 	}
 	
