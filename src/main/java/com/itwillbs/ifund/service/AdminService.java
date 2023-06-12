@@ -174,4 +174,8 @@ public class AdminService {
 		
 	}
 
+	public List getRewardList(ProjectVO project) {
+		return mapper.selectRewardList(project);
+	}
+
 }

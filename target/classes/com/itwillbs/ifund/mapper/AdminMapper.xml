@@ -224,7 +224,7 @@
 			   DATEDIFF(now(), p.project_end_date) AS d_day
 			FROM project p 
 				JOIN member m ON p.member_idx = m.member_idx
-				JOIN project_detail pd ON p.project_idx = pd.project_idx
+				JOIN project_detail pd ON p.project_idx = pd.project_idx;
 	</select>  
 	
 	<!-- 0517 은산 승인대기 목록--> 
@@ -240,6 +240,7 @@
 			   m.member_name
 			FROM project p 
 				JOIN member m ON p.member_idx = m.member_idx
+				JOIN project_detail pd ON p.project_idx = pd.project_idx
 					WHERE p.project_approve_status = 1;
 	</select>
 	
@@ -267,7 +268,7 @@
 			   pd.project_detail_target,
 			   (pd.project_detail_amount/p.project_target)*100 AS target_rate,
 			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day,
-			   p.project_update_status
+			   p.project_status
 			FROM project p 
 				JOIN member m 
 					ON p.member_idx = m.member_idx
@@ -368,10 +369,10 @@
 					<if test="label != null">
 						<choose>
 							<when test="label == 'active'">
-								WHERE p.project_update_status = 1
+								WHERE p.project_status = 1
 							</when>
 							<when test="label == 'closed'">
-								WHERE p.project_update_status = 2
+								WHERE p.project_status = 2
 							</when>
 							<when test="label == 'denied'">
 								WHERE p.project_approve_status = 3
@@ -383,7 +384,14 @@
 	<!-- 프로젝트 진행여부 업데이트 -->
 	<update id="updateProjectStatus">
 		update project
-			set project_update_status = #{projectStatus}
+			set project_status = #{projectStatus}
 				where project_idx = #{projectIdx}
 	</update>
+	
+	<select id="selectRewardList" resultType="com.itwillbs.ifund.vo.RewardVO">
+		select * 
+			from reward
+				where project_idx = #{project_idx}
+		
+	</select>
 </mapper>
