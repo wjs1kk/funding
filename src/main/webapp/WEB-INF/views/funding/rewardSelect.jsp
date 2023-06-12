@@ -197,7 +197,7 @@ input[type="number"]::-webkit-inner-spin-button {
 										<input type="hidden" id="reward_idx_${status.index}" value="${selectReward.reward_idx }"></input>
 										<input type="hidden" id="reward_delivery_fee_${status.index}" value="${selectReward.reward_delivery_fee }"></input>
 									
-										<li class="RewardProductList_list__2oOvi">
+										<li class="RewardProductList_list__2oOvi" >
 											<section
 												class="RewardProductItem_container__1wZBW">
 												<label class="RewardProductItem_label__2t2Wd"
@@ -212,7 +212,7 @@ input[type="number"]::-webkit-inner-spin-button {
 															${selectReward.reward_name }
 															<div class="RewardProductItem_remain__XDQPL">
 																<span class="RewardProductItem_limit__5TztV">제한수량 ${selectReward.reward_quantity }개</span>
-																<span class="RewardProductItem_stock__5qZys">${selectReward.reward_quantity }개 남음</span>
+																<span class="RewardProductItem_stock__5qZys">${selectReward.reward_quantity  - selectReward.reward_sell}개 남음</span>
 															</div>
 														</div>
 														<div class="RewardProductItem_description__1Eenu">
