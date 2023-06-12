@@ -1,12 +1,12 @@
 package com.itwillbs.ifund.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.ifund.mapper.MypageMapper;
-import com.itwillbs.ifund.vo.CouponUsedVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.InquiryVO;
 import com.itwillbs.ifund.vo.MakerVO;
@@ -71,10 +71,31 @@ public class MypageService {
 	public List<InquiryVO> selectInquiry(Integer member_idx) {
 		return mapper.selectInquiry(member_idx);
 	}
+	public List<InquiryVO> myInquiry(Integer member_idx, int listLimit, int startRow) {
+		return mapper.myInquiry(member_idx, listLimit, startRow);
+	}
+	public Integer myInquiryCount(Integer member_idx) {
+		return mapper.myInquiryCount(member_idx);
+	}
 	public InquiryVO getInquiry(String inq_idx) {
 		return mapper.getInquiry(inq_idx);
 	}
-	public String inqMaker(Integer member_idx) {
-		return mapper.inqMaker(member_idx);
+	
+	
+//	0612 김애리 추가 - 메이커문의
+//	public String inqMaker(Integer member_idx) {
+//		return mapper.inqMaker(member_idx);
+//	}
+	public List<InquiryVO> supInquiry(Integer member_idx, int listLimit, int startRow) {
+		return mapper.supInquiry(member_idx, listLimit, startRow);
+	}
+	public List<InquiryVO> selectSupInquiry(List<String> maker, int listLimit, int startRow) {
+		return mapper.selectSupInquiry(maker, listLimit, startRow);
+	}
+	public List selectMakerIdx(Integer member_idx) {
+		return mapper.selectMakerIdx(member_idx);
+	}
+	public Map<String, Object> selectMakerName(String maker) {
+		return mapper.selectMakerName(maker);
 	}
 }

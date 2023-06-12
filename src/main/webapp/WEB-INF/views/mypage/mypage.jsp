@@ -53,7 +53,7 @@
 									<div class="MyWadizSupporterProfile_profileImage__1eEvS">
 										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
 											aria-label="프로필 상세 보기" data-event="profile"
-											style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-4.png&quot;);"></button>
+											style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"></button>
 										<button onclick="location.href='myInfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
 											aria-label="프로필 편집하기" data-event="profile_edit">
 											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
@@ -69,10 +69,6 @@
 											<dt class="BlindText_textHidden__ovQb4">내 회원 정보</dt>
 										</dl>
 									</div>
-									
-									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
-										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
-									</button>
 									
 									<div class="MyWadizSupporterProfile_setting__n8-M7">
 										<button onclick="location.href='../logout'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
@@ -132,23 +128,6 @@
 										<div>
 											<ul>
 												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="follow">
-														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																<path fill="none" d="M0 0h40v40H0z"></path>
-																<path d="M28.13 9.39a5.26 5.26 0 0 1 0 10.52 8.93 8.93 0 0 1-1.71 1.87 7.07 7.07 0 0 0 1.73.22 7.35 7.35 0 1 0 0-14.7 7.07 7.07 0 0 0-1.73.22 8.93 8.93 0 0 1 1.71 1.87zM29.82 24a8.41 8.41 0 0 1 2.63 2.38c3.71.69 5.3 2.51 5.3 5.8h2.09c0-6.58-5.31-7.97-10.02-8.18zM11.3 20.79v-1.04H6.69v-4.61H4.61v4.61H0v2.08h4.61v4.61h2.08v-4.61h4.61v-1.04z"></path>
-																<path d="M27.85 14.65A7.35 7.35 0 1 0 20.5 22a7.36 7.36 0 0 0 7.35-7.35zm-12.62 0a5.27 5.27 0 1 1 5.27 5.26 5.27 5.27 0 0 1-5.27-5.26zM20.5 24c-5 0-11.69.85-11.69 8.22h2.08c0-4.36 2.79-6.14 9.61-6.14s9.6 1.78 9.6 6.14h2.08c0-7.42-6.67-8.22-11.68-8.22z"></path>
-															</svg>
-														</span>
-														<span class="MyWadizMenu_text__9ryGW">팔로잉</span>
-														<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
-															</svg>
-														</span>
-													</a>
-												</li>
-												<li class="MyWadizMenu_menu__3b-H-">
 													<a href="wish">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
@@ -163,13 +142,6 @@
 														</span>
 													</a>
 												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="MyWadizSection_section__3FCv1">
-										<h4 class="MyWadizSection_title__2pnV3">나의 문의 내역</h4>
-										<div>
-											<ul>
 												<li class="MyWadizMenu_menu__3b-H-">
 													<a href="makerinquiry">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
@@ -182,21 +154,12 @@
 														</span>
 													</a>
 												</li>
-												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="supinquiry">
-														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																<path fill="none" d="M0 0h40v40H0z"></path>
-																<path d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"></path>
-																<path d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"></path>
-															</svg>
-														</span>
-														<span class="MyWadizMenu_text__9ryGW">1:1 문의</span>
-														<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span>
-													</a>
-												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="MyWadizSection_section__3FCv1">
+										<div>
+											<ul>
 											</ul>
 										</div>
 									</div>
@@ -204,19 +167,6 @@
 										<h4 class="MyWadizSection_title__2pnV3">고객센터</h4>
 										<div>
 											<ul>
-												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="https://helpcenter.wadiz.kr/hc/ko">
-														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
-															<i class="MyWadizServiceCenter_guideIcon__3EDys"></i>
-														</span>
-														<span class="MyWadizMenu_text__9ryGW">도움말 센터</span>
-														<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
-															</svg>
-														</span>
-													</a>
-												</li>
 												<li class="MyWadizMenu_menu__3b-H-">
 													<a href="${pageContext.request.contextPath }/notice">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
@@ -230,7 +180,7 @@
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M17.84 3.2l.4 2.56.16.88.88.32a9.55 9.55 0 0 1 2.893 1.691l.707.549.88-.32 2.4-.88L28 11.2l-2 1.68-.72.56.16.88a9.022 9.022 0 0 1-.009 3.336l-.151.824.72.56 2 1.76-1.84 3.2-3.28-1.2-.72.56a9.485 9.485 0 0 1-2.814 1.658l-.946.342-.16.88-.4 2.56h-3.68l-.4-2.56-.16-.88-.88-.32a9.55 9.55 0 0 1-2.893-1.691L9.12 22.8l-.88.32-2.4.88L4 20.8l2-1.68.72-.56-.16-.88a9.022 9.022 0 0 1 .009-3.336l.151-.824-.72-.56-2-1.76L5.84 8l3.28 1.2.72-.56a9.485 9.485 0 0 1 2.814-1.658l.946-.342.16-.88.4-2.56h3.68zM16 21.6a5.6 5.6 0 1 0 0-11.2 5.6 5.6 0 0 0 0 11.2zm2.56-20h-5.136a.8.8 0 0 0-.783.635L12.08 5.44a11.21 11.21 0 0 0-3.292 2.011L5.76 6.24h-.267a.798.798 0 0 0-.691.397L2.24 10.961a.798.798 0 0 0 .238 1.038l2.562 2.082a10.647 10.647 0 0 0 .01 3.906l-2.57 2.014a.8.8 0 0 0-.158 1.044L4.8 25.362a.8.8 0 0 0 .693.4h.347l2.96-1.2c.956.798 2.07 1.448 3.282 1.895l.638 3.225c.077.368.399.64.784.64h5.072a.8.8 0 0 0 .783-.635l.561-3.205a11.212 11.212 0 0 0 3.296-1.934l3.024 1.134h.347a.798.798 0 0 0 .691-.397l2.562-4.404a.8.8 0 0 0-.159-1.039l-2.561-2.081a10.647 10.647 0 0 0-.01-3.906l2.41-1.854a.8.8 0 0 0 .158-1.044L27.2 6.64a.8.8 0 0 0-.693-.4h-.347l-2.96 1.2a11.163 11.163 0 0 0-3.282-1.895L19.28 2.32a.801.801 0 0 0-.784-.64h-.017zM16 20a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path></svg></span>
-																<span class="MyWadizMenu_text__9ryGW">설정</span>
+																<span class="MyWadizMenu_text__9ryGW">회원 정보 수정</span>
 																<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
 																<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a>
