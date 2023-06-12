@@ -168,4 +168,111 @@
 		WHERE 
 			p.project_idx = ${project_idx};
 	</select>
+	
+	<!--  06-09 김동욱 결제할 리워드 가져오기  -->
+	<select id="getPayReward" resultType="map">
+		SELECT *
+		FROM reward
+		WHERE reward_idx = #{reward_idx}
+	</select>
+	
+	<!--  06-09 김동욱 포인트 가져오기  -->
+	<select id="getMyPoint" resultType="int">
+		SELECT member_point
+		FROM point
+		WHERE point_idx =
+			(SELECT MAX(point_idx)
+			FROM `point` p
+			WHERE member_idx = #{member_idx}
+			GROUP BY member_idx);
+	</select>
+	
+	<!-- 06-09 김동욱 사용가능한 쿠폰리스트 가져오기  -->
+	<select id="getMyCouponList" resultType="map">
+		select c.coupon_idx, coupon_name, coupon_start, coupon_end, coupon_percent
+		FROM coupon c JOIN coupon_used cu
+		on c.coupon_idx = cu.coupon_idx
+		WHERE member_idx = #{member_idx} and coupon_useable = "Y";
+	</select>
+	
+	<!-- 06-10 김동욱 펀딩 결제하기 -->
+	<insert id="payment">
+		INSERT INTO payment
+			VALUES(
+				null
+				, now()
+				, #{member_idx}
+				, #{project_idx}
+				, #{reward_name}
+				, #{reward_amount}
+				, #{used_point_amount}
+				, #{used_coupon_amount}
+				, #{delivery_fee}
+				, #{donation}
+				, #{total_amount}
+				, #{delivery_address}
+				, #{delivery_phone_number}
+				, ""
+			)
+	</insert>
+	
+	<!-- 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트 -->
+	<update id="rewardSellUpdate">
+		UPDATE reward 
+			SET reward_sell = reward_sell + #{reward_quantity}
+			WHERE reward_idx = #{reward_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 사용한 쿠폰 N으로 업데이트 -->
+	<update id="couponUsedUpdate">
+		UPDATE coupon_used
+			SET coupon_useable = "N"
+			WHERE coupon_idx = #{coupon_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 포인트 사용하기 -->
+	<insert id="usingPoint">
+		INSERT INTO point
+		VALUES(NULL,
+			#{member_idx},
+			'결제',
+			#{point},
+			0,
+			(SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) - #{point}
+			);
+	</insert>
+	
+	<!-- 06-10 김동욱 프로젝트 디테일 총금액 업데이트 -->
+	<update id="projectDetailAmountUpdate">
+		UPDATE project_detail
+			SET project_detail_amount = project_detail_amount + #{total_amount}
+			WHERE project_idx = #{project_idx}
+	</update>
+	
+	
+	<!-- 06-10 김동욱 결제 금액 5프로 포인트 적립 -->
+	<insert id="pointSaving">
+		INSERT INTO point
+		VALUES (
+			null
+			, #{member_idx}
+			, "결제 금액 5% 포인트 적립"
+			, 0
+			, #{point}
+			, (SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) + #{point}
+		)
+	</insert>
+	
 </mapper>

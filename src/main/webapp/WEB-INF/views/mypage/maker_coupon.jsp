@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <html lang="ko">
 <head>
 <title>기본정보설정 : 와디즈 MY 정보설정</title>
@@ -39,6 +40,20 @@
 					<form id="saveForm" method="post" action="couponPro" enctype="multipart/form-data">
 						
 						<div class="email-input-wrap">
+						<div class="input-btn-wrap">
+								<h3>메이커 선택</h3>
+							
+								<div class="" style="width: 310px">
+									<select id="maker_idx" class="input-text" name="maker_idx"> 
+										<option value="1">메이커 선택하기</option>
+										<c:forEach items="${makerList }" var="makerList">
+										
+							          		<option value="${makerList.maker_idx }">${makerList.maker_name }</option>
+										</c:forEach>
+								     </select>
+								</div>
+							</div>
+						
 							<h3>쿠폰명</h3>
 							<input type="text" name="coupon_name" class="input-text"  placeholder="발급할 쿠폰명" value="" >
 							<div class="input-btn-wrap">
@@ -59,14 +74,14 @@
 							<div class="input-btn-wrap">
 							<h3>쿠폰 시작일</h3>
 								<div class="input" style="width: 308px;">
-									<input class=" input-text" type="date" name="coupon_start" id="member_birth" max="2023-12-31" min="1900-01-01" style="width: 100% !important;" required="">
+									<input class="input-text" type="date" name="coupon_start" id="member_birth" max="2023-12-31" min="1900-01-01" style="width: 100% !important;" required="">
 								</div>
 							</div>
 							<div id="mobileConfirmArea" class="input-btn-wrap" >
 							<h3>쿠폰 종료일</h3>
 							
 								<div class="input" style="width: 308px;">
-									<input class=" input-text" type="date" name="coupon_end" id="member_birth" max="2023-12-31" min="1900-01-01" style="width: 100% !important;" required="">
+									<input class="input-text" type="date" name="coupon_end" id="member_birth" max="2023-12-31" min="1900-01-01" style="width: 100% !important;" required="">
 								</div>
 							</div>
                    			 
@@ -86,8 +101,7 @@
 		</div>
 
 	</div>
-	
-		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
 </html>

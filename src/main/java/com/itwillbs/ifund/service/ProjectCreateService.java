@@ -181,5 +181,9 @@ public class ProjectCreateService {
 	public int projectStart() {
 		return mapper.projectStart();		
 	}
+	// 06-09 강정운 정산내역서
+	public Map showFeeCalculate(int project_idx) {
+		return mapper.showFeeCalculate(project_idx);
+	}
 		
 }
