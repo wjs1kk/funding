@@ -59,23 +59,19 @@ ul li {
 }
 
 </style>
-<script type="text/javascript">
-	function selectOption() {
-		var selectOption = document.getElementById("selectOption").value;
-		
-		switch (selectOption) {
-		case "1": alert("1번 클릭"); break;
-		case "2": alert("2번 클릭"); break;
-		case "3": alert("3번 클릭"); break;
-		}
-	}
-</script>
+
 <style>
 .labelFont {
  color: black;
  
 }
-</style>		
+</style>	
+<script type="text/javascript">
+// 	var selectElement = document.getElementById("selectOption");
+
+
+	
+</script>	
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -178,14 +174,16 @@ ul li {
 						<h4 class="fw-bold py-3 mb-4">
 							<span class="text-muted fw-light"></span> 프로젝트 목록 
 						</h4>
-							<select class="select2 form-select" name="selectOption"
-								id="selectOption" onchange="selectOption()" style="width: 150px; margin-bottom: 20px;">
+						<form id="selectForm" action="projectSelectOption" method="post" name="selectForm">
+							<select class="select2 form-select"
+								id="selectOption" onchange="this.form.submit()" style="width: 150px; margin-bottom: 20px;">
 								<option value="0" selected>전체</option>
 								<option value="1">진행중</option>
 								<option value="2">마감</option>
 								<option value="3">승인거부</option>
 								<option value="4">검색 추가 예정</option>
 							</select>
+						</form>
 						<div class="card">
 							<div class="table-responsive text-nowrap">
 								<table class="table table-striped">

@@ -570,15 +570,20 @@ public class AdminController {
 		return "admin/projectList";
 	}
 	
-		
-		
+//	@PostMapping("admin/projectList/{selectOption}")
+//	public String projectSelectOption(@PathVariable("selectOption") String selectOption) {
+//		System.out.println("selectOption: " + selectOption);
+//		return "admin/projectList";
+//	}
+	
 	// 프로젝트 목록 필터링
-	@GetMapping("admin/projectList/{label}")
-    public String projectListByLabel(@PathVariable("label") String label, Model model) {
-        List projectList = adminService.sortProjectList(label);
-		model.addAttribute("projectList", projectList);
-        return "admin/projectList";
-    }
+//	@GetMapping("admin/projectList/{label}")
+//    public String projectListByLabel(@PathVariable("label") String label, Model model) {
+//        List projectList = adminService.sortProjectList(label);
+//		model.addAttribute("projectList", projectList);
+//        return "admin/projectList";
+//    }
+	
 	
 	// 프로젝트 목록 상세
 	@GetMapping("admin/projectList/detail/{project_idx}")
