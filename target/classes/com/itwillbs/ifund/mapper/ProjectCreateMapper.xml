@@ -321,9 +321,40 @@
 	</select>
 
 	<select id="showFeeCalculate" resultType="map">
-		SELECT pd.project_detail_amount, p.project_plan 
-		FROM project_detail pd JOIN project p
-		ON pd.project_idx = p.project_idx
-		WHERE pd.project_idx = #{project_idx};
+		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee, p.project_plan, p.project_title
+		FROM payment pm JOIN project p
+		ON pm.project_idx = p.project_idx
+		WHERE pm.project_idx = #{project_idx};
+	</select>
+	
+	<insert id="calculateApply">
+		INSERT INTO calculate
+		VALUES (
+		null
+		, #{project_idx}
+		, #{member_idx}
+		, #{project_title}
+		, #{calculate_fee}
+		, 0
+		, (SELECT account_num
+		   FROM account
+		   WHERE member_idx = #{member_idx})
+		, (SELECT bank_code_std
+		   FROM account
+		   WHERE member_idx = #{member_idx})
+		)
+	</insert>
+	
+	<select id="applyCheck" resultType="integer">
+		SELECT calculate_approve
+		FROM calculate
+		WHERE project_idx = #{project_idx};
+	</select>
+	
+	<select id="memberIdxSearch" resultType="int">
+		SELECT a.member_idx
+		FROM project p JOIN account a
+		ON p.member_idx = a.member_idx
+		WHERE p.project_idx = #{project_idx} 
 	</select>
 </mapper>

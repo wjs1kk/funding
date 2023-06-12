@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko" style="-vh: 9.37px;" class="">
 <head>
-<title>리워드 설계 | 와디즈 메이커 스튜디오</title>
+<title>리워드 설계 | 아이펀드 메이커 스튜디오</title>
 <link
 	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"
 	rel="stylesheet">
@@ -895,18 +895,6 @@
 							설계</div>
 						<div class="Page_description__VzZod">서포터님들에게 제공할 리워드를 입력해
 							주세요.</div>
-						<div class="Page_guide__3JgBF">
-							<button class="BannerLinkButton_container__3MHMT" type="button">
-								<div class="BannerLinkButton_icon__UDYk2">
-									<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-								</div>
-								<div class="BannerLinkButton_content__BzS52">
-									<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다 본다는</div>
-									<div class="BannerLinkButton_description__yl6rf">필수 가이드
-										모음집</div>
-								</div>
-							</button>
-						</div>
 						<div class="Page_content__1d0Vb">
 							<section
 								class="FundingConditionGuideSection_container__7ZmHI spacing-8">
@@ -965,15 +953,7 @@
 										</section>
 									</div>
 								</div>
-								<div class="Section_guideMessage__3XqrM">
-									<h4>
-										<a class="link spacing-3"
-											href="https://www.wadiz.kr/link/reward_plan"
-											rel="nofollow noopener noreferrer" target="_blank"
-											data-role="title">프로젝트를 성공으로 이끄는 리워드 설계법</a>
-									</h4>
-									<p>얼리버드 리워드는 더 빠르고 더 많이 참여하게 해요. 가이드를 따라 차근차근 설계해 보세요.</p>
-								</div>
+								
 							</section>
 						</div>
 					</section>

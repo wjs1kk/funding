@@ -261,6 +261,7 @@
 </head>
 <input type="hidden" id="project_reward_produce_type">
 <input type="hidden" id="project_reward_category">
+
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
 		style="position: absolute; opacity: 0;"></div>
@@ -379,7 +380,7 @@
 												<label></label>
 												<div class="TextField_field__1E9vt">
 													<textarea id="project_introduce"
-														placeholder="·OOO한 내용을 기획/개발해 와디즈에서 최초 공개 하고자 합니다. ·우리집 아이가 OO 소재의 이불을 좋아하는 모습을 보고, OO 소재로 만들어진 인형을 만들게 되었습니다. ·우리 회사에서 판매하고 있는 기존 모델에 OO 기능을 추가하였습니다."
+														placeholder="·OOO한 내용을 기획/개발해 아이펀드에서 최초 공개 하고자 합니다. ·우리집 아이가 OO 소재의 이불을 좋아하는 모습을 보고, OO 소재로 만들어진 인형을 만들게 되었습니다. ·우리 회사에서 판매하고 있는 기존 모델에 OO 기능을 추가하였습니다."
 														maxlength="500" rows="2"
 														class="Textarea_textarea__2swOj Textarea_sm__L3hnj"
 														style="height: 378px;"></textarea>

@@ -189,19 +189,7 @@
 									<p class="FundingStoryContainer_description__1sMTR">메이커님의
 										프로젝트를 소개해 주세요.</p>
 								</div>
-								<div class="HeaderLayout_guideWrapper__WXeX-">
-									<button class="BannerLinkButton_container__3MHMT" type="button">
-										<div class="BannerLinkButton_icon__UDYk2">
-											<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-										</div>
-										<div class="BannerLinkButton_content__BzS52">
-											<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다
-												본다는</div>
-											<div class="BannerLinkButton_description__yl6rf">필수 가이드
-												모음집</div>
-										</div>
-									</button>
-								</div>
+								
 							</div>
 							<!-- 05-17 김동욱 파일 업로드를 위해 enctype="multipart/form-data" 추가 및 action과 method 설정 -->
 								<section class="Section_container__3md8M"
@@ -209,28 +197,7 @@
 									<div style="" class="Section_header__1qwS7">
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											사진 등록
-											<div>
-												<button type="button" class="Tooltip_button__26Zz0"
-													aria-describedby="Tooltip_4">
-													<span class="Tooltip_label__1s0-R"></span><span
-														class="Tooltip_helpIconWrap__3JEtO"><svg
-															viewBox="0 0 40 40" focusable="false" role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-												</button>
-											</div>
+											
 										</h2>
 										<div class="Section_guide__2xeJO"></div>
 									</div>
@@ -434,28 +401,7 @@
 									<div style="" class="Section_header__1qwS7">
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">
 											프로젝트 요약
-											<div>
-												<button type="button" class="Tooltip_button__26Zz0" 
-													aria-describedby="Tooltip_5">
-													<span class="Tooltip_label__1s0-R"></span><span
-														class="Tooltip_helpIconWrap__3JEtO"><svg
-															viewBox="0 0 40 40" focusable="false" role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpOutlineIcon__34Kpp"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__1Oal1 Tooltip_helpIcon__MM_KL"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg></span>
-												</button>
-											</div>
+											
 										</h2>
 										<div class="Section_guide__2xeJO"></div>
 									</div>
@@ -478,49 +424,7 @@
 										</div>
 									</div>
 								</section>
-								<section class="Section_container__3md8M"
-									style="max-width: 630px;">
-									<div class="Section_header__1qwS7">
-										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">스토리
-											광고 심의 동의</h2>
-										<div class="Section_guide__2xeJO"></div>
-									</div>
-									<div class="Section_description__10Uwo">스토리를 작성하기 전 와디즈에서
-										제공하는 광고 심의 가이드를 반드시 확인해 주세요.</div>
-									<div class="Section_content__3OkLZ">
-										<div class="StoryMakerAgreementField_container__3GnYX">
-											<div class="StoryMakerAgreementInfo_container__PVGPV">
-												<ul class="StoryMakerAgreementInfo_linkList__zZ8jX">
-													<li><a
-														href="https://www.wadiz.kr/link/funding_Common_AdGuide"
-														rel="noopener noreferrer" target="_blank"
-														download="공통 표시·광고 가이드라인.pdf">공통 표시·광고 가이드라인</a></li>
-													<li><a
-														href="https://www.wadiz.kr/link/funding_Food_AdGuide"
-														rel="noopener noreferrer" target="_blank"
-														download="식품 표시·광고 가이드라인.pdf">식품 표시·광고 가이드라인</a></li>
-													<li><a
-														href="https://www.wadiz.kr/link/funding_Cosmetic_AdGuide"
-														rel="noopener noreferrer" target="_blank"
-														download="화장품 표시·광고 가이드라인.pdf">화장품 표시·광고 가이드라인</a></li>
-													<li><a
-														href="https://www.wadiz.kr/link/funding_Healthcare_AdGuide"
-														rel="noopener noreferrer" target="_blank"
-														download="건강보조기구 표시·광고 가이드라인.pdf">건강보조기구 표시·광고 가이드라인</a></li>
-												</ul>
-												<p class="StoryMakerAgreementInfo_registered__12WHo">
-													<span class="wz mini badge">동의 완료</span> 2023.05.15 12:34
-													<button type="button"
-														class="StoryMakerAgreementInfo_showTermBtn__24MFn">동의
-														내용 보기</button>
-												</p>
-												<p class="StoryMakerAgreementInfo_userInfo__2KP5n">
-													<span>김동욱</span>kdw940822@naver.com
-												</p>
-											</div>
-										</div>
-									</div>
-								</section>
+								
 								<div class="StoryMakerAgreementNoticeBox_container__3Klad"></div>
 								<section
 									class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
@@ -528,23 +432,7 @@
 									<div class="Section_header__1qwS7 spacing-4">
 										<h2 class="Section_title__ikPIm Section_isRequired__F8rij">프로젝트
 											스토리</h2>
-										<div class="Section_guide__2xeJO">
-											<div class="Section_helperMessage__3V6GQ">
-												<a class="link"
-													href="https://www.wadiz.kr/link/funding_story_guide"
-													target="_blank" rel="nofollow noopener noreferrer"
-													data-ga-category="메이커스튜디오_스토리작성_스토리작성가이드"
-													data-ga-action="클릭">스토리 작성 가이드<svg viewBox="0 0 40 40"
-														focusable="false" role="presentation"
-														class="withIcon_icon__3lrgp withIcon_inline__3A3d_ icon"
-														aria-hidden="true" style="width: 14px; height: 14px;">
-														<path
-															d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
-														<path
-
-															d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"></path></svg></a>
-											</div>
-										</div>
+										
 									</div>
 									<div class="Section_content__3OkLZ">
 										<div>
@@ -559,12 +447,7 @@
 															구성으로 스토리를 작성하면 내외부 포털 검색 결과에 상위 노출될 확률이 높아져요.</li>
 														<li class="StoryEditorTip_listItem__1RKbt">이미지로만 구성된
 															스토리는 이미지 로딩 속도가 느려 서포터가 상세 페이지를 벗어날 확률이 높아져요.</li>
-														<li class="StoryEditorTip_listItem__1RKbt">스토리 작성이
-															어렵다면 <a class="StoryEditorTip_link__2l34V"
-															href="https://www.wadiz.kr/link/funding_story_partner_story"
-															target="_blank" rel="noreferrer">파트너 서비스</a>로 전문가와 맞춤형
-															스토리를 만들어 보세요.
-														</li>
+														
 													</ul></li>
 												<li class="StoryEditorTip_tipListItem__2ovAi"><strong
 													class="StoryEditorTip_infoTitle__2uyPG"><span
@@ -645,56 +528,9 @@
 												</div>
 											</div>
 										</div>
-										<em class="helper error">필수 항목을 입력해 주세요.</em>
 									</div>
 								</section>
-								<div class="StoryEditorForComingWrapper_container__1cngW">
-									<section class="Section_container__3md8M"
-										style="max-width: 630px;">
-										<div class="Section_content__3OkLZ">
-											<div class="StoryEditorForComingWrapper_notice__17_eT">
-												<h4 class="StoryEditorForComingWrapper_title__3tgjs">오픈예정
-													스토리</h4>
-												<i
-													class="icon-error-o StoryEditorForComingWrapper_icon__1vZQN"
-													aria-hidden="true"></i>
-												<p class="StoryEditorForComingWrapper_description__210jK">
-													오픈예정 서비스를 신청하지 않으셨네요?<br>
-												</p>
-												<button
-													class="Button_button__1e2A2 StoryEditorForComingWrapper_link__3TjuV"
-													type="button">
-													<span><span class="Button_children__q9VCZ">오픈예정
-															서비스 신청하러 가기</span></span>
-												</button>
-												<div
-													class="wz message OpenComingSoonAdMessage_container__39tu7">
-													<div class="OpenComingSoonAdMessage_title__1KnPv">70%
-														메이커가 오픈예정 서비스 이용 중!</div>
-													<div class="OpenComingSoonAdMessage_text__3K9jK">
-														<img class="OpenComingSoonAdMessage_image__1B2Zl"
-															alt="emoji-pointing-up"
-															src="https://static.wadiz.kr/studio/funding/static/media/emoji-pointing-up.5b356382.svg"
-															aria-hidden="true">오픈 직후 3일 내 전체 프로젝트 금액의 <strong>약
-															35% 모집</strong>
-													</div>
-													<div class="OpenComingSoonAdMessage_text__3K9jK">
-														<img class="OpenComingSoonAdMessage_image__1B2Zl"
-															alt="emoji-victory-hand"
-															src="https://static.wadiz.kr/studio/funding/static/media/emoji-victory-hand.f827b84f.svg"
-															aria-hidden="true">평균 프로젝트 금액 <strong>3배
-															이상 달성</strong>
-													</div>
-													<ul class="OpenComingSoonAdMessage_description__3fldv">
-														<li>데이터 기준: 2020.07 ~ 2020.12 종료된 프로젝트</li>
-														<li>성공 프로젝트 평균 기준</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</section>
-
-								</div>
+								
 									<input type="hidden" name="project_idx" value="${param.project_idx}">
 									<div class="FundingStoryContainer_btnWrapper__32tvJ">
 <!-- 										<button -->

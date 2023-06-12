@@ -12,7 +12,7 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/21.433123b2.chunk.css">
-<title>와디즈 메이커 스튜디오</title>
+<title>아이펀드 메이커 스튜디오</title>
 
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -152,7 +152,7 @@
 							<h2 class="title">전창용 님, 반갑습니다!</h2>
 							<div class="description">
 								프로젝트 개설을 축하드려요.<br>서포터님들께 제품·서비스·콘텐츠를 드리며 잊지 못할 경험을 선물해
-								보세요.<br>프로젝트가 성공할 수 있도록 와디즈가 함께 할게요.<br> <br> <br>그럼
+								보세요.<br>프로젝트가 성공할 수 있도록 아이펀드가 함께 할게요.<br> <br> <br>그럼
 								출발해 볼까요?
 							</div>
 							<button id="nextstep"
@@ -169,7 +169,7 @@
 								<div class="IntroStep2_title__uTzIj">1단계: 프로젝트 작성</div>
 									<p class="IntroStep2_description__m1bKe">필수 항목들을 작성해 제출하면 끝이랍니다.</p></li>
 								<li class="IntroStep2_step__310aU"><div class="IntroStep2_title__uTzIj">2단계: 프로젝트 심사</div>
-									<p class="IntroStep2_description__m1bKe"> 와디즈 심사 정책을 바탕으로 프로젝트 진행에 필요한 요건과 콘텐츠를 검토해요.<br>필요시 와디즈
+									<p class="IntroStep2_description__m1bKe"> 아이펀드 심사 정책을 바탕으로 프로젝트 진행에 필요한 요건과 콘텐츠를 검토해요.<br>필요시 아이펀드
 										담당자가 피드백을 요청할 수 있어요.
 									</p></li>
 								<li class="IntroStep2_step__310aU">

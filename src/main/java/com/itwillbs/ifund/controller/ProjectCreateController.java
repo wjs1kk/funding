@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.ProjectCreateService;
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.ProjectDetailVO;
 import com.itwillbs.ifund.vo.ProjectVO;
@@ -489,8 +490,27 @@ public class ProjectCreateController {
 	@ResponseBody
 	public Map showFeeCalculate(@RequestParam int project_idx) {
 		Map List = projectCreateService.showFeeCalculate(project_idx);
-		System.out.println(List);
 		return List;
+	}
+	@PostMapping("project/memberIdxSearch")
+	@ResponseBody
+	public int memberIdxSearch(@RequestParam int project_idx) {
+		int member = projectCreateService.memberIdxSearch(project_idx);
+		return member;
+	}
+	
+//	06-12 강정운 정산신청
+	@PostMapping("project/calculateApply")
+	@ResponseBody
+	public boolean calculateApply(CalculateVO cal, int project_idx, HttpServletResponse response) {
+		Integer checkCount = projectCreateService.applyCheck(project_idx);
+		System.out.println(checkCount);
+		if(checkCount != null) {
+			return false;
+		} else {
+			int insertCount = projectCreateService.calculateApply(cal);
+			return true;
+		}
 	}
 	
 }

@@ -78,7 +78,7 @@
 	<div class="FooterContainer_container__3B0Z_">
 		<div class="FooterContainer_inner__3kAgZ">
 			<section class="FooterContainer_leftSection__6PWiM">
-				<strong class="FooterContainer_title__19gmn">와디즈 고객센터</strong>
+				<strong class="FooterContainer_title__19gmn">아이펀드 고객센터</strong>
 				<div class="FooterContainer_buttonBlock__2BQFX">
 					<button type="button" class="FooterContainer_directBtn__2ejRN">
 						채팅 상담하기
@@ -107,7 +107,7 @@
 			<section class="FooterContainer_rightSection__3R7v7">
 				<address>
 					<ul class="FooterInfo_info__53l7z">
-						<li>와디즈㈜</li>
+						<li>아이펀드㈜</li>
 						<li>대표이사 신혜성</li>
 						<li>사업자등록번호 258-87-01370</li>
 						<li>통신판매업신고번호 2021-성남분당C-1153</li>
@@ -126,7 +126,7 @@
 					</div>
 				</address>
 				<div class="FooterContainer_infoNotice__3-eEE">
-					<p>일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.</p>
+					<p>일부 상품의 경우 아이펀드는 통신판매중개자이며 통신판매 당사자가 아닙니다.</p>
 					<p>해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품
 						페이지에서 구체적인 내용을 확인하시기 바랍니다.</p>
 				</div>

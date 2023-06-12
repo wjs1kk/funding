@@ -3,7 +3,7 @@
 <html lang="ko" class="">
 
 <head>
-	<title>와디즈 프로젝트만들기 기본정보</title>
+	<title>아이펀드 프로젝트만들기 기본정보</title>
 
 <link
 	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"
@@ -146,7 +146,7 @@
 									<p>중요한 키워드는 눈에 잘 띄도록 제목 앞부분에 적는 것을 추천해요.</p>
 									<p>
 										예시)<br>바지걸이+옷걸이가 하나로! 옷 정리에 1초만 투자하자<br>[8만 원대 국민
-										무스탕] 가죽으로 26억 펀딩받은 비결?<br>[와디즈 한정] 광화문, 블록으로 재탄생하다!
+										무스탕] 가죽으로 26억 펀딩받은 비결?<br>[아이펀드 한정] 광화문, 블록으로 재탄생하다!
 									</p>
 								</div>
 							</section>

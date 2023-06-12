@@ -197,7 +197,7 @@
 															role="presentation" class="withIcon_icon__3lrgp"
 															aria-hidden="true">
 															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>와디즈
+																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>아이펀드
 														스쿨 수강</li>
 													<li><svg viewBox="0 0 48 48" focusable="false"
 															role="presentation" class="withIcon_icon__3lrgp"
@@ -340,7 +340,7 @@
 															aria-hidden="true">
 															<path
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>✨
-														공간 와디즈 쇼룸</li>
+														공간 아이펀드 쇼룸</li>
 													<li><svg viewBox="0 0 48 48" focusable="false"
 															role="presentation" class="withIcon_icon__3lrgp"
 															aria-hidden="true">

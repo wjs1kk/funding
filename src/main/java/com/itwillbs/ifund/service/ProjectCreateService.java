@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.ifund.mapper.MemberMapper;
 import com.itwillbs.ifund.mapper.ProjectCreateMapper;
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectVO;
@@ -184,6 +185,18 @@ public class ProjectCreateService {
 	// 06-09 강정운 정산내역서
 	public Map showFeeCalculate(int project_idx) {
 		return mapper.showFeeCalculate(project_idx);
+	}
+	// 06-12 강정운 정산신청
+	public int calculateApply(CalculateVO cal) {
+		return mapper.calculateApply(cal);
+	}
+
+	public Integer applyCheck(int project_idx) {
+		return mapper.applyCheck(project_idx);
+	}
+
+	public int memberIdxSearch(int project_idx) {
+		return mapper.memberIdxSearch(project_idx);
 	}
 		
 }

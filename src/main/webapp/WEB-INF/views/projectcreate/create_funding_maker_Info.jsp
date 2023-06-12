@@ -219,19 +219,7 @@
 									<h2 class="MakerInfoFormContainer_title__2_urf">메이커 정보</h2>
 								</div>
 								
-								<div class="HeaderLayout_guideWrapper__WXeX-">
-									<button class="BannerLinkButton_container__3MHMT" type="button">
-										<div class="BannerLinkButton_icon__UDYk2">
-											<i class="BannerGuide_guideIcon__1bhqD" aria-hidden="true"></i>
-										</div>
-										<div class="BannerLinkButton_content__BzS52">
-											<div class="BannerLinkButton_title__rE4Eg">다른 메이커들 다
-												본다는</div>
-											<div class="BannerLinkButton_description__yl6rf">필수 가이드
-												모음집</div>
-										</div>
-									</button>
-								</div>
+								
 							</div>
 							<div class="MouseOverGuide_container__3jDBz">
 								<div class="MouseOverGuide_contents__APrXG"></div>
