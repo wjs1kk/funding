@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.itwillbs.ifund.service.BankService;
 import com.itwillbs.ifund.service.MemberService;
 import com.itwillbs.ifund.service.MypageService;
+import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.PointVO;
 
@@ -21,6 +23,9 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private BankService bankService;
+	
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -41,8 +46,18 @@ public class MemberController {
 		if(isAdmin.equals("1")) {
 			session.setAttribute("isAdmin", isAdmin);
 		}
+		
 		MemberVO member = memberService.selectUser(member_email);
+		
+		// 06-12 김동욱 계좌 토큰값 가져오기
+		AccountVO accountVO = bankService.getAccountVO(member.getMember_idx());
+		if(accountVO != null) {
+			session.setAttribute("user_seq_no", accountVO.getUser_seq_no());
+			session.setAttribute("access_token", accountVO.getAccess_token());
+		}
+		
 		session.setAttribute("member_idx", member.getMember_idx());
+		
 		return "redirect:/";
 	}
 	

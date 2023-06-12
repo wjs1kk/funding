@@ -506,4 +506,14 @@ public class ProjectCreateController {
 		
 	}
 	
+	// 06-12 김동욱 운송장 번호 입력
+	@PostMapping("project/trackingNumberUpdate")
+	@ResponseBody
+	public void trackingNumberUpdate(int payment_idx, String tracking_number) {
+		System.out.println(payment_idx);
+		System.out.println(tracking_number);
+		projectCreateService.trackingNumberUpdate(payment_idx, tracking_number);
+		
+	}
+	
 }

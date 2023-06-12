@@ -334,4 +334,10 @@
 		WHERE project_idx = #{project_idx}
 	</select>
 	
+	<update id="trackingNumberUpdate">
+		UPDATE payment
+			SET tracking_number = #{tracking_number}
+			WHERE payment_idx = #{payment_idx}
+	</update>
+	
 </mapper>

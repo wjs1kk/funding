@@ -89,5 +89,7 @@ public interface ProjectCreateMapper {
 	Map showFeeCalculate(int project_idx);
 	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
 	List getMyPaymentList(int project_idx);
+	// 06-12 김동욱 운송장 번호 입력
+	void trackingNumberUpdate(@Param("payment_idx") int payment_idx, @Param("tracking_number") String tracking_number);
 
 }
