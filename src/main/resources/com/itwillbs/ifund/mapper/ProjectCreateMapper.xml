@@ -327,4 +327,11 @@
 		ON pd.project_idx = p.project_idx
 		WHERE pd.project_idx = #{project_idx};
 	</select>
+	
+	<select id="getMyPaymentList" resultType="map">
+		SELECT *
+		FROM payment
+		WHERE project_idx = #{project_idx}
+	</select>
+	
 </mapper>

@@ -60,50 +60,74 @@
 <!-- The atual jqGrid code -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/jqgrid/4.6.0/jquery.jqGrid.src.js" /></script>
 <script>
+
 	$(document).ready(function() {
-		var mydata = [
-			{date:"2022-09-01", user_name:"test0", user_id:"id1",product:"상품1", idx:"1"},
-			{date:"2022-09-02", user_name:"test2", user_id:"id2",product:"상품1", idx:"2"},
-			{date:"2022-09-03", user_name:"test3", user_id:"id3",product:"상품1", idx:"3"},
-			{date:"2022-09-04", user_name:"test3", user_id:"id4",product:"상품1", idx:"4"},
-			{date:"2022-09-05", user_name:"test2", user_id:"id2",product:"상품1", idx:"5"},
-			{date:"2022-09-06", user_name:"test3", user_id:"id3",product:"상품2", idx:"6"},
-			{date:"2022-09-07", user_name:"test4", user_id:"id5",product:"상품2", idx:"7"},
-			{date:"2022-09-08", user_name:"test2", user_id:"id2",product:"상품2", idx:"8"},
-			{date:"2022-09-09", user_name:"test3", user_id:"id3",product:"상품2", idx:"9"},
-			{date:"2022-09-10", user_name:"test6", user_id:"id6",product:"상품2", idx:"10"},
-			{date:"2022-09-11", user_name:"test2", user_id:"id2",product:"상품2", idx:"11"},
-			{date:"2022-09-12", user_name:"test3", user_id:"id3",product:"상품2", idx:"12"},
-			{date:"2022-09-13", user_name:"test7", user_id:"id7",product:"상품2", idx:"13"},
-			{date:"2022-09-14", user_name:"test2", user_id:"id2",product:"상품2", idx:"14"},
-			{date:"2022-09-15", user_name:"test3", user_id:"id3",product:"상품2", idx:"15"},
-			{date:"2022-09-16", user_name:"test8", user_id:"id7",product:"상품2", idx:"16"},
-			{date:"2022-09-17", user_name:"test2", user_id:"id2",product:"상품2", idx:"17"},
-			{date:"2022-09-18", user_name:"test3", user_id:"id3",product:"상품2", idx:"18"},
-			{date:"2022-09-19", user_name:"test4", user_id:"id4",product:"상품2", idx:"19"}
-		];
+		
+		var mydata;
+		
+		$.ajax({
+			type: "post",
+			url: "getMyPaymentList",
+			data: {project_idx:${param.project_idx}
+			},
+			async:false,
+			dataType:"JSON",
+			success: function(response) {
+				mydata = response;
+			}
+		})
+		
+		console.log(mydata);
+		
 	
 		$("#list").jqGrid({
 			datatype: "local",
 			data: mydata,
-			colNames:['날짜', '아이디', '이름','상품','수정','발송','idx'],
+			colNames:[
+// 				'주문번호',
+				'결제 날짜',
+				'회원 번호',
+// 				'프로젝트 번호',
+				'리워드명',
+				'리워드 금액',
+				'포인트 사용 금액',
+				'쿠폰 사용 금액',
+				'배송비',
+				'추가 후원금',
+				'총 결제 금액',
+				'배송지',
+				'수취인 연락처', 
+				'운송장번호',
+				'발송'
+				],
 			colModel:[
-				{name:'date', index:'date', width:90, align: "center"},
-				{name:'user_name', index:'user_name', width:100 , align: "center" },
-				{name:'user_id', index:'user_id', width:150, align: "center"},
-				{name:'product', index:'product', width:80, align: "center"},
-				{name:'btn1', index:'btn1', width:80, align: "center", formatter:formatOpt1, sortable: false},
-				{name:'btn2', index:'btn2', width:80, align: "center", formatter:formatOpt2, sortable: false},
-				{name:'idx', index: 'idx', hidden: true}
+// 				{name:'payment_idx', index:'payment_idx', width:80, align: "center"},
+				{name:'payment_date', index:'payment_date', width:140 , align: "center" },
+				{name:'member_idx', index:'member_idx', width:130 , align: "center" },
+// 				{name:'project_idx', index:'project_idx', width:130 , align: "center" },
+				{name:'reward_name', index:'reward_name', width:300 , align: "center" },
+				{name:'reward_amount', index:'reward_amount', width:130 , align: "center" },
+				{name:'used_point_amount', index:'used_point_amount', width:100 , align: "center" },
+				{name:'used_coupon_amount', index:'used_coupon_amount', width:100 , align: "center" },
+				{name:'delivery_fee', index:'delivery_fee', width:130 , align: "center" },
+				{name:'donation', index:'donation', width:100 , align: "center" },
+				{name:'total_amount', index:'total_amount', width:130 , align: "center" },
+				{name:'delivery_address', index:'delivery_address', width:300 , align: "center" },
+				{name:'delivery_phone_number', index:'delivery_phone_number', width:300 , align: "center" },
+				{name:'tracking_number', index:'tracking_number', width:150, align: "center"},
+				{name:'발송', index:'발송', width:80, align: "center", formatter:formatOpt2, sortable: false}
+// 				{name:'idx', index: 'idx', hidden: true}
 			],
 			autowidth: true,
 			multiselect: true,
+			shrinkToFit:false,
 			pager:'#pager',
 			rowNum: 20,
 			rowList: [20, 50],
 			sortname: 'date',
 			sortorder: 'desc',
 			height: 500,
+			width: 800
 		});
 		function formatOpt1(cellvalue, options, rowObject){
 			var str = "";

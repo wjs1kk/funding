@@ -87,5 +87,7 @@ public interface ProjectCreateMapper {
 	int projectStart();
 	// 06-09 강정운 정산내역서	
 	Map showFeeCalculate(int project_idx);
+	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
+	List getMyPaymentList(int project_idx);
 
 }

@@ -35,5 +35,9 @@
 	<context:component-scan base-package="com.itwillbs.ifund" />
 	<context:component-scan base-package="com.itwillbs.ifund.controller" />
 	<context:component-scan base-package="com.itwillbs.ifund.service" />
+	
+	<!-- properties 파일 등록 -->
+	<!-- webapp/resources 가 아닌 src/main/resources 패키지이므로 classpath:/ 로 접근 -->
+	<context:property-placeholder location="classpath:/config/appdata.properties"/>
 
 </beans:beans>

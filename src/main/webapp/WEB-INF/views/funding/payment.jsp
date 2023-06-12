@@ -44,7 +44,7 @@
 			$("#pointInput").val(0);
 			$("#used_point_amount").val(0);
 		}else if(Math.floor($("#total_amount").val()) < $("#pointInput").val()){
-			alert("포인트는 결제금액을 초과하여 사용할 수 없습니다.2");
+			alert("포인트는 결제금액을 초과하여 사용할 수 없습니다.");
 			$("#pointInput").val(0);
 			$("#used_point_amount").val(0);
 		}else {

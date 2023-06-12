@@ -493,4 +493,17 @@ public class ProjectCreateController {
 		return List;
 	}
 	
+	
+	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
+	@PostMapping("project/getMyPaymentList")
+	@ResponseBody
+	public String getMyPaymentList(int project_idx) {
+		System.out.println(project_idx);
+		List paymentList = projectCreateService.getMyPaymentList(project_idx);
+		JSONArray jsonPaymentList = new JSONArray(paymentList);
+//		System.out.println(paymentList);
+		return jsonPaymentList.toString();
+		
+	}
+	
 }
