@@ -513,4 +513,27 @@ public class ProjectCreateController {
 		}
 	}
 	
+	
+	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
+	@PostMapping("project/getMyPaymentList")
+	@ResponseBody
+	public String getMyPaymentList(int project_idx) {
+		System.out.println(project_idx);
+		List paymentList = projectCreateService.getMyPaymentList(project_idx);
+		JSONArray jsonPaymentList = new JSONArray(paymentList);
+//		System.out.println(paymentList);
+		return jsonPaymentList.toString();
+		
+	}
+	
+	// 06-12 김동욱 운송장 번호 입력
+	@PostMapping("project/trackingNumberUpdate")
+	@ResponseBody
+	public void trackingNumberUpdate(int payment_idx, String tracking_number) {
+		System.out.println(payment_idx);
+		System.out.println(tracking_number);
+		projectCreateService.trackingNumberUpdate(payment_idx, tracking_number);
+		
+	}
+	
 }

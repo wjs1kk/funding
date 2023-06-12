@@ -114,108 +114,121 @@
 
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
-
-						<h4 class="fw-bold py-3 mb-4">프로젝트 목록</h4>
+						<!-- Basic with Icons -->
+							<h4 class="fw-bold py-3 mb-4">프로젝트 정보</h4>
+							<div class="row">
+							<div class="col-xl">
+									<div class="card mb-4">
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+ 													<c:choose>
+														<c:when test="${project.project_update_status eq 2}">
+															<span class="badge bg-danger">마감</span>
+														</c:when>
+														<c:when test="${project.project_update_status eq 1 }">
+															<span class="badge bg-primary">진행중</span>
+														</c:when>
+														<c:otherwise>
+															<span class="badge bg-label-secondary">오픈전</span>
+														</c:otherwise>
+													</c:choose>
+													<span class="badge bg-danger">${project.d_day}일</span>
+													<c:choose>
+															<c:when test="${project.project_plan eq 3 }">
+																<span class="badge bg-info">Pro</span>
+															</c:when>
+															<c:when test="${project.project_plan eq 2 }">
+																<span class="badge bg-warning">Basic</span>
+															</c:when>
+															<c:otherwise>
+																<span class="badge bg-label-secondary">Light</span>
+															</c:otherwise>
+														</c:choose>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">유형</label>
+													<c:choose>
+														<c:when test="${project.project_type eq 0}">
+															<input type="text" class="form-control"
+															value="펀딩" id="basic-default-fullname">
+														</c:when>
+														<c:otherwise>
+															<input type="text" class="form-control"
+															value="공동구매" id="basic-default-fullname">
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">카테고리</label>
+													<input type="text" class="form-control"
+														 value="${project.project_category}"
+														id="basic-default-fullname" placeholder="John Doe">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">제목</label>
+													<input type="text" class="form-control"
+													value="${project.project_title}"
+														id="basic-default-fullname" placeholder="John Doe">
+												</div>
+												
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-phone">요약</label> 
+													<input type="text" id="basic-default-phone"
+													value="${project.project_summary}"
+													class="form-control phone-mask" placeholder="658 799 8941">
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl">
+									<div class="card mb-4">
+										<div class="card-body">
+											<form>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-email">오픈예정+</label>
+													<div class="input-group input-group-merge">
+														<input type="text" class="form-control" value="${project.project_coming_soon_date}"
+														id="basic-default-company">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-fullname">시작일</label>
+														 <input type="text" class="form-control" value="${project.project_start_date }"
+														id="basic-default-fullname">
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-company">마감일</label>
+													<input type="text" class="form-control" value="${project.project_end_date }"
+														id="basic-default-company" >
+												</div>
+												<div class="mb-3">
+													<label class="form-label" for="basic-default-company">목표금액</label>
+													<input type="text" class="form-control" 
+													value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
+														id="basic-default-company" >
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						<h4 class="fw-bold py-3 mb-4">프로젝트 내용</h4>
 						<!-- Basic Layout & Basic with Icons -->
 						<div class="row">
 							<!-- Basic Layout -->
 							<div class="col-xxl">
 								<div class="card mb-4">
-									<div
-										class="card-header d-flex align-items-center justify-content-between">
-										<h5 class="mb-0">
-											<c:choose>
-												<c:when test="${project.project_plan eq 3 }">
-													<td id="td_project_plan"><span
-														class="badge rounded-pill bg-info">Pro</span></td>
-												</c:when>
-												<c:when test="${project.project_plan eq 2 }">
-													<td id="td_project_plan"><span
-														class="badge rounded-pill bg-warning">Basic</span></td>
-												</c:when>
-												<c:otherwise>
-													<td id="td_project_plan"><span
-														class="badge rounded-pill bg-label-secondary">Light</span></td>
-												</c:otherwise>
-											</c:choose>
-										</h5>
-									</div>
 									<div class="card-body">
 										<form>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">일정</label>
-												<div class="col-sm-3">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_start_date} ~ ${project.project_end_date}"
-														aria-label="658 799 8941">
-												</div>
-												<label class="col-sm-1 col-form-label"
-													for="basic-default-phone" style="text-align: center;">오픈예정+</label>
-												<div class="col-sm-2">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_coming_soon_date}"
-														aria-label="658 799 8941">
-												</div>
-												<label class="col-sm-1 col-form-label"
-													for="basic-default-phone">타입 / 카테고리</label>
-												<c:choose>
-													<c:when test="${project.project_type eq 0}">
-														<div class="col-sm-3">
-															<input type="text" id="basic-default-phone" readonly
-																class="form-control phone-mask"
-																value="펀딩 / ${project.project_category}"
-																aria-label="658 799 8941">
-														</div>
-													</c:when>
-													<c:otherwise>
-														<div class="col-sm-3">
-															<input type="text" id="basic-default-phone" readonly
-																class="form-control phone-mask"
-																value="공동 구매 / ${project.project_category}"
-																aria-label="658 799 8941">
-														</div>
-													</c:otherwise>
-												</c:choose>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-name">작성자??</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control"
-														id="basic-default-name" readonly
-														value="${project.member_name}">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">제목</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_title}" aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-												</div>
-											</div>
 											<div class="row mb-3">
 												<label class="col-sm-2 col-form-label"
 													for="basic-default-phone">내용</label>
 												<div class="col-sm-10">
 													<div style="border: 1px solid #d9dee3; border-radius: 6px">
 														${project.project_content}</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">요약</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_summary}"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
 												</div>
 											</div>
 											<div class="row mb-3">
@@ -237,19 +250,6 @@
 													<input type="text" id="basic-default-phone" readonly
 														class="form-control phone-mask"
 														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">참여금액?모집금액?</label>
-												<div class="col-sm-10">
-
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_detail_amount}" pattern="#,###" />원"
 														aria-label="658 799 8941"
 														aria-describedby="basic-default-phone">
 
@@ -305,8 +305,7 @@
 									</div>
 								</div>
 							</div>
-							<!-- Basic with Icons -->
-							<h4 class="fw-bold py-3 mb-4">메이커 정보</h4>
+							<h4 class="fw-bold py-3 mb-4">리워드</h4>
 							<div class="row">
 								<div class="col-xl">
 									<div class="card mb-4">

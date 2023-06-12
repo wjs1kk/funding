@@ -5,7 +5,6 @@ public class MakerVO {
 	
 	private int maker_idx;
 	private int member_idx;
-	String maker_type;
 	String maker_name;
 	String maker_image;
 	String maker_phone;
@@ -21,12 +20,6 @@ public class MakerVO {
 	}
 	public void setMember_idx(int member_idx) {
 		this.member_idx = member_idx;
-	}
-	public String getMaker_type() {
-		return maker_type;
-	}
-	public void setMaker_type(String maker_type) {
-		this.maker_type = maker_type;
 	}
 	public String getMaker_name() {
 		return maker_name;
@@ -54,10 +47,10 @@ public class MakerVO {
 	}
 	@Override
 	public String toString() {
-		return "MakerVO [maker_idx=" + maker_idx + ", member_idx=" + member_idx + ", maker_type=" + maker_type
-				+ ", maker_name=" + maker_name + ", maker_image=" + maker_image + ", maker_phone=" + maker_phone
-				+ ", maker_email=" + maker_email + "]";
+		return "MakerVO [maker_idx=" + maker_idx + ", member_idx=" + member_idx + ", maker_name=" + maker_name
+				+ ", maker_image=" + maker_image + ", maker_phone=" + maker_phone + ", maker_email=" + maker_email
+				+ "]";
 	}
 	
-
+	
 }

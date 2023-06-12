@@ -8,15 +8,15 @@
 <script type="text/javascript">
 window.onload = function() {
 	<!-- 0520 관리자 메뉴 active 추가 -->
-	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'couponList', 'noticeList', 'newsList'];
-	let url = window.location.href.split('/')[5];
-	menuIds.forEach(id => {
-		let menu = document.getElementById(id);
+// 	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'couponList', 'noticeList', 'newsList'];
+// 	let url = window.location.href.split('/')[5];
+// 	menuIds.forEach(id => {
+// 		let menu = document.getElementById(id);
 		
-		if(id === url){
-			menu.classList.add('active');
-		} 
-	})
+// 		if(id === url){
+// 			menu.classList.add('active');
+// 		} 
+// 	})
 }
 </script>
 <body>

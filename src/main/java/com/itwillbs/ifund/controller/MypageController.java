@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.MemberService;
@@ -36,6 +38,10 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private ProjectCreateService projectCreateService;
+	
+	// 2023-06-05 박경은 - 계좌 인증 어노테이션 추가
+	@Value("${client_id}")
+	private String client_id;
 
 	// 0516수정 로그인정보 가져오기
 	@GetMapping("mypage/supporter")
@@ -235,10 +241,12 @@ public class MypageController {
 	}
 
 //	0516수정 회원정보수정
+	// 2023-06-05 박경은 - 계좌 인증 model.addAttribute("client_id", client_id); 추가
 	@GetMapping("mypage/myInfo")
 	public String myInfo(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		model.addAttribute("member", mypageService.selectUser(member_idx));
+		model.addAttribute("client_id", client_id);
 		return "mypage/myInfo";
 	}
 
@@ -294,20 +302,29 @@ public class MypageController {
 	}
 
 	// 2023-06-05 박경은 - 휴대폰 인증
+	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
+	@ResponseBody
 	@PostMapping("mypage/message")
-	public String checkMessage(Model model, MemberVO member) {
+	public String checkMessage(Model model, MemberVO member, HttpSession session) {
 		model.addAttribute("member_phone", member.getMember_phone());
+		
 		// 난수
 		Random rand = new Random();
 		String numStr = "";
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr += ran;
 		}
 
 		NaverCloud.sendSMS(member.getMember_phone(), numStr);
+		
 		return "redirect:/mypage/myInfo";
-
+	}
+	
+	// 2023-06-11 박경은 - 인증확인
+	@PostMapping("mypage/authCode")
+	public void authCode(Model model, MemberVO member, @RequestParam String authCode) {
+		
 	}
 
 //	0516 정보수정 전 비밀번호 확인

@@ -31,6 +31,7 @@
 		, "" <!--project_reward_category -->
 		, "" <!--project_reward_produce_type -->
 		, "" <!--project_documents -->
+		, "" <!--project_like -->
 		, "" <!--project_AS -->
 		, 0 <!--maker_idx -->
 		, now() <!--project_create_date -->
@@ -357,4 +358,17 @@
 		ON p.member_idx = a.member_idx
 		WHERE p.project_idx = #{project_idx} 
 	</select>
+	
+	<select id="getMyPaymentList" resultType="map">
+		SELECT *
+		FROM payment
+		WHERE project_idx = #{project_idx}
+	</select>
+	
+	<update id="trackingNumberUpdate">
+		UPDATE payment
+			SET tracking_number = #{tracking_number}
+			WHERE payment_idx = #{payment_idx}
+	</update>
+	
 </mapper>

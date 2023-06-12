@@ -60,19 +60,15 @@ ul li {
 
 </style>
 <script type="text/javascript">
-	$(function() {
-		const liElements = document.querySelectorAll('.sortItem');
+	function selectOption() {
+		var selectOption = document.getElementById("selectOption").value;
 		
-		// 각 <li> 태그에 클릭 이벤트 리스너 추가
-		liElements.forEach(function(li) {
-		  li.addEventListener('click', function() {
-		    // 클릭된 <li> 태그의 data-ga-label 값 가져오기
-		    const label = this.getAttribute('data-ga-label');
-		    location.href = '/ifund/admin/projectList/' +label;
-		  
-		  });
-		});		
-	});	
+		switch (selectOption) {
+		case "1": alert("1번 클릭"); break;
+		case "2": alert("2번 클릭"); break;
+		case "3": alert("3번 클릭"); break;
+		}
+	}
 </script>
 <style>
 .labelFont {
@@ -115,7 +111,7 @@ ul li {
 			          <li class="nav-item navbar-dropdown dropdown-user dropdown">
 			            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
 			              <div class="avatar avatar-online">
-			                <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+<!-- 			                <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle"> -->
 			              </div>
 			            </a>
 			            <ul class="dropdown-menu dropdown-menu-end">
@@ -124,7 +120,7 @@ ul li {
 			                  <div class="d-flex">
 			                    <div class="flex-shrink-0 me-3">
 			                      <div class="avatar avatar-online">
-			                        <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
+<!-- 			                        <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle"> -->
 			                      </div>
 			                    </div>
 			                    <div class="flex-grow-1">
@@ -180,53 +176,92 @@ ul li {
 					<input type="hidden" id="label" name="label" value="">
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light"></span> 프로젝트 목록 구분 추가@@@@펀딩/공구를다른걸로구분/취합
+							<span class="text-muted fw-light"></span> 프로젝트 목록 
 						</h4>
-						<div class="Main_category__3sabq">
-								<ul class="sortContainer" style="display: flex">
-									<li class="sortItem" data-ga-label="all">전체</li>
-									<li class="sortItem" data-ga-label="active">진행중</li>
-									<li class="sortItem" data-ga-label="closed">마감</li>
-									<li class="sortItem" data-ga-label="denied">승인거부</li>
-								</ul>
-						</div>
+							<select class="select2 form-select" name="selectOption"
+								id="selectOption" onchange="selectOption()" style="width: 150px; margin-bottom: 20px;">
+								<option value="0" selected>전체</option>
+								<option value="1">진행중</option>
+								<option value="2">마감</option>
+								<option value="3">승인거부</option>
+								<option value="4">검색 추가 예정</option>
+							</select>
 						<div class="card">
 							<div class="table-responsive text-nowrap">
 								<table class="table table-striped">
 									<thead>
 										<tr>
 											<th>NO</th>
-											<th>구분</th>
+											<th>상태</th>
 											<th>프로젝트명</th>
-											<th>시작일</th>
-											<th>마감일</th>
-											<th>목표금액</th>
-											<th>달성률</th>
-											<th>작성자</th>
-<!-- 											<th>오픈예정 날짜</th> -->
-<!-- 											<th>요금제</th> -->
-<!-- 											<th>승인상태</th>  -->
+											<th>유형</th>
+											<th>승인</th>
+											<th>기간</th>
+											<th>진행률</th>
+											<th>참여자수</th>
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
-										<c:forEach var="projectList" items="${projectList }">
+										<c:forEach var="projects" items="${projects }">
 											<tr class="cursor-pointer"
-												onclick="location.href='detail/${projectList.project_idx}'">
-												<td>${projectList.project_idx }</td>
+												onclick="location.href='detail/${projects.project_idx}'">
+												<td>${projects.project_idx }</td>
 												<c:choose>
-													<c:when test="${projectList.project_type eq 0}">
+													<c:when test="${projects.project_update_status eq 2 }">
+														<td id="td_project_plan">
+															<span class="badge bg-danger"> 마감 </span>
+														</td>
+													</c:when>
+													<c:when test="${projects.project_update_status eq 1 }">
+														<td id="td_project_plan">
+															<span class="badge bg-primary">진행중</span>
+														</td>
+													</c:when>
+													<c:otherwise>
+														<td id="td_project_plan">
+															<span class="badge bg-label-secondary">오픈전</span>
+														</td>
+													</c:otherwise>
+												</c:choose>
+												<td>${projects.project_title }</td>
+												<c:choose>
+													<c:when test="${projects.project_type eq 0}">
 														<td>펀딩</td>
 													</c:when>
 													<c:otherwise>
 														<td>공동구매</td>
 													</c:otherwise>
 												</c:choose>
-												<td>${projectList.project_title }</td>
-												<td>${projectList.project_start_date }</td>
-												<td>${projectList.project_end_date }</td>
-												<td><fmt:formatNumber value="${projectList.project_target}" pattern="#,###" />원</td>
-												<td><fmt:formatNumber value="${projectList.target_rate }" pattern="#,###" />%</td>
-												<td>${projectList.member_name }</td>
+												<c:choose>
+													<c:when test="${projects.project_approve_status eq 3 }">
+<!-- 														<td id="td_project_plan"> -->
+<!-- 															<span class="badge bg-label-danger">거부</span> -->
+<!-- 														</td> -->
+														<td>거부</td>
+													</c:when>
+													<c:when test="${projects.project_approve_status eq 2 }">
+<!-- 														<td id="td_project_plan"> -->
+<!-- 															<span class="badge bg-label-success">승인</span> -->
+															
+<!-- 														</td> -->
+														<td>승인</td>
+													</c:when>
+													<c:when test="${projects.project_approve_status eq 1 }">
+<!-- 														<td id="td_project_plan"> -->
+<!-- 															<span class="badge bg-label-info">대기</span> -->
+<!-- 														</td> -->
+														<td>대기</td>
+													</c:when>
+													<c:otherwise>
+														<td id="td_project_plan">
+															<span class="badge bg-label-secondary">미제출</span>
+														</td>
+													</c:otherwise>
+												</c:choose>
+												<td>${projects.project_start_date } ~ ${projects.project_end_date }</td>
+												<td><fmt:formatNumber value="${projects.target_rate }" pattern="#,###" />%</td>
+												<td>${projects.project_detail_person }명</td>
+											
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -241,7 +276,6 @@ ul li {
 			</div>
 			<!-- / Layout page -->
 		</div>
-
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
@@ -266,6 +300,5 @@ ul li {
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
-	
 </body>
 </html>

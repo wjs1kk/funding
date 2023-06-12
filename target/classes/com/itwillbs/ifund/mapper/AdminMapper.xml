@@ -216,6 +216,7 @@
 			   p.project_start_date,
 			   p.project_end_date,
 			   p.project_target,
+			   p.project_approve_status,
 			   (pd.project_detail_amount/p.project_target)*100 AS target_rate, 
 			   m.member_name,
 			   pd.project_detail_amount,
@@ -265,13 +266,14 @@
 			   pd.project_detail_amount,
 			   pd.project_detail_target,
 			   (pd.project_detail_amount/p.project_target)*100 AS target_rate,
-			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day
+			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day,
+			   p.project_update_status
 			FROM project p 
 				JOIN member m 
-				ON p.member_idx = m.member_idx
+					ON p.member_idx = m.member_idx
 				JOIN project_detail pd
-				ON p.project_idx = pd.project_idx
-					WHERE p.project_idx = #{project_idx};
+					ON p.project_idx = pd.project_idx
+				WHERE p.project_idx = #{project_idx};
   	</select>
 	
 	<!-- 0518 은산 프로젝트 승인--> 
@@ -366,11 +368,10 @@
 					<if test="label != null">
 						<choose>
 							<when test="label == 'active'">
-								WHERE CURRENT_DATE >= p.project_start_date 
-									AND p.project_end_date > CURRENT_DATE
+								WHERE p.project_update_status = 1
 							</when>
 							<when test="label == 'closed'">
-								WHERE  CURRENT_DATE > p.project_end_date
+								WHERE p.project_update_status = 2
 							</when>
 							<when test="label == 'denied'">
 								WHERE p.project_approve_status = 3
@@ -378,5 +379,11 @@
 						</choose>
 					</if>
 	</select>
-
+	
+	<!-- 프로젝트 진행여부 업데이트 -->
+	<update id="updateProjectStatus">
+		update project
+			set project_update_status = #{projectStatus}
+				where project_idx = #{projectIdx}
+	</update>
 </mapper>

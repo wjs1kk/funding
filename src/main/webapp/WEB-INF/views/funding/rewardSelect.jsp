@@ -30,10 +30,10 @@
 		}
 		rewardOnchange(reward_amount, index, length);
 	}
-	$(function() {
-		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
-		$("#rewardCheckbox_"+${param.select}).click();
-	})
+// 	$(function() {
+// 		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
+// 		$("#rewardCheckbox_"+${param.select}).click();
+// 	})
 	
 	// 06-07 김동욱 리워드 수량 증가 버튼
 	function rewardIncrease(reward_amount, index, length) {
@@ -107,6 +107,26 @@
 		
 	}
 	
+	
+	// 리워드 선택값 확인
+	function rewardCheck() {
+		if($("#reward_name").val() == null || $("#reward_name").val() == ""){
+			alert("리워드가 선택되지 않았습니다.")
+			return false;
+		}
+	}
+	
+	
+	// 후원금이 입력되지 않으면 0값 입력
+	$(function() {
+		$("#addDonation").on("change", function() {
+			if($("#addDonation").val() == ""){
+				$("#addDonation").val(0)
+			}
+		})
+	})
+	
+	
 </script>
 
 <!-- input type="number" 오른쪽 증가,감소 화살표 없애기 -->
@@ -153,7 +173,6 @@ input[type="number"]::-webkit-inner-spin-button {
 							<li><em>소문내기</em></li>
 						</ol>
 					</div>
-					<form name="purchaseForm" id="purchaseForm" method="post">
 						<input type="hidden" name="secureStateBagKey"
 							value="NjEzNTIyZWUtODZlMi00NDM4LThlYTEtZjRkYmFiNDhlYWJiWXpOa05UZ3lOMll0TTJNME55MDBOelV3TFRsbVpESXRNbVpoWlRRMU9ESXlNbUky">
 						<input type="hidden" name="campaignId" value="215321"> <input
@@ -267,92 +286,41 @@ input[type="number"]::-webkit-inner-spin-button {
 							<!-- E : 서포터클럽 가입 -->
 						</div>
 
-						<div class="wpurchase-donation">
-							
-							<h3>
-								<em>후원금 더하기 <span>(선택)</span></em>
-							</h3>
-							<div class="donation-wrap">
-								<p class="sub-text">후원금을 더하여 참여할 수 있습니다. 추가 후원금을 입력하시겠습니까?</p>
-								<p class="input-area">
-									<input type="hidden" id="addDonation" name="addDonation"
-										value="0">
-								</p>
-								<div class="wz inline-block input">
-									<input type="text" id="addDonationTmp" name="addDonationTmp"
-										class="wz input numOnly" maxlength="8" value="0">
-								</div>
-								원을 추가로 후원합니다.
-								<p></p>
-							</div>
-						</div>
-
-						<div class="wpurchase-viewyn">
-							<h3>
-								<em>공개여부 <span>(선택)</span></em>
-							</h3>
-							<div class="viewyn-wrap">
-								<p class="sub-text">서포터 목록에 서포터 이름과 결제 금액이 공개됩니다. 조용히 참여하고
-									싶으시다면, 비공개로 선택해 주세요.</p>
-								<p class="notice-text">커뮤니티, 새소식 댓글 작성 시에는 비공개 여부와 상관없이 참여자
-									표시가 노출됩니다.</p>
-								<div class="inner-wrap">
-									<p class="check-area">
-										<label class="wz checkbox"> <input type="checkbox"
-											id="dontShowNameYn" name="dontShowNameYn" value="N"><span
-											class="nickview">이름 비공개</span>
-										</label> <label class="wz checkbox"> <input type="checkbox"
-											id="dontShowAmountYn" name="dontShowAmountYn" value="N"><span>금액
-												비공개</span>
-										</label>
+						<form action="payment" method="post" onsubmit="return rewardCheck()">
+							<div class="wpurchase-donation">
+								
+								<h3>
+									<em>후원금 더하기 <span>(선택)</span></em>
+								</h3>
+								<div class="donation-wrap">
+									<p class="sub-text">후원금을 더하여 참여할 수 있습니다. 추가 후원금을 입력하시겠습니까?</p>
+									<p class="input-area">
 									</p>
-									<ul class="example">
-										<li>
-											<p class="title">이름/금액 공개 예시</p>
-											<dl>
-												<dt>
-													<em
-														style="background-image: url(/resources/static/img/sub/icon_account_pstype01.png)"></em>
-												</dt>
-												<dd>
-													홍길동님<br>105,000원 참여하셨습니다.
-												</dd>
-											</dl>
-										</li>
-										<li>
-											<p class="title">이름/금액 비공개 예시</p>
-											<dl>
-												<dt>
-													<em
-														style="background-image: url(/resources/static/img/common/img_blank.png)"></em>
-												</dt>
-												<dd>
-													익명의 서포터님이<br>참여하셨습니다.
-												</dd>
-											</dl>
-										</li>
-									</ul>
+									<div class="wz inline-block input">
+										<input type="number" id="addDonation" name="addDonation"
+											class="wz input numOnly" maxlength="8" value="0">
+									</div>
+									원을 추가로 후원합니다.
+									<p></p>
 								</div>
 							</div>
-						</div>
-						<input name="apid" type="hidden" value="">
-					</form>
-					<div class="btn-wrap">
-						<p class="confirm">
-							[레전드 복숭아] 다시 돌아온 분홍이와 노랑이! 첫 수확이라 더 달콤해요에 <em id="sumTotalNum">5,852,000</em>
-							원을 참여합니다.
-						</p>
-						<form action="payment">
-							<input type="hidden" id="reward_name" name="reward_name">
-							<input type="hidden" id="reward_amount" name="reward_amount">
-							<input type="hidden" id="reward_idx" name="reward_idx">
-							<input type="hidden" id="reward_quantity" name="reward_quantity">
-							<input type="hidden" id="reward_delivery_fee" name="reward_delivery_fee">
-							<button class="wz button primary" onclick="purchaseNextStep();">
-								다음 단계로 <i class="icon chevron-right"></i>
-							</button>
+
+							<div class="btn-wrap">
+								<p class="confirm">
+									[레전드 복숭아] 다시 돌아온 분홍이와 노랑이! 첫 수확이라 더 달콤해요에 <em id="sumTotalNum">5,852,000</em>
+									원을 참여합니다.
+								</p>
+									<input type="hidden" id="project_idx" name="project_idx" value="${param.num }">
+									<input type="hidden" id="reward_name" name="reward_name">
+									<input type="hidden" id="reward_amount" name="reward_amount">
+									<input type="hidden" id="reward_idx" name="reward_idx">
+									<input type="hidden" id="reward_quantity" name="reward_quantity">
+									<input type="hidden" id="reward_delivery_fee" name="reward_delivery_fee">
+									<button class="wz button primary" onclick="purchaseNextStep();">
+										다음 단계로 <i class="icon chevron-right"></i>
+									</button>
+							</div>
 						</form>
-					</div>
 				</div>
 			</div>
 		</div>

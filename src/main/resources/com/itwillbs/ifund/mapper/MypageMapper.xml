@@ -33,6 +33,7 @@
 			SET member_passwd = #{member_passwd}
 				,member_image = #{member_image}
 				, member_image_path = #{member_image_path}
+				, member_phone = #{member_phone}
 
 				WHERE member_idx = #{member_idx}
 	</update>
@@ -133,6 +134,14 @@
 			 		  AND member_idx = #{member_idx}
 	</select>
 	
+	<update id="updateSmsAuth">
+		UPDATE member
+			SET <if test="authCode.equals(numStr)">
+					sms_auth_status = 'Y'
+				</if>
+			WHERE
+				member_idx = #{member_idx}
+	</update>
 <!-- 	0609 김애리 추가 - 문의내역 -->
 	<select id="selectInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
 		SELECT *
