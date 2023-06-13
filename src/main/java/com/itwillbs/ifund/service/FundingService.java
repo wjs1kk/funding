@@ -81,6 +81,10 @@ public class FundingService {
 	public int insertInquiry(InquiryVO inquiry) {
 		return mapper.insertInquiry(inquiry);
 	}
+	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
+	public List<ProjectListVO> selectOpenProject() {
+		return mapper.selectOpenProject();
+	}
 	
 	// 06-11 김동욱 포인트 적립
 }

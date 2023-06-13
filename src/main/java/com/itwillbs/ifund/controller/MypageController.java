@@ -47,6 +47,7 @@ public class MypageController {
 	private String client_id;
 
 	// 0516수정 로그인정보 가져오기
+	// 2023-06-05 박경은 - 계좌 인증 model.addAttribute("client_id", client_id); 추가
 	@GetMapping("mypage/supporter")
 	public String mypage(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -55,6 +56,7 @@ public class MypageController {
 		model.addAttribute("point", point);
 		String member_point = point.get(0).getMember_point();
 		model.addAttribute("member_point", member_point);
+		model.addAttribute("client_id", client_id);
 		return "mypage/mypage";
 	}
 
@@ -288,12 +290,10 @@ public class MypageController {
 	}
 
 //	0516수정 회원정보수정
-	// 2023-06-05 박경은 - 계좌 인증 model.addAttribute("client_id", client_id); 추가
 	@GetMapping("mypage/myInfo")
 	public String myInfo(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		model.addAttribute("member", mypageService.selectUser(member_idx));
-		model.addAttribute("client_id", client_id);
 		return "mypage/myInfo";
 	}
 
@@ -359,7 +359,6 @@ public class MypageController {
 
 	// 2023-06-05 박경은 - 휴대폰 인증
 	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
-	@ResponseBody
 	@PostMapping("mypage/message")
 	public String checkMessage(Model model, MemberVO member, HttpSession session) {
 		model.addAttribute("member_phone", member.getMember_phone());
@@ -373,6 +372,8 @@ public class MypageController {
 		}
 
 		NaverCloud.sendSMS(member.getMember_phone(), numStr);
+		
+		
 		
 		return "redirect:/mypage/myInfo";
 	}

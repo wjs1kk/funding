@@ -37,4 +37,6 @@ public interface FundingMapper {
 	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
 	public int insertInquiry(@Param("inquiry_subject") String inquiry_subject, @Param("inquiry_content") String inquiry_content);
 	public int insertInquiry(InquiryVO inquiry);
+	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
+	public List<ProjectListVO> selectOpenProject();
 }
