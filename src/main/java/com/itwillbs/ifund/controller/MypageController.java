@@ -55,6 +55,7 @@ public class MypageController {
 		model.addAttribute("point", point);
 		String member_point = point.get(0).getMember_point();
 		model.addAttribute("member_point", member_point);
+		model.addAttribute("client_id", client_id);
 		return "mypage/mypage";
 	}
 
