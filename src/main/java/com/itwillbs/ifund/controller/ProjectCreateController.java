@@ -475,6 +475,11 @@ public class ProjectCreateController {
 	
 	@GetMapping("project/fundingProjectState")
 	public String fundingProjectState(int project_idx, HttpSession session, Model model) {
+		// 06-13 김동욱 프로젝트 현황 통계 정보 가져오기
+		Map myProjectStatus = projectCreateService.myProjectStatus(project_idx);
+		System.out.println(myProjectStatus);
+		model.addAttribute("myProjectStatus", myProjectStatus);
+		
 		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_state");
 	}
 	@GetMapping("project/projectShipmentRefund")
@@ -512,7 +517,6 @@ public class ProjectCreateController {
 			return true;
 		}
 	}
-	
 	
 	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
 	@PostMapping("project/getMyPaymentList")

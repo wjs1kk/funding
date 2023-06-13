@@ -207,6 +207,11 @@ public class ProjectCreateService {
 	public void trackingNumberUpdate(int payment_idx, String tracking_number) {
 		mapper.trackingNumberUpdate(payment_idx, tracking_number);
 	}
+	
+	// 06-13 김동욱 프로젝트 현황 통계 정보 가져오기
+	public Map myProjectStatus(int project_idx) {
+		return mapper.myProjectStatus(project_idx);
+	}
 
 		
 }
