@@ -193,30 +193,7 @@
 															<path
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>프로젝트
 														공개</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>아이펀드
-														스쿨 수강</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>새소식
-														알림 기능</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>데이터
-														플러스 (BETA)</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>인증
-														마크</li>
+													
 												</ul>
 												
 											</div>
@@ -273,12 +250,7 @@
 															<path
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>📣
 														오픈예정 서비스</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>👩‍💻
-														1:1 프로젝트 매니저 온라인 상담</li>
+													
 												</ul>
 												
 												
@@ -340,13 +312,8 @@
 															aria-hidden="true">
 															<path
 																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>✨
-														공간 아이펀드 쇼룸</li>
-													<li><svg viewBox="0 0 48 48" focusable="false"
-															role="presentation" class="withIcon_icon__3lrgp"
-															aria-hidden="true">
-															<path
-																d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg>👩‍💻
-														1:1 프로젝트 매니저 온라인 상담</li>
+														배너 광고</li>
+													
 												</ul>
 												
 												

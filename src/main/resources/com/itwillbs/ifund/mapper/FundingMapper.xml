@@ -2,14 +2,16 @@
  <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="com.itwillbs.ifund.mapper.FundingMapper">
+
 	<!-- funding 페이지 쿼리 -->
 	<select id="selectFundingProject"
 		resultType="com.itwillbs.ifund.vo.ProjectListVO">
 		SELECT
 		DISTINCT
 		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
-		pd.project_detail_amount, p.project_target, p.project_start_date,
+		pd.project_detail_amount, pd.project_detail_target, p.project_target, p.project_start_date,
 		p.project_end_date, p.project_title, m.maker_name FROM project p
 		INNER
 		JOIN
@@ -21,10 +23,20 @@
 		p.project_approve_status = '2'
 		AND
 		p.project_type = '1'
-		AND
-		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
-		AND
-		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		
+		<if test="selectbox == 0">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+			AND
+			p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		</if>
+		<if test="selectbox == 1">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_end_date 
+		</if>
+<!-- 			AND -->
+<!-- 			DATE_FORMAT(NOW(), '%Y-%m-%d') > p.project_end_date -->
+		
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -71,10 +83,16 @@
 		WHERE
 		project_approve_status = '2'
 		AND project_type = '2'
-		AND
-		project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
-		AND
-		DATE_FORMAT(NOW(), '%Y-%m-%d') >= project_start_date
+		<if test="selectbox == 0">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+			AND
+			p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		</if>
+		<if test="selectbox == 1">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_end_date 
+		</if>
 		<if test="!category.equals('')">
 			<choose>
 				<when test="category.equals('전체')">
@@ -134,9 +152,9 @@
 		<if test="!order.equals('')">
 			<choose>
 				<when test="order.equals('오픈임박순')">
-					AND project_coming_soon >= DATE_FORMAT(NOW(),
+					AND project_coming_soon_date >= DATE_FORMAT(NOW(),
 					'%Y-%m-%d')
-					ORDER BY p.project_coming_soon DESC;
+					ORDER BY p.project_coming_soon_date DESC;
 				</when>
 				<when test="order.equals('최신순')">
 					ORDER BY project_start_date DESC;
@@ -160,7 +178,7 @@
 			DISTINCT
 				p.project_idx, p.project_category, p.project_reward_category, p.project_content,
 				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date,
-				pd.project_detail_amount, pd.project_detail_person,	m.maker_idx, m.maker_image, m.maker_name, p.project_summary
+				pd.project_detail_amount, pd.project_detail_person,	pd.project_detail_target, m.maker_idx, m.maker_image, m.maker_name, p.project_summary
 		 FROM 
 			project p
 		INNER JOIN project_detail pd ON p.project_idx = pd.project_idx
@@ -294,4 +312,51 @@
 						, now()
 						)
 	</insert>
+	<select id="selectOpenProject"
+	resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+	</select>
+	
+	
+	<!-- 	찜하기 -->
+
+	<insert id="insertWish">
+		insert into wish 
+			values(null, #{project_idx}, #{member_idx});
+	</insert>
+	<select id="selectWish" resultType="String">
+		select project_idx 
+			from wish 
+			where member_idx = #{member_idx}
+	</select>
+	<delete id="cancelWish">
+		DELETE
+			FROM wish
+			WHERE project_idx = #{project_idx}
+	</delete>
+<!-- 	찜하기 끗 -->
+<!-- 찜갯수 06/13-->
+	<select id="countWish" resultType="int">
+		select COUNT(*) 
+		from wish 
+		where project_idx=#{project_idx}; 
+	</select>
 </mapper>

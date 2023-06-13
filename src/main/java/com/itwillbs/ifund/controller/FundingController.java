@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,19 +41,38 @@ public class FundingController {
 	private MypageService mypageService;
 	
 	@GetMapping("funding")
-	public String funding(Model model, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
-		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order);
+	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);
+//		찜하기관련
+		if(session.getAttribute("member_idx") != null) {
+			List<String> selectWish = fundingService.selectWish(Integer.parseInt(String.valueOf(session.getAttribute("member_idx"))));
+			model.addAttribute("selectWish",selectWish);
+		}
+//		찜하기관련 끗
+		return "funding/funding";
+	}
+//	찜하기
+	@PostMapping("funding_wish")
+	public String funding_wish(@RequestBody HashMap<String, Integer> map) {
+		fundingService.insertWish(map.get("project_idx"), map.get("member_idx"));
+		return "funding/funding";
+	}
+//	찜하기 취소
+	@PostMapping("funding_wish_cancel")
+	public String funding_wish_cancel(@RequestBody HashMap<String, Integer> map){
+		fundingService.cancelWish(map.get("project_idx"));
 		return "funding/funding";
 	}
 	@GetMapping("detail")
 	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
-		
+//		06/13
+		int countWish = fundingService.countWish(Integer.parseInt(num));
 		// 디테일 이미지 받아오기
 		String image = (String)fundingDetail.get("project_images");
 		String[] images= image.split("\\|");
@@ -68,7 +89,8 @@ public class FundingController {
 		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
-		
+//		06/13
+		model.addAttribute("countWish", countWish);
 		return "funding/funding_detail";
 	}
 	
@@ -98,12 +120,12 @@ public class FundingController {
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("comingsoon", comingsoonProject);
+		
 		return "funding/comingsoon";
 	}
 	@GetMapping("rewardSelect")
 	public String rewardSelect(Model model, String num) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
-		System.out.println(selectReward);
 		model.addAttribute("selectReward", selectReward);
 		return "funding/rewardSelect";
 	}
@@ -149,12 +171,12 @@ public class FundingController {
 		return "funding/payment";
 	}
 	@GetMapping("preorder")
-	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
-		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order);
-		System.out.println(category + ", " + order);
+	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order, selectbox);
 		model.addAttribute("projectPreorderList", projectPreorderList);
 		
 		List categoryList = fundingService.categoryList();
+		model.addAttribute("selectbox", selectbox);
 		model.addAttribute("categoryList", categoryList);
 		
 		return "funding/preorder";
@@ -167,7 +189,6 @@ public class FundingController {
 		int member_idx = (Integer)session.getAttribute("member_idx");
 		map.put("member_idx", member_idx);
 		
-		System.out.println(map);
 		
 		String[] reward_idx = map.get("reward_idx").toString().split(", ");
 		String[] reward_quantity = map.get("reward_quantity").toString().split(", ");
@@ -181,7 +202,6 @@ public class FundingController {
 		// 06-10 김동욱 사용한 쿠폰 N으로 업데이트
 		if(coupon_idx != 0) {
 			int couponUsedUpdateCount = fundingService.couponUsedUpdate(coupon_idx);
-			System.out.println("couponUsedUpdateCount : " + couponUsedUpdateCount);
 		}
 		
 		// 06-10 김동욱 펀딩 결제하기

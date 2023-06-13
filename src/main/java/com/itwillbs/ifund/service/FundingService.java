@@ -24,11 +24,11 @@ public class FundingService {
 	public Map<String, String> selectProject() {
 		return mapper.selectProject();
 	}
-	public List<ProjectListVO> selectFundingProject(String category, String order) {
-		return mapper.selectFundingProject(category, order);
+	public List<ProjectListVO> selectFundingProject(String category, String order, String selectbox) {
+		return mapper.selectFundingProject(category, order, selectbox);
 	}
-	public List<ProjectListVO> selectPreorderProject(String category, String order) {
-		return mapper.selectPreorderProject(category, order);
+	public List<ProjectListVO> selectPreorderProject(String category, String order, String selectbox) {
+		return mapper.selectPreorderProject(category, order, selectbox);
 	}
 	public List categoryList() {
 		return mapper.categoryList();
@@ -81,6 +81,25 @@ public class FundingService {
 	public int insertInquiry(InquiryVO inquiry) {
 		return mapper.insertInquiry(inquiry);
 	}
+	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
+	public List<ProjectListVO> selectOpenProject() {
+		return mapper.selectOpenProject();
+	}
 	
-	// 06-11 김동욱 포인트 적립
+	
+	
+//	찜하기관련
+	public int insertWish(int project_idx, int member_idx) {
+		return mapper.insertWish(project_idx, member_idx);
+	}
+	public int cancelWish(int project_idx) {
+		return mapper.cancelWish(project_idx);
+	}
+	public List<String> selectWish(int member_idx) {
+		return mapper.selectWish(member_idx);
+	}
+//	찜하기관련 끗
+	public int countWish(int project_idx) {
+		return mapper.countWish(project_idx);
+	}
 }
