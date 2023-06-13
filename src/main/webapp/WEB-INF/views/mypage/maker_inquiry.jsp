@@ -80,12 +80,29 @@
 													<a href="inquiry_view?inq_idx=${myInquiry.inq_idx}">
 												</c:if> ${myInquiry.inq_subject} </a></td>
 												
-<%-- 											<td>${myInquiry.maker_idx}</td> --%>
+												
+												
+												
+												
+												
+												
+												<td>
+													<c:if test="${myInquiry.inq_re_lev > 0 }">
+														<c:forEach var="i" begin="1" end="${myInquiry.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
+														${myInquiry.maker_name}
+													</c:if> 
+													<c:if test="${myInquiry.inq_re_lev < 1 }">
+														${member.member_name}
+													</c:if>  
+												</td>
+												
+												
+												
 											
-												<c:if test="${ myInquiry.inq_re_lev ne 0 }">
+<%-- 												<c:if test="${ myInquiry.inq_re_lev eq 0 }"> --%>
 													
-											   		<td>${maker.maker_name}</td>
-											    </c:if>
+<%-- 											   		<td>${maker.maker_name}</td> --%>
+<%-- 											    </c:if> --%>
 											
 																						
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${myInquiry.inq_date}" /></td>

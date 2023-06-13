@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -19,10 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.ifund.service.FundingService;
 import com.itwillbs.ifund.service.MemberService;
 import com.itwillbs.ifund.service.MypageService;
 import com.itwillbs.ifund.service.ProjectCreateService;
@@ -30,7 +33,9 @@ import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.InquiryVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
+import com.itwillbs.ifund.vo.PaymentVO;
 import com.itwillbs.ifund.vo.PointVO;
+import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 
 @Controller
@@ -41,12 +46,15 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private ProjectCreateService projectCreateService;
+	@Autowired
+	private FundingService fundingService;
 	
 	// 2023-06-05 박경은 - 계좌 인증 어노테이션 추가
 	@Value("${client_id}")
 	private String client_id;
 
 	// 0516수정 로그인정보 가져오기
+	// 2023-06-05 박경은 - 계좌 인증 model.addAttribute("client_id", client_id); 추가
 	@GetMapping("mypage/supporter")
 	public String mypage(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -55,6 +63,11 @@ public class MypageController {
 		model.addAttribute("point", point);
 		String member_point = point.get(0).getMember_point();
 		model.addAttribute("member_point", member_point);
+		model.addAttribute("client_id", client_id);
+		
+		model.addAttribute("countCoupon", mypageService.countCoupon(member_idx));
+		model.addAttribute("countPayment", mypageService.countPayment(member_idx));
+		
 		return "mypage/mypage";
 	}
 
@@ -215,12 +228,14 @@ public class MypageController {
 //	0609 김애리 추가 - 메이커 문의 (수정중)
 	@GetMapping("mypage/makerinquiry")
 	public String maker_inquiry(HttpSession session, Model model, 
-			InquiryVO inquiryVO, @RequestParam(defaultValue = "1") int pageNum) {
+			InquiryVO inquiryVO, @RequestParam(defaultValue = "1") int pageNum, Integer maker_idx) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		model.addAttribute("member", mypageService.selectUser(member_idx));
+		
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
 		
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<InquiryVO> myInquiry = mypageService.myInquiry(member_idx, listLimit, startRow);
+		List myInquiry = mypageService.myInquiry(member_idx, maker_idx, listLimit, startRow);
 		model.addAttribute("myInquiry", myInquiry);
 		Integer myInquiryCount = mypageService.myInquiryCount(member_idx);
 		model.addAttribute("myInquiryCount", myInquiryCount);
@@ -228,8 +243,6 @@ public class MypageController {
 		List maker = mypageService.selectMakerIdx(member_idx);
 		model.addAttribute("maker", maker);
 		
-//		model.addAttribute("member", mypageService.selectUser(member_idx));
-//		model.addAttribute("maker", mypageService.selectMakerName(Integer.parseInt(maker)));
 
 		
 		// 페이징
@@ -245,10 +258,6 @@ public class MypageController {
 		
 	}
 
-	@GetMapping("mypage/inquiry_form")
-	public String inquiry_form() {
-		return "mypage/inquiry_form";
-	}
 	@GetMapping("mypage/inquiry_view")
 	public String inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, InquiryVO inquiryVO2, String inq_idx) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -276,24 +285,28 @@ public class MypageController {
 		
 		return "mypage/sup_inquiry_view";
 	}	
+
 	
 	@GetMapping("mypage/wish")
 	public String wish(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<ProjectVO> wish = mypageService.selectWish(member_idx);
+		List<ProjectListVO> wish = mypageService.selectWish(member_idx);
 		model.addAttribute("wish", wish);
-		System.out.println(wish);
 
 		return "mypage/wish";
 	}
+	@PostMapping("mypage/mypage_wish_cancel")
+	public String mypage_wish_cancel(@RequestBody HashMap<String, Integer> map) {
+		fundingService.cancelWish(map.get("project_idx"));
+		return "mypage/wish";
+	}
+	
 
 //	0516수정 회원정보수정
-	// 2023-06-05 박경은 - 계좌 인증 model.addAttribute("client_id", client_id); 추가
 	@GetMapping("mypage/myInfo")
 	public String myInfo(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		model.addAttribute("member", mypageService.selectUser(member_idx));
-		model.addAttribute("client_id", client_id);
 		return "mypage/myInfo";
 	}
 
@@ -359,7 +372,6 @@ public class MypageController {
 
 	// 2023-06-05 박경은 - 휴대폰 인증
 	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
-	@ResponseBody
 	@PostMapping("mypage/message")
 	public String checkMessage(Model model, MemberVO member, HttpSession session) {
 		model.addAttribute("member_phone", member.getMember_phone());
@@ -373,6 +385,8 @@ public class MypageController {
 		}
 
 		NaverCloud.sendSMS(member.getMember_phone(), numStr);
+		
+		
 		
 		return "redirect:/mypage/myInfo";
 	}
@@ -427,19 +441,27 @@ public class MypageController {
 		return "mypage/follow";
 	}
 
-//	0522 수정! 펀딩참여내역 매핑
+//	0522 추가! 펀딩참여내역 매핑 + 0613 수정
 	@GetMapping("mypage/history")
 	public String history(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<ProjectVO> history = mypageService.selectHistory(member_idx);
-		model.addAttribute("history", history);
-		System.out.println(history);
-
+		List paymentList = mypageService.selectPayment(member_idx);
+		model.addAttribute("paymentList", paymentList);
+		System.out.println(paymentList);
+		
 		return "mypage/history";
 	}
 
 	@GetMapping("mypage/history2")
-	public String history2() {
+	public String history2(HttpSession session, Model model, int payment_idx) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		model.addAttribute("member", mypageService.selectUser(member_idx));
+
+		Map<Object, Object> paymentMap = mypageService.selectPaymentMap(member_idx, payment_idx);
+		model.addAttribute("paymentMap", paymentMap);
+		System.out.println(paymentMap);
+		
+		
 		return "mypage/history2";
 	}
 
