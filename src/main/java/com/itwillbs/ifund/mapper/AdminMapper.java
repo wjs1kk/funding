@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.NoticeVO;
@@ -63,7 +64,7 @@ public interface AdminMapper {
 		// ----------------------------------------
 	
 	// 05-16 은산 프로젝트 목록
-	List<Map<String, Object>> selectAllProjectList();
+	List<Map<String, Object>> selectAllProjectList(String selectOption);
 	// 05-17 은산 승인대기 목록
 	List selectPendingList(ProjectVO project);
 	// 05-18 은산 프로젝트 승인
@@ -81,6 +82,8 @@ public interface AdminMapper {
 	// 
 	public int updateProjectStatus(@Param("projectIdx") Integer projectIdx, @Param("projectStatus")String projectStatus);
 	public List selectRewardList(ProjectVO project);
+	public List selectPaymentList(ProjectVO project);
+	public List selectCalculateList(CalculateVO calculate);
 
 
 }

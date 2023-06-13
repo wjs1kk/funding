@@ -32,14 +32,3 @@ public class BankApiService {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-

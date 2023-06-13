@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.itwillbs.ifund.mapper.AdminMapper;
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.NoticeVO;
@@ -130,8 +131,8 @@ public class AdminService {
 	// --------------------------------------
 
 	// 05-16 은산 프로젝트 목록
-	public List<Map<String, Object>> getAllProjectList() {
-		return mapper.selectAllProjectList();
+	public List<Map<String, Object>> getAllProjectList(String selectOption) {
+		return mapper.selectAllProjectList(selectOption);
 	}
 
 	// 05-17 은산 승인대기 목록
@@ -176,6 +177,14 @@ public class AdminService {
 
 	public List getRewardList(ProjectVO project) {
 		return mapper.selectRewardList(project);
+	}
+
+	public List getPaymentList(ProjectVO project) {
+		return mapper.selectPaymentList(project);
+	}
+
+	public List selectCalculateList(CalculateVO calculate) {
+		return mapper.selectCalculateList(calculate);
 	}
 
 }

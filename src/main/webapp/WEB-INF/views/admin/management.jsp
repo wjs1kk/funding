@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default"
@@ -10,7 +11,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-<title>와디즈 관리자 - 보도자료</title>
+<title>관리자 - 정산관리</title>
 <meta name="description" content="" />
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath }/resources/assets/img/favicon/favicon.ico" />
@@ -35,10 +36,60 @@
 	src="${pageContext.request.contextPath }/resources/assets/vendor/js/helpers.js"></script>
 <script
 	src="${pageContext.request.contextPath }/resources/assets/js/config.js"></script>
+<script type="text/javascript">
 
-<!-- 경은 css 추가 시작 -->
+	<!-- 모달 실행 -->
+// 	function showModal(modalId, btnId, inputName) {
+// // 		$("input[name=project_title]").val($("#td_project_title").text());
+// // 		let idx = document.getElementById(btnId).getAttribute("value");
+	
+// 		var modal = document.getElementById(modalId);
+// 		var closeBtn = document.getElementById('closeBtn' + modalId);
+// 		var xBtn = document.getElementById('xBtn' + modalId);
+		
+// 		modal.classList.add('show');
+// 		modal.style.display = 'block';
+		
+		
+// 	}
+
+	<!-- 승인 -->
+	function modal(calculate_idx, project_title, calculate_fee) {
+		
+		$("#modalId").modal('show');
+		
+		$("#calculate_idx").val(calculate_idx);
+		$("#project_title").val(project_title);
+		$("#calculate_fee").val(calculate_fee);
+		
+		
+	}
+	
+	
+	
+</script>
+<!-- 모달 css -->
 <style type="text/css">
-.pagination {
+.modal {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu.show {
+	overflow: visible;
+}
+
+.fade {
+	transition: opacity .15s linear;
+}
+</style>
+<style type="text/css">
+.form-control:disabled, .form-control[readonly] {
+	background-color: white;
+	opacity: 1;
+}
+
+<!--
+경은 css 추가 시작 --> <style type ="text /css ">.pagination {
 	justify-content: center;
 	padding-top: 30px;
 }
@@ -114,114 +165,105 @@
 					</div>
 
 				</nav>
-
 				<!-- / Navbar -->
+				<!-- 모달 -->
+				<form id="modalForm" action="management" method="post"
+					onsubmit="return confirm('정산 처리 하시겠습니까?')">
+					<div class="modal fade" id="modalId" tabindex="-1" aria-modal="true"
+						style="display: none" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel1">Modal
+										title</h5>
+									<button type="button" id="xBtndenied" class="btn-close"
+										data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col mb-3">
+											<label for="nameBasic" class="form-label">프로젝트명</label> <input
+												type="text" id="project_title" readonly="readonly"
+												name="project_title" class="form-control" value="${project_title }"
+												placeholder="Enter Name" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col mb-3">
+											<label for="nameBasic" class="form-label">정산금액</label> 
+											<input
+												type="text" id="calculate_fee" readonly="readonly"
+												 class="form-control"
+												placeholder="Enter Name" />
+										</div>
+									</div>
+								</div>
+<!-- 								<input type="hidden" name="project_idx" id="project_idx2"> -->
+								<div class="modal-footer">
+									<button type="button" id="closeBtndenied"
+										class="btn btn-outline-secondary" data-bs-dismiss="modal">
+										취소</button>
+									<button type="submit" class="btn btn-primary">확인</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!-- /모달 -->
 
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4">보도자료</h4>
+						<h4 class="fw-bold py-3 mb-4">정산관리</h4>
 						<div class="card">
-
 							<div class="table-responsive text-nowrap">
 								<table class="table table-striped">
 									<thead>
 										<tr>
 											<th>NO</th>
-											<th>제목</th>
-											<th>날짜</th>
+											<th>프로젝트명</th>
+											<th>신청날짜</th>
+											<th>신청자</th>
+											<th>은행명</th>
+											<th>계좌번호</th>
+											<th>정산금액</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tbody class="table-border-bottom-0">
-										<c:forEach var="newsList" items="${newsList }">
-											<tr class="cursor-pointer"
-												onclick="location.href='${pageContext.request.contextPath }/admin/newsListDetail?board_idx=${newsList.board_idx}'">
-												<td>${newsList.board_idx }</td>
-												<td><strong>${newsList.board_subject }</strong></td>
-												<td>${newsList.board_date }</td>
-											</tr>
-										</c:forEach>
-									</tbody>
+									<c:choose>
+										<c:when test="${!empty list }">
+											<tbody class="table-border-bottom-0">
+												<c:forEach var="list" items="${list }">
+													<tr class="cursor-pointer">
+														<td>${list.calculate_idx }</td>
+														<td>${list.project_title }</td>
+														<td>${list.calculate_Date }</td>
+														<td>${list.member_name }</td>
+														<td></td>
+														<td></td>
+														<td><fmt:formatNumber value="${list.calculate_fee }"
+																pattern="#,###" />원
+														</td>
+														<td>
+															<button class="btn btn-outline-primary"
+																onclick="modal(${list.calculate_idx}, '${list.project_title}', ${list.calculate_fee })">정산하기</button>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>
 						<!--/ Striped Rows -->
 
-						<!-- 글쓰기 시작 -->
-						<div
-							style="display: flex; justify-content: right; padding: 20px 20px 0 0;">
-							<button type="button" class="btn btn-primary"
-								onclick="location.href='newsListWrite'">글쓰기</button>
-						</div>
-						<!-- 글쓰기 시작 -->
 
-
-						<!-- 페이징 시작 -->
-						<nav aria-label="Page navigation">
-							<ul class="pagination">
-
-								<c:choose>
-									<c:when test="${empty param.pageNum }">
-										<c:set var="pageNum" value="1" />
-									</c:when>
-									<c:otherwise>
-										<c:set var="pageNum" value="${param.pageNum }" />
-									</c:otherwise>
-								</c:choose>
-
-								<c:choose>
-									<c:when test="${pageNum > 1 }">
-										<li class="page-item prev"><a class="page-link"
-											href="javascript:void(0);"> <i
-												class="tf-icon bx bx-chevron-left"
-												onclick="location.href='${pageContext.request.contextPath }/admin/newsList?pageNum=${pageNum - 1}'"></i>
-										</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item prev"><a class="page-link"
-											href="javascript:void(0);"> <i
-												class="tf-icon bx bx-chevron-left"></i>
-										</a></li>
-									</c:otherwise>
-								</c:choose>
-
-								<c:forEach var="num" begin="${pageInfo.startPage }"
-									end="${pageInfo.endPage }">
-									<c:choose>
-										<c:when test="${pageNum eq num }">
-											<li class="page-item active"><a class="page-link"
-												href="javascript:void(0);">${num }</a></li>
-										</c:when>
-										<c:when test="${pageNum ne num }">
-											<li class="page-item"><a class="page-link"
-												href="javascript:void(0);"
-												onclick="location.href='${pageContext.request.contextPath }/admin/newsList?pageNum=${num}'">${num }</a>
-											</li>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-
-								<c:choose>
-									<c:when test="${pageNum < pageInfo.maxPage }">
-										<li class="page-item next"><a class="page-link"
-											href="javascript:void(0);"> <i
-												class="tf-icon bx bx-chevron-right"
-												onclick="location.href='${pageContext.request.contextPath }/admin/newsList?pageNum=${pageNum + 1}'"></i>
-										</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item next"><a class="page-link"
-											href="javascript:void(0);"> <i
-												class="tf-icon bx bx-chevron-right"></i>
-										</a></li>
-									</c:otherwise>
-								</c:choose>
-
-							</ul>
-						</nav>
-						<!-- 페이징 끝 -->
 
 						<hr class="my-5">
 

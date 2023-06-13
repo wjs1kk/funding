@@ -196,29 +196,66 @@
 									<div class="card-body">
 										<form>
 											<div class="mb-3">
-												<c:choose>
-													<c:when test="${project.project_status eq 2}">
-														<span class="badge bg-danger">마감</span>
-													</c:when>
-													<c:when test="${project.project_status eq 1 }">
-														<span class="badge bg-primary">진행중</span>
-													</c:when>
-													<c:otherwise>
-														<span class="badge bg-label-secondary">오픈전</span>
-													</c:otherwise>
-												</c:choose>
-												<span class="badge bg-danger">${project.d_day}일</span>
-												<c:choose>
-													<c:when test="${project.project_plan eq 3 }">
-														<span class="badge bg-info">Pro</span>
-													</c:when>
-													<c:when test="${project.project_plan eq 2 }">
-														<span class="badge bg-warning">Basic</span>
-													</c:when>
-													<c:otherwise>
-														<span class="badge bg-label-secondary">Light</span>
-													</c:otherwise>
-												</c:choose>
+												<div>
+													<c:choose>
+														<c:when test="${project.project_status eq 2}">
+															<span class="badge bg-danger">마감</span>
+														</c:when>
+														<c:when test="${project.project_status eq 1 }">
+															<span class="badge bg-primary">진행중</span>
+														</c:when>
+														<c:otherwise>
+															<span class="badge bg-label-secondary">오픈전</span>
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<c:if test="${project.project_status > 0}">
+													<c:if test="${project.d_day > 0}">
+														<div style="margin-top: 15px;">
+															<span style="line-height: 34px;
+																font-size: 24px; font-weight: 500;">
+																${project.project_detail_person}명
+															</span>
+															<span>
+																 참여
+															</span>
+															<span style="border: solid 1px #e7f9f9; background-color: #e7f9f9;
+																color: #00c4c4;">${Math.abs(project.d_day)}일 남음
+															</span>
+														</div>
+														<div style="margin-top: 15px;">
+															<span style="line-height: 34px;
+															font-size: 24px; font-weight: 500;">
+																<fmt:formatNumber value="${project.project_detail_amount}" pattern="#,###" />원
+															</span>
+															<span>
+																<fmt:formatNumber value="${project.target_rate}" pattern="#,###" />% 달성
+															</span>
+														</div>
+													</c:if>
+													<c:if test="${project.d_day < 0}">
+														<div style="margin-top: 15px;">
+															<span style="line-height: 34px;
+																font-size: 24px; font-weight: 500;">
+																${project.project_detail_person}명
+															</span>
+															<span>
+																 참여
+															</span>
+														</div>
+														<div style="margin-top: 15px;">
+															<span style="line-height: 34px;
+															font-size: 24px; font-weight: 500;">
+																<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원
+															</span>
+															<span>
+																<fmt:formatNumber value="${project.target_rate}" pattern="#,###" />% 달성
+															</span>
+														</div>
+													</c:if>
+													
+												</c:if>
+												
 											</div>
 											<div class="mb-3">
 												<label class="form-label" for="basic-default-fullname">유형</label>
@@ -260,6 +297,22 @@
 								<div class="card mb-4">
 									<div class="card-body">
 										<form>
+											<div class="mb-3">
+											<label class="form-label" for="basic-default-email">플랜</label>
+											<div class="input-group input-group-merge">
+											<c:choose>
+													<c:when test="${project.project_plan eq 3 }">
+														<span class="badge bg-info">Pro</span>
+													</c:when>
+													<c:when test="${project.project_plan eq 2 }">
+														<span class="badge bg-warning">Basic</span>
+													</c:when>
+													<c:otherwise>
+														<span class="badge bg-label-secondary">Light</span>
+													</c:otherwise>
+												</c:choose>
+												</div>
+											</div>
 											<div class="mb-3">
 												<label class="form-label" for="basic-default-email">오픈예정+</label>
 												<div class="input-group input-group-merge">
@@ -308,76 +361,6 @@
 														${project.project_content}</div>
 												</div>
 											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">썸네일</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_thumbnail}"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">목표금액</label>
-												<div class="col-sm-10">
-
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">달성률</label>
-												<div class="col-sm-10">
-
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.target_rate}" pattern="#,###" /> %"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">참여금액</label>
-												<div class="col-sm-10">
-
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="<fmt:formatNumber value="${project.detail_amount}" pattern="#,###" /> %"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">참여인원</label>
-												<div class="col-sm-10">
-
-													<input type="text" id="basic-default-phone" readonly
-														class="form-control phone-mask"
-														value="${project.project_detail_person}명"
-														aria-label="658 799 8941"
-														aria-describedby="basic-default-phone">
-
-												</div>
-											</div>
-											<div class="row justify-content-end">
-												<div class="col-sm-10"
-													style="text-align: center; padding: 20px">
-													<button type="button" class="btn btn-primary"
-														onclick="history.back(); return false;">뒤로가기</button>
-												</div>
-											</div>
 										</form>
 									</div>
 								</div>
@@ -387,128 +370,7 @@
 						</div>
 						<h4 class="fw-bold py-3 mb-4">리워드</h4>
 						<div class="row">
-							<div class="col-xl">
-								<div class="card mb-4">
-									<div
-										class="card-header d-flex justify-content-between align-items-center">
-										<h5 class="mb-0">Basic Layout</h5>
-										<small class="text-muted float-end">Default label</small>
-									</div>
-									<div class="card-body">
-										<form>
-											<div class="mb-3">
-												<label class="form-label" for="basic-default-fullname">Full
-													Name</label> <input type="text" class="form-control"
-													id="basic-default-fullname" placeholder="John Doe">
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-default-company">Company</label>
-												<input type="text" class="form-control"
-													id="basic-default-company" placeholder="ACME Inc.">
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-default-email">Email</label>
-												<div class="input-group input-group-merge">
-													<input type="text" id="basic-default-email"
-														class="form-control" placeholder="john.doe"
-														aria-label="john.doe"
-														aria-describedby="basic-default-email2"> <span
-														class="input-group-text" id="basic-default-email2">@example.com</span>
-												</div>
-												<div class="form-text">You can use letters, numbers
-													&amp; periods</div>
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-default-phone">Phone
-													No</label> <input type="text" id="basic-default-phone"
-													class="form-control phone-mask" placeholder="658 799 8941">
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-default-message">Message</label>
-												<textarea id="basic-default-message" class="form-control"
-													placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl">
-								<div class="card mb-4">
-									<div
-										class="card-header d-flex justify-content-between align-items-center">
-										<h5 class="mb-0">Basic with Icons</h5>
-										<small class="text-muted float-end">Merged input group</small>
-									</div>
-									<div class="card-body">
-										<form>
-											<div class="mb-3">
-												<label class="form-label" for="basic-icon-default-fullname">Full
-													Name</label>
-												<div class="input-group input-group-merge">
-													<span id="basic-icon-default-fullname2"
-														class="input-group-text"><i class="bx bx-user"></i></span>
-													<input type="text" class="form-control"
-														id="basic-icon-default-fullname" placeholder="John Doe"
-														aria-label="John Doe"
-														aria-describedby="basic-icon-default-fullname2">
-												</div>
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-icon-default-company">Company</label>
-												<div class="input-group input-group-merge">
-													<span id="basic-icon-default-company2"
-														class="input-group-text"><i class="bx bx-buildings"></i></span>
-													<input type="text" id="basic-icon-default-company"
-														class="form-control" placeholder="ACME Inc."
-														aria-label="ACME Inc."
-														aria-describedby="basic-icon-default-company2">
-												</div>
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-icon-default-email">Email</label>
-												<div class="input-group input-group-merge">
-													<span class="input-group-text"><i
-														class="bx bx-envelope"></i></span> <input type="text"
-														id="basic-icon-default-email" class="form-control"
-														placeholder="john.doe" aria-label="john.doe"
-														aria-describedby="basic-icon-default-email2"> <span
-														id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-												</div>
-												<div class="form-text">You can use letters, numbers
-													&amp; periods</div>
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-icon-default-phone">Phone
-													No</label>
-												<div class="input-group input-group-merge">
-													<span id="basic-icon-default-phone2"
-														class="input-group-text"><i class="bx bx-phone"></i></span>
-													<input type="text" id="basic-icon-default-phone"
-														class="form-control phone-mask" placeholder="658 799 8941"
-														aria-label="658 799 8941"
-														aria-describedby="basic-icon-default-phone2">
-												</div>
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="basic-icon-default-message">Message</label>
-												<div class="input-group input-group-merge">
-													<span id="basic-icon-default-message2"
-														class="input-group-text"><i class="bx bx-comment"></i></span>
-													<textarea id="basic-icon-default-message"
-														class="form-control"
-														placeholder="Hi, Do you have a moment to talk Joe?"
-														aria-label="Hi, Do you have a moment to talk Joe?"
-														aria-describedby="basic-icon-default-message2"></textarea>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<h4 class="fw-bold py-3 mb-4">리워드</h4>
-						<div class="row">
-							<div class="card">
+							<div class="card" style="margin-bottom: 50px">
 								<div class="table-responsive text-nowrap">
 									<table class="table table-striped">
 										<thead>
@@ -517,11 +379,9 @@
 												<th>가격</th>
 												<th>내용</th>
 												<th>옵션</th>
-												<th>수량</th>
-												<th>판매량</th>
+												<th>제한수량</th>
 											</tr>
 										</thead>
-										
 										<c:choose>
 											<c:when test="${!empty reward }">
 												<tbody class="table-border-bottom-0">
@@ -536,24 +396,90 @@
 															<td>
 																<fmt:formatNumber value="${reward.reward_quantity}" pattern="#,###" />개
 															</td>
-															<td>
-																<fmt:formatNumber value="${reward.reward_sell}" pattern="#,###" />개
-															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
-											</c:when>
+											</c:when>	
 											<c:otherwise>
-												<tr>
-													<td>등록된 리워드가 없습니다</td>
-												</tr>
+												<td>등록된 리워드가 없습니다.</td>
 											</c:otherwise>
 										</c:choose>
 									</table>
 								</div>
 							</div>
 						</div>
-						
+						<h4 class="fw-bold py-3 mb-4">참여내역</h4>
+						<div class="row">
+							<div class="card" style="margin-bottom: 50px">
+								<div class="table-responsive text-nowrap">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>참여날짜</th>
+												<th>회원명</th>
+												<th>리워드</th>
+												<th>가격</th>
+												<th>포인트</th>
+												<th>쿠폰</th>
+												<th>배송비</th>
+												<th>후원</th>
+												<th>총 비용</th>
+											</tr>
+										</thead>
+										
+										<c:choose>
+											<c:when test="${!empty payment }">
+												<tbody class="table-border-bottom-0">
+													<c:forEach var="payment" items="${payment }">
+														<tr>
+															<td>
+ 															${payment.payment_date }
+<%-- 																		<fmt:formatDate value="${payment.payment_date}" pattern="yyyy-MM-dd HH:mm:ss" type="date"/> --%>
+<%-- 																<fmt:formatDate value="${payment.payment_date }" pattern="yyyy-MM-dd HH:mm" /> --%>
+															</td>
+															<td>${payment.member_name }</td>
+															<td>${payment.reward_name }</td>
+															<td>
+																<fmt:formatNumber value="${payment.reward_amount}" pattern="#,###" />
+															</td>
+															<td>
+																<fmt:formatNumber value="${payment.used_point_amount}" pattern="#,###" />
+															</td>
+															<td>
+																<fmt:formatNumber value="${payment.used_coupon_amount}" pattern="#,###" />
+															</td>
+															<td>
+																<fmt:formatNumber value="${payment.delivery_fee}" pattern="#,###" />원
+															</td>
+															<td>
+																<fmt:formatNumber value="${payment.donation}" pattern="#,###" />원
+															</td>
+															<td>
+																<strong><fmt:formatNumber value="${payment.total_amount}" pattern="#,###" />원
+																</strong>
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</c:when>
+											<c:otherwise>
+												<tr style="text-align: center;">
+													<td>참여 내역이 없습니다.</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+										
+									</table>
+								</div>
+							</div>
+							<div class="row justify-content-end">
+								<div class="col-sm-10"
+									style="text-align: center; padding: 20px">
+									<button type="button" class="btn btn-primary"
+										onclick="history.back(); return false;">뒤로가기</button>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<!-- / Content -->

@@ -341,7 +341,7 @@
 									<tbody id="titleElement" class="table-border-bottom-0">
 										<c:forEach var="pendingList" items="${pendingList }">
 											<tr class="cursor-pointer"
-												onclick="location.href='projectList/detail/${pendingList.project_idx}'">
+												onclick="location.href='projectList/${pendingList.project_idx}'">
 												<td>${pendingList.project_idx }</td>
 												<td>${pendingList.project_create_date }</td>
 												<td id="td_project_title">${pendingList.project_title }</td>
