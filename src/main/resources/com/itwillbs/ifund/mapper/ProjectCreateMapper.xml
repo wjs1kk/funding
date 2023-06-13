@@ -344,6 +344,7 @@
 		, (SELECT bank_code_std
 		   FROM account
 		   WHERE member_idx = #{member_idx})
+		, now()
 		)
 	</insert>
 	
