@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,12 +54,20 @@ public class FundingController {
 		return "funding/funding";
 	}
 	@GetMapping("detail")
-	public String funding_detail(Model model, String num) {
+	public String funding_detail(Model model, String num, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 		
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
+		
+//		06/13
+//		최근본 프로젝트 관련
+		Cookie cookie = new Cookie("goods"+num,num);
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60 * 24);
+		response.addCookie(cookie);
+//		최근본 프로젝트 관련 끝
 		
 		System.out.println(fundingDetail);
 

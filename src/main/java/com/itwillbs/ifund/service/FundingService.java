@@ -75,9 +75,17 @@ public class FundingService {
 		mapper.pointSaving(total_amount * 0.05, member_idx);
 		return mapper.projectDetailAmountUpdate(project_idx, total_amount);
 	}
-	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
-	public List<ProjectListVO> selectOpenProject() {
-		return mapper.selectOpenProject();
+	// 2023-06-13 박경은 - 주목할 만한 프로젝트
+	public List<ProjectListVO> selectAttentionProject() {
+		return mapper.selectAttentionProject();
+	}
+	// 2023-06-13 박경은 - 실시간 랭킹
+	public List<ProjectListVO> selectRankingProject() {
+		return mapper.selectRankingProject();
+	}
+	// 2023-06-13 박경은 - 얼리버드
+	public List<ProjectListVO> selectEarlybirdProject() {
+		return mapper.selectEarlybirdProject();
 	}
 	
 	// 06-11 김동욱 포인트 적립
