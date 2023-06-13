@@ -1,5 +1,6 @@
 package com.itwillbs.ifund.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -195,7 +196,7 @@ public class ProjectCreateService {
 		return mapper.applyCheck(project_idx);
 	}
 
-	public int memberIdxSearch(int project_idx) {
+	public Integer memberIdxSearch(int project_idx) {
 		return mapper.memberIdxSearch(project_idx);
 	}
 	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
@@ -215,6 +216,10 @@ public class ProjectCreateService {
 	public String memberName(int member_idx) {
 		
 		return mapper.memberName(member_idx);
+	}
+
+	public int dateCheck(int project_idx) {
+		return mapper.dateCheck(project_idx);
 	}
 		
 }

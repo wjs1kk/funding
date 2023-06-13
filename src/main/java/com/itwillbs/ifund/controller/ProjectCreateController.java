@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -500,10 +501,12 @@ public class ProjectCreateController {
 		Map List = projectCreateService.showFeeCalculate(project_idx);
 		return List;
 	}
+	
 	@PostMapping("project/memberIdxSearch")
 	@ResponseBody
-	public int memberIdxSearch(@RequestParam int project_idx) {
-		int member = projectCreateService.memberIdxSearch(project_idx);
+	public Integer memberIdxSearch(@RequestParam int project_idx) {
+		Integer member = projectCreateService.memberIdxSearch(project_idx);
+		System.out.println(member);
 		return member;
 	}
 	
@@ -551,6 +554,15 @@ public class ProjectCreateController {
 		String member = projectCreateService.memberNameCheck(project_idx);
 		System.out.println(member);
 		return member;
+	}
+	
+//	06-12 강정운 정산신청
+	@PostMapping("project/dateCheck")
+	@ResponseBody
+	public int dateCheck(int project_idx) {
+		int dateCheck = projectCreateService.dateCheck(project_idx);
+		System.out.println(dateCheck);
+		return dateCheck;
 	}
 	
 }
