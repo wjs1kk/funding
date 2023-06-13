@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.itwillbs.ifund.mapper.MypageMapper">
+  
+<!-- 0516수정 세션정보 가져오기 -->
+	<select id="selectIdx" resultType="string">
+		SELECT member_idx
+			FROM member
+				WHERE member_email = #{member_email}
+	</select>
+  	<select id="selectUser" resultType="com.itwillbs.ifund.vo.MemberVO">
+		SELECT * 
+			FROM member
+				WHERE member_idx = #{member_idx} 
+	</select>
+  	<select id="selectMaker" resultType="com.itwillbs.ifund.vo.MakerVO">
+		SELECT * 
+			FROM maker
+				WHERE member_idx = #{member_idx} 
+	</select>
+	<select id="selectPasswd" resultType="string">
+		SELECT member_passwd
+			FROM member
+				WHERE member_idx = #{member_idx}
+	</select>
+
+<!-- 0516수정 패스워드 수정 -->
+	<update id="updateUser">
+		UPDATE member			
+			SET member_passwd = #{member_passwd}
+				,member_image = #{member_image}
+				, member_image_path = #{member_image_path}
+				, member_phone = #{member_phone}
+
+				WHERE member_idx = #{member_idx}
+	</update>
+
+
+<!-- 	0518수정-포인트내역 -->
+	<select id="selectPoint" resultType="com.itwillbs.ifund.vo.PointVO">
+		SELECT * 
+			FROM point
+				WHERE member_idx = #{member_idx}
+				ORDER BY point_idx desc
+	</select>
+	<insert id="joinPoint">
+		INSERT INTO point(point_idx, member_idx, point_content, point_used, point_save, member_point)
+			VALUES (
+				null,
+				(SELECT member_idx FROM member WHERE member_email = '${member_email}'),
+				"가입",
+				0,
+				2000,
+				2000
+			)
+	</insert>
+
+
+	<delete id="deleteMember">
+		DELETE
+			FROM member
+				WHERE member_idx = #{member_idx}
+	</delete>
+
+	<select id="selectWish" resultType="com.itwillbs.ifund.vo.ProjectVO">
+		SELECT *
+			FROM project
+				WHERE project_idx IN 
+					(SELECT project_idx FROM wish WHERE member_idx = #{member_idx})
+	</select>
+
+	<select id="selectHistory" resultType="com.itwillbs.ifund.vo.ProjectVO">
+		SELECT *
+			FROM project
+				WHERE project_idx IN 
+					(SELECT project_idx FROM project_detail WHERE member_idx = #{member_idx})
+	</select>
+
+	<update id="updateProfile">
+		UPDATE member
+			SET <if test="member_image != null and !member_image.equals('')">
+					member_image = 
+					, member_image_path = '파일경로'
+				</if>
+			WHERE
+				member_idx = #{member_idx}
+	</update>
+
+  	<select id="selectCoupon" resultType="com.itwillbs.ifund.vo.CouponVO">
+		SELECT * 
+			FROM coupon
+				WHERE coupon_isadmin = "1" 
+	</select>
+  	<select id="myCoupon" resultType="com.itwillbs.ifund.vo.CouponVO">
+		SELECT * 
+			FROM coupon
+				WHERE coupon_idx 
+					IN (SELECT coupon_idx FROM coupon_used WHERE member_idx = #{member_idx})
+	</select>
+	<insert id="insertCoupon">
+		INSERT INTO coupon
+        	(coupon_idx, coupon_name, coupon_code, coupon_start, 
+        		coupon_end, coupon_percent, coupon_isadmin, maker_idx)
+			VALUES (
+				null,
+				#{coupon_name},
+				#{coupon_code},
+				#{coupon_start},
+				#{coupon_end},
+				#{coupon_percent},
+				0,
+				#{maker_idx}
+			)
+	</insert>
+	<insert id="downCoupon">
+		INSERT INTO coupon_used(coupon_idx, member_idx, coupon_useable)
+			VALUES( (SELECT coupon_idx
+					 	FROM coupon
+							 WHERE coupon_idx = #{coupon_idx}),
+					(SELECT member_idx
+						FROM member
+							WHERE member_idx = #{member_idx}),
+					'Y'
+		)
+	</insert>
+
+	<select id="checkCoupon" resultType="Integer">
+		SELECT coupon_idx
+			FROM coupon_used
+				WHERE coupon_idx = #{coupon_idx}
+			 		  AND member_idx = #{member_idx}
+	</select>
+	
+	<update id="updateSmsAuth">
+		UPDATE member
+			SET <if test="authCode.equals(numStr)">
+					sms_auth_status = 'Y'
+				</if>
+			WHERE
+				member_idx = #{member_idx}
+	</update>
+	
+<!-- 	0609 김애리 추가 - 서포터 문의내역 -->
+	<select id="selectInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE member_idx = #{member_idx}	
+				ORDER BY inq_idx desc
+	</select>
+	<select id="getInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE inq_idx = #{inq_idx}
+	</select>
+	
+<!--   	<select id="inqMaker" resultType="string"> -->
+<!-- 		SELECT maker_name  -->
+<!-- 			FROM maker -->
+<!-- 				WHERE maker_idx IN  -->
+<!-- 				(SELECT DISTINCT maker_idx FROM inquiry) -->
+<!-- 	</select> -->
+
+	<select id="myInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE member_idx = #{member_idx}
+				ORDER BY inq_re_ref DESC, inq_re_seq ASC
+				LIMIT #{startRow}, #{listLimit};
+	</select>
+	
+	<select id="myInquiryCount" resultType="Integer">
+		SELECT COUNT(member_idx)
+			FROM inquiry
+				WHERE member_idx = #{member_idx}
+	</select>
+	
+	
+	<select id="selectSupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
+		SELECT *
+			FROM inquiry
+				WHERE maker_idx IN     
+				<foreach item="maker" collection="maker" open="(" separator="," close=")">
+			    	#{maker}
+			    </foreach>
+				ORDER BY inq_re_ref DESC, inq_re_seq ASC
+				LIMIT #{startRow}, #{listLimit};
+	</select>
+
+  	<select id="selectMakerIdx" resultType="map">
+		SELECT maker_idx
+			FROM maker
+				WHERE member_idx = #{member_idx} 
+	</select>
+  	<select id="selectMakerName" resultType="map">
+		SELECT maker_name
+			FROM maker
+				WHERE maker_idx = #{maker}
+	</select>
+	
+	
+  </mapper>
