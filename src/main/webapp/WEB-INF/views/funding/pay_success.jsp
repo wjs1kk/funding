@@ -166,9 +166,11 @@
 	src="https://kn.acrosspf.com/adn_check_1.0.2.ad?rb_adn_uid=rb-adn-1-82b0b12732fe78c9da1236db10460a07"></script>
 <script async=""
 	src="https://www.googletagmanager.com/gtag/js?id=G-RR0JGJWWVS"></script>
-<script>window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());</script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+</script>
 </head>
 <body style="overflow: auto;">
 	<div id="page-container">
@@ -176,12 +178,12 @@
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 
 		<script>
-  window.dispatchEvent(new CustomEvent('WadizHeaderLoaded', {
-    detail: {
-      element: document.getElementById('wz-header')
-    }
-  }));
-</script>
+		window.dispatchEvent(new CustomEvent('WadizHeaderLoaded', {
+			detail: {
+				element: document.getElementById('wz-header')
+			}
+		}));
+		</script>
 		<form id="forwardForm" method="get">
 			<input type="hidden" id="returnURL" name="returnURL">
 		</form>
