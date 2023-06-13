@@ -71,11 +71,6 @@
 										</dl>
 									</div>
 									
-<<<<<<< HEAD
-=======
-									<button onclick="location.href='checkInfo'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
-										<span><span class="Button_children__lqBGI">프로필 편집</span></span>
-									</button>
 									
 									<!-- 2023-06-11 박경은 - 계좌 인증 -->
 									<script type="text/javascript">
@@ -110,7 +105,6 @@
 										</c:choose>
 									</div>
 									
->>>>>>> refs/remotes/origin/PKE2
 									<div class="MyWadizSupporterProfile_setting__n8-M7">
 										<button onclick="location.href='../logout'" class="Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
 											<span><span class="Button_children__lqBGI">로그아웃</span></span>
