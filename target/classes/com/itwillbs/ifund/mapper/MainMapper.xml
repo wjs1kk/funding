@@ -7,7 +7,7 @@
 	<select id="slide" resultType="map">
 		SELECT project_thumbnail, project_title, project_type
 		FROM project
-		WHERE project_approve_status = 2 AND project_plan = 2 OR project_plan = 3
+		WHERE project_approve_status = 2 AND project_plan = 3
 		ORDER BY project_create_date
 		LIMIT 5;
 	</select>
