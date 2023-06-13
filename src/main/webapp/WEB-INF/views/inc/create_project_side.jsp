@@ -32,29 +32,35 @@ tocplusUserName="Guest"
 	     error: function(xhr, status, error) {
 	     }
 	})
+	//사용자이름 넣기
+	$(document).ready(function(){
+		$.ajax({
+			 url: 'memberNameCheck',
+		     type: 'POST',
+		     data: {project_idx: ${param.project_idx}},
+		     success: function(member) {
+		    	 {
+					$("#memberName").text(member);
+		    	 }
+		     },
+		     
+		})
+	})
 </script>
 <div class="AppSidebarLayout_contents__2thGr" id="sidebar">
 	<div
 		class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
-		<div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
-			<span class="AppSidebarRewardProjectInfo_flag__2Ctnr">펀딩</span><span
-				class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
-		</div>
-		<a class="AppSidebarRewardProjectInfo_projectName__1Hf5o"
-			href="/web/campaign/detail/213704?preview=Y" target="_blank"
-			rel="nofollow noopener noreferrer">김동욱의<br>멋진 프로젝트
-		</a>
-		<button
-			class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_"
-			type="button">
-			<span><span class="Button_children__q9VCZ">프로젝트 번호
-					213704</span> <svg viewBox="0 0 32 32" focusable="false"
+		
+		<p class="AppSidebarRewardProjectInfo_projectName__1Hf5o"><span id="memberName"> </span><span>의</span><br>멋진 프로젝트
+		</p>
+		<div>
+			<span><span class="">프로젝트 번호
+					${param.project_idx}</span> <svg viewBox="0 0 32 32" focusable="false"
 					role="presentation"
 					class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN"
 					aria-hidden="true" style="width: 20px; height: 20px;">
-									<path
-						d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
-		</button>
+									</svg></span>
+		</div>
 	</div>
 	
 	<!-- 05-17 김동욱 각 페이지로 포워딩하는 항목에 project_idx 파라미터 추가   -->

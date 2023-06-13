@@ -372,5 +372,10 @@
 			SET tracking_number = #{tracking_number}
 			WHERE payment_idx = #{payment_idx}
 	</update>
-	
+	<select id="memberNameCheck" resultType="string">
+		SELECT m.member_name 
+		FROM `member` m JOIN project p 
+		ON m.member_idx = p.member_idx
+		WHERE p.project_idx = #{project_idx} 
+	</select>
 </mapper>

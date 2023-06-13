@@ -15,12 +15,15 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -534,6 +537,15 @@ public class ProjectCreateController {
 		System.out.println(tracking_number);
 		projectCreateService.trackingNumberUpdate(payment_idx, tracking_number);
 		
+	}
+	// 06-13 강정운 side, top 멤버이름 표시
+	@RequestMapping(value = "project/memberNameCheck", produces = "application/text; charset=UTF-8")
+	@ResponseBody
+	public String memberNameCheck(int project_idx) {
+		System.out.println(project_idx);
+		String member = projectCreateService.memberNameCheck(project_idx);
+		System.out.println(member);
+		return member;
 	}
 	
 }

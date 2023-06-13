@@ -155,8 +155,7 @@
 								<div class="FundingStatus_container__3bqGB">
 									<div class="FundingStatus_label__393mk">
 										프로젝트 준비 상태
-										<button class="FundingStatus_link__3Dz78" type="button">지금
-											나의 단계는?</button>
+										
 									</div>
 									<div class="FundingStatus_statusView__D10Ag"></div>
 									<div class="FundingStatus_statusView__D10Ag">

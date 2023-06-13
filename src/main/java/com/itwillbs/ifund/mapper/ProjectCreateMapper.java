@@ -98,5 +98,7 @@ public interface ProjectCreateMapper {
 	List getMyPaymentList(int project_idx);
 	// 06-12 김동욱 운송장 번호 입력
 	void trackingNumberUpdate(@Param("payment_idx") int payment_idx, @Param("tracking_number") String tracking_number);
+	
+	String memberNameCheck(int project_idx);
 
 }

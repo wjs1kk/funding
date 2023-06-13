@@ -208,5 +208,9 @@ public class ProjectCreateService {
 		mapper.trackingNumberUpdate(payment_idx, tracking_number);
 	}
 
+	public String memberNameCheck(int project_idx) {	
+		return mapper.memberNameCheck(project_idx);
+	}
+
 		
 }

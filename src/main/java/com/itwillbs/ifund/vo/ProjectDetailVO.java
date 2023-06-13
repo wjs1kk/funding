@@ -6,6 +6,7 @@ public class ProjectDetailVO {
 	private String project_detail_person;
 	private String project_detail_amount;
 	private String project_detail_target;
+	
 	public int getProject_detail_idx() {
 		return project_detail_idx;
 	}
