@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwillbs.ifund.service.ProjectCreateService;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
+import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectDetailVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RewardVO;
@@ -60,9 +61,13 @@ public class ProjectCreateController {
 		if(session.getAttribute("member_idx") == null) {
 			return "redirect:/login";
 		}
+		int member_idx = (int) session.getAttribute("member_idx");
+		String memberName = projectCreateService.memberName(member_idx);
+		
+		
 		int projectNum = projectCreateService.projectStart();
-		System.out.println(projectNum);
 		model.addAttribute("projectNum", projectNum);
+		model.addAttribute("memberName", memberName);
 		return "projectcreate/intro";
 	}
 	@GetMapping("project/main")

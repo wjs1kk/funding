@@ -9,8 +9,6 @@
 <link rel="stylesheet"
 	href="https://static.wadiz.kr/main/main.c1266dc7.css">
 
-
-
 <div class="web-header">
 	<div class="web-header-large">
 		<header class="header-wrapper">

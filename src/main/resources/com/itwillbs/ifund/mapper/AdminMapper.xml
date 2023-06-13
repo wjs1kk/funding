@@ -240,7 +240,7 @@
 			   m.member_name
 			FROM project p 
 				JOIN member m ON p.member_idx = m.member_idx
-				JOIN project_detail pd ON p.project_idx = pd.project_idx
+				
 					WHERE p.project_approve_status = 1;
 	</select>
 	

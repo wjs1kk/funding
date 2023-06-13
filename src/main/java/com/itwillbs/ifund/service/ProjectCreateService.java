@@ -212,5 +212,9 @@ public class ProjectCreateService {
 		return mapper.memberNameCheck(project_idx);
 	}
 
+	public String memberName(int member_idx) {
+		
+		return mapper.memberName(member_idx);
+	}
 		
 }

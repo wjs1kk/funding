@@ -100,5 +100,7 @@ public interface ProjectCreateMapper {
 	void trackingNumberUpdate(@Param("payment_idx") int payment_idx, @Param("tracking_number") String tracking_number);
 	
 	String memberNameCheck(int project_idx);
+	
+	String memberName(int member_idx);
 
 }

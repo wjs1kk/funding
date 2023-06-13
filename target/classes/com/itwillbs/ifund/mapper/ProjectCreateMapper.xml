@@ -182,7 +182,6 @@
 		VALUES(
 		null
 		, #{member_idx}
-		, "1"
 		, #{maker_name}
 		, #{maker_image}
 		, #{maker_phone}
@@ -378,4 +377,10 @@
 		ON m.member_idx = p.member_idx
 		WHERE p.project_idx = #{project_idx} 
 	</select>
+	<select id="memberName" resultType="string">
+		SELECT member_name 
+		FROM `member` m
+		WHERE member_idx = #{member_idx} 
+	</select>
+	
 </mapper>
