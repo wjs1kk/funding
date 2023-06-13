@@ -182,7 +182,6 @@
 		VALUES(
 		null
 		, #{member_idx}
-		, "1"
 		, #{maker_name}
 		, #{maker_image}
 		, #{maker_phone}
