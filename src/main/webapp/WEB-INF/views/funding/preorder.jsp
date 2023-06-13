@@ -50,6 +50,12 @@
 <script>
 	// 필터링 기능
 	document.addEventListener("DOMContentLoaded", function() {
+		$(function() {
+			$("#selectbox").on("change", function() {
+				location.href = 'preorder?category=${param.category}&order=${param.order}' + '&selectbox=' + $("#selectbox").val();
+			});
+		});
+		
 		var item = document.getElementsByClassName("OrderSelectDesktop_sortItem__12TKi");
 		
 		var categoryItem = document.getElementsByClassName("ImageTab_tab__3siCY");
@@ -60,14 +66,14 @@
 		for(let categories of categoryItem) {
 			categories.addEventListener("click", function() {
 				category = $(this).text()
-				location.href = "preorder?category=" + category + "&order=" + "${param.order}";
+				location.href = "preorder?category=" + category + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';;
 			});
 		}
 		
 		for(let items of item) {
 			items.addEventListener("click", function() {
 				order = $(this).text();
-			location.href = "preorder?category=" + "${param.category}" + "&order=" + order;
+			location.href = "preorder?category=" + "${param.category}" + "&order=" + order + '&selectbox=${param.selectbox}';;
 		});
 	}
 });
@@ -367,20 +373,10 @@
 					<div class="Main_category__3sabq">
 						<p class="Main_categoryName__3YilF">${param.category }</p>
 						<div class="Main_filterWrap__2l__0">
-							<div class="OrderSelect_sortContainer__3F7LQ">
-								<div class="OrderSelect_content__1RjYa">
-									<span>전체</span>
-									<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-										class="withIcon_icon__3VTbq OrderSelect_expandIcon__30qeK"
-										aria-hidden="true">
-										<path
-											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-								</div>
-								<select class="OrderSelect_selectBox__2hBjk"><option
-										value="">전체</option>
-									<option value="N">진행중</option>
-									<option value="Y">종료된</option></select>
-							</div>
+							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">
+								<option value="0" ${selectbox == '0'? 'selected="selected"': ''}>진행중</option>
+								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
+							</select>
 							<ul class="OrderSelectDesktop_sortContainer__1YLsr">
 								<!-- OrderSelectDesktop_active__YTP2K 누른거 border 클래스 -->
 								<li class="OrderSelectDesktop_sortItem__12TKi"

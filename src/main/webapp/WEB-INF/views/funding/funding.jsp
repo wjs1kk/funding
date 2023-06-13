@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
-<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/0.9e265a0e.chunk.css">
-<link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
-<link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">
-<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/Welcome-coupon~comingsoon-main~earlybird-app~equity-main~iplicense~main-page~my-wadiz~planned-app~pr~9c6fdc35.25425818.chunk.css">
-<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/reward-main.a1d033e7.chunk.css">
-<link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?6b20ab93">
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/main/main.c1266dc7.css">
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/main/css/0.9e265a0e.chunk.css">
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/main/css/Welcome-coupon~comingsoon-main~earlybird-app~equity-main~iplicense~main-page~my-wadiz~planned-app~pr~9c6fdc35.25425818.chunk.css">
+<link rel="stylesheet" type="text/css"
+	href="https://static.wadiz.kr/main/css/reward-main.a1d033e7.chunk.css">
+<link rel="stylesheet"
+	href="https://static.wadiz.kr/static/web/common.css?6b20ab93">
 <script src="resources/js/jquery-3.6.4.js"></script>
 <script>
 	// 카테고리, 필터링 기능
@@ -35,12 +42,14 @@
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
  				location.href = "funding?category=" + $(this).text() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
+ 				$(this).addClass('ImageTab_active__BGdXu');
  			});
  		}
  		
  		for(let items of item) {
  			items.addEventListener("click", function() {
 				location.href = "funding?category=" + "${param.category}" + "&order=" + $(this).text() + '&selectbox=${param.selectbox}';
+				$(this).addClass('OrderSelectDesktop_active__YTP2K')
 			});
 		}
 	});
@@ -121,7 +130,7 @@
 		<main id="main-app">
 			<!-- top.jsp -->
 			<jsp:include page="../inc/top.jsp"></jsp:include>
-			
+
 			<div class="MainWrapper_content__GZkTa">
 				<div class="KeyVisualBanner_container__37DZf">
 					<div class="slick-slider slick-initialized" dir="ltr">
@@ -265,13 +274,17 @@
 						</div>
 					</div>
 				</div>
+				<script>
+					var para = document.location.href.split("?");
+					
+				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -291,7 +304,7 @@
 											</div>
 										</div>
 										<div class="ImageTab_labelContainer__2apP3">
-											<span class="ImageTab_label__SvWW9">${category.category_name }</span>
+											<span class="ImageTab_label__SvWW9 text">${category.category_name }</span>
 										</div>
 									</button></li>
 							</c:forEach>
@@ -313,12 +326,10 @@
 							</c:choose>
 						</p>
 						<div class="Main_filterWrap__2l__0">
-								<select class="OrderSelect_selectBox__2hBjk" id="selectbox">
-<!-- 									<option value="">전체</option> -->
-									<option value="0" ${selectbox == '0'? 'selected="selected"': ''}>진행중</option>
-									<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
-								</select>
-<!-- 							</div> -->
+							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">
+								<option value="0" ${selectbox == '0'? 'selected="selected"': ''}>진행중</option>
+								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
+							</select>
 							<ul id="itemList" class="OrderSelectDesktop_sortContainer__1YLsr">
 								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi">인기순</li>
 								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi">모집금액순</li>
@@ -339,13 +350,13 @@
 									<div class="PreorderMainCard_thumbnailWrap__NRDb4">
 										<div aria-hidden="true"
 											class="CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-											style="background-image: url(resources/images/project_thumbnail/${projectDetailList.project_thumbnail};); border-radius: 8px;"></div>
-										<!-- 										광고유무 표시 -->
-										<c:if
-											test="${projectDetailList.project_plan eq '2' or projectDetailList.project_plan eq '3' }">
+											style="background-image: url(resources/images/project_thumbnail/${projectDetailList.project_thumbnail};); border-radius: 8px;">
+										</div>
+										<c:if test="${projectDetailList.project_plan eq '2' or projectDetailList.project_plan eq '3'}">
+											<div class="PreorderMainCard_ad__2IzVz">AD</div>
 										</c:if>
-
 									</div>
+										<!-- 										광고유무 표시 -->
 									<div class="PreorderMainCard_contentContainer__1OmhF">
 										<div class="PreorderMainCard_header__R39X1">
 											<div class="PreorderMainCard_headerLeft__2nwa1">
@@ -361,8 +372,15 @@
 													원
 												</p>
 											</div>
+											<script>
+												$( 'p' ).toggleClass( 'PreorderMainCard_success__2OWl7' );
+											</script>
 											<div class="PreorderMainCard_headerRight__3rRNi">
-												<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
+												<c:if test="${selectbox eq 1 }">
+													<p><span id="done" class="">종료</span>∙<span class="PreorderMainCard_success__2OWl7">성공</span></p>
+												</c:if>
+												<c:if test="${selectbox eq 0 }">
+													<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
 													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
 														<script type="text/javascript">
 													var project_end_date = new Date("${projectDetailList.project_end_date}");
@@ -372,6 +390,7 @@
 													document.write(diffDay)
 												</script> 일 남음
 												</span></span>
+												</c:if>
 											</div>
 										</div>
 										<div class="PreorderMainCard_title__XlTJk">
@@ -411,7 +430,7 @@
 
 			<!-- footer.jsp -->
 			<jsp:include page="../inc/footer.jsp"></jsp:include>
-			
+
 		</main>
 	</div>
 </body>
