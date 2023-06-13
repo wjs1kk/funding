@@ -95,4 +95,7 @@ public class FundingService {
 		return mapper.selectWish(member_idx);
 	}
 //	찜하기관련 끗
+	public int countWish(int project_idx) {
+		return mapper.countWish(project_idx);
+	}
 }

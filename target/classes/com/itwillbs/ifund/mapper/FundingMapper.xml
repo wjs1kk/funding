@@ -312,4 +312,10 @@
 			WHERE project_idx = #{project_idx}
 	</delete>
 <!-- 	찜하기 끗 -->
+<!-- 찜갯수 06/13-->
+	<select id="countWish" resultType="int">
+		select COUNT(*) 
+		from wish 
+		where project_idx=#{project_idx}; 
+	</select>
 </mapper>

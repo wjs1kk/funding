@@ -72,7 +72,8 @@ public class FundingController {
 	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
-		
+//		06/13
+		int countWish = fundingService.countWish(Integer.parseInt(num));
 		// 디테일 이미지 받아오기
 		String image = (String)fundingDetail.get("project_images");
 		String[] images= image.split("\\|");
@@ -89,7 +90,8 @@ public class FundingController {
 		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
-		
+//		06/13
+		model.addAttribute("countWish", countWish);
 		return "funding/funding_detail";
 	}
 	
