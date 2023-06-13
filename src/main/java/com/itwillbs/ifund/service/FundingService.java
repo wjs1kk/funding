@@ -86,5 +86,17 @@ public class FundingService {
 		return mapper.selectOpenProject();
 	}
 	
-	// 06-11 김동욱 포인트 적립
+	
+	
+//	찜하기관련
+	public int insertWish(int project_idx, int member_idx) {
+		return mapper.insertWish(project_idx, member_idx);
+	}
+	public int cancelWish(int project_idx) {
+		return mapper.cancelWish(project_idx);
+	}
+	public List<String> selectWish(int member_idx) {
+		return mapper.selectWish(member_idx);
+	}
+//	찜하기관련 끗
 }

@@ -10,6 +10,7 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
@@ -82,8 +83,6 @@
 											</div>
 										</div>
 									</div>
-									
-									
 									
 									
 									 <canvas id="myChart" style="width: 100px;"></canvas>

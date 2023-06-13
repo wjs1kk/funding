@@ -401,5 +401,5 @@
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
->>>>>>> refs/remotes/origin/PKE2
+
 </html>

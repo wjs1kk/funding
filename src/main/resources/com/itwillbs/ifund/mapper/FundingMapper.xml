@@ -2,7 +2,9 @@
  <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="com.itwillbs.ifund.mapper.FundingMapper">
+
 	<!-- funding 페이지 쿼리 -->
 	<select id="selectFundingProject"
 		resultType="com.itwillbs.ifund.vo.ProjectListVO">
@@ -317,4 +319,22 @@
 		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
 	</select>
 	
+	
+	<!-- 	찜하기 -->
+
+	<insert id="insertWish">
+		insert into wish 
+			values(null, #{project_idx}, #{member_idx});
+	</insert>
+	<select id="selectWish" resultType="String">
+		select project_idx 
+			from wish 
+			where member_idx = #{member_idx}
+	</select>
+	<delete id="cancelWish">
+		DELETE
+			FROM wish
+			WHERE project_idx = #{project_idx}
+	</delete>
+<!-- 	찜하기 끗 -->
 </mapper>

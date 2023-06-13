@@ -39,4 +39,9 @@ public interface FundingMapper {
 	public int insertInquiry(InquiryVO inquiry);
 	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
 	public List<ProjectListVO> selectOpenProject();
+	
+//	찜하기관련
+	public int insertWish(@Param("project_idx") int project_idx, @Param("member_idx") int member_idx);
+	public int cancelWish(@Param("project_idx") int project_idx);
+	public List<String> selectWish(int member_idx);
 }
