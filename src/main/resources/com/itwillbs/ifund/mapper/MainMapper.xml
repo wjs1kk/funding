@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.ifund.mapper.MainMapper">
+
+	<select id="slide" resultType="map">
+		SELECT project_thumbnail, project_title, project_type
+		FROM project
+		WHERE project_approve_status = 2 AND project_plan = 2 OR project_plan = 3
+		ORDER BY project_create_date
+		LIMIT 5;
+	</select>
+	
+</mapper>

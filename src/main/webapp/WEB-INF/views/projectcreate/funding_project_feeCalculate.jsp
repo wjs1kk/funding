@@ -60,7 +60,7 @@
 		        	  $("#point").text(List.used_point_amount + List.used_coupon_amount);
 		        	  // 배송비
 		        	  $("#delivery").text(List.delivery_fee);
-		        	  
+		        	  //member_idx 받아오기
 		        	  $.ajax({
 		 				 url: 'memberIdxSearch',
 		 		          type: 'POST',

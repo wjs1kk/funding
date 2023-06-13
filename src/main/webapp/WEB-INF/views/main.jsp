@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
@@ -34,9 +35,11 @@
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
 	$(document).ready(function() {
-		$(".slick-slide").not(".slick-active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+		$(".slick-slide").hide(); //화면 로딩 후 모두 숨김
+		$(".slick-slide").eq(0).show(); // 0번 표시
+		
+		setInterval(next, 2000); // 2초마다 next()호출
 
-		setInterval(next, 3000);
 	});
 
 	function next() {
@@ -92,6 +95,8 @@
 		$(".slick-slide").eq(newIndex).addClass("slick-active");
 		$(".slick-slide").eq(newIndex).show();
 	}
+	
+	
 </script>
 <body style="overflow: auto;">
 	<div id="page-container">
@@ -110,84 +115,37 @@
 							<div class="slick-slider slick-initialized" dir="ltr">
 								<div class="slick-list">
 									<!-- top.jsp 아래 팝 슬라이드 -->
-									<div data-index="0"
-										class="slick-slide slick-active slick-current" tabindex="-1"
-										aria-hidden="false" style="outline: none; width: 1900px;">
-										<div>
+									<c:forEach items="${list }" var="slide" varStatus="status">
+										<div 
+											class="slick-slide slick-active slick-current" tabindex="-1"
+											aria-hidden="false" style="outline: none; width: 1900px;">
+												
 											<div>
-												<a
-													href="https://www.wadiz.kr/web/wcomingsoon/rwd/188921?_refer_section_st=MKB_1"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="휴대폰보다 가벼운 초경량우산 밝은컬러도 추가됐어요"
-													data-promo-position="MKB_1"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0414/20230414094554599_6161.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);"
-													data-gtm-vis-recent-on-screen-11319722_2047="208133"
-													data-gtm-vis-first-on-screen-11319722_2047="208134"
-													data-gtm-vis-total-visible-time-11319722_2047="2000"
-													data-gtm-vis-recent-on-screen-11319722_2115="208134"
-													data-gtm-vis-first-on-screen-11319722_2115="208134"
-													data-gtm-vis-total-visible-time-11319722_2115="2000"
-													data-gtm-vis-has-fired-11319722_2047="1"
-													data-gtm-vis-has-fired-11319722_2115="1">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																휴대폰보다 가벼운 초경량우산<br>밝은컬러도 추가됐어요
-															</p>
-															<p class="VisualSlide_badge__3nqfs">펀딩</p>
+												<div>
+													<a	href=""
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+														<div class="VisualSlide_wrap__32Lj4">
+															<div class="VisualSlide_text__2SIqN">
+																<p class="VisualSlide_title__3USGy" >${slide.project_title }
+																</p>
+																<p class="VisualSlide_badge__3nqfs">
+																<script type="text/javascript">
+																	console.log(${slide.project_type == 1})
+																	console.log(typeof ${slide.project_type})
+																</script>
+																<c:choose>
+																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+																	<c:otherwise>공동구매</c:otherwise>
+																</c:choose>
+																 </p>
+															</div>
 														</div>
-													</div>
-												</a>
+													</a>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div data-index="1" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 1900px;">
-										<div>
-											<div>
-												<a
-													href="https://www.wadiz.kr/web/store/collection/newyear?_refer_section_st=MKB_2"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="72시간 반짝 혜택 주말특가 만나보기"
-													data-promo-position="MKB_2"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0512/20230512130447760_6161.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																72시간 반짝 혜택<br>주말특가 만나보기
-															</p>
-															<p class="VisualSlide_badge__3nqfs">스토어</p>
-														</div>
-													</div>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div data-index="2" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 1900px;">
-										<div>
-											<div>
-												<a
-													href="https://www.wadiz.kr/web/wreward/collection/oversoon?_refer_section_st=MKB_3"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="놓치면 아쉬운 종료 임박 프로젝트"
-													data-promo-position="MKB_3"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0511/20230511161453952_2523.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																놓치면 아쉬운<br>종료 임박 프로젝트
-															</p>
-															<p class="VisualSlide_badge__3nqfs">펀딩</p>
-														</div>
-													</div>
-												</a>
-											</div>
-										</div>
-									</div>
+									</c:forEach>																		
 								</div>
 							</div>
 							<div class="KeyVisualBanner_wrap__10qJJ">
@@ -229,38 +187,7 @@
 												<p class="RecommendFundingWrap_description__5xAKe">지금 함께
 													만드는 성공</p>
 											</div>
-											<div
-												class="Tooltip_container__1OVpV RecommendFundingWrap_tooltip__3dL8Q" style="dispaly: none">
-												<div class="Tooltip_symbol__3cGy0"
-													aria-describedby="recommendationFundingWaAiTooltip">
-													<span class="AITooltip_icon__wd6n9"></span>
-													<div aria-hidden="true" style="display: none;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltipActive__2JjBs"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"></path></svg>
-													</div>
-													<div aria-hidden="true" style="display: block;">
-														<svg viewBox="0 0 40 40" focusable="false"
-															role="presentation"
-															class="withIcon_icon__3VTbq Tooltip_tooltip__2SdxS"
-															aria-hidden="true">
-															<path fill="none" d="M0 0h40v40H0z"></path>
-															<path
-																d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"></path>
-															<path
-																d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"></path></svg>
-													</div>
-												</div>
-												<div role="tooltip" id="recommendationFundingWaAiTooltip"
-													class="Tooltip_messagebox__2TW_p"
-													style="width: 235px; display: none;">
-													<p>와디즈 AI가 서포터님들의 취향을 분석하여 맞춤 프로젝트를 추천해요</p>
-												</div>
-											</div>
+											
 										</div>
 										<div class="RecommendFundingWrap_cardListGroup__1nRxw">
 											<div class="RecommendFundingWrap_card___LnVO">
