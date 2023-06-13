@@ -24,8 +24,8 @@ public class FundingService {
 	public Map<String, String> selectProject() {
 		return mapper.selectProject();
 	}
-	public List<ProjectListVO> selectFundingProject(String category, String order) {
-		return mapper.selectFundingProject(category, order);
+	public List<ProjectListVO> selectFundingProject(String category, String order, String selectbox) {
+		return mapper.selectFundingProject(category, order, selectbox);
 	}
 	public List<ProjectListVO> selectPreorderProject(String category, String order) {
 		return mapper.selectPreorderProject(category, order);

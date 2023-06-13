@@ -192,15 +192,30 @@
 											</div>
 										</div>
 									</div>
+									<script>
+										function myFunction() {
+											  var dots = document.getElementById("dots");
+											  var moreText = document.getElementById("more");
+											  var btnText = document.getElementById("myBtn");
+	
+											  if (dots.style.display === "none") {
+											    dots.style.display = "inline";
+											    btnText.innerHTML = "Read more";
+											    moreText.style.display = "none";
+											  } else {
+											    dots.style.display = "none";
+											    btnText.innerHTML = "Read less";
+											    moreText.style.display = "inline";
+											  }
+											}
+									</script>
 									<div class="Story_button__AG0eO">
 										<button data-ga-category="펀딩_상세" data-ga-action="클릭"
 											data-ga-label="스토리_더보기"
 											class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg"
 											type="button">
 											<span>
-												<span class="Button_children__ilFun">스토리
-													더보기
-												</span>
+												<span class="Button_children__ilFun">스토리 더보기</span>
 													<svg viewBox="0 0 32 32" focusable="false"
 													role="presentation"
 													class="withIcon_icon__3VTbq Button_icon__t6yp6"
@@ -400,9 +415,13 @@
 														<input type="hidden"  name="maker_idx" value="${maker_idx}">
 														<h1 class="d-flex justify-content-center text-secondary">${fundingDetail.maker_name }에게 문의하기</h1>
 														<hr>
-														<h2><input id="inq_subject" name="inq_subject" type="text" placeholder="제목을 입력하세요" class="Input_input__3c0SX Input_md__1_tQH" style="border: medium; width: 433px;"></h2>
+														<div class="TextField_field__1E9vt">
+															<h2><input id="inq_subject" name="inq_subject" type="text" placeholder="제목을 입력하세요" class="Input_input__2kAAL Input_md__3-eZ6" style="border: ; width: 433px;"></h2>
+														</div>
+														<div>
 														<h3>문의 내용</h3>
-														<textarea id="inq_content" name="inq_content" rows="10" cols="52" style="resize: none; text-align: left; font-size: 15px; border-color: blue; border: aqua;"></textarea>		
+														<textarea id="inq_content" name="inq_content" rows="10" cols="52" style="resize: none; text-align: left; font-size: 15px; border-color: blue; border: aqua;"></textarea>
+														</div>		
 														<hr>
 														<div align="right">
 															<a href='#' rel=""><button class="Button_button__2FuOU Button_primary__2mZni Button_sm__16X6h Button_startIcon__3p6wN" type="submit">문의하기</button></a>

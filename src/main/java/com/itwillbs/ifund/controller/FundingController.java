@@ -39,12 +39,14 @@ public class FundingController {
 	private MypageService mypageService;
 	
 	@GetMapping("funding")
-	public String funding(Model model, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
-		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order);
+	public String funding(Model model, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
+		System.out.println(selectbox);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("selectbox", selectbox);
 		return "funding/funding";
 	}
 	@GetMapping("detail")
