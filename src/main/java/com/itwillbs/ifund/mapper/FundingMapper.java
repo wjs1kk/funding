@@ -44,4 +44,7 @@ public interface FundingMapper {
 	public int insertWish(@Param("project_idx") int project_idx, @Param("member_idx") int member_idx);
 	public int cancelWish(@Param("project_idx") int project_idx);
 	public List<String> selectWish(int member_idx);
+//	찜하기관련 끗
+//	06/13
+	public int countWish(int project_idx);
 }
