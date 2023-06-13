@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
@@ -36,9 +37,11 @@
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
 	$(document).ready(function() {
-		$(".slick-slide").not(".slick-active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+		$(".slick-slide").hide(); //화면 로딩 후 모두 숨김
+		$(".slick-slide").eq(0).show(); // 0번 표시
+		
+		setInterval(next, 2000); // 2초마다 next()호출
 
-		setInterval(next, 3000);
 	});
 
 	function next() {
@@ -94,6 +97,8 @@
 		$(".slick-slide").eq(newIndex).addClass("slick-active");
 		$(".slick-slide").eq(newIndex).show();
 	}
+	
+	
 </script>
 <body style="overflow: auto;">
 	<div id="page-container">
@@ -112,84 +117,37 @@
 							<div class="slick-slider slick-initialized" dir="ltr">
 								<div class="slick-list">
 									<!-- top.jsp 아래 팝 슬라이드 -->
-									<div data-index="0"
-										class="slick-slide slick-active slick-current" tabindex="-1"
-										aria-hidden="false" style="outline: none; width: 1900px;">
-										<div>
+									<c:forEach items="${list }" var="slide" varStatus="status">
+										<div 
+											class="slick-slide slick-active slick-current" tabindex="-1"
+											aria-hidden="false" style="outline: none; width: 1900px;">
+												
 											<div>
-												<a
-													href="https://www.wadiz.kr/web/wcomingsoon/rwd/188921?_refer_section_st=MKB_1"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="휴대폰보다 가벼운 초경량우산 밝은컬러도 추가됐어요"
-													data-promo-position="MKB_1"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0414/20230414094554599_6161.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);"
-													data-gtm-vis-recent-on-screen-11319722_2047="208133"
-													data-gtm-vis-first-on-screen-11319722_2047="208134"
-													data-gtm-vis-total-visible-time-11319722_2047="2000"
-													data-gtm-vis-recent-on-screen-11319722_2115="208134"
-													data-gtm-vis-first-on-screen-11319722_2115="208134"
-													data-gtm-vis-total-visible-time-11319722_2115="2000"
-													data-gtm-vis-has-fired-11319722_2047="1"
-													data-gtm-vis-has-fired-11319722_2115="1">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																휴대폰보다 가벼운 초경량우산<br>밝은컬러도 추가됐어요
-															</p>
-															<p class="VisualSlide_badge__3nqfs">펀딩</p>
+												<div>
+													<a	href=""
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+														<div class="VisualSlide_wrap__32Lj4">
+															<div class="VisualSlide_text__2SIqN">
+																<p class="VisualSlide_title__3USGy" >${slide.project_title }
+																</p>
+																<p class="VisualSlide_badge__3nqfs">
+																<script type="text/javascript">
+																	console.log(${slide.project_type == 1})
+																	console.log(typeof ${slide.project_type})
+																</script>
+																<c:choose>
+																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+																	<c:otherwise>공동구매</c:otherwise>
+																</c:choose>
+																 </p>
+															</div>
 														</div>
-													</div>
-												</a>
+													</a>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div data-index="1" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 1900px;">
-										<div>
-											<div>
-												<a
-													href="https://www.wadiz.kr/web/store/collection/newyear?_refer_section_st=MKB_2"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="72시간 반짝 혜택 주말특가 만나보기"
-													data-promo-position="MKB_2"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0512/20230512130447760_6161.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																72시간 반짝 혜택<br>주말특가 만나보기
-															</p>
-															<p class="VisualSlide_badge__3nqfs">스토어</p>
-														</div>
-													</div>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div data-index="2" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 1900px;">
-										<div>
-											<div>
-												<a
-													href="https://www.wadiz.kr/web/wreward/collection/oversoon?_refer_section_st=MKB_3"
-													class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-													data-promo-id="https://www.wadiz.kr/web/main"
-													data-promo-name="놓치면 아쉬운 종료 임박 프로젝트"
-													data-promo-position="MKB_3"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0511/20230511161453952_2523.jpg/wadiz/resize/1400/format/jpg/quality/85/&quot;);">
-													<div class="VisualSlide_wrap__32Lj4">
-														<div class="VisualSlide_text__2SIqN">
-															<p class="VisualSlide_title__3USGy">
-																놓치면 아쉬운<br>종료 임박 프로젝트
-															</p>
-															<p class="VisualSlide_badge__3nqfs">펀딩</p>
-														</div>
-													</div>
-												</a>
-											</div>
-										</div>
-									</div>
+									</c:forEach>																		
 								</div>
 							</div>
 							<div class="KeyVisualBanner_wrap__10qJJ">

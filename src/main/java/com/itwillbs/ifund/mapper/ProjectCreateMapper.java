@@ -100,5 +100,7 @@ public interface ProjectCreateMapper {
 	void trackingNumberUpdate(@Param("payment_idx") int payment_idx, @Param("tracking_number") String tracking_number);
 	// 06-13 김동욱 프로젝트 현황 통계 정보 가져오기
 	Map myProjectStatus(int project_idx);
+	// 06-13 김동욱 해당 프로젝트 수정신청
+	void projectModifyApply(@Param("project_idx") int project_idx, @Param("updateStatus") String updateStatus);
 
 }

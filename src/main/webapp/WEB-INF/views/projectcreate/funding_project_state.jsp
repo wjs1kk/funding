@@ -10,11 +10,73 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/9.2112a1bf.chunk.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
-
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+<style type="text/css">
+ .u.i-progressbar { position:relative; }
+    .progress-label {
+        position:absolute;
+        left:50%;
+        font-weight:bold;
+        margin-left:-400px;
+    }
+</style>
+
+<script type="text/javascript">
+
+
+	
+	
+	// 06-13 김동욱 수정신청
+    $(function() {
+    	
+    	$.ajax({
+			 url: 'projectUpdateCheck',
+	          type: 'POST',
+	          data: {project_idx: ${param.project_idx}},
+	          dataType: "json",
+	          success: function(response) {
+	        	  
+	        	  if(response.project_update_status == "1"){
+	        		  $("#saveBtn").attr("disabled", true);
+	        		  $("#saveBtn").text("수정 신청 완료");
+	        	  }else if(response.project_update_status == "2") {
+	        		  $("#saveBtn").attr("disabled", false);
+	        		  $("#saveBtn").text("수정 완료");
+	        		  $("#updateStatus").val(0);
+	        	  }
+	        	  
+	          }
+		})
+    	
+    	
+    	$("#saveBtn").on("click", function() {
+		    $.ajax({
+				 url: 'projectModifyApply',
+		          type: 'POST',
+		          data: {project_idx: ${param.project_idx},
+		        	  updateStatus : $("#updateStatus").val()  
+		          },
+		          success: function(response) {
+		        	  if($("#updateStatus").val() == 1){
+		        	  	alert("수정신청이 완료되었습니다.");
+		        	  }else if($("#updateStatus").val() == 0){
+		        	  	alert("수정완료");
+		        	  }
+	        	  }
+			})
+		})
+		
+	})
+
+
+</script>
+
+
+
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
@@ -58,11 +120,12 @@
 														<a class="MyWadizSupporterAccumulate_container__h_OVK" href="coupon">
 														<dl class="MyWadizSupporterAccumulate_info__2_7Is">
 															<dt class="MyWadizSupporterAccumulate_title__3CiIs">
-																<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																		<g data-name="레이어 2">
-																		<path d="M37.64 17.54l.86-.12V8.5a2 2 0 0 0-2-2h-33a2 2 0 0 0-2 2v8.92l.86.12a2.48 2.48 0 0 1 0 4.92l-.86.12v8.92a2 2 0 0 0 2 2h33a2 2 0 0 0 2-2v-8.92l-.86-.12a2.48 2.48 0 0 1 0-4.92zm-1.14 6.69v7.27h-33v-7.27a4.48 4.48 0 0 0 0-8.46V8.5h33v7.27a4.48 4.48 0 0 0 0 8.46z"></path>
-																		<path d="M18.16 16.73a2.66 2.66 0 1 0-2.66 2.66 2.66 2.66 0 0 0 2.66-2.66zm-3.8 0a1.14 1.14 0 1 1 1.14 1.14 1.14 1.14 0 0 1-1.14-1.14zm12.14 4.34a2.66 2.66 0 1 0 2.66 2.66 2.66 2.66 0 0 0-2.66-2.66zm0 3.8a1.14 1.14 0 1 1 1.14-1.14 1.14 1.14 0 0 1-1.14 1.14zm.43-10.45l-1.08-.98-10.99 12.01-.09.09 1.08.98 10.99-12.01.09-.09z"></path>
-																		<path fill="none" d="M0 0h40v40H0z"></path></g></svg>
+																<svg viewBox="0 0 40 40" focusable="false" role="presentation"
+																	class="withIcon_icon__3VTbq" aria-hidden="true">
+																	<path fill="none" d="M0 0h40v40H0z"></path>
+																	<path
+																		d="M38 24.64l-.01-16.26-15.6.01v2.4l11.74-.01L21.37 24.4l-6.53-6.75-12.9 13.2 1.72 1.67 11.17-11.43 6.57 6.79 14.19-15.15.01 11.91H38z"></path></svg>
+																														
 																	<span class="MyWadizSupporterAccumulate_name__1mWXC">총 결제된 금액</span>
 																</dt>
 																<dd class="MyWadizSupporterAccumulate_value__1oBSj">${myProjectStatus.todayTotalAmount }원</dd>
@@ -72,9 +135,9 @@
 												<div class="MyWadizSupporterProjectInfo_container__3MC9F">
 													<div class="MyWadizSupporterProjectInfo_project__3Vaun">
 														<div class="MyWadizSupporterProjectInfo_projectLink__2K77b" style="height: 104px">
-															<a><span>결제건수</span><b>${myProjectStatus.project_payment_count }건</b></a>
+															<a><span>총 결제건수</span><b>${myProjectStatus.project_payment_count }건</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
-															<a><span>총 참여자 수</span><b>${myProjectStatus.participantsCount }명</b></a>
+															<a><span>총 참여자수</span><b>${myProjectStatus.participantsCount }명</b></a>
 														</div>
 													</div>
 												</div>
@@ -83,7 +146,35 @@
 									</div>
 									
 									
+								    
+								    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+								    <script type="text/JavaScript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+									<script type="text/JavaScript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+									<script type="text/javascript">
+									    jQuery(document).ready(function() {
+									       
+									        var barProgress = jQuery(".progressbar");
+									       
+									        // value 값의 숫자를 입력함으로서 내용을 채울 수 있다.
+									        
+									
+									        barProgress.eq(0).progressbar({value:${myProjectStatus.completionRate }});
+									        barProgress.eq(0).find(".ui-progressbar-value").css({"background":"#00c4c4"});
+									       
+									        barProgress.eq(1).progressbar({value:75});
+									        barProgress.eq(1).find(".ui-progressbar-value").css({"background":"#FFCC66"});
+									       
+									        barProgress.eq(2).progressbar({value:50});
+									        barProgress.eq(2).find(".ui-progressbar-value").css({"background":"#DDDDDDD"});
+									    });
+									</script>
+									
+									<br>
+								    <div class="progressbar"><div class="progress-label">${myProjectStatus.completionRate}% 달성완료!</div></div>
+									<br>
 									 <canvas id="myChart" style="width: 100px;"></canvas>
+									<hr>
+									 
 									<script>
 									
 									
@@ -112,7 +203,12 @@
 									    });
 
 								    </script>
-									
+								    
+								    <br>
+								    <div align="center">
+								    	<input type="hidden" id="updateStatus" value="1">
+									    <button type="button" class="wz button primary" id="saveBtn">해당 프로젝트 수정 신청하기</button>
+								    </div>
 									
 								</div>
 							</div>

@@ -477,7 +477,15 @@ public class ProjectCreateController {
 	public String fundingProjectState(int project_idx, HttpSession session, Model model) {
 		// 06-13 김동욱 프로젝트 현황 통계 정보 가져오기
 		Map myProjectStatus = projectCreateService.myProjectStatus(project_idx);
-		System.out.println(myProjectStatus);
+		
+		Double project_target = Double.parseDouble(myProjectStatus.get("project_target").toString());
+		Double todayTotalAmount = Double.parseDouble(myProjectStatus.get("todayTotalAmount").toString());
+		Double percent = todayTotalAmount / project_target * 100;
+		int completionRate = (int) Math.floor(percent);
+		
+		myProjectStatus.put("completionRate", completionRate);
+		
+		System.out.println(todayTotalAmount / project_target * 100);
 		model.addAttribute("myProjectStatus", myProjectStatus);
 		
 		return myProjectCheck(project_idx, session, model, "projectcreate/funding_project_state");
@@ -538,6 +546,14 @@ public class ProjectCreateController {
 		System.out.println(tracking_number);
 		projectCreateService.trackingNumberUpdate(payment_idx, tracking_number);
 		
+	}
+	
+	// 06-13 김동욱 해당 프로젝트 수정신청
+	@PostMapping("project/projectModifyApply")
+	@ResponseBody
+	public void projectModifyApply(int project_idx, String updateStatus) {
+		projectCreateService.projectModifyApply(project_idx, updateStatus);
+		System.out.println(updateStatus);
 	}
 	
 }
