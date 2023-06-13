@@ -59,7 +59,11 @@
 		location.href="detail?num="+project_idx;	
 	}
 </script>
-
+<script>
+	var element = document.getElementById("categoryBtn");
+	element.classList.remove("ImageTab_first__2C8Ry"); // 기존 클래스명 제거
+	element.classList.add("ImageTab_first__2C8Ry");
+</script>
 </head>
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
@@ -274,10 +278,6 @@
 						</div>
 					</div>
 				</div>
-				<script>
-					var para = document.location.href.split("?");
-					
-				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
@@ -296,7 +296,7 @@
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY">
+										class="ImageTab_tab__3siCY" id="categoryBtn">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -372,12 +372,9 @@
 													원
 												</p>
 											</div>
-											<script>
-												$( 'p' ).toggleClass( 'PreorderMainCard_success__2OWl7' );
-											</script>
 											<div class="PreorderMainCard_headerRight__3rRNi">
 												<c:if test="${selectbox eq 1 }">
-													<p><span id="done" class="">종료</span>∙<span class="PreorderMainCard_success__2OWl7">성공</span></p>
+													<p><span id="done" class="">종료</span>∙<span id="success" class="">성공</span></p>
 												</c:if>
 												<c:if test="${selectbox eq 0 }">
 													<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
@@ -430,7 +427,6 @@
 
 			<!-- footer.jsp -->
 			<jsp:include page="../inc/footer.jsp"></jsp:include>
-
 		</main>
 	</div>
 </body>

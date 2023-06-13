@@ -355,7 +355,9 @@ function prev() {
 											<div aria-hidden="true"
 												class="CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
 												style="background-image: url(resources/images/project_thumbnail/${comingsoon.project_thumbnail};); border-radius: 8px;"></div>
-											<div class="ComingsoonMainCard_ad__2R4c0">AD</div>
+											<c:if test="${comingsoon.project_plan eq '2' or comingsoon.project_plan eq '3'}">
+												<div class="ComingsoonMainCard_ad__2R4c0"><p>AD</p></div>
+											</c:if>
 										</div>
 										<div class="ComingsoonMainCard_contentContainer__3Dps9">
 											<div class="ComingsoonMainCard_title__3iBTH">${comingsoon.project_title }</div>
