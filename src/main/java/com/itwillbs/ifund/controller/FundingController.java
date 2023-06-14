@@ -234,6 +234,7 @@ public class FundingController {
 		int total_amount = Integer.parseInt(map.get("total_amount").toString());
 		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트 및 결제 금액 5% 포인트 적립
 		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
+		
 	}
 	
 	@GetMapping("paySuccess")

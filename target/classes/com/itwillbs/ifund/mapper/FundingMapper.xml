@@ -271,7 +271,8 @@
 	<!-- 06-10 김동욱 프로젝트 디테일 총금액 업데이트 -->
 	<update id="projectDetailAmountUpdate">
 		UPDATE project_detail
-			SET project_detail_amount = project_detail_amount + #{total_amount}
+			SET project_detail_amount = project_detail_amount + #{total_amount},
+			project_detail_person = project_detail_person + 1
 			WHERE project_idx = #{project_idx}
 	</update>
 	

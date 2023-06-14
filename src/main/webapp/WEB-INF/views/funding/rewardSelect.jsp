@@ -207,12 +207,18 @@ input[type="number"]::-webkit-inner-spin-button {
 								<ul class="RewardProductList_container__2hIAB">
 								
 									<c:forEach items="${selectReward }" var="selectReward" varStatus="status">
-									
+											
 										<input type="hidden" id="reward_name_${status.index}" value="${selectReward.reward_name }"></input>
 										<input type="hidden" id="reward_amount_${status.index}" value="${selectReward.reward_amount }"></input>
 										<input type="hidden" id="reward_idx_${status.index}" value="${selectReward.reward_idx }"></input>
 										<input type="hidden" id="reward_delivery_fee_${status.index}" value="${selectReward.reward_delivery_fee }"></input>
-									
+										<c:if test="${(selectReward.reward_quantity - selectReward.reward_sell) == 0}">
+											<script>
+												$(function() {
+													$("#rewardCheckbox_"+${status.index}).attr("disabled", true);
+												})
+											</script>
+										</c:if>
 										<li class="RewardProductList_list__2oOvi" >
 											<section
 												class="RewardProductItem_container__1wZBW">
@@ -220,7 +226,7 @@ input[type="number"]::-webkit-inner-spin-button {
 													for="checkbox-reward-product-445400"><div
 														class="RewardProductItem_price__2oEJ1">
 														<input type="hidden" id="reward_name_${selectReward.reward_idx }" value="${selectReward.reward_name }">
-														<input type="checkbox" id="rewardCheckbox_${status.index}"  onclick="rewardDisplay(${selectReward.reward_amount }, ${status.index}, ${length })">
+														<input type="checkbox"  id="rewardCheckbox_${status.index}"  onclick="rewardDisplay(${selectReward.reward_amount }, ${status.index}, ${length })">
 														<span>${selectReward.reward_amount }</span>&nbsp;원
 													</div>
 													<div class="RewardProductItem_content__Pw7qB">
@@ -228,7 +234,18 @@ input[type="number"]::-webkit-inner-spin-button {
 															${selectReward.reward_name }
 															<div class="RewardProductItem_remain__XDQPL">
 																<span class="RewardProductItem_limit__5TztV">제한수량 ${selectReward.reward_quantity }개</span>
-																<span class="RewardProductItem_stock__5qZys">${selectReward.reward_quantity  - selectReward.reward_sell}개 남음</span>
+																<span class="RewardProductItem_stock__5qZys">
+																	<c:choose>
+																		<c:when test="${(selectReward.reward_quantity  - selectReward.reward_sell) == 0}">
+																			마감되었습니다.
+																		</c:when>
+																		<c:otherwise>
+																			${selectReward.reward_quantity  - selectReward.reward_sell}개 남음
+																		</c:otherwise>
+																	</c:choose>
+																	
+																
+																</span>
 															</div>
 														</div>
 														<div class="RewardProductItem_description__1Eenu">

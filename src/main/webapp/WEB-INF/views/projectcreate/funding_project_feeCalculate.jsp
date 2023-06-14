@@ -113,6 +113,11 @@
 				alert("정산 내역서를 확인해주세요")
 				return false;
 			}
+			
+			if($("#fintech_use_num").val() == ""){
+				alert("지급 받을 계좌의 핀테크 이용 번호를 선택해주세요.")
+				return false;
+			}
 			$.ajax({
 				 url: 'calculateApply',
 		          type: 'POST',
