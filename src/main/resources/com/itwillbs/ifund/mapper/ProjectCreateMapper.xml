@@ -353,7 +353,7 @@
 		WHERE project_idx = #{project_idx};
 	</select>
 	
-	<select id="memberIdxSearch" resultType="int">
+	<select id="memberIdxSearch" resultType="integer">
 		SELECT a.member_idx
 		FROM project p JOIN account a
 		ON p.member_idx = a.member_idx
@@ -393,4 +393,27 @@
 			SET project_update_status = #{updateStatus}
 			WHERE project_idx = #{project_idx}
 	</update>
+	<select id="memberNameCheck" resultType="string">
+		SELECT m.member_name 
+		FROM `member` m JOIN project p 
+		ON m.member_idx = p.member_idx
+		WHERE p.project_idx = #{project_idx} 
+	</select>
+	
+	<select id="memberName" resultType="string">
+		SELECT member_name 
+		FROM `member` m
+		WHERE member_idx = #{member_idx} 
+	</select>
+	
+	<select id="dateCheck" resultType="int">
+		SELECT DATEDIFF(project_end_date, now()) 
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+	
+	<delete id="deleteProject">
+		DELETE FROM project
+		WHERE project_idx = #{project_idx} AND project_approve_status = 0;
+	</delete>
 </mapper>

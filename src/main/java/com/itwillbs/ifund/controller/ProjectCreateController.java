@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,15 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwillbs.ifund.service.ProjectCreateService;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
+import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectDetailVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RewardVO;
@@ -57,9 +62,13 @@ public class ProjectCreateController {
 		if(session.getAttribute("member_idx") == null) {
 			return "redirect:/login";
 		}
+		int member_idx = (int) session.getAttribute("member_idx");
+		String memberName = projectCreateService.memberName(member_idx);
+		
+		
 		int projectNum = projectCreateService.projectStart();
-		System.out.println(projectNum);
 		model.addAttribute("projectNum", projectNum);
+		model.addAttribute("memberName", memberName);
 		return "projectcreate/intro";
 	}
 	@GetMapping("project/main")
@@ -505,10 +514,12 @@ public class ProjectCreateController {
 		Map List = projectCreateService.showFeeCalculate(project_idx);
 		return List;
 	}
+	
 	@PostMapping("project/memberIdxSearch")
 	@ResponseBody
-	public int memberIdxSearch(@RequestParam int project_idx) {
-		int member = projectCreateService.memberIdxSearch(project_idx);
+	public Integer memberIdxSearch(@RequestParam int project_idx) {
+		Integer member = projectCreateService.memberIdxSearch(project_idx);
+		System.out.println(member);
 		return member;
 	}
 	
@@ -517,7 +528,6 @@ public class ProjectCreateController {
 	@ResponseBody
 	public boolean calculateApply(CalculateVO cal, int project_idx, HttpServletResponse response) {
 		Integer checkCount = projectCreateService.applyCheck(project_idx);
-		System.out.println(checkCount);
 		if(checkCount != null) {
 			return false;
 		} else {
@@ -546,6 +556,34 @@ public class ProjectCreateController {
 		System.out.println(tracking_number);
 		projectCreateService.trackingNumberUpdate(payment_idx, tracking_number);
 		
+	}
+	// 06-13 강정운 side, top 멤버이름 표시
+	@RequestMapping(value = "project/memberNameCheck", produces = "application/text; charset=UTF-8")
+	@ResponseBody
+	public String memberNameCheck(int project_idx) {
+		System.out.println(project_idx);
+		String member = projectCreateService.memberNameCheck(project_idx);
+		return member;
+	}
+	
+//	06-12 강정운 정산신청
+	@PostMapping("project/dateCheck")
+	@ResponseBody
+	public int dateCheck(int project_idx) {
+		int dateCheck = projectCreateService.dateCheck(project_idx);
+		return dateCheck;
+	}
+	
+//	06-14 강정운 프로젝트 제출하지 않았을 시 삭제가능
+	@PostMapping("project/deleteProject")
+	@ResponseBody
+	public boolean deleteProject(int project_idx) {
+		int deleteProject = projectCreateService.deleteProject(project_idx);
+		if(deleteProject == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	// 06-13 김동욱 해당 프로젝트 수정신청
