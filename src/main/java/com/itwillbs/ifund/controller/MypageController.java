@@ -33,7 +33,6 @@ import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.InquiryVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
-import com.itwillbs.ifund.vo.PaymentVO;
 import com.itwillbs.ifund.vo.PointVO;
 import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.vo.ProjectVO;
@@ -207,19 +206,38 @@ public class MypageController {
 
 //	서포터 문의
 	@GetMapping("mypage/supinquiry")
-	public String sup_inquiry(HttpSession session, Model model, 
-			InquiryVO inquiryVO, @RequestParam(defaultValue = "1") int pageNum) {
+	public String sup_inquiry(HttpSession session, Model model, InquiryVO inquiryVO, 
+								@RequestParam(defaultValue = "1") int pageNum) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		model.addAttribute("member", mypageService.selectUser(member_idx));
+		
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
 		
-		Integer member_idx = (Integer) session.getAttribute("member_idx");
-		List<String> maker = mypageService.selectMakerIdx(member_idx);
-		model.addAttribute("maker", maker);
-		System.out.println(maker);
+		List maker_idx = mypageService.selectMakerIdx(member_idx);
+		model.addAttribute("maker_idx", maker_idx);
+		List SupInquiry = mypageService.SupInquiry(member_idx, maker_idx, listLimit, startRow);
+		model.addAttribute("SupInquiry", SupInquiry);
+//		Integer SupInquiryCount = mypageService.SupInquiryCount(maker_idx);
+//		model.addAttribute("SupInquiryCount", SupInquiryCount);
+		System.out.println(SupInquiry != null);
+		
+		
+		System.out.println(SupInquiry);
+		System.out.println(maker_idx);
+		for (Object inquiry : SupInquiry) {
+		    System.out.println(inquiry);
+		}
+		
+		// 페이징
+		int pageListLimit = 5;
+//		int maxPage = SupInquiryCount / listLimit + (SupInquiryCount % listLimit > 0 ? 1 : 0);
+//		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+//		int endPage = startPage + pageListLimit - 1;
+//		if(endPage > maxPage) {
+//			endPage = maxPage;
+//		}
 
-		List<InquiryVO> inquiryList = mypageService.selectSupInquiry(maker, listLimit, startRow);
-		model.addAttribute("inquiryList", inquiryList);
-		System.out.println(inquiryList);
 		return "mypage/sup_inquiry";
 	}
 
@@ -242,8 +260,6 @@ public class MypageController {
 		System.out.println(myInquiry != null);
 		List maker = mypageService.selectMakerIdx(member_idx);
 		model.addAttribute("maker", maker);
-		
-
 		
 		// 페이징
 		int pageListLimit = 5;
@@ -273,20 +289,44 @@ public class MypageController {
 	}	
 	
 	@GetMapping("mypage/sup_inquiry_view")
-	public String sup_inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, InquiryVO inquiryVO2, String inq_idx) {
+	public String sup_inquiry_view(HttpSession session, Model model, InquiryVO inquiryVO, String inq_idx) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		List<InquiryVO> inquiryList = mypageService.selectInquiry(member_idx);
 		model.addAttribute("inquiryList", inquiryList);
 		
 		inquiryVO = mypageService.getInquiry(inq_idx);
-		inquiryVO2 = mypageService.getInquiry(inq_idx + 1);
+		System.out.println(inquiryVO.getMaker_idx());
 		model.addAttribute("inquiryVO", inquiryVO);
-		model.addAttribute("inquiryVO2", inquiryVO2);
-		
 		return "mypage/sup_inquiry_view";
 	}	
-
 	
+	
+	// 1:1 문의 답변 기능
+	@PostMapping("mypage/inquiry_reply")
+	public String inquiry_reply(HttpSession session, Model model, InquiryVO inquiryVO, int member_idx,
+									String inq_subject, String inq_content, int maker_idx, String inq_idx, int inq_re_ref) {
+		inquiryVO.setMember_idx(member_idx);
+		inquiryVO.setMaker_idx(maker_idx);
+		
+		inquiryVO.setInq_subject(inq_subject);
+		inquiryVO.setInq_content(inq_content);
+		inquiryVO.setInq_re_ref(inq_re_ref);
+			
+		int insertCount = mypageService.insertReply(inquiryVO);
+		if(insertCount > 0) {
+			model.addAttribute("msg", "답변 완료");
+			model.addAttribute("target", "supinquiry");
+			return "success";
+		}  else {
+			model.addAttribute("msg", "답변 실패");
+			return "fail_back";
+		}
+			
+			
+	}
+	
+
+//	0613 좋아요+찜하기 기능 추가
 	@GetMapping("mypage/wish")
 	public String wish(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -451,7 +491,7 @@ public class MypageController {
 		
 		return "mypage/history";
 	}
-
+//	0613 추가 - 참여 펀딩 상세내역
 	@GetMapping("mypage/history2")
 	public String history2(HttpSession session, Model model, int payment_idx) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -461,10 +501,10 @@ public class MypageController {
 		model.addAttribute("paymentMap", paymentMap);
 		System.out.println(paymentMap);
 		
-		
 		return "mypage/history2";
 	}
-
+	
+//	회원탈퇴기능
 	@GetMapping("mypage/deleteMember")
 	public String deleteMember(HttpSession session, Model model) {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
@@ -483,28 +523,4 @@ public class MypageController {
 
 	}
 
-	@PostMapping("mypage/updateProfile")
-	public String updateProfile(MemberVO memberVO, HttpSession session, Model model,
-			@RequestParam("member_image") MultipartFile memberImage) {
-		String uploadDir = "/resources/images/profile"; // 프로젝트 상의 업로드 경로
-		String saveDir = session.getServletContext().getRealPath(uploadDir);
-
-		String originalFilename = memberImage.getOriginalFilename();
-		String filePath = saveDir + File.separator + originalFilename;
-
-		memberVO.setMember_image(originalFilename.split("\\.")[0]);
-		mypageService.updateProfile(memberVO);
-
-		try {
-			// 이미지 파일 업로드
-			memberImage.transferTo(new File(filePath));
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "redirect:/myInfo";
-	}
 }

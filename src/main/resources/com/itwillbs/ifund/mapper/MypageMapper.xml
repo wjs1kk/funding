@@ -72,7 +72,7 @@
 		inner join project_detail pd on p.project_idx = pd.project_idx
 		inner join maker m on p.maker_idx = m.maker_idx 
 		WHERE p.project_idx IN 
-					(SELECT project_idx FROM wish WHERE member_idx = 30);
+					(SELECT project_idx FROM wish WHERE member_idx = #{member_idx});
 	</select>
 
 	<update id="updateProfile">
@@ -180,13 +180,6 @@
 			FROM inquiry
 				WHERE inq_idx = #{inq_idx}
 	</select>
-	
-<!--   	<select id="inqMaker" resultType="string"> -->
-<!-- 		SELECT maker_name  -->
-<!-- 			FROM maker -->
-<!-- 				WHERE maker_idx IN  -->
-<!-- 				(SELECT DISTINCT maker_idx FROM inquiry) -->
-<!-- 	</select> -->
 
 	<select id="myInquiry" resultType="map">
 		SELECT i.*, m.*
@@ -205,16 +198,57 @@
 	</select>
 	
 	
-	<select id="selectSupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
-		SELECT *
-			FROM inquiry
-				WHERE maker_idx IN     
-				<foreach item="maker" collection="maker" open="(" separator="," close=")">
-			    	#{maker}
-			    </foreach>
-				ORDER BY inq_re_ref DESC, inq_re_seq ASC
-				LIMIT #{startRow}, #{listLimit};
+	<select id="SupInquiry" resultType="map">
+		SELECT i.*, m.*
+		FROM inquiry i
+		INNER JOIN maker m ON i.maker_idx = m.maker_idx 
+		WHERE i.maker_idx IN (SELECT maker_idx FROM maker WHERE member_idx = #{member_idx})
+		ORDER BY inq_re_ref DESC, inq_re_seq ASC
+		LIMIT #{startRow}, #{listLimit};
+
 	</select>
+
+	
+	<select id="SupInquiryCount" resultType="Integer">
+		SELECT COUNT(maker_idx)
+			FROM inquiry
+				WHERE maker_idx = #{maker_idx}
+	</select>
+	
+	<update id="updateProgress">
+		UPDATE inquiry SET inq_progress = "답변완료"
+			WHERE inq_re_ref = #{inq_re_ref}
+	</update>
+	
+		<!-- 1:1 문의 답변 기능 -->
+	<insert id="insertReply">
+	  	<selectKey keyProperty="inq_idx" resultType="int" order="BEFORE">
+	  		SELECT IFNULL(MAX(inq_idx), 0) FROM inquiry
+	  	</selectKey>
+	  	INSERT INTO inquiry
+	  	VALUES (#{inq_idx} + 1
+	  			, #{member_idx}
+	  			, #{maker_idx}
+	  			, "답변"
+	  			, CONCAT('Re : ', #{inq_subject})
+	  			, #{inq_content}
+	  			, #{inq_re_ref} 
+	  			, #{inq_re_lev} + 1 
+	  			, #{inq_re_seq} + 1
+	  			, now()
+	  		   )
+	</insert>
+	
+<!-- <select id="SupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO"> -->
+<!--     SELECT * -->
+<!--     FROM inquiry -->
+<!--     WHERE maker_idx IN -->
+<!--         <foreach item="item" collection="maker_idx" open="(" separator="," close=")"> -->
+<!--             #{item} -->
+<!--         </foreach> -->
+<!-- </select> -->
+
+
 
   	<select id="selectMakerIdx" resultType="map">
 		SELECT maker_idx

@@ -48,5 +48,11 @@ public interface MypageMapper {
 	public List selectPayment(Integer member_idx);
 	public Map<Object, Object> selectPaymentMap(@Param("member_idx") Integer member_idx, @Param("payment_idx") int payment_idx);
 	
+	
+	List SupInquiry(@Param("member_idx") Integer member_idx, @Param("maker_idx") List maker_idx, @Param("listLimit") int listLimit, @Param("startRow") int startRow);
+	public Integer SupInquiryCount(List maker_idx);
+	public void updateProgress(InquiryVO inquiryVO);
+	public int insertReply(InquiryVO inquiryVO);
+	
 
 }

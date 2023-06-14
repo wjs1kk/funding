@@ -85,9 +85,6 @@ public class MypageService {
 	
 	
 //	0612 김애리 추가 - 메이커문의
-//	public String inqMaker(Integer member_idx) {
-//		return mapper.inqMaker(member_idx);
-//	}
 	public List<InquiryVO> supInquiry(Integer member_idx, int listLimit, int startRow) {
 		return mapper.supInquiry(member_idx, listLimit, startRow);
 	}
@@ -115,6 +112,18 @@ public class MypageService {
 	}
 	public Map<Object, Object> selectPaymentMap(Integer member_idx, int payment_idx) {
 		return mapper.selectPaymentMap(member_idx, payment_idx);
+	}
+	
+//	0614 김애리 추가 - 서포터문의
+	public List SupInquiry(Integer member_idx, List maker_idx, int listLimit, int startRow) {
+		return mapper.SupInquiry(member_idx, maker_idx, listLimit, startRow);
+	}
+	public Integer SupInquiryCount(List maker_idx) {
+		return mapper.SupInquiryCount(maker_idx);
+	}
+	public int insertReply(InquiryVO inquiryVO) {
+		mapper.updateProgress(inquiryVO);
+		return mapper.insertReply(inquiryVO);
 	}
 	
 	
