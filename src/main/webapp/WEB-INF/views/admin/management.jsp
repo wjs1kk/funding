@@ -54,14 +54,13 @@
 // 	}
 
 	<!-- 승인 -->
-	function modal(calculate_idx, project_title, calculate_fee) {
+	function modal(calculate_idx, project_title, calculate_fee, member_idx) {
 		
 		$("#modalId").modal('show');
 		
 		$("#calculate_idx").val(calculate_idx);
 		$("#project_title").val(project_title);
 		$("#calculate_fee").val(calculate_fee);
-		
 		
 	}
 	
@@ -167,8 +166,9 @@
 				</nav>
 				<!-- / Navbar -->
 				<!-- 모달 -->
-				<form id="modalForm" action="management" method="post"
+				<form id="modalForm" action="deposit" method="post"
 					onsubmit="return confirm('정산 처리 하시겠습니까?')">
+					
 					<div class="modal fade" id="modalId" tabindex="-1" aria-modal="true"
 						style="display: none" role="dialog">
 						<div class="modal-dialog" role="document">
@@ -248,7 +248,7 @@
 														</td>
 														<td>
 															<button class="btn btn-outline-primary"
-																onclick="modal(${list.calculate_idx}, '${list.project_title}', ${list.calculate_fee })">정산하기</button>
+																onclick="modal(${list.calculate_idx}, '${list.project_title}', ${list.calculate_fee }, ${list.member_idx })">정산하기</button>
 														</td>
 													</tr>
 												</c:forEach>
