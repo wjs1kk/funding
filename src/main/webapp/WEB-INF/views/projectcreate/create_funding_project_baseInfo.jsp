@@ -170,7 +170,7 @@
 								</div>
 								<div class="Section_content__3OkLZ">
 											<div class="FileUpload_container__3FuFH container">
-												<input type="file" id="project_thumbnail" name="file" />
+												<input type="file" id="project_thumbnail" name="file" accept=".jpeg, .jpg, .png"/>
 											</div>
 										</div>
 							</section>

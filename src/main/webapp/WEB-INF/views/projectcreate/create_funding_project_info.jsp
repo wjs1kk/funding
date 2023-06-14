@@ -562,10 +562,7 @@
 												<p class="CreateRewardItemModal_description__3WrUq">마지막에
 													[등록]을 눌러야 리워드가 정상 등록돼요.</p>
 												<h4 class="CreateRewardItemModal_pageTitle__128Er">
-													<span>리워드 종류</span><a
-														href="https://makercenter.wadiz.kr/board/basic/245"
-														class="CreateRewardItemModal_link__1JDi7" target="_blank"
-														rel="noopener noreferrer">가이드 안내 보기</a>
+													<span>리워드 종류</span>
 												</h4>
 												<div class="FundingScreeningCategoryGroup_radioGroup__1lgFw">
 													<input type="radio" name="btnradio" id="categorySelect"
@@ -809,25 +806,14 @@
 														class="FundingScreeningAttachmentFileUploadTable_table__ZqTFf">
 														<thead>
 															<tr>
-																<th>구분</th>
 																<th colspan="2">서류</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
-																<td><p
-																		class="FundingScreeningAttachmentFileUploadTable_columnName__3ByJO">자체
-																		제작</p>
-																	<button
-																		class="Button_button__1e2A2 Button_sm__dnvmq FundingScreeningAttachmentFileUploadTable_example__3mxhR"
-																		type="button">
-																		<span><span class="Button_children__q9VCZ">예시
-																				보기</span></span>
-																	</button></td>
+																
 																<td
-																	class="FundingScreeningAttachmentFileUploadTable_columnValue__qGl3Q"></td>
-																<td
-																	class="FundingScreeningAttachmentFileUploadTable_buttonColumn__1h796">																	
+																	class="FundingScreeningAttachmentFileUploadTable_buttonColumn__1h796" align="center">															
 																	<input type="file" name="files" id="documents"
 																	accept="image/*, .pdf, .zip, .xlsx, .hwp" multiple=""></td>
 															</tr>

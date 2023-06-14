@@ -322,7 +322,9 @@
 	</select>
 
 	<select id="showFeeCalculate" resultType="map">
-		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee, p.project_plan, p.project_title
+		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount
+		, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee
+		, p.project_plan, p.project_title, (SUM(pm.total_amount) / p.project_target) * 100 AS project_rate
 		FROM payment pm JOIN project p
 		ON pm.project_idx = p.project_idx
 		WHERE pm.project_idx = #{project_idx};
@@ -343,6 +345,7 @@
 		, (SELECT bank_code_std
 		   FROM account
 		   WHERE member_idx = #{member_idx})
+		, #{calculate_charge}
 		, now()
 		)
 	</insert>

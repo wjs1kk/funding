@@ -1,5 +1,7 @@
 package com.itwillbs.ifund.vo;
 
+import java.sql.Date;
+
 public class CalculateVO {
 	private int calculate_idx;
 	private int member_idx;
@@ -7,9 +9,21 @@ public class CalculateVO {
 	private String project_title;
 	private int calculate_fee;
 	private int calculate_approve;
+	private int calculate_charge;
 	
 	
-	
+	public int getCalculate_charge() {
+		return calculate_charge;
+	}
+
+
+
+	public void setCalculate_charge(int calculate_charge) {
+		this.calculate_charge = calculate_charge;
+	}
+
+
+
 	public int getCalculate_idx() {
 		return calculate_idx;
 	}
@@ -86,7 +100,7 @@ public class CalculateVO {
 	public String toString() {
 		return "CalculateVO [calculate_idx=" + calculate_idx + ", member_idx=" + member_idx + ", project_idx="
 				+ project_idx + ", project_title=" + project_title + ", calculate_fee=" + calculate_fee
-				+ ", calculate_approve=" + calculate_approve + "]";
+				+ ", calculate_approve=" + calculate_approve + ", calculate_charge=" + calculate_charge + "]";
 	}
 	
 	

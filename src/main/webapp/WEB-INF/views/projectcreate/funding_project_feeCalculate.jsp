@@ -30,7 +30,7 @@
 		          success: function(member) {
 		        	  if(member == ""){
 		        		  alert("계좌인증을 해주세요");
-		        		  return true;
+		        		  return false;
 		        	  } else{
 			        	//member_idx 받아오기
 			 		    $("#memberIdx").val(member);
@@ -41,12 +41,10 @@
 					        	  project_idx: ${param.project_idx}
 					        	  },
 					          success: function(dateCheck) {
-					        	  		console.log(dateCheck)
 					        	  	if(dateCheck > 0){
-					        	  		alert("프로젝트가 종료되지 않았습니다");
+					        	  		alert("아직 프로젝트가 종료되지 않았습니다");
 					        	  		return false;
 					        	  	} else {
-										$('#modal').css('display', 'block');
 										$.ajax({
 											 url: 'showFeeCalculate',
 									          type: 'POST',
@@ -54,6 +52,11 @@
 									        	  project_idx: ${param.project_idx}
 									        	  },
 									          success: function(List) {
+									        	  if(List.project_rate < 100){
+									        		  alert("달성률 미달로 정산을 받을 수 없습니다.");
+									        		  return false;
+									        	  } else {
+												  $('#modal').css('display', 'block');
 									        	  //프로젝트 이름
 									        	  $("#projectTitle").text(List.project_title);
 									        	  $("#project_name").val(List.project_title);
@@ -77,7 +80,7 @@
 									        	  
 									        	  var planChargeMoney = parseInt($("#planChargeMoney").text(), 10);
 									        	  var pointChargeMoney = parseInt($("#pointChargeMoney").text(), 10);
-									        	  
+									        	  //총 수수료
 									        	  var chargeMoney = $("#chargeMoney").text(planChargeMoney + pointChargeMoney);
 								        	 	  // 정산 지급 금액
 									        	  $("#money").text(resultMoney.text() - chargeMoney.text());
@@ -85,8 +88,8 @@
 									        	  $("#point").text(List.used_point_amount + List.used_coupon_amount);
 									        	  // 배송비
 									        	  $("#delivery").text(List.delivery_fee);
-					          				}
-					          
+									        	  }
+					          				}									        	  					          
 										})
 					        	  	}
 								}
@@ -117,7 +120,8 @@
 		        	  project_idx: ${param.project_idx},
 		        	  member_idx: $("#memberIdx").val(),
 		        	  project_title: $("#projectTitle").text(),
-		        	  calculate_fee: $("#project_money").val()
+		        	  calculate_fee: $("#project_money").val(),
+		        	  calculate_charge: $("#chargeMoney").text()
 		        	  },
 		          success: function(response) {
 		        	  if(response == false){
