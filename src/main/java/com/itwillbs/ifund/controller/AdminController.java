@@ -16,6 +16,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.AdminService;
+import com.itwillbs.ifund.service.BankApiService;
+import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -35,6 +39,7 @@ import com.itwillbs.ifund.vo.NoticeVO;
 import com.itwillbs.ifund.vo.PageInfo;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RepresentativeVO;
+import com.itwillbs.ifund.vo.ResponseUserInfoVO;
 
 enum Role {
 	BASIG_MEMBER("0"), // 일반회원
@@ -77,6 +82,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BankApiService apiService;
 
 	@Value("${client_id}")
 	private String client_id;
@@ -679,10 +687,36 @@ public class AdminController {
 	}
 
 	@GetMapping("admin/management")
-	public String management(Model model, CalculateVO calculate) {
+	public String management(Model model, CalculateVO calculate, HttpSession session) {
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("management access_token : " + access_token);
+		System.out.println("management user_seq_no : " + user_seq_no);
+		
 		List list = adminService.selectCalculateList(calculate);
+		
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+//		System.out.println(userInfo.getRes_list().get(2).getFintech_use_num());
+		System.out.println("Fintech_use_num : " + userInfo.getRes_list().get(2).getFintech_use_num());
+		
+		
+		
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("fintech_use_num", userInfo.getRes_list().get(2).getFintech_use_num());
 		model.addAttribute("list", list);
 		return "admin/management";
+	}
+	
+	@PostMapping("admin/getResponseUserInfoVO")
+	@ResponseBody
+	public ResponseUserInfoVO getResponseUserInfoVO(int member_idx) {
+		AccountVO account = adminService.getAccountVO(member_idx);
+		System.out.println("account : " + account);
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(account.getAccess_token(), account.getUser_seq_no());
+		System.out.println("userInfo : " + userInfo);
+		
+		return userInfo;
 	}
 	
 	

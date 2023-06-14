@@ -56,8 +56,26 @@
 	<!-- 승인 -->
 	function modal(calculate_idx, project_title, calculate_fee, member_idx) {
 		
-		$("#modalId").modal('show');
+		$.ajax({
+			type: "post",
+			url: "getResponseUserInfoVO",
+			dataType: "JSON",
+			data: {member_idx:member_idx
+			},
+			success: function(response) {
+				$("#append").html("");
+				$.each(response.res_list, function(index, item) { // 데이터 =item
+					console.log(item)
+					$("#append").append('<div>핀테크이용번호 : ' + item.fintech_use_num + '</div>')
+				});
+				
+// 				console.log(response.res_list);
+			}
+		});
 		
+		
+		$("#modalId").modal('show');
+		$("#member_idx").val(member_idx);
 		$("#calculate_idx").val(calculate_idx);
 		$("#project_title").val(project_title);
 		$("#calculate_fee").val(calculate_fee);
@@ -166,7 +184,7 @@
 				</nav>
 				<!-- / Navbar -->
 				<!-- 모달 -->
-				<form id="modalForm" action="deposit" method="post"
+				<form id="modalForm" action="bank_deposit" method="post"
 					onsubmit="return confirm('정산 처리 하시겠습니까?')">
 					
 					<div class="modal fade" id="modalId" tabindex="-1" aria-modal="true"
@@ -189,16 +207,25 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col mb-3">
+										<div class="col mb-3" >
 											<label for="nameBasic" class="form-label">정산금액</label> 
 											<input
 												type="text" id="calculate_fee" readonly="readonly"
-												 class="form-control"
+												 class="form-control" name="calculate_fee"
 												placeholder="Enter Name" />
+											
+											<br>
+											<div id="append">
+											
+											</div>
+											
 										</div>
 									</div>
 								</div>
-<!-- 								<input type="hidden" name="project_idx" id="project_idx2"> -->
+								<input type="hidden" name="member_idx" id="member_idx">
+								<input type="hidden" name="fintech_use_num" value="${fintech_use_num }">
+								<input type="hidden" name="recv_client_fintech_use_num" value="120211385488932372197010">
+
 								<div class="modal-footer">
 									<button type="button" id="closeBtndenied"
 										class="btn btn-outline-secondary" data-bs-dismiss="modal">

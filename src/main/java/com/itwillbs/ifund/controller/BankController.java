@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.ifund.service.AdminService;
 import com.itwillbs.ifund.service.BankApiService;
 import com.itwillbs.ifund.service.BankService;
+import com.itwillbs.ifund.vo.AccountDepositListResponseVO;
 import com.itwillbs.ifund.vo.AccountDetailVO;
+import com.itwillbs.ifund.vo.AccountWithdrawResponseVO;
 import com.itwillbs.ifund.vo.ResponseTokenVO;
 import com.itwillbs.ifund.vo.ResponseUserInfoVO;
 
@@ -26,6 +29,9 @@ public class BankController {
 	
 	@Autowired
 	private BankService bankService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
 	
@@ -47,7 +53,7 @@ public class BankController {
 		// => 파라미터 : 사용자 인증을 통해 전달받은 정보(Map 객체)
 		// => 리턴타입 : 응답되는 엑세스토큰 관련 정보를 관리할 ResponseTokenVO 타입
 		ResponseTokenVO responseToken = apiService.requestToken(authResponse);
-		logger.info("★★★★★ Access Token : " + responseToken.toString());
+		logger.info("★★★★★ Access Token : " + responseToken);
 		
 		// 토큰 발급 실패 시 오류 메세지 출력 및 인증창 닫기
 		if(responseToken.getAccess_token() == null) {
@@ -60,7 +66,7 @@ public class BankController {
 		// 토큰 관련 정보를 fintech3.account 테이블에 저장
 		// => 파라미터 : 아이디, 토큰 정보가 저장된 ResponseTokenVO 객체
 		// => 리턴타입 : int(insertCount)
-		int insertCount = bankService.writeToken(Integer.parseInt(session.getAttribute("member_idx").toString()), responseToken);
+		int insertCount = bankService.writeToken((Integer) session.getAttribute("member_idx"), responseToken);
 		// 토큰 발급 실패 시 오류 메세지 출력 및 인증창 닫기
 		if(insertCount == 0) {
 			model.addAttribute("msg", "토큰 발급 오류 발생! 다시 인증하세요!");
@@ -114,7 +120,7 @@ public class BankController {
 			@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
 		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
-		if(session.getAttribute("member_idx") == null || session.getAttribute("access_token") == null) {
+		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
 			model.addAttribute("msg", "권한이 없습니다!");
 			return "fail_back";
 		}
@@ -150,6 +156,82 @@ public class BankController {
 		
 	}
 
+	// 2.5.1. 출금이체
+	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
+	@PostMapping("bank_withdraw")
+	public String withdraw(
+			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 입금 요청 정보 : " + map);
+		
+		// BankApiService - withdraw() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountWithdrawResponseVO(result)
+		AccountWithdrawResponseVO result = apiService.withdraw(map);
+		logger.info("★★★★★★ 출금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountWithdrawResponseVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		// 출금계좌 핀테크 이용번호(송금요청 계좌) 저장 
+		model.addAttribute("fintech_use_num", map.get("fintech_use_num"));
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
+		}
+		
+		return "bank/withdraw_result";
+	}
+	
+	
+	// 2.5.2. 입금이체
+	// 입금 정보 전달받기 - Map
+	@PostMapping("admin/bank_deposit")
+	public String deposit(
+			@RequestParam Map<String, String> map, HttpSession session, Model model, int member_idx) {
+		System.out.println("bank_deposit 메서드");
+		System.out.println("member_idx: " + member_idx);
+		System.out.println("fintech_use_num: " + map.get("fintech_use_num"));
+		System.out.println("calculate_fee: " + map.get("calculate_fee"));
+		System.out.println("recv_client_fintech_use_num: " + map.get("recv_client_fintech_use_num"));
+		
+		// 대표자 계좌 정보 가져오기
+		Map representative = adminService.selectRepresentative(member_idx);
+//		System.out.println(representative);
+		map.put("rep_tax_account", representative.get("rep_tax_account").toString());
+		map.put("rep_tax_depositor", representative.get("rep_tax_depositor").toString());
+		
+		// map에 put
+		// 정산 성공 페이지 추가
+		
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 입금 요청 정보 : " + map);
+		
+		
+		// BankApiService - deposit() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountDepositResponseListVO(result)
+		AccountDepositListResponseVO result = apiService.deposit(map);
+		logger.info("★★★★★★ 입금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountDepositResponseListVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
+		}
+		
+		// 입출금 내역 db insert
+		 
+		
+		return "bank/deposit_result";
+	}
+	
 	
 }
 

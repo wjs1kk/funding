@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.itwillbs.ifund.mapper.AdminMapper;
+import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -185,6 +186,14 @@ public class AdminService {
 
 	public List selectCalculateList(CalculateVO calculate) {
 		return mapper.selectCalculateList(calculate);
+	}
+
+	public Map selectRepresentative(int member_idx) {
+		return mapper.selectRepresentative(member_idx);
+	}
+
+	public AccountVO getAccountVO(int member_idx) {
+		return mapper.getAccountVO(member_idx);
 	}
 
 }

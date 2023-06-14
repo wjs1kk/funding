@@ -231,6 +231,7 @@
 				<if test="selectOption != 0">
 					AND p.project_status = ${selectOption}
 				</if>
+				ORDER BY p.project_idx DESC;
 <!-- 				<if test="selectOption = 3"> -->
 <!-- 					AND p.project_approve_status = ${selectOption} -->
 <!-- 				</if> -->
@@ -376,10 +377,21 @@
 	<!-- 정산 신청 목록 -->
 	<select id="selectCalculateList" resultType="map">
 		SELECT * 
-			FROM
-				calculate c
-					JOIN member m
-						ON c.member_idx = m.member_idx
-				WHERE calculate_approve = 0;
+		FROM calculate c
+			JOIN member m		
+			  ON c.member_idx = m.member_idx		
+			WHERE calculate_approve = 0;		
+	</select>
+	
+	<select id="selectRepresentative" resultType="map">
+		SELECT *
+		FROM representative
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<select id="getAccountVO" resultType="com.itwillbs.ifund.vo.AccountVO">
+		SELECT *
+		FROM account
+		WHERE member_idx = #{member_idx}
 	</select>
 </mapper>

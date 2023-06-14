@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 
+import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -84,6 +85,8 @@ public interface AdminMapper {
 	public List selectRewardList(ProjectVO project);
 	public List selectPaymentList(ProjectVO project);
 	public List selectCalculateList(CalculateVO calculate);
+	public Map selectRepresentative(int member_idx);
+	public AccountVO getAccountVO(int member_idx);
 
 
 }
