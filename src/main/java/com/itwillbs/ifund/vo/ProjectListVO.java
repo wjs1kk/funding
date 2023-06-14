@@ -9,6 +9,7 @@ public class ProjectListVO {
 	private String project_detail_person; // 2023-06-13 박경은 - 추가
 	private String project_category; // 2023-06-13 박경은 - 추가
 	private String project_summary; // 2023-06-13 박경은 - 추가
+	private String project_introduce; // 2023-06-13 박경은 - 추가
 	private String project_end_date;
 	private String project_title;
 	private String maker_name;
@@ -66,6 +67,14 @@ public class ProjectListVO {
 	// 2023-06-13 박경은 - 추가
 	public void setProject_summary(String project_summary) {
 		this.project_summary = project_summary;
+	}
+	// 2023-06-13 박경은 - 추가
+	public String getProject_introduce() {
+		return project_introduce;
+	}
+	// 2023-06-13 박경은 - 추가
+	public void setProject_introduce(String project_introduce) {
+		this.project_introduce = project_introduce;
 	}
 	public String getProject_end_date() {
 		return project_end_date;

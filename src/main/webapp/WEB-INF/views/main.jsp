@@ -317,12 +317,12 @@
 											</div>
 											<div class="TabContainer_tabList__2IbMs">
 												<ol class="tabList on">
-													<c:forEach items="${RankingList }" var="RankingList"
+													<c:forEach items="${rankingList }" var="rankingList"
 														begin="1" end="5" varStatus="status">
 														<li class="TabContainer_listItem__2nO5j"><div>
 																<a
 																	class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																	href="detail?num=${RankingList.project_idx }"
+																	href="detail?num=${rankingList.project_idx }"
 																	data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="110059"
 																	data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
 																	data-ec-position="0" data-ec-category="출판"
@@ -339,19 +339,19 @@
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">${status.index}</div>
-																		<em class="commons_title__1yGWm">${RankingList.project_title }</em>
+																		<em class="commons_title__1yGWm">${rankingList.project_title }</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH"></span>${RankingList.project_category }
+																			<span class="commons_rate__10tOH"></span>${rankingList.project_category }
 																		</p>
 																		<p class="PreorderMainCard_amount__3UOXm"
 																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px;">
-																			${RankingList.project_detail_amount } 원</p>
+																			${rankingList.project_detail_amount } 원</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(resources/images/project_thumbnail/${RankingList.project_thumbnail};);"></div>
+																			style="background-image: url(resources/images/project_thumbnail/${rankingList.project_thumbnail};);"></div>
 																	</div>
 																	</article>
 																</a>
@@ -359,12 +359,12 @@
 													</c:forEach>
 												</ol>
 												<ol class="tabList">
-													<c:forEach items="${RankingList }" var="RankingList"
+													<c:forEach items="${rankingList }" var="rankingList"
 														begin="1" end="5">
 														<li class="TabContainer_listItem__2nO5j"><div>
 																<a
 																	class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																	href="detail?num=${RankingList.project_idx }"
+																	href="detail?num=${rankingList.project_idx }"
 																	data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="110059"
 																	data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
 																	data-ec-position="0" data-ec-category="출판"
@@ -381,17 +381,17 @@
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">1</div>
-																		<em class="commons_title__1yGWm">${RankingList.project_title }</em>
+																		<em class="commons_title__1yGWm">${rankingList.project_title }</em>
 																		<p class="commons_summary__2Ynez">
 																			<span class="commons_rate__10tOH"></span>${project_category }
 																		</p>
-																		${RankingList.project_detail_amount }
+																		${rankingList.project_detail_amount }
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(resources/images/project_thumbnail/${RankingList.project_thumbnail};);"></div>
+																			style="background-image: url(resources/images/project_thumbnail/${rankingList.project_thumbnail};);"></div>
 																	</div>
 																	</article>
 																</a>
@@ -502,87 +502,6 @@
 								</div>
 							</div>
 						</div>
-
-
-						<!-- 회원님이 좋아할 프로젝트 -->
-						<!-- 2023-06-11 박경은 - 메인 깨짐 수정 -->
-						<div class="Main_wrap__2jKMu">
-							<div
-								class="RecommendationDesktop_innerGroup__as4jB Main_innerWrap__7-_Vm">
-								<div class="LikableFundingWrap_container__3mzG6 undefined">
-									<div
-										class="title_contentWrapper__1P-q0 LikableFundingWrap_titleBox__31QnF">
-										<h3>
-											회원님이 <em>좋아할</em> 프로젝트
-										</h3>
-									</div>
-									<div class="LikableFundingWrap_wrap__1ZPJw">
-										<ul class="LikableFundingWrap_cardList__aExBc">
-											<c:forEach items="${attentionList }" var="attentionList"
-												begin="1" end="4">
-												<li class="LikableCard_card__kI_2A"><a
-													href="detail?num=${attentionList.project_idx }"
-													data-ec-list="홈_#좋아할 프로젝트_프리오더" data-ec-id="209390"
-													data-ec-name="[2.7억 앵콜] 없어서 못먹는 트러플 후라이드 오징어 먹물&amp;치킨 한정판"
-													data-ec-position="0" data-ec-category="푸드"
-													data-ec-brand="대한제분(주)" data-ec-contenttype="PREORDER"
-													data-gtm-vis-recent-on-screen-11319722_2115="382285"
-													data-gtm-vis-first-on-screen-11319722_2115="382285"
-													data-gtm-vis-total-visible-time-11319722_2115="2000"
-													data-gtm-vis-recent-on-screen-11319722_2073="382285"
-													data-gtm-vis-first-on-screen-11319722_2073="382285"
-													data-gtm-vis-total-visible-time-11319722_2073="2000"
-													data-gtm-vis-has-fired-11319722_2073="1"
-													data-gtm-vis-has-fired-11319722_2115="1"><div
-															class="CardType_projectCard__3xhjb CardType_projectCardB__3N8ks">
-															<article>
-																<div
-																	class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-																	<div aria-hidden="true"
-																		class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																		style="background-image: url(resources/images/project_thumbnail/${attentionList.project_thumbnail};);"></div>
-																</div>
-																<div
-																	class="commons_content__2K1SH CardType_content__1Pavj">
-																	<em class="commons_title__1yGWm">${attentionList.project_title }</em>
-																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH">22529%</span>프리오더
-																	</p>
-																</div>
-															</article>
-														</div></a></li>
-											</c:forEach>
-										</ul>
-										<div
-											class="CardType_projectCard__3xhjb CardType_plannedCard__Yyg0B LikableFundingWrap_plannedCard__ZG4TD">
-											<a href="/web/wreward/collection/projectclose"
-												data-promo-acid="1641"
-												data-promo-id="/web/wreward/collection/projectclose"
-												data-promo-name="수량 마감 임박 프로젝트" data-promo-position="MRB2"
-												data-gtm-vis-recent-on-screen-11319722_2047="382264"
-												data-gtm-vis-first-on-screen-11319722_2047="382264"
-												data-gtm-vis-total-visible-time-11319722_2047="2000"
-												data-gtm-vis-recent-on-screen-11319722_2115="382267"
-												data-gtm-vis-first-on-screen-11319722_2115="382267"
-												data-gtm-vis-total-visible-time-11319722_2115="2000"
-												data-gtm-vis-has-fired-11319722_2047="1"
-												data-gtm-vis-has-fired-11319722_2115="1"><article>
-													<div
-														class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
-														<div aria-hidden="true"
-															class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-															style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0405/20230405172505393_null.jpg/wadiz/resize/1000/format/jpg/quality/85/&quot;);"></div>
-													</div>
-													<div>
-														<span class="CardType_badge__OjSmY">기획전</span><span
-															class="CardType_title__2qEmh">수량 마감 임박 프로젝트</span>
-													</div>
-												</article></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 
@@ -620,10 +539,10 @@
 								</div>
 							</div>
 							<ul class="EarlybirdDesktop_earlybirdList__2XjA6">
-								<c:forEach items="${attentionList }" var="attentionList"
+								<c:forEach items="${earlybirdList }" var="earlybirdList"
 									begin="1" end="3">
 									<li class="EarlybirdDesktop_listItem__2j7AD"><a
-										href="detail?num=${attentionList.project_idx }"
+										href="detail?num=${earlybirdList.project_idx }"
 										data-ec-list="홈_얼리버드_펀딩" data-ec-id="192567"
 										data-ec-name="한번의 빗질로 만드는 골골송 제조기 [털제거 브러시] 목욕부터 털관리까지"
 										data-ec-position="0" data-ec-category="반려동물"
@@ -641,38 +560,32 @@
 													class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 													<div aria-hidden="true"
 														class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-														style="background-image: url(resources/images/project_thumbnail/${attentionList.project_thumbnail};);"></div>
+														style="background-image: url(resources/images/project_thumbnail/${earlybirdList.project_thumbnail};);"></div>
 												</div>
 												<div class="CardType_cardContent__3UMOr">
 													<div>
-														<p class="CardType_type__El7XP">펀딩</p>
+														<p class="CardType_type__El7XP">${earlybirdList.project_category }</p>
 														<div
 															class="commons_content__2K1SH CardType_content__1Pavj">
-															<em class="commons_title__1yGWm">${attentionList.project_title }</em>
+															<em class="commons_title__1yGWm">${earlybirdList.project_title }</em>
 															<p class="commons_summary__2Ynez">
 																<span class="commons_rate__10tOH"> <span
 																	class="commons_rate__10tOH"><fmt:formatNumber
-																			value="${(attentionList.project_detail_amount/attentionList.project_target)}"
+																			value="${(earlybirdList.project_detail_amount/earlybirdList.project_target)}"
 																			type="percent" /></span>
-																</span>반려동물
+																</span>
+
 															</p>
 														</div>
 													</div>
 													<div class="CardType_earlybirdContent__1b8VN">
 														<dl>
 															<dt class="BlindText_textHidden__ovQb4">옵션명</dt>
-															<dd class="CardType_title__2qEmh">*한정수량* [스페셜 얼리버드
-																45%] 효율 끝판왕! 전문가 세트</dd>
+															<dd class="CardType_title__2qEmh">${earlybirdList.reward_name }</dd>
 															<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
-															<dd class="CardType_description__2BtXk">▶ 더콤마V2
-																브러시_2개(컬러 선택) + 미스트_2개 + 샴푸_2개 새싹보리 발효 미스트 200ml 새싹보리 발효
-																샴푸 300ml ⭢ 양손으로 케어해서 목욕, 빗질 효율성을 50.000% 높여보세요! [45% 혜택]
-																정가 138,000원, 정가 대비 62.100원 혜택 - - - - - - - - - - - - -
-																- - - - - - - - - - -양손 브러시로 꼼꼼하고 빠르게 꿀피모 만들기 냥득템
-																*미스트&amp; 샴푸는 유통기한 2025년 06월26일까지로 사용기간이 넉넉하니, 미리 챙겨둘수록
-																개이득~</dd>
+															<dd class="CardType_description__2BtXk">${earlybirdList.reward_option }</dd>
 															<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
-															<dd class="CardType_subContent__3QETf">75,900원</dd>
+															<dd class="CardType_subContent__3QETf">${earlybirdList.reward_amount }원</dd>
 														</dl>
 													</div>
 													<div class="CardType_linkBtn__1QHvM">
@@ -729,24 +642,11 @@
 																	d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
 														</button>
 													</div>
-													<ul class="Pagination_pageList__KyPel"
-														aria-label="pagination">
-														<li
-															class="Pagination_listItem__1atqr Pagination_active__3Lx2R"><button
-																type="button">1</button></li>
-														<li class="Pagination_listItem__1atqr"><button
-																type="button">2</button></li>
-														<li class="Pagination_listItem__1atqr"><button
-																type="button">3</button></li>
-														<li class="Pagination_listItem__1atqr"><button
-																type="button">4</button></li>
-													</ul>
 												</div>
 											</div>
-											<c:forEach items="${attentionList }" var="attentionList"
-												begin="1" end="6">
+											<c:forEach items="${todayOpenList }" var="todayOpenList">
 												<div class="DebutFundingDesktop_card__8YXhV">
-													<a href="detail?num=${attentionList.project_idx }"
+													<a href="detail?num=${todayOpenList.project_idx }"
 														data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="211101"
 														data-ec-name="여름엔 소름돋게 쿨~한 아이스 블랙 3종세트! #깃털셔츠 #볼캡 #클러치"
 														data-ec-position="0" data-ec-category="패션·잡화"
@@ -765,13 +665,15 @@
 																	class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																	<div aria-hidden="true"
 																		class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																		style="background-image: url(resources/images/project_thumbnail/${attentionList.project_thumbnail};);"></div>
+																		style="background-image: url(resources/images/project_thumbnail/${todayOpenList.project_thumbnail};);"></div>
 																</div>
 																<div
 																	class="commons_content__2K1SH CardType_content__1Pavj">
-																	<em class="commons_title__1yGWm">${attentionList.project_title }</em>
+																	<em class="commons_title__1yGWm">${todayOpenList.project_title }</em>
 																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH">717%</span>프리오더
+																		<span class="commons_rate__10tOH"><fmt:formatNumber
+																				value="${(todayOpenList.project_detail_amount/todayOpenList.project_target)}"
+																				type="percent" /></span>${todayOpenList.project_category }
 																	</p>
 																</div>
 															</article>
@@ -800,7 +702,7 @@
 							<section>
 								<a class="FundingOpenStaticBanner_container__12jOH"
 									data-ga-category="홈_최하단배너" data-ga-action="클릭"
-									data-ga-label="프로젝트 오픈하기" href="/web/wsub/openfunding"><h4
+									data-ga-label="프로젝트 오픈하기" href="projectCreate"><h4
 										class="FundingOpenStaticBanner_title__2SGnU">아이펀드에서 프로젝트
 										오픈하기</h4>
 									<p class="FundingOpenStaticBanner_desc__34zp5">당신의 이야기를

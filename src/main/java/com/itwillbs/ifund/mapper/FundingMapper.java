@@ -36,9 +36,11 @@ public interface FundingMapper {
 	// 06-11 김동욱 결제 금액의 5프로 포인트 적립
 	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
 	// 2023-06-13 박경은 - 오픈예정 프로젝트
-	public List<ProjectListVO> selectAttentionProject();
+	public List selectAttentionProject(ProjectListVO projectList);
 	// 2023-06-13 박경은 - 실시간 랭킹
-	public List<ProjectListVO> selectRankingProject();
+	public List selectRankingProject(ProjectListVO projectList);
 	// 2023-06-13 박경은 - 얼리버드
-	public List<ProjectListVO> selectEarlybirdProject();
+	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward);
+	// 2023-06-13 박경은 - 오늘 오픈
+	public List selectTodayOpenProject(ProjectListVO projectList);
 }

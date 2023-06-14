@@ -120,7 +120,7 @@
 			success: function (data) {
 				console.log("data: " + data);
 				authCode.attr('disabled', false);
-				code = data;
+				numStr = data;
 				alert('인증번호가 전송되었습니다.');
 			}
 		});
@@ -128,12 +128,12 @@
 		$('#authCode').blur(function () {
 			const authCode = $(this).val();
 			
-			if(authCode == code){
+			if(authCode === numStr){
 				$('#mobileCheckBtn').attr('disabled',true);
 				$('#authCode').attr('readonly',true);
 				alert('인증이 완료되었습니다.');
 			} else {
-				alert('인증오류.');
+				alert(authCode);
 			}
 		});
 	}
