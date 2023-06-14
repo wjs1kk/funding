@@ -151,6 +151,10 @@ public class ProjectCreateController {
 	@ResponseBody
 	public void projectRewardAdd(@RequestParam Map reward) {
 		System.out.println("projectRewardAdd: " + reward);
+		
+		if(reward.get("reward_delivery_date") == "") {
+			reward.put("reward_delivery_date", null);
+		}
 		int insertCount = projectCreateService.projectRewardAdd(reward);
 	}
 	
