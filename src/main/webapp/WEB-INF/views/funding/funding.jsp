@@ -42,14 +42,14 @@
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
  				location.href = "funding?category=" + $(this).text() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
- 				$(this).addClass('ImageTab_active__BGdXu');
+//  				$(this).addClass('ImageTab_active__BGdXu');
  			});
  		}
  		
  		for(let items of item) {
  			items.addEventListener("click", function() {
 				location.href = "funding?category=" + "${param.category}" + "&order=" + $(this).text() + '&selectbox=${param.selectbox}';
-				$(this).addClass('OrderSelectDesktop_active__YTP2K')
+// 				$(this).addClass('OrderSelectDesktop_active__YTP2K')
 			});
 		}
 	});
@@ -58,11 +58,6 @@
 	function detail(project_idx){
 		location.href="detail?num="+project_idx;	
 	}
-</script>
-<script>
-	var element = document.getElementById("categoryBtn");
-	element.classList.remove("ImageTab_first__2C8Ry"); // 기존 클래스명 제거
-	element.classList.add("ImageTab_first__2C8Ry");
 </script>
 </head>
 <script>
@@ -278,13 +273,19 @@
 						</div>
 					</div>
 				</div>
+				<script>
+					var url = document.location.href
+					if(url.contains("${param.category}")) {
+						$(".ImageTab_tab__3siCY").addClass("ImageTab_active__BGdXu");
+					}
+				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체'? 'ImageTab_active__BGdXu' : '' }">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -296,7 +297,7 @@
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY" id="categoryBtn">
+										class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -331,10 +332,10 @@
 								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
 							</select>
 							<ul id="itemList" class="OrderSelectDesktop_sortContainer__1YLsr">
-								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi">인기순</li>
-								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi">모집금액순</li>
-								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi">마감임박순</li>
-								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi">최신순</li>
+								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '인기순'? 'OrderSelectDesktop_active__YTP2K' : '' }">인기순</li>
+								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '모집금액순'? 'OrderSelectDesktop_active__YTP2K' : '' }">모집금액순</li>
+								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '마감임박순'? 'OrderSelectDesktop_active__YTP2K' : '' }">마감임박순</li>
+								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '최신순'? 'OrderSelectDesktop_active__YTP2K' : '' }">최신순</li>
 							</ul>
 						</div>
 					</div>
