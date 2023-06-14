@@ -55,4 +55,5 @@ public interface FundingMapper {
 	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward);
 	// 2023-06-13 박경은 - 오늘 오픈
 	public List selectTodayOpenProject(ProjectListVO projectList);
+	public void updateFunding(ProjectVO project);
 }

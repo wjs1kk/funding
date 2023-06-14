@@ -188,7 +188,11 @@
 		WHERE 
 			p.project_idx = #{project_idx};
 	</select>
-	
+	<update id="updateFunding">
+		UPDATE project
+		   SET project_coming_soon_date = ''
+		 WHERE DATE_FORMAT(NOW(), '%Y-%m-%d') > project_coming_soon_date 
+	</update>
 	<!--  06-09 김동욱 결제할 리워드 가져오기  -->
 	<select id="getPayReward" resultType="map">
 		SELECT *

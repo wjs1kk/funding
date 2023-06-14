@@ -71,12 +71,13 @@
 					</div>
 					<div class="bottom-message">
 						<p> 아직 와디즈 계정이 없나요?
-							<a href="/web/waccount/wAccountRegistIntro" data-return-url="" data-event="iam.signin.goto.signup">회원가입</a>
+							<a href="signup" data-return-url="" data-event="iam.signin.goto.signup">회원가입</a>
 						</p>
 					</div>
 				</div>
 			</div>
-			</main>
+		</main>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>
