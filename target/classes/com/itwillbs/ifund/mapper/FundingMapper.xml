@@ -312,4 +312,26 @@
 						, now()
 						)
 	</insert>
+	<!-- 	찜하기 -->
+	<insert id="insertWish">
+		insert into wish 
+			values(null, #{project_idx}, #{member_idx});
+	</insert>
+	<select id="selectWish" resultType="String">
+		select project_idx 
+			from wish 
+			where member_idx = #{member_idx}
+	</select>
+	<delete id="cancelWish">
+		DELETE
+			FROM wish
+			WHERE project_idx = #{project_idx}
+	</delete>
+	<!-- 	찜하기 끗 -->
+	<!-- 찜갯수 06/13-->
+	<select id="countWish" resultType="int">
+		select COUNT(*) 
+		from wish 
+		where project_idx=#{project_idx}; 
+	</select>
 </mapper>

@@ -123,6 +123,70 @@
 		$(".slick-slide").eq(newIndex).show();
 	}
 </script>
+<!-- 찜하기-->
+<script type="text/javascript">
+	function wish(project_idx){
+		let member_idx = '<%=(Integer)session.getAttribute("member_idx")%>';
+		if(member_idx == "null"){
+			alert("로그인이 필요한 기능입니다.");
+			location.href='${pageContext.request.contextPath}/login';
+		}
+		else{
+			var form={
+					member_idx:member_idx,
+					project_idx:project_idx
+			};
+            $.ajax({
+                type : "POST",
+                url : "${pageContext.request.contextPath}/funding_wish",
+                cache : false,
+                contentType : 'application/json; charset=utf-8',
+                data : JSON.stringify(form),
+                success : function(result) {
+                	alert("찜하기러기 끼룩끼룩~");
+                	let button = document.querySelector(".p_idx"+project_idx);
+                	button.setAttribute("aria-pressed",true);
+                	location.reload();                	
+                },
+                error : function(e) {
+                    console.log(e);
+                    alert('찜할 수 없지렁이 꿈틀꿈틀~');
+                    location.reload(); 
+                }
+            })
+
+		}
+	}
+</script>
+<!-- 찜하기 끗 -->
+<!-- 찜하기 취소 -->
+<script type="text/javascript">
+	function wish_cancel(project_idx){
+		var form={
+				project_idx:project_idx
+		};
+		
+		$.ajax({
+            type : 'post', 
+            url : "${pageContext.request.contextPath}/funding_wish_cancel", 
+            cache : false, 
+            processData: false, 
+            contentType : 'application/json; charset=utf-8', 
+            data: JSON.stringify(form), 
+            success: function(result) {
+            	let button = document.querySelector(".p_idx"+project_idx);
+            	button.setAttribute("aria-pressed",false);
+            	location.reload();
+                alert('해당 상품을 찜 취소 하셨습니다.');
+            },
+            error : function(e) {
+                alert('찜 취소 할 수 없습니다.');
+                location.reload(); // 실패시 새로고침하기
+            }
+        })
+	}
+</script>
+<!-- 찜하기 취소 끗 -->
 <body style="overflow: auto;">
 	<div id="page-container">
 
@@ -407,18 +471,30 @@
 										</div>
 									</div>
 								</a>
-								<div class="PreorderMainCard_wish__15rgO">
-									<button type="button"
-										class="WishButton_button__1ZqbG WishButton_smallArea__sDV77 WishButton_interaction__2FCel"
-										aria-label="찜하기 버튼" aria-pressed="false"
-										data-ga-category="공통_상품카드_프리오더" data-ga-action="찜하기_추가"
-										data-ga-label="">
+								<!-- 								찜하기 버튼 시작 -->
+								<div class="PreorderMainCard_wish__15rgO" >
+									<button onclick="wish(${projectDetailList.project_idx})"
+										class="p_idx${projectDetailList.project_idx} WishButton_button__1ZqbG WishButton_smallArea__sDV77 WishButton_interaction__2FCel"
+										aria-label="찜하기 버튼"  data-ga-action="찜하기_취소" aria-pressed='false'>
 										<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-											class="withIcon_icon__3VTbq" aria-hidden="true">
-										<path
-												d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
+											class="withIcon_icon__3VTbq" aria-hidden="false">
+							
+										<path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
 									</button>
 								</div>
+								
+								<c:forEach items="${selectWish }" var="selectWish">
+										<c:if test="${selectWish eq projectDetailList.project_idx }">
+											<script type="text/javascript">
+												var button = document.querySelector(".p_idx"+${selectWish});
+												button.setAttribute("aria-pressed",true);
+												$(button).removeAttr("onclick");
+												$(button).attr("onclick","wish_cancel(${projectDetailList.project_idx})")
+												
+											</script>
+										</c:if>
+								</c:forEach>								
+<!-- 								찜하기 버튼 끗 -->
 							</div>
 						</c:forEach>
 						<!-- 						funding project 목록 끝 -->

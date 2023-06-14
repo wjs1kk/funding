@@ -37,4 +37,11 @@ public interface FundingMapper {
 	public void pointSaving(@Param("point") double point, @Param("member_idx") int member_idx);
 	public int insertInquiry(@Param("inquiry_subject") String inquiry_subject, @Param("inquiry_content") String inquiry_content);
 	public int insertInquiry(InquiryVO inquiry);
+//	찜하기관련
+	public int insertWish(@Param("project_idx") int project_idx, @Param("member_idx") int member_idx);
+	public int cancelWish(@Param("project_idx") int project_idx);
+	public List<String> selectWish(int member_idx);
+//	찜하기관련 끗
+//	06/13
+	public int countWish(int project_idx);
 }
