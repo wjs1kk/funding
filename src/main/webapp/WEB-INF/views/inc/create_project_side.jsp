@@ -18,8 +18,7 @@ tocplusUserName="Guest"
 	     dataType: "json",
 	     success: function(response) {
 	    	 if(response.project_approve_status == "2"){
-		    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(1).attr("href", "fundingProjectState?project_idx="+${param.project_idx}) // 프로젝트 현황
-		    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(1).attr("class", "AppSidebarMenuList_navLink__1FytL") // 프로젝트 현황
+		    	
 		    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a>.icon-lock-o ').eq(0).remove()
 		    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(2).attr("href", "projectShipmentRefund?project_idx="+${param.project_idx}) // 발송 환불 관리
 		    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(2).attr("class", "AppSidebarMenuList_navLink__1FytL") // 발송환불관리
@@ -46,6 +45,23 @@ tocplusUserName="Guest"
 		     
 		})
 	})
+	
+	
+	$(function() {
+		$.ajax({
+			 url: 'paymentCheck',
+		     type: 'POST',
+		     dataType: 'JSON',
+		     data: {project_idx: ${param.project_idx}},
+		     success: function(response) {
+		    	 if(response != ""){
+		    		 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(1).attr("href", "fundingProjectState?project_idx="+${param.project_idx}) // 프로젝트 현황
+			    	 $('.AppSidebarMenuList_container__199gJ>ul>li>a').eq(1).attr("class", "AppSidebarMenuList_navLink__1FytL") // 프로젝트 현황
+		    	 }
+		     },
+		})
+	})
+	
 </script>
 <div class="AppSidebarLayout_contents__2thGr" id="sidebar">
 	<div

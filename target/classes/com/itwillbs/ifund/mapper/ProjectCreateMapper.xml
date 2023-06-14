@@ -417,4 +417,5 @@
 		DELETE FROM project
 		WHERE project_idx = #{project_idx} AND project_approve_status = 0;
 	</delete>
+	
 </mapper>

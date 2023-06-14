@@ -105,10 +105,24 @@ public class AdminController {
 		} else {
 			return "admin/index";
 		}
+	}
+	
+	// 06-15 김동욱 마이페이지에서 관리자페이지로 이동할 시 경로가 맞지 않아 추가
+	@GetMapping("mypage/admin")
+	public String mypageAdmin(String member_email, Model model, HttpSession session, ProjectVO project) {
+		String isAdmin = (String) session.getAttribute("isAdmin");
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		
+		// 메인 그래프
+		int count = adminService.getCount(project);
+		model.addAttribute("count", count);
 		
-		
-		
+		if (member_idx == null || isAdmin.equals(Role.BASIG_MEMBER.code)) {
+			model.addAttribute("msg", "접근 권한이 없습니다.");
+			return "fail_back";
+		} else {
+			return "redirect:/admin";
+		}
 	}
 
 	// 2023-06-02 박경은 - 로그아웃

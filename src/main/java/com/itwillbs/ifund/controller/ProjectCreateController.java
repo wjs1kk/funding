@@ -598,4 +598,12 @@ public class ProjectCreateController {
 		System.out.println(updateStatus);
 	}
 	
+	@PostMapping("project/paymentCheck")
+	@ResponseBody
+	public String paymentCheck(int project_idx) {
+		List payment = projectCreateService.getMyPaymentList(project_idx);
+		JSONArray jsonArray = new JSONArray(payment);
+		return jsonArray.toString();
+	}
+	
 }

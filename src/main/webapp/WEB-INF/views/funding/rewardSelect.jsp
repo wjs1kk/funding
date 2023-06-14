@@ -213,9 +213,11 @@ input[type="number"]::-webkit-inner-spin-button {
 										<input type="hidden" id="reward_idx_${status.index}" value="${selectReward.reward_idx }"></input>
 										<input type="hidden" id="reward_delivery_fee_${status.index}" value="${selectReward.reward_delivery_fee }"></input>
 										<c:if test="${(selectReward.reward_quantity - selectReward.reward_sell) == 0}">
+											<input type="hidden" id="index" value="${status.index}">
 											<script>
 												$(function() {
 													$("#rewardCheckbox_"+${status.index}).attr("disabled", true);
+// 													$(".RewardProductItem_label__2t2Wd").css("background", "lightgray");
 												})
 											</script>
 										</c:if>
