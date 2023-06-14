@@ -1,14 +1,15 @@
 package com.itwillbs.ifund.controller;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.net.http.*;
+import java.util.*;
+
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.ifund.service.BankService;
 import com.itwillbs.ifund.service.MemberService;
@@ -93,5 +94,19 @@ public class MemberController {
 		mypageService.joinPoint(member.getMember_email());
 		 
 		return "redirect:/login";
+	}
+	
+	@GetMapping("findId")
+	public String findId(Model model, String member_email) {
+		return "member/findId";
+	}
+	
+	@PostMapping("findUser")
+	@ResponseBody
+	public Map findUser(String member_email, Model model) {
+		System.out.println(member_email);
+		Map findUser = memberService.findUser(member_email);
+		model.addAttribute("findUser", findUser);
+		return findUser;
 	}
 }

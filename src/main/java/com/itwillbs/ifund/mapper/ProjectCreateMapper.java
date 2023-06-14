@@ -1,5 +1,6 @@
 package com.itwillbs.ifund.mapper;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -93,7 +94,7 @@ public interface ProjectCreateMapper {
 	
 	Integer applyCheck(int project_idx);
 	
-	int memberIdxSearch(int project_idx);
+	Integer memberIdxSearch(int project_idx);
 	// 06-12 김동욱 해당 프로젝트 결제내역 가져오기
 	List getMyPaymentList(int project_idx);
 	// 06-12 김동욱 운송장 번호 입력
@@ -102,5 +103,13 @@ public interface ProjectCreateMapper {
 	Map myProjectStatus(int project_idx);
 	// 06-13 김동욱 해당 프로젝트 수정신청
 	void projectModifyApply(@Param("project_idx") int project_idx, @Param("updateStatus") String updateStatus);
+	
+	String memberNameCheck(int project_idx);
+	
+	String memberName(int member_idx);
+	
+	int dateCheck(int project_idx);
+	
+	int deleteProject(int project_idx);
 
 }

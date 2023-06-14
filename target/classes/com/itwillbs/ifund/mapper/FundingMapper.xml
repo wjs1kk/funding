@@ -69,20 +69,22 @@
 	<!-- 공동구매 페이지 분류 -->
 	<select id="selectPreorderProject"
 		resultType="com.itwillbs.ifund.vo.ProjectListVO">
-		SELECT DISTINCT p.project_idx, project_category, project_thumbnail,
-		project_plan,
-		project_detail_amount, project_target, project_end_date,
-		project_title, maker_name
+		SELECT 
+			DISTINCT 
+			p.project_idx, project_category, project_thumbnail,
+			project_plan, project_start_date
+			project_detail_amount, project_target, project_end_date,
+			project_title, maker_name
 		FROM project p
 		INNER JOIN
-		project_detail pd ON
-		p.project_idx = pd.project_idx
+			project_detail pd ON
+			p.project_idx = pd.project_idx
 		INNER JOIN
-		maker m ON p.maker_idx =
-		m.maker_idx
+			maker m ON p.maker_idx =
+			m.maker_idx
 		WHERE
-		project_approve_status = '2'
-		AND project_type = '2'
+			project_approve_status = '2'
+			AND project_type = '2'
 		<if test="selectbox == 0">
 			AND
 			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
@@ -116,7 +118,7 @@
 					ORDER BY p.project_end_date;
 				</when>
 				<when test="order.equals('최신순')">
-					ORDER BY project_start_date DESC;
+					ORDER BY p.project_start_date DESC;
 				</when>
 			</choose>
 		</if>
@@ -176,8 +178,8 @@
 	<select id="fundingDetail" resultType="map">
 		SELECT 
 			DISTINCT
-				p.project_idx, p.project_category, p.project_reward_category, p.project_content,
-				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date,
+				p.project_idx, p.project_category, p.project_reward_category, p.project_content, p.project_plan,
+				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date, p.project_coming_soon_date,
 				pd.project_detail_amount, pd.project_detail_person,	pd.project_detail_target, m.maker_idx, m.maker_image, m.maker_name, p.project_summary
 		 FROM 
 			project p
@@ -311,13 +313,38 @@
 						, 0
 						, now()
 						)
-	</insert>
-	<select id="selectOpenProject"
-	resultType="com.itwillbs.ifund.vo.ProjectListVO">
+	</insert>	
+	
+	<!-- 2023-06-13 박경은 - 주목할 만한 프로젝트 -->
+	<select id="selectAttentionProject"
+	resultType="map">
 		SELECT
 		DISTINCT
 		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
-		pd.project_detail_amount, p.project_target, p.project_start_date,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY (pd.project_detail_amount / p.project_target ) DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 실시간 랭킹 -->
+	<select id="selectRankingProject"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
 		p.project_end_date, p.project_title, m.maker_name FROM project p
 		INNER
 		JOIN
@@ -333,6 +360,41 @@
 		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
 		AND
 		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY pd.project_detail_amount DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 얼리버드 -->
+	<select id="selectEarlybirdProject"
+	resultType="map">
+		SELECT p.project_idx, p.project_category, p.project_thumbnail, p.project_plan, 
+		p.project_target, p.project_start_date, p.project_summary,
+		p.project_end_date, p.project_title, p.project_approve_status,
+		r.reward_name, r.reward_amount, r.reward_option
+		FROM project p
+		INNER JOIN reward r ON  p.project_idx = r.project_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		AND
+		p.project_start_date > DATE_FORMAT(NOW(), '%Y-%m-%d');
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 오늘 오픈 -->
+	<select id="selectTodayOpenProject"
+	resultType="map">
+		SELECT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date, p.project_summary,
+		p.project_end_date, p.project_title, p.project_approve_status FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') = p.project_start_date
+		ORDER BY pd.project_detail_amount DESC;
 	</select>
 	
 	

@@ -98,7 +98,9 @@
 
 	<update id="InfoUpdate">
 		UPDATE project SET
-		project_category = #{project_category},
+		project_category = (SELECT category_cd
+							FROM category
+							WHERE category_cd = #{project_category}),
 		project_introduce = #{project_introduce},
 		project_type = #{project_type},
 		project_target = #{project_target},
@@ -322,7 +324,9 @@
 	</select>
 
 	<select id="showFeeCalculate" resultType="map">
-		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee, p.project_plan, p.project_title
+		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount
+		, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee
+		, p.project_plan, p.project_title, (SUM(pm.total_amount) / p.project_target) * 100 AS project_rate
 		FROM payment pm JOIN project p
 		ON pm.project_idx = p.project_idx
 		WHERE pm.project_idx = #{project_idx};
@@ -343,6 +347,7 @@
 		, (SELECT bank_code_std
 		   FROM account
 		   WHERE member_idx = #{member_idx})
+		, #{calculate_charge}
 		, now()
 		)
 	</insert>
@@ -353,7 +358,7 @@
 		WHERE project_idx = #{project_idx};
 	</select>
 	
-	<select id="memberIdxSearch" resultType="int">
+	<select id="memberIdxSearch" resultType="integer">
 		SELECT a.member_idx
 		FROM project p JOIN account a
 		ON p.member_idx = a.member_idx
@@ -393,4 +398,27 @@
 			SET project_update_status = #{updateStatus}
 			WHERE project_idx = #{project_idx}
 	</update>
+	<select id="memberNameCheck" resultType="string">
+		SELECT m.member_name 
+		FROM `member` m JOIN project p 
+		ON m.member_idx = p.member_idx
+		WHERE p.project_idx = #{project_idx} 
+	</select>
+	
+	<select id="memberName" resultType="string">
+		SELECT member_name 
+		FROM `member` m
+		WHERE member_idx = #{member_idx} 
+	</select>
+	
+	<select id="dateCheck" resultType="int">
+		SELECT DATEDIFF(project_end_date, now()) 
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+	
+	<delete id="deleteProject">
+		DELETE FROM project
+		WHERE project_idx = #{project_idx} AND project_approve_status = 0;
+	</delete>
 </mapper>

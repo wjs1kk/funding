@@ -12,4 +12,24 @@
 		LIMIT 5;
 	</select>
 	
+	<!-- 	06/13 최근본 프로젝트 조회쿼리 -->
+	<select id="selectProject" resultType="map">
+		SELECT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_target, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		where p.project_idx = #{project_idx}
+		AND
+		p.project_approve_status = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+	</select>
 </mapper>

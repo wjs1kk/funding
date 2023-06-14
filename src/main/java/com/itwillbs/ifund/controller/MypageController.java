@@ -428,8 +428,6 @@ public class MypageController {
 
 		NaverCloud.sendSMS(member.getMember_phone(), numStr);
 		
-		
-		
 		return "redirect:/mypage/myInfo";
 	}
 	

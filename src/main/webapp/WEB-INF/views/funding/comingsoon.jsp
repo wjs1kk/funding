@@ -48,66 +48,68 @@
 	});
 </script>
 <script>
-// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
-$(document).ready(function () {
-	$(".slick-slide").not(".slick-active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+	//슬라이드 3초간 유지 후 다음 화면으로 넘어감
+	$(document).ready(function() {
+		$(".slick-slide").hide(); //화면 로딩 후 모두 숨김
+		$(".slick-slide").eq(0).show(); // 0번 표시
+		
+		setInterval(next, 2000); // 2초마다 next()호출
 	
-	setInterval(next, 3000);
-});
-
-function next() {
-	$(".slick-slide").hide();
-	var allSlide = $(".slick-slide");
-	var currentIndex = 0;
-	
-	$(".slick-slide").each(function(index,item){
-		if($(this).hasClass("slick-active")) {
-			currentIndex = index;
-		}
-        
 	});
 	
-	var newIndex = 0;
+	function next() {
+		$(".slick-slide").hide();
+		var allSlide = $(".slick-slide");
+		var currentIndex = 0;
 	
-	if(currentIndex >= allSlide.length - 1) {
-		//현재 슬라이드 index가 마지막 순서면 0번째로 보냄
-		newIndex = 0;
-	} else {
-		//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
-		newIndex = currentIndex + 1;
-	}
-
-	$(".slick-slide").removeClass("slick-active");
-	$(".slick-slide").eq(newIndex).addClass("slick-active");
-	$(".slick-slide").eq(newIndex).show();
+		$(".slick-slide").each(function(index, item) {
+			if ($(this).hasClass("slick-active")) {
+				currentIndex = index;
+			}
 	
-}
-
-function prev() {
-	$(".slick-slide").hide(); //모든 div 숨김
-	var allSlide = $(".slick-slide"); //모든 div 객체를 변수에 저장
-	var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+		});
 	
-	//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
-	$(".slick-slide").each(function(index, item){
-		if($(this).hasClass("slick-active")) {
-			currentIndex = index;
+		var newIndex = 0;
+	
+		if (currentIndex >= allSlide.length - 1) {
+			//현재 슬라이드 index가 마지막 순서면 0번째로 보냄
+			newIndex = 0;
+		} else {
+			//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+			newIndex = currentIndex + 1;
 		}
-	});
 	
-	//새롭게 나타낼 div의 index
-	var newIndex = 0;
-    
-	if(currentIndex <= 0) {
-		newIndex = allSlide.length - 1;
-	} else {
-		newIndex = currentIndex - 1;
+		$(".slick-slide").removeClass("slick-active");
+		$(".slick-slide").eq(newIndex).addClass("slick-active");
+		$(".slick-slide").eq(newIndex).show();
+	
 	}
-
-	$(".slick-slide").removeClass("slick-active");
-	$(".slick-slide").eq(newIndex).addClass("slick-active");
-	$(".slick-slide").eq(newIndex).show();
-}
+	
+	function prev() {
+		$(".slick-slide").hide(); //모든 div 숨김
+		var allSlide = $(".slick-slide"); //모든 div 객체를 변수에 저장
+		var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+	
+		//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+		$(".slick-slide").each(function(index, item) {
+			if ($(this).hasClass("slick-active")) {
+				currentIndex = index;
+			}
+		});
+	
+		//새롭게 나타낼 div의 index
+		var newIndex = 0;
+	
+		if (currentIndex <= 0) {
+			newIndex = allSlide.length - 1;
+		} else {
+			newIndex = currentIndex - 1;
+		}
+	
+		$(".slick-slide").removeClass("slick-active");
+		$(".slick-slide").eq(newIndex).addClass("slick-active");
+		$(".slick-slide").eq(newIndex).show();
+	}
 </script>
 <body style="overflow: auto;">
 	<div id="page-container">
@@ -122,128 +124,34 @@ function prev() {
 					<div class="slick-slider slick-initialized" dir="ltr">
 						<!-- 팝 슬라이드 -->
 						<div class="slick-list">
-							<div data-index="0" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/wcomingsoon/rwd/208005?acid=10030247&amp;_refer_section_st=RCC_0"
-											class="VisualSlide_container__2NDvY"
-											data-promo-acid="10030247"
-											data-promo-id="https://www.wadiz.kr/web/wreward/comingsoon"
-											data-promo-name="세라마이드 폭탄 피부 고민을 종결 합니다"
-											data-promo-position="RCC_0" data-promo-acid-force="true"
-											data-gtm-vis-first-on-screen-11319722_2047="819008"
-											data-gtm-vis-total-visible-time-11319722_2047="1300"
-											data-gtm-vis-first-on-screen-11319722_2115="819008"
-											data-gtm-vis-total-visible-time-11319722_2115="1300"
-											data-gtm-vis-first-on-screen-11319722_2184="819008"
-											data-gtm-vis-total-visible-time-11319722_2184="1400"
-											style="background-image: url(&quot;https://cdn1.wadiz.kr/images/20230427/1682554491158.jpg/wadiz/optimize&quot;);">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														세라마이드 폭탄<br>피부 고민을 종결 합니다
-													</p>
-													<p class="VisualSlide_badge__3nqfs">역대급 롱체인 세라마이드 6%
-														세라밤 크림</p>
+							<!-- top.jsp 아래 팝 슬라이드 -->
+									<c:forEach items="${list }" var="slide" varStatus="status">
+										<div 
+											class="slick-slide slick-active slick-current" tabindex="-1"
+											aria-hidden="false" style="outline: none; width: 1900px;">
+												
+											<div>
+												<div>
+													<a	href=""
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+														<div class="VisualSlide_wrap__32Lj4">
+															<div class="VisualSlide_text__2SIqN">
+																<p class="VisualSlide_title__3USGy" >${slide.project_title }
+																</p>
+																<p class="VisualSlide_badge__3nqfs">
+																<c:choose>
+																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+																	<c:otherwise>공동구매</c:otherwise>
+																</c:choose>
+																 </p>
+															</div>
+														</div>
+													</a>
 												</div>
 											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="1" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/wcomingsoon/rwd/207158?acid=10030741&amp;_refer_section_st=RCC_1"
-											class="VisualSlide_container__2NDvY"
-											data-promo-acid="10030741"
-											data-promo-id="https://www.wadiz.kr/web/wreward/comingsoon"
-											data-promo-name="압도적 품질 역대급 시원함 쿨나잇 듀라론 3중직 냉감패드"
-											data-promo-position="RCC_1" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn1.wadiz.kr/images/20230509/1683613775660.png/wadiz/optimize&quot;);"
-											data-gtm-vis-first-on-screen-11319722_2047="823090"
-											data-gtm-vis-first-on-screen-11319722_2115="823090"
-											data-gtm-vis-first-on-screen-11319722_2184="823090">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														압도적 품질 역대급 시원함<br>쿨나잇 듀라론 3중직 냉감패드
-													</p>
-													<p class="VisualSlide_badge__3nqfs">타사 크라우드 펀딩 채널
-														96%만족도 3만개 전량 매진</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="2"
-								class="slick-slide slick-active slick-current" tabindex="-1"
-								aria-hidden="false" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/wcomingsoon/rwd/209683?acid=10030706&amp;_refer_section_st=RCC_2"
-											class="VisualSlide_container__2NDvY"
-											data-promo-acid="10030706"
-											data-promo-id="https://www.wadiz.kr/web/wreward/comingsoon"
-											data-promo-name="투자 인생을 바꾸는 일타 클래스"
-											data-promo-position="RCC_2" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn1.wadiz.kr/images/20230508/1683533070924.png/wadiz/optimize&quot;);"
-											data-gtm-vis-recent-on-screen-11319722_2047="828167"
-											data-gtm-vis-first-on-screen-11319722_2047="828167"
-											data-gtm-vis-total-visible-time-11319722_2047="2000"
-											data-gtm-vis-recent-on-screen-11319722_2115="828167"
-											data-gtm-vis-first-on-screen-11319722_2115="828167"
-											data-gtm-vis-total-visible-time-11319722_2115="2000"
-											data-gtm-vis-recent-on-screen-11319722_2184="828167"
-											data-gtm-vis-first-on-screen-11319722_2184="828167"
-											data-gtm-vis-total-visible-time-11319722_2184="2000"
-											data-gtm-vis-has-fired-11319722_2047="1"
-											data-gtm-vis-has-fired-11319722_2115="1"
-											data-gtm-vis-has-fired-11319722_2184="1">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														투자 인생을 바꾸는<br>일타 클래스
-													</p>
-													<p class="VisualSlide_badge__3nqfs">주식으로 수익 내고 지식으로 수익
-														내기</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="3" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/wcomingsoon/rwd/161770?acid=10030668&amp;_refer_section_st=RCC_3"
-											class="VisualSlide_container__2NDvY"
-											data-promo-acid="10030668"
-											data-promo-id="https://www.wadiz.kr/web/wreward/comingsoon"
-											data-promo-name="숨만 쉬어도 -2kg 확찐자들 모여라"
-											data-promo-position="RCC_3" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn1.wadiz.kr/images/20230508/1683504201402.jpg/wadiz/optimize&quot;);">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														숨만 쉬어도 -2kg<br>확찐자들 모여라
-													</p>
-													<p class="VisualSlide_badge__3nqfs">24g 고단백 쉐이크 에어팟
-														프로까지 get</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
+										</div>
+									</c:forEach>	
 						</div>
 					</div>
 					<div class="KeyVisualBanner_wrap__10qJJ">
@@ -269,36 +177,15 @@ function prev() {
 						</div>
 					</div>
 				</div>
-				<!-- 배너(먼저 만나보면 더 좋으니까 ) -->
-				<div class="ComingsoonBanners_container__WFc6L" data-length="1"
-					id="comingsoonBanner">
-					<div class="ComingsoonBanners_item__2hKxg">
-						<div class="ComingsoonBannerItem_container__2Y2wr">
-							<a
-								href="https://www.wadiz.kr/web/wreward/comingsoon/collection/spacewadiz1?_refer_section_st=RCA_0"
-								rel="noopener nofollow noreferrer"
-								class="ComingsoonBannerItem_banner__1MdjU"
-								style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0508/20230508094830611_4069.png/wadiz/format/jpg/quality/80&quot;);"><div
-									class="ComingsoonBannerItem_text__3qag1">
-									<p class="ComingsoonBannerItem_mainText__OBO3x">먼저 만나보면 더
-										좋으니까</p>
-									<p class="ComingsoonBannerItem_subText__1QcMt">공간 와디즈에서 미리
-										체험하고 얼리버드 혜택까지</p>
-								</div></a>
-						</div>
-					</div>
-				</div>
-				<div></div>
 				<div class="Main_categoryMargin__1RWGF"></div>
 
 				<!-- 전체, 테크가전, 패션잡화, 홈리빙 등 아이콘 -->
 				<div class="CategoryTab_container__1XTA0 undefined"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
-						<ul
-							class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
+						<ul	class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="0"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu"
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체' ? 'ImageTab_active__BGdXu' : ''}"
 									data-ga-category="오픈예정(홈)_카테고리" data-ga-action="클릭"
 									data-ga-label="전체">
 									<div class="ImageTab_thumbnailContainer__3Polb">
@@ -312,7 +199,7 @@ function prev() {
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 							<li data-index="${category.category_cd }"><button
-									class="ImageTab_tab__3siCY">
+									class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"
@@ -334,10 +221,10 @@ function prev() {
 						<p class="Main_categoryName__3YilF">${param.category }</p>
 						<div class="Main_filterWrap__2l__0">
 							<ul class="OrderSelectDesktop_sortContainer__1YLsr">
-								<li class="OrderSelectDesktop_sortItem__12TKi"
+								<li class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '오픈임박순'? 'OrderSelectDesktop_active__YTP2K' : '' }"
 									data-ga-category="오픈예정(홈)_정렬" data-ga-action="클릭"
 									data-ga-label="오픈임박순">오픈임박순</li>
-								<li class="OrderSelectDesktop_sortItem__12TKi"
+								<li class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '최신순'? 'OrderSelectDesktop_active__YTP2K' : '' }"
 									data-ga-category="오픈예정(홈)_정렬" data-ga-action="클릭"
 									data-ga-label="최신순">최신순</li>
 							</ul>
@@ -355,7 +242,9 @@ function prev() {
 											<div aria-hidden="true"
 												class="CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
 												style="background-image: url(resources/images/project_thumbnail/${comingsoon.project_thumbnail};); border-radius: 8px;"></div>
-											<div class="ComingsoonMainCard_ad__2R4c0">AD</div>
+											<c:if test="${comingsoon.project_plan eq '2' or comingsoon.project_plan eq '3'}">
+												<div class="ComingsoonMainCard_ad__2R4c0"><p>AD</p></div>
+											</c:if>
 										</div>
 										<div class="ComingsoonMainCard_contentContainer__3Dps9">
 											<div class="ComingsoonMainCard_title__3iBTH">${comingsoon.project_title }</div>

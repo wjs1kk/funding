@@ -20,7 +20,8 @@
 		$('.check').on('click', function() {	
 			if($('#check_1').is(':checked') 
 					&& $('#check_3').is(':checked') 
-					&& $('#check_4').is(':checked')){
+					&& $('#check_4').is(':checked')){				
+				$('#check_result').prop("checked", false);
 				$('#check_result').attr('disabled', false);
 			} else if(!$('#check_1').is(':checked') 
 					|| !$('#check_2').is(':checked') 
