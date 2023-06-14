@@ -45,10 +45,16 @@ public class FundingController {
 	@Autowired
 	private MypageService mypageService;
 	
+	@Autowired
+	private MainService mainService;
+	
 	@GetMapping("funding")
 	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
 		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
+		
+		List list = mainService.slide();
+		model.addAttribute("list", list);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -135,6 +141,9 @@ public class FundingController {
 	public String comingsoon(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
 		List comingsoonProject = fundingService.selectComingsoonProject(category, order);
 		List categoryList = fundingService.categoryList();
+		
+		List list = mainService.slide();
+		model.addAttribute("list", list);
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("comingsoon", comingsoonProject);

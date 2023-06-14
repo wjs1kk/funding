@@ -132,10 +132,6 @@
 																<p class="VisualSlide_title__3USGy" >${slide.project_title }
 																</p>
 																<p class="VisualSlide_badge__3nqfs">
-																<script type="text/javascript">
-																	console.log(${slide.project_type == 1})
-																	console.log(typeof ${slide.project_type})
-																</script>
 																<c:choose>
 																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
 																	<c:otherwise>공동구매</c:otherwise>
