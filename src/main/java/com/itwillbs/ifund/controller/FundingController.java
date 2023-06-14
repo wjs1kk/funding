@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +72,7 @@ public class FundingController {
 		return "funding/funding";
 	}
 	@GetMapping("detail")
-	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
+	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 //		06/13
@@ -91,6 +95,17 @@ public class FundingController {
 		model.addAttribute("fundingDetail", fundingDetail);
 //		06/13
 		model.addAttribute("countWish", countWish);
+		
+//		06/13
+//		최근본 프로젝트 관련
+		Cookie cookie = new Cookie("goods"+num,num);
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60 * 24);
+		response.addCookie(cookie);
+//		최근본 프로젝트 관련 끝
+		
+		System.out.println(fundingDetail);
+
 		return "funding/funding_detail";
 	}
 	

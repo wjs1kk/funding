@@ -85,6 +85,10 @@ public class FundingService {
 	public List<ProjectListVO> selectOpenProject() {
 		return mapper.selectOpenProject();
 	}
+	// 2023-06-13 박경은 - 주목할 만한 프로젝트
+	public List selectAttentionProject(ProjectListVO projectList) {
+		return mapper.selectAttentionProject(projectList);
+	}
 	
 	
 	
@@ -101,5 +105,18 @@ public class FundingService {
 //	찜하기관련 끗
 	public int countWish(int project_idx) {
 		return mapper.countWish(project_idx);
+	}
+	
+		// 2023-06-13 박경은 - 실시간 랭킹
+	public List selectRankingProject(ProjectListVO projectList) {
+		return mapper.selectRankingProject(projectList);
+	}
+	// 2023-06-13 박경은 - 얼리버드
+	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward) {
+		return mapper.selectEarlybirdProject(projectList, reward);
+	}
+	// 2023-06-13 박경은 - 오늘 오픈
+	public List selectTodayOpenProject(ProjectListVO projectList) {
+		return mapper.selectTodayOpenProject(projectList);
 	}
 }

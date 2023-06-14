@@ -33,6 +33,15 @@
     }
 </style>
 
+<script type="text/javascript">
+
+	$(function() {
+// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
+		$('#profileImg').css({'background-image': 'url(${pageContext.request.contextPath }/resources/images/profile/' + $("#member_image").val() + ')'});
+		
+	});
+
+</script>
 
 </head>
 <body>
@@ -48,15 +57,14 @@
 					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
 						<div class="profileimg-wrap">
 							<button type="button" id="resultProfileImg" class="profileimg" >
-							<em id="profileImg" style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"  class=""></em>
+<!-- 								<em style="background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png)"></em> -->
+							<em id="profileImg" class=""></em>
 							</button>
 							<p class="setting-profileimg">
-								<button type="button" onclick="$('#uploadProfileImg').click()"
-									id="btn_updatePhoto">
+								<button type="button" onclick="$('#uploadProfileImg').click()" id="btn_updatePhoto">
 									<span>바꾸기</span>
 								</button>
-								<button type="button" onclick="deletePhoto()"
-									id="btn_deletePhoto">삭제</button>
+								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button>
 							</p>
 						</div>
 						
@@ -112,7 +120,7 @@
 			success: function (data) {
 				console.log("data: " + data);
 				authCode.attr('disabled', false);
-				code = data;
+				numStr = data;
 				alert('인증번호가 전송되었습니다.');
 			}
 		});
@@ -120,12 +128,12 @@
 		$('#authCode').blur(function () {
 			const authCode = $(this).val();
 			
-			if(authCode == code){
+			if(authCode === numStr){
 				$('#mobileCheckBtn').attr('disabled',true);
 				$('#authCode').attr('readonly',true);
 				alert('인증이 완료되었습니다.');
 			} else {
-				alert('인증오류.');
+				alert(authCode);
 			}
 		});
 	}
@@ -401,5 +409,4 @@
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
-
 </html>
