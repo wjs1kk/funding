@@ -208,6 +208,16 @@ public class ProjectCreateService {
 	public void trackingNumberUpdate(int payment_idx, String tracking_number) {
 		mapper.trackingNumberUpdate(payment_idx, tracking_number);
 	}
+	
+	// 06-13 김동욱 프로젝트 현황 통계 정보 가져오기
+	public Map myProjectStatus(int project_idx) {
+		return mapper.myProjectStatus(project_idx);
+	}
+	
+	// 06-13 김동욱 해당 프로젝트 수정신청
+	public void projectModifyApply(int project_idx, String updateStatus) {
+		mapper.projectModifyApply(project_idx, updateStatus);
+	}
 
 	public String memberNameCheck(int project_idx) {	
 		return mapper.memberNameCheck(project_idx);

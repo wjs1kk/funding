@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
 <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
-
+<script
+	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 
 	$(function() {
@@ -54,11 +55,6 @@
 										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
 											aria-label="프로필 상세 보기" data-event="profile"
 											style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"></button>
-										<button onclick="location.href='myInfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
-											aria-label="프로필 편집하기" data-event="profile_edit">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-												<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path></svg>
-										</button>
 									</div>
 									<div class="MyWadizSupporterProfile_profileUser__a_r1P">
 										<button data-event="profile">
@@ -68,6 +64,40 @@
 										<dl class="MyWadizSupporterProfile_profileUserLabel__1fiU3">
 											<dt class="BlindText_textHidden__ovQb4">내 회원 정보</dt>
 										</dl>
+									</div>
+									
+									
+									<!-- 2023-06-11 박경은 - 계좌 인증 -->
+									<script type="text/javascript">
+										$(function() {
+											$("#btnAccountAuth").on("click", function() {
+												let authWindow = window.open("about:blank",  "authWindow", "width=500, height=700");
+													authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
+																		+ "?response_type=code"
+																		+ "&client_id=${client_id}"
+																		+ "&redirect_uri=http://localhost:8082/ifund/callback"
+																		+ "&scope=login inquiry transfer oob"
+																		+ "&state=12345678901234567890123456789012"
+																		+ "&auth_type=0";
+																		// 산업은행 - 12345678 계좌 입력했음
+											});
+										});
+									</script>
+							
+									<!-- 2023-06-11 박경은 - 계좌 인증 -->
+									<div class="input-btn-wrap" style="margin-top: 5px;">
+										<c:choose>
+											<c:when test="${empty member.account_auth_status or member.account_auth_status eq 'N'}">
+												<button id="btnAccountAuth" class="btnAccountAuth btn Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button">
+													<span>계좌인증</span>
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button class="btnAccountAuth btn Button_button__1HNjI Button_md__2Tyci Button_circular__3BLWf Button_block__3-IpL" type="button" disabled="disabled">
+													<span>계좌인증완료</span>
+												</button>
+											</c:otherwise>
+										</c:choose>
 									</div>
 									
 									<div class="MyWadizSupporterProfile_setting__n8-M7">
@@ -106,7 +136,7 @@
 																		<path fill="none" d="M0 0h40v40H0z"></path></g></svg>
 																	<span class="MyWadizSupporterAccumulate_name__1mWXC">쿠폰</span>
 																</dt>
-																<dd class="MyWadizSupporterAccumulate_value__1oBSj">4 장</dd>
+																<dd class="MyWadizSupporterAccumulate_value__1oBSj">${countCoupon } 장</dd>
 															</dl></a>
 													</div>
 												</div>
@@ -114,7 +144,7 @@
 													<div class="MyWadizSupporterProjectInfo_project__3Vaun">
 														<div class="MyWadizSupporterProjectInfo_projectLink__2K77b" style="height: 104px">
 															<strong class="BlindText_textHidden__ovQb4">결제 건수</strong>
-															<a href="history"><span>펀딩·프리오더</span><b>0</b></a>
+															<a href="history"><span>펀딩·프리오더</span><b>${countPayment }</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
 															<a href="/web/mywadiz/store/order"><span>공동구매</span><b>0</b></a>
 														</div>

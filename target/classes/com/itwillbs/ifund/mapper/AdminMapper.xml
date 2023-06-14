@@ -210,89 +210,87 @@
 	
 	  <!-- 0516 은산 프로젝트 목록 	-->  
 	<select id="selectAllProjectList" resultType="map">
-		SELECT p.project_idx,
-			   p.project_type,
-			   p.project_title,
-			   p.project_start_date,
-			   p.project_end_date,
-			   p.project_target,
-			   p.project_approve_status,
-			   (pd.project_detail_amount/p.project_target)*100 AS target_rate, 
-			   m.member_name,
-			   pd.project_detail_amount,
-			   pd.project_detail_person,
-			   DATEDIFF(now(), p.project_end_date) AS d_day
+		SELECT  p.project_idx
+			   ,p.project_type
+			   ,p.project_title
+			   ,p.project_start_date
+			   ,p.project_end_date
+			   ,p.project_target
+			   ,p.project_approve_status
+			   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate 
+			   ,m.member_name
+			   ,pd.project_detail_amount
+			   ,pd.project_detail_person
+			   ,DATEDIFF(now(), p.project_end_date) AS d_day
 			FROM project p 
-				JOIN member m ON p.member_idx = m.member_idx
-				JOIN project_detail pd ON p.project_idx = pd.project_idx;
+			JOIN member m 
+			  ON p.member_idx = m.member_idx
+			JOIN project_detail pd 
+			  ON p.project_idx = pd.project_idx
+			WHERE 1=1
+				<if test="selectOption != 0">
+					AND p.project_status = ${selectOption}
+				</if>
+				ORDER BY p.project_idx DESC;
+<!-- 				<if test="selectOption = 3"> -->
+<!-- 					AND p.project_approve_status = ${selectOption} -->
+<!-- 				</if> -->
 	</select>  
 	
 	<!-- 0517 은산 승인대기 목록--> 
 	<select id="selectPendingList" resultType="map">
-		SELECT p.project_idx,
-			   p.project_create_date,
-			   p.project_plan,
-			   p.project_type,
-			   p.project_category,
-			   p.project_title, 
-			   p.project_target,
-			   p.project_coming_soon_date,
-			   m.member_name
-			FROM project p 
-				JOIN member m ON p.member_idx = m.member_idx
-				
-					WHERE p.project_approve_status = 1;
+		select * from project p JOIN member m ON p.member_idx = m.member_idx
+			WHERE p.project_approve_status = 1;
 	</select>
 	
   	<!-- 0521 은산 프로젝트 상세-->
   	<select id="selectDetailList" resultType="map">
-  		SELECT p.project_idx,
-  			   p.member_idx,
-  			   p.project_category,
-  			   p.project_title, 
-  			   p.project_content, 
-  			   p.project_summary,
-  			   p.project_thumbnail,
-  			   p.project_images,
-  			   p.project_start_date,
-  			   p.project_end_date,
-  			   p.project_coming_soon_date,
-			   p.project_plan,
-			   p.project_type,
-			   p.project_target,
-			   p.project_create_date,
-			   p.project_approve_status,
-			   m.member_name,
-			   pd.project_detail_person,
-			   pd.project_detail_amount,
-			   pd.project_detail_target,
-			   (pd.project_detail_amount/p.project_target)*100 AS target_rate,
-			   DATEDIFF(p.project_end_date, p.project_start_date) AS d_day,
-			   p.project_status
+  		SELECT p.project_idx
+  			   ,p.member_idx
+  			   ,p.project_category
+  			   ,p.project_title
+  			   ,p.project_content
+  			   ,p.project_summary
+  			   ,p.project_thumbnail
+  			   ,p.project_images
+  			   ,p.project_start_date
+  			   ,p.project_end_date
+  			   ,p.project_coming_soon_date
+			   ,p.project_plan
+			   ,p.project_type
+			   ,p.project_target
+			   ,p.project_create_date
+			   ,p.project_approve_status
+			   ,m.member_name
+			   ,pd.project_detail_person
+			   ,pd.project_detail_amount
+			   ,pd.project_detail_target
+			   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate
+			   ,DATEDIFF(p.project_end_date, now()) AS d_day
+			   ,p.project_status
 			FROM project p 
-				JOIN member m 
-					ON p.member_idx = m.member_idx
-				JOIN project_detail pd
-					ON p.project_idx = pd.project_idx
-				WHERE p.project_idx = #{project_idx};
+			JOIN member m 
+			  ON p.member_idx = m.member_idx
+			JOIN project_detail pd
+			  ON p.project_idx = pd.project_idx
+			WHERE p.project_idx = #{project_idx};
   	</select>
 	
 	<!-- 0518 은산 프로젝트 승인--> 
 	<update id="updateApproveList">
 		UPDATE project p
-			 SET p.project_start_date = #{project_start_date}
-			    ,p.project_end_date = #{project_end_date}
-			    ,p.project_coming_soon_date = #{project_coming_soon_date}
-			    ,p.project_approve_status = 2
-	    WHERE p.project_idx = #{project_idx}
+		   SET  p.project_start_date = #{project_start_date}
+			   ,p.project_end_date = #{project_end_date}
+			   ,p.project_coming_soon_date = #{project_coming_soon_date}
+			   ,p.project_approve_status = 2
+	    WHERE p.project_idx = #{project_idx};
 	</update>
 	
 	<!-- 0518 은산 프로젝트 승인 거부--> 
 	<update id="updateApproveDenied">
 		UPDATE project p
-			 SET p.project_approve_status = 3
-				WHERE p.project_idx = #{project_idx};
-				
+		   SET p.project_approve_status = 3
+		WHERE p.project_idx = #{project_idx};
 	</update>
 	
 	<!-- 프로젝트 승인/거부 내역 -->
@@ -315,14 +313,11 @@
 					,now()
 					,
 					<choose>
-						<when test="project_approve_status == '2'">
-							'승인'
-						</when>
-						<when test="project_approve_status == '3'">
+						<when test="project_approve_status != 2">
 							#{approve_reason}
 						</when>
 						<otherwise>
-							'기타'
+							'승인'
 						</otherwise>
 					</choose>
 					,#{project_approve_status}
@@ -350,37 +345,6 @@
 				);
 	</insert>
 	
-	<!-- 프로젝트 목록 필터링 -->
-	<select id="selectSortedProjectList" resultType="map">
-		SELECT p.project_idx,
-				   p.project_type,
-				   p.project_title,
-				   p.project_start_date,
-				   p.project_end_date,
-				   p.project_target,
-				   (pd.project_detail_amount/p.project_target)*100 AS target_rate, 
-				   m.member_name,
-				   pd.project_detail_amount,
-				   pd.project_detail_person,
-				   DATEDIFF(now(), p.project_end_date) AS d_day
-				FROM project p 
-					JOIN member m ON p.member_idx = m.member_idx
-					JOIN project_detail pd ON p.project_idx = pd.project_idx
-					<if test="label != null">
-						<choose>
-							<when test="label == 'active'">
-								WHERE p.project_status = 1
-							</when>
-							<when test="label == 'closed'">
-								WHERE p.project_status = 2
-							</when>
-							<when test="label == 'denied'">
-								WHERE p.project_approve_status = 3
-							</when>
-						</choose>
-					</if>
-	</select>
-	
 	<!-- 프로젝트 진행여부 업데이트 -->
 	<update id="updateProjectStatus">
 		update project
@@ -392,6 +356,42 @@
 		select * 
 			from reward
 				where project_idx = #{project_idx}
-		
+	</select>
+	
+	<select id="selectPaymentList" resultType="map">
+		select 
+			   payment_date
+			  ,member_name
+			  ,reward_name
+			  ,reward_amount
+			  ,used_point_amount
+			  ,used_coupon_amount
+			  ,delivery_fee
+			  ,donation
+			  ,total_amount 
+			from payment p
+				JOIN member m
+					ON p.member_idx = m.member_idx
+				where project_idx = #{project_idx}
+	</select>
+	<!-- 정산 신청 목록 -->
+	<select id="selectCalculateList" resultType="map">
+		SELECT * 
+		FROM calculate c
+			JOIN member m		
+			  ON c.member_idx = m.member_idx		
+			WHERE calculate_approve = 0;		
+	</select>
+	
+	<select id="selectRepresentative" resultType="map">
+		SELECT *
+		FROM representative
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<select id="getAccountVO" resultType="com.itwillbs.ifund.vo.AccountVO">
+		SELECT *
+		FROM account
+		WHERE member_idx = #{member_idx}
 	</select>
 </mapper>

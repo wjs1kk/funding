@@ -295,44 +295,36 @@ function prev() {
 				<div class="CategoryTab_container__1XTA0 undefined"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
-						<div class="TabsMobile_tabsWrapper__3zP94">
-							<ul
-								class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
-								<li data-index="0"><button
-										class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu"
-										data-ga-category="오픈예정(홈)_카테고리" data-ga-action="클릭"
-										data-ga-label="전체">
-										<div class="ImageTab_thumbnailContainer__3Polb">
-											<div class="ImageTab_thumbnailPlaceholder__3mluI">
-												<div class="ImageTab_thumbnail__3mZWA"></div>
-											</div>
+						<ul
+							class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
+							<li data-index="0"><button
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu"
+									data-ga-category="오픈예정(홈)_카테고리" data-ga-action="클릭"
+									data-ga-label="전체">
+									<div class="ImageTab_thumbnailContainer__3Polb">
+										<div class="ImageTab_thumbnailPlaceholder__3mluI">
+											<div class="ImageTab_thumbnail__3mZWA"></div>
 										</div>
-										<div class="ImageTab_labelContainer__2apP3">
-											<span class="ImageTab_label__SvWW9">전체</span>
+									</div>
+									<div class="ImageTab_labelContainer__2apP3">
+										<span class="ImageTab_label__SvWW9">전체</span>
+									</div>
+								</button></li>
+							<c:forEach items="${categoryList }" var="category">
+							<li data-index="${category.category_cd }"><button
+									class="ImageTab_tab__3siCY">
+									<div class="ImageTab_thumbnailContainer__3Polb">
+										<div class="ImageTab_thumbnailPlaceholder__3mluI">
+											<div class="ImageTab_thumbnail__3mZWA"
+												style="background-image: url(&quot;https://cdn3.wadiz.kr/category/icon/category_${category.category_image}&quot;);"></div>
 										</div>
-									</button></li>
-								<c:forEach items="${categoryList }" var="category">
-								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY">
-										<div class="ImageTab_thumbnailContainer__3Polb">
-											<div class="ImageTab_thumbnailPlaceholder__3mluI">
-												<div class="ImageTab_thumbnail__3mZWA"
-													style="background-image: url(&quot;https://cdn3.wadiz.kr/category/icon/category_${category.category_image}&quot;);"></div>
-											</div>
-										</div>
-										<div class="ImageTab_labelContainer__2apP3">
-											<span class="ImageTab_label__SvWW9">${category.category_name }</span>
-										</div>
-									</button></li>
-								</c:forEach>
-							</ul>
-							<div class="TabsMobile_navigation__3Q7Xi">
-								<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-									class="withIcon_icon__3VTbq" aria-hidden="true"
-									style="width: 20px; height: 20px;">
-									<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-							</div>
-						</div>
+									</div>
+									<div class="ImageTab_labelContainer__2apP3">
+										<span class="ImageTab_label__SvWW9">${category.category_name }</span>
+									</div>
+								</button></li>
+							</c:forEach>
+						</ul>
 					</div>
 				</div>
 				<div class="Main_categoryMargin__1RWGF"></div>

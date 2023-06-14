@@ -187,28 +187,10 @@
 									</div>
 									<div class="Story_expandable__hnbsV">
 										<div>
-											<div class="inner-contents fr-view">
-												${fundingDetail.project_content }
+											<div class="inner-contents fr-view" id="content">
+												<p>${fundingDetail.project_content }</p>
 											</div>
 										</div>
-									</div>
-									<div class="Story_button__AG0eO">
-										<button data-ga-category="펀딩_상세" data-ga-action="클릭"
-											data-ga-label="스토리_더보기"
-											class="Button_button__2FuOU Button_primary__2mZni Button_lg__1Dftp Button_endIcon__1WriQ Button_block__1-g8w Story_gaElement__2z4qg"
-											type="button">
-											<span>
-												<span class="Button_children__ilFun">스토리
-													더보기
-												</span>
-													<svg viewBox="0 0 32 32" focusable="false"
-													role="presentation"
-													class="withIcon_icon__3VTbq Button_icon__t6yp6"
-													aria-hidden="true">
-													<path
-														d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-											</span>
-										</button>	
 									</div>
 								</div>
 								<div class="DetailPageRecommendationContainer_container__2dyco">
@@ -224,48 +206,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="DetailPageRecommendationContainer_banner__z88Vw">
-									<a href="/web/wcampaign/search?curatedTag=SHIP_TODAY"
-										class="DetailPageRecommendationContainer_content__tX304 DetailPageRecommendationContainer_gaElement__3cHMD"
-										data-ga-list="상세페이지 배너" data-ga-category="펀딩(상세)_검색유도_토스트UI"
-										data-ga-action="클릭" data-ga-label="바로가기"
-										data-gtm-vis-polling-id-11319722_2205="3873"><div
-											class="DetailPageRecommendationContainer_title__SkLRw">오늘출발
-											프로젝트는 어때요?</div>
-										<div
-											class="DetailPageRecommendationContainer_description__x5H5m">
-											<span>지금 보러가기</span>
-											<svg viewBox="0 0 40 40" focusable="false"
-												role="presentation" class="withIcon_icon__3VTbq"
-												aria-hidden="true" style="width: 16px; height: 16px;">
-												<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-										</div></a>
-									<button
-										class="DetailPageRecommendationContainer_close__2T9zF DetailPageRecommendationContainer_gaElement__3cHMD"
-										data-ga-category="펀딩(상세)_검색유도_토스트UI" data-ga-action="클릭"
-										data-ga-label="닫기">
-										<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-											class="withIcon_icon__3VTbq" aria-hidden="true"
-											style="width: 16px; height: 16px;">
-											<path
-												d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
-									</button>
-								</div>
-								<a
-									href="https://forms.monday.com/forms/68ed038446bfb74d2d7d45695b1b1f28?r=use1"
-									target="_blank"
-									class="FixedBanner_container__D4tLo RewardDetailDesktop_quantityPurchaseBanner__2aFKo"
-									data-ga-category="펀딩_상세" data-ga-action="대량구매문의"
-									data-ga-label="199429"><div
-										class="FixedBanner_content__2lRtv">
-										<span class="FixedBanner_icon__3ZsK7" aria-hidden="true"
-											style="background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCA0MiA0MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuMzAwMiA0LjIwMDJIMzMuNjAwMkMzNC43NTUyIDQuMjAwMiAzNS43MDAyIDUuMTQ1MiAzNS43MDAyIDYuMzAwMlYyOS40MDAyQzM1LjcwMDIgMzAuNTU1MiAzNC43NTUyIDMxLjUwMDIgMzMuNjAwMiAzMS41MDAySDYuMzAwMkM1LjE0NTIgMzEuNTAwMiA0LjIwMDIgMzAuNTU1MiA0LjIwMDIgMjkuNDAwMlY2LjMwMDJDNC4yMDAyIDUuMTQ1MiA1LjE0NTIgNC4yMDAyIDYuMzAwMiA0LjIwMDJaIiBmaWxsPSIjRkZCRDQ4Ii8+CjxwYXRoIGQ9Ik0xNi4yNzU0IDEyLjYwMDJWNC4yMDAySDIzLjYyNTRWMTIuNjAwMkgxNi4yNzU0WiIgZmlsbD0iI0ZGRDc5MSIvPgo8cGF0aCBkPSJNMzcuODAwMiAxOC45MTA2SDE2LjgwMDJDMTUuNjQ1MiAxOC45MTA2IDE0LjcwMDIgMTkuODU1NiAxNC43MDAyIDIxLjAxMDZWMzMuNjEwNkMxNC43MDAyIDM0Ljc2NTYgMTUuNjQ1MiAzNS43MTA2IDE2LjgwMDIgMzUuNzEwNkgzOS45MDAyVjIxLjAxMDZDMzkuOTAwMiAxOS44NTU2IDM4Ljk1NTIgMTguOTEwNiAzNy44MDAyIDE4LjkxMDZaIiBmaWxsPSIjMTQ1QzY0Ii8+CjxwYXRoIGQ9Ik0zOS45MDAxIDM0LjY2MDZIMzYuMDE1MVYzNS43MjExTDM4Ljk1NTEgMzguNzY2MUMzOS4xMzM2IDM4Ljg3MTEgMzkuMzU0MSAzOC44ODE2IDM5LjUzMjYgMzguNzk3NkMzOS43MjE2IDM4LjcxMzYgMzkuODU4MSAzOC41NDU2IDM5LjkwMDEgMzguMzM1NlYzNC42NjA2WiIgZmlsbD0iIzE0NUM2NCIvPgo8cGF0aCBkPSJNMjcuMyAyOC4zNjA3QzI3Ljg3OTkgMjguMzYwNyAyOC4zNSAyNy44OTA2IDI4LjM1IDI3LjMxMDdDMjguMzUgMjYuNzMwOCAyNy44Nzk5IDI2LjI2MDcgMjcuMyAyNi4yNjA3QzI2LjcyMDEgMjYuMjYwNyAyNi4yNSAyNi43MzA4IDI2LjI1IDI3LjMxMDdDMjYuMjUgMjcuODkwNiAyNi43MjAxIDI4LjM2MDcgMjcuMyAyOC4zNjA3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTMyLjU1IDI4LjM2MDdDMzMuMTI5OSAyOC4zNjA3IDMzLjYgMjcuODkwNiAzMy42IDI3LjMxMDdDMzMuNiAyNi43MzA4IDMzLjEyOTkgMjYuMjYwNyAzMi41NSAyNi4yNjA3QzMxLjk3MDEgMjYuMjYwNyAzMS41IDI2LjczMDggMzEuNSAyNy4zMTA3QzMxLjUgMjcuODkwNiAzMS45NzAxIDI4LjM2MDcgMzIuNTUgMjguMzYwN1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMi4wNSAyOC4zNjA3QzIyLjYyOTkgMjguMzYwNyAyMy4xIDI3Ljg5MDYgMjMuMSAyNy4zMTA3QzIzLjEgMjYuNzMwOCAyMi42Mjk5IDI2LjI2MDcgMjIuMDUgMjYuMjYwN0MyMS40NzAxIDI2LjI2MDcgMjEgMjYuNzMwOCAyMSAyNy4zMTA3QzIxIDI3Ljg5MDYgMjEuNDcwMSAyOC4zNjA3IDIyLjA1IDI4LjM2MDdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K&quot;);"></span><strong>B2B
-											구매 문의</strong>
-									</div> <span class="FixedBanner_arrow__2GDHk" aria-hidden="true"><svg
-											viewBox="0 0 40 40" focusable="false" role="presentation"
-											class="withIcon_icon__3VTbq" aria-hidden="true"
-											style="width: 16px; height: 16px;">
-											<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a>
 							</div>
 							<div class="RewardDetailDesktop_right__3gQBb">
 								<div class="CommonInfo_container__1J2gi">
@@ -351,7 +291,7 @@
 									<div class="RewardCTA_container__1F4fy">
 										<div class="RewardCTA_left__2uQx8">
 											<div class="RewardCTA_buttonBox__dgJiQ">
-												<button aria-label="찜하기 버튼" aria-pressed="false"
+												<button aria-label="찜하기 버튼" aria-pressed="true"
 													data-ga-category="펀딩_상세" data-ga-action="찜하기_추가"
 													data-ga-label=""
 													class="Button_button__2FuOU Button_secondary__LNLsN Button_lg__1Dftp Button_block__1-g8w RewardCTA_wishButton__3JmIg"
@@ -362,7 +302,7 @@
 																	aria-hidden="true" style="width: 24px; height: 24px;">
 																	<path
 																		d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>
-																<span class="RewardCTA_count__3Bg5y">518</span>
+																<span class="RewardCTA_count__3Bg5y">${countWish }</span>
 															</div></span></span>
 												</button>
 											</div>
@@ -400,9 +340,13 @@
 														<input type="hidden"  name="maker_idx" value="${maker_idx}">
 														<h1 class="d-flex justify-content-center text-secondary">${fundingDetail.maker_name }에게 문의하기</h1>
 														<hr>
-														<h2><input id="inq_subject" name="inq_subject" type="text" placeholder="제목을 입력하세요" class="Input_input__3c0SX Input_md__1_tQH" style="border: medium; width: 433px;"></h2>
+														<div class="TextField_field__1E9vt">
+															<h2><input id="inq_subject" name="inq_subject" type="text" placeholder="제목을 입력하세요" class="Input_input__2kAAL Input_md__3-eZ6" style="border: ; width: 433px;"></h2>
+														</div>
+														<div>
 														<h3>문의 내용</h3>
-														<textarea id="inq_content" name="inq_content" rows="10" cols="52" style="resize: none; text-align: left; font-size: 15px; border-color: blue; border: aqua;"></textarea>		
+														<textarea id="inq_content" name="inq_content" rows="10" cols="52" style="resize: none; text-align: left; font-size: 15px; border-color: blue; border: aqua;"></textarea>
+														</div>		
 														<hr>
 														<div align="right">
 															<a href='#' rel=""><button class="Button_button__2FuOU Button_primary__2mZni Button_sm__16X6h Button_startIcon__3p6wN" type="submit">문의하기</button></a>
@@ -562,7 +506,7 @@
 										<div class="RewardCTA_container__1F4fy">
 											<div class="RewardCTA_left__2uQx8">
 												<div class="RewardCTA_buttonBox__dgJiQ">
-													<button aria-label="찜하기 버튼" aria-pressed="false"
+													<button aria-label="찜하기 버튼" aria-pressed="true"
 														data-ga-category="펀딩_상세" data-ga-action="찜하기_추가"
 														data-ga-label=""
 														class="Button_button__2FuOU Button_secondary__LNLsN Button_lg__1Dftp Button_block__1-g8w RewardCTA_wishButton__3JmIg"
@@ -573,7 +517,9 @@
 																		aria-hidden="true" style="width: 24px; height: 24px;">
 																		<path
 																			d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>
-																	<span class="RewardCTA_count__3Bg5y">518</span>
+<!-- 																	06/13 -->
+																	<span class="RewardCTA_count__3Bg5y">${countWish }</span>
+																	
 																</div></span></span>
 													</button>
 												</div>

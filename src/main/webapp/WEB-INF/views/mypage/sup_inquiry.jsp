@@ -33,8 +33,8 @@
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
 				<h1 class="Inbox_title__3XRz2">서포터 문의</h1>
-				<div class="mypage-section on" id="mypage_section_setting" style="width: 65%; margin: 0 auto;">
-					<table class="tb-list">
+				<div class="mypage-section on" id="mypage_section_setting" style="">
+					<table class="tb-list" style="width:50%; margin: 0 auto;">
 						<colgroup>
 							<col>
 							<col style="width: 18%">
@@ -42,7 +42,8 @@
 						<thead>
 							<tr>
 								<th scope="col">제목</th>
-								<th scope="col">날짜</th>
+								<th scope="col">작성자</th>
+								<th scope="col" style="width: 18%">작성일</th>
 							</tr>
 						</thead>
 						<tbody id="notice_list">
@@ -52,33 +53,51 @@
 <!-- 										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td> -->
 <!-- 									</tr> -->
 <%-- 								</c:when> --%>
-<%-- 								<c:when test="${empty myInquiry }"> --%>
+<%-- 								<c:when test="${empty SupInquiry }"> --%>
 <!-- 									<tr> -->
 <!-- 										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td> -->
 <!-- 									</tr> -->
 <%-- 								</c:when> --%>
 <%-- 								<c:otherwise> --%>
-									<c:forEach var="inquiryList" items="${inquiryList}">
+									<c:forEach var="SupInquiry" items="${SupInquiry}">
 										<tr>
 											<td class="tb-subj">
-												<c:if test="${inquiryList.inq_re_lev > 0 }">
-													<c:forEach var="i" begin="1" end="${inquiryList.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
+												<c:if test="${SupInquiry.inq_re_lev > 0 }">
+													<c:forEach var="i" begin="1" end="${SupInquiry.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
 													<img src="https://static.thenounproject.com/png/88514-200.png"
 														width="10px" height="10px" style="margin: 20px 5px 0 20px;">
-													<a href="sup_inquiry_view?inq_idx=${inquiryList.inq_idx}">
+													<a href="sup_inquiry_view?inq_idx=${SupInquiry.inq_idx}">
 												</c:if> 
-												<c:if test="${inquiryList.inq_re_lev < 1 }">
+												<c:if test="${SupInquiry.inq_re_lev < 1 }">
 													<c:choose>
-														<c:when test="${inquiryList.inq_progress eq '진행중'}">
-															<span class="it-notice" style="background-color: #ffab00">${inquiryList.inq_progress}</span>
+														<c:when test="${SupInquiry.inq_progress eq '진행중'}">
+															<span class="it-notice" style="background-color: #ffab00">${SupInquiry.inq_progress}</span>
 														</c:when>
 														<c:otherwise>
-															<span class="it-notice" style="background-color: #97cf2f">${inquiryList.inq_progress}</span>
+															<span class="it-notice" style="background-color: #97cf2f">${SupInquiry.inq_progress}</span>
 														</c:otherwise>
 													</c:choose>
-													<a href="sup_inquiry_view?inq_idx=${inquiryList.inq_idx}">
-												</c:if> ${inquiryList.inq_subject} </a></td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${inquiryList.inq_date}" /></td>
+													<a href="sup_inquiry_view?inq_idx=${SupInquiry.inq_idx}">
+												</c:if> ${SupInquiry.inq_subject} </a></td>
+												
+												
+												<td>
+													<c:if test="${SupInquiry.inq_re_lev > 0 }">
+														<c:forEach var="i" begin="1" end="${SupInquiry.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
+														${SupInquiry.maker_name}
+													</c:if> 
+													<c:if test="${SupInquiry.inq_re_lev < 1 }">
+														${member.member_name}
+													</c:if>  
+												</td>
+											
+<%-- 												<c:if test="${ SupInquiry.inq_re_lev eq 0 }"> --%>
+													
+<%-- 											   		<td>${maker.maker_name}</td> --%>
+<%-- 											    </c:if> --%>
+											
+																						
+											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${SupInquiry.inq_date}" /></td>
 										</tr>
 									</c:forEach>
 <%-- 								</c:otherwise> --%>

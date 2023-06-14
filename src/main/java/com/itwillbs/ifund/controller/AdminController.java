@@ -16,6 +16,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,12 +30,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.AdminService;
+import com.itwillbs.ifund.service.BankApiService;
+import com.itwillbs.ifund.vo.AccountVO;
+import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.NoticeVO;
 import com.itwillbs.ifund.vo.PageInfo;
 import com.itwillbs.ifund.vo.ProjectVO;
 import com.itwillbs.ifund.vo.RepresentativeVO;
+import com.itwillbs.ifund.vo.ResponseUserInfoVO;
 
 enum Role {
 	BASIG_MEMBER("0"), // 일반회원
@@ -76,6 +82,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BankApiService apiService;
 
 	@Value("${client_id}")
 	private String client_id;
@@ -537,10 +546,9 @@ public class AdminController {
 	// ---------------------------------------
 
 	// 프로젝트 목록
-	@GetMapping("admin/projectList/all")
-	public String projectList(Model model) {
-		List<Map<String, Object>> projects = adminService.getAllProjectList();
-		
+	@GetMapping("admin/projectList")
+	public String projectList(Model model, @RequestParam(defaultValue = "0") String selectOption) {
+		List<Map<String, Object>> projects = adminService.getAllProjectList(selectOption);
 		LocalDate currentDate = LocalDate.now();
 		
 		for(Map<String, Object> project : projects) {
@@ -567,27 +575,21 @@ public class AdminController {
 			}
 		}
 		model.addAttribute("projects", projects);
+		model.addAttribute("selectOption", selectOption);
 		return "admin/projectList";
 	}
-	
 		
-		
-	// 프로젝트 목록 필터링
-	@GetMapping("admin/projectList/{label}")
-    public String projectListByLabel(@PathVariable("label") String label, Model model) {
-        List projectList = adminService.sortProjectList(label);
-		model.addAttribute("projectList", projectList);
-        return "admin/projectList";
-    }
-	
 	// 프로젝트 목록 상세
-	@GetMapping("admin/projectList/detail/{project_idx}")
+	@GetMapping("admin/projectList/{project_idx}")
 	public String projectListDetail(Model model, ProjectVO project, @PathVariable("project_idx") String project_idx) {
 		Map projectDetail = adminService.getDetailList(project);
 		
 		List reward = adminService.getRewardList(project);
+		List payment = adminService.getPaymentList(project);
+		
 		model.addAttribute("project", projectDetail);
 		model.addAttribute("reward", reward);
+		model.addAttribute("payment", payment);
 		
 		return "admin/projectList_detail";
 	}
@@ -605,7 +607,6 @@ public class AdminController {
 	// 프로젝트 승인
 	@PostMapping("admin/approve")
 	public String approve(Model model,HttpSession session ,ProjectVO project) {
-//			String isAdmin = (String)session.getAttribute("isAdmin");
 		Integer member_idx = (Integer)session.getAttribute("member_idx");
 		MemberVO member = adminService.selectMember(member_idx);
 		System.out.println("project " + project);
@@ -619,23 +620,15 @@ public class AdminController {
 			model.addAttribute("project_idx", project.getProject_idx());
 			// 3.디테일 생성
 			adminService.createProjectDetail(model);
+			
 			Map projectDetail = adminService.getDetailList(project);
 			
-			System.out.println("projectDetail: " + projectDetail);
-//				model.addAttribute("project_idx", project.getProject_idx());
 			model.addAttribute("admin_name", admin_name);
-			
-//				System.out.println("project_idx: " + projectDetail.get("project_idx"));
 			
 			System.out.println("project_approve_status: " + projectDetail.get("project_approve_status"));
 			model.addAttribute("project_approve_status", projectDetail.get("project_approve_status"));
 			// 2. 히스토리 생성
 			adminService.insertApproveHistory(model);
-			
-			
-//				if(status.equals(ApproveStatus.APPROVE.code)) {
-//					adminService.createProjectDetail(model);
-//				}
 			
 			return "redirect:/admin/approveList";
 			
@@ -653,7 +646,6 @@ public class AdminController {
 	public String approveDenied(Model model ,ProjectVO project, HttpSession session,
 								@RequestParam("approve_reason") String approve_reason ) {
 								
-//			String isAdmin = (String)session.getAttribute("isAdmin");
 		Integer member_idx = (Integer)session.getAttribute("member_idx");
 		MemberVO member = adminService.selectMember(member_idx);
 		// 관리자 이름
@@ -663,20 +655,20 @@ public class AdminController {
 		int updateCount = adminService.approveDenied(project);
 		System.out.println(project);
 		if(updateCount > 0) {
-			// 프로젝트 디테일이 없으면 실행안됨 
-//				Map projectDetail = adminService.getDetailList(project);
-			System.out.println("status: " + project.getProject_approve_status());
+			Map projectDetail = adminService.getDetailList(project);
+			System.out.println("project_approve_status: " + projectDetail.get("project_approve_status"));
+			model.addAttribute("project_approve_status", projectDetail.get("project_approve_status"));
+			
 			model.addAttribute("project_idx", project.getProject_idx());
 			model.addAttribute("admin_name", admin_name);
 			model.addAttribute("approve_reason",approve_reason);
-			model.addAttribute("project_approve_status", project.getProject_approve_status());
 			
 			adminService.insertApproveHistory(model);
 			
 			return "redirect:/admin/approveList";
 			
 		} else {
-			model.addAttribute("msg", "승인 거부 실패");
+			model.addAttribute("msg", "실패");
 			return "fail_back";
 		}		
 	}
@@ -694,4 +686,38 @@ public class AdminController {
 		return "admin/account_info";
 	}
 
+	@GetMapping("admin/management")
+	public String management(Model model, CalculateVO calculate, HttpSession session) {
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("management access_token : " + access_token);
+		System.out.println("management user_seq_no : " + user_seq_no);
+		
+		List list = adminService.selectCalculateList(calculate);
+		
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+//		System.out.println(userInfo.getRes_list().get(2).getFintech_use_num());
+		System.out.println("Fintech_use_num : " + userInfo.getRes_list().get(2).getFintech_use_num());
+		
+		
+		
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("fintech_use_num", userInfo.getRes_list().get(2).getFintech_use_num());
+		model.addAttribute("list", list);
+		return "admin/management";
+	}
+	
+	@PostMapping("admin/getResponseUserInfoVO")
+	@ResponseBody
+	public ResponseUserInfoVO getResponseUserInfoVO(int member_idx) {
+		AccountVO account = adminService.getAccountVO(member_idx);
+		System.out.println("account : " + account);
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(account.getAccess_token(), account.getUser_seq_no());
+		System.out.println("userInfo : " + userInfo);
+		
+		return userInfo;
+	}
+	
+	
 }

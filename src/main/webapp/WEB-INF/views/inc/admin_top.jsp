@@ -77,7 +77,7 @@ window.onload = function() {
                     </g>
                   </g>
                 </svg>
-			</span> <span class="app-brand-text demo menu-text fw-bolder ms-2">Funzip#</span>
+			</span> <span class="app-brand-text demo menu-text fw-bolder ms-2">ifund</span>
 			</a> <a href='${pageContext.request.contextPath }/admin' class="menu-link">
 				<i class="bx bx-chevron-left bx-sm align-middle"></i>
 			</a>
@@ -102,7 +102,7 @@ window.onload = function() {
 						class="menu-link">
 							<div data-i18n="Without menu">회원목록</div>
 					</a></li>
-					<li id="projectList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/projectList/all"
+					<li id="projectList" class="menu-item"><a href="${pageContext.request.contextPath }/admin/projectList"
 						class="menu-link">
 							<div data-i18n="Without navbar">프로젝트 관리</div>
 					</a></li>
@@ -118,9 +118,9 @@ window.onload = function() {
 						class="menu-link">
 							<div data-i18n="Fluid">공지사항</div>
 					</a></li>
-					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/newsList"
+					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/management"
 						class="menu-link">
-							<div data-i18n="Blank">보도자료</div>
+							<div data-i18n="Blank">정산관리</div>
 					</a></li>
 					<li id="accountInfo"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/accountInfo"
 						class="menu-link">

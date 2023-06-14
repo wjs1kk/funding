@@ -2,6 +2,7 @@ package com.itwillbs.ifund.vo;
 
 
 // 엑세스토큰 요청 결과를 관리할 VO 클래스 정의
+
 public class ResponseTokenVO {
 	private String access_token;
 	private String token_type;
@@ -45,5 +46,13 @@ public class ResponseTokenVO {
 	public void setUser_seq_no(String user_seq_no) {
 		this.user_seq_no = user_seq_no;
 	}
+	
+	@Override
+	public String toString() {
+		return "ResponseTokenVO [access_token=" + access_token + ", token_type=" + token_type + ", expires_in="
+				+ expires_in + ", refresh_token=" + refresh_token + ", scope=" + scope + ", user_seq_no=" + user_seq_no
+				+ "]";
+	}
+	
 	
 }

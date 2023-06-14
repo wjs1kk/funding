@@ -59,23 +59,37 @@ ul li {
 }
 
 </style>
-<script type="text/javascript">
-	function selectOption() {
-		var selectOption = document.getElementById("selectOption").value;
-		
-		switch (selectOption) {
-		case "1": alert("1번 클릭"); break;
-		case "2": alert("2번 클릭"); break;
-		case "3": alert("3번 클릭"); break;
-		}
-	}
-</script>
+
 <style>
 .labelFont {
  color: black;
  
 }
-</style>		
+</style>	
+<script type="text/javascript">
+// 	var selectElement = document.getElementById("selectOption");
+	$(function() {
+		$("#selectOption").on("change", function() {
+			$.ajax({
+				 url: 'projectList',
+		          type: 'GET',
+		          success: function() {
+		        	  location.href = "projectList?selectOption="+$("#selectOption").val()
+	        	  }
+			})
+		})
+		
+		let option = ${selectOption};
+		
+		if(option != null){
+			$('#selectOption option').eq(option).prop('selected', true);
+		}
+		
+	})
+	
+
+	
+</script>	
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -178,14 +192,13 @@ ul li {
 						<h4 class="fw-bold py-3 mb-4">
 							<span class="text-muted fw-light"></span> 프로젝트 목록 
 						</h4>
-							<select class="select2 form-select" name="selectOption"
-								id="selectOption" onchange="selectOption()" style="width: 150px; margin-bottom: 20px;">
-								<option value="0" selected>전체</option>
-								<option value="1">진행중</option>
-								<option value="2">마감</option>
-								<option value="3">승인거부</option>
-								<option value="4">검색 추가 예정</option>
-							</select>
+						
+						<select class="select2 form-select"
+							id="selectOption" style="width: 150px; margin-bottom: 20px;">
+							<option value="0">전체</option>
+							<option value="1">진행중</option>
+							<option value="2">마감</option>
+						</select>
 						<div class="card">
 							<div class="table-responsive text-nowrap">
 								<table class="table table-striped">
@@ -204,7 +217,7 @@ ul li {
 									<tbody class="table-border-bottom-0">
 										<c:forEach var="projects" items="${projects }">
 											<tr class="cursor-pointer"
-												onclick="location.href='detail/${projects.project_idx}'">
+												onclick="location.href='projectList/${projects.project_idx}'">
 												<td>${projects.project_idx }</td>
 												<c:choose>
 													<c:when test="${projects.project_status eq 2 }">
@@ -218,6 +231,11 @@ ul li {
 														</td>
 													</c:when>
 													<c:otherwise>
+<%-- 														<c:if test="${projects.project_approve_status eq 3}"> --%>
+<!-- 															<td id="td_project_plan"> -->
+<!-- 															<span class="badge bg-label-secondary">승인거부</span> -->
+<!-- 															</td> -->
+<%-- 														</c:if> --%>
 														<td id="td_project_plan">
 															<span class="badge bg-label-secondary">오픈전</span>
 														</td>
@@ -249,7 +267,14 @@ ul li {
 													</c:otherwise>
 												</c:choose>
 												<td>${projects.project_start_date } ~ ${projects.project_end_date }</td>
-												<td><fmt:formatNumber value="${projects.target_rate }" pattern="#,###" />%</td>
+												<c:choose>
+													<c:when test="${projects.target_rate < 0 || empty projects.target_rate }">
+														<td>0 %</td>
+													</c:when>
+													<c:otherwise>
+														<td><fmt:formatNumber value="${projects.target_rate }" pattern="#,###" />%</td>
+													</c:otherwise>
+												</c:choose>
 												<td>${projects.project_detail_person }명</td>
 											
 											</tr>

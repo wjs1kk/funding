@@ -375,6 +375,27 @@
 			WHERE payment_idx = #{payment_idx}
 	</update>
 	
+	<!-- 06-13 김동욱 해당 프로젝트 통계 -->
+	<select id="myProjectStatus" resultType="map">
+		SELECT 
+			(SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and now() > payment_date) AS "todayTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} AND subdate(now(), INTERVAL 1 day) > payment_date) AS "oneDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 2 day) > payment_date) AS "twoDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 3 day) > payment_date) AS "threeDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 4 day) > payment_date) AS "fourDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 5 day) > payment_date) AS "fiveDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 6 day) > payment_date) AS "sixDayAgoTotalAmount"
+			, (SELECT project_target FROM project p WHERE project_idx = #{project_idx}) AS "project_target"
+			, (SELECT count(*) FROM payment p WHERE project_idx = #{project_idx}) AS "project_payment_count"
+			, (SELECT COUNT(DISTINCT member_idx) FROM payment WHERE project_idx = #{project_idx}) AS "participantsCount"
+	</select>
+	
+	<!-- 06-13 김동욱 해당 프로젝트 수정신청 -->
+	<update id="projectModifyApply">
+		UPDATE project
+			SET project_update_status = #{updateStatus}
+			WHERE project_idx = #{project_idx}
+	</update>
 	<select id="memberNameCheck" resultType="string">
 		SELECT m.member_name 
 		FROM `member` m JOIN project p 

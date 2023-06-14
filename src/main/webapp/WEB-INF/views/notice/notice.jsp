@@ -192,7 +192,6 @@
 							</button>
 
 							<!-- 데스크탑용 페이지 리스트 -->
-
 							<a class="current" href="#" onclick="movePage(1)">1</a> <a
 								href="#" onclick="movePage(2)">2</a> <a href="#"
 								onclick="movePage(3)">3</a> <a href="#" onclick="movePage(4)">4</a>

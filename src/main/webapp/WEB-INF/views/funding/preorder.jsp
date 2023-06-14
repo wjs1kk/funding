@@ -50,6 +50,12 @@
 <script>
 	// 필터링 기능
 	document.addEventListener("DOMContentLoaded", function() {
+		$(function() {
+			$("#selectbox").on("change", function() {
+				location.href = 'preorder?category=${param.category}&order=${param.order}' + '&selectbox=' + $("#selectbox").val();
+			});
+		});
+		
 		var item = document.getElementsByClassName("OrderSelectDesktop_sortItem__12TKi");
 		
 		var categoryItem = document.getElementsByClassName("ImageTab_tab__3siCY");
@@ -60,14 +66,14 @@
 		for(let categories of categoryItem) {
 			categories.addEventListener("click", function() {
 				category = $(this).text()
-				location.href = "preorder?category=" + category + "&order=" + "${param.order}";
+				location.href = "preorder?category=" + category + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';;
 			});
 		}
 		
 		for(let items of item) {
 			items.addEventListener("click", function() {
 				order = $(this).text();
-			location.href = "preorder?category=" + "${param.category}" + "&order=" + order;
+			location.href = "preorder?category=" + "${param.category}" + "&order=" + order + '&selectbox=${param.selectbox}';;
 		});
 	}
 });
@@ -330,44 +336,36 @@
 				<div class="CategoryTab_container__1XTA0 undefined"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
-						<div class="TabsMobile_tabsWrapper__3zP94">
-							<ul
-								class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
-								<li data-index="0"><button
-										class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu"
-										data-ga-category="프리오더(홈)_카테고리" data-ga-action="클릭"
-										data-ga-label="전체">
-										<div class="ImageTab_thumbnailContainer__3Polb">
-											<div class="ImageTab_thumbnailPlaceholder__3mluI">
-												<div class="ImageTab_thumbnail__3mZWA"></div>
-											</div>
+						<ul
+							class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
+							<li data-index="0"><button
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ImageTab_active__BGdXu"
+									data-ga-category="프리오더(홈)_카테고리" data-ga-action="클릭"
+									data-ga-label="전체">
+									<div class="ImageTab_thumbnailContainer__3Polb">
+										<div class="ImageTab_thumbnailPlaceholder__3mluI">
+											<div class="ImageTab_thumbnail__3mZWA"></div>
 										</div>
-										<div class="ImageTab_labelContainer__2apP3">
-											<span class="ImageTab_label__SvWW9">전체</span>
+									</div>
+									<div class="ImageTab_labelContainer__2apP3">
+										<span class="ImageTab_label__SvWW9">전체</span>
+									</div>
+								</button></li>
+							<c:forEach items="${categoryList }" var="category">
+							<li data-index="${category.category_cd }"><button
+									class="ImageTab_tab__3siCY">
+									<div class="ImageTab_thumbnailContainer__3Polb">
+										<div class="ImageTab_thumbnailPlaceholder__3mluI">
+											<div class="ImageTab_thumbnail__3mZWA"
+												style="background-image: url(&quot;https://cdn3.wadiz.kr/category/icon/category_${category.category_image}&quot;);"></div>
 										</div>
-									</button></li>
-								<c:forEach items="${categoryList }" var="category">
-								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY">
-										<div class="ImageTab_thumbnailContainer__3Polb">
-											<div class="ImageTab_thumbnailPlaceholder__3mluI">
-												<div class="ImageTab_thumbnail__3mZWA"
-													style="background-image: url(&quot;https://cdn3.wadiz.kr/category/icon/category_${category.category_image}&quot;);"></div>
-											</div>
-										</div>
-										<div class="ImageTab_labelContainer__2apP3">
-											<span class="ImageTab_label__SvWW9">${category.category_name }</span>
-										</div>
-									</button></li>
-							</c:forEach>
-							</ul>
-							<div class="TabsMobile_navigation__3Q7Xi">
-								<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-									class="withIcon_icon__3VTbq" aria-hidden="true"
-									style="width: 20px; height: 20px;">
-									<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-							</div>
-						</div>
+									</div>
+									<div class="ImageTab_labelContainer__2apP3">
+										<span class="ImageTab_label__SvWW9">${category.category_name }</span>
+									</div>
+								</button></li>
+						</c:forEach>
+						</ul>
 					</div>
 				</div>
 				<div class="Main_categoryMargin__1RWGF"></div>
@@ -375,20 +373,10 @@
 					<div class="Main_category__3sabq">
 						<p class="Main_categoryName__3YilF">${param.category }</p>
 						<div class="Main_filterWrap__2l__0">
-							<div class="OrderSelect_sortContainer__3F7LQ">
-								<div class="OrderSelect_content__1RjYa">
-									<span>전체</span>
-									<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-										class="withIcon_icon__3VTbq OrderSelect_expandIcon__30qeK"
-										aria-hidden="true">
-										<path
-											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg>
-								</div>
-								<select class="OrderSelect_selectBox__2hBjk"><option
-										value="">전체</option>
-									<option value="N">진행중</option>
-									<option value="Y">종료된</option></select>
-							</div>
+							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">
+								<option value="0" ${selectbox == '0'? 'selected="selected"': ''}>진행중</option>
+								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
+							</select>
 							<ul class="OrderSelectDesktop_sortContainer__1YLsr">
 								<!-- OrderSelectDesktop_active__YTP2K 누른거 border 클래스 -->
 								<li class="OrderSelectDesktop_sortItem__12TKi"

@@ -24,11 +24,11 @@ public class FundingService {
 	public Map<String, String> selectProject() {
 		return mapper.selectProject();
 	}
-	public List<ProjectListVO> selectFundingProject(String category, String order) {
-		return mapper.selectFundingProject(category, order);
+	public List<ProjectListVO> selectFundingProject(String category, String order, String selectbox) {
+		return mapper.selectFundingProject(category, order, selectbox);
 	}
-	public List<ProjectListVO> selectPreorderProject(String category, String order) {
-		return mapper.selectPreorderProject(category, order);
+	public List<ProjectListVO> selectPreorderProject(String category, String order, String selectbox) {
+		return mapper.selectPreorderProject(category, order, selectbox);
 	}
 	public List categoryList() {
 		return mapper.categoryList();
@@ -81,6 +81,42 @@ public class FundingService {
 	public int insertInquiry(InquiryVO inquiry) {
 		return mapper.insertInquiry(inquiry);
 	}
+	// 2023-06-13 박경은 - 메인 오픈예정 프로젝트
+	public List<ProjectListVO> selectOpenProject() {
+		return mapper.selectOpenProject();
+	}
+	// 2023-06-13 박경은 - 주목할 만한 프로젝트
+	public List selectAttentionProject(ProjectListVO projectList) {
+		return mapper.selectAttentionProject(projectList);
+	}
 	
-	// 06-11 김동욱 포인트 적립
+	
+	
+//	찜하기관련
+	public int insertWish(int project_idx, int member_idx) {
+		return mapper.insertWish(project_idx, member_idx);
+	}
+	public int cancelWish(int project_idx) {
+		return mapper.cancelWish(project_idx);
+	}
+	public List<String> selectWish(int member_idx) {
+		return mapper.selectWish(member_idx);
+	}
+//	찜하기관련 끗
+	public int countWish(int project_idx) {
+		return mapper.countWish(project_idx);
+	}
+	
+		// 2023-06-13 박경은 - 실시간 랭킹
+	public List selectRankingProject(ProjectListVO projectList) {
+		return mapper.selectRankingProject(projectList);
+	}
+	// 2023-06-13 박경은 - 얼리버드
+	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward) {
+		return mapper.selectEarlybirdProject(projectList, reward);
+	}
+	// 2023-06-13 박경은 - 오늘 오픈
+	public List selectTodayOpenProject(ProjectListVO projectList) {
+		return mapper.selectTodayOpenProject(projectList);
+	}
 }

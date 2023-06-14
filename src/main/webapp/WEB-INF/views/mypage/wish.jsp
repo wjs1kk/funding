@@ -1,16 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko" class="">
 <head>
-
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css"
-	href="https://static.wadiz.kr/main/css/wishes.065b7ca5.chunk.css">
+<link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/wishes.065b7ca5.chunk.css">	
+<script src="../resources/js/jquery-3.6.4.js"></script>
 <title>찜하기</title>
-</head>
+
+	<!-- 찜하기 취소 -->
+<script type="text/javascript">
+	function wish_cancel(project_idx){
+		var form={
+				project_idx:project_idx
+		};
+		
+		$.ajax({
+            type : 'post', 
+            url : "${pageContext.request.contextPath}/mypage/mypage_wish_cancel", 
+            cache : false, 
+            processData: false, 
+            contentType : 'application/json; charset=utf-8', 
+            data: JSON.stringify(form), 
+            success: function(result) {
+            	
+            	location.reload();
+                alert('해당 상품을 찜 취소 하셨습니다.');
+            },
+            error : function(e) {
+                alert('찜 취소 할 수 없습니다.');
+                location.reload(); // 실패시 새로고침하기
+            }
+        })
+	}
+</script>
+<!-- 찜하기 취소 끗 -->
 <body>
 	<div id="page-container">
 		<main id="main-app">
@@ -37,54 +63,40 @@
 											<li class="ProjectCardList_cardList__Eh497">
 												<div
 													class="ProjectCard_container__1jpWF App_projectCard__2z3D2">
-													<a class="ProjectCard_card__EvFnb"
-														href="/web/campaign/detail/195322?_refer_section_st=찜하기_상품카드_프리오더_0"
-														data-ec-id="195322"
-														data-ec-name="[4in1] 피지삭제90초! 딥클렌징 갈바닉을 동시에?깊은모공을 노리세요"
-														data-ec-brand="트루비온주식회사" data-ec-category="뷰티"
-														data-ec-list="찜하기_상품카드_프리오더" data-ec-position="0"
-														data-ec-contenttype="PREORDER"
-														data-gtm-vis-recent-on-screen-11319722_2073="1334"
-														data-gtm-vis-first-on-screen-11319722_2073="1334"
-														data-gtm-vis-total-visible-time-11319722_2073="2000"
-														data-gtm-vis-recent-on-screen-11319722_2115="1334"
-														data-gtm-vis-first-on-screen-11319722_2115="1334"
-														data-gtm-vis-total-visible-time-11319722_2115="2000"
-														data-gtm-vis-has-fired-11319722_2073="1"
-														data-gtm-vis-has-fired-11319722_2115="1">
+													
 														<div class="ProjectCard_thumbnailBox__3nf2n">
 															<div aria-hidden="true"
 																class="ProjectCard_projectCardImage__1wSoK CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																style="background-image: url(../resources/images/${wish.project_thumbnail});"></div>
-															<em
-																class="ProductTypeBadge_badge__1vQ-m ProjectCard_badge___LsIT">예약구매</em>
+																style="background-image: url(../resources/images/project_thumbnail/${wish.project_thumbnail};); border-radius: 8px;"></div>
 														</div>
 														<div class="ProjectCard_infoBox__3ILIU">
 															<div class="ProjectInfo_container__aMXhM">
-																<em class="ProjectInfo_state__3kvLA"> <span
-																	class="ProjectInfo_unitPercent__1gnFw"> % 달성
-																		중이에요</span></em>
+																<em class="ProjectInfo_state__3kvLA"> 
+																	<span class="ProjectInfo_unitPercent__1gnFw">
+																		<fmt:formatNumber value="${(wish.project_detail_amount/wish.project_target)}" type="percent" />달성 중이에요
+																	</span>
+																</em>
 																<div class="ProjectInfo_alignRight__27mRq">
-																	<span
-																		class="Badge_container__9G9PS Badge_visible__3LNXv ProjectInfo_badge__1JkM6">
-																		<span
-																		class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
-																			${wish.project_end_date } - ${wish.project_end_date }일
-																			남음</span>
+																	<span class="Badge_container__9G9PS Badge_visible__3LNXv ProjectInfo_badge__1JkM6">
+																		<span class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
+																			<script type="text/javascript">
+																				var project_end_date = new Date("${wish.project_end_date}");
+																				var now = new Date();
+																				var diff = project_end_date - now;
+																				var diffDay = Math.ceil(diff/(1000*60*60*24));
+																				document.write(diffDay)
+																			</script> 일 남음
+																		</span>
 																	</span>
 																</div>
 															</div>
 															<strong class="ProjectCard_title__3ZLcD">${ wish.project_title}</strong>
-															<dl class="ProjectCard_subInfo__nidZs">
-																<dt class="ProjectCard_fontBlind__2JaYu">카테고리</dt>
-																<dd class="ProjectCard_subInfoText__-pKhs">${wish.project_category }</dd>
-																<!-- 													<dt class="ProjectCard_fontBlind__2JaYu">메이커</dt> -->
-																<!-- 													<dd class="ProjectCard_subInfoText__-pKhs ProjectCard_ellipsis1__3fNOy">트루비온주식회사</dd> -->
-															</dl>
+															<div class="PreorderMainCard_subText__1LB5l">
+																<span class="PreorderMainCard_makerName__2Ufj1">${wish.maker_name }</span>
+															</div>
 														</div>
 														<div class="CardSpinner_container__1cKRs">
-															<div class="CardSpinner_loader__2-LrZ"
-																style="width: 32px; height: 32px;">
+															<div class="CardSpinner_loader__2-LrZ" style="width: 32px; height: 32px;">
 																<svg viewBox="25 25 50 50" aria-label="Loading">
 														<g class="Loader_circular__2dy3E">
 														<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
@@ -92,11 +104,9 @@
 															</div>
 														</div>
 													</a>
-													<button type="button"
+													<button onclick="wish_cancel(${wish.project_idx})"
 														class="WishButton_button__1ZqbG WishButton_interaction__2FCel"
-														aria-label="찜하기 버튼" aria-pressed="true"
-														data-ga-category="공통_상품카드_프리오더" data-ga-action="찜하기_취소"
-														data-ga-label="">
+														aria-label="찜하기 버튼" aria-pressed="true">
 														<svg viewBox="0 0 32 32" focusable="false"
 															role="presentation" class="withIcon_icon__3VTbq"
 															aria-hidden="true">
@@ -117,6 +127,5 @@
 		</main>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	</div>
-
 </body>
 </html>
