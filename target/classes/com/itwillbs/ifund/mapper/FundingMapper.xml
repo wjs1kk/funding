@@ -176,8 +176,8 @@
 	<select id="fundingDetail" resultType="map">
 		SELECT 
 			DISTINCT
-				p.project_idx, p.project_category, p.project_reward_category, p.project_content,
-				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date,
+				p.project_idx, p.project_category, p.project_reward_category, p.project_content, p.project_plan,
+				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date, p.project_coming_soon_date,
 				pd.project_detail_amount, pd.project_detail_person,	pd.project_detail_target, m.maker_idx, m.maker_image, m.maker_name, p.project_summary
 		 FROM 
 			project p
