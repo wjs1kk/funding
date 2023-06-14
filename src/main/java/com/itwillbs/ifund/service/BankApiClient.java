@@ -232,6 +232,7 @@ public class BankApiClient {
 
 	// 입금 이체 요청
 	public AccountDepositListResponseVO deposit(Map<String, String> map) {
+		System.out.println("access_token : " + map.get("access_token"));
 		String url = baseUrl + "/v2.0/transfer/deposit/fin_num";
 		
 		// 헤더 정보로 "Authorization" 속성값에 엑세스토큰값 설정
@@ -256,7 +257,7 @@ public class BankApiClient {
 		req_list.put(req);
 		// JSONObject 객체를 활용하여 요청 파라미터를 JSON 객체 형식으로 생성
 		JSONObject jo = new JSONObject();
-		jo.put("cntr_account_num", "111123456789"); // cntr_account_num(약정 계좌)
+		jo.put("cntr_account_num", "11123456789"); // cntr_account_num(약정 계좌)
 		jo.put("cntr_account_type", "N"); // cntr_account_type(계좌형태 - 계좌를 의미하는 "N" 전달)
 		
 		jo.put("wd_pass_phrase", "NONE");  // 입금 이체용 암호문구

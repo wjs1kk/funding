@@ -191,11 +191,12 @@ public class BankController {
 	@PostMapping("admin/bank_deposit")
 	public String deposit(
 			@RequestParam Map<String, String> map, HttpSession session, Model model, int member_idx) {
-		System.out.println("bank_deposit 메서드");
 		System.out.println("member_idx: " + member_idx);
 		System.out.println("fintech_use_num: " + map.get("fintech_use_num"));
 		System.out.println("calculate_fee: " + map.get("calculate_fee"));
 		System.out.println("recv_client_fintech_use_num: " + map.get("recv_client_fintech_use_num"));
+		
+		map.put("access_token", (String)session.getAttribute("access_token"));
 		
 		// 대표자 계좌 정보 가져오기
 		Map representative = adminService.selectRepresentative(member_idx);
