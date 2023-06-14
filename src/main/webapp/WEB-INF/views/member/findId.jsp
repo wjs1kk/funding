@@ -22,6 +22,7 @@
 <link rel="stylesheet"
 	href="https://static.wadiz.kr/static/floating-buttons/main.98b034d0.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css">
+<link href="${pageContext.request.contextPath }/resources/css/findId.css" rel="stylesheet" type="text/css">
 <script src="resources/js/jquery-3.6.4.js"></script>
 </head>
 <script>
@@ -55,13 +56,26 @@
 			} 
 			
 			$("#inputedEmail").text(email);
-			
 			$("#findIdd").hide();
 			$("#findIddd").show();
 		});
 	});
+	
+	$(function() {
+		$("#BtnSendlink").click(function() {
+			email = $("#userName").val();
+			if(!regex.exec(email)){
+				alert("이메일 형식을 올바르게 입력해주세요! \n ex) abc123@naver.com");
+				console.log(email);
+				console.log(regex.exec(email));
+				return false;
+			}
+			$("#divSendlink").show();
+		});
+	});
 </script>
 <script>
+	// 아이디 여부 확인
 	$(function() {
 		$("#btnIsJoinedEmail").click(function() {
 			$.ajax({
@@ -83,6 +97,62 @@
 			});
 		});
 	});
+</script>
+<script>
+$('#mail-Check-Btn').click(function() {
+	const eamil = $('#userEmail1').val() + $('#userEmail2').val(); // 이메일 주소값 얻어오기!
+	console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+	const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+	
+	$.ajax({
+		type : 'get',
+		url : '<c:url value ="/user/mailCheck?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+		success : function (data) {
+			console.log("data : " +  data);
+			checkInput.attr('disabled',false);
+			code = data;
+			alert('인증번호가 전송되었습니다.')
+		}			
+	}); // end ajax
+}); // end send eamil
+
+// 인증번호 비교 
+// blur -> focus가 벗어나는 경우 발생
+$('#seNum').blur(function () {
+	const inputCode = $(this).val();
+	const $resultMsg = $('#mail-check-warn');
+	
+	if(inputCode === code){
+		$resultMsg.html('인증번호가 일치합니다.');
+		$resultMsg.css('color','green');
+		$('#mail-Check-Btn').attr('disabled',true);
+		$('#userEamil1').attr('readonly',true);
+		$('#userEamil2').attr('readonly',true);
+		$('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+         $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+	}else{
+		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+		$resultMsg.css('color','red');
+	}
+});
+	// 비밀번호 찾기
+	$('#BtnSendlink').click(function() {
+		const email = $('#findType').val()// 이메일 주소값 얻어오기!
+		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+		const checkInput = $('#seNum') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : 'findPass',
+			success : function(data) {
+				$("#divSendLink").show()
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code = data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		}); // end ajax
+	}); // end send eamil
 </script>
 <body>
 	<div id="wz-header">
@@ -122,7 +192,7 @@
 				<form class="wz form" id="form-findId" onsubmit="">
 					<div class="label-hidden field">
 						<div class="wz input">
-							<input id="userEmail" class="" type="email" value="" placeholder="이메일 계정" style="width: 400px; height: 40px; font-size: 17px; padding: 5px">
+							<input id="userEmail" class="" type="email" value="" placeholder="이메일 계정" style="width: 368px; height: 40px; font-size: 17px; padding: 10px;">
 						</div>
 					</div>
 					<div align="right">
@@ -136,23 +206,23 @@
 			<div class="wz container pw-check"
 				style="min-height: calc(100vh - 187px);">
 				<p class="wz text body1">
-					가입하셨던 이메일 계정을 입력하시면,<br>비밀번호를 새로 만들 수 있는 링크를 이메일로<br>발송해드립니다.
+					가입하셨던 이메일 계정을 입력하시면,<br>임시 비밀번호를 이메일로 발송해드립니다.
 				</p>
 				<form class="wz form" onsubmit="">
-					<input type="hidden" id="findType" value="FIND_PASSWORD">
-					<div class="label-hidden field">
-						<div class="wz input">
-							<input id="userName" type="email" placeholder="이메일 계정"
-								style="width: 400px; height: 40px; font-size: 17px; padding: 5px">
+					<div class="wz input" align="right">
+						<input id="userName" type="email" placeholder="이메일 계정" style="width: 368px; height: 40px; font-size: 17px; padding: 10px;">
+					</div>
+						<br>
+						<button id="BtnSendlink" class="wz primary block button" type="button" style="font-size: medium;">임시 비밀번호 발송</button>
+					<div id="divSendlink" style="display: none;">
+						<div class="wz input" align="right">
+							<input id="seNum" type="text" placeholder="인증 번호를 입력해주세요" style="font-size: 17px; width: 367px; height: 40px; padding: 10px">
 						</div>
+						<br>
+						<button id="linkChecked" class="wz primary block button"
+								type="button" onclick=""
+								style="font-size: medium; width: 368.33px;">확인</button>
 					</div>
-					<div align="right">
-						<button id="BtnSendlink" class="wz primary block button"
-							type="button" onclick=""
-							style="font-size: medium; padding-top: 10px">링크 발송</button>
-					</div>
-					<button id="BtnReSendlink" class="wz block button" type="button"
-						onclick="" style="display: none">링크 재발송</button>
 				</form>
 			</div>
 		</div>
