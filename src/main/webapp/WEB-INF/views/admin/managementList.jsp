@@ -157,18 +157,18 @@ ul li {
 									<thead>
 										<tr>
 											<th>NO</th>
-											<th>신청일</th>
-											<th>입금상태</th>
+											<th>상태</th>
+											<th>거래일자</th>
+											<th>거래유형</th>
 											<th>정산금액</th>
-											<th>정산일</th>
+											<th>잔액</th>
 										</tr>
 									</thead>
 									<c:choose>
 										<c:when test="${!empty test}">
 											<tbody class="table-border-bottom-0">
 												<c:forEach var="projects" items="${projects }">
-													<tr class="cursor-pointer"
-														onclick="location.href='projectList/${projects.project_idx}'">
+													<tr>
 														<td>${projects.project_idx }</td>
 														<c:choose>
 															<c:when test="${projects.project_status eq 2 }">

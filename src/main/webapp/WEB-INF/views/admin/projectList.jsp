@@ -170,7 +170,9 @@ ul li {
 											<th>참여자수</th>
 										</tr>
 									</thead>
-									<tbody class="table-border-bottom-0">
+									<c:choose>
+										<c:when test="${!empty projects }">
+											<tbody class="table-border-bottom-0">
 										<c:forEach var="projects" items="${projects }">
 											<tr class="cursor-pointer"
 												onclick="location.href='projectList/${projects.project_idx}'">
@@ -187,11 +189,6 @@ ul li {
 														</td>
 													</c:when>
 													<c:otherwise>
-<%-- 														<c:if test="${projects.project_approve_status eq 3}"> --%>
-<!-- 															<td id="td_project_plan"> -->
-<!-- 															<span class="badge bg-label-secondary">승인거부</span> -->
-<!-- 															</td> -->
-<%-- 														</c:if> --%>
 														<td id="td_project_plan">
 															<span class="badge bg-label-secondary">오픈전</span>
 														</td>
@@ -236,6 +233,11 @@ ul li {
 											</tr>
 										</c:forEach>
 									</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>
