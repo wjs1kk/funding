@@ -2,9 +2,8 @@ package com.itwillbs.ifund.service;
 
 import java.util.*;
 
-import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.*;
 
 import com.itwillbs.ifund.mapper.MemberMapper;
 import com.itwillbs.ifund.vo.MemberVO;

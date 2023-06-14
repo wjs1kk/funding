@@ -97,7 +97,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("findId")
-	public String findId(Model model, String member_email) {
+	public String findId(Model model, String member_email, MemberVO member) {
 		return "member/findId";
 	}
 	
