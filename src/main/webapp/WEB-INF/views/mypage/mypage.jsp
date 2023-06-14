@@ -144,7 +144,7 @@
 													<div class="MyWadizSupporterProjectInfo_project__3Vaun">
 														<div class="MyWadizSupporterProjectInfo_projectLink__2K77b" style="height: 104px">
 															<strong class="BlindText_textHidden__ovQb4">결제 건수</strong>
-															<a href="history"><span>펀딩·프리오더</span><b>${countPayment }</b></a>
+															<a href="history"><span>펀딩</span><b>${countPayment }</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
 															<a href="/web/mywadiz/store/order"><span>공동구매</span><b>0</b></a>
 														</div>
@@ -177,7 +177,7 @@
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																<path d="M1.6 5.6v20.8h28.8V5.6zm26.88 1.6L16 17.84 3.52 7.2zm.32 17.6H3.2V9.04L16 19.92 28.8 9.04z"></path></svg></span>
-															<span class="MyWadizMenu_text__9ryGW">메이커 문의</span>
+															<span class="MyWadizMenu_text__9ryGW">1 : 1 문의</span>
 															<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
 																<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																	<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>

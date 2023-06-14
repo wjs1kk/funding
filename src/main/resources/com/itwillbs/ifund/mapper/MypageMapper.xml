@@ -144,6 +144,14 @@
 			FROM payment
 				WHERE member_idx = #{member_idx}
 	</select>
+	
+<!-- 	0614 김애리 추가 - 생성한 프로젝트 갯수 -->
+	<select id="countProject" resultType="Integer">
+		SELECT count(project_idx)
+			FROM project
+				WHERE member_idx = #{member_idx}
+	</select>
+	
 
 	<select id="selectPayment" resultType="map">
 		SELECT p.*, py.*

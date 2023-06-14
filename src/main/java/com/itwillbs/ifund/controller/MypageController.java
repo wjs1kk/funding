@@ -81,6 +81,8 @@ public class MypageController {
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
 		List<ProjectVO> projectList = projectCreateService.getProjectList(member_idx);
 		model.addAttribute("projectList", projectList);
+		model.addAttribute("countProject", mypageService.countProject(member_idx));
+		
 		return "mypage/mypage2";
 	}
 
@@ -521,6 +523,17 @@ public class MypageController {
 			return "fail_back";
 		}
 
+	}
+	
+//	0614 김애리 추가 - 프로젝트 더보기
+	@GetMapping("mypage/projectList")
+	public String projectList(HttpSession session, Model model) {
+		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
+		List<ProjectVO> projectList = projectCreateService.getProjectList(member_idx);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("countProject", mypageService.countProject(member_idx));
+		
+		return "mypage/projectList";
 	}
 
 }

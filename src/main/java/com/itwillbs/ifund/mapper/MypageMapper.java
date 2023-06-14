@@ -53,6 +53,7 @@ public interface MypageMapper {
 	public Integer SupInquiryCount(List maker_idx);
 	public void updateProgress(InquiryVO inquiryVO);
 	public int insertReply(InquiryVO inquiryVO);
+	public int countProject(int member_idx);
 	
 
 }

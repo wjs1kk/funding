@@ -49,8 +49,7 @@
 					<div class="App_content__lI9Y7 App_hasContent__2eWnq">
 						<div class="App_inner__29LAc">
 							<h2 class="BlindText_textHidden__ovQb4">찜한 목록</h2>
-							<ul
-								class="ProjectCardList_container__2Q0Js App_projectCardList__1KfbT">
+							<ul class="ProjectCardList_container__2Q0Js App_projectCardList__1KfbT">
 								<c:choose>
 									<c:when test="${empty wish }">
 										<tr>
@@ -58,12 +57,10 @@
 										</tr>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${wish}" var="wish">
-
+											<c:forEach items="${wish}" var="wish">
+											<a class="PreorderMainCard_item__2FrO0" href="../detail?num=${wish.project_idx }">										
 											<li class="ProjectCardList_cardList__Eh497">
-												<div
-													class="ProjectCard_container__1jpWF App_projectCard__2z3D2">
-													
+												<div class="ProjectCard_container__1jpWF App_projectCard__2z3D2">
 														<div class="ProjectCard_thumbnailBox__3nf2n">
 															<div aria-hidden="true"
 																class="ProjectCard_projectCardImage__1wSoK CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
@@ -110,8 +107,7 @@
 														<svg viewBox="0 0 32 32" focusable="false"
 															role="presentation" class="withIcon_icon__3VTbq"
 															aria-hidden="true">
-												<path
-																d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
+														<path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
 													</button>
 												</div>
 											</li>

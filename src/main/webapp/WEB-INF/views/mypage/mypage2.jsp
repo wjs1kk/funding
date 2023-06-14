@@ -74,8 +74,8 @@ function maker() {
 										<div>
 											<div class="TabPanels_tabPanels__3fp_a">
 												<div class="MyWadizMyProject_projectListContainer__2C9hy">
-													<strong class="MyWadizMyProject_title__2cowP">만든 프로젝트<span>3</span> </strong> 
-													<a class="MyWadizMyProject_more__1FOsj" href="/web/wmypage/myfunding/makingrewardlist">더보기</a>
+													<strong class="MyWadizMyProject_title__2cowP">만든 프로젝트<span>${countProject }</span> </strong> 
+													<a class="MyWadizMyProject_more__1FOsj" href="projectList" style="font-size: 15px;">더보기</a>
 													<ul class="MyWadizMyProject_hideScroll__uQ06T">
 														<!-- 05-16 김동욱 메이커 마이페이지에서 자신이 생성산 프로젝트 리스트 출력 -->
 														<c:forEach var="projectList" items="${projectList}">
@@ -84,7 +84,10 @@ function maker() {
 																<a class="CardType_projectCard__2S8_G CardType_projectCardB__PatIP MyWadizMyProject_defaultImage__Tr8wd"
 																	href="../project/main?project_idx=${projectList.project_idx}">
 																	<article>
-																		<span class="Thumbnail_thumbnail__3gakA Thumbnail_img__j7EZh CardType_thumbnail__2yL-W" style=""></span>
+																		<span class="Thumbnail_thumbnail__3gakA Thumbnail_img__j7EZh CardType_thumbnail__2yL-W">
+																		
+																		
+																		</span>
 																		<div class="TextContent_content__2jSfH CardType_content__2B7IB">
 																			<c:choose>
 																				<c:when test="${empty projectList.project_title}">
@@ -109,20 +112,6 @@ function maker() {
 													<div>
 														<ul>
 															<li class="MyWadizMenu_menu__3b-H-">
-																<a href="supinquiry">
-																	<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
-																		<svg viewBox="0 0 39.98 39.98" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																			<g data-name="레이어 2">
-																			<path fill="none" d="M0 0h39.98v39.98H0z"></path>
-																			<path d="M36.89 6.66H3.61a2 2 0 0 0-1.94 1.95v23.26a1.94 1.94 0 0 0 1.94 1.95h33.28a2 2 0 0 0 2-1.95V8.61a2 2 0 0 0-2-1.95zM3.67 31.87V8.66l33.17-.05v23.21z"></path>
-																			<path d="M21.15 22a1.33 1.33 0 0 1-1.8 0L8.07 11.69l-1.34 1.48L18 23.46a3.3 3.3 0 0 0 4.49 0l11.13-10.15-1.35-1.48z"></path></g></svg></span>
-																			<span class="MyWadizMenu_text__9ryGW">서포터 문의</span>
-																			<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
-																			<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-																			<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>
-														</ul>
-														<ul>
-															<li class="MyWadizMenu_menu__3b-H-">
 																<a href="maker_coupon">
 																	<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 																	<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
@@ -136,6 +125,22 @@ function maker() {
 																			<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
 																			<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>
 														</ul>
+													
+														<ul>
+															<li class="MyWadizMenu_menu__3b-H-">
+																<a href="supinquiry">
+																	<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
+																		<svg viewBox="0 0 39.98 39.98" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+																			<g data-name="레이어 2">
+																			<path fill="none" d="M0 0h39.98v39.98H0z"></path>
+																			<path d="M36.89 6.66H3.61a2 2 0 0 0-1.94 1.95v23.26a1.94 1.94 0 0 0 1.94 1.95h33.28a2 2 0 0 0 2-1.95V8.61a2 2 0 0 0-2-1.95zM3.67 31.87V8.66l33.17-.05v23.21z"></path>
+																			<path d="M21.15 22a1.33 1.33 0 0 1-1.8 0L8.07 11.69l-1.34 1.48L18 23.46a3.3 3.3 0 0 0 4.49 0l11.13-10.15-1.35-1.48z"></path></g></svg></span>
+																			<span class="MyWadizMenu_text__9ryGW">1 : 1 문의</span>
+																			<span class="MyWadizMenu_arrowIcon__2sutN" aria-hidden="true">
+																			<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+																			<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span></a></li>
+														</ul>
+														
 													</div>
 												</div>
 											</div>

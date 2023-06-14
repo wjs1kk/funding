@@ -39,7 +39,7 @@ public class MypageService {
 		return mapper.deleteMember(member_idx);
 	}
 	public List<ProjectListVO> selectWish(Integer member_idx) {
-		return mapper.selectWish(member_idx);
+		return mapper.selectWish(member_idx) != null ? mapper.selectWish(member_idx) : null;
 	}
 	public List<ProjectVO> selectHistory(Integer member_idx) {
 		return mapper.selectHistory(member_idx);
@@ -124,6 +124,9 @@ public class MypageService {
 	public int insertReply(InquiryVO inquiryVO) {
 		mapper.updateProgress(inquiryVO);
 		return mapper.insertReply(inquiryVO);
+	}
+	public int countProject(int member_idx) {
+		return mapper.countProject(member_idx);
 	}
 	
 	

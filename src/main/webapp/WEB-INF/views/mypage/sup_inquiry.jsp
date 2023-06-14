@@ -32,7 +32,7 @@
 
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
-				<h1 class="Inbox_title__3XRz2">서포터 문의</h1>
+				<h1 class="Inbox_title__3XRz2">1 : 1 문의</h1>
 				<div class="mypage-section on" id="mypage_section_setting" style="">
 					<table class="tb-list" style="width:50%; margin: 0 auto;">
 						<colgroup>
@@ -47,18 +47,18 @@
 							</tr>
 						</thead>
 						<tbody id="notice_list">
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${empty sessionScope.member_idxs}"> --%>
-<!-- 									<tr> -->
-<!-- 										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td> -->
-<!-- 									</tr> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:when test="${empty SupInquiry }"> --%>
-<!-- 									<tr> -->
-<!-- 										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td> -->
-<!-- 									</tr> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
+							<c:choose>
+								<c:when test="${empty sessionScope.member_idx}">
+									<tr>
+										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${empty SupInquiry }">
+									<tr>
+										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
 									<c:forEach var="SupInquiry" items="${SupInquiry}">
 										<tr>
 											<td class="tb-subj">
@@ -90,18 +90,11 @@
 														${member.member_name}
 													</c:if>  
 												</td>
-											
-<%-- 												<c:if test="${ SupInquiry.inq_re_lev eq 0 }"> --%>
-													
-<%-- 											   		<td>${maker.maker_name}</td> --%>
-<%-- 											    </c:if> --%>
-											
-																						
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${SupInquiry.inq_date}" /></td>
 										</tr>
 									</c:forEach>
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 

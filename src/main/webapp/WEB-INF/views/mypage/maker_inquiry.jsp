@@ -32,7 +32,24 @@
 
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
-				<h1 class="Inbox_title__3XRz2">메이커 문의</h1>
+				<h1 class="Inbox_title__3XRz2">1 : 1 문의</h1>
+				
+<!-- 					<section style="margin-bottom: 15px; text-align: center;"> -->
+<!-- 						<p> -->
+<!-- 							<a href="#test" rel="modal:open"> -->
+<!-- 							<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_sm__16X6h Button_startIcon__3p6wN" -->
+<!-- 									  type="button" id="popButton" style="margin-left: 800px;"> -->
+<!-- 								<span> -->
+<!-- 									<svg viewBox="0 0 32 32" focusable="false" role="presentation" -->
+<!-- 										class="withIcon_icon__3VTbq Button_icon__t6yp6 MakerInfoHeader_icon__2uRNH" -->
+<!-- 										aria-hidden="true" style="width: 14px; height: 14px;"> -->
+<!-- 										<path d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path></svg> -->
+<!-- 										<span class="Button_children__ilFun">i-Fund 에 문의하기</span></span> -->
+<!-- 							</button> -->
+<!-- 							</a> -->
+<!-- 						</p> -->
+<!-- 					</section> -->
+				
 				<div class="mypage-section on" id="mypage_section_setting" >
 					<table class="tb-list" style="width: 50%; margin: 0 auto;">
 						<colgroup>
@@ -47,18 +64,18 @@
 							</tr>
 						</thead>
 						<tbody id="notice_list">
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${empty sessionScope.member_idxs}"> --%>
-<!-- 									<tr> -->
-<!-- 										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td> -->
-<!-- 									</tr> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:when test="${empty myInquiry }"> --%>
-<!-- 									<tr> -->
-<!-- 										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td> -->
-<!-- 									</tr> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
+							<c:choose>
+								<c:when test="${empty sessionScope.member_idx}">
+									<tr>
+										<td colspan="3" class="noMailForm">로그인 후 조회 가능합니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${empty myInquiry }">
+									<tr>
+										<td colspan="3" class="noMailForm">작성된 1:1문의가 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
 									<c:forEach var="myInquiry" items="${myInquiry}">
 										<tr>
 											<td class="tb-subj">
@@ -92,14 +109,10 @@
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${myInquiry.inq_date}" /></td>
 										</tr>
 									</c:forEach>
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
-
-<!-- 					<section id="buttonArea"> -->
-<!-- 						<input class="writeBtn" type="button" value="문의하기" onclick="location.href='inquiry_form'"> -->
-<!-- 					</section> -->
 
 						<c:choose>
 						<c:when test="${empty param.pageNum }">
@@ -118,7 +131,6 @@
 							<c:set var="pageNum" value="${param.pageNum }" />
 						</c:otherwise>
 					</c:choose>
-
 
 				</div>
 			</div>
