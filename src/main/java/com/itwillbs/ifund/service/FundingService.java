@@ -119,4 +119,7 @@ public class FundingService {
 	public List selectTodayOpenProject(ProjectListVO projectList) {
 		return mapper.selectTodayOpenProject(projectList);
 	}
+	public void updateFunding(ProjectVO project) {
+		mapper.updateFunding(project);
+	}
 }

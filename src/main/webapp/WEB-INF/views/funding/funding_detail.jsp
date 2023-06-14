@@ -406,6 +406,7 @@
 												<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
 										</div>
 									</div>
+									<c:if test="${empty fundingDetail.project_coming_soon_date }">
 										<div class="CommonInfo_rewardsWrap__2dogH">
 											<div class="Rewards_container__3UnkZ">
 												<div class="Rewards_title__30Vv2">
@@ -415,7 +416,6 @@
 														<p>${fundingDetail.project_start_date } ~ ${fundingDetail.project_end_date }</p>
 													</div>
 												</div>
-												<c:if test="${empty fundingDetail.project_coming_soon_date }">
 													<div class="Rewards_listBox__182Ct">
 														<div class="Rewards_list__VD-Af">
 														<!-- 리워드 카드 -->
@@ -474,7 +474,6 @@
 															</c:forEach>
 														</div>
 													</div>
-												</c:if>
 											</div>
 											<div class="RewardCTA_container__1F4fy">
 												<div class="RewardCTA_left__2uQx8">
@@ -507,6 +506,7 @@
 												</div>
 											</div>
 										</div>
+									</c:if>
 								</div>
 							</div>
 						</div>

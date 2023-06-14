@@ -23,7 +23,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	
 	<!-- 05-17 김동욱 파일처리 멀티파트 추가 -->
 	<!-- 파일 업로드에 사용되는 객체(org.springframework.web.multipart.commons.CommonsMultipartResolver) 설정 -->
 	<!-- 주의! id 속성에 "multipartResolver" 이름 사용 필수! -->

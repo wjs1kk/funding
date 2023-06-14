@@ -3,17 +3,24 @@ package com.itwillbs.ifund.controller;
 import java.net.http.*;
 import java.util.*;
 
+import javax.mail.internet.*;
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.*;
+import org.springframework.mail.javamail.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.ifund.service.BankService;
 import com.itwillbs.ifund.service.MemberService;
 import com.itwillbs.ifund.service.MypageService;
+import com.itwillbs.ifund.util.*;
 import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.PointVO;
@@ -98,6 +105,7 @@ public class MemberController {
 	
 	@GetMapping("findId")
 	public String findId(Model model, String member_email, MemberVO member) {
+		
 		return "member/findId";
 	}
 	
@@ -107,6 +115,43 @@ public class MemberController {
 		System.out.println(member_email);
 		Map findUser = memberService.findUser(member_email);
 		model.addAttribute("findUser", findUser);
+		return findUser;
+	}
+	
+	@PostMapping("findPass")
+	@ResponseBody
+	public Map findPass(String member_email, Model model, HttpSession session) {
+		try {
+			String keyCode = (String)session.getAttribute("keyCode");
+	        
+		    session.removeAttribute("keyCode");
+		        
+		    String newPwd = FindUtil.getNewPwd();
+		    System.out.println(newPwd);
+		    
+		    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		    String securePasswd = passwordEncoder.encode(newPwd);
+		    System.out.println(securePasswd);
+		    
+		    memberService.updatePass(member_email, securePasswd);
+		        
+		    String subject = "[IFund] 임시 비밀번호 발급 안내";
+		        
+		    String msg = "";
+		    msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		    msg += "<h3 style='color: blue;'><strong>" + member_email;
+		    msg += "님</strong>의 임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</h3>";
+		    msg += "<p>임시 비밀번호 : <strong>" + newPwd + "</strong></p></div>";
+		    
+		        
+			MailUtil.sendMail(member_email, subject, msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map findUser = memberService.findUser(member_email);
+		model.addAttribute("data", findUser);
+		
 		return findUser;
 	}
 }

@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.itwillbs.ifund.service.FundingService;
 import com.itwillbs.ifund.service.MainService;
-import com.itwillbs.ifund.vo.ProjectListVO;
+import com.itwillbs.ifund.vo.*;
 import com.itwillbs.ifund.service.MainService;
-import com.itwillbs.ifund.vo.RewardVO;
 
 @Controller
 public class HomeController {
@@ -30,8 +29,8 @@ public class HomeController {
 	
 	// 2023-06-13 박경은 - 최근 본 목록
 	@GetMapping("/")
-	public String home(Model model, HttpServletRequest request, HttpServletResponse response, ProjectListVO projectList, RewardVO reward) {
-		
+	public String home(Model model, HttpServletRequest request, HttpServletResponse response, ProjectListVO projectList, RewardVO reward, ProjectVO project) {
+		fundingService.updateFunding(project);
 //		List<ProjectListVO> projectOpneList = fundingService.selectOpenProject();
 //		model.addAttribute("projectOpneList", projectOpneList);
 		List list = mainService.slide();
@@ -74,18 +73,18 @@ public class HomeController {
 				}
 			}
 		}
-		if(goodsCookie != null ) {
-			if(goodsCookie.size() >=6) {
-				for (int i = goodsCookie.size() -6; i < goodsCookie.size(); i++) {
-					cookieList.add(goodsCookie.get(i));
-				}
-			}
-			else {
-				for (int i : goodsCookie) {
-					cookieList.add(i);
-				}
-			}
-		}
+//		if(goodsCookie != null ) {
+//			if(goodsCookie.size() >=6) {
+//				for (int i = goodsCookie.size() -6; i < goodsCookie.size(); i++) {
+//					cookieList.add(goodsCookie.get(i));
+//				}
+//			}
+//			else {
+//				for (int i : goodsCookie) {
+//					cookieList.add(i);
+//				}
+//			}
+//		}
 		ArrayList goodsProject = new ArrayList();
 		for(int i : cookieList) {
 			goodsProject.add(mainService.selectProject(i));
