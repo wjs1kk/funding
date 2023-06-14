@@ -1,7 +1,6 @@
 package com.itwillbs.ifund.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -15,64 +14,40 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.ifund.service.FundingService;
-import com.itwillbs.ifund.service.MainService;
 import com.itwillbs.ifund.service.MypageService;
-import com.itwillbs.ifund.vo.InquiryVO;
+import com.itwillbs.ifund.service.PreorderService;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.vo.RewardVO;
 
 @Controller
-public class FundingController {
+public class PreorderController {
 	@Autowired
 	private FundingService fundingService;
-	
+	@Autowired
+	private PreorderService preorderService;
 	@Autowired
 	private MypageService mypageService;
-	
-	@Autowired
-	private MainService mainService;
-	
-	@GetMapping("funding")
-	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
-		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
+	@GetMapping("preorder")
+	public String preorder(Model model,HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+		List<ProjectListVO> projectDetailList = preorderService.selectPreorderProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
-		
-		List list = mainService.slide();
-		model.addAttribute("list", list);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);
-//		찜하기관련
+		model.addAttribute("selectbox", selectbox);
 		if(session.getAttribute("member_idx") != null) {
 			List<String> selectWish = fundingService.selectWish(Integer.parseInt(String.valueOf(session.getAttribute("member_idx"))));
 			model.addAttribute("selectWish",selectWish);
 		}
-//		찜하기관련 끗
-		return "funding/funding";
+		return "preorder/preorder";
 	}
-//	찜하기
-	@PostMapping("funding_wish")
-	public String funding_wish(@RequestBody HashMap<String, Integer> map) {
-		fundingService.insertWish(map.get("project_idx"), map.get("member_idx"));
-		return "funding/funding";
-	}
-//	찜하기 취소
-	@PostMapping("funding_wish_cancel")
-	public String funding_wish_cancel(@RequestBody HashMap<String, Integer> map){
-		fundingService.cancelWish(map.get("project_idx"));
-		return "funding/funding";
-	}
-
-	
-	
-	@GetMapping("detail")
-	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
+	@GetMapping("preorder/detail")
+	public String preorder_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 //		06/13
@@ -93,6 +68,7 @@ public class FundingController {
 		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
+//		06/13
 		model.addAttribute("countWish", countWish);
 		
 //		06/13
@@ -104,56 +80,24 @@ public class FundingController {
 //		최근본 프로젝트 관련 끝
 		
 		System.out.println(fundingDetail);
-
-		return "funding/funding_detail";
+		return "preorder/preorder_detail";
 	}
-	
-	@PostMapping("inquiryPro")
-	public String inquiryPro(Model model, InquiryVO inquiry, String num, String inq_subject, String inq_content, HttpSession session, int maker_idx) {
-		String member_idx = session.getAttribute("member_idx").toString();
-		
-		inquiry.setMember_idx(Integer.parseInt(member_idx));
-		inquiry.setInq_subject(inq_subject);
-		inquiry.setInq_content(inq_content);
-		
-		int insertCount = fundingService.insertInquiry(inquiry);
-		
-		if(insertCount > 0) {
-			model.addAttribute("msg", "문의 완료");
-			model.addAttribute("target", "funding");
-			return "success";
-		} else {
-			model.addAttribute("msg", "문의하기 실패");
-			return "fail_back";
-		}
-	}
-	@GetMapping("comingsoon")
-	public String comingsoon(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
-		List comingsoonProject = fundingService.selectComingsoonProject(category, order);
-		List categoryList = fundingService.categoryList();
-		
-		List list = mainService.slide();
-		model.addAttribute("list", list);
-		
-		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("comingsoon", comingsoonProject);
-		
-		return "funding/comingsoon";
-	}
-	@GetMapping("rewardSelect")
+	@GetMapping("preorder/rewardSelect")
 	public String rewardSelect(Model model, String num) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
+		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
+		model.addAttribute("fundingDetail", fundingDetail);
 		model.addAttribute("selectReward", selectReward);
-		return "funding/rewardSelect";
+		return "preorder/preorder_rewardSelect";
 	}
 	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
-	@PostMapping("payment")
+	@PostMapping("preorder/payment")
 	public String payment(@RequestParam Map map, Model model, HttpSession session) {
 		String uuid = UUID.randomUUID().toString();
 		
 		if(session.getAttribute("member_idx") == null) {
 			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-			model.addAttribute("target", "login");
+			model.addAttribute("target", "../login");
 			return "success";
 		}
 		int member_idx = (Integer)session.getAttribute("member_idx");
@@ -185,22 +129,9 @@ public class FundingController {
 		model.addAttribute("myInfo", myInfo);
 		model.addAttribute("uuid", uuid.substring(0, 8));
 		
-		return "funding/payment";
+		return "preorder/preorder_payment";
 	}
-//	@GetMapping("preorder")
-//	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
-//		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order, selectbox);
-//		model.addAttribute("projectPreorderList", projectPreorderList);
-//		
-//		List categoryList = fundingService.categoryList();
-//		model.addAttribute("selectbox", selectbox);
-//		model.addAttribute("categoryList", categoryList);
-//		
-//		return "funding/preorder";
-//	}
-	
-	// 06-10 김동욱 결제하기
-	@PostMapping("paymentPro")
+	@PostMapping("preorder/paymentPro")
 	@ResponseBody
 	public void paymentPro(@RequestParam Map map, HttpSession session) {
 		int member_idx = (Integer)session.getAttribute("member_idx");
@@ -235,10 +166,8 @@ public class FundingController {
 		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트 및 결제 금액 5% 포인트 적립
 		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
 	}
-	
-	@GetMapping("paySuccess")
+	@GetMapping("preorder/paySuccess")
 	public String paySuccess() {
 		return "funding/pay_success";
 	}
-	
 }
