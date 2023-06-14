@@ -105,5 +105,7 @@ public interface ProjectCreateMapper {
 	String memberName(int member_idx);
 	
 	int dateCheck(int project_idx);
+	
+	int deleteProject(int project_idx);
 
 }

@@ -221,5 +221,9 @@ public class ProjectCreateService {
 	public int dateCheck(int project_idx) {
 		return mapper.dateCheck(project_idx);
 	}
+//	06-14 강정운 프로젝트 제출하지 않았을 시 삭제가능
+	public int deleteProject(int project_idx) {
+		return mapper.deleteProject(project_idx);
+	}
 		
 }

@@ -128,7 +128,28 @@
 		})
 		
 	})
-
+	// 06-14 강정운 프로젝트 제출하지 않았을 시 삭제가능
+	$(function() {
+		$("#deleteBtn").on("click", function() {
+			if(confirm("정말 삭제 하시겠습니까?") == false){
+				return false;
+			} else {
+				$.ajax({
+		   			 url: 'deleteProject',
+		   	          type: 'POST',
+		   	          data: {project_idx: ${param.project_idx}},
+		   	          success: function(response) {
+		   	        	  if(response){
+		   	        	  	alert("프로젝트가 삭제 되었습니다")
+						  	location.href = "/ifund/";		   	        		  
+		   	        	  } else {
+		   	        		  alert("이미 제출하신 프로젝트는 삭제할 수 없습니다.")
+		   	        	  }
+		   	          }
+					})
+			}
+		})
+	})
 </script>
 
 </head>
@@ -271,6 +292,8 @@
 								<div class="FundingSubmit_container__3kwkh">
 									<button type="button" disabled="" id="submitBtn"
 										class="wz button primary FundingSubmit_button__1Qs0d">제출하기</button>
+									<button type="button"  id="deleteBtn"
+										class="wz button primary FundingSubmit_button__1Qs0d">삭제하기</button>
 								</div>
 							</div>
 							<input type="hidden" id="project_plan">

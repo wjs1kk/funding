@@ -391,4 +391,8 @@
 		WHERE project_idx = #{project_idx}
 	</select>
 	
+	<delete id="deleteProject">
+		DELETE FROM project
+		WHERE project_idx = #{project_idx} AND project_approve_status = 0;
+	</delete>
 </mapper>

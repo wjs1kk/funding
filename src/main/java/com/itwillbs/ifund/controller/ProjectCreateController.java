@@ -515,7 +515,6 @@ public class ProjectCreateController {
 	@ResponseBody
 	public boolean calculateApply(CalculateVO cal, int project_idx, HttpServletResponse response) {
 		Integer checkCount = projectCreateService.applyCheck(project_idx);
-		System.out.println(checkCount);
 		if(checkCount != null) {
 			return false;
 		} else {
@@ -552,7 +551,6 @@ public class ProjectCreateController {
 	public String memberNameCheck(int project_idx) {
 		System.out.println(project_idx);
 		String member = projectCreateService.memberNameCheck(project_idx);
-		System.out.println(member);
 		return member;
 	}
 	
@@ -561,8 +559,19 @@ public class ProjectCreateController {
 	@ResponseBody
 	public int dateCheck(int project_idx) {
 		int dateCheck = projectCreateService.dateCheck(project_idx);
-		System.out.println(dateCheck);
 		return dateCheck;
+	}
+	
+//	06-14 강정운 프로젝트 제출하지 않았을 시 삭제가능
+	@PostMapping("project/deleteProject")
+	@ResponseBody
+	public boolean deleteProject(int project_idx) {
+		int deleteProject = projectCreateService.deleteProject(project_idx);
+		if(deleteProject == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }
