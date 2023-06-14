@@ -23,6 +23,7 @@
 			<td>${account.product_name }</td>
 			<td>${account.balance_amt }</td>
 			<td>${account.available_amt }</td>
+			<%--입금 할 계좌 한개 정해서 하드코딩 금액은 정산금액으로--%>
 		</tr>
 	</table>
 </body>

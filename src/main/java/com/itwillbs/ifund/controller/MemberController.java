@@ -57,7 +57,8 @@ public class MemberController {
 		}
 		
 		session.setAttribute("member_idx", member.getMember_idx());
-		
+		System.out.println(session.getAttribute("user_seq_no"));
+		System.out.println(session.getAttribute("access_token"));
 		return "redirect:/";
 	}
 	
@@ -87,7 +88,7 @@ public class MemberController {
 		
 		// 0607 김애리 추가 - 가입시 포인트 적립
 		mypageService.joinPoint(member.getMember_email());
-		
+		 
 		return "redirect:/login";
 	}
 }
