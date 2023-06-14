@@ -33,8 +33,8 @@
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
 				<h1 class="Inbox_title__3XRz2">메이커 문의</h1>
-				<div class="mypage-section on" id="mypage_section_setting" style="width: 65%; margin: 0 auto;">
-					<table class="tb-list">
+				<div class="mypage-section on" id="mypage_section_setting" >
+					<table class="tb-list" style="width: 50%; margin: 0 auto;">
 						<colgroup>
 							<col>
 							<col style="width: 18%">
@@ -43,7 +43,7 @@
 							<tr>
 								<th scope="col">제목</th>
 								<th scope="col">작성자</th>
-								<th scope="col">날짜</th>
+								<th scope="col" style="width: 18%">작성일</th>
 							</tr>
 						</thead>
 						<tbody id="notice_list">
@@ -80,14 +80,15 @@
 													<a href="inquiry_view?inq_idx=${myInquiry.inq_idx}">
 												</c:if> ${myInquiry.inq_subject} </a></td>
 												
-<%-- 											<td>${myInquiry.maker_idx}</td> --%>
-											
-												<c:if test="${ myInquiry.inq_re_lev ne 0 }">
-													
-											   		<td>${maker.maker_name}</td>
-											    </c:if>
-											
-																						
+												<td style="">
+													<c:if test="${myInquiry.inq_re_lev > 0 }">
+														<c:forEach var="i" begin="1" end="${myInquiry.inq_re_lev }">&nbsp;&nbsp;</c:forEach>
+														${myInquiry.maker_name}
+													</c:if> 
+													<c:if test="${myInquiry.inq_re_lev < 1 }">
+														${member.member_name}
+													</c:if>  
+												</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${myInquiry.inq_date}" /></td>
 										</tr>
 									</c:forEach>

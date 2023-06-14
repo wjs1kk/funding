@@ -55,11 +55,6 @@
 										<button class="MyWadizSupporterProfile_detailProfile__1JImc"
 											aria-label="프로필 상세 보기" data-event="profile"
 											style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"></button>
-										<button onclick="location.href='myInfo'" class="MyWadizSupporterProfile_editProfile__3HG_Z"
-											aria-label="프로필 편집하기" data-event="profile_edit">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-												<path d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path></svg>
-										</button>
 									</div>
 									<div class="MyWadizSupporterProfile_profileUser__a_r1P">
 										<button data-event="profile">
@@ -141,7 +136,7 @@
 																		<path fill="none" d="M0 0h40v40H0z"></path></g></svg>
 																	<span class="MyWadizSupporterAccumulate_name__1mWXC">쿠폰</span>
 																</dt>
-																<dd class="MyWadizSupporterAccumulate_value__1oBSj">4 장</dd>
+																<dd class="MyWadizSupporterAccumulate_value__1oBSj">${countCoupon } 장</dd>
 															</dl></a>
 													</div>
 												</div>
@@ -149,7 +144,7 @@
 													<div class="MyWadizSupporterProjectInfo_project__3Vaun">
 														<div class="MyWadizSupporterProjectInfo_projectLink__2K77b" style="height: 104px">
 															<strong class="BlindText_textHidden__ovQb4">결제 건수</strong>
-															<a href="history"><span>펀딩·프리오더</span><b>0</b></a>
+															<a href="history"><span>펀딩·프리오더</span><b>${countPayment }</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
 															<a href="/web/mywadiz/store/order"><span>공동구매</span><b>0</b></a>
 														</div>
