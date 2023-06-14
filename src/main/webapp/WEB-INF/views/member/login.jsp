@@ -39,7 +39,7 @@
 						
 						<div class="login-action">
 							<p class="forgot">
-								<a class="wz text" href="#" data-event="iam.signin.goto.forgot">로그인 정보를 잊으셨나요?</a>
+								<a class="wz text" href="findId" data-event="iam.signin.goto.forgot">로그인 정보를 잊으셨나요?</a>
 							</p>
 						</div>
 						<button type="submit" id="btnLogin" class="wz button primary block submit-button" data-event="iam.signin.submit">로그인</button>

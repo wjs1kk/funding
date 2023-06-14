@@ -42,14 +42,14 @@
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
  				location.href = "funding?category=" + $(this).text() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
- 				$(this).addClass('ImageTab_active__BGdXu');
+//  				$(this).addClass('ImageTab_active__BGdXu');
  			});
  		}
  		
  		for(let items of item) {
  			items.addEventListener("click", function() {
 				location.href = "funding?category=" + "${param.category}" + "&order=" + $(this).text() + '&selectbox=${param.selectbox}';
-				$(this).addClass('OrderSelectDesktop_active__YTP2K')
+// 				$(this).addClass('OrderSelectDesktop_active__YTP2K')
 			});
 		}
 	});
@@ -59,7 +59,6 @@
 		location.href="detail?num="+project_idx;	
 	}
 </script>
-
 </head>
 <script>
 	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
@@ -339,8 +338,10 @@
 					</div>
 				</div>
 				<script>
-					var para = document.location.href.split("?");
-					
+					var url = document.location.href
+					if(url.contains("${param.category}")) {
+						$(".ImageTab_tab__3siCY").addClass("ImageTab_active__BGdXu");
+					}
 				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
@@ -348,7 +349,7 @@
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체'? 'ImageTab_active__BGdXu' : '' }">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -360,7 +361,7 @@
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY">
+										class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -395,10 +396,10 @@
 								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
 							</select>
 							<ul id="itemList" class="OrderSelectDesktop_sortContainer__1YLsr">
-								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi">인기순</li>
-								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi">모집금액순</li>
-								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi">마감임박순</li>
-								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi">최신순</li>
+								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '인기순'? 'OrderSelectDesktop_active__YTP2K' : '' }">인기순</li>
+								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '모집금액순'? 'OrderSelectDesktop_active__YTP2K' : '' }">모집금액순</li>
+								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '마감임박순'? 'OrderSelectDesktop_active__YTP2K' : '' }">마감임박순</li>
+								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '최신순'? 'OrderSelectDesktop_active__YTP2K' : '' }">최신순</li>
 							</ul>
 						</div>
 					</div>
@@ -436,12 +437,9 @@
 													원
 												</p>
 											</div>
-											<script>
-												$( 'p' ).toggleClass( 'PreorderMainCard_success__2OWl7' );
-											</script>
 											<div class="PreorderMainCard_headerRight__3rRNi">
 												<c:if test="${selectbox eq 1 }">
-													<p><span id="done" class="">종료</span>∙<span class="PreorderMainCard_success__2OWl7">성공</span></p>
+													<p><span id="done" class="">종료</span>∙<span id="success" class="">성공</span></p>
 												</c:if>
 												<c:if test="${selectbox eq 0 }">
 													<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
@@ -507,7 +505,6 @@
 
 			<!-- footer.jsp -->
 			<jsp:include page="../inc/footer.jsp"></jsp:include>
-
 		</main>
 	</div>
 </body>

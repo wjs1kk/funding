@@ -94,10 +94,30 @@
 					}
 		        	  
 	          	}
-			})
-			
-			
+			})					
 		})	
+		$(function() {
+			$("#project_thumbnail").off().on("change", function(){
+				if (this.files && this.files[0]) {
+					
+					var file_path = $(this).val();
+					var maxSize = 3 * 1024 * 1024;
+					var fileSize = this.files[0].size;
+					var reg = /(.*?)\.(jpg|jpeg|png)$/;
+					
+					if(fileSize > maxSize){
+						alert("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
+						$(this).val('');
+						return false;
+					} else if(file_path != "" && (file_path.match(reg)) == null || reg.test(file_path) == false){
+						alert("허용된 확장자만 업로드 가능합니다.");
+						$(this).val('');
+						return false;
+					}
+				}
+			
+			});
+	})
 </script>
 </head>
 
@@ -164,7 +184,6 @@
 								<div class="Section_description__10Uwo">
 									<ul>
 										<li>3MB 이하의 JPG, JPEG, PNG 파일</li>
-										<li>해상도 1200x675 픽셀 이상</li>
 										<li>텍스트나 로고는 넣을 수 없어요.</li>
 									</ul>
 								</div>

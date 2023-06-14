@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -71,6 +72,9 @@ public class FundingController {
 		fundingService.cancelWish(map.get("project_idx"));
 		return "funding/funding";
 	}
+
+	
+	
 	@GetMapping("detail")
 	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
@@ -93,7 +97,6 @@ public class FundingController {
 		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
-//		06/13
 		model.addAttribute("countWish", countWish);
 		
 //		06/13
@@ -234,10 +237,6 @@ public class FundingController {
 		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
 	}
 	
-	@GetMapping("inquiry")
-	public String inquiry() {
-		return "funding/inquiry_form";
-	}
 	@GetMapping("paySuccess")
 	public String paySuccess() {
 		return "funding/pay_success";

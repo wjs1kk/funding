@@ -98,7 +98,9 @@
 
 	<update id="InfoUpdate">
 		UPDATE project SET
-		project_category = #{project_category},
+		project_category = (SELECT category_cd
+							FROM category
+							WHERE category_cd = #{project_category}),
 		project_introduce = #{project_introduce},
 		project_type = #{project_type},
 		project_target = #{project_target},

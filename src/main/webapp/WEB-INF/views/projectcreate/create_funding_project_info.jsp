@@ -159,6 +159,33 @@
 
 						})
 			})
+	//모달 닫기 버튼 클릭시 삭제와 동일하게 작동
+	$(function() {
+				$("#modal_close").on(
+						"click",
+						function() {
+							$('#modal').css('display', 'none');
+							$('#modal_open').css('display', 'block');
+							$('#first_page').css('display', 'block');
+							$('#complete_reward').css('display', 'none');
+							$('#second_page').css('display', 'none');
+							$('#reward_type').css('display', 'none');
+							$('#next').css('display', 'none');
+							$('#complete').css({
+								'pointer-events' : 'auto',
+								'background-color' : '#00c4c4',
+								'border-color' : '#00c4c4'
+							});
+							$("#ul_list").css('pointer-events', 'auto');
+							$("#category_result").text(
+									$("#category_basic").val()).css('color',
+									'gray');
+							$("input:radio[value=2P01]").prop('checked', false)
+							$("input:radio[value=2P02]").prop('checked', false)
+							$("input:radio[value=2P03]").prop('checked', false)
+
+						})
+			})
 	//저장하기 클릭시 서류 확인 후 정보저장	
 				$(function() {
 					$('#save').click(function(){
@@ -250,6 +277,54 @@
 						})
 						
 					});
+	//허용된 확장자, 크기만 업로드 가능
+	$(function() {
+			$("#project_identity").off().on("change", function(){
+				if (this.files && this.files[0]) {
+					
+					var file_path = $(this).val();
+					var maxSize = 10 * 1024 * 1024;
+					var fileSize = this.files[0].size;
+					var reg = /(.*?)\.(jpg|pdf|jpeg|png)$/;
+					
+					if(fileSize > maxSize){
+						alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+						$(this).val('');
+						return false;
+					} else if(file_path != "" && (file_path.match(reg)) == null || reg.test(file_path) == false){
+						alert("허용된 확장자만 업로드 가능합니다.");
+						$(this).val('');
+						return false;
+					}
+				}
+			
+			});
+	})
+	
+	$(function() {
+			$("#documents").off().on("change", function(){
+				if (this.files && this.files[0]) {
+					
+					var file_path = $(this).val();	
+					var maxSize = 10 * 1024 * 1024;
+					var fileSize = this.files[0].size;
+					var reg = /(.*?)\.(jpg|pdf|jpeg|png|zip|xlsx|hwp)$/;
+					
+					if(fileSize > maxSize){
+						alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+						$(this).val('');
+						return false;
+						
+					} else if(file_path != "" && (file_path.match(reg)) == null || reg.test(file_path) == false){
+						alert("허용된 확장자만 업로드 가능합니다.");
+						$(this).val('');
+						return false;
+					}
+				}
+			
+			});
+	})
+	
 
 </script>
 
@@ -310,23 +385,16 @@
 														style="width: 100%; height: 45px; font-size: 12pt; font-family: roboto"
 														class="select-menu__value-container select-menu__value-container--has-value css-1hwfws3"
 														name="project_category" id="project_category">
-														<option value="테크/가전">테크/가전</option>
-														<option value="패션/잡화">패션/잡화</option>
-														<option value="홈/리빙">홈/리빙</option>
-														<option value="뷰티">뷰티</option>
-														<option value="푸드">푸드</option>
-														<option value="출판">출판</option>
-														<option value="클래스/컨설팅">클래스/컨설팅</option>
-														<option value="래저/아웃도어">래저/아웃도어</option>
-														<option value="스포츠/모빌리티">스포츠/모빌리티</option>
-														<option value="컬쳐/아티스트">컬쳐/아티스트</option>
-														<option value="캐릭터/굿즈">캐릭터/굿즈</option>
-														<option value="베이비/키즈">베이비/키즈</option>
-														<option value="게임/취미">게임/취미</option>
-														<option value="여행/숙박">여행/숙박</option>
-														<option value="기부/캠페인">기부/캠페인</option>
-														<option value="후원">후원</option>
-														<option value="모임">모임</option>
+														<option value="01">테크/가전</option>
+														<option value="02">패션/잡화</option>
+														<option value="03">홈/리빙</option>
+														<option value="04">뷰티</option>
+														<option value="05">푸드</option>
+														<option value="06">출판</option>
+														<option value="07">클래스/컨설팅</option>
+														<option value="08">래저/아웃도어</option>
+														<option value="09">스포츠/모빌리티</option>
+														<option value="10">컬쳐/아티스트</option>
 													</select>
 												</div>
 											</div>
@@ -547,7 +615,7 @@
 										<button type="button"
 											class="wz button less icon dense ModalLayout_closeButton__3XepS"
 											id="modal_close"
-											onclick="location.href='screening?project_idx=' + ${param.project_idx}">
+											>
 											<svg viewBox="0 0 40 40" focusable="false"
 												role="presentation" class="withIcon_icon__3lrgp"
 												aria-hidden="true">

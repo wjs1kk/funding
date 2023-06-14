@@ -58,18 +58,21 @@ public class HomeController {
 				}
 			}
 //			필요없는 쿠키 삭제
-			if(goodsCookie.size() == 7) {
+			if(goodsCookie.size() >= 7) {
+				int count = goodsCookie.size() - 6;
 				for(int i = 0 ; i<cookies.length; i++) {
 					if(cookies[i].getName().startsWith("goods")) {
 						cookies[i].setPath("/");
 						cookies[i].setValue(null);
 						cookies[i].setMaxAge(0);			
 						response.addCookie(cookies[i]);
-						break;
+						count--;
+						if(count == 0) {
+							break;
+						}
 					}
 				}
 			}
-			
 		}
 		if(goodsCookie != null ) {
 			if(goodsCookie.size() >=6) {
