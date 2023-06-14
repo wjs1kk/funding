@@ -88,7 +88,6 @@
 					member_email: $("#userEmail").val(),
 					},
 				success: function(findUser) {
-
 					if(findUser.member_email == $("#userEmail").val()) {
 						$("#correctEmail").show();
 						$("#goToLogin").show();
@@ -115,11 +114,11 @@
 				},
 				success : function(data) {
 					if(data.member_email == $("#userName").val()) {
-						alert('인증번호가 전송되었습니다.')
+						alert('임시 비밀번호가 전송되었습니다.')
 					} else {
 						alert('등록되지 않은 이메일입니다.');
 					}
-				}			
+				}		
 			}); // end ajax
 		}); // end send eamil
 	});

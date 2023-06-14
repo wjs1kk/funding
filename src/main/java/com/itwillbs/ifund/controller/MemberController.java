@@ -105,7 +105,6 @@ public class MemberController {
 	
 	@GetMapping("findId")
 	public String findId(Model model, String member_email, MemberVO member) {
-		
 		return "member/findId";
 	}
 	
@@ -118,6 +117,7 @@ public class MemberController {
 		return findUser;
 	}
 	
+	// 이메일 보낼 내용
 	@PostMapping("findPass")
 	@ResponseBody
 	public Map findPass(String member_email, Model model, HttpSession session) {
@@ -153,5 +153,64 @@ public class MemberController {
 		model.addAttribute("data", findUser);
 		
 		return findUser;
+	}
+	
+	@PostMapping("emailConfirm")
+	@ResponseBody
+	public MemberVO emailConfirm(HttpSession session, String member_email, Model model, MemberVO member, HttpServletRequest req) {
+		try {
+			String keyCode = (String)session.getAttribute("keyCode");
+			
+			member = memberService.selectUser(member_email);
+			
+			if(member.getMember_email() != req.getParameter("member_email")) {
+				session.removeAttribute("keyCode");
+			    
+			    String message = FindUtil.getNewPwd();
+			    System.out.println(message);
+			    
+			    model.addAttribute("member", member);
+			    model.addAttribute("message", message);
+			    
+			    String subject = "[IFund] 이메일 인증 코드 발급 안내";
+			        
+			    String msg = "";
+			    msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			    msg += "<h3 style='color: blue;'><strong>" + member_email;
+			    msg += "님</strong>의 이메일 인증 코드 입니다.</h3>";
+			    msg += "<p>인증 코드 : <strong>" + message + "</strong></p></div>";
+			    
+				MailUtil.sendMail(member_email, subject, msg);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return member;
+	}
+	
+	@PostMapping("messageConfirm")
+	@ResponseBody
+	public void messageConfirm(HttpSession session, String member_email, Model model, MemberVO member, String message) {
+		try {
+			member = memberService.selectUser(member_email);
+			
+			session.removeAttribute("keyCode");
+			
+			model.addAttribute("member", member);
+			model.addAttribute("message", message);
+			
+			String subject = "[IFund] 이메일 인증 코드 발급 안내";
+			
+			String msg = "";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: blue;'><strong>" + member_email;
+			msg += "님</strong>의 이메일 인증 코드 입니다.</h3>";
+			msg += "<p>인증 코드 : <strong>" + message + "</strong></p></div>";
+			
+			MailUtil.sendMail(member_email, subject, msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
