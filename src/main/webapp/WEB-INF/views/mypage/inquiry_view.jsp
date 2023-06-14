@@ -33,7 +33,7 @@
 		<div id="inbox-app">
 			<div class="Inbox_contents__3iZY_">
 				<h1 class="Inbox_title__3XRz2">메이커 문의</h1>
-					<div class="container py-5" style="width: 65%; margin: 0 auto;">
+					<div class="container py-5" style="width: 50%; margin: 0 auto;">
 					<div class="row">
 						<div class="col-md-8 pb-6">
 							<div class="mypage-section on" id="mypage_section_point" style="">
@@ -43,7 +43,16 @@
 									<fieldset>
 										<section class="section-form">
 											<div class="form-header">
-												<h2 class="tit-size-mid">${inquiryVO.inq_subject}</h2>
+												<h2 class="tit-size-mid">
+													<c:choose>
+														<c:when test="${inquiryVO.inq_progress eq '진행중'}">
+															<span class="it-notice" style="background-color: #ffab00">${inquiryVO.inq_progress}</span>
+														</c:when>
+														<c:otherwise>
+															<span class="it-notice" style="background-color: #97cf2f">${inquiryVO.inq_progress}</span>
+														</c:otherwise>
+													</c:choose>
+													${inquiryVO.inq_subject}</h2>
 											</div>
 											
 											<div class="form-cont">
@@ -53,7 +62,6 @@
 													<div class="input-cont">
 														<div class="inputT">
 															<div id="board_subject">
-																<span class="it-notice">${inquiryVO.inq_progress}</span>
 																${inquiryVO.inq_subject}
 															</div>
 														</div>
@@ -84,7 +92,9 @@
 										<fieldset>
 											<section class="section-form">
 												<div class="form-header">
-													<h2 class="tit-size-mid">${inquiryVO.inq_subject}</h2>
+													<h2 class="tit-size-mid">
+														<span class="it-notice">${inquiryVO.inq_progress}</span>
+														${inquiryVO.inq_subject}</h2>
 												</div>
 												<div class="form-cont">
 													<div class="row type2">
@@ -93,7 +103,6 @@
 														<div class="input-cont">
 															<div class="inputT">
 																<div id="board_subject">
-																	<span class="it-notice">${inquiryVO.inq_progress}</span>
 																	${inquiryVO.inq_subject}
 																</div>
 															</div>
@@ -120,7 +129,7 @@
 										</fieldset>
 									</c:if>
 									<section id="commandList">
-										<input type="button" value="목록" onclick="history.back()" style="background-color: #0d6ffc;">
+										<input type="button" value="목록" onclick="history.back()" style="background-color: #00c4c4;">
 			
 									</section>
 								</form>
