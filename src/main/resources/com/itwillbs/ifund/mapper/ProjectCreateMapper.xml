@@ -332,6 +332,7 @@
 		WHERE pm.project_idx = #{project_idx};
 	</select>
 	
+	
 	<insert id="calculateApply">
 		INSERT INTO calculate
 		VALUES (
@@ -340,13 +341,8 @@
 		, #{member_idx}
 		, #{project_title}
 		, #{calculate_fee}
+		, #{fintech_use_num}
 		, 0
-		, (SELECT account_num
-		   FROM account
-		   WHERE member_idx = #{member_idx})
-		, (SELECT bank_code_std
-		   FROM account
-		   WHERE member_idx = #{member_idx})
 		, #{calculate_charge}
 		, now()
 		)

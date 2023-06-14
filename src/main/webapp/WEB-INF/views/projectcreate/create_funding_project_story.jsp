@@ -261,6 +261,7 @@
 														filesArr.forEach(function(f) {
 															if(!f.type.match("image.*")){
 																alert("이미지 확장자만 업로드 가능합니다.")
+																$("input[id=images]").val("");
 																return;
 															}
 															

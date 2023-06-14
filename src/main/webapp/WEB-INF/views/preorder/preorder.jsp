@@ -425,10 +425,8 @@
 										<div class="PreorderMainCard_header__R39X1">
 											<div class="PreorderMainCard_headerLeft__2nwa1">
 												<p class="PreorderMainCard_participants__JDp58">
-													<fmt:formatNumber
-														value="${(projectDetailList.project_detail_amount/projectDetailList.project_target)}"
-														type="percent" />
-													달성
+													${projectDetailList.project_detail_person }
+													명 참여
 												</p>
 												<p class="PreorderMainCard_amount__3UOXm">
 													<fmt:formatNumber

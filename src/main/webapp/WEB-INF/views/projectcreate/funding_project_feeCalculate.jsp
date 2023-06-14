@@ -121,7 +121,8 @@
 		        	  member_idx: $("#memberIdx").val(),
 		        	  project_title: $("#projectTitle").text(),
 		        	  calculate_fee: $("#project_money").val(),
-		        	  calculate_charge: $("#chargeMoney").text()
+		        	  calculate_charge: $("#chargeMoney").text(),
+		        	  fintech_use_num: $("#fintech_use_num").val()
 		        	  },
 		          success: function(response) {
 		        	  if(response == false){
@@ -134,6 +135,25 @@
 			
 		});
 	})
+	
+	$(function() {
+		$.ajax({
+			type: "post",
+			url: "../admin/getResponseUserInfoVO",
+			dataType: "JSON",
+			data: {member_idx:${sessionScope.member_idx}
+			},
+			success: function(response) {
+				$.each(response.res_list, function(index, item) { // 데이터 =item
+					console.log(item)
+					$("#fintech_use_num").append('<option value="'+ item.fintech_use_num +'" >'+ item.fintech_use_num +'</option>')
+				});
+				
+// 				console.log(response.res_list);
+			}
+		});
+	})
+	
 </script>
 </head>
 <input type="hidden" id="memberIdx">
@@ -228,6 +248,30 @@
 																type="button" style="width: 20%;" id="calculate_save"
 																value="정산 내역서 보기"
 																class=" Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD FundingPlanLayout_submitBtn__1EzVj">
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="MouseOverGuide_container__3jDBz">
+												<div class="MouseOverGuide_contents__APrXG">
+													<div class="MakerInfoInputField_container__4b8t-">
+														<div
+															class="TextField_textField__23rCe TextField_md__2zsQn">
+															<label><div>
+																	<div class="ToolTipMobile_toolTipContainer__2tYPd">
+																		<span
+																			class="ToolTipMobile_label__1dBSo ToolTipMobile_required__3WiIn"> 정산받을 계좌의 핀테크 이용 번호 선택</span>
+																	</div>
+																</div></label> <span class="TextField_field__1E9vt">
+																
+																<select style="width: 50%; height: 30px; color:#BBBBBB; padding-left: 13px; font-family: inherit; font-size:14px; border: none;"
+																  id="fintech_use_num" name="fintech_use_num">
+																	<option value="" hidden>핀테크 이용 번호 선택</option>
+																	
+																</select>
+																
 															</span>
 														</div>
 													</div>
