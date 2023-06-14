@@ -232,15 +232,13 @@
 					AND p.project_status = ${selectOption}
 				</if>
 				ORDER BY p.project_idx DESC;
-<!-- 				<if test="selectOption = 3"> -->
-<!-- 					AND p.project_approve_status = ${selectOption} -->
-<!-- 				</if> -->
 	</select>  
 	
 	<!-- 0517 은산 승인대기 목록--> 
 	<select id="selectPendingList" resultType="map">
-		select * from project p JOIN member m ON p.member_idx = m.member_idx
-			WHERE p.project_approve_status = 1;
+		SELECT * FROM project p JOIN member m ON p.member_idx = m.member_idx
+			WHERE p.project_approve_status = 1
+			 ORDER BY p.project_idx DESC;
 	</select>
 	
   	<!-- 0521 은산 프로젝트 상세-->
@@ -352,12 +350,14 @@
 				where project_idx = #{projectIdx}
 	</update>
 	
+	<!-- 리워드 리스트 -->
 	<select id="selectRewardList" resultType="com.itwillbs.ifund.vo.RewardVO">
 		select * 
 			from reward
 				where project_idx = #{project_idx}
 	</select>
 	
+	<!-- 결제내역 -->
 	<select id="selectPaymentList" resultType="map">
 		select 
 			   payment_date
@@ -383,6 +383,31 @@
 			WHERE calculate_approve = 0;		
 	</select>
 	
+	<!-- 정산내역  -->
+<!-- 	<select id="selectAllmanagementList" resultType="map"> -->
+<!-- 	SELECT  p.project_idx -->
+<!-- 		   ,p.project_type -->
+<!-- 		   ,p.project_title -->
+<!-- 		   ,p.project_start_date -->
+<!-- 		   ,p.project_end_date -->
+<!-- 		   ,p.project_target -->
+<!-- 		   ,p.project_approve_status -->
+<!-- 		   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate  -->
+<!-- 		   ,m.member_name -->
+<!-- 		   ,pd.project_detail_amount -->
+<!-- 		   ,pd.project_detail_person -->
+<!-- 		   ,DATEDIFF(now(), p.project_end_date) AS d_day -->
+<!-- 		FROM project p  -->
+<!-- 		JOIN member m  -->
+<!-- 		  ON p.member_idx = m.member_idx -->
+<!-- 		JOIN project_detail pd  -->
+<!-- 		  ON p.project_idx = pd.project_idx -->
+<!-- 		WHERE 1=1 -->
+<!-- 			<if test="selectOption != 0"> -->
+<!-- 				AND p.project_status = ${selectOption} -->
+<!-- 			</if> -->
+<!-- 			ORDER BY p.project_idx DESC; -->
+<!-- 	</select>   -->
 	<select id="selectRepresentative" resultType="map">
 		SELECT *
 		FROM representative
@@ -393,5 +418,11 @@
 		SELECT *
 		FROM account
 		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<!-- 메인 그래프 -->
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*)
+			FROM project;
 	</select>
 </mapper>

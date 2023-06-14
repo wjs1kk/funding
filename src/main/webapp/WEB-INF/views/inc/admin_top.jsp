@@ -79,7 +79,6 @@ window.onload = function() {
                 </svg>
 			</span> <span class="app-brand-text demo menu-text fw-bolder ms-2">ifund</span>
 			</a> <a href='${pageContext.request.contextPath }/admin' class="menu-link">
-				<i class="bx bx-chevron-left bx-sm align-middle"></i>
 			</a>
 		</div>
 
@@ -87,14 +86,27 @@ window.onload = function() {
 
 		<ul class="menu-inner py-1 ps">
 			<!-- Dashboard -->
+			
+			<li id="admin" class="menu-item" style="margin-bottom: 20px">
+				<a href='${pageContext.request.contextPath }/admin' class="menu-link">
+					<div>
+						<span style="font-weight: bold;">${sessionScope.member_name}</span><span>님</span>
+					</div>	
+				</a>
+			</li>
+			
 			<li id="admin" class="menu-item">
 				<a href='${pageContext.request.contextPath }/admin' class="menu-link">
-<!-- 					<i class="menu-icon tf-icons bx bx-home-circle"></i> -->
 					<i class="bx bx-crown" ></i>
 					<div data-i18n="Analytics">&nbsp;관리자 홈</div>	
 				</a>
 			</li>
-			
+			<li id="admin" class="menu-item">
+				<a href='${pageContext.request.contextPath }/' class="menu-link">
+					<i class="menu-icon tf-icons bx bx-home-circle"></i>
+					<div data-i18n="Analytics">메인</div>	
+				</a>
+			</li>
 			<!-- Layouts -->
 			<li class="menu-item open" style="">
 				<ul class="menu-sub">
@@ -120,11 +132,11 @@ window.onload = function() {
 					</a></li>
 					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/management"
 						class="menu-link">
-							<div data-i18n="Blank">정산관리</div>
+							<div data-i18n="Blank">정산 신청 관리</div>
 					</a></li>
-					<li id="accountInfo"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/accountInfo"
+					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/managementList"
 						class="menu-link">
-							<div data-i18n="Blank">계좌관리(수정예정)</div>
+							<div data-i18n="Blank">정산 내역</div>
 					</a></li>
 				</ul>
 			</li>
@@ -136,12 +148,7 @@ window.onload = function() {
 				<div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
 			</div>
 			
-			<li id="admin" class="menu-item">
-				<a href='${pageContext.request.contextPath }/' class="menu-link">
-					<i class="menu-icon tf-icons bx bx-home-circle"></i>
-					<div data-i18n="Analytics">메인</div>	
-				</a>
-			</li>
+			
 		</ul>
 	</aside>
 </body>

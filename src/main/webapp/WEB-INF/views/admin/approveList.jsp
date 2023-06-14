@@ -97,9 +97,9 @@
 		let comingSoonDate = $("input[name=project_coming_soon_date]");
 		$("#project_idx").val(project_idx);
 		$("#project_title").val(project_title);
-		
+		alert(project_plan);
 		// 오픈예정
-		if (project_plan == Plan.LIGHT) {
+		if (project_plan == 1) {
 		  comingSoonDate.attr('readonly', true);
 		  comingSoonDate.attr('placeholder', '날짜를 지정할 수 없습니다.');
 		} 
@@ -111,6 +111,7 @@
 		$("#project_idx2").val(project_idx);
 		$("#project_title2").val(project_title);
 	}
+	
 	
 </script>
 <!-- 모달 css -->
@@ -149,7 +150,6 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
 								<button type="button" id="xBtnapprove" class="btn-close"
 									data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
@@ -167,7 +167,7 @@
 										<label for="html5-date-input" class="col-md-2 col-form-label">오픈예정+</label>
 										<div class="col-md-12">
 											<input class="form-control" name="project_coming_soon_date" type="date" placeholder="DD / MM / YY"
-												id="html5-date-input">
+												id="comingsoonDate">
 										</div>
 									</div>
 								</div>
@@ -176,14 +176,14 @@
 										<label for="html5-date-input" class="col-md-2 col-form-label">시작일</label>
 										<div class="col-md-12">
 											<input class="form-control" name="project_start_date" type="date" placeholder="DD / MM / YY"
-												id="html5-date-input">
+												id="startDate">
 										</div>
 									</div>
 									<div class="col mb-0">
 										<label for="html5-date-input" class="col-md-2 col-form-label">마감일</label>
 										<div class="col-md-12">
 											<input class="form-control" name="project_end_date" type="date" placeholder="DD / MM / YY"
-												id="html5-date-input">
+												id="endDate">
 										</div>
 									</div>
 								</div>
@@ -209,7 +209,6 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
 								<button type="button" id="xBtndenied" class="btn-close"
 									data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
@@ -246,77 +245,30 @@
 			<!-- Layout container -->
 			<div class="layout-page">
 				<!-- Navbar -->
-				<nav
-					class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-					id="layout-navbar">
-					<div
-						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-						<a class="nav-item nav-link px-0 me-xl-4"
-							href="javascript:void(0)"> <i class="bx bx-menu bx-sm"></i>
-						</a>
-					</div>
-
-					<div class="navbar-nav-right d-flex align-items-center"
-						id="navbar-collapse">
-
-						<ul class="navbar-nav flex-row align-items-center ms-auto">
-							<!-- Place this tag where you want the button to render. -->
-
-							<!-- User -->
-							<li class="nav-item navbar-dropdown dropdown-user dropdown">
-								<a class="nav-link dropdown-toggle hide-arrow"
-								href="javascript:void(0);" data-bs-toggle="dropdown">
-									<div class="avatar avatar-online">
-<!-- 										<img src="resources/assets/img/avatars/1.png" alt -->
-<!-- 											class="w-px-40 h-auto rounded-circle" /> -->
-									</div>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-end">
-									<li><a class="dropdown-item" href="#">
-											<div class="d-flex">
-												<div class="flex-shrink-0 me-3">
-													<div class="avatar avatar-online">
-<!-- 														<img src="resources/assets/img/avatars/1.png" alt -->
-<!-- 															class="w-px-40 h-auto rounded-circle" /> -->
-													</div>
-												</div>
-												<div class="flex-grow-1">
-													<span class="fw-semibold d-block">John Doe</span> <small
-														class="text-muted">Admin</small>
-												</div>
-											</div>
-									</a></li>
-									<li>
-										<div class="dropdown-divider"></div>
-									</li>
-									<li><a class="dropdown-item" href="#"> <i
-											class="bx bx-user me-2"></i> <span class="align-middle">My
-												Profile</span>
-									</a></li>
-									<li><a class="dropdown-item" href="#"> <i
-											class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
-									</a></li>
-									<li><a class="dropdown-item" href="#"> <span
-											class="d-flex align-items-center align-middle"> <i
-												class="flex-shrink-0 bx bx-credit-card me-2"></i> <span
-												class="flex-grow-1 align-middle">Billing</span> <span
-												class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-										</span>
-									</a></li>
-									<li>
-										<div class="dropdown-divider"></div>
-									</li>
-									<li><a class="dropdown-item" href="auth-login-basic.html">
-											<i class="bx bx-power-off me-2"></i> <span
-											class="align-middle">Log Out</span>
-									</a></li>
-								</ul>
-							</li>
-							<!--/ User -->
-						</ul>
-					</div>
-				</nav>
-				<!-- / Navbar -->
+				<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+			      <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+			        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+			          <i class="bx bx-menu bx-sm"></i>
+			        </a>
+			      </div>    
+			      <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">    
+			        <!-- Search -->
+			        <div class="navbar-nav align-items-center">
+			          <div class="nav-item d-flex align-items-center">
+			            <i class="bx bx-search fs-4 lh-0"></i>
+			            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+			          </div>
+			        </div>
+			        <!-- /Search -->       
+			        <ul class="navbar-nav flex-row align-items-center ms-auto">        
+			          <!-- Place this tag where you want the button to render. -->
+			          <li class="nav-item lh-1 me-3">
+			            <span></span>
+			          </li>
+			        </ul>
+			      </div>
+			  </nav>
+			<!-- / Navbar -->
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
 					<!-- Content -->
@@ -359,7 +311,7 @@
 													<div class="input-group" onclick="event.stopPropagation();">
 														<button class="btn btn-outline-primary dropdown-toggle"
 															type="button" data-bs-toggle="dropdown"
-															aria-expanded="false">Dropdown</button>
+															aria-expanded="false">메뉴</button>
 														<ul class="dropdown-menu dropdown-menu-end" style="">
 															<li><a class="dropdown-item" id="approveBtn"
 																onclick="modalApprove(${pendingList.project_plan}, ${pendingList.project_idx}, '${pendingList.project_title}')">승인</a></li>
@@ -412,5 +364,16 @@
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	
+<script type="text/javascript">
+	var now_utc = Date.now() // 지금 날짜를 밀리초로
+	// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+	var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+	// new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
+	var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+	document.getElementById("startDate").setAttribute("min", today);
+	document.getElementById("endDate").setAttribute("min", today);
+	document.getElementById("comingsoonDate").setAttribute("min", today);
+</script>
 </body>
 </html>

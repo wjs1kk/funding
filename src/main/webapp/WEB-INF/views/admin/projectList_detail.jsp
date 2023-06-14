@@ -203,6 +203,8 @@
 														</c:when>
 														<c:when test="${project.project_status eq 1 }">
 															<span class="badge bg-primary">진행중</span>
+															<span class="badge bg-label-secondary">${Math.abs(project.d_day)}일 남음
+															</span>
 														</c:when>
 														<c:otherwise>
 															<span class="badge bg-label-secondary">오픈전</span>
@@ -212,20 +214,16 @@
 												<c:if test="${project.project_status > 0}">
 													<c:if test="${project.d_day > 0}">
 														<div style="margin-top: 15px;">
-															<span style="line-height: 34px;
-																font-size: 24px; font-weight: 500;">
+															<span>
 																${project.project_detail_person}명
 															</span>
 															<span>
 																 참여
 															</span>
-															<span style="border: solid 1px #e7f9f9; background-color: #e7f9f9;
-																color: #00c4c4;">${Math.abs(project.d_day)}일 남음
-															</span>
+															
 														</div>
 														<div style="margin-top: 15px;">
-															<span style="line-height: 34px;
-															font-size: 24px; font-weight: 500;">
+															<span>
 																<fmt:formatNumber value="${project.project_detail_amount}" pattern="#,###" />원
 															</span>
 															<span>
@@ -235,8 +233,7 @@
 													</c:if>
 													<c:if test="${project.d_day < 0}">
 														<div style="margin-top: 15px;">
-															<span style="line-height: 34px;
-																font-size: 24px; font-weight: 500;">
+															<span>
 																${project.project_detail_person}명
 															</span>
 															<span>
@@ -244,8 +241,7 @@
 															</span>
 														</div>
 														<div style="margin-top: 15px;">
-															<span style="line-height: 34px;
-															font-size: 24px; font-weight: 500;">
+															<span>
 																<fmt:formatNumber value="${project.project_target}" pattern="#,###" />원
 															</span>
 															<span>
@@ -315,11 +311,22 @@
 											</div>
 											<div class="mb-3">
 												<label class="form-label" for="basic-default-email">오픈예정+</label>
-												<div class="input-group input-group-merge">
-													<input type="text" class="form-control"
-														value="${project.project_coming_soon_date}"
-														id="basic-default-company">
-												</div>
+												<c:choose>
+													<c:when test="${!empty project.project_coming_soon_date and project.project_coming_soon_date eq null }">
+														<div class="input-group input-group-merge">
+															<input type="text" class="form-control"
+																value="${project.project_coming_soon_date}"
+																id="basic-default-company">
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="input-group input-group-merge">
+															<input type="text" class="form-control"
+																value="지정되지 않았습니다."
+																id="basic-default-company">
+														</div>	
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div class="mb-3">
 												<label class="form-label" for="basic-default-fullname">시작일</label>

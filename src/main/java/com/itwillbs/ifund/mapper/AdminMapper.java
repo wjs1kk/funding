@@ -87,6 +87,8 @@ public interface AdminMapper {
 	public List selectCalculateList(CalculateVO calculate);
 	public Map selectRepresentative(int member_idx);
 	public AccountVO getAccountVO(int member_idx);
+	public int getCount(ProjectVO project);
+
 
 
 }

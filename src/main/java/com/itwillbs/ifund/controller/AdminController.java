@@ -88,19 +88,27 @@ public class AdminController {
 
 	@Value("${client_id}")
 	private String client_id;
-
+ 
 	// 관리자 메인페이지
 	@GetMapping("admin")
-	public String admin(String member_email, Model model, HttpSession session) {
+	public String admin(String member_email, Model model, HttpSession session, ProjectVO project) {
 		String isAdmin = (String) session.getAttribute("isAdmin");
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
-
+		
+		// 메인 그래프
+		int count = adminService.getCount(project);
+		model.addAttribute("count", count);
+		
 		if (member_idx == null || isAdmin.equals(Role.BASIG_MEMBER.code)) {
 			model.addAttribute("msg", "접근 권한이 없습니다.");
 			return "fail_back";
 		} else {
 			return "admin/index";
 		}
+		
+		
+		
+		
 	}
 
 	// 2023-06-02 박경은 - 로그아웃
@@ -707,6 +715,13 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return "admin/management";
 	}
+	
+	@GetMapping("admin/managementList")
+	public String managementList(Model model, CalculateVO calculate, HttpSession session) {
+
+		return "admin/managementList";
+	}
+	
 	
 	@PostMapping("admin/getResponseUserInfoVO")
 	@ResponseBody

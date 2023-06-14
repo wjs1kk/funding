@@ -196,4 +196,12 @@ public class AdminService {
 		return mapper.getAccountVO(member_idx);
 	}
 
+	public int getCount(ProjectVO project) {
+		return mapper.getCount(project);
+	}
+
+
+
+	
+
 }

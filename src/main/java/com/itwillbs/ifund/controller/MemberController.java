@@ -57,6 +57,9 @@ public class MemberController {
 		}
 		
 		session.setAttribute("member_idx", member.getMember_idx());
+		session.setAttribute("member_name", member.getMember_name());
+		
+		
 		System.out.println(session.getAttribute("user_seq_no"));
 		System.out.println(session.getAttribute("access_token"));
 		return "redirect:/";
