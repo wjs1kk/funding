@@ -97,8 +97,10 @@ public class AdminController {
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		
 		// 메인 그래프
-//		int count = adminService.getCount(project);
-//		model.addAttribute("count", count);
+		Map count = adminService.getCount(project);
+		Map balanceCount = adminService.getBalanceCount();
+		model.addAttribute("count", count);
+		model.addAttribute("balanceCount", balanceCount);
 		
 		if (member_idx == null || isAdmin.equals(Role.BASIG_MEMBER.code)) {
 			model.addAttribute("msg", "접근 권한이 없습니다.");
@@ -114,9 +116,6 @@ public class AdminController {
 		String isAdmin = (String) session.getAttribute("isAdmin");
 		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		
-		// 메인 그래프
-		int count = adminService.getCount(project);
-		model.addAttribute("count", count);
 		
 		if (member_idx == null || isAdmin.equals(Role.BASIG_MEMBER.code)) {
 			model.addAttribute("msg", "접근 권한이 없습니다.");

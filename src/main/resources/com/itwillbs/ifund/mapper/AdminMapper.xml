@@ -421,11 +421,11 @@
 	</select>
 	
 	<!-- 메인 그래프 -->
-<!-- 	<select id="getCount" resultType="map"> -->
-<!-- 		SELECT -->
-<!-- 		(SELECT COUNT(*)FROM project) as 'project', -->
-<!-- 		(SELECT count(*)FROM project WHERE project_category = "푸드") as 'food' -->
-<!-- 	</select> -->
+	<select id="getCount" resultType="map">
+		SELECT
+		(SELECT COUNT(*)FROM project) as 'project',
+		(SELECT COUNT(*)FROM project WHERE project_category = "푸드") as 'food'
+	</select>
 	
 	<!-- 정산 출금 기록 -->
 	<insert id="insertAccountHistory">
@@ -456,5 +456,16 @@
 	<select id="selectAccountHistory" resultType="map">
 		SELECT *
 			FROM account_history
+	</select>
+	
+	<select id="selectBalanceCount" resultType="map">
+		SELECT 
+		 (SELECT balance FROM account_history ORDER BY history_idx LIMIT 0,1) AS "first"
+		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 1,1) AS "second"
+		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 2,1) AS "third";
+<!-- 		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 3,1) AS "fourth"; -->
+<!-- 		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 4,1) AS "fifth"; -->
+<!-- 		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 5,1) AS "sixth"; -->
+<!-- 		,(SELECT balance FROM account_history ORDER BY history_idx LIMIT 6,1) AS "seventh"; -->
 	</select>
 </mapper>

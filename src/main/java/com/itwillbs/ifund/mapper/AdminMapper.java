@@ -87,10 +87,11 @@ public interface AdminMapper {
 	public List selectCalculateList(CalculateVO calculate);
 	public Map selectRepresentative(int member_idx);
 	public AccountVO getAccountVO(int member_idx);
-	public int getCount(ProjectVO project);
+	public Map getCount(ProjectVO project);
 	public int insertAccountHistory(@Param("member_idx") int member_idx, @Param("project_idx") int project_idx, @Param("calculate_fee") int calculate_fee);
 	public void updateCalApprove(int project_idx);
 	public List selectAccountHistory();
+	public Map selectBalanceCount();
 
 
 
