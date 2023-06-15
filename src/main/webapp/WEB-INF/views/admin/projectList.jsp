@@ -196,7 +196,7 @@ ul li {
 												</c:choose>
 												<td>${projects.project_title }</td>
 												<c:choose>
-													<c:when test="${projects.project_type eq 0}">
+													<c:when test="${projects.project_type eq 1}">
 														<td>펀딩</td>
 													</c:when>
 													<c:otherwise>
