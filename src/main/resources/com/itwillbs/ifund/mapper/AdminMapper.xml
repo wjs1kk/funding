@@ -380,7 +380,7 @@
 		FROM calculate c
 			JOIN member m		
 			  ON c.member_idx = m.member_idx		
-			WHERE calculate_approve = 0;		
+			
 	</select>
 	
 	<!-- 정산내역  -->
@@ -421,8 +421,40 @@
 	</select>
 	
 	<!-- 메인 그래프 -->
-	<select id="getCount" resultType="int">
-		SELECT COUNT(*)
-			FROM project;
+	<select id="getCount" resultType="map">
+		SELECT
+		(SELECT COUNT(*)FROM project) as 'project',
+		(SELECT count(*)FROM project WHERE project_category = "푸드") as 
+	</select>
+	
+	<!-- 정산 출금 기록 -->
+	<insert id="insertAccountHistory">
+		INSERT INTO account_history 
+			<selectKey keyProperty="balance" resultType="int"
+				order="BEFORE">
+				SELECT balance FROM account_history ORDER BY history_idx DESC LIMIT 1 
+			</selectKey>
+			values(
+				 NULL
+				,#{project_idx}
+				,(select member_name from member where member_idx = #{member_idx})
+				,'w'
+				,#{calculate_fee}
+				,#{balance} - #{calculate_fee}
+				,now()
+			);
+	</insert>
+	
+	<!-- 정산 상태 업데이트 -->
+	<update id="updateCalApprove">
+		update calculate 
+			set calculate_approve = 1 
+			where project_idx = #{project_idx};
+	</update>
+	
+	<!-- 정산 내역  -->
+	<select id="selectAccountHistory" resultType="map">
+		SELECT *
+			FROM account_history
 	</select>
 </mapper>

@@ -199,8 +199,19 @@ public class AdminService {
 		return mapper.getCount(project);
 	}
 
+	public int insertAccountHistory(int member_idx, int project_idx, int calculate_fee) {
+		return mapper.insertAccountHistory(member_idx, project_idx, calculate_fee);
+	}
+
+	public void updateCalApprove(int project_idx) {
+		mapper.updateCalApprove(project_idx);
+		
+	}
+
+	public List getAccountHistory() {
+		return mapper.selectAccountHistory();
+	}
 
 
-	
 
 }

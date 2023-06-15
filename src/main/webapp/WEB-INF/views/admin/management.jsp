@@ -37,48 +37,17 @@
 <script
 	src="${pageContext.request.contextPath }/resources/assets/js/config.js"></script>
 <script type="text/javascript">
-
-	<!-- 모달 실행 -->
-// 	function showModal(modalId, btnId, inputName) {
-// // 		$("input[name=project_title]").val($("#td_project_title").text());
-// // 		let idx = document.getElementById(btnId).getAttribute("value");
-	
-// 		var modal = document.getElementById(modalId);
-// 		var closeBtn = document.getElementById('closeBtn' + modalId);
-// 		var xBtn = document.getElementById('xBtn' + modalId);
-		
-// 		modal.classList.add('show');
-// 		modal.style.display = 'block';
-		
-		
-// 	}
-
-	<!-- 승인 -->
-	function modal(calculate_idx, project_title, calculate_fee, member_idx) {
-		
-		$.ajax({
-			type: "post",
-			url: "getResponseUserInfoVO",
-			dataType: "JSON",
-			data: {member_idx:member_idx
-			},
-			success: function(response) {
-				$("#append").html("");
-				$.each(response.res_list, function(index, item) { // 데이터 =item
-					console.log(item)
-					$("#append").append('<div>핀테크이용번호 : ' + item.fintech_use_num + '</div>')
-				});
-				
-// 				console.log(response.res_list);
-			}
-		});
-		
+	<!-- 모달 -->
+	function modal(calculate_idx, project_title, calculate_fee, member_idx, project_idx) {
 		
 		$("#modalId").modal('show');
 		$("#member_idx").val(member_idx);
 		$("#calculate_idx").val(calculate_idx);
 		$("#project_title").val(project_title);
 		$("#calculate_fee").val(calculate_fee);
+		$("#project_idx").val(project_idx);
+		
+		alert(member_idx);
 		
 	}
 	
@@ -215,16 +184,16 @@
 												placeholder="Enter Name" />
 											
 											<br>
-											<div id="append">
-											
-											</div>
 											
 										</div>
 									</div>
 								</div>
-								<input type="hidden" name="member_idx" id="member_idx">
+								<input type="hidden" id="member_idx" name="member_idx" value="${member_idx}">
 								<input type="hidden" name="fintech_use_num" value="${fintech_use_num }">
 								<input type="hidden" name="recv_client_fintech_use_num" value="120211385488932372197010">
+								<input type="hidden" id="calculate_idx" name="calculate_idx" value="${calculate_idx}">
+								<input type="hidden" id="calculate_fee" name="calculate_fee" value="${calculate_fee}">
+								<input type="hidden" id="project_idx" name="project_idx" value="${project_idx}">
 
 								<div class="modal-footer">
 									<button type="button" id="closeBtndenied"
@@ -253,8 +222,7 @@
 											<th>프로젝트명</th>
 											<th>신청날짜</th>
 											<th>신청자</th>
-											<th>은행명</th>
-											<th>계좌번호</th>
+											<th>상태</th>
 											<th>정산금액</th>
 											<th></th>
 										</tr>
@@ -268,14 +236,20 @@
 														<td>${list.project_title }</td>
 														<td>${list.calculate_Date }</td>
 														<td>${list.member_name }</td>
-														<td></td>
-														<td></td>
+														<c:choose>
+															<c:when test="${list.calculate_approve == 1 }">
+																<td>정산완료</td>
+															</c:when>
+															<c:otherwise>
+																<td>미정산</td>
+															</c:otherwise>
+														</c:choose>
 														<td><fmt:formatNumber value="${list.calculate_fee }"
 																pattern="#,###" />원
 														</td>
 														<td>
 															<button class="btn btn-outline-primary"
-																onclick="modal(${list.calculate_idx}, '${list.project_title}', ${list.calculate_fee }, ${list.member_idx })">정산하기</button>
+																onclick="modal('${list.calculate_idx}', '${list.project_title}','${list.calculate_fee }','${list.member_idx }','${list.project_idx }')">정산하기</button>
 														</td>
 													</tr>
 												</c:forEach>

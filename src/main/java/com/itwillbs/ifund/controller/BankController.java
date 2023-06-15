@@ -189,15 +189,16 @@ public class BankController {
 	// 2.5.2. 입금이체
 	// 입금 정보 전달받기 - Map
 	@PostMapping("admin/bank_deposit")
-	public String deposit(
-			@RequestParam Map<String, String> map, HttpSession session, Model model, int member_idx) {
-		System.out.println("member_idx: " + member_idx);
-		System.out.println("fintech_use_num: " + map.get("fintech_use_num"));
-		System.out.println("calculate_fee: " + map.get("calculate_fee"));
-		System.out.println("recv_client_fintech_use_num: " + map.get("recv_client_fintech_use_num"));
+	public String deposit(@RequestParam Map<String, String> map, HttpSession session, Model model 
+					) {
+		System.out.println("뱅크컨트롤러");
+		System.out.println("2calculate_idx: " + map.get("calculate_idx") );
+		System.out.println("2project_idx: " + map.get("project_idx"));
+		System.out.println("2calculate_fee: " + map.get("calculate_fee"));
+		
 		
 		map.put("access_token", (String)session.getAttribute("access_token"));
-		
+		int member_idx = Integer.parseInt(map.get("member_idx").toString());
 		// 대표자 계좌 정보 가져오기
 		Map representative = adminService.selectRepresentative(member_idx);
 //		System.out.println(representative);
@@ -227,10 +228,16 @@ public class BankController {
 			return "fail_back";
 		}
 		
-		// 입출금 내역 db insert
-		 
 		
-		return "bank/deposit_result";
+		int project_idx = Integer.parseInt(map.get("project_idx").toString());
+		int calculate_fee = Integer.parseInt(map.get("calculate_fee").toString());
+		// 입출금 내역 db insert
+		int calResult = adminService.insertAccountHistory(member_idx, project_idx, calculate_fee); 
+		if(calResult > 0) {
+			adminService.updateCalApprove(project_idx);
+		} 
+		
+		return "redirect:/admin/management";
 	}
 	
 	
