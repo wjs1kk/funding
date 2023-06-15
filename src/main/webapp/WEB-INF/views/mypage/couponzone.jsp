@@ -5,7 +5,7 @@
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
 
-<title>와디즈 쿠폰존</title>
+<title>아이펀드 쿠폰존</title>
 
 
 <link rel="stylesheet"

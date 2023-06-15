@@ -48,9 +48,6 @@
 					<div class="FooterInfo_contactInfoWrap__1oxEb">
 						<ul
 							class="FooterInfo_info__53l7z FooterInfo_contactInfo__3lWLf">
-							<li><a
-								href="https://helpcenter.wadiz.kr/hc/ko/requests/new"
-								target="_blank" rel="noreferrer">이메일 상담 info@ifund.kr</a></li>
 						</ul>
 						<span class="FooterInfo_copyright__3FFQ_">© ifund Co.,
 							Ltd.</span>
