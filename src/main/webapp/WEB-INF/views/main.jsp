@@ -408,22 +408,17 @@
 														<div role="presentation"
 															class="CardTable_itemContainer__v9-cW"
 															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 0px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/35?_refer_section_st=storeCurator_0"
-																class="RecommendationStoreCard_item__3iMMQ"
-																data-ec-list="홈_추천_스토어" data-ec-id="35"
-																data-ec-name="내 손안의 스마트한 스튜디오, 저스트모바일 셔터그립2"
-																data-ec-position="0" data-ec-price="59900"
-																data-ec-category="테크·가전" data-ec-brand="주식회사 시티파이브"
-																data-ec-contenttype="STORE"
-																data-gtm-vis-first-on-screen-11319722_2073="28326"
-																data-gtm-vis-first-on-screen-11319722_2115="28392"
-																data-gtm-vis-recent-on-screen-11319722_2073="66766"
-																data-gtm-vis-total-visible-time-11319722_2073="2000"
-																data-gtm-vis-recent-on-screen-11319722_2115="66766"
-																data-gtm-vis-total-visible-time-11319722_2115="2000"
-																data-gtm-vis-has-fired-11319722_2073="1"
-																data-gtm-vis-has-fired-11319722_2115="1"><div
+															<c:if test="${goodsProject.project_type eq 1 }">
+																<a
+																href="detail?num=${goodsProject.project_idx }"
+																class="RecommendationStoreCard_item__3iMMQ">
+															</c:if>
+															<c:if test="${goodsProject.project_type eq 2 }">
+																<a
+																href="preorder/detail?num=${goodsProject.project_idx }"
+																class="RecommendationStoreCard_item__3iMMQ">
+															</c:if>
+															<div
 																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
 																	<div
 																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
@@ -437,15 +432,23 @@
 																	class="commons_content__2K1SH CardType_content__1Pavj">
 																	<em class="commons_title__1yGWm">${goodsProject.project_title }</em>
 																	<p class="commons_summary__2Ynez">
-																		<span class="commons_rate__10tOH"> <fmt:formatNumber
+																		<span class="commons_rate__10tOH"> 
+																		<c:if test="${goodsProject.project_type eq 1 }">
+																			<fmt:formatNumber
 																				value="${(goodsProject.project_detail_amount/goodsProject.project_target)}"
 																				type="percent" />
+																		</c:if>
+																		<c:if test="${goodsProject.project_type eq 2 }">
+																			${goodsProject.project_detail_person }명 참여
+																		</c:if>
+																		
+																		
 																		</span>${goodsProject.project_category }
 																	</p>
 																</div> </a>
 														</div>
 													</c:forEach>
-													<!-- 													최근본 프로젝트 끝 -->
+													<!-- 													최근본 프로젝트 끝 --> 
 
 												</div>
 											</div>
