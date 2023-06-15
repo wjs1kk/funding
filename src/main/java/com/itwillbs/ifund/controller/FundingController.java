@@ -187,17 +187,6 @@ public class FundingController {
 		
 		return "funding/payment";
 	}
-//	@GetMapping("preorder")
-//	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
-//		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order, selectbox);
-//		model.addAttribute("projectPreorderList", projectPreorderList);
-//		
-//		List categoryList = fundingService.categoryList();
-//		model.addAttribute("selectbox", selectbox);
-//		model.addAttribute("categoryList", categoryList);
-//		
-//		return "funding/preorder";
-//	}
 	
 	// 06-10 김동욱 결제하기
 	@PostMapping("paymentPro")
@@ -205,7 +194,6 @@ public class FundingController {
 	public void paymentPro(@RequestParam Map map, HttpSession session) {
 		int member_idx = (Integer)session.getAttribute("member_idx");
 		map.put("member_idx", member_idx);
-		
 		
 		String[] reward_idx = map.get("reward_idx").toString().split(", ");
 		String[] reward_quantity = map.get("reward_quantity").toString().split(", ");
