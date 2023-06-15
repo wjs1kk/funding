@@ -201,33 +201,41 @@
 					<div class="slick-slider slick-initialized" dir="ltr">
 						<div class="slick-list">
 							<!-- top.jsp 아래 팝 슬라이드 -->
-							<c:forEach items="${list }" var="slide" varStatus="status">
-								<div 
-									class="slick-slide slick-active slick-current" tabindex="-1"
-									aria-hidden="false" style="outline: none; width: 1900px;">
-										
-									<div>
-										<div>
-											<a	href="detail?num=${slide.project_idx }"
-												class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
-												style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
-												<div class="VisualSlide_wrap__32Lj4">
-													<div class="VisualSlide_text__2SIqN">
-														<p class="VisualSlide_title__3USGy" >${slide.project_title }
-														</p>
-														<p class="VisualSlide_badge__3nqfs">
-														<c:choose>
-															<c:when test="${slide.project_type eq 1}">펀딩</c:when>
-															<c:otherwise>공동구매</c:otherwise>
-														</c:choose>
-														 </p>
-													</div>
+									<c:forEach items="${list }" var="slide" varStatus="status">
+										<div 
+											class="slick-slide slick-active slick-current" tabindex="-1"
+											aria-hidden="false" style="outline: none; width: 1900px;">
+												
+											<div>
+												<div>
+												<c:if test="${slide.project_type eq 1}">
+												<a	href="detail?num=${slide.project_idx }"
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+												</c:if>
+												<c:if test="${slide.project_type eq 2}">
+												<a	href="preorder/detail?num=${slide.project_idx }"
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+												</c:if>
+													
+														<div class="VisualSlide_wrap__32Lj4">
+															<div class="VisualSlide_text__2SIqN">
+																<p class="VisualSlide_title__3USGy" >${slide.project_title }
+																</p>
+																<p class="VisualSlide_badge__3nqfs">
+																<c:choose>
+																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+																	<c:otherwise>공동구매</c:otherwise>
+																</c:choose>
+																 </p>
+															</div>
+														</div>
+													</a>
 												</div>
-											</a>
+											</div>
 										</div>
-									</div>
-								</div>
-							</c:forEach>
+									</c:forEach>	
 						</div>
 					</div>
 					<div class="KeyVisualBanner_wrap__10qJJ">
