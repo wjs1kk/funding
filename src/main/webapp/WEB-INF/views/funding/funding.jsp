@@ -101,10 +101,11 @@
  		
  		var category = "";
  		var order = "";
+
  		
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
- 				location.href = "funding?category=" + $(this).text() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
+ 				location.href = "funding?category=" + $(this).val() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
 //  				$(this).addClass('ImageTab_active__BGdXu');
  			});
  		}
@@ -144,14 +145,13 @@
                 contentType : 'application/json; charset=utf-8',
                 data : JSON.stringify(form),
                 success : function(result) {
-                	alert("찜하기러기 끼룩끼룩~");
                 	let button = document.querySelector(".p_idx"+project_idx);
                 	button.setAttribute("aria-pressed",true);
                 	location.reload();                	
                 },
                 error : function(e) {
                     console.log(e);
-                    alert('찜할 수 없지렁이 꿈틀꿈틀~');
+
                     location.reload(); 
                 }
             })
@@ -178,7 +178,6 @@
             	let button = document.querySelector(".p_idx"+project_idx);
             	button.setAttribute("aria-pressed",false);
             	location.reload();
-                alert('해당 상품을 찜 취소 하셨습니다.');
             },
             error : function(e) {
                 alert('찜 취소 할 수 없습니다.');
@@ -260,7 +259,7 @@
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체'? 'ImageTab_active__BGdXu' : '' }">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '00'? 'ImageTab_active__BGdXu' : '' } " value="00">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -271,8 +270,8 @@
 									</div>
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
-								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
+								<li><button
+										class="ImageTab_tab__3siCY ${param.category eq category.category_cd? 'ImageTab_active__BGdXu' : '' }" value="${category.category_cd }">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -292,14 +291,6 @@
 				<div class="Main_container__2oIVn">
 					<div class="Main_category__3sabq">
 						<p class="Main_categoryName__3YilF">
-							<c:choose>
-								<c:when test="${param.category eq ''}">
-								전체
-							</c:when>
-								<c:otherwise>
-								${param.category }
-							</c:otherwise>
-							</c:choose>
 						</p>
 						<div class="Main_filterWrap__2l__0">
 							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">

@@ -14,6 +14,7 @@ public class RewardVO {
 	private String reward_delivery_fee;
 	private String reward_delivery_date;
 	private String reward_sell;
+	
 	public int getReward_idx() {
 		return reward_idx;
 	}
@@ -74,6 +75,7 @@ public class RewardVO {
 	public void setReward_delivery_date(String reward_delivery_date) {
 		this.reward_delivery_date = reward_delivery_date;
 	}
+
 	public String getReward_sell() {
 		return reward_sell;
 	}

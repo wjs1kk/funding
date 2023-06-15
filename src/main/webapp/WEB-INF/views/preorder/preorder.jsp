@@ -41,7 +41,7 @@
  		
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
- 				location.href = "preorder?category=" + $(this).text() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
+ 				location.href = "preorder?category=" + $(this).val() + "&order=" + "${param.order}" + '&selectbox=${param.selectbox}';
  				$(this).addClass('ImageTab_active__BGdXu');
  			});
  		}
@@ -260,7 +260,7 @@ function prev() {
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체'? 'ImageTab_active__BGdXu' : '' }">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '00'? 'ImageTab_active__BGdXu' : '' }"value="00">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -272,7 +272,7 @@ function prev() {
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
+										class="ImageTab_tab__3siCY ${param.category eq category.category_cd? 'ImageTab_active__BGdXu' : '' }" value="${category.category_cd }">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -292,14 +292,6 @@ function prev() {
 				<div class="Main_container__2oIVn">
 					<div class="Main_category__3sabq">
 						<p class="Main_categoryName__3YilF">
-							<c:choose>
-								<c:when test="${param.category eq ''}">
-								전체
-							</c:when>
-								<c:otherwise>
-								${param.category }
-							</c:otherwise>
-							</c:choose>
 						</p>
 						<div class="Main_filterWrap__2l__0">
 							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">

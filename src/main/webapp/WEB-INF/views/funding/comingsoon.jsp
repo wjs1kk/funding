@@ -34,7 +34,7 @@
  		
  		for(let categories of categoryItem) {
  			categories.addEventListener("click", function() {
- 				category = $(this).text()
+ 				category = $(this).val()
  				location.href = "comingsoon?category=" + category + "&order=" + "${param.order}";
  			});
  		}
@@ -185,7 +185,7 @@
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul	class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="0"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체' ? 'ImageTab_active__BGdXu' : ''}"
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '00' ? 'ImageTab_active__BGdXu' : ''}" value="00"
 									data-ga-category="오픈예정(홈)_카테고리" data-ga-action="클릭"
 									data-ga-label="전체">
 									<div class="ImageTab_thumbnailContainer__3Polb">
@@ -199,7 +199,7 @@
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 							<li data-index="${category.category_cd }"><button
-									class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
+									class="ImageTab_tab__3siCY ${param.category eq category.category_cd? 'ImageTab_active__BGdXu' : '' }" value="${category.category_cd }">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"
@@ -218,7 +218,7 @@
 				<!-- 오픈예정 리스트 -->
 				<div class="Main_container__2oIVn">
 					<div class="Main_category__3sabq">
-						<p class="Main_categoryName__3YilF">${param.category }</p>
+						<p class="Main_categoryName__3YilF"></p>
 						<div class="Main_filterWrap__2l__0">
 							<ul class="OrderSelectDesktop_sortContainer__1YLsr">
 								<li class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '오픈임박순'? 'OrderSelectDesktop_active__YTP2K' : '' }"

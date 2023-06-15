@@ -39,7 +39,7 @@
 		
 		<if test="!category.equals('')">
 			<choose>
-				<when test="category.equals('전체')">
+				<when test="category.equals('00')">
 
 				</when>
 				<otherwise>
@@ -97,7 +97,7 @@
 		</if>
 		<if test="!category.equals('')">
 			<choose>
-				<when test="category.equals('전체')">
+				<when test="category.equals('00')">
 
 				</when>
 				<otherwise>
@@ -143,7 +143,7 @@
 		AND project_start_date > DATE(NOW())
 		<if test="!category.equals('')">
 			<choose>
-				<when test="category.equals('전체')">
+				<when test="category.equals('00')">
 
 				</when>
 				<otherwise>
