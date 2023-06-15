@@ -202,17 +202,13 @@
 			<div class="FundingCompleteTitleBar_container__m_YPF">
 				<button
 					class="Button_button__2omov Button_secondary__NsHjk Button_text__3MGT- Button_lg__3cPnR FundingCompleteTitleBar_back__3IvWi"
-					type="button">
+					type="button" onclick="history.back()">
 					<span><span class="Button_children__2ycY1"><svg
 								viewBox="0 0 40 40" focusable="false" role="presentation"
 								class="withIcon_icon__3CJLi" aria-hidden="true">
 								<path d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>스토리로
 							돌아가기</span></span>
 				</button>
-				<div class="FundingCompleteTitleBar_titleInfo__3bEB0">
-					<strong class="FundingCompleteTitleBar_title__1zOsH">[23년여름한정판]
-						라면의명가 오뚜기가 만든 매콤상-큼한 제주메밀비빔면 </strong>
-				</div>
 			</div>
 			<div class="RewardFundingCompleteContents_container__3ikKf">
 				<h2 class="RewardFundingCompleteContents_title__mJKk4">

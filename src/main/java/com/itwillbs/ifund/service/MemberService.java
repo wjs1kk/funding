@@ -29,11 +29,11 @@ public class MemberService {
 	public Map findUser(String member_email) {
 		return mapper.findUser(member_email);
 	}
+	public String memberEmailCheck(String member_email) {
+		return mapper.selectEmailCheck(member_email);
+	}
 	// 이메일 발송을 위한 아이
 	public void updatePass(String member_email, String securePasswd) {
 		mapper.updatePass(member_email, securePasswd);
-	}
-	public String memberEmailCheck(String member_email) {
-		return mapper.selectEmailCheck(member_email);
 	}
 }

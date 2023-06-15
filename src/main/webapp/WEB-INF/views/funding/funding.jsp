@@ -201,38 +201,34 @@
 				<div class="KeyVisualBanner_container__37DZf">
 					<div class="slick-slider slick-initialized" dir="ltr">
 						<div class="slick-list">
-							
-							
 							<!-- top.jsp 아래 팝 슬라이드 -->
-									<c:forEach items="${list }" var="slide" varStatus="status">
-										<div 
-											class="slick-slide slick-active slick-current" tabindex="-1"
-											aria-hidden="false" style="outline: none; width: 1900px;">
-												
-											<div>
-												<div>
-													<a	href=""
-														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
-														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
-														<div class="VisualSlide_wrap__32Lj4">
-															<div class="VisualSlide_text__2SIqN">
-																<p class="VisualSlide_title__3USGy" >${slide.project_title }
-																</p>
-																<p class="VisualSlide_badge__3nqfs">
-																<c:choose>
-																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
-																	<c:otherwise>공동구매</c:otherwise>
-																</c:choose>
-																 </p>
-															</div>
-														</div>
-													</a>
+							<c:forEach items="${list }" var="slide" varStatus="status">
+								<div 
+									class="slick-slide slick-active slick-current" tabindex="-1"
+									aria-hidden="false" style="outline: none; width: 1900px;">
+										
+									<div>
+										<div>
+											<a	href=""
+												class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+												style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+												<div class="VisualSlide_wrap__32Lj4">
+													<div class="VisualSlide_text__2SIqN">
+														<p class="VisualSlide_title__3USGy" >${slide.project_title }
+														</p>
+														<p class="VisualSlide_badge__3nqfs">
+														<c:choose>
+															<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+															<c:otherwise>공동구매</c:otherwise>
+														</c:choose>
+														 </p>
+													</div>
 												</div>
-											</div>
+											</a>
 										</div>
-									</c:forEach>
-							
-							
+									</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="KeyVisualBanner_wrap__10qJJ">
@@ -258,12 +254,6 @@
 						</div>
 					</div>
 				</div>
-				<script>
-					var url = document.location.href
-					if(url.contains("${param.category}")) {
-						$(".ImageTab_tab__3siCY").addClass("ImageTab_active__BGdXu");
-					}
-				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
@@ -313,8 +303,8 @@
 						</p>
 						<div class="Main_filterWrap__2l__0">
 							<select class="OrderSelect_selectBox__2hBjk" id="selectbox">
-								<option value="0" ${selectbox == '0'? 'selected="selected"': ''}>진행중</option>
-								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
+								<option value="0" ${param.selectbox == '0'? 'selected="selected"': ''}>진행중</option>
+								<option value="1" ${param.selectbox == '1'? 'selected="selected"': ''}>종료된</option>
 							</select>
 							<ul id="itemList" class="OrderSelectDesktop_sortContainer__1YLsr">
 								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '인기순'? 'OrderSelectDesktop_active__YTP2K' : '' }">인기순</li>
@@ -330,7 +320,7 @@
 						<!-- 						funding project 목록 -->
 						<c:forEach items="${projectDetailList }" var="projectDetailList">
 							<div class="PreorderMainCard_root__1-vcs"
-								style="height: 100%; position: relative;">
+								style="height: 100%; position: relative; ${param.selectbox eq '1'? 'pointer-events: none;' : ''}">
 								<a class="PreorderMainCard_item__2FrO0"
 									href="detail?num=${projectDetailList.project_idx }">
 									<div class="PreorderMainCard_thumbnailWrap__NRDb4">

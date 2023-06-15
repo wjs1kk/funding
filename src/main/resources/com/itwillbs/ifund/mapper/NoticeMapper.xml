@@ -41,5 +41,19 @@
 			WHERE 
 				board_idx = #{board_idx}
 	</delete>
+	
+	<select id="getNoticeList" resultType="map">
+		SELECT *
+		FROM notice
+		<if test="searchText != null">
+			WHERE board_subject LIKE '%${searchText}%'
+		</if>
+	</select>
+	
+	<select id="getNoticeDetail" resultType="map">
+		SELECT *
+		FROM notice
+		WHERE board_idx = #{board_idx}
+	</select>
  	
  </mapper>
