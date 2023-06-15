@@ -2034,9 +2034,6 @@
 								</div>
 						</div>
 					</section>
-					<div class="ChannelTalk_container__3OcHU">
-						<button type="button"></button>
-					</div>
 				</div>
 			</div>
 		</div>
