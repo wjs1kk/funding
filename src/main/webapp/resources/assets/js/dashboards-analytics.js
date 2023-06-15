@@ -420,7 +420,7 @@
 
   // Order Statistics Chart
   // --------------------------------------------------------------------
-  const chartOrderStatistics = document.querySelector('# '),
+  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     orderChartConfig = {
       chart: {
         height: 165,
@@ -428,7 +428,7 @@
         type: 'donut'
       },
       labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
-      series: [85, 15, 50, 50],
+      series: [101, 15, 50, 50],
       colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
       stroke: {
         width: 5,

@@ -195,7 +195,7 @@ public class AdminService {
 		return mapper.getAccountVO(member_idx);
 	}
 
-	public int getCount(ProjectVO project) {
+	public Map getCount(ProjectVO project) {
 		return mapper.getCount(project);
 	}
 
@@ -210,6 +210,10 @@ public class AdminService {
 
 	public List getAccountHistory() {
 		return mapper.selectAccountHistory();
+	}
+
+	public Map getBalanceCount() {
+		return mapper.selectBalanceCount();
 	}
 
 
