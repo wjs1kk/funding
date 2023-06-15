@@ -52,10 +52,9 @@ public class HomeController {
 		model.addAttribute("rankingList", rankingList);
 		
 		// 실시간랭킹 : 쌓인 가격 순 공동구매
-		List rankingList2 = fundingService.selectRankingProject(projectList);
+		List rankingList2 = fundingService.selectRankingProject2(projectList);
 		model.addAttribute("rankingList2", rankingList2);
 		
-//		06/13 최근 본 프로젝트 관련
 //		06/13 최근 본 프로젝트 관련
 		ArrayList<Integer> cookieList = new ArrayList<Integer>();
 		Cookie[] cookies = request.getCookies();
@@ -91,15 +90,15 @@ public class HomeController {
 			}
 		}
 		
-//		ArrayList<Map> goodsProject = new ArrayList<>();
-//		for(int i : goodsCookie) {
-//			Map Project = mainService.selectProject(i);
-//			Project.replace("project_category", mainService.selectCategory(String.valueOf(Project.get("project_category"))));
-//			goodsProject.add(Project );
-//			
-//		}
-//		Collections.reverse(goodsProject);
-//		model.addAttribute("goodsProject", goodsProject);
+		ArrayList<Map> goodsProject = new ArrayList<>();
+		for(int i : goodsCookie) {
+			Map Project = mainService.selectProject(i);
+			Project.replace("project_category", mainService.selectCategory(String.valueOf(Project.get("project_category"))));
+			goodsProject.add(Project );
+			
+		}
+		Collections.reverse(goodsProject);
+		model.addAttribute("goodsProject", goodsProject);
 		
 //		최근 본 프로젝트 관련 끝
 		

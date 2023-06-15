@@ -105,6 +105,7 @@
 					$("#reward_delivery_fee").val(Math.floor($("#reward_delivery_fee").val()) + Math.floor($("#reward_delivery_fee_"+i).val()))
 				}
 			}
+			$("#sumTotalNum").text($("#reward_amount").val());
 		}
 		
 		console.log($("#reward_name").val().substring(0, $("#reward_name").val().length - 2));
@@ -175,8 +176,8 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div id="wPurchaseWrap">
 				<div class="wpurchase-title">
 					<h2>
-						[레전드 복숭아] 다시 돌아온 분홍이와 노랑이! 첫 수확이라 더 달콤해요<span class="name"><em
-							style="background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0522/20230522140822528_215321.jpg/wadiz/resize/600/format/jpg/quality/80)"></em>농업회사법인
+						${projectInfo.project_title}<span class="name"><em
+							style="background-image: url(${pageContext.request.contextPath }/resources/images/maker_images/${projectInfo.maker_image })"></em>농업회사법인
 							주식회사 농부건강농원</span>
 					</h2>
 				</div>
@@ -387,7 +388,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 							<div class="btn-wrap">
 								<p class="confirm">
-									[레전드 복숭아] 다시 돌아온 분홍이와 노랑이! 첫 수확이라 더 달콤해요에 <em id="sumTotalNum">5,852,000</em>
+									${projectInfo.project_title} <em id="sumTotalNum">0</em>
 									원을 참여합니다.
 								</p>
 									<input type="hidden" id="project_idx" name="project_idx" value="${param.num }">

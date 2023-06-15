@@ -399,12 +399,15 @@
 	<!-- 2023-06-13 박경은 - 얼리버드 -->
 	<select id="selectEarlybirdProject"
 	resultType="map">
-		SELECT p.project_idx, p.project_category, p.project_thumbnail, p.project_plan, 
+		SELECT p.project_idx, c.category_name, p.project_thumbnail, p.project_plan, 
 		p.project_target, p.project_start_date, p.project_summary,
 		p.project_end_date, p.project_title, p.project_approve_status,
 		r.reward_name, r.reward_amount, r.reward_option
 		FROM project p
 		INNER JOIN reward r ON  p.project_idx = r.project_idx
+		INNER
+		JOIN
+		category c ON p.project_category=c.category_cd
 		WHERE
 		p.project_approve_status = '2'
 		AND

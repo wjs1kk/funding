@@ -426,7 +426,7 @@
 																class="RecommendationStoreCard_item__3iMMQ">
 															</c:if>
 															<div
-																	class="RecommendationStoreCard_thumbnailContainer__mghKx">
+																class="RecommendationStoreCard_thumbnailContainer__mghKx" style="margin-bottom: 15px;">
 																	<div
 																		class="RecommendationStoreCard_thumbnailPlaceholder__3TTOS"
 																		style="padding-top: calc(100% - 0px);">
