@@ -84,8 +84,16 @@ function maker() {
 																<a class="CardType_projectCard__2S8_G CardType_projectCardB__PatIP MyWadizMyProject_defaultImage__Tr8wd"
 																	href="../project/main?project_idx=${projectList.project_idx}">
 																	<article>
-																		<span class="Thumbnail_thumbnail__3gakA Thumbnail_img__j7EZh CardType_thumbnail__2yL-W">
-																		
+																		<c:choose>
+																		  <c:when test="${not empty projectList.project_thumbnail}">
+																		    <img src="${pageContext.request.contextPath}/resources/images/project_thumbnail/${projectList.project_thumbnail}" 
+																		    		alt="Project Thumbnail" style="height: ">
+																		  </c:when>
+																		  <c:otherwise>
+																		    <img src="${pageContext.request.contextPath}/resources/images/project_thumbnail/default_image.png" 
+																		    		alt="Default Thumbnail" style="height: ">
+																		  </c:otherwise>
+																		</c:choose>
 																		
 																		</span>
 																		<div class="TextContent_content__2jSfH CardType_content__2B7IB">

@@ -129,5 +129,13 @@ public class MypageService {
 		return mapper.countProject(member_idx);
 	}
 	
+//	0615 김애리 추가 - 참여한 공동구매 갯수 
+	public int countPreorder(Integer member_idx) {
+		return mapper.countPreorder(member_idx);
+	}
+	public List selectPreorder(Integer member_idx) {
+		return mapper.selectPreorder(member_idx);
+	}
+	
 	
 }

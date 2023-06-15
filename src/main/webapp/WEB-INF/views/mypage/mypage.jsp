@@ -146,7 +146,7 @@
 															<strong class="BlindText_textHidden__ovQb4">결제 건수</strong>
 															<a href="history"><span>펀딩</span><b>${countPayment }</b></a>
 															<hr class="Divider_divider__ToZaf Divider_vertical__fJJKf Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProjectInfo_divider__2mXtA">
-															<a href="/web/mywadiz/store/order"><span>공동구매</span><b>0</b></a>
+															<a href="preorder_history"><span>공동구매</span><b>${countPreorder }</b></a>
 														</div>
 													</div>
 												</div>
