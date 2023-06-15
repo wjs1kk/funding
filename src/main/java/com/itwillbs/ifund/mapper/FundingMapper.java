@@ -58,4 +58,5 @@ public interface FundingMapper {
 	// 2023-06-13 박경은 - 오늘 오픈
 	public List selectTodayOpenProject(ProjectListVO projectList);
 	public Map getProjectInfo(String num);
+	public Map selectDate(int project_idx);
 }

@@ -159,7 +159,7 @@ function maker() {
 										<div>
 											<ul>
 												<li class="MyWadizMenu_menu__3b-H-">
-													<a href="https://makercenter.wadiz.kr/menu/17" target="_blank" rel="noreferer noopener">
+													<a href="../notice" target="_blank" rel="noreferer noopener">
 														<span class="MyWadizMenu_icon__1sqne" aria-hidden="true">
 															<i class="MyWadizOtherMenu_noticeIcon__2AXx5"></i></span>
 														<span class="MyWadizMenu_text__9ryGW">공지사항</span>

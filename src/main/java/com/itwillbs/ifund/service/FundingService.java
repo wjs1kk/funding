@@ -122,9 +122,14 @@ public class FundingService {
 	public Map getProjectInfo(String num) {
 		return mapper.getProjectInfo(num);
 	}
+	
 	// 2023-06-13 박경은 - 실시간 랭킹2
 	public List selectRankingProject2(ProjectListVO projectList) {
 		return mapper.selectRankingProject2(projectList);
+	}
+	
+	public Map selectDate(int project_idx) {
+		return mapper.selectDate(project_idx);
 	}
 	
 }

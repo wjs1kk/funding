@@ -143,9 +143,17 @@
 												
 											<div>
 												<div>
-													<a	href="detail?num=${slide.project_idx }"
+												<c:if test="${slide.project_type eq 1}">
+												<a	href="detail?num=${slide.project_idx }"
 														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
 														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+												</c:if>
+												<c:if test="${slide.project_type eq 2}">
+												<a	href="preorder/detail?num=${slide.project_idx }"
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+												</c:if>
+													
 														<div class="VisualSlide_wrap__32Lj4">
 															<div class="VisualSlide_text__2SIqN">
 																<p class="VisualSlide_title__3USGy" >${slide.project_title }
@@ -162,7 +170,7 @@
 												</div>
 											</div>
 										</div>
-									</c:forEach>																		
+									</c:forEach>									
 								</div>
 							</div>
 							<div class="KeyVisualBanner_wrap__10qJJ">

@@ -216,7 +216,6 @@
 												<div class="ProjectSearchTags_hashTags__3v6i6">
 													<a data-ga-category="펀딩(상세)_검색태그" data-ga-action="클릭"
 														data-ga-label="다이어트"
-														
 														class="Button_button__2FuOU Button_tertiaryGrey__3jJV7 Button_contained__2SIAT Button_xs__2DWsb Button_circular__1cdcJ ProjectSearchTags_hashTagButton__fCndq ProjectSearchTags_gaElement__1mZHZ"><span><span
 															class="Button_children__ilFun"><div
 																	class="ProjectSearchTags_hashTag__2UMo_">
@@ -256,7 +255,6 @@
 																</div></span></span></a>
 												</div>
 											</div>
-											
 										</div>
 										<hr
 											class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr">
@@ -267,12 +265,12 @@
 										</div>
 										<p class="BaseFundingInfo_title__1Dw42">${fundingDetail.project_titlie }</p>
 										<p class="BaseFundingInfo_description__1XXyy">${fundingDetail.project_summary }</p>
-										<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
+										<c:if test="${selectDate.tproject_coming_soon_date <= selectDate.tnow}">
 											<div class="BaseFundingInfo_rateWrapper__32WcC">
 												<div class="BaseFundingInfo_rate__1uMoD">
 													<div class="BaseFundingInfo_infoWrapper__23LoT">
 														<span class="BaseFundingInfo_achivementRate__1Cnsy">
-														<fmt:formatNumber value="${fundingDetail.project_percent/100 }" type="percent"/>
+														<fmt:formatNumber value="${fundingDetail.project_percent }" type="percent"/>
 														</span><span
 															class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
 													</div>
@@ -299,7 +297,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${fundingDetail.project_coming_soon_date > fundingDetail.project_start_date}">
+										<c:if test="${selectDate.tproject_coming_soon_date > selectDate.tnow}">
 											<div class="BaseComingSoonInfo_rateWrapper__OtNwL">
 												<div class="BaseComingSoonInfo_rate__1elAG">
 													<div class="BaseComingSoonInfo_infoWrapper__3Uo9E">
@@ -330,7 +328,7 @@
 												</button>
 											</div>
 										</div>
-										<c:if test="${fundingDetail.project_coming_soon_date > fundingDetail.project_start_date}">
+										<c:if test="${selectDate.tproject_coming_soon_date > selectDate.tnow}">
 											<div class="ComingSoonCTA_right__3SKLL">
 												<div class="ComingSoonCTA_buttonWrap__3uSl8">
 													<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_md__46Ai- Button_block__1-g8w ComingSoonCTA_button__awjmv" type="button" disabled="disabled" style="width: 406px; padding: 16.5px 15px;">
@@ -339,7 +337,7 @@
 												</div>
 											</div>	
  										</c:if>
- 										<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
+ 										<c:if test="${selectDate.tproject_coming_soon_date <= tnow}">
  											<div class="RewardCTA_right__2UBW-">
 												<div class="RewardCTA_buttonWrap__wNKI4"
 													onclick="location.href='rewardSelect?num=${param.num}'">
@@ -403,7 +401,7 @@
 											</div>
 										</section>
 									</section>
-									<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
+									<c:if test="${selectDate.tproject_coming_soon_date <= tnow}">
 										<div class="CommonInfo_rewardsWrap__2dogH">
 											<div class="Rewards_container__3UnkZ">
 												<div class="Rewards_title__30Vv2">

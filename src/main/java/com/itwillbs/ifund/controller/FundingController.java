@@ -75,6 +75,7 @@ public class FundingController {
 	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "00") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
+		Map selectDate = fundingService.selectDate(Integer.parseInt(num));
 //		06/13
 		int countWish = fundingService.countWish(Integer.parseInt(num));
 		// 디테일 이미지 받아오기
@@ -94,6 +95,9 @@ public class FundingController {
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
 		model.addAttribute("countWish", countWish);
+		model.addAttribute("selectDate", selectDate);
+		
+		System.out.println(selectDate);
 		
 //		06/13
 //		최근본 프로젝트 관련
