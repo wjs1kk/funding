@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
@@ -39,5 +40,10 @@
 	<!-- properties 파일 등록 -->
 	<!-- webapp/resources 가 아닌 src/main/resources 패키지이므로 classpath:/ 로 접근 -->
 	<context:property-placeholder location="classpath:/config/appdata.properties"/>
+	
+	<!-- 모바일 요청 처리 클래스 지정 -->
+	<mvc:interceptors>
+		<beans:bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"/>
+	</mvc:interceptors>
 
 </beans:beans>

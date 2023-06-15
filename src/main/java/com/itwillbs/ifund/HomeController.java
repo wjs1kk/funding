@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -31,6 +33,12 @@ public class HomeController {
 	// 2023-06-13 박경은 - 최근 본 목록
 	@GetMapping("/")
 	public String home(Model model, HttpServletRequest request, HttpServletResponse response, ProjectListVO projectList, RewardVO reward, ProjectVO project) {
+		// 디바이스 판별
+		
+		Device device = DeviceUtils.getCurrentDevice(request);
+		
+		
+		
 		fundingService.updateFunding(project);
 //		List<ProjectListVO> projectOpneList = fundingService.selectOpenProject();
 //		model.addAttribute("projectOpneList", projectOpneList);
@@ -101,6 +109,19 @@ public class HomeController {
 		// 오늘 오픈
 		List todayOpenList = fundingService.selectTodayOpenProject(projectList);
 		model.addAttribute("todayOpenList", todayOpenList);
+		
+		
+		if(device != null) {
+			if(device.isNormal()) { // 일반 디바이스 PC
+				System.out.println("@@@@@ PC접속 @@@@@");
+			}else if(device.isMobile()) { // 모바일 디바이스
+				System.out.println("@@@@@@@@@@ 모바일 접속 @@@@@@@@@");
+				return "m_main";
+			}else if(device.isTablet()) {
+				System.out.println("@@@@@@@@@@@@@@@@ 태블릿 접속 @@@@@@@@@@@@@@@@");
+			}
+		}
+		
 		
 		return "main";
 	}

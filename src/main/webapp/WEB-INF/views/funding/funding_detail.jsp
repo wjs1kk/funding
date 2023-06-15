@@ -30,7 +30,7 @@
 <script>
 	// 모달창 띄우기
 	$(function(){ 
-		$(".Button_contained__2SIAT").click(function(){
+		$(".Button_contained__2SIAT_2").click(function(){
 	    	$(".modal").fadeIn();
 	  	});
 		
@@ -378,7 +378,7 @@
 												</div>
 												<!-- href 속성값을 사용하여 modal을 띄워주는 링크 -->
 												<p><a href="#test" rel="modal:open">
-												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_sm__16X6h Button_startIcon__3p6wN" 
+												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT_2 Button_sm__16X6h Button_startIcon__3p6wN" 
 													type="button" id="popButton">
 													<span><svg viewBox="0 0 32 32" focusable="false"
 															role="presentation"
