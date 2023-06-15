@@ -93,6 +93,8 @@
 			          },
 			          success: function(response) {
 			        	  alert("대표자 및 정산정보가 등록되었습니다!");
+							location.href = "main?project_idx="+${param.project_idx};
+
 			          }
 				})
 			}

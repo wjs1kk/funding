@@ -3,7 +3,7 @@
 
 <html lang="ko">
 <head>
-<title>기본정보설정 : 와디즈 MY 정보설정</title>
+<title>기본정보설정 : 아이펀드 MY 정보설정</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="../resources/css/login.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">

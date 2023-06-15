@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" href="../resources/css/mypage.css">
 
-<title>와디즈 참여 내역</title>
+<title>아이펀드 참여 내역</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.656a32fe.css">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">	

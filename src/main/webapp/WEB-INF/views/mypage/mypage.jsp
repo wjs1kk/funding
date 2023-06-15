@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="resources/css/mypage.css">
 
-<title>와디즈 - 마이와디즈</title>
+<title>아이펀드 - 마이아이펀드</title>
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
@@ -33,7 +33,7 @@
 				<section class="MyWadizPage_myWadizPage__wOTdS">
 					<div class="MyWadizPage_profileBackground__T_LTr"
 						aria-hidden="true"></div>
-					<h2 class="BlindText_textHidden__ovQb4">마이와디즈</h2>
+					<h2 class="BlindText_textHidden__ovQb4">마이아이펀드</h2>
 					<div class="MyWadizPage_inner__1oq9M">
 						<div class="MyWadizPage_popperBox__113hj">
 							<div class="MyWadizHeader_wadizHeader__8fJ9f">

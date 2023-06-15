@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="resources/css/login.css">
 <link rel="stylesheet" href="resources/css/mypage.css">
 
-<title>와디즈 회원가입</title>
+<title>아이펀드 회원가입</title>
 
 
 <!-- <script type="text/javascript" src="https://static.wadiz.kr/static/web/polyfill.js?b0c96ec4"></script> -->

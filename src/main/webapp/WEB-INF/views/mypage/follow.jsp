@@ -2,7 +2,7 @@
 
 <html lang="ko" class="">
 <head>
-<title>와디즈</title>
+<title>아이펀드</title>
 
 <link rel="stylesheet" href="../resources/css/follow.css">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">

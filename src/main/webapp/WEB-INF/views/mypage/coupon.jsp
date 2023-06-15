@@ -4,7 +4,7 @@
 <html lang="ko" class="">
 <head>
 
-<title>와디즈 쿠폰</title>
+<title>아이펀드 쿠폰</title>
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
@@ -72,14 +72,6 @@
 <!-- 																		<td>396,000원 이상 상품 구매 시</td> -->
 <!-- 																	</tr> -->
 																	<tr>
-																		<th scope="row">적용대상</th>
-																		<td><p>
-																				<a href="/web/store/collection/genuio" target="_blank"
-																					class="RewardCollectionLink_link__2CSYP">제누이오
-																					<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-																						class="withIcon_icon__3VTbq withIcon_inline__1lwwX" aria-hidden="true">
-																						<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></a>
-																			</p></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -106,12 +98,6 @@
 										유효기간이 만료된 경우 자동 소멸됩니다</li>
 									<li>결제 실패인 경우에는 쿠폰이 반환되지않고, 소멸됩니다.</li>
 								</ul>
-								<a href="https://www.wadiz.kr/link/coupon_guide_reward" target="_blank" rel="nofollow noreferrer noopener">
-									펀딩・프리오더 쿠폰 사용 안내
-									<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-										class="withIcon_icon__3VTbq withIcon_inline__1lwwX" aria-hidden="true">
-										<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-								</a>
 							</div>
 						</div>
 					</div>
@@ -129,12 +115,6 @@
 										유효 기간이 만료된 경우 자동 소멸됩니다.</li>
 									<li>사용 완료, 기간 만료, 소멸된 쿠폰은 지난 쿠폰 내역에서 확인할 수 있습니다.</li>
 								</ul>
-								<a href="https://www.wadiz.kr/link/coupon_guide_store" target="_blank" rel="nofollow noreferrer noopener">
-									스토어 쿠폰 사용 안내
-									<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-										class="withIcon_icon__3VTbq withIcon_inline__1lwwX" aria-hidden="true">
-										<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
-								</a>
 							</div>
 						</div>
 					</div>

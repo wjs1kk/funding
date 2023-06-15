@@ -6,10 +6,11 @@
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
 <link rel="stylesheet" href="../resources/css/mypage.css">
-<title>와디즈 - 나의 펀딩현황</title>
+<title>아이펀드 - 나의 펀딩현황</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?e1e51710">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/my/main.255d4fec.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 
 </head>
 <body>
@@ -41,8 +42,8 @@
 										<p class="PurchaseInfoContainer_status__205il">
 											<i class="PurchaseInfoContainer_icon__3cTu1"></i>${paymentMap.project_category}
 										</p>
-										<a href="/web/campaign/detail/202395" target="_blank" rel="noopener noreferrer">
-										<p class="PurchaseInfoContainer_title__3Z6oW">${paymentMap.project_title}</p></a>
+										
+										<p class="PurchaseInfoContainer_title__3Z6oW">${paymentMap.project_title}</p>
 										
 										
 										<div class="PurchaseStatus_container__ux-k0">
@@ -78,8 +79,11 @@
 											<div class="FundingRewardInfo_container__2Bvhc">
 												<div class="FundingRewardInfo_list__ETyrt">
 													<p class="FundingRewardInfo_listTitle__8G48Y">결제일</p>
-													<p class="PurchaseInfoContainer_listTitle__eA-QW">${paymentMap.payment_date}
-													
+													<p class="PurchaseInfoContainer_listTitle__eA-QW" id="payDate">
+													<script type="text/javascript">
+														let date = ("${paymentMap.payment_date}").split('T')[0];
+														$('#payDate').text(date)
+													</script>
 													</p>
 													
 												</div>

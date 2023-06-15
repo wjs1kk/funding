@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="../resources/css/mypage.css">
 
-<title>와디즈</title>
+<title>아이펀드</title>
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/css/vendor.5f64dbd5.chunk.css">
