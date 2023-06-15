@@ -350,7 +350,10 @@
 		DISTINCT
 		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
 		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
-		p.project_end_date, p.project_title, m.maker_name FROM project p
+		p.project_end_date, p.project_title, m.maker_name, c.category_name FROM project p
+		INNER
+		JOIN
+		category c ON p.project_category=c.category_cd
 		INNER
 		JOIN
 		project_detail pd ON p.project_idx = pd.project_idx
@@ -416,7 +419,10 @@
 		SELECT
 		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
 		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date, p.project_summary,
-		p.project_end_date, p.project_title, p.project_approve_status FROM project p
+		p.project_end_date, p.project_title, p.project_approve_status,c.category_name FROM project p
+		INNER
+		JOIN
+		category c ON p.project_category=c.category_cd
 		INNER
 		JOIN
 		project_detail pd ON p.project_idx = pd.project_idx

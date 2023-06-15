@@ -180,7 +180,7 @@ function checkForm() {
 		 				url: 'smsAauthStatus',
 		 				data: {member_idx:${sessionScope.member_idx}},
 		 				success: function () {
-		 					alert("성공")
+		 					console.log("성공");
 	 					}
 	 			});
  				

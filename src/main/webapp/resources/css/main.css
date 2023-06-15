@@ -9,8 +9,9 @@
 .RecommendFundingWrap_cardListGroup__1nRxw .RecommendFundingWrap_card___LnVO:nth-child(3n) {
     margin: 0 0 16px;
 }
+/* 2023-06-15 박경은 - 최근 본 프로젝트 간격 수정 */
 .CardTable_container__1H8Vc {
-	justify-content: space-between !important;
+	justify-content: start !important;
 }
 .CardTable_itemContainer__v9-cW:last-child {
 	margin-right: 0 !important;

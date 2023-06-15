@@ -100,12 +100,16 @@
 	$(function() {
 		$(".tabList2").css("display", "none")
 		
-		$("#funding").on("click", function() {
+		$(".TabButton_btnTab__bibVE").on("click", function() {
+			$(".TabButton_btnTab__bibVE").removeClass("TabButton_active__2mzCI");
+			$(this).addClass("TabButton_active__2mzCI");
 			$(".tabList1").css("display", "block")
 			$(".tabList2").css("display", "none")
 		})
 		
 		$("#preorder").on("click", function() {
+			$(".TabButton_btnTab__bibVE").removeClass("TabButton_active__2mzCI");
+			$(this).addClass("TabButton_active__2mzCI");
 			$(".tabList2").css("display", "block")
 			$(".tabList1").css("display", "none")
 		})
@@ -292,12 +296,13 @@
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
 																		<div class="commons_orderText__3B9S_">${status.index}</div>
 																		<em class="commons_title__1yGWm">${rankingList.project_title }</em>
-																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH"></span>${rankingList.project_category }
-																		</p>
 																		<p class="PreorderMainCard_amount__3UOXm"
-																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px;">
-																			${rankingList.project_detail_amount } 원</p>
+																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px; display: inline;">
+																			<fmt:formatNumber
+																				value="${rankingList.project_detail_amount}"/>원</p>
+																		<p class="commons_summary__2Ynez" style="display: contents;">
+																			<span class="commons_rate__10tOH"></span>${rankingList.category_name }
+																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
@@ -311,12 +316,12 @@
 													</c:forEach>
 												</ol>
 												<ol class="tabList2">
-													<c:forEach items="${rankingList }" var="rankingList"
-														begin="1" end="5">
+													<c:forEach items="${rankingList2 }" var="rankingList2"
+														begin="1" end="5" varStatus="status">
 														<li class="TabContainer_listItem__2nO5j"><div>
 																<a
 																	class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																	href="detail?num=${rankingList.project_idx }"
+																	href="detail?num=${rankingList2.project_idx }"
 																	data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="110059"
 																	data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
 																	data-ec-position="0" data-ec-category="출판"
@@ -332,18 +337,21 @@
 																	data-gtm-vis-has-fired-11319722_2115="1">
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
-																		<div class="commons_orderText__3B9S_">1</div>
-																		<em class="commons_title__1yGWm">${rankingList.project_title }</em>
-																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH"></span>${project_category }
+																		<div class="commons_orderText__3B9S_">${status.index}</div>
+																		<em class="commons_title__1yGWm">${rankingList2.project_title }</em>
+																		<p class="PreorderMainCard_amount__3UOXm"
+																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px; display: inline;">
+																			<fmt:formatNumber
+																				value="${rankingList2.project_detail_amount}"/>원</p>
+																		<p class="commons_summary__2Ynez" style="display: contents;">
+																			<span class="commons_rate__10tOH"></span>${rankingList2.category_name }
 																		</p>
-																		${rankingList.project_detail_amount }
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(resources/images/project_thumbnail/${rankingList.project_thumbnail};);"></div>
+																			style="background-image: url(resources/images/project_thumbnail/${rankingList2.project_thumbnail};);"></div>
 																	</div>
 																	</article>
 																</a>
@@ -442,7 +450,7 @@
 																		</c:if>
 																		
 																		
-																		</span>${goodsProject.project_category }
+																		</span>${goodsProject.category_name }
 																	</p>
 																</div> </a>
 														</div>
@@ -599,7 +607,7 @@
 													</div>
 												</div>
 											</div>
-											<c:forEach items="${todayOpenList }" var="todayOpenList">
+											<c:forEach items="${todayOpenList }" var="todayOpenList" begin="1" end="6">
 												<div class="DebutFundingDesktop_card__8YXhV">
 													<a href="detail?num=${todayOpenList.project_idx }"
 														data-ec-list="홈_#오늘오픈한 프로젝트_프리오더" data-ec-id="211101"
@@ -628,7 +636,7 @@
 																	<p class="commons_summary__2Ynez">
 																		<span class="commons_rate__10tOH"><fmt:formatNumber
 																				value="${(todayOpenList.project_detail_amount/todayOpenList.project_target)}"
-																				type="percent" /></span>${todayOpenList.project_category }
+																				type="percent" /></span>${todayOpenList.category_name }
 																	</p>
 																</div>
 															</article>

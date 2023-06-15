@@ -111,7 +111,8 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		return "bank/bank_user_info";
+		// 2023-06-15 박경은 - 계좌인증완료 비활성화 및 마이페이지로 리다이렉트
+		return "redirect:/mypage/supporter";
 	}
 	
 	// 계좌 상세정보 조회(2.3.1. 잔액조회 API)
