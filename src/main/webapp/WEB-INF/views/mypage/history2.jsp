@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?e1e51710">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/my/main.255d4fec.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 
 </head>
 <body>
@@ -78,8 +79,11 @@
 											<div class="FundingRewardInfo_container__2Bvhc">
 												<div class="FundingRewardInfo_list__ETyrt">
 													<p class="FundingRewardInfo_listTitle__8G48Y">결제일</p>
-													<p class="PurchaseInfoContainer_listTitle__eA-QW">${paymentMap.payment_date}
-													
+													<p class="PurchaseInfoContainer_listTitle__eA-QW" id="payDate">
+													<script type="text/javascript">
+														let date = ("${paymentMap.payment_date}").split('T')[0];
+														$('#payDate').text(date)
+													</script>
 													</p>
 													
 												</div>
