@@ -51,48 +51,43 @@ public class HomeController {
 		model.addAttribute("rankingList2", rankingList2);
 		
 //		06/13 최근 본 프로젝트 관련
+//		06/13 최근 본 프로젝트 관련
 		ArrayList<Integer> cookieList = new ArrayList<Integer>();
 		Cookie[] cookies = request.getCookies();
 		ArrayList<Integer> goodsCookie = new ArrayList<Integer>();
-
+		
 		if(cookies != null) {
 			for(int i = 0 ; i<cookies.length; i++) {
 				if(cookies[i].getName().startsWith("goods")) {
 					goodsCookie.add(Integer.parseInt(cookies[i].getValue()));
 				}
-			}
-//			필요없는 쿠키 삭제
-			if(goodsCookie.size() >= 7) {
-				int count = goodsCookie.size() - 6;
-				for(int i = 0 ; i<cookies.length; i++) {
-					if(cookies[i].getName().startsWith("goods")) {
-						cookies[i].setPath("/");
-						cookies[i].setValue(null);
-						cookies[i].setMaxAge(0);			
-						response.addCookie(cookies[i]);
-						count--;
-						if(count == 0) {
-							break;
-						}
-					}
+			}			
+		}
+		System.out.println(goodsCookie);
+//		필요없는 쿠키 삭제
+		if(goodsCookie.size() >= 7) {
+			int count = goodsCookie.size() - 6;
+			for(int i = 0 ; i<cookies.length; i++) {
+				if(cookies[i].getName().startsWith("goods")) {
+					cookies[i].setPath("/");
+					cookies[i].setValue(null);
+					cookies[i].setMaxAge(0);			
+					response.addCookie(cookies[i]);
+					System.out.println(goodsCookie.size());
+					
+					goodsCookie.remove(i);
+					count--;					
+				}
+				if(count == 0) {
+					break;
 				}
 			}
 		}
-//		if(goodsCookie != null ) {
-//			if(goodsCookie.size() >=6) {
-//				for (int i = goodsCookie.size() -6; i < goodsCookie.size(); i++) {
-//					cookieList.add(goodsCookie.get(i));
-//				}
-//			}
-//			else {
-//				for (int i : goodsCookie) {
-//					cookieList.add(i);
-//				}
-//			}
-//		}
-		ArrayList goodsProject = new ArrayList();
-		for(int i : cookieList) {
-			goodsProject.add(mainService.selectProject(i));
+		
+		ArrayList<Map> goodsProject = new ArrayList<>();
+		for(int i : goodsCookie) {
+			goodsProject.add(mainService.selectProject(i) );
+			
 		}
 		Collections.reverse(goodsProject);
 		model.addAttribute("goodsProject", goodsProject);
