@@ -154,11 +154,12 @@
 	
 
 	<select id="selectPayment" resultType="map">
-		SELECT p.*, py.*
+		SELECT py.payment_idx, p.project_title, p.project_category, p.project_start_date, p.project_end_date
 			FROM payment py		
 			INNER JOIN project p ON py.project_idx = p.project_idx
 				WHERE py.member_idx = #{member_idx}
 	</select>
+	
 	<select id="selectPaymentMap" resultType="map">
 		SELECT p.*, py.*
 			FROM payment py		
