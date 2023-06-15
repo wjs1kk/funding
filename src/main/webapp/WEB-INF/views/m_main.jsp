@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko" class="show-recent scroll-half-screen">
 <head>
@@ -112,10 +114,6 @@
 	content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9">
 <script type="text/javascript" async=""
 	src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/747260496/?random=1686826681033&amp;cv=11&amp;fst=1686826681033&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45He36c0&amp;u_w=1920&amp;u_h=1080&amp;url=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwreward%2Fmain&amp;ref=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwpurchase%2Freward%2Fstep10%2F203794%3FrewardId%3D440143&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=%EC%99%80%EB%94%94%EC%A6%88%20%ED%8E%80%EB%94%A9&amp;auid=494248169.1686823686&amp;rfmt=3&amp;fmt=4"></script>
-<meta http-equiv="origin-trial"
-	content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9">
-<meta http-equiv="origin-trial"
-	content="A+xK4jmZTgh1KBVry/UZKUE3h6Dr9HPPioFS4KNCzify+KEoOii7z/goKS2zgbAOwhpZ1GZllpdz7XviivJM9gcAAACFeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiQXR0cmlidXRpb25SZXBvcnRpbmdDcm9zc0FwcFdlYiIsImV4cGlyeSI6MTcwNzI2Mzk5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
 <script attributionsrc="" type="text/javascript" async=""
 	src="https://www.googleadservices.com/pagead/conversion/664811357/?random=1686826681037&amp;cv=11&amp;fst=1686826681037&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45He36c0&amp;u_w=1920&amp;u_h=1080&amp;url=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwreward%2Fmain&amp;ref=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwpurchase%2Freward%2Fstep10%2F203794%3FrewardId%3D440143&amp;label=G-KrCNKChMUBEN3ugL0C&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=%EC%99%80%EB%94%94%EC%A6%88%20%ED%8E%80%EB%94%A9&amp;value=0&amp;bttype=purchase&amp;gclaw=EAIaIQobChMIp4TV_YnF_wIVo8NMAh0RcgycEAAYASAAEgIt-vD_BwE&amp;gac=UA-41051680-1%3AEAIaIQobChMIp4TV_YnF_wIVo8NMAh0RcgycEAAYASAAEgIt-vD_BwE%3BUA-41051680-26%3AEAIaIQobChMIp4TV_YnF_wIVo8NMAh0RcgycEAAYASAAEgIt-vD_BwE%3BUA-64397972-38%3AEAIaIQobChMIp4TV_YnF_wIVo8NMAh0RcgycEAAYASAAEgIt-vD_BwE%3BUA-41051680-12%3AEAIaIQobChMI8uLb84PF_wIVsNdMAh1hGQ6YEAAYASAAEgIjO_D_BwE&amp;auid=494248169.1686823686&amp;rfmt=3&amp;fmt=4"></script>
 <script charset="utf-8"
@@ -974,151 +972,75 @@
 						</div>
 						<div class="RecommendationMobile_contents__1yJqH">
 							<div class="RecommendationMobile_cardWrapper__2Alml">
-								<div class="MainCard_container__21oET">
-									<div class="ProjectCard_container__1jpWF"
-										style="height: 396.88px;">
-										<a class="ProjectCard_card__EvFnb"
-											data-ec-id="170339"
-											data-ec-name="[오늘종료/11억 우산] 장마 준비하세요, 10년 쓰는 풀카본 장우산"
-											data-ec-brand="노멀리스트" data-ec-category="패션·잡화"
-											data-ec-list="홈_상품카드_프리오더" data-ec-position="1"
-											data-ec-contenttype="PREORDER"
-											data-gtm-vis-recent-on-screen-11319722_2073="17686"
-											data-gtm-vis-first-on-screen-11319722_2073="17686"
-											data-gtm-vis-total-visible-time-11319722_2073="2000"
-											data-gtm-vis-first-on-screen-108049270_43="17710"
-											data-gtm-vis-first-on-screen-11319722_2115="17710"
-											data-gtm-vis-first-on-screen-108049270_54="17711"
-											data-gtm-vis-has-fired-11319722_2073="1"><div
-												class="ProjectCard_thumbnailBox__3nf2n">
-												<div aria-hidden="true"
-													class="ProjectCard_projectCardImage__1wSoK CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-													style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/2023/0504/20230504175103036_170339.jpg/wadiz/resize/1200/format/jpg/quality/85/&quot;);"></div>
-												<em
-													class="ProductTypeBadge_badge__1vQ-m ProjectCard_badge___LsIT">예약구매</em>
-											</div>
-											<div class="ProjectCard_infoBox__3ILIU">
-												<div class="ProjectInfo_container__aMXhM">
-													<em class="ProjectInfo_state__3kvLA">11,616<span
-														class="ProjectInfo_unitPercent__1gnFw">% 달성 중이에요</span></em>
-													<div class="ProjectInfo_alignRight__27mRq">
-														<span
-															class="Badge_container__9G9PS Badge_visible__3LNXv ProjectInfo_badge__1JkM6"><span
-															class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_danger__2wYXo Badge_tertiary__3uYKh">오늘
-																마감</span></span>
-													</div>
+							
+								<c:forEach items="${attentionList }"  var="attentionList">
+									<div class="MainCard_container__21oET">
+										<div class="ProjectCard_container__1jpWF"
+											style="height: 396.88px;">
+											<a class="ProjectCard_card__EvFnb"
+												data-ec-id="170339"
+												data-ec-name="[오늘종료/11억 우산] 장마 준비하세요, 10년 쓰는 풀카본 장우산"
+												data-ec-brand="노멀리스트" data-ec-category="패션·잡화"
+												data-ec-list="홈_상품카드_프리오더" data-ec-position="1"
+												data-ec-contenttype="PREORDER"
+												data-gtm-vis-recent-on-screen-11319722_2073="17686"
+												data-gtm-vis-first-on-screen-11319722_2073="17686"
+												data-gtm-vis-total-visible-time-11319722_2073="2000"
+												data-gtm-vis-first-on-screen-108049270_43="17710"
+												data-gtm-vis-first-on-screen-11319722_2115="17710"
+												data-gtm-vis-first-on-screen-108049270_54="17711"
+												data-gtm-vis-has-fired-11319722_2073="1"><div
+													class="ProjectCard_thumbnailBox__3nf2n">
+													<div aria-hidden="true"
+														class="ProjectCard_projectCardImage__1wSoK CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
+														style="background-image: url(${pageContext.request.contextPath }/resources/images/project_thumbnail/${attentionList.project_thumbnail};);"></div>
+													<em
+														class="ProductTypeBadge_badge__1vQ-m ProjectCard_badge___LsIT">예약구매</em>
 												</div>
-												<strong class="ProjectCard_title__3ZLcD">[오늘종료/11억
-													우산] 장마 준비하세요, 10년 쓰는 풀카본 장우산</strong>
-												<dl class="ProjectCard_subInfo__nidZs">
-													<dt class="ProjectCard_fontBlind__2JaYu">카테고리</dt>
-													<dd class="ProjectCard_subInfoText__-pKhs">패션·잡화</dd>
-													<dt class="ProjectCard_fontBlind__2JaYu">메이커</dt>
-													<dd
-														class="ProjectCard_subInfoText__-pKhs ProjectCard_ellipsis1__3fNOy">노멀리스트</dd>
-												</dl>
-											</div>
-											<div class="CardSpinner_container__1cKRs">
-												<div class="CardSpinner_loader__2-LrZ"
-													style="width: 32px; height: 32px;">
-													<svg viewBox="25 25 50 50" aria-label="Loading">
-														<g class="Loader_circular__2dy3E">
-														<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
-															fill="none" stroke-width="4" stroke-miterlimit="10"></circle></g></svg>
-												</div>
-											</div></a>
-										<button type="button"
-											class="WishButton_button__1ZqbG WishButton_interaction__2FCel"
-											aria-label="찜하기 버튼" aria-pressed="false"
-											data-ga-category="공통_상품카드_프리오더" data-ga-action="찜하기_추가"
-											data-ga-label="">
-											<svg viewBox="0 0 32 32" focusable="false"
-												role="presentation" class="withIcon_icon__3VTbq"
-												aria-hidden="true">
-												<path
-													d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
-										</button>
-									</div>
-								</div>
-								<div class="MainCard_container__21oET">
-									<div class="ProjectCard_container__1jpWF"
-										style="height: 422.88px;">
-										<a class="ProjectCard_card__EvFnb"
-											data-ec-id="4588"
-											data-ec-name="[⭐인기급상승]가정용 DIY공구의 멀티태스킹 달인 파워툴 종이의집 에디션"
-											data-ec-brand="와디즈 주식회사" data-ec-category="테크·가전"
-											data-ec-list="AD_홈_상품카드_스토어" data-ec-position="4"
-											data-ec-price="150000" data-ec-contenttype="STORE"
-											data-promo-acid="10032182"
-											data-promo-id="/web/store/detail/4588"
-											data-promo-position="MMC"><div
-												class="ProjectCard_thumbnailBox__3nf2n">
-												<div aria-hidden="true"
-													class="ProjectCard_projectCardImage__1wSoK CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-													style="background-image: url(&quot;https://cdn2.wadiz.kr/2023/06/01/46690951-b48c-4f4c-b05b-d16615226ea9.jpg/wadiz/resize/1200/format/jpg/quality/85/&quot;);"></div>
-												<em
-													class="ProductTypeBadge_badge__1vQ-m ProjectCard_badge___LsIT">바로구매</em>
-											</div>
-											<div class="ProjectCard_infoBox__3ILIU">
-												<div
-													class="ProjectInfo_container__aMXhM ProjectInfo_containerStore__2hufL ProjectCard_projectInfoStore__21AkS">
-													<div class="ProjectInfo_flexBox__1VtoL">
-														<em class="ProjectInfo_state__3kvLA">88명이 인증했어요</em>
-													</div>
-													<div
-														class="ProjectInfo_flexBox__1VtoL ProjectInfo_moreInfoBox__3pz9a">
-														<div
-															class="ProjectInfo_flexBox__1VtoL ProjectInfo_ratingBox__3vkKq">
-															<div
-																class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
-																<div class="RatingScore_icon__rIS_k"></div>
-																<span class="RatingScore_score__2a-SN">4.9</span>
-															</div>
-															<em class="ProjectInfo_count__3kFV_"
-																aria-label="만족도 참여자 수">(4)</em>
-														</div>
-														<div
-															class="DeliveryBadge_container__3XB44 ProjectInfo_deliveryBox__36Ni8">
-															<div class="DeliveryBadge_badge__14MYK">무료배송</div>
-															<div class="DeliveryBadge_badge__14MYK">
-																<i class="DeliveryBadge_icon__P4mcc"></i> 와배송
-															</div>
+												<div class="ProjectCard_infoBox__3ILIU">
+													<div class="ProjectInfo_container__aMXhM">
+														<em class="ProjectInfo_state__3kvLA">${(attentionList.project_detail_amount/attentionList.project_target)}<span
+															class="ProjectInfo_unitPercent__1gnFw">% 달성 중이에요</span></em>
+														<div class="ProjectInfo_alignRight__27mRq">
+															<span
+																class="Badge_container__9G9PS Badge_visible__3LNXv ProjectInfo_badge__1JkM6"><span
+																class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_danger__2wYXo Badge_tertiary__3uYKh"></span></span>
 														</div>
 													</div>
+													<strong class="ProjectCard_title__3ZLcD">${attentionList.project_title }</strong>
+													<dl class="ProjectCard_subInfo__nidZs">
+														<dt class="ProjectCard_fontBlind__2JaYu">카테고리</dt>
+														<dd class="ProjectCard_subInfoText__-pKhs">패션·잡화</dd>
+														<dt class="ProjectCard_fontBlind__2JaYu">메이커</dt>
+														<dd
+															class="ProjectCard_subInfoText__-pKhs ProjectCard_ellipsis1__3fNOy">노멀리스트</dd>
+													</dl>
 												</div>
-												<strong class="ProjectCard_title__3ZLcD">[⭐인기급상승]가정용
-													DIY공구의 멀티태스킹 달인 파워툴 종이의집 에디션</strong>
-												<dl class="ProjectCard_subInfo__nidZs">
-													<dt class="ProjectCard_fontBlind__2JaYu">카테고리</dt>
-													<dd class="ProjectCard_subInfoText__-pKhs">테크·가전</dd>
-													<dt class="ProjectCard_fontBlind__2JaYu">메이커</dt>
-													<dd
-														class="ProjectCard_subInfoText__-pKhs ProjectCard_ellipsis1__3fNOy">와디즈
-														주식회사</dd>
-												</dl>
-											</div>
-											<div class="CardSpinner_container__1cKRs">
-												<div class="CardSpinner_loader__2-LrZ"
-													style="width: 32px; height: 32px;">
-													<svg viewBox="25 25 50 50" aria-label="Loading">
-														<g class="Loader_circular__2dy3E">
-														<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
-															fill="none" stroke-width="4" stroke-miterlimit="10"></circle></g></svg>
-												</div>
-											</div></a>
-										<button type="button"
-											class="WishButton_button__1ZqbG WishButton_interaction__2FCel"
-											aria-label="찜하기 버튼" aria-pressed="false"
-											data-ga-category="공통_상품카드_스토어" data-ga-action="찜하기_추가"
-											data-ga-label="">
-											<svg viewBox="0 0 32 32" focusable="false"
-												role="presentation" class="withIcon_icon__3VTbq"
-												aria-hidden="true">
-												<path
-													d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
-										</button>
+												<div class="CardSpinner_container__1cKRs">
+													<div class="CardSpinner_loader__2-LrZ"
+														style="width: 32px; height: 32px;">
+														<svg viewBox="25 25 50 50" aria-label="Loading">
+															<g class="Loader_circular__2dy3E">
+															<circle class="Loader_path__2uhmv" cx="50" cy="50" r="20"
+																fill="none" stroke-width="4" stroke-miterlimit="10"></circle></g></svg>
+													</div>
+												</div></a>
+											<button type="button"
+												class="WishButton_button__1ZqbG WishButton_interaction__2FCel"
+												aria-label="찜하기 버튼" aria-pressed="false"
+												data-ga-category="공통_상품카드_프리오더" data-ga-action="찜하기_추가"
+												data-ga-label="">
+												<svg viewBox="0 0 32 32" focusable="false"
+													role="presentation" class="withIcon_icon__3VTbq"
+													aria-hidden="true">
+													<path
+														d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg>
+											</button>
+										</div>
 									</div>
-								</div>
+									
+								</c:forEach>
+								
 							</div>
 						</div>
 					</div>
