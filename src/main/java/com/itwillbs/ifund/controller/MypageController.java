@@ -67,6 +67,7 @@ public class MypageController {
 		
 		model.addAttribute("countCoupon", mypageService.countCoupon(member_idx));
 		model.addAttribute("countPayment", mypageService.countPayment(member_idx));
+		model.addAttribute("countPreorder", mypageService.countPreorder(member_idx));
 		
 		return "mypage/mypage";
 	}
@@ -540,4 +541,16 @@ public class MypageController {
 	}
 	
 	
+
+	
+//	0615 김애리 추가 - 참여한 공동구매
+	@GetMapping("mypage/preorder_history")
+	public String preorder_history(HttpSession session, Model model) {
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
+		List paymentList = mypageService.selectPreorder(member_idx);
+		model.addAttribute("paymentList", paymentList);
+		System.out.println(paymentList);
+		
+		return "mypage/history";
+	}
 }

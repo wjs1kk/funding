@@ -35,11 +35,28 @@
 
 <script type="text/javascript">
 
-	$(function() {
-// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
-		$('#profileImg').css({'background-image': 'url(${pageContext.request.contextPath }/resources/images/profile/' + $("#member_image").val() + ')'});
-		
-	});
+	  // 필드가 변경된 경우에만 값을 전송하도록 설정
+	  form.addEventListener("submit", function (event) {
+	    var formData = new FormData(form);
+
+	    // 파일 선택 여부 확인
+	    var selectedFile = fileInput.files[0];
+	    if (formData.get("newPassword") !== "" ||
+	        formData.get("newPassword2") !== "" ||
+	        selectedFile) {
+	      // 필드가 변경되었거나 파일이 선택된 경우, 폼을 제출합니다.
+	      return true;
+	    } else {
+	        // 변경된 필드가 없으므로 페이지를 새로고침합니다.
+	        event.preventDefault();
+	        location.reload();
+// 	        window.location.href = "mypage/supporter";
+	        return false;
+	      }
+	  });
+	}
+
+	
 
 </script>
 
@@ -201,6 +218,9 @@
 							<div class="email-input-wrap small">
 								<div class="btn-wrap">
 									<button type="submit" id="saveBtn" class="wz button primary block btn-block-mint">확인</button>
+								</div>
+								<div class="btn-wrap">
+									<button type="button" onclick="location.href='supporter'" id="saveBtn" class="wz button secondary block btn-block-mint">돌아가기</button>
 								</div>
 							</div>
 							

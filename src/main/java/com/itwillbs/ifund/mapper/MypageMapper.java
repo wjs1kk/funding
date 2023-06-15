@@ -53,6 +53,8 @@ public interface MypageMapper {
 	public void updateProgress(InquiryVO inquiryVO);
 	public int insertReply(InquiryVO inquiryVO);
 	public int countProject(int member_idx);
+	public int countPreorder(Integer member_idx);
+	public List selectPreorder(Integer member_idx);
 	
 
 	// 2023-06-14 박경은 - 휴대폰 인증완료

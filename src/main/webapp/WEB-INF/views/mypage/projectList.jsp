@@ -66,14 +66,27 @@
 															<i class="wadizicon wa-more-vert"></i>
 														</button>
 													</div>
-													<div class="project-card-wrap">
+													<div class="project-card-wrap" style="background: white;">
 														<div class="project-card">
 															<div class="card-img-section">
-																<em class="project-img ">
-																	<div class="default ">
-																		<p>대표이미지 등록 필요</p>
-																	</div></em> 
-																<em class="project-type reward">프로젝트</em>
+																<em class="project-img">
+																	<div class="default" >
+																		<p></p>
+																		<c:choose>
+																		  <c:when test="${not empty projectList.project_thumbnail}">
+																		    <img src="${pageContext.request.contextPath}/resources/images/project_thumbnail/${projectList.project_thumbnail}" 
+																		    		alt="Project Thumbnail" style="height: 200px;">
+																		  </c:when>
+																		  <c:otherwise>
+																		    <img src="${pageContext.request.contextPath}/resources/images/project_thumbnail/default_image.png" 
+																		    		alt="Default Thumbnail" style="height: 200px;">
+																		  </c:otherwise>
+																		</c:choose>
+																		
+																	</div>
+																	</em> 
+																<em class="project-type reward"></em>
+																
 															</div>
 															
 															
@@ -86,9 +99,26 @@
 																		<h4 class="TextContent_title__3Clug">${projectList.project_title }</h4>
 																	</c:otherwise>
 																</c:choose>
-																<h5>${projectList.project_category}</h5>
+																<c:choose>
+																	<c:when test="${empty projectList.project_category}">
+																		<h5>카테고리를 입력해주세요!</h5>
+																	</c:when>
+																	<c:otherwise>
+																		<h5>${projectList.project_category}</h5>
+																	</c:otherwise>
+																</c:choose>
 																<p class="status confirm">
-																	<i></i>작성 중
+																	
+																	<c:choose>
+																	<c:when test="${projectList.project_approve_status eq '1'}">
+																		<i style="background-color: #FFB500"></i>제출완료
+																	</c:when>
+																	<c:otherwise>
+																		<i style="background-color: #00c4c4"></i>승인완료
+																	</c:otherwise>
+																</c:choose>
+																	
+																	
 																</p>
 																<p></p>
 															</div>
