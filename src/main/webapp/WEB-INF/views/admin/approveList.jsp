@@ -97,6 +97,7 @@
 		let comingSoonDate = $("input[name=project_coming_soon_date]");
 		$("#project_idx").val(project_idx);
 		$("#project_title").val(project_title);
+		alert(project_plan);
 		comingSoonDate.removeAttr('readonly')
 		// 오픈예정
 		if (project_plan == 1) {
@@ -306,7 +307,9 @@
 											<th>메이커</th>
 										</tr>
 									</thead>
-									<tbody id="titleElement" class="table-border-bottom-0">
+									<c:choose>
+										<c:when test="${!empty pendingList }">
+											<tbody id="titleElement" class="table-border-bottom-0">
 										<c:forEach var="pendingList" items="${pendingList }">
 											<tr class="cursor-pointer"
 												onclick="location.href='projectList/${pendingList.project_idx}'">
@@ -370,6 +373,11 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>
