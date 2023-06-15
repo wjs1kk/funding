@@ -299,7 +299,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${fundingDetail.project_coming_soon_date > fundingDeatil.project_start_date}">
+										<c:if test="${fundingDetail.project_coming_soon_date > fundingDetail.project_start_date}">
 											<div class="BaseComingSoonInfo_rateWrapper__OtNwL">
 												<div class="BaseComingSoonInfo_rate__1elAG">
 													<div class="BaseComingSoonInfo_infoWrapper__3Uo9E">
@@ -330,7 +330,7 @@
 												</button>
 											</div>
 										</div>
-										<c:if test="${!empty fundingDetail.project_coming_soon_date }">
+										<c:if test="${fundingDetail.project_coming_soon_date > fundingDetail.project_start_date}">
 											<div class="ComingSoonCTA_right__3SKLL">
 												<div class="ComingSoonCTA_buttonWrap__3uSl8">
 													<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_md__46Ai- Button_block__1-g8w ComingSoonCTA_button__awjmv" type="button" disabled="disabled" style="width: 406px; padding: 16.5px 15px;">
@@ -339,13 +339,12 @@
 												</div>
 											</div>	
  										</c:if>
- 										<c:if test="${empty fundingDetail.project_coming_soon_date }">
+ 										<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
  											<div class="RewardCTA_right__2UBW-">
 												<div class="RewardCTA_buttonWrap__wNKI4"
 													onclick="location.href='rewardSelect?num=${param.num}'">
 													<button
-														class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_md__46Ai- Button_block__1-g8w RewardCTA_button__2rh9i"
-														type="button">
+														class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_md__46Ai- Button_block__1-g8w RewardCTA_button__2rh9i" type="button">
 														<span><span class="Button_children__ilFun"><p>펀딩하기</p></span></span>
 													</button>
 												</div>
@@ -404,7 +403,7 @@
 											</div>
 										</section>
 									</section>
-									<c:if test="${empty fundingDetail.project_coming_soon_date }">
+									<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
 										<div class="CommonInfo_rewardsWrap__2dogH">
 											<div class="Rewards_container__3UnkZ">
 												<div class="Rewards_title__30Vv2">
