@@ -254,12 +254,6 @@
 						</div>
 					</div>
 				</div>
-				<script>
-					var url = document.location.href
-					if(url.contains("${param.category}")) {
-						$(".ImageTab_tab__3siCY").addClass("ImageTab_active__BGdXu");
-					}
-				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
@@ -326,7 +320,7 @@
 						<!-- 						funding project 목록 -->
 						<c:forEach items="${projectDetailList }" var="projectDetailList">
 							<div class="PreorderMainCard_root__1-vcs"
-								style="height: 100%; position: relative;">
+								style="height: 100%; position: relative; ${param.selectbox eq '1'? 'pointer-events: none;' : ''}">
 								<a class="PreorderMainCard_item__2FrO0"
 									href="detail?num=${projectDetailList.project_idx }">
 									<div class="PreorderMainCard_thumbnailWrap__NRDb4">
