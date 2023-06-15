@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.ifund.vo.AccountHistoryVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.ProjectVO;
@@ -111,5 +112,7 @@ public interface ProjectCreateMapper {
 	int dateCheck(int project_idx);
 	
 	int deleteProject(int project_idx);
+	
+	int accountHistory(@Param("cal") CalculateVO cal, @Param("his") AccountHistoryVO history);
 
 }

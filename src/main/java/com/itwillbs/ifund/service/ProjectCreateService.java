@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.ifund.mapper.MemberMapper;
 import com.itwillbs.ifund.mapper.ProjectCreateMapper;
+import com.itwillbs.ifund.vo.AccountHistoryVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -234,6 +235,10 @@ public class ProjectCreateService {
 //	06-14 강정운 프로젝트 제출하지 않았을 시 삭제가능
 	public int deleteProject(int project_idx) {
 		return mapper.deleteProject(project_idx);
+	}
+
+	public int accountHistory(CalculateVO cal, AccountHistoryVO history) {
+		return mapper.accountHistory(cal, history);
 	}
 		
 }
