@@ -6,6 +6,10 @@ public class ProjectListVO {
 	private String project_plan; 
 	private String project_target;
 	private String project_detail_amount;
+	private String project_detail_person; // 2023-06-13 박경은 - 추가
+	private String project_category; // 2023-06-13 박경은 - 추가
+	private String project_summary; // 2023-06-13 박경은 - 추가
+	private String project_introduce; // 2023-06-13 박경은 - 추가
 	private String project_end_date;
 	private String project_title;
 	private String maker_name;
@@ -39,6 +43,38 @@ public class ProjectListVO {
 	}
 	public void setProject_detail_amount(String project_detail_amount) {
 		this.project_detail_amount = project_detail_amount;
+	}
+	// 2023-06-13 박경은 - 추가
+	public String getProject_detail_person() {
+		return project_detail_person;
+	}
+	// 2023-06-13 박경은 - 추가
+	public void setProject_detail_person(String project_detail_person) {
+		this.project_detail_person = project_detail_person;
+	}
+	// 2023-06-13 박경은 - 추가
+	public String getProject_category() {
+		return project_category;
+	}
+	// 2023-06-13 박경은 - 추가
+	public void setProject_category(String project_category) {
+		this.project_category = project_category;
+	}
+	// 2023-06-13 박경은 - 추가
+	public String getProject_summary() {
+		return project_summary;
+	}
+	// 2023-06-13 박경은 - 추가
+	public void setProject_summary(String project_summary) {
+		this.project_summary = project_summary;
+	}
+	// 2023-06-13 박경은 - 추가
+	public String getProject_introduce() {
+		return project_introduce;
+	}
+	// 2023-06-13 박경은 - 추가
+	public void setProject_introduce(String project_introduce) {
+		this.project_introduce = project_introduce;
 	}
 	public String getProject_end_date() {
 		return project_end_date;

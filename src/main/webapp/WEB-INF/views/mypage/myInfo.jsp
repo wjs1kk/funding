@@ -33,6 +33,15 @@
     }
 </style>
 
+<script type="text/javascript">
+
+	$(function() {
+// 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
+		$('#profileImg').css({'background-image': 'url(${pageContext.request.contextPath }/resources/images/profile/' + $("#member_image").val() + ')'});
+		
+	});
+
+</script>
 
 </head>
 <body>
@@ -48,15 +57,14 @@
 					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
 						<div class="profileimg-wrap">
 							<button type="button" id="resultProfileImg" class="profileimg" >
-							<em id="profileImg" style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"  class=""></em>
+<!-- 								<em style="background-image: url(https://static.wadiz.kr/assets/icon/profile-icon-4.png)"></em> -->
+							<em id="profileImg" class=""></em>
 							</button>
 							<p class="setting-profileimg">
-								<button type="button" onclick="$('#uploadProfileImg').click()"
-									id="btn_updatePhoto">
+								<button type="button" onclick="$('#uploadProfileImg').click()" id="btn_updatePhoto">
 									<span>바꾸기</span>
 								</button>
-								<button type="button" onclick="deletePhoto()"
-									id="btn_deletePhoto">삭제</button>
+								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button>
 							</p>
 						</div>
 						
@@ -112,7 +120,7 @@
 			success: function (data) {
 				console.log("data: " + data);
 				authCode.attr('disabled', false);
-				code = data;
+				numStr = data;
 				alert('인증번호가 전송되었습니다.');
 			}
 		});
@@ -120,19 +128,43 @@
 		$('#authCode').blur(function () {
 			const authCode = $(this).val();
 			
-			if(authCode == code){
+			if(authCode === numStr){
 				$('#mobileCheckBtn').attr('disabled',true);
 				$('#authCode').attr('readonly',true);
 				alert('인증이 완료되었습니다.');
 			} else {
-				alert('인증오류.');
+				alert(authCode);
 			}
 		});
 	}
  	
 </script>
+
+</head>
+<body>
+	<div id="page-container">
+		<div class="black-bg-wrap" style="display: none;"></div>
+		<jsp:include page="../inc/top.jsp"></jsp:include>
+
+		<div id="accountWrap">
+			<div id="newContainer">
+				<!-- account-wrap -->
+				<div class="account-wrap" style="padding: 80px 20px;">
+					<h2>기본 정보 설정</h2>
+					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
+						<div class="profileimg-wrap">
+							<button type="button" id="resultProfileImg" class="profileimg" >
+							<em id="profileImg" style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"  class=""></em>
+							</button>
+							<p class="setting-profileimg">
+								<button type="button" onclick="$('#uploadProfileImg').click()" id="btn_updatePhoto">
+									<span>바꾸기</span>
+								</button>
+<!-- 								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button> -->
+							</p>
+						</div>
 						
-						
+						<input type="file" name="image" id="uploadProfileImg" style="display: none;">
 						<input type="hidden" id="member_image" value="${member.member_image }">
 						
 						<div class="email-input-wrap">
@@ -189,9 +221,10 @@
 								</div>
 							</div>
 							
-							<div class="my-info" style="text-align: end; margin-top: 15px;"
-							onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
-                       			 <h3><a href="deleteMember">회원 탈퇴</a></h3>
+							<div class="my-info" style="text-align: end; margin-top: 15px;" >
+                    			<h3>
+                    				<a href="deleteMember"onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
+                       			 	회원 탈퇴</a><h3>
                     		</div>
 							
 						</div>
@@ -213,7 +246,6 @@
 	   			if (0 < "0") {
 	   				
 	   			}
-
 	   			var defaultPhotoUrl = 'https://static.wadiz.kr/assets/icon/profile-icon-4.png';
 	   			if (defaultPhotoUrl == undefined || defaultPhotoUrl == '') {
 	   				$('#btn_updatePhoto').text('프로필 사진 등록');
@@ -401,5 +433,4 @@
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
 	
 </body>
-
 </html>

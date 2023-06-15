@@ -22,13 +22,13 @@
 	
 	
 	// 06-07 김동욱 해당 리워드 클릭시 해당 리워드_idx에 해당하는 리워드 수량 입력창 오픈
-	function rewardDisplay(reward_amount, index, length){
+	function rewardDisplay(reward_amount, index, length, reward_sell){
 		if($('#rewardCheckbox_'+index).is(':checked') == true){
 			$("#rewardDisplay_"+index).css("display", "block")
 		}else if($('#rewardCheckbox_'+index).is(':checked') == false){
 			$("#rewardDisplay_"+index).css("display", "none")
 		}
-		rewardOnchange(reward_amount, index, length);
+		rewardOnchange(reward_amount, index, length, reward_sell);
 	}
 // 	$(function() {
 // 		// 06-07 김동욱 파라미터 select의 값에 해당하는 reward 체크
@@ -36,30 +36,46 @@
 // 	})
 	
 	// 06-07 김동욱 리워드 수량 증가 버튼
-	function rewardIncrease(reward_amount, index, length) {
+	function rewardIncrease(reward_amount, index, length, reward_sell, reward_quantity) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+index).val());
 		rewardQuantity += 1
 		$("#rewardQuantity_"+index).val(rewardQuantity);
-		rewardOnchange(reward_amount, index, length)
+		rewardOnchange(reward_amount, index, length, reward_sell, reward_quantity)
 	}
 	
 	// 06-07 김동욱 리워드 수량 감소 버튼
-	function rewardDecrease(reward_amount, index, length) {
+	function rewardDecrease(reward_amount, index, length, reward_quantity) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+index).val());
+		
+		
 		rewardQuantity -= 1
 		if(rewardQuantity < 1){
 			rewardQuantity = 1
 		}
 		$("#rewardQuantity_"+index).val(rewardQuantity);
-		rewardOnchange(reward_amount, index, length)
+		rewardOnchange(reward_amount, index, length, reward_quantity)
 		
 	}
 	
 	// 06-07 김동욱 리워드 수량이 바뀔 때 수량 * 리워드 금액 계산
-	function rewardOnchange(reward_amount, index, length) {
+	function rewardOnchange(reward_amount, index, length, reward_sell, reward_quantity) {
 		let rewardQuantity = Math.floor($("#rewardQuantity_"+index).val());
 		let rewardAmount = Math.floor(reward_amount);
 		let numCheck = /[0-9]/;
+		
+		let remainingQuantity = reward_quantity - reward_sell;
+		
+// 		if(remainingQuantity == 0){
+// 			alert("현재 리워드는 주문이 마감 되었습니다.")
+// 			$("input:checkbox[id='rewardCheckbox_"+index+"']").prop("checked", false);
+// 			$("#rewardDisplay_"+index).css("display", "none")
+// 		}
+		
+		if(rewardQuantity > remainingQuantity){
+			rewardQuantity = remainingQuantity
+			$("#rewardQuantity_"+index).val(remainingQuantity)
+			alert("현재 남은 수량은 " + remainingQuantity + "개 입니다.")
+		}
 		
 		// 수량이 0보다 작거나 같으면 수량1
 		if(rewardQuantity <= 0){
@@ -191,12 +207,20 @@ input[type="number"]::-webkit-inner-spin-button {
 								<ul class="RewardProductList_container__2hIAB">
 								
 									<c:forEach items="${selectReward }" var="selectReward" varStatus="status">
-									
+											
 										<input type="hidden" id="reward_name_${status.index}" value="${selectReward.reward_name }"></input>
 										<input type="hidden" id="reward_amount_${status.index}" value="${selectReward.reward_amount }"></input>
 										<input type="hidden" id="reward_idx_${status.index}" value="${selectReward.reward_idx }"></input>
 										<input type="hidden" id="reward_delivery_fee_${status.index}" value="${selectReward.reward_delivery_fee }"></input>
-									
+										<c:if test="${(selectReward.reward_quantity - selectReward.reward_sell) == 0}">
+											<input type="hidden" id="index" value="${status.index}">
+											<script>
+												$(function() {
+													$("#rewardCheckbox_"+${status.index}).attr("disabled", true);
+// 													$(".RewardProductItem_label__2t2Wd").css("background", "lightgray");
+												})
+											</script>
+										</c:if>
 										<li class="RewardProductList_list__2oOvi" >
 											<section
 												class="RewardProductItem_container__1wZBW">
@@ -204,7 +228,7 @@ input[type="number"]::-webkit-inner-spin-button {
 													for="checkbox-reward-product-445400"><div
 														class="RewardProductItem_price__2oEJ1">
 														<input type="hidden" id="reward_name_${selectReward.reward_idx }" value="${selectReward.reward_name }">
-														<input type="checkbox" id="rewardCheckbox_${status.index}"  onclick="rewardDisplay(${selectReward.reward_amount }, ${status.index}, ${length })">
+														<input type="checkbox"  id="rewardCheckbox_${status.index}"  onclick="rewardDisplay(${selectReward.reward_amount }, ${status.index}, ${length })">
 														<span>${selectReward.reward_amount }</span>&nbsp;원
 													</div>
 													<div class="RewardProductItem_content__Pw7qB">
@@ -212,7 +236,18 @@ input[type="number"]::-webkit-inner-spin-button {
 															${selectReward.reward_name }
 															<div class="RewardProductItem_remain__XDQPL">
 																<span class="RewardProductItem_limit__5TztV">제한수량 ${selectReward.reward_quantity }개</span>
-																<span class="RewardProductItem_stock__5qZys">${selectReward.reward_quantity  - selectReward.reward_sell}개 남음</span>
+																<span class="RewardProductItem_stock__5qZys">
+																	<c:choose>
+																		<c:when test="${(selectReward.reward_quantity  - selectReward.reward_sell) == 0}">
+																			마감되었습니다.
+																		</c:when>
+																		<c:otherwise>
+																			${selectReward.reward_quantity  - selectReward.reward_sell}개 남음
+																		</c:otherwise>
+																	</c:choose>
+																	
+																
+																</span>
 															</div>
 														</div>
 														<div class="RewardProductItem_description__1Eenu">
@@ -265,11 +300,11 @@ input[type="number"]::-webkit-inner-spin-button {
 																<div class="RewardProductCard_quantity__2CSmq">
 																	<div class="ProductQuantity_container__1_106">
 																		<button type="button" aria-label="감소 버튼" id="rewardDecreaseBtn_${selectReward.reward_idx}"
-																			class="ProductQuantity_minusButton__22tR8" onclick="rewardDecrease(${selectReward.reward_amount }, ${status.index}, ${length})"></button>
-																		<input type="number" aria-label="수량 입력" id="rewardQuantity_${status.index}" onchange="rewardOnchange(${selectReward.reward_amount}, ${status.index}, ${length})"
+																			class="ProductQuantity_minusButton__22tR8" onclick="rewardDecrease(${selectReward.reward_amount }, ${status.index}, ${length}, ${selectReward.reward_sell }, ${selectReward.reward_quantity })"></button>
+																		<input type="number" aria-label="수량 입력" id="rewardQuantity_${status.index}" onchange="rewardOnchange(${selectReward.reward_amount}, ${status.index}, ${length}, ${selectReward.reward_sell }, ${selectReward.reward_quantity })"
 																			data-testid="quantity" value="1">
 																		<button type="button" aria-label="증가 버튼" id="rewardIncreaseBtn_${selectReward.reward_idx }"
-																			class="ProductQuantity_plusButton__2TJ7g" onclick="rewardIncrease(${selectReward.reward_amount }, ${status.index}, ${length})"></button>
+																			class="ProductQuantity_plusButton__2TJ7g" onclick="rewardIncrease(${selectReward.reward_amount }, ${status.index}, ${length}, ${selectReward.reward_sell }, ${selectReward.reward_quantity })"></button>
 																	</div>
 																	<p class="RewardProductCard_price__3t1PE" id="rewardAmount_${status.index}">${selectReward.reward_amount }</p>
 																</div>

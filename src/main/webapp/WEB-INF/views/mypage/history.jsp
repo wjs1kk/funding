@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <html lang="ko" class="show-footer">
 <head>
@@ -19,38 +20,48 @@
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 		<main id="main-app">
 			<div class="MainWrapper_content__GZkTa">
-				<section class="MyFundingListContainer_container__j04bM" style="">
+				<section class="MyFundingListContainer_container__j04bM" style="padding: 0 282px 138px;">
 					<h2 class="MyFundingListContainer_title__3_i7M">참여내역</h2>
-					<div>
-						<div>
-							<ul class="MyFundingList_myFundingList__3outv">
-								<li class="MyFundingList_listItem__2C_bx">
-									<a href="history2">
-										<dl class="MyFundingListItem_fundingCard__1mDVb">
-											<dt><em class="MyFundingListItem_category__15_rp">프리오더 / 푸드</em>
-												<em class="MyFundingListItem_date__2JkBG">2023.05.22 참여</em>
-											</dt>
-											<dd>
-												<p class="MyFundingListItem_status__3WM80">
-													<i class="MyFundingListItem_icon__qMlG5"></i>진행중
-												</p>
-												<p class="MyFundingListItem_title__1MJNN">[내가 찾던 상큼함]샤인머스켓 듬뿍 청량감 가득 이순간 샤인머스켓 콤부차</p>
-												<p class="MyFundingListItem_maker__2m1j6">by 농업회사법인(주)심박</p>
-												<p class="MyFundingListItem_fundingInfo__2_DFC">
-													<em class="MyFundingListItem_fundStatus__1t2dq">결제 예약</em>
-													<em class="MyFundingListItem_comment__2zTJL">2023.05.26 17시 결제 예정</em>
-												</p>
-												<span class="MyFundingListItem_detail__WKhV2">상세보기
-													<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-														class="withIcon_icon__3VTbq" aria-hidden="true">
-														<path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span>
-											</dd>
-										</dl>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					<ul class="ProjectCardList_container__2Q0Js App_projectCardList__1KfbT">
+					
+					<c:choose>
+						<c:when test="${empty paymentList }">
+							<tr>
+								<td colspan="4"> 참여한 펀딩 내역이 존재하지 않습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${paymentList}" var="paymentList">
+							<div>
+								<div>
+									<ul class="MyFundingList_myFundingList__3outv">
+										<li class="MyFundingList_listItem__2C_bx" style="padding-bottom: 0">
+											<a href="history2?payment_idx=${paymentList.payment_idx }">
+											
+												<dl class="MyFundingListItem_fundingCard__1mDVb">
+													<dd>
+														<p class="MyFundingListItem_status__3WM80">
+															<i class="MyFundingListItem_icon__qMlG5"></i>${paymentList.project_category}
+														</p>
+														<p class="MyFundingListItem_title__1MJNN">${paymentList.project_title}</p>
+														<p class="MyFundingListItem_maker__2m1j6" style="padding-bottom: 7px"></p>
+														<p class="MyFundingListItem_fundingInfo__2_DFC"  style="padding: 0px 0px 15px">
+															<em class="MyFundingListItem_fundStatus__1t2dq">펀딩기간</em>
+															<em class="MyFundingListItem_comment__2zTJL">${paymentList.project_start_date} ~ ${paymentList.project_end_date}</em>
+															<em class="" style="float: right">상세보기 >
+															</em>
+														</p>
+													</dd>
+												</dl>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					</ul>
 				</section>
 			</div>
 		</main>

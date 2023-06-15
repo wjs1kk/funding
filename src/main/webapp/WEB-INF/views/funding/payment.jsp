@@ -1003,6 +1003,8 @@
 		console.log($("#postcode").val())
 		console.log($("#detailAddress").val())
 		
+		let numReg = /^[0-9]{11,11}$/;
+		
 		if($("#recipient").val() == null || $("#recipient").val() == ""){
 			alert("배송지 정보가 모두 입력되지 않았습니다.")
 			return false;
@@ -1020,6 +1022,11 @@
 		
 		if($("#detailAddress").val() == null || $("#detailAddress").val() == "") {
 			alert("배송지 정보가 모두 입력되지 않았습니다.")
+			return false;
+		}
+		
+		if(!numReg.exec($("#delivery_phone_number").val())){
+			alert("휴대폰 번호는 '-'을 제외한 숫자 11자리를 입력해주세요")
 			return false;
 		}
 	

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -105,7 +106,24 @@ public class AdminController {
 		} else {
 			return "admin/index";
 		}
+	}
+	
+	// 06-15 김동욱 마이페이지에서 관리자페이지로 이동할 시 경로가 맞지 않아 추가
+	@GetMapping("mypage/admin")
+	public String mypageAdmin(String member_email, Model model, HttpSession session, ProjectVO project) {
+		String isAdmin = (String) session.getAttribute("isAdmin");
+		Integer member_idx = (Integer) session.getAttribute("member_idx");
 		
+		// 메인 그래프
+		int count = adminService.getCount(project);
+		model.addAttribute("count", count);
+		
+		if (member_idx == null || isAdmin.equals(Role.BASIG_MEMBER.code)) {
+			model.addAttribute("msg", "접근 권한이 없습니다.");
+			return "fail_back";
+		} else {
+			return "redirect:/admin";
+		}
 	}
 
 	// 2023-06-02 박경은 - 로그아웃
@@ -819,23 +837,19 @@ public class AdminController {
 		System.out.println("management access_token : " + access_token);
 		System.out.println("management user_seq_no : " + user_seq_no);
 		
-		try {
-			List list = adminService.selectCalculateList(calculate);
-			ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+	
+		List<HashMap<String, String>> list = adminService.selectCalculateList(calculate);
+		System.out.println("list: " + list );
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
 //			System.out.println(userInfo.getRes_list().get(2).getFintech_use_num());
-			System.out.println("Fintech_use_num : " + userInfo.getRes_list().get(2).getFintech_use_num());
-				
-			// Model 객체에 ResponseUserInfoVO 객체 저장
-			model.addAttribute("fintech_use_num", userInfo.getRes_list().get(2).getFintech_use_num());
+		System.out.println("Fintech_use_num : " + userInfo.getRes_list().get(2).getFintech_use_num());
+			
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("fintech_use_num", userInfo.getRes_list().get(2).getFintech_use_num());
 
-			model.addAttribute("list", list);
-			return "admin/management";
-		} catch (Exception e) {
-			System.out.println("management 에러: " + e.getMessage());
-			e.printStackTrace();
-			model.addAttribute("msg", "management 에러");
-			return "fail_back";
-		}
+		model.addAttribute("list", list);
+		return "admin/management";
+		
 	}
 	
 	// 정산 내역
@@ -848,6 +862,10 @@ public class AdminController {
 			model.addAttribute("target", "../");
 			return "success";
 		} 
+		
+		List list = adminService.getAccountHistory();
+		model.addAttribute("list", list);
+		
 		return "admin/managementList";
 	}
 	

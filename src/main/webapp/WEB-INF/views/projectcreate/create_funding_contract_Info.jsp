@@ -203,26 +203,8 @@
 										</div>
 									</div>
 									<div>
-										<div class="IdentifyVerificationField_title__32YXB">대표자
-											본인 인증</div>
-										<div class="MouseOverGuide_container__3jDBz"
-											style="margin-bottom: 16px;">
-											<div class="MouseOverGuide_contents__APrXG">
-												<button
-													class="Button_button__1e2A2 Button_tertiaryMint__3uibN Button_contained__TTXSM Button_lg__3vRQD IdentifyVerificationField_button__3OoSp"
-													type="button">
-													<span><span class="Button_children__q9VCZ">본인
-															인증</span></span>
-												</button>
-											</div>
-											<div class="MouseOverGuide_guideWrapper__28wbb">
-												<div
-													class="MouseOverGuide_guide__13NEZ MouseOverGuide_isEmpty__2pOmW">
-													<h5 class="MouseOverGuide_title__1sJjC"></h5>
-													<div class="MouseOverGuide_content__I9HrE"></div>
-												</div>
-											</div>
-										</div>
+										
+										
 									</div>
 								</div>
 								<div class="SettlementInfoSection_container__1NM2D">

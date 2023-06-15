@@ -1,21 +1,14 @@
 package com.itwillbs.ifund.controller;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +16,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.itwillbs.ifund.service.*;
-import com.itwillbs.ifund.vo.*;
+import com.itwillbs.ifund.service.FundingService;
+import com.itwillbs.ifund.service.MainService;
+import com.itwillbs.ifund.service.MypageService;
+import com.itwillbs.ifund.vo.InquiryVO;
+import com.itwillbs.ifund.vo.MemberVO;
+import com.itwillbs.ifund.vo.ProjectListVO;
+import com.itwillbs.ifund.vo.RewardVO;
 
 @Controller
 public class FundingController {
@@ -40,10 +35,16 @@ public class FundingController {
 	@Autowired
 	private MypageService mypageService;
 	
+	@Autowired
+	private MainService mainService;
+	
 	@GetMapping("funding")
 	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
 		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
+		
+		List list = mainService.slide();
+		model.addAttribute("list", list);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -67,8 +68,11 @@ public class FundingController {
 		fundingService.cancelWish(map.get("project_idx"));
 		return "funding/funding";
 	}
+
+	
+	
 	@GetMapping("detail")
-	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order) {
+	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 //		06/13
@@ -89,8 +93,18 @@ public class FundingController {
 		model.addAttribute("images", imageList);
 		model.addAttribute("selectReward", selectReward);
 		model.addAttribute("fundingDetail", fundingDetail);
-//		06/13
 		model.addAttribute("countWish", countWish);
+		
+//		06/13
+//		최근본 프로젝트 관련
+		Cookie cookie = new Cookie("goods"+num,num);
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60 * 24);
+		response.addCookie(cookie);
+//		최근본 프로젝트 관련 끝
+		
+		System.out.println(fundingDetail);
+
 		return "funding/funding_detail";
 	}
 	
@@ -117,6 +131,9 @@ public class FundingController {
 	public String comingsoon(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order) {
 		List comingsoonProject = fundingService.selectComingsoonProject(category, order);
 		List categoryList = fundingService.categoryList();
+		
+		List list = mainService.slide();
+		model.addAttribute("list", list);
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("comingsoon", comingsoonProject);
@@ -170,17 +187,17 @@ public class FundingController {
 		
 		return "funding/payment";
 	}
-	@GetMapping("preorder")
-	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
-		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order, selectbox);
-		model.addAttribute("projectPreorderList", projectPreorderList);
-		
-		List categoryList = fundingService.categoryList();
-		model.addAttribute("selectbox", selectbox);
-		model.addAttribute("categoryList", categoryList);
-		
-		return "funding/preorder";
-	}
+//	@GetMapping("preorder")
+//	public String preorder(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+//		List<ProjectListVO> projectPreorderList = fundingService.selectPreorderProject(category, order, selectbox);
+//		model.addAttribute("projectPreorderList", projectPreorderList);
+//		
+//		List categoryList = fundingService.categoryList();
+//		model.addAttribute("selectbox", selectbox);
+//		model.addAttribute("categoryList", categoryList);
+//		
+//		return "funding/preorder";
+//	}
 	
 	// 06-10 김동욱 결제하기
 	@PostMapping("paymentPro")
@@ -217,12 +234,9 @@ public class FundingController {
 		int total_amount = Integer.parseInt(map.get("total_amount").toString());
 		// 06-10 김동욱 프로젝트 디테일 총금액 업데이트 및 결제 금액 5% 포인트 적립
 		int projectDetailUpdateCount = fundingService.projectDetailAmountUpdate(project_idx, total_amount, member_idx);
+		
 	}
 	
-	@GetMapping("inquiry")
-	public String inquiry() {
-		return "funding/inquiry_form";
-	}
 	@GetMapping("paySuccess")
 	public String paySuccess() {
 		return "funding/pay_success";

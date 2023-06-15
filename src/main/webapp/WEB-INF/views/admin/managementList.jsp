@@ -157,76 +157,31 @@ ul li {
 									<thead>
 										<tr>
 											<th>NO</th>
-											<th>상태</th>
 											<th>거래일자</th>
+											<th>예금주명</th>
 											<th>거래유형</th>
 											<th>정산금액</th>
 											<th>잔액</th>
 										</tr>
 									</thead>
 									<c:choose>
-										<c:when test="${!empty test}">
+										<c:when test="${!empty list}">
 											<tbody class="table-border-bottom-0">
-												<c:forEach var="projects" items="${projects }">
+												<c:forEach var="list" items="${list }">
 													<tr>
-														<td>${projects.project_idx }</td>
+														<td>${list.history_idx }</td>
+														<td>${list.confirmDate }</td>
+														<td>${list.member_name }</td>
 														<c:choose>
-															<c:when test="${projects.project_status eq 2 }">
-																<td id="td_project_plan"><span
-																	class="badge bg-danger">마 감</span></td>
-															</c:when>
-															<c:when test="${projects.project_status eq 1 }">
-																<td id="td_project_plan"><span
-																	class="badge bg-primary">진행중</span></td>
+															<c:when test="${list.history_status == 'd'}">
+																<td>입금</td>
 															</c:when>
 															<c:otherwise>
-																<%-- 														<c:if test="${projects.project_approve_status eq 3}"> --%>
-																<!-- 															<td id="td_project_plan"> -->
-																<!-- 															<span class="badge bg-label-secondary">승인거부</span> -->
-																<!-- 															</td> -->
-																<%-- 														</c:if> --%>
-																<td id="td_project_plan"><span
-																	class="badge bg-label-secondary">오픈전</span></td>
+																<td>출금</td>
 															</c:otherwise>
 														</c:choose>
-														<td>${projects.project_title }</td>
-														<c:choose>
-															<c:when test="${projects.project_type eq 0}">
-																<td>펀딩</td>
-															</c:when>
-															<c:otherwise>
-																<td>공동구매</td>
-															</c:otherwise>
-														</c:choose>
-														<c:choose>
-															<c:when test="${projects.project_approve_status eq 3 }">
-																<td>거부</td>
-															</c:when>
-															<c:when test="${projects.project_approve_status eq 2 }">
-																<td>승인</td>
-															</c:when>
-															<c:when test="${projects.project_approve_status eq 1 }">
-																<td>대기</td>
-															</c:when>
-															<c:otherwise>
-																<td id="td_project_plan"><span
-																	class="badge bg-label-secondary">미제출</span></td>
-															</c:otherwise>
-														</c:choose>
-														<td>${projects.project_start_date }~
-															${projects.project_end_date }</td>
-														<c:choose>
-															<c:when
-																test="${projects.target_rate < 0 || empty projects.target_rate }">
-																<td>0 %</td>
-															</c:when>
-															<c:otherwise>
-																<td><fmt:formatNumber
-																		value="${projects.target_rate }" pattern="#,###" />%</td>
-															</c:otherwise>
-														</c:choose>
-														<td>${projects.project_detail_person }명</td>
-
+														<td><fmt:formatNumber value="${list.tran_amt }" pattern="#,###" />원</td>
+														<td><fmt:formatNumber value="${list.balance }" pattern="#,###" />원</td>
 													</tr>
 												</c:forEach>
 											</tbody>

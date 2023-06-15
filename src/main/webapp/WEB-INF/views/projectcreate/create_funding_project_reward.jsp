@@ -93,6 +93,7 @@
 				for(let rewardList of jsonRewardList){
 					// 배송비가 있으면 '배송비 + 원' 배송비가 없으면 '없음' 배송비가 0원이면 '무료'
 					let reward_delivery_fee = rewardList.reward_delivery_fee;
+					let reward_delivery_date = rewardList.reward_delivery_date;
 					let delivery = "배송비";
 					if(reward_delivery_fee == null){
 						reward_delivery_fee = "";
@@ -102,6 +103,11 @@
 					}else {
 						reward_delivery_fee += "원";
 					}
+					
+					if(reward_delivery_date == null){
+						reward_delivery_date = "배송 없음"
+					}
+					
 					$("#rewardAddSection").append('<div class="FundingConditionRewardItem_container__1aQKY spacing-4">'
 						+'<div class="FundingConditionRewardItem_header__3LoHV">'
 						+'<div class="FundingConditionRewardItem_amount__13WhI">'+rewardList.reward_amount+'원</div>'
@@ -119,7 +125,7 @@
 						+'</div>'
 						+'<div class="FundingConditionRewardItem_shippingPeriod__1BURI">'
 						+'<div>리워드 발송 시작일</div>'
-						+'<div>'+rewardList.reward_delivery_date+'</div>'
+						+'<div>'+reward_delivery_date+'</div>'
 						+'</div>'
 						+'</div>'
 						+'<div class="FundingConditionRewardItem_buttonGroup__19GER">'
@@ -337,9 +343,12 @@
 			alert("리워드 배송비를 입력해주세요!")
 			return false;
 		}
-		if($("#reward_delivery_date").val() == ""){
-			alert("리워드 발송 날짜를 입력해주세요!")
-			return false;
+		
+		if($("#reward_delivery").val() == "1"){
+			if($("#reward_delivery_date").val() == ""){
+				alert("리워드 발송 날짜를 입력해주세요!")
+				return false;
+			}
 		}
 		// 숫자
 	 	var check_num = /[0-9]/;

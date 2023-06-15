@@ -12,6 +12,7 @@ import com.itwillbs.ifund.vo.InquiryVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.PointVO;
+import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.vo.ProjectVO;
 
 @Service
@@ -36,8 +37,8 @@ public class MypageService {
 	public int deleteMember(Integer member_idx) {
 		return mapper.deleteMember(member_idx);
 	}
-	public List<ProjectVO> selectWish(Integer member_idx) {
-		return mapper.selectWish(member_idx);
+	public List<ProjectListVO> selectWish(Integer member_idx) {
+		return mapper.selectWish(member_idx) != null ? mapper.selectWish(member_idx) : null;
 	}
 	public List<ProjectVO> selectHistory(Integer member_idx) {
 		return mapper.selectHistory(member_idx);
@@ -71,8 +72,8 @@ public class MypageService {
 	public List<InquiryVO> selectInquiry(Integer member_idx) {
 		return mapper.selectInquiry(member_idx);
 	}
-	public List<InquiryVO> myInquiry(Integer member_idx, int listLimit, int startRow) {
-		return mapper.myInquiry(member_idx, listLimit, startRow);
+	public List myInquiry(Integer member_idx, Integer maker_idx, int listLimit, int startRow) {
+		return mapper.myInquiry(member_idx, maker_idx, listLimit, startRow);
 	}
 	public Integer myInquiryCount(Integer member_idx) {
 		return mapper.myInquiryCount(member_idx);
@@ -83,9 +84,6 @@ public class MypageService {
 	
 	
 //	0612 김애리 추가 - 메이커문의
-//	public String inqMaker(Integer member_idx) {
-//		return mapper.inqMaker(member_idx);
-//	}
 	public List<InquiryVO> supInquiry(Integer member_idx, int listLimit, int startRow) {
 		return mapper.supInquiry(member_idx, listLimit, startRow);
 	}
@@ -98,4 +96,37 @@ public class MypageService {
 	public Map<String, Object> selectMakerName(String maker) {
 		return mapper.selectMakerName(maker);
 	}
+	
+//	0613 김애리 추가 - 보유 쿠폰 갯수
+	public int countCoupon(Integer member_idx) {
+		return mapper.countCoupon(member_idx);
+	}
+	public int countPayment(Integer member_idx) {
+		return mapper.countPayment(member_idx);
+	}
+	
+//	0613 김애리 추가 - 참여한 펀딩 내역
+	public List selectPayment(Integer member_idx) {
+		return mapper.selectPayment(member_idx);
+	}
+	public Map<Object, Object> selectPaymentMap(Integer member_idx, int payment_idx) {
+		return mapper.selectPaymentMap(member_idx, payment_idx);
+	}
+	
+//	0614 김애리 추가 - 서포터문의
+	public List SupInquiry(Integer member_idx, List maker_idx, int listLimit, int startRow) {
+		return mapper.SupInquiry(member_idx, maker_idx, listLimit, startRow);
+	}
+	public Integer SupInquiryCount(List maker_idx) {
+		return mapper.SupInquiryCount(maker_idx);
+	}
+	public int insertReply(InquiryVO inquiryVO) {
+		mapper.updateProgress(inquiryVO);
+		return mapper.insertReply(inquiryVO);
+	}
+	public int countProject(int member_idx) {
+		return mapper.countProject(member_idx);
+	}
+	
+	
 }

@@ -47,4 +47,12 @@ public interface FundingMapper {
 //	찜하기관련 끗
 //	06/13
 	public int countWish(int project_idx);
+	// 2023-06-13 박경은 - 오픈예정 프로젝트
+	public List selectAttentionProject(ProjectListVO projectList);
+	// 2023-06-13 박경은 - 실시간 랭킹
+	public List selectRankingProject(ProjectListVO projectList);
+	// 2023-06-13 박경은 - 얼리버드
+	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward);
+	// 2023-06-13 박경은 - 오늘 오픈
+	public List selectTodayOpenProject(ProjectListVO projectList);
 }

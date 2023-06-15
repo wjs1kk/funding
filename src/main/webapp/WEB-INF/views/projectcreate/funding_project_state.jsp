@@ -103,7 +103,7 @@
 											<div class="MyWadizSupporterProject_title__1IOfu">
 												<div class="MyWadizSupporterProject_accumulate__1nyx5">
 													<div class="MyWadizSupporterProject_value__7aQ4B">
-														<a class="MyWadizSupporterAccumulate_container__h_OVK" href="point">
+														<a class="MyWadizSupporterAccumulate_container__h_OVK">
 															<dl class="MyWadizSupporterAccumulate_info__2_7Is">
 																<dt class="MyWadizSupporterAccumulate_title__3CiIs">
 																	<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
@@ -117,7 +117,7 @@
 															</dl>
 														</a>
 														<hr class="Divider_divider__ToZaf Divider_horizontal__3W5eD Divider_lightBG__3bAAk Divider_spacing5__C3W8V Divider_caption2__3b6Dr MyWadizSupporterProject_accumulateDivider__1qDCv">
-														<a class="MyWadizSupporterAccumulate_container__h_OVK" href="coupon">
+														<a class="MyWadizSupporterAccumulate_container__h_OVK">
 														<dl class="MyWadizSupporterAccumulate_info__2_7Is">
 															<dt class="MyWadizSupporterAccumulate_title__3CiIs">
 																<svg viewBox="0 0 40 40" focusable="false" role="presentation"

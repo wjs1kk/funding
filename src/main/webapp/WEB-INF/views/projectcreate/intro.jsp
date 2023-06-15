@@ -13,40 +13,47 @@
 <link href="https://static.wadiz.kr/studio/funding/static/css/main.2b8a3946.chunk.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/21.433123b2.chunk.css">
 <title>아이펀드 메이커 스튜디오</title>
-
+<script type="text/javascript">
+	//사용자이름 넣기
+// 	$(document).ready(function(){
+// 		$.ajax({
+// 			 url: 'memberNameCheck',
+// 		     type: 'POST',
+// 		     data: {project_idx: ${projectNum}},
+// 		     success: function(member) {
+// 		    	 {
+// 					$("#memberName3").text(member);
+// 					$("#memberName4").text(member);
+// 		    	 }
+// 		     },		     
+// 		})
+// 	})
+</script>
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
 	<div data-react-modal-body-trap="" tabindex="0"
 		style="position: absolute; opacity: 0;"></div>
-	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root">
 		<div id="AppLayout_Container" class="AppLayout_container__3zbzb">
 			<!-- 05-17 김동욱 모든 프로젝트 페이지 상단탭 project_top.jsp include로 변경 -->
 			<nav class="DetailNavbar_container__3SkEf">
-				<jsp:include page="../inc/project_top.jsp"></jsp:include>
 			</nav>
 			<div class="AppLayout_main__14bCi">
 				<div class="AppSidebarLayout_contents__2thGr" id="sidebar">
 					<div
 						class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
-						<div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
-							<span class="AppSidebarRewardProjectInfo_flag__2Ctnr">프로젝트</span><span
-								class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
-						</div>
-						<a class="AppSidebarRewardProjectInfo_projectName__1Hf5o"
-							href="/web/campaign/detail/214216?preview=Y" target="_blank"
-							rel="nofollow noopener noreferrer">전창용의<br>멋진 프로젝트
-						</a>
+						
+						<p class="AppSidebarRewardProjectInfo_projectName__1Hf5o">${memberName }의<br>멋진 프로젝트
+		</p>
 						<button
 							class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_"
 							type="button">
 							<span><span class="Button_children__q9VCZ">프로젝트 번호
-									214216</span> <svg viewBox="0 0 32 32" focusable="false"
+									${param.project_idx }</span> <svg viewBox="0 0 32 32" focusable="false"
 									role="presentation"
 									class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN"
 									aria-hidden="true" style="width: 20px; height: 20px;">
-									<path
-										d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
+									</svg></span>
 						</button>
 					</div>
 					<nav class="AppSidebarMenuList_container__199gJ">
@@ -149,7 +156,7 @@
 						</div>
 <!-- 						프로젝트 생성버튼 누르면 나옴 -->
 						<div id="step1" class="FundingIntroContainer_container__15HLj">
-							<h2 class="title">전창용 님, 반갑습니다!</h2>
+							<h2 class="title"><span id="memberName4"></span> ${memberName }님, 반갑습니다!</h2>
 							<div class="description">
 								프로젝트 개설을 축하드려요.<br>서포터님들께 제품·서비스·콘텐츠를 드리며 잊지 못할 경험을 선물해
 								보세요.<br>프로젝트가 성공할 수 있도록 아이펀드가 함께 할게요.<br> <br> <br>그럼
