@@ -148,7 +148,9 @@
 											<th>승인상태</th>
 										</tr>
 									</thead>
-									<tbody id="titleElement" class="table-border-bottom-0">
+									<c:choose>
+										<c:when test="${!empty couponList }">
+											<tbody id="titleElement" class="table-border-bottom-0">
 										<c:forEach var="couponList" items="${couponList }">
 											<tr>
 												<td>${couponList.coupon_idx }</td>
@@ -181,6 +183,11 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 
 							</div>

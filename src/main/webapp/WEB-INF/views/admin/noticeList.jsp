@@ -134,16 +134,23 @@
 											<th>날짜</th>
 										</tr>
 									</thead>
-									<tbody class="table-border-bottom-0">
-										<c:forEach var="noticeList" items="${noticeList }">
-											<tr class="cursor-pointer"
-												onclick="location.href='${pageContext.request.contextPath }/admin/noticeListDetail?board_idx=${noticeList.board_idx}'">
-												<td>${noticeList.board_idx }</td>
-												<td><strong>${noticeList.board_subject }</strong></td>
-												<td>${noticeList.board_date }</td>
-											</tr>
-										</c:forEach>
-									</tbody>
+									<c:choose>
+										<c:when test="${!empty noticeList }">
+											<tbody class="table-border-bottom-0">
+												<c:forEach var="noticeList" items="${noticeList }">
+													<tr class="cursor-pointer"
+														onclick="location.href='${pageContext.request.contextPath }/admin/noticeListDetail?board_idx=${noticeList.board_idx}'">
+														<td>${noticeList.board_idx }</td>
+														<td><strong>${noticeList.board_subject }</strong></td>
+														<td>${noticeList.board_date }</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>
