@@ -272,7 +272,7 @@
 												<div class="BaseFundingInfo_rate__1uMoD">
 													<div class="BaseFundingInfo_infoWrapper__23LoT">
 														<span class="BaseFundingInfo_achivementRate__1Cnsy">
-														<fmt:formatNumber value="${fundingDetail.project_percent }" type="percent"/>
+														<fmt:formatNumber value="${fundingDetail.project_percent/100 }" type="percent"/>
 														</span><span
 															class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
 													</div>
