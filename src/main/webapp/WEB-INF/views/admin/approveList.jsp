@@ -97,8 +97,11 @@
 		let comingSoonDate = $("input[name=project_coming_soon_date]");
 		$("#project_idx").val(project_idx);
 		$("#project_title").val(project_title);
+		alert(project_plan);
+		comingSoonDate.removeAttr('readonly')
 		// 오픈예정
 		if (project_plan == 1) {
+			
 		  comingSoonDate.attr('readonly', true);
 		  comingSoonDate.attr('placeholder', '날짜를 지정할 수 없습니다.');
 		} 
@@ -124,9 +127,8 @@
 }
 
 .fade {
-    transition: opacity .15s linear;
+	transition: opacity .15s linear;
 }
-
 </style>
 <style type="text/css">
 .form-control:disabled, .form-control[readonly] {
@@ -144,8 +146,8 @@
 			<!-- 승인 모달 -->
 			<form id="modalForm" action="approve" method="post"
 				onsubmit="return confirm('승인 하시겠습니까?')">
-				<div class="modal fade" id="approve" tabindex="-1"
-					aria-modal="true" style="display: none" role="dialog">
+				<div class="modal fade" id="approve" tabindex="-1" aria-modal="true"
+					style="display: none" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -165,8 +167,8 @@
 									<div class="col mb-0">
 										<label for="html5-date-input" class="col-md-2 col-form-label">오픈예정+</label>
 										<div class="col-md-12">
-											<input class="form-control" name="project_coming_soon_date" type="date" placeholder="DD / MM / YY"
-												id="comingsoonDate">
+											<input class="form-control" name="project_coming_soon_date"
+												type="date" placeholder="DD / MM / YY" id="comingsoonDate">
 										</div>
 									</div>
 								</div>
@@ -174,15 +176,15 @@
 									<div class="col mb-0">
 										<label for="html5-date-input" class="col-md-2 col-form-label">시작일</label>
 										<div class="col-md-12">
-											<input class="form-control" name="project_start_date" type="date" placeholder="DD / MM / YY"
-												id="startDate">
+											<input class="form-control" name="project_start_date"
+												type="date" placeholder="DD / MM / YY" id="startDate">
 										</div>
 									</div>
 									<div class="col mb-0">
 										<label for="html5-date-input" class="col-md-2 col-form-label">마감일</label>
 										<div class="col-md-12">
-											<input class="form-control" name="project_end_date" type="date" placeholder="DD / MM / YY"
-												id="endDate">
+											<input class="form-control" name="project_end_date"
+												type="date" placeholder="DD / MM / YY" id="endDate">
 										</div>
 									</div>
 								</div>
@@ -203,8 +205,8 @@
 			<!-- 거부 모달 -->
 			<form id="modalForm" action="approveDenied" method="post"
 				onsubmit="return confirm('승인 거부 하시겠습니까?')">
-				<div class="modal fade" id="denied" tabindex="-1"
-					aria-modal="true" style="display: none" role="dialog">
+				<div class="modal fade" id="denied" tabindex="-1" aria-modal="true"
+					style="display: none" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -244,7 +246,8 @@
 			<!-- Layout container -->
 			<div class="layout-page">
 				<!-- Navbar -->
-				<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+				<nav
+					class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
 					id="layout-navbar">
 					<div
 						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
@@ -282,7 +285,7 @@
 						</ul>
 					</div>
 				</nav>
-			<!-- / Navbar -->
+				<!-- / Navbar -->
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
 					<!-- Content -->
@@ -319,7 +322,38 @@
 														<td>공동구매</td>
 													</c:otherwise>
 												</c:choose>
-												<td>${pendingList.project_category }</td>
+												<c:choose>
+													<c:when test="${fundingDetail.project_category == 01}">
+														<td>테크/가전</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 02}">
+														<td>패션/잡화</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 03}">
+														<td>홈/리빙</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 04}">
+														<td>뷰티</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 05}">
+														<td>푸드</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 06}">
+														<td>출판</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 07}">
+														<td>클래스/컨설팅</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 08}">
+														<td>레저/아웃도어</td>
+													</c:when>
+													<c:when test="${fundingDetail.project_category == 09}">
+														<td>스포츠/모빌리티</td>
+													</c:when>
+													<c:otherwise>
+														<td>컬쳐/아티스트</td>
+													</c:otherwise>
+												</c:choose>
 												<td>${pendingList.member_name }</td>
 												<td>
 													<div class="input-group" onclick="event.stopPropagation();">
@@ -378,8 +412,8 @@
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
-	
-<script type="text/javascript">
+
+	<script type="text/javascript">
 	var now_utc = Date.now() // 지금 날짜를 밀리초로
 	// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
 	var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환

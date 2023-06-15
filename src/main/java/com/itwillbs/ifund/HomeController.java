@@ -71,6 +71,8 @@ public class HomeController {
 				}
 			}			
 		}
+		
+		
 		System.out.println(goodsCookie);
 //		필요없는 쿠키 삭제
 		if(goodsCookie.size() >= 7) {
@@ -94,7 +96,9 @@ public class HomeController {
 		
 		ArrayList<Map> goodsProject = new ArrayList<>();
 		for(int i : goodsCookie) {
-			goodsProject.add(mainService.selectProject(i) );
+			Map Project = mainService.selectProject(i);
+			Project.replace("project_category", mainService.selectCategory(String.valueOf(Project.get("project_category"))));
+			goodsProject.add(Project );
 			
 		}
 		Collections.reverse(goodsProject);

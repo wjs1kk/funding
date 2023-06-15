@@ -33,4 +33,11 @@
 		AND
 		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
 	</select>
+	
+	<select id="selectCategory" resultType="String">
+		select category_name 
+		from category
+		where category_cd = #{category_cd}
+	</select>
+	
 </mapper>

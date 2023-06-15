@@ -23,4 +23,8 @@ public class MainService {
 	}
 //	06/13 최근본 프로젝트 관련 끝
 
+	public String selectCategory(String category_cd) {
+		return mapper.selectCategory(category_cd);
+	}
+	
 }

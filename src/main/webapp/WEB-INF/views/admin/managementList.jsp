@@ -187,7 +187,7 @@ ul li {
 											</tbody>
 										</c:when>
 										<c:otherwise>
-											<td>x</td>
+											<td>등록된 내역이 없습니다.</td>
 										</c:otherwise>
 									</c:choose>
 								</table>
