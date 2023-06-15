@@ -42,6 +42,12 @@
 <script
 	src="${pageContext.request.contextPath }/resources/assets/js/config.js"></script>
 </head>
+<style type="text/css">
+.form-control:disabled, .form-control[readonly] {
+	background-color: white;
+	opacity: 1;
+}
+</style>
 <body>
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
@@ -112,161 +118,204 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">회원목록</h4>
-
-						<!-- Basic Layout & Basic with Icons -->
 						<div class="row">
 							<!-- Basic Layout -->
 							<div class="col-xxl">
 								<div class="card mb-4">
 									<div
 										class="card-header d-flex align-items-center justify-content-between">
-										<h5 class="mb-0" id="member_name">구매자 정보</h5>
-										<small class="text-muted float-end">Supporter Info</small>
+										<h5 class="mb-0">서포터 정보</h5>
 									</div>
 									<div class="card-body">
-										<form action="memberListDetailPro" name="memberList"
-											method="post">
-											<input type="hidden" name="member_idx"
-												value="${param.member_idx }"> <input type="hidden"
-												name="pageNum" value="${param.pageNum }">
+										<form>
 											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label" for="member_name">이름</label>
+												<label class="col-sm-2 col-form-label"
+													for="basic-default-name">이름</label>
 												<div class="col-sm-10">
-													<div class="input-group input-group-merge">
-														<input type="text" id="member_name" name="member_name"
-															class="form-control" value="${memberInfo.member_name}"
-															aria-label="john.doe" readonly="readonly"
-															aria-describedby="basic-default-email2">
-													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label" for="member_email">이메일</label>
-												<div class="col-sm-10">
-													<div class="input-group input-group-merge">
-														<input type="text" id="member_email" name="member_email"
-															class="form-control" value="${memberInfo.member_email}"
-															aria-label="john.doe" readonly="readonly"
-															aria-describedby="basic-default-email2">
-													</div>
+													<input type="text" class="form-control"
+														value="${memberInfo.member_name}" readonly
+														id="basic-default-name" placeholder="John Doe">
 												</div>
 											</div>
 											<div class="row mb-3">
 												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">전화번호</label>
+													for="basic-default-email">이메일</label>
 												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone"
-														class="form-control phone-mask" aria-label="658 799 8941"
-														readonly="readonly" value="${memberInfo.member_phone}">
+													<div class="input-group input-group-merge">
+														<input type="text" id="basic-default-email"
+															value="${memberInfo.member_email}" readonly
+															class="form-control">
+													</div>
 												</div>
 											</div>
+											<c:choose>
+												<c:when test="${memberInfo.sms_auth_status == Y}">
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-phone">본인인증</label>
+														<div class="col-sm-10">
+															<input type="text" id="basic-default-phone" value="인증 완료"
+																readonly class="form-control phone-mask">
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-phone">본인인증</label>
+														<div class="col-sm-10">
+															<input type="text" id="basic-default-phone" value="미인증"
+																readonly class="form-control phone-mask">
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${memberInfo.account_auth_status == Y}">
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-phone">계좌인증</label>
+														<div class="col-sm-10">
+															<input type="text" id="basic-default-phone"
+																value="인증 완료" readonly
+																class="form-control phone-mask">
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-phone">계좌인증</label>
+														<div class="col-sm-10">
+															<input type="text" id="basic-default-phone"
+																value="미인증 " readonly
+																class="form-control phone-mask">
+														</div>
+													</div>	
+												</c:otherwise>
+											</c:choose>
 
 										</form>
 									</div>
 								</div>
 							</div>
 							<!-- Basic with Icons -->
-						</div>
-					</div>
-					<div class="container-xxl flex-grow-1 container-p-y">
-						<!-- Basic Layout & Basic with Icons -->
-						<div class="row">
-							<!-- Basic Layout -->
 							<div class="col-xxl">
 								<div class="card mb-4">
 									<div
 										class="card-header d-flex align-items-center justify-content-between">
-										<h5 class="mb-0" id="member_name">판매자 정보</h5>
-										<!-- 2023-05-30 박경은 - Maker Info 에서 Representative Info로 수정 -->
-										<!-- 2023-05-30 박경은 - memberInfo 와 별도로 repInfo 로 수정 및 DB변경에 따라 html 수정 -->
-										<small class="text-muted float-end">Representative Info</small>
+										<h5 class="mb-0">대표자 정보</h5>
 									</div>
-									<div class="card-body">
-										<form action="memberListDetailPro" name="memberInfo"
-											method="post">
-											<input type="hidden" name="member_idx"
-												value="${param.member_idx }"> <input type="hidden"
-												name="pageNum" value="${param.pageNum }">
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label" for="member_name">대표자
-													이름</label>
-												<div class="col-sm-10">
-													<div class="input-group input-group-merge">
-														<input type="text" id="member_name" name="member_name"
-															class="form-control" value="${repInfo.rep_name}"
-															aria-label="john.doe" readonly="readonly"
-															aria-describedby="basic-default-email2">
+									<c:choose>
+										<c:when test="${!empty repInfo}">
+											<div class="card-body">
+												<form>
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-name">이름</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control"
+																value="${repInfo.rep_name}" readonly
+																id="basic-default-name">
+														</div>
 													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label" for="member_email">대표자
-													이메일</label>
-												<div class="col-sm-10">
-													<div class="input-group input-group-merge">
-														<input type="text" id="member_email" name="member_email"
-															class="form-control" value="${repInfo.rep_email}"
-															aria-label="john.doe" readonly="readonly"
-															aria-describedby="basic-default-email2">
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">은행명</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_bank}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
 													</div>
-												</div>
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">계좌</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_account}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
+													</div>
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">예금주</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_depositor}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
+													</div>
+												</form>
 											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">세금계산서 이메일</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone"
-														class="form-control phone-mask"
-														value="${repInfo.rep_tax_email}"
-														aria-label="658 799 8941" readonly="readonly"
-														aria-describedby="basic-default-phone">
-												</div>
+										</c:when>
+										<c:otherwise>
+											<div class="card-body">
+												<form>
+													<div class="row mb-3">
+														<label class="col-sm-2 col-form-label"
+															for="basic-default-name">이름</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control"
+																value="등록된 대표자 정보가 없습니다." readonly
+																id="basic-default-name">
+														</div>
+													</div>
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">은행명</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_bank}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
+													</div>
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">계좌</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_account}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
+													</div>
+													<div class="row mb-3">
+														<label class="col-sm-2 form-label"
+															for="basic-icon-default-phone">예금주</label>
+														<div class="col-sm-10">
+															<div class="input-group input-group-merge">
+																<input type="text" id="basic-icon-default-phone"
+																	value="${repInfo.rep_tax_depositor}" readonly
+																	class="form-control phone-mask">
+															</div>
+														</div>
+													</div>
+												</form>
 											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">세금계산서 은행</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone"
-														class="form-control phone-mask"
-														value="${repInfo.rep_tax_bank}"
-														aria-label="658 799 8941" readonly="readonly"
-														aria-describedby="basic-default-phone">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">세금계산서 계좌번호</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone"
-														class="form-control phone-mask"
-														value="${repInfo.rep_tax_account}"
-														aria-label="658 799 8941" readonly="readonly"
-														aria-describedby="basic-default-phone">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label class="col-sm-2 col-form-label"
-													for="basic-default-phone">세금계산서 예금주명</label>
-												<div class="col-sm-10">
-													<input type="text" id="basic-default-phone"
-														class="form-control phone-mask"
-														value="${repInfo.rep_tax_depositor}"
-														aria-label="658 799 8941" readonly="readonly"
-														aria-describedby="basic-default-phone">
-												</div>
-											</div>
-										</form>
-									</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
-							<!-- Basic with Icons -->
-
+							<div class="row justify-content-end">
+								<div class="col-sm-10"
+									style="text-align: center; margin-top: 20px; margin-right: 110px">
+									<button type="button" class="btn btn-primary"
+										onclick="history.back(); return false;">뒤로가기</button>
+								</div>
+							</div>
 						</div>
 					</div>
-
 					<!-- / Content -->
-
-					<div class="content-backdrop fade"></div>
 				</div>
 				<!-- Content wrapper -->
 			</div>

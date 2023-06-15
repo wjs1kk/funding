@@ -156,8 +156,8 @@
 												<td>${couponList.coupon_idx }</td>
 												<td>${couponList.coupon_name }
 													(${couponList.coupon_code })</td>
-												<td>${couponList.coupon_percent}</td>
-												<td>${couponList.maker_idx }</td>
+												<td>${couponList.maker_name}</td>
+												<td>${Math.round(couponList.coupon_percent * 100)}%</td>
 												<td>${couponList.coupon_start }</td>
 												<td>${couponList.coupon_end }</td>
 												<td>

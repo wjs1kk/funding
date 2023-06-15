@@ -47,16 +47,17 @@
 	
 	<!-- 2023-06-07 박경은 - 쿠폰관리 목록 -->
 	<select id="selectCouponList" resultType="map">
-		SELECT coupon_idx
-			 , coupon_name
-			 , coupon_code
-			 , coupon_start
-			 , coupon_end
-			 , coupon_percent
-			 , maker_idx
-			 , coupon_isadmin
-			FROM coupon
-			ORDER BY coupon_idx DESC
+	  SELECT c.coupon_idx
+	       , c.coupon_name
+	       , c.coupon_code
+	       , c.coupon_start
+	       , c.coupon_end
+	       , c.coupon_percent
+	       , m.maker_name
+	       , c.coupon_isadmin
+	  FROM coupon c
+	  INNER JOIN maker m ON c.maker_idx = m.maker_idx
+	  ORDER BY c.coupon_idx DESC
 	</select>
 	<select id="selectCoupon"
 		resultType="com.itwillbs.ifund.vo.CouponVO">

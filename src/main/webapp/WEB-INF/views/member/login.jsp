@@ -48,24 +48,6 @@
 					<div id="iam-account-app">
 						<div>
 							<div>
-								<button class="Button_button__3MO4n Button_lg__D7OVb Button_block__3npc4 SNSButtonList_kakaoButton__2lTDs SNSButtonList_spacer__38ac5" type="button">
-									<span>
-										<span class="Button_children__raEW4">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__2KxnX SNSButtonList_kakaoIcon__1s6gw" aria-hidden="true">
-												<path d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path>
-											</svg>
-											카카오로 시작하기</span></span>
-								</button>
-								<button
-									class="Button_button__3MO4n Button_lg__D7OVb Button_block__3npc4 SNSButtonList_naverButton__1rzZ_ SNSButtonList_spacer__38ac5"
-									type="button">
-									<span>
-										<span class="Button_children__raEW4">
-											<svg viewBox="0 0 32 32" focusable="false" role="presentation"
-												class="withIcon_icon__2KxnX SNSButtonList_naverIcon__3TjPM" aria-hidden="true">
-												<path d="M19.52 5.76v10.32L12.48 5.76H4.8v20.48h7.68V15.92l7.12 10.32h7.6V5.76z"></path></svg>
-												네이버로 시작하기</span></span>
-								</button>
 							</div>
 						</div>
 					</div>

@@ -138,7 +138,7 @@
 											<th>NO</th>
 											<th>이메일</th>
 											<th>이름</th>
-											<th>전화번호</th>
+											<th>본인인증</th>
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
@@ -150,7 +150,14 @@
 												<td>${memberList.member_idx }</td>
 												<td><strong>${memberList.member_email }</strong></td>
 												<td>${memberList.member_name }</td>
-												<td>010-0000-0000</td>
+												<c:choose>
+													<c:when test="${memberList.sms_auth_status == 'Y'}">
+														<td>인증</td>
+													</c:when>
+													<c:otherwise>
+														<td>미완료</td>
+													</c:otherwise>
+												</c:choose>
 										</c:forEach>
 									</tbody>
 								</table>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko" class="show-recent scroll-half-screen">
 <head>
@@ -52,7 +53,7 @@
 	src="https://js.appboycdn.com/web-sdk/3.2/appboy.min.js" async=""></script>
 <script async=""
 	src="https://www.googletagmanager.com/gtm.js?id=GTM-NDMQ9N4"></script>
-<title>와디즈</title>
+<title>아이펀드</title>
 <link rel="preconnect" href="https://static.wadiz.kr">
 <link rel="preconnect" href="https://public-api.wadiz.kr">
 <link rel="preconnect" href="https://analytics.wadiz.kr">
@@ -165,8 +166,7 @@
 											role="presentation"
 											class="withIcon_icon__3VTbq GNBMobile_icon__3OOAF GNBMobile_active__3WNf8 GNBIcon_home__cszmO"
 											aria-hidden="true" style="width: 28px; height: 28px;">
-											<path
-												d="M38.32 26.87v-13h-1.88a1.73 1.73 0 0 0-1.73 1.59A6.82 6.82 0 0 0 23.26 20a6.67 6.67 0 0 0 2.45 5.61 8 8 0 0 0 9.74.25 1.56 1.56 0 0 0 1.47 1l1.4.01zm-7.49-2.39a3.88 3.88 0 0 1-3.72-4 3.88 3.88 0 0 1 3.72-4 3.88 3.88 0 0 1 3.72 4 3.88 3.88 0 0 1-3.72 4zM19.77 13.86L17.14 22l-2.65-8.1H11.9a1.73 1.73 0 0 0-1.65 1.2L8 22l-2.63-8.1H1.68L6 26.87h3.7l2.87-8.35 2.86 8.35h3.7l4.33-13-3.69-.01z"></path></svg><span
+											<span class="label">ifund</span></svg><span
 										class="GNBMobile_text__2-voS">홈</span></a></li>
 								<li class="GNBMobile_item__1b4ZL"><a
 									class="GNBMobile_link__t1Y9t" ><svg
@@ -249,7 +249,7 @@
 								<div class="QuickMenu_menuChunk__1flJD"
 									style="width: 834.531px;">
 									<a data-ga-category="홈_퀵메뉴" data-ga-action="펀딩+"
-										data-ga-label="" class="QuickMenu_menu__3ZQBl"
+										data-ga-label="" class="QuickMenu_menu__3ZQBl" href = "funding"
 										style="width: 10%;"><div
 											class="QuickMenu_icon__3AoDC"
 											style="background-image: url(&quot;https://cdn3.wadiz.kr/main/quickmenu/2023:05:09:20230509100846785.png&quot;);"></div>
@@ -999,7 +999,8 @@
 												</div>
 												<div class="ProjectCard_infoBox__3ILIU">
 													<div class="ProjectInfo_container__aMXhM">
-														<em class="ProjectInfo_state__3kvLA">${(attentionList.project_detail_amount/attentionList.project_target)}<span
+													
+														<em class="ProjectInfo_state__3kvLA">${fn:substring(attentionList.project_detail_amount/attentionList.project_target*100,0,2) }<span
 															class="ProjectInfo_unitPercent__1gnFw">% 달성 중이에요</span></em>
 														<div class="ProjectInfo_alignRight__27mRq">
 															<span

@@ -3,14 +3,15 @@
 
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
-<link rel="stylesheet" href="resources/css/mypage.css">
+<!-- <link rel="stylesheet" href="resources/css/mypage.css"> -->
 
 <title>아이펀드 - 마이아이펀드</title>
 
-<link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
-<link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css">
+<!-- <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf"> -->
+<!-- <link rel="stylesheet" href="https://static.wadiz.kr/main/main.c1266dc7.css"> -->
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/my-wadiz.ddf07734.chunk.css">
-<script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script>
+<!-- <script type="text/javascript" src="https://static.wadiz.kr/static/web/common.js?db524cda"></script> -->
+
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
