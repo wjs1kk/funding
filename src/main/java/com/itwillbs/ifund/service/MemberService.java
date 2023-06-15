@@ -33,4 +33,7 @@ public class MemberService {
 	public void updatePass(String member_email, String securePasswd) {
 		mapper.updatePass(member_email, securePasswd);
 	}
+	public String memberEmailCheck(String member_email) {
+		return mapper.selectEmailCheck(member_email);
+	}
 }

@@ -406,7 +406,8 @@ public class MypageController {
 		int updateCount = mypageService.updateUser(memberVO);
 
 		if (updateCount > 0) {
-			return "redirect:/mypage/myInfo";
+			model.addAttribute("msg", "회원 정보 수정 성공!");
+			return "redirect:/mypage/supporter";
 		} else {
 			model.addAttribute("msg", "회원 정보 수정 실패!");
 			return "fail_back";
