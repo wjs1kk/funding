@@ -338,17 +338,13 @@
 						</div>
 					</div>
 				</div>
-				<script>
-					var para = document.location.href.split("?");
-					
-				</script>
 				<div class="Main_categoryMargin__1RWGF"></div>
 				<div class="CategoryTab_container__1XTA0 undefined snbSwiper"
 					style="top: 0px;">
 					<div class="TabsMobile_tabRoot__1KBCT">
 						<ul class="TabsMobile_tabs__39ewt TabsMobile_hideScrollbar__3v5I5">
 							<li data-index="00"><button
-									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry">
+									class="ImageTab_tab__3siCY ImageTab_first__2C8Ry ${param.category eq '전체'? 'ImageTab_active__BGdXu' : '' }">
 									<div class="ImageTab_thumbnailContainer__3Polb">
 										<div class="ImageTab_thumbnailPlaceholder__3mluI">
 											<div class="ImageTab_thumbnail__3mZWA"></div>
@@ -360,7 +356,7 @@
 								</button></li>
 							<c:forEach items="${categoryList }" var="category">
 								<li data-index="${category.category_cd }"><button
-										class="ImageTab_tab__3siCY">
+										class="ImageTab_tab__3siCY ${param.category eq category.category_name? 'ImageTab_active__BGdXu' : '' }">
 										<div class="ImageTab_thumbnailContainer__3Polb">
 											<div class="ImageTab_thumbnailPlaceholder__3mluI">
 												<div class="ImageTab_thumbnail__3mZWA"
@@ -395,10 +391,10 @@
 								<option value="1" ${selectbox == '1'? 'selected="selected"': ''}>종료된</option>
 							</select>
 							<ul id="itemList" class="OrderSelectDesktop_sortContainer__1YLsr">
-								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi">인기순</li>
-								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi">모집금액순</li>
-								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi">마감임박순</li>
-								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi">최신순</li>
+								<li id="popular" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '인기순'? 'OrderSelectDesktop_active__YTP2K' : '' }">인기순</li>
+								<li id="amount" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '모집금액순'? 'OrderSelectDesktop_active__YTP2K' : '' }">모집금액순</li>
+								<li id="closing" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '마감임박순'? 'OrderSelectDesktop_active__YTP2K' : '' }">마감임박순</li>
+								<li id="recent" class="OrderSelectDesktop_sortItem__12TKi ${param.order eq '최신순'? 'OrderSelectDesktop_active__YTP2K' : '' }">최신순</li>
 							</ul>
 						</div>
 					</div>
@@ -407,8 +403,8 @@
 
 						<!-- 						preorder project 목록 -->
 						<c:forEach items="${projectDetailList }" var="projectDetailList">
-							<div class="PreorderMainCard_root__1-vcs"
-								style="height: 100%; position: relative;">
+							<div class="PreorderMainCard_root__1-vcs" 
+								style="height: 100%; position: relative; ${param.selectbox eq '1'? 'pointer-events: none;' : ''}">
 								<a class="PreorderMainCard_item__2FrO0"
 									href="preorder/detail?num=${projectDetailList.project_idx }">
 									<div class="PreorderMainCard_thumbnailWrap__NRDb4">
