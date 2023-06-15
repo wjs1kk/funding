@@ -39,7 +39,7 @@ public class FundingController {
 	private MainService mainService;
 	
 	@GetMapping("funding")
-	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+	public String funding(Model model, HttpSession session, @RequestParam(defaultValue = "00") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
 		List<ProjectListVO> projectDetailList = fundingService.selectFundingProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
 		
@@ -72,7 +72,7 @@ public class FundingController {
 	
 	
 	@GetMapping("detail")
-	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
+	public String funding_detail(Model model, String num, @RequestParam(defaultValue = "00") String category, @RequestParam(defaultValue = "") String order, HttpServletResponse response) {
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		Map<String, Object> fundingDetail = fundingService.fundingDetail(Integer.parseInt(num));
 //		06/13

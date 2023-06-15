@@ -37,7 +37,7 @@ public class PreorderController {
 	private MainService mainService;
 	
 	@GetMapping("preorder")
-	public String preorder(Model model,HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
+	public String preorder(Model model,HttpSession session, @RequestParam(defaultValue = "00") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
 		List<ProjectListVO> projectDetailList = preorderService.selectPreorderProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
 		
