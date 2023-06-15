@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.FundingService;
@@ -415,6 +416,7 @@ public class MypageController {
 	// 2023-06-05 박경은 - 휴대폰 인증
 	// 2023-06-11 박경은 - 휴대폰 인증 완료 추가
 	@PostMapping("mypage/message")
+	@ResponseBody
 	public String checkMessage(Model model, MemberVO member, HttpSession session) {
 		model.addAttribute("member_phone", member.getMember_phone());
 		
@@ -425,18 +427,12 @@ public class MypageController {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr += ran;
 		}
-
+		
 		NaverCloud.sendSMS(member.getMember_phone(), numStr);
 		
-		return "redirect:/mypage/myInfo";
+		return numStr;
 	}
 	
-	// 2023-06-11 박경은 - 인증확인
-	@PostMapping("mypage/authCode")
-	public void authCode(Model model, MemberVO member, @RequestParam String authCode) {
-		
-	}
-
 //	0516 정보수정 전 비밀번호 확인
 	@GetMapping("mypage/checkInfo")
 	public String checkInfo() {
@@ -533,5 +529,14 @@ public class MypageController {
 		
 		return "mypage/projectList";
 	}
-
+	
+	
+	// 06-15 박경은 휴대폰 인증상태 업데이트
+	@PostMapping("mypage/smsAauthStatus")
+	@ResponseBody
+	public void smsAauthStatus(int member_idx) {
+		mypageService.updateSmsAuth(member_idx);
+	}
+	
+	
 }

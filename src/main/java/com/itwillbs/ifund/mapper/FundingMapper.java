@@ -51,6 +51,8 @@ public interface FundingMapper {
 	public List selectAttentionProject(ProjectListVO projectList);
 	// 2023-06-13 박경은 - 실시간 랭킹
 	public List selectRankingProject(ProjectListVO projectList);
+	// 2023-06-13 박경은 - 실시간 랭킹2
+	public List selectRankingProject2(ProjectListVO projectList);
 	// 2023-06-13 박경은 - 얼리버드
 	public List selectEarlybirdProject(ProjectListVO projectList, RewardVO reward);
 	// 2023-06-13 박경은 - 오늘 오픈

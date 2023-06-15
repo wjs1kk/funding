@@ -122,4 +122,5 @@ public class FundingService {
 	public void updateFunding(ProjectVO project) {
 		mapper.updateFunding(project);
 	}
+	
 }
