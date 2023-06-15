@@ -393,8 +393,28 @@ public class ProjectCreateController {
 	// 05-23 강정운 기본정보 업데이트
 	@PostMapping("project/projectBaseInfoFileUpdate")
 	@ResponseBody
-	public void projectBaseInfoFileUpdate(ProjectVO project, MultipartFile files) {
-		project.setProject_thumbnail(files.getOriginalFilename());
+	public void projectBaseInfoFileUpdate(ProjectVO project, MultipartFile files, HttpSession session) {
+		
+		String getImages = projectCreateService.getImages(project.getProject_idx());
+			
+		String uploadDir = "/resources/images/project_thumbnail"; // 프로젝트 상의 업로드 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		System.out.println(saveDir);
+		
+		String uuid = UUID.randomUUID().toString();
+		System.out.println(uuid.substring(0, 8) + "_" + files.getOriginalFilename());
+		
+		try {
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+			files.transferTo(new File(saveDir, uuid.substring(0, 8) + "_" + files.getOriginalFilename()));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		project.setProject_thumbnail(uuid.substring(0, 8) + "_" + files.getOriginalFilename());
 		int updateCount = projectCreateService.projectBaseInfoFileUpdate(project);
 	}
 	
