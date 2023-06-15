@@ -425,6 +425,7 @@
 	<select id="selectTodayOpenProject"
 	resultType="map">
 		SELECT
+		DISTINCT
 		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
 		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date, p.project_summary,
 		p.project_end_date, p.project_title, p.project_approve_status,c.category_name FROM project p

@@ -535,7 +535,40 @@
 												</div>
 												<div class="CardType_cardContent__3UMOr">
 													<div>
-														<p class="CardType_type__El7XP">${earlybirdList.project_category }</p>
+														<p class="CardType_type__El7XP">
+														<c:choose>
+																		<c:when test="${earlybirdList.project_category == 01}">
+																			<span>테크/가전</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 02}">
+																			<span>패션/잡화</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 03}">
+																			<span>홈/리빙</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 04}">
+																			<span>뷰티</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 05}">
+																			<span>푸드</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 06}">
+																			<span>출판</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 07}">
+																			<span>클래스/컨설팅</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 08}">
+																			<span>레저/아웃도어</span>
+																		</c:when>
+																		<c:when test="${earlybirdList.project_category == 09}">
+																			<span>스포츠/모빌리티</span>
+																		</c:when>
+																		<c:otherwise>
+																			<span>컬쳐/아티스트</span>
+																		</c:otherwise>
+																	</c:choose>
+														</p>
 														<div
 															class="commons_content__2K1SH CardType_content__1Pavj">
 															<em class="commons_title__1yGWm">${earlybirdList.project_title }</em>
