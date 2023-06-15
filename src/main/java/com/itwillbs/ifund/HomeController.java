@@ -37,8 +37,6 @@ public class HomeController {
 		
 		Device device = DeviceUtils.getCurrentDevice(request);
 		
-		
-		
 		fundingService.updateFunding(project);
 //		List<ProjectListVO> projectOpneList = fundingService.selectOpenProject();
 //		model.addAttribute("projectOpneList", projectOpneList);
