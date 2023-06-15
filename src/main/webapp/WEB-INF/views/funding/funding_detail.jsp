@@ -267,15 +267,14 @@
 										</div>
 										<p class="BaseFundingInfo_title__1Dw42">${fundingDetail.project_titlie }</p>
 										<p class="BaseFundingInfo_description__1XXyy">${fundingDetail.project_summary }</p>
-										<c:if test="${empty fundingDetail.project_coming_soon_date }">
+										<c:if test="${fundingDetail.project_coming_soon_date <= fundingDetail.project_start_date}">
 											<div class="BaseFundingInfo_rateWrapper__32WcC">
 												<div class="BaseFundingInfo_rate__1uMoD">
 													<div class="BaseFundingInfo_infoWrapper__23LoT">
 														<span class="BaseFundingInfo_achivementRate__1Cnsy">
-														<fmt:formatNumber value="${fundingDetail.project_percent }"/>
-														</span>
-														<span class="BaseFundingInfo_successInfo__UrXp4"> % 달성</span>
-															
+														<fmt:formatNumber value="${fundingDetail.project_percent }" type="percent"/>
+														</span><span
+															class="BaseFundingInfo_successInfo__UrXp4"> 달성</span>
 													</div>
 													<span
 														class="Badge_container__9G9PS Badge_visible__3LNXv BaseFundingInfo_remainingDay__2ooL6"><span
@@ -300,7 +299,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${!empty fundingDetail.project_coming_soon_date }">
+										<c:if test="${fundingDetail.project_coming_soon_date > fundingDeatil.project_start_date}">
 											<div class="BaseComingSoonInfo_rateWrapper__OtNwL">
 												<div class="BaseComingSoonInfo_rate__1elAG">
 													<div class="BaseComingSoonInfo_infoWrapper__3Uo9E">

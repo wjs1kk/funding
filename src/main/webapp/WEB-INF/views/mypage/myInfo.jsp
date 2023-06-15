@@ -60,30 +60,27 @@ $(function() {
     
 });
 function checkForm() {
-	  var form = document.getElementById("saveForm");
-	  var fileInput = document.getElementById("uploadProfileImg");
-
-	  form.addEventListener("submit", function (event) {
-	    var formData = new FormData(form);
-
-	    var selectedFile = fileInput.files[0];
-	    if (formData.get("newPassword") !== "" ||
-	        formData.get("newPassword2") !== "" ||
-	        selectedFile) {
-	      return true;
-	    } else {
-	        event.preventDefault();
-	        location.reload();
-// 	        window.location.href = "mypage/supporter";
-	        return false;
-	      }
-	  });
-	}
-
-	
-	$(function() {
-		  checkForm();
-		});
+      var form = document.getElementById("saveForm");
+      var fileInput = document.getElementById("uploadProfileImg");
+      form.addEventListener("submit", function (event) {
+        var formData = new FormData(form);
+        var selectedFile = fileInput.files[0];
+        if (formData.get("newPassword") !== "" ||
+            formData.get("newPassword2") !== "" ||
+            selectedFile) {
+          return true;
+        } else {
+            event.preventDefault();
+            location.reload();
+//          window.location.href = "mypage/supporter";
+            return false;
+          }
+      });
+    }
+    
+    $(function() {
+          checkForm();
+        });
 </script>
 
 </head>

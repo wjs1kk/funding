@@ -37,7 +37,6 @@ public class HomeController {
 		
 		Device device = DeviceUtils.getCurrentDevice(request);
 		
-		fundingService.updateFunding(project);
 //		List<ProjectListVO> projectOpneList = fundingService.selectOpenProject();
 //		model.addAttribute("projectOpneList", projectOpneList);
 		List list = mainService.slide();
@@ -92,15 +91,15 @@ public class HomeController {
 			}
 		}
 		
-		ArrayList<Map> goodsProject = new ArrayList<>();
-		for(int i : goodsCookie) {
-			Map Project = mainService.selectProject(i);
-			Project.replace("project_category", mainService.selectCategory(String.valueOf(Project.get("project_category"))));
-			goodsProject.add(Project );
-			
-		}
-		Collections.reverse(goodsProject);
-		model.addAttribute("goodsProject", goodsProject);
+//		ArrayList<Map> goodsProject = new ArrayList<>();
+//		for(int i : goodsCookie) {
+//			Map Project = mainService.selectProject(i);
+//			Project.replace("project_category", mainService.selectCategory(String.valueOf(Project.get("project_category"))));
+//			goodsProject.add(Project );
+//			
+//		}
+//		Collections.reverse(goodsProject);
+//		model.addAttribute("goodsProject", goodsProject);
 		
 //		최근 본 프로젝트 관련 끝
 		
