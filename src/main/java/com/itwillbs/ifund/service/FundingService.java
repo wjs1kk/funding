@@ -122,5 +122,8 @@ public class FundingService {
 	public void updateFunding(ProjectVO project) {
 		mapper.updateFunding(project);
 	}
+	public Map getProjectInfo(String num) {
+		return mapper.getProjectInfo(num);
+	}
 	
 }

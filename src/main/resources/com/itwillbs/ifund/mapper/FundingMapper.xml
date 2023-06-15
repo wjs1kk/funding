@@ -451,4 +451,12 @@
 		from wish 
 		where project_idx=#{project_idx}; 
 	</select>
+	
+	<select id="getProjectInfo" resultType="map">
+		SELECT m.maker_image, p.project_title, m.maker_name
+		FROM maker m JOIN project p
+		ON m.maker_idx  = p.maker_idx
+		WHERE p.project_idx = #{num};
+	</select>
+	
 </mapper>

@@ -142,8 +142,10 @@ public class FundingController {
 	}
 	@GetMapping("rewardSelect")
 	public String rewardSelect(Model model, String num) {
+		Map projectInfo = fundingService.getProjectInfo(num);
 		List<RewardVO> selectReward = fundingService.selectReward(Integer.parseInt(num));
 		model.addAttribute("selectReward", selectReward);
+		model.addAttribute("projectInfo", projectInfo);
 		return "funding/rewardSelect";
 	}
 	// 06-09 김동욱 결제페이지에 갈 때 리워드 정보 다시 가져와서 출력
