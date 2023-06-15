@@ -98,6 +98,22 @@
 		$(".slick-slide").eq(newIndex).show();
 	}
 	
+	$(function() {
+		$(".tabList2").css("display", "none")
+		
+		$("#funding").on("click", function() {
+			$(".tabList1").css("display", "block")
+			$(".tabList2").css("display", "none")
+		})
+		
+		$("#preorder").on("click", function() {
+			$(".tabList2").css("display", "block")
+			$(".tabList1").css("display", "none")
+		})
+	})
+	
+	
+	
 	
 </script>
 <body style="overflow: auto;">
@@ -243,17 +259,17 @@
 											<div class="TabContainer_tab__LuPx6">
 												<div>
 													<div class="TabButton_container__xc7Uw">
-														<button type="button" title="REWARD"
+														<button type="button" title="REWARD" id="funding"
 															class="TabButton_btnTab__bibVE TabButton_active__2mzCI">펀딩+</button>
 													</div>
 													<div class="TabButton_container__xc7Uw">
-														<button type="button" title="STORE"
+														<button type="button" title="STORE" id="preorder"
 															class="TabButton_btnTab__bibVE">공동구매</button>
 													</div>
 												</div>
 											</div>
 											<div class="TabContainer_tabList__2IbMs">
-												<ol class="tabList on">
+												<ol class="tabList1">
 													<c:forEach items="${rankingList }" var="rankingList"
 														begin="1" end="5" varStatus="status">
 														<li class="TabContainer_listItem__2nO5j"><div>
@@ -295,7 +311,7 @@
 															</div></li>
 													</c:forEach>
 												</ol>
-												<ol class="tabList">
+												<ol class="tabList2">
 													<c:forEach items="${rankingList }" var="rankingList"
 														begin="1" end="5">
 														<li class="TabContainer_listItem__2nO5j"><div>
