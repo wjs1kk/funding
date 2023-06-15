@@ -265,7 +265,7 @@
 										</div>
 										<p class="BaseFundingInfo_title__1Dw42">${fundingDetail.project_titlie }</p>
 										<p class="BaseFundingInfo_description__1XXyy">${fundingDetail.project_summary }</p>
-										<c:if test="${selectDate.tproject_coming_soon_date <= selectDate.tnow}">
+<%-- 										<c:if test="${selectDate.tproject_coming_soon_date <= selectDate.tnow}"> --%>
 											<div class="BaseFundingInfo_rateWrapper__32WcC">
 												<div class="BaseFundingInfo_rate__1uMoD">
 													<div class="BaseFundingInfo_infoWrapper__23LoT">
@@ -296,7 +296,7 @@
 															참여</span></span>
 												</div>
 											</div>
-										</c:if>
+<%-- 										</c:if> --%>
 										<c:if test="${selectDate.tproject_coming_soon_date > selectDate.tnow}">
 											<div class="BaseComingSoonInfo_rateWrapper__OtNwL">
 												<div class="BaseComingSoonInfo_rate__1elAG">

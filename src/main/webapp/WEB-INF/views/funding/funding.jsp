@@ -348,20 +348,20 @@
 												</p>
 											</div>
 											<div class="PreorderMainCard_headerRight__3rRNi">
-												<c:if test="${selectbox eq 1 }">
-													<p><span id="done" class="">종료</span>∙<span id="success" class="">성공</span></p>
+												<c:if test="${param.selectbox eq 1 }">
+													<p><span id="done" class="${((projectDetailList.project_detail_amount/projectDetailList.project_target) * 100) < 100 ? 'PreorderMainCard_success__2OWl7' : ''}">종료</span>∙<span id="success" class="${((projectDetailList.project_detail_amount/projectDetailList.project_target) * 100) >= 100 ? 'PreorderMainCard_success__2OWl7' : ''}">성공</span></p>
 												</c:if>
-												<c:if test="${selectbox eq 0 }">
+												<c:if test="${param.selectbox eq 0 || empty param.selectbox}">
 													<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
 													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
 														<script type="text/javascript">
-													var project_end_date = new Date("${projectDetailList.project_end_date}");
-													var now = new Date();
-													var diff = project_end_date - now;
-													var diffDay = Math.ceil(diff/(1000*60*60*24));
-													document.write(diffDay)
-												</script> 일 남음
-												</span></span>
+															var project_end_date = new Date("${projectDetailList.project_end_date}");
+															var now = new Date();
+															var diff = project_end_date - now;
+															var diffDay = Math.ceil(diff/(1000*60*60*24));
+															document.write(diffDay)
+														</script> 일 남음
+													</span></span>
 												</c:if>
 											</div>
 										</div>
