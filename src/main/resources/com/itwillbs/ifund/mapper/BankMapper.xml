@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.ifund.mapper.BankMapper">
+	<!-- 토큰 정보 -->
+	<insert id="insertToken">
+		INSERT
+			INTO 
+				account(
+					 member_idx
+					,user_seq_no
+					,access_token
+					,refresh_token
+				)
+			VALUES(
+				 #{member_idx}
+				,#{token.user_seq_no}
+				,#{token.access_token}
+				,#{token.refresh_token}
+			);
+	</insert>
+	
+	<update id="updateAccountAuthStatus">
+		UPDATE member
+			SET 
+				account_auth_status = 'Y'
+			WHERE 
+				member_idx = #{member_idx}
+	</update>
+	
+	<select id="selectAccount" resultType="com.itwillbs.ifund.vo.AccountVO">
+		select *
+			from account
+				where member_idx = #{member_idx}
+	</select>
+	
+	<select id="selectAccountDetail" resultType="com.itwillbs.ifund.vo.AccountDetailVO">
+		select *
+			from account
+	</select>
+</mapper>

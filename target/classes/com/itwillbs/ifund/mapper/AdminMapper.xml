@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.ifund.mapper.AdminMapper">
+	<!-- 2023-05-15 박경은 - 관리자 회원목록 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="memberList"
+		resultType="com.itwillbs.ifund.vo.MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_email LIKE '%${searchKeyword}%'
+		ORDER BY member_idx DESC
+		LIMIT #{startRow}, #{listLimit}
+	</select>
+	<!-- 2023-05-15 박경은 - 관리자 회원목록 수 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="selectMemberListCount" resultType="int">
+		SELECT COUNT(member_email)
+		FROM member
+		WHERE member_email LIKE '%${searchKeyword}%'
+	</select>
+
+	<!-- 2023-05-16 박경은 - 관리자 회원 조회 -->
+	<select id="selectMember" resultType="com.itwillbs.ifund.vo.MemberVO">
+		SELECT member_idx
+		, member_name
+		, member_email
+		, member_phone
+		FROM member
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<!-- 2023-05-30 박경은 - 판매자 정보 조회 -->
+	<select id="selectRep" resultType="map">
+		SELECT member_idx
+		, rep_idx
+		, rep_name
+		, rep_email
+		, rep_tax_email
+		, rep_tax_bank
+		, rep_tax_account
+		, rep_tax_depositor
+		FROM representative
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<!-- 2023-06-07 박경은 - 쿠폰관리 목록 -->
+	<select id="selectCouponList" resultType="map">
+		SELECT coupon_idx
+			 , coupon_name
+			 , coupon_code
+			 , coupon_start
+			 , coupon_end
+			 , coupon_percent
+			 , maker_idx
+			 , coupon_isadmin
+			FROM coupon
+			ORDER BY coupon_idx DESC
+	</select>
+	<select id="selectCoupon"
+		resultType="com.itwillbs.ifund.vo.CouponVO">
+		SELECT *
+		FROM coupon
+		WHERE coupon_idx = #{coupon_idx}
+	</select>
+	<update id="updateCoupon">
+		UPDATE coupon
+		SET coupon_isadmin = #{coupon_isadmin}
+		WHERE coupon_idx = #{coupon_idx}
+	</update>
+	
+	<!-- 2023-05-16 박경은 - 관리자 공지사항목록 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="noticeList"
+		resultType="com.itwillbs.ifund.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		WHERE board_subject LIKE '%${searchKeyword}%'
+		ORDER BY board_idx DESC
+		LIMIT
+		#{startRow}, #{listLimit}
+	</select>
+	<!-- 2023-05-16 박경은 - 관리자 공지사항목록 수 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="selectNoticeListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM notice
+		WHERE board_subject LIKE '%${searchKeyword}%'
+	</select>
+	<!-- 2023-05-16 박경은 - 관리자 공지사항 조회 -->
+	<select id="selectNotice"
+		resultType="com.itwillbs.ifund.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		WHERE board_idx = #{board_idx}
+	</select>
+	<!-- 2023-05-25 박경은 - 관리자 공지사항 작성 -->
+	<insert id="insertNotice">
+		<selectKey keyProperty="board_idx" resultType="int"
+			order="BEFORE">
+			SELECT IFNULL(MAX(board_idx), 0) FROM notice
+		</selectKey>
+		INSERT
+		INTO notice
+		VALUES (#{board_idx} + 1
+		, #{board_subject}
+		, #{board_content}
+		, #{board_file}
+		, #{board_file_path}
+		, now()
+		)
+	</insert>
+	<!-- 2023-05-17 박경은 - 관리자 공지사항 수정 -->
+	<!-- 2023-06-01 박경은 - 조건문 수정 -->
+	<update id="noticeDetail">
+		UPDATE notice
+		SET board_subject = #{board_subject}
+		,board_content = #{board_content}
+		<if test="board_file != null and !board_file.equals('')">
+			,board_file = #{board_file}
+			,board_file_path = #{board_file_path}
+		</if>
+		WHERE board_idx = #{board_idx}
+	</update>
+
+	<!-- 2023-05-31 박경은 - 관리자 공지사항 수정 파일삭제 -->
+	<update id="deleteNoticeFile">
+		UPDATE notice
+		SET board_file = ''
+		  , board_file_path = ''
+		WHERE board_idx = #{board_idx}
+	</update>
+	<!-- 2023-05-22 박경은 - 관리자 공지사항 삭제 -->
+	<delete id="deleteNotice">
+		DELETE
+		FROM notice
+		WHERE board_idx = #{board_idx}
+	</delete>
+
+	<!-- 2023-05-16 박경은 - 관리자 보도자료목록 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="newsList"
+		resultType="com.itwillbs.ifund.vo.NoticeVO">
+		SELECT *
+		FROM news
+		WHERE board_subject LIKE '%${searchKeyword}%'
+		ORDER BY board_idx DESC
+		LIMIT #{startRow},
+		#{listLimit}
+	</select>
+	<!-- 2023-05-16 박경은 - 관리자 보도자료목록 수 조회 -->
+	<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+	<select id="selectNewsListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM news
+		WHERE board_subject LIKE '%${searchKeyword}%'
+	</select>
+	<!-- 2023-05-16 박경은 - 관리자 보도자료 조회 -->
+	<select id="selectNews"
+		resultType="com.itwillbs.ifund.vo.NoticeVO">
+		SELECT *
+		FROM news
+		WHERE board_idx = #{board_idx}
+	</select>
+	<!-- 2023-05-25 박경은 - 관리자 보도자료 작성 -->
+	<insert id="insertNews">
+		<selectKey keyProperty="board_idx" resultType="int"
+			order="BEFORE">
+			SELECT IFNULL(MAX(board_idx), 0) FROM news
+		</selectKey>
+		INSERT
+		INTO news
+		VALUES (#{board_idx} + 1
+		, #{board_subject}
+		, #{board_content}
+		, #{board_file}
+		, #{board_file_path}
+		, now()
+		)
+	</insert>
+	<!-- 2023-05-17 박경은 - 관리자 보도자료 수정 -->
+	<!-- 2023-06-01 박경은 - 조건문 수정 -->
+	<update id="newsDetail">
+		UPDATE news
+		SET board_subject = #{board_subject}
+		,board_content = #{board_content}
+		<if test="board_file != null and !board_file.equals('')">
+			,board_file = #{board_file}
+			,board_file_path = #{board_file_path}
+		</if>
+		WHERE board_idx = #{board_idx}
+	</update>
+	<!-- 2023-06-01 박경은 - 관리자 보도자료 수정 파일삭제 -->
+	<update id="deleteNewsFile">
+		UPDATE news
+		SET board_file = ''
+		, board_file_path = ''
+		WHERE board_idx = #{board_idx}
+	</update>
+	<!-- 2023-05-22 박경은 - 관리자 보도자료 삭제 -->
+	<delete id="deleteNews">
+		DELETE
+		FROM news
+		WHERE board_idx = #{board_idx}
+	</delete>
+
+
+	<!-- =============================================================== -->
+	
+	  <!-- 0516 은산 프로젝트 목록 	-->  
+	<select id="selectAllProjectList" resultType="map">
+		SELECT  p.project_idx
+			   ,p.project_type
+			   ,p.project_title
+			   ,p.project_start_date
+			   ,p.project_end_date
+			   ,p.project_target
+			   ,p.project_approve_status
+			   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate 
+			   ,m.member_name
+			   ,pd.project_detail_amount
+			   ,pd.project_detail_person
+			   ,DATEDIFF(now(), p.project_end_date) AS d_day
+			FROM project p 
+			JOIN member m 
+			  ON p.member_idx = m.member_idx
+			JOIN project_detail pd 
+			  ON p.project_idx = pd.project_idx
+			WHERE 1=1
+				<if test="selectOption != 0">
+					AND p.project_status = ${selectOption}
+				</if>
+				ORDER BY p.project_idx DESC;
+	</select>  
+	
+	<!-- 0517 은산 승인대기 목록--> 
+	<select id="selectPendingList" resultType="map">
+		SELECT * FROM project p JOIN member m ON p.member_idx = m.member_idx
+			WHERE p.project_approve_status = 1
+			 ORDER BY p.project_idx DESC;
+	</select>
+	
+  	<!-- 0521 은산 프로젝트 상세-->
+  	<select id="selectDetailList" resultType="map">
+  		SELECT p.project_idx
+  			   ,p.member_idx
+  			   ,p.project_category
+  			   ,p.project_title
+  			   ,p.project_content
+  			   ,p.project_summary
+  			   ,p.project_thumbnail
+  			   ,p.project_images
+  			   ,p.project_start_date
+  			   ,p.project_end_date
+  			   ,p.project_coming_soon_date
+			   ,p.project_plan
+			   ,p.project_type
+			   ,p.project_target
+			   ,p.project_create_date
+			   ,p.project_approve_status
+			   ,m.member_name
+			   ,pd.project_detail_person
+			   ,pd.project_detail_amount
+			   ,pd.project_detail_target
+			   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate
+			   ,DATEDIFF(p.project_end_date, now()) AS d_day
+			   ,p.project_status
+			FROM project p 
+			JOIN member m 
+			  ON p.member_idx = m.member_idx
+			JOIN project_detail pd
+			  ON p.project_idx = pd.project_idx
+			WHERE p.project_idx = #{project_idx};
+  	</select>
+	
+	<!-- 0518 은산 프로젝트 승인--> 
+	<update id="updateApproveList">
+		UPDATE project p
+		   SET  p.project_start_date = #{project_start_date}
+			   ,p.project_end_date = #{project_end_date}
+			   ,p.project_coming_soon_date = #{project_coming_soon_date}
+			   ,p.project_approve_status = 2
+	    WHERE p.project_idx = #{project_idx};
+	</update>
+	
+	<!-- 0518 은산 프로젝트 승인 거부--> 
+	<update id="updateApproveDenied">
+		UPDATE project p
+		   SET p.project_approve_status = 3
+		WHERE p.project_idx = #{project_idx};
+	</update>
+	
+	<!-- 프로젝트 승인/거부 내역 -->
+	<insert id="insertApproveHistory">
+		<selectKey keyProperty="approve_no" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(approve_no), 0) FROM approve_history
+		</selectKey>
+		INSERT INTO approve_history(
+					 approve_no
+					,project_idx
+					,admin_name
+					,approve_date
+					,approve_reason
+					,approve_status
+					)
+				VALUES(
+					 #{approve_no} + 1
+					,#{project_idx}
+					,#{admin_name}
+					,now()
+					,
+					<choose>
+						<when test="project_approve_status != 2">
+							#{approve_reason}
+						</when>
+						<otherwise>
+							'승인'
+						</otherwise>
+					</choose>
+					,#{project_approve_status}
+				)
+	</insert>
+	
+	<!-- 승인하면 디테일 생성 -->
+	<insert id="insertProjectDetail">
+		<selectKey keyProperty="project_detail_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(project_detail_idx), 0) FROM project_detail
+		</selectKey>
+		INSERT INTO project_detail(
+						 project_detail_idx
+						,project_idx
+						,project_detail_person
+						,project_detail_amount
+						,project_detail_target
+					)
+				VALUES(
+					 #{project_detail_idx} + 1
+					,#{project_idx}
+					,0
+					,0
+					,0
+				);
+	</insert>
+	
+	<!-- 프로젝트 진행여부 업데이트 -->
+	<update id="updateProjectStatus">
+		update project
+			set project_status = #{projectStatus}
+				where project_idx = #{projectIdx}
+	</update>
+	
+	<!-- 리워드 리스트 -->
+	<select id="selectRewardList" resultType="com.itwillbs.ifund.vo.RewardVO">
+		select * 
+			from reward
+				where project_idx = #{project_idx}
+	</select>
+	
+	<!-- 결제내역 -->
+	<select id="selectPaymentList" resultType="map">
+		select 
+			   payment_date
+			  ,member_name
+			  ,reward_name
+			  ,reward_amount
+			  ,used_point_amount
+			  ,used_coupon_amount
+			  ,delivery_fee
+			  ,donation
+			  ,total_amount 
+			from payment p
+				JOIN member m
+					ON p.member_idx = m.member_idx
+				where project_idx = #{project_idx}
+	</select>
+	<!-- 정산 신청 목록 -->
+	<select id="selectCalculateList" resultType="map">
+		SELECT * 
+		FROM calculate c
+			JOIN member m		
+			  ON c.member_idx = m.member_idx		
+			
+	</select>
+	
+	<!-- 정산내역  -->
+<!-- 	<select id="selectAllmanagementList" resultType="map"> -->
+<!-- 	SELECT  p.project_idx -->
+<!-- 		   ,p.project_type -->
+<!-- 		   ,p.project_title -->
+<!-- 		   ,p.project_start_date -->
+<!-- 		   ,p.project_end_date -->
+<!-- 		   ,p.project_target -->
+<!-- 		   ,p.project_approve_status -->
+<!-- 		   ,(pd.project_detail_amount/p.project_target)*100 AS target_rate  -->
+<!-- 		   ,m.member_name -->
+<!-- 		   ,pd.project_detail_amount -->
+<!-- 		   ,pd.project_detail_person -->
+<!-- 		   ,DATEDIFF(now(), p.project_end_date) AS d_day -->
+<!-- 		FROM project p  -->
+<!-- 		JOIN member m  -->
+<!-- 		  ON p.member_idx = m.member_idx -->
+<!-- 		JOIN project_detail pd  -->
+<!-- 		  ON p.project_idx = pd.project_idx -->
+<!-- 		WHERE 1=1 -->
+<!-- 			<if test="selectOption != 0"> -->
+<!-- 				AND p.project_status = ${selectOption} -->
+<!-- 			</if> -->
+<!-- 			ORDER BY p.project_idx DESC; -->
+<!-- 	</select>   -->
+	<select id="selectRepresentative" resultType="map">
+		SELECT *
+		FROM representative
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<select id="getAccountVO" resultType="com.itwillbs.ifund.vo.AccountVO">
+		SELECT *
+		FROM account
+		WHERE member_idx = #{member_idx}
+	</select>
+	
+	<!-- 메인 그래프 -->
+<!-- 	<select id="getCount" resultType="map"> -->
+<!-- 		SELECT -->
+<!-- 		(SELECT COUNT(*)FROM project) as 'project', -->
+<!-- 		(SELECT count(*)FROM project WHERE project_category = "푸드") as 'food' -->
+<!-- 	</select> -->
+	
+	<!-- 정산 출금 기록 -->
+	<insert id="insertAccountHistory">
+		INSERT INTO account_history 
+			<selectKey keyProperty="balance" resultType="int"
+				order="BEFORE">
+				SELECT balance FROM account_history ORDER BY history_idx DESC LIMIT 1 
+			</selectKey>
+			values(
+				 NULL
+				,#{project_idx}
+				,(select member_name from member where member_idx = #{member_idx})
+				,'w'
+				,#{calculate_fee}
+				,#{balance} - #{calculate_fee}
+				,now()
+			);
+	</insert>
+	
+	<!-- 정산 상태 업데이트 -->
+	<update id="updateCalApprove">
+		update calculate 
+			set calculate_approve = 1 
+			where project_idx = #{project_idx};
+	</update>
+	
+	<!-- 정산 내역  -->
+	<select id="selectAccountHistory" resultType="map">
+		SELECT *
+			FROM account_history
+	</select>
+</mapper>

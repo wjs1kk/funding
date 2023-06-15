@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.itwillbs.ifund.mapper.FundingMapper">
+
+	<!-- funding 페이지 쿼리 -->
+	<select id="selectFundingProject"
+		resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_target, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		
+		<if test="selectbox == 0">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+			AND
+			p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		</if>
+		<if test="selectbox == 1">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_end_date 
+		</if>
+<!-- 			AND -->
+<!-- 			DATE_FORMAT(NOW(), '%Y-%m-%d') > p.project_end_date -->
+		
+		<if test="!category.equals('')">
+			<choose>
+				<when test="category.equals('전체')">
+
+				</when>
+				<otherwise>
+					AND project_category = #{category}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="!order.equals('')">
+			<choose>
+				<when test="order.equals('인기순')">
+					ORDER BY (pd.project_detail_amount /
+					p.project_target * 100) DESC
+				</when>
+				<when test="order.equals('모집금액순')">
+					ORDER BY pd.project_detail_amount DESC
+				</when>
+				<when test="order.equals('마감임박순')">
+					ORDER BY p.project_end_date
+				</when>
+				<when test="order.equals('최신순')">
+					ORDER BY project_start_date DESC
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<!-- 공동구매 페이지 분류 -->
+	<select id="selectPreorderProject"
+		resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		SELECT 
+			DISTINCT 
+			p.project_idx, project_category, project_thumbnail,
+			project_plan, project_start_date
+			project_detail_amount, project_target, project_end_date,
+			project_title, maker_name
+		FROM project p
+		INNER JOIN
+			project_detail pd ON
+			p.project_idx = pd.project_idx
+		INNER JOIN
+			maker m ON p.maker_idx =
+			m.maker_idx
+		WHERE
+			project_approve_status = '2'
+			AND project_type = '2'
+		<if test="selectbox == 0">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+			AND
+			p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		</if>
+		<if test="selectbox == 1">
+			AND
+			DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_end_date 
+		</if>
+		<if test="!category.equals('')">
+			<choose>
+				<when test="category.equals('전체')">
+
+				</when>
+				<otherwise>
+					AND project_category = #{category}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="!order.equals('')">
+			<choose>
+				<when test="order.equals('인기순')">
+					ORDER BY (pd.project_detail_amount /
+					p.project_target * 100) DESC;
+				</when>
+				<when test="order.equals('모집금액순')">
+					ORDER BY pd.project_detail_amount DESC;
+				</when>
+				<when test="order.equals('마감임박순')">
+					ORDER BY p.project_end_date;
+				</when>
+				<when test="order.equals('최신순')">
+					ORDER BY p.project_start_date DESC;
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<!-- 오픈 예정 분류 -->
+	<select id="selectComingsoonProject" resultType="map">
+		SELECT DISTINCT p.project_idx, project_category, project_thumbnail,
+		project_plan, project_title, m.maker_name, project_start_date,
+		project_coming_soon_date
+		FROM project p
+		INNER JOIN
+		project_detail pd ON p.project_idx =
+		pd.project_idx
+		INNER JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		project_approve_status = '2'
+		AND project_plan != '1'
+		AND
+		project_coming_soon_date != ""
+		AND project_start_date > DATE(NOW())
+		<if test="!category.equals('')">
+			<choose>
+				<when test="category.equals('전체')">
+
+				</when>
+				<otherwise>
+					AND project_category = #{category}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="!order.equals('')">
+			<choose>
+				<when test="order.equals('오픈임박순')">
+					AND project_coming_soon_date >= DATE_FORMAT(NOW(),
+					'%Y-%m-%d')
+					ORDER BY p.project_coming_soon_date DESC;
+				</when>
+				<when test="order.equals('최신순')">
+					ORDER BY project_start_date DESC;
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<!-- funding detail 페이지 쿼리 -->
+	<select id="selectReward" resultType="com.itwillbs.ifund.vo.RewardVO">
+		SELECT * 
+		  FROM reward
+		 WHERE project_idx = #{project_idx}
+	</select>
+	<select id="categoryList" resultType="map">
+	SELECT *
+	FROM category
+	</select>
+	<select id="fundingDetail" resultType="map">
+		SELECT 
+			DISTINCT
+				p.project_idx, p.project_category, p.project_reward_category, p.project_content, p.project_plan,
+				ROUND(pd.project_detail_amount / p.project_target * 100) "project_percent", p.project_images, p.project_start_date, p.project_end_date, p.project_coming_soon_date,
+				pd.project_detail_amount, pd.project_detail_person,	pd.project_detail_target, m.maker_idx, m.maker_image, m.maker_name, p.project_summary
+		 FROM 
+			project p
+		INNER JOIN project_detail pd ON p.project_idx = pd.project_idx
+		INNER JOIN maker m ON p.maker_idx = m.maker_idx
+		WHERE 
+			p.project_idx = #{project_idx};
+	</select>
+	<update id="updateFunding">
+		UPDATE project
+		   SET project_coming_soon_date = ''
+		 WHERE DATE_FORMAT(NOW(), '%Y-%m-%d') > project_coming_soon_date 
+	</update>
+	<!--  06-09 김동욱 결제할 리워드 가져오기  -->
+	<select id="getPayReward" resultType="map">
+		SELECT *
+		FROM reward
+		WHERE reward_idx = #{reward_idx}
+	</select>
+	
+	<!--  06-09 김동욱 포인트 가져오기  -->
+	<select id="getMyPoint" resultType="int">
+		SELECT member_point
+		FROM point
+		WHERE point_idx =
+			(SELECT MAX(point_idx)
+			FROM `point` p
+			WHERE member_idx = #{member_idx}
+			GROUP BY member_idx);
+	</select>
+	
+	<!-- 06-09 김동욱 사용가능한 쿠폰리스트 가져오기  -->
+	<select id="getMyCouponList" resultType="map">
+		select c.coupon_idx, coupon_name, coupon_start, coupon_end, coupon_percent
+		FROM coupon c JOIN coupon_used cu
+		on c.coupon_idx = cu.coupon_idx
+		WHERE member_idx = #{member_idx} and coupon_useable = "Y";
+	</select>
+	
+	<!-- 06-10 김동욱 펀딩 결제하기 -->
+	<insert id="payment">
+		INSERT INTO payment
+			VALUES(
+				null
+				, now()
+				, #{member_idx}
+				, #{project_idx}
+				, #{reward_name}
+				, #{reward_amount}
+				, #{used_point_amount}
+				, #{used_coupon_amount}
+				, #{delivery_fee}
+				, #{donation}
+				, #{total_amount}
+				, #{delivery_address}
+				, #{delivery_phone_number}
+				, ""
+			)
+	</insert>
+	
+	<!-- 06-10 김동욱 리워드 팔린 수량 만큼 플러스 업데이트 -->
+	<update id="rewardSellUpdate">
+		UPDATE reward 
+			SET reward_sell = reward_sell + #{reward_quantity}
+			WHERE reward_idx = #{reward_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 사용한 쿠폰 N으로 업데이트 -->
+	<update id="couponUsedUpdate">
+		UPDATE coupon_used
+			SET coupon_useable = "N"
+			WHERE coupon_idx = #{coupon_idx}
+	</update>
+	
+	<!-- 06-10 김동욱 포인트 사용하기 -->
+	<insert id="usingPoint">
+		INSERT INTO point
+		VALUES(NULL,
+			#{member_idx},
+			'결제',
+			#{point},
+			0,
+			(SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) - #{point}
+			);
+	</insert>
+	
+	<!-- 06-10 김동욱 프로젝트 디테일 총금액 업데이트 -->
+	<update id="projectDetailAmountUpdate">
+		UPDATE project_detail
+			SET project_detail_amount = project_detail_amount + #{total_amount},
+			project_detail_person = project_detail_person + 1
+			WHERE project_idx = #{project_idx}
+	</update>
+	
+	
+	<!-- 06-10 김동욱 결제 금액 5프로 포인트 적립 -->
+	<insert id="pointSaving">
+		INSERT INTO point
+		VALUES (
+			null
+			, #{member_idx}
+			, "결제 금액 5% 포인트 적립"
+			, 0
+			, #{point}
+			, (SELECT member_point
+				FROM `point` p
+				WHERE point_idx =
+				(SELECT MAX(point_idx)
+				FROM `point` p
+				WHERE member_idx = #{member_idx}
+				GROUP BY member_idx)) + #{point}
+		)
+	</insert>
+	
+	<insert id="insertInquiry">
+	<selectKey keyProperty="inq_idx" resultType="int" order="BEFORE">
+		SELECT IFNULL(MAX(inq_idx), 0) FROM inquiry
+			</selectKey>
+			INSERT
+				INTO inquiry
+					VALUES (
+						#{inq_idx} + 1
+						, #{member_idx}
+						, #{maker_idx}
+						, '진행중'
+						, #{inq_subject}
+						, #{inq_content}
+						, #{inq_idx} + 1
+						, 0
+						, 0
+						, now()
+						)
+	</insert>	
+	
+	<!-- 2023-06-13 박경은 - 주목할 만한 프로젝트 -->
+	<select id="selectAttentionProject"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY (pd.project_detail_amount / p.project_target ) DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 실시간 랭킹 -->
+	<select id="selectRankingProject"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY pd.project_detail_amount DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 실시간 랭킹 2 -->
+	<select id="selectRankingProject2"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY pd.project_detail_amount DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 얼리버드 -->
+	<select id="selectEarlybirdProject"
+	resultType="map">
+		SELECT p.project_idx, p.project_category, p.project_thumbnail, p.project_plan, 
+		p.project_target, p.project_start_date, p.project_summary,
+		p.project_end_date, p.project_title, p.project_approve_status,
+		r.reward_name, r.reward_amount, r.reward_option
+		FROM project p
+		INNER JOIN reward r ON  p.project_idx = r.project_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '1'
+		AND
+		p.project_start_date > DATE_FORMAT(NOW(), '%Y-%m-%d');
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 오늘 오픈 -->
+	<select id="selectTodayOpenProject"
+	resultType="map">
+		SELECT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date, p.project_summary,
+		p.project_end_date, p.project_title, p.project_approve_status FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') = p.project_start_date
+		ORDER BY pd.project_detail_amount DESC;
+	</select>
+	
+	
+	<!-- 	찜하기 -->
+
+	<insert id="insertWish">
+		insert into wish 
+			values(null, #{project_idx}, #{member_idx});
+	</insert>
+	<select id="selectWish" resultType="String">
+		select project_idx 
+			from wish 
+			where member_idx = #{member_idx}
+	</select>
+	<delete id="cancelWish">
+		DELETE
+			FROM wish
+			WHERE project_idx = #{project_idx}
+	</delete>
+<!-- 	찜하기 끗 -->
+<!-- 찜갯수 06/13-->
+	<select id="countWish" resultType="int">
+		select COUNT(*) 
+		from wish 
+		where project_idx=#{project_idx}; 
+	</select>
+</mapper>

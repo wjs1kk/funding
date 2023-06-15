@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.ifund.mapper.ProjectCreateMapper">
+
+	<!-- 05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성 -->
+	<!-- 05-12 project_images가 프로젝트 생성될 떄 null 스트링이 들어가도록 수정 -->
+
+	<insert id="createFundingProject">
+		INSERT INTO project VALUES(
+		null  <!--project_idx -->
+		, ${member_idx} <!--member_idx -->
+		, "" <!--project_category -->
+		, "" <!--project_title -->
+		, "" <!--project_content -->
+		, "" <!--project_summary -->
+		, "" <!--project_thumbnail -->
+		, "" <!--project_images -->
+		, "" <!--project_start_date -->
+		, "" <!--project_end_date -->
+		, "" <!--project_coming_soon_date -->
+		, "" <!--project_plan -->
+		, "" <!--project_type -->
+		, "" <!--project_target -->
+		, "0" <!--project_approve_status -->
+		, "" <!--project_introduce -->
+		, "" <!--project_adult -->
+		, "" <!--project_identity -->
+		, "" <!--project_reward_category -->
+		, "" <!--project_reward_produce_type -->
+		, "" <!--project_documents -->
+		, "" <!--project_like -->
+		, "" <!--project_AS -->
+		, 0 <!--maker_idx -->
+		, now() <!--project_create_date -->
+		, "0"<!--project_update_status -->
+		, "0"<!--project_status -->
+		)
+	</insert>
+
+	<!-- 05-16 김동욱 메이커 마이페이지에 프로젝트 리스트 출력 -->
+	<select id="getProjectList"
+		resultType="com.itwillbs.ifund.vo.ProjectVO">
+		SELECT *
+		FROM project
+		WHERE member_idx = ${member_idx};
+	</select>
+
+	<!-- 05-17 김동욱 프로젝트 스토리 작성 업데이트(project_summary, project_content, project_image) -->
+	<!-- 05-22 김동욱 프로젝트 스토리 업데이트에서 project_images 삭제 -->
+	<update id="projectStoryUpdate">
+		UPDATE project SET
+		project_summary = #{project_summary}
+		,project_content = #{project_content}
+		where project_idx = #{project_idx}
+	</update>
+
+	<!-- 05-17 김동욱 프로젝트 리워드 추가 -->
+	<insert id="projectRewardAdd">
+		INSERT INTO reward
+		VALUES(null
+		, #{project_idx}
+		, #{reward_name}
+		, #{reward_amount}
+		, #{reward_content}
+		, #{reward_option}
+		, #{reward_quantity}
+		, #{reward_delivery}
+		, #{reward_delivery_fee}
+		, #{reward_delivery_date}
+		, "0"
+		)
+	</insert>
+
+	<!-- 05-17 김동욱 프로젝트 리워드 리스트 -->
+	<select id="getProjectReward"
+		resultType="com.itwillbs.ifund.vo.RewardVO">
+		SELECT *
+		FROM reward
+		WHERE project_idx = #{project_idx}
+	</select>
+
+	<!-- 05-18 김동욱 AJAX 리워드 상세 정보 가져오기 -->
+	<select id="getRewardDetail"
+		resultType="com.itwillbs.ifund.vo.RewardVO">
+		SELECT *
+		FROM reward
+		WHERE reward_idx = #{reward_idx}
+	</select>
+
+	<update id="projectPlanUpdate">
+		UPDATE project SET
+		project_plan = #{project_plan}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<update id="InfoUpdate">
+		UPDATE project SET
+		project_category = (SELECT category_cd
+							FROM category
+							WHERE category_cd = #{project_category}),
+		project_introduce = #{project_introduce},
+		project_type = #{project_type},
+		project_target = #{project_target},
+		project_reward_produce_type = #{project_reward_produce_type},
+		project_reward_category = #{project_reward_category}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<update id="projectBaseInfoFileUpdate">
+		UPDATE project SET
+		project_thumbnail = #{project_thumbnail}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<update id="projectBaseInfoUpdate">
+		UPDATE project SET
+		project_title = #{project_title},
+		project_adult = #{project_adult},
+		project_end_date = #{project_end_date}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<update id="projectInfoFileUpdate">
+		UPDATE project SET
+		project_identity = #{project_identity},
+		project_documents = #{project_documents}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<!-- 05-19 김동욱 AJAX 리워드 정보 수정하기 -->
+	<update id="rewardModify">
+		UPDATE reward SET
+		reward_name = #{reward_name}
+		, reward_amount = #{reward_amount}
+		, reward_content = #{reward_content}
+		, reward_option = #{reward_option}
+		, reward_quantity = #{reward_quantity}
+		, reward_delivery = #{reward_delivery}
+		, reward_delivery_fee = #{reward_delivery_fee}
+		, reward_delivery_date = #{reward_delivery_date}
+		WHERE reward_idx = #{reward_idx}
+	</update>
+
+	<!-- 05-19 김동욱 AJAX 리워드 삭제하기 -->
+	<delete id="rewardDelete">
+		DELETE FROM reward WHERE reward_idx = #{reward_idx}
+	</delete>
+
+	<!-- 05-22 김동욱 기존 등록된 이미지 가져오기 -->
+	<select id="getImages" resultType="String">
+		SELECT project_images
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+
+	<!-- 05-22 김동욱 AJAX 이미지 추가 -->
+	<update id="projectAddImages">
+		UPDATE project SET project_images = #{project_images}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<select id="getProjectStory"
+		resultType="com.itwillbs.ifund.vo.ProjectVO">
+		SELECT project_summary, project_content
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+
+	<!-- 김동욱 05-25 메이커 리스트 가져오기 -->
+	<select id="getMakerList"
+		resultType="com.itwillbs.ifund.vo.MakerVO">
+		SELECT *
+		FROM maker
+		WHERE member_idx = #{member_idx}
+	</select>
+
+	<!-- 김동욱 05-25 메이커 정보 등록 -->
+	<insert id="makerInfoInsert">
+		INSERT
+		INTO maker
+		VALUES(
+		null
+		, #{member_idx}
+		, #{maker_name}
+		, #{maker_image}
+		, #{maker_phone}
+		, #{maker_email}
+		)
+	</insert>
+
+	<!-- 김동욱 05-25 메이커 정보 가져오기 -->
+	<select id="getMakerInfo"
+		resultType="com.itwillbs.ifund.vo.MakerVO">
+		SELECT *
+		FROM maker
+		WHERE maker_idx = #{maker_idx}
+	</select>
+
+	<!-- 김동욱 05-25 메이커 정보 수정 -->
+	<update id="makerInfoUpdate">
+		UPDATE maker
+		SET
+		maker_name = #{maker_name}
+		<if test="maker_image != '' and maker_image != null">
+			, maker_image = #{maker_image}
+		</if>
+		, maker_phone = #{maker_phone}
+		, maker_email = #{maker_email}
+		WHERE maker_idx = #{maker_idx}
+	</update>
+
+	<!-- 05-26 김동욱 maker정보를 클릭하면 프로젝트 테이블에 maker_idx 업데이트 -->
+	<update id="projectMakerIdxUpdate">
+		UPDATE project SET maker_idx = #{maker_idx}
+		WHERE project_idx = ${project_idx}
+	</update>
+
+	<!-- 05-26 김동욱 해당 프로젝트에 등록된 메이커 정보 가져오기 -->
+	<select id="myProjectMakerInfo"
+		resultType="com.itwillbs.ifund.vo.MakerVO">
+		SELECT p.maker_idx, maker_name
+		FROM project p JOIN maker m
+		ON p.maker_idx =
+		m.maker_idx
+		WHERE project_idx = #{project_idx}
+	</select>
+
+
+	<update id="projectPolicyUpdate">
+		UPDATE project
+		SET project_AS = #{project_AS}
+		WHERE project_idx = #{project_idx}
+	</update>
+
+	<!-- 05-26 김동욱 메이커 정보 삭제 -->
+	<delete id="deleteMakerInfo">
+		DELETE from maker WHERE maker_idx = #{maker_idx}
+	</delete>
+
+	<!-- 05-26 김동욱 프로젝트 플랜 정보 가져오기 -->
+	<select id="getProjectPlan" resultType="String">
+		SELECT project_plan
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+
+	<!-- 05-27 김동욱 AJAX 메이커명 중복 체크 -->
+	<select id="makerNameDuplicateCheck" resultType="String">
+		SELECT maker_name
+		FROM maker
+		WHERE maker_name = #{maker_name}
+	</select>
+
+	<!-- 05-27 김동욱 삭제했던 메이커 정보를 프로젝트 테이블에서 null로 업데이트 -->
+	<!-- 05-30 김동욱 메이커 정보를 삭제하면 프로젝트 테이블에서 0으로 업데이트되게 수정 -->
+	<update id="deleteProjeckMaker">
+		UPDATE project SET maker_idx = 0
+		WHERE maker_idx = #{maker_idx}
+	</update>
+
+	<!-- 05-29 김동욱 프로젝트 테이블에서 각 테이블이 업데이트가 되었는 지 체크용 -->
+	<select id="projectUpdateCheck" resultType="map">
+		SELECT *
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+
+	<!-- 05-30 김동욱 대표자 및 정산 정보 INSERT -->
+	<insert id="repInfoInsert">
+		INSERT INTO representative
+		VALUES (
+		null
+		, #{member_idx}
+		, #{rep_name}
+		, #{rep_email}
+		, #{rep_tax_email}
+		, #{rep_tax_bank}
+		, #{rep_tax_account}
+		, #{rep_tax_depositor}
+		)
+	</insert>
+
+	<!-- 05-30 김동욱 대표자 및 정산 정보 불러오기 -->
+	<select id="getMyRepresentativeInfo" resultType="map">
+		SELECT *
+		FROM representative
+		WHERE member_idx = #{member_idx}
+	</select>
+
+	<!-- 05-30 김동욱 프로젝트 approve 0으로 업데이트(제출하기) -->
+	<!-- 06-01 김동욱 프로젝트 제출하면 project_approve_status가 1으로 업데이트되게 변경 -->
+	<update id="projectApproveSubmit">
+		UPDATE project SET project_approve_status = "1" WHERE project_idx =
+		#{project_idx}
+	</update>
+
+	<!-- 05-30 김동욱 프로젝트에 메이커 정보를 등록하고 제출을 한번이라도 했었던 프로젝트의 갯수 가져오기 -->
+	<select id="approveProjectCount" resultType="int">
+		SELECT COUNT(project_approve_status)
+		FROM project
+		WHERE maker_idx =
+		#{maker_idx} AND
+		<if test="project_idx != null">
+			project_idx = 4 AND
+		</if>
+		project_approve_status = "2";
+	</select>
+
+	<!-- 06-04 김동욱 해당 프로젝트가 자신의 세션값과 동일한 지 확인 -->
+	<select id="myProjectCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM project
+		WHERE project_idx = #{project_idx} and member_idx
+		= #{member_idx};
+	</select>
+
+	<!-- // 06-02 강정운 프로젝트 제작시 생성된 프로젝트로 이동 -->
+	<select id="projectStart" resultType="int">
+		SELECT MAX(project_idx)
+		FROM project
+	</select>
+
+	<select id="showFeeCalculate" resultType="map">
+		SELECT SUM(pm.total_amount) AS total_amount, SUM(pm.used_point_amount) AS used_point_amount
+		, SUM(pm.used_coupon_amount) AS used_coupon_amount, SUM(pm.delivery_fee) AS delivery_fee
+		, p.project_plan, p.project_title, (SUM(pm.total_amount) / p.project_target) * 100 AS project_rate
+		FROM payment pm JOIN project p
+		ON pm.project_idx = p.project_idx
+		WHERE pm.project_idx = #{project_idx};
+	</select>
+	
+	
+	<insert id="calculateApply">
+		INSERT INTO calculate
+		VALUES (
+		null
+		, #{project_idx}
+		, #{member_idx}
+		, #{project_title}
+		, #{calculate_fee}
+		, #{fintech_use_num}
+		, 0
+		, #{calculate_charge}
+		, now()
+		);
+		
+	</insert>
+	
+	<insert id="accountHistory">
+		INSERT INTO account_history 
+	<selectKey keyProperty="balance" resultType="int"
+		order="BEFORE">
+		SELECT balance FROM account_history ORDER BY history_idx DESC LIMIT 1 
+	</selectKey>
+	VALUES(
+		 NULL
+		,#{cal.project_idx}
+		,'아이펀드'	
+		,'d'
+		,#{cal.calculate_charge} + #{cal.calculate_fee}
+		,#{balance} + #{cal.calculate_charge} + #{cal.calculate_fee}
+		,now()
+	);
+		
+	</insert>
+	
+	<select id="applyCheck" resultType="integer">
+		SELECT calculate_approve
+		FROM calculate
+		WHERE project_idx = #{project_idx};
+	</select>
+	
+	<select id="memberIdxSearch" resultType="integer">
+		SELECT a.member_idx
+		FROM project p JOIN account a
+		ON p.member_idx = a.member_idx
+		WHERE p.project_idx = #{project_idx} 
+	</select>
+	
+	<select id="getMyPaymentList" resultType="map">
+		SELECT *
+		FROM payment
+		WHERE project_idx = #{project_idx}
+	</select>
+	
+	<update id="trackingNumberUpdate">
+		UPDATE payment
+			SET tracking_number = #{tracking_number}
+			WHERE payment_idx = #{payment_idx}
+	</update>
+	
+	<!-- 06-13 김동욱 해당 프로젝트 통계 -->
+	<select id="myProjectStatus" resultType="map">
+		SELECT 
+			(SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and now() > payment_date) AS "todayTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} AND subdate(now(), INTERVAL 1 day) > payment_date) AS "oneDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 2 day) > payment_date) AS "twoDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 3 day) > payment_date) AS "threeDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 4 day) > payment_date) AS "fourDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 5 day) > payment_date) AS "fiveDayAgoTotalAmount"
+			, (SELECT SUM(total_amount) FROM payment WHERE project_idx = #{project_idx} and subdate(now(), INTERVAL 6 day) > payment_date) AS "sixDayAgoTotalAmount"
+			, (SELECT project_target FROM project p WHERE project_idx = #{project_idx}) AS "project_target"
+			, (SELECT count(*) FROM payment p WHERE project_idx = #{project_idx}) AS "project_payment_count"
+			, (SELECT COUNT(DISTINCT member_idx) FROM payment WHERE project_idx = #{project_idx}) AS "participantsCount"
+	</select>
+	
+	<!-- 06-13 김동욱 해당 프로젝트 수정신청 -->
+	<update id="projectModifyApply">
+		UPDATE project
+			SET project_update_status = #{updateStatus}
+			WHERE project_idx = #{project_idx}
+	</update>
+	<select id="memberNameCheck" resultType="string">
+		SELECT m.member_name 
+		FROM `member` m JOIN project p 
+		ON m.member_idx = p.member_idx
+		WHERE p.project_idx = #{project_idx} 
+	</select>
+	
+	<select id="memberName" resultType="string">
+		SELECT member_name 
+		FROM `member` m
+		WHERE member_idx = #{member_idx} 
+	</select>
+	
+	<select id="dateCheck" resultType="int">
+		SELECT DATEDIFF(project_end_date, now()) 
+		FROM project
+		WHERE project_idx = #{project_idx}
+	</select>
+	
+	<delete id="deleteProject">
+		DELETE FROM project
+		WHERE project_idx = #{project_idx} AND project_approve_status = 0;
+	</delete>
+	
+</mapper>

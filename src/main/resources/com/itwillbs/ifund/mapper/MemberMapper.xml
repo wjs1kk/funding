@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.itwillbs.ifund.mapper.MemberMapper">
+  	<insert id="insertUser">
+		insert into member (
+			member_email, member_passwd, 
+			member_name
+			) 
+			value(
+			#{member_email}, #{member_passwd},
+			#{member_name})
+	</insert>
+	<select id="selectUser" resultType="com.itwillbs.ifund.vo.MemberVO">
+		select * 
+			from member
+			where 
+				member_email = #{member_email} 
+	</select>
+	<select id="findUser" resultType="map">
+		select * 
+			from member
+			where 
+				member_email = #{member_email}
+	</select>
+	<select id="selectPasswd" resultType="string">
+		SELECT member_passwd
+		  FROM member
+		 WHERE member_email = #{member_email}
+	</select>
+	<!-- 관리자 확인 -->
+	<select id="isAdmin" resultType="String">
+		SELECT member_isadmin
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
+	<!-- 비밀번호 찾기 변경 -->
+	<update id="updatePass">
+		UPDATE member
+		   SET member_passwd = #{securePasswd} 
+		 WHERE member_email = #{member_email}
+	</update>
+	<!-- 0615추가	 회원가입 이메일 중복 체크 -->
+	<select id="selectEmailCheck" resultType="String">
+		SELECT member_email
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
+	
+  </mapper>
