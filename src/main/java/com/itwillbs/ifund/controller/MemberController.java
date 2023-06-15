@@ -1,5 +1,7 @@
 package com.itwillbs.ifund.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.ifund.service.BankService;
 import com.itwillbs.ifund.service.MemberService;
@@ -85,9 +88,28 @@ public class MemberController {
 			return "signup";
 		}
 		
+		
 		// 0607 김애리 추가 - 가입시 포인트 적립
 		mypageService.joinPoint(member.getMember_email());
 		
 		return "redirect:/login";
+	}
+	
+	//0615 김애리 추가 - 회원가입 이메일 중복체크
+	@PostMapping("MemberEmailCheck")
+	public void memberEmailCheck(@RequestParam(defaultValue = "") String member_email, HttpServletResponse response) {
+		System.out.println(member_email);
+		try {
+			// 사용중인 member_email이 없으면 view페이지로 true 있으면 false를 보냄!
+			String email = memberService.memberEmailCheck(member_email);
+			System.out.println(email);
+			if(email == null) {
+				response.getWriter().print("true");
+			}else {
+				response.getWriter().print("false");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

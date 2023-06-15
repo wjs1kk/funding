@@ -7,4 +7,5 @@ public interface MemberMapper {
 	public MemberVO selectUser(String member_email);
 	public String selectPasswd(String member_email);
 	public String isAdmin(String member_email);
+	public String selectEmailCheck(String member_email);
 }

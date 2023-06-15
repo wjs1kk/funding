@@ -23,4 +23,7 @@ public class MemberService {
 	public String isAdmin(String member_email) {
 		return mapper.isAdmin(member_email);
 	}
+	public String memberEmailCheck(String member_email) {
+		return mapper.selectEmailCheck(member_email);
+	}
 }
