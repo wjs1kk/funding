@@ -30,7 +30,7 @@
 <script>
 	// 모달창 띄우기
 	$(function(){ 
-		$(".Button_contained__2SIAT").click(function(){
+		$(".Button_contained__2SIAT_2").click(function(){
 	    	$(".modal").fadeIn();
 	  	});
 		
@@ -220,7 +220,39 @@
 														class="Button_button__2FuOU Button_tertiaryGrey__3jJV7 Button_contained__2SIAT Button_xs__2DWsb Button_circular__1cdcJ ProjectSearchTags_hashTagButton__fCndq ProjectSearchTags_gaElement__1mZHZ"><span><span
 															class="Button_children__ilFun"><div
 																	class="ProjectSearchTags_hashTag__2UMo_">
-																	<span class="ProjectSearchTags_hash__IgbO9">#</span><span>${fundingDetail.project_category }</span>
+																	<span class="ProjectSearchTags_hash__IgbO9">#</span>
+																	<c:choose>
+																		<c:when test="${fundingDetail.project_category == 01}">
+																			<span>테크/가전</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 02}">
+																			<span>패션/잡화</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 03}">
+																			<span>홈/리빙</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 04}">
+																			<span>뷰티</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 05}">
+																			<span>푸드</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 06}">
+																			<span>출판</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 07}">
+																			<span>클래스/컨설팅</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 08}">
+																			<span>레저/아웃도어</span>
+																		</c:when>
+																		<c:when test="${fundingDetail.project_category == 09}">
+																			<span>스포츠/모빌리티</span>
+																		</c:when>
+																		<c:otherwise>
+																			<span>컬쳐/아티스트</span>
+																		</c:otherwise>
+																	</c:choose>
 																</div></span></span></a>
 												</div>
 											</div>
@@ -359,7 +391,7 @@
 												</div>
 												<!-- href 속성값을 사용하여 modal을 띄워주는 링크 -->
 												<p><a href="#test" rel="modal:open">
-												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT Button_sm__16X6h Button_startIcon__3p6wN" 
+												<button class="Button_button__2FuOU Button_primary__2mZni Button_contained__2SIAT_2 Button_sm__16X6h Button_startIcon__3p6wN" 
 													type="button" id="popButton">
 													<span><svg viewBox="0 0 32 32" focusable="false"
 															role="presentation"

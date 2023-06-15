@@ -43,6 +43,7 @@
 						</div></li>
 				</ul>
 
+				<!-- top.jsp 검색창 -->
 				<div class="web-header-utils">
 					
 					<c:choose>
@@ -51,15 +52,15 @@
 							<div class="HeaderDesktop_user__3zGmM">
 								<div class="User_container__bqVd2">
 									<button class="User_btnSign__1URTs"
-										onclick="location.href='login'">로그인</button>
+										onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 									<button data-event="iam.signup" class="User_btnSign__1URTs"
-										onclick="location.href='signup'">회원가입</button>
+										onclick="location.href='${pageContext.request.contextPath}/signup'">회원가입</button>
 								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="HeaderDesktop_user__3zGmM"
-								onclick="location.href='mypage/supporter'">
+								onclick="location.href='${pageContext.request.contextPath}/mypage/supporter'">
 								<div class="User_container__bqVd2">
 									<button type="button" class="User_btnAvatar__2Mui-"
 										aria-label="마이 아이펀드">

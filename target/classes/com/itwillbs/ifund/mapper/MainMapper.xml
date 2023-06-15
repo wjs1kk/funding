@@ -8,7 +8,7 @@
 		SELECT project_thumbnail, project_title, project_type
 		FROM project
 		WHERE project_approve_status = 2 AND project_plan = 3
-		ORDER BY project_create_date
+		ORDER BY project_create_date DESC
 		LIMIT 5;
 	</select>
 	

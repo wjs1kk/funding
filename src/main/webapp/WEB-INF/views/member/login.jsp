@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="resources/css/login.css">
 
-<title>와디즈 로그인</title>
+<title>아이펀드 로그인</title>
 
 <link href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=20230502" rel="stylesheet">
 <link rel="stylesheet" href="https://static.wadiz.kr/account/main.0e433016.css">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="bottom-message">
-						<p> 아직 와디즈 계정이 없나요?
+						<p> 아직 아이펀드 계정이 없나요?
 							<a href="signup" data-return-url="" data-event="iam.signin.goto.signup">회원가입</a>
 						</p>
 					</div>
