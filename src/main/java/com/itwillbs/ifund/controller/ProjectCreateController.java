@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.ifund.service.ProjectCreateService;
+import com.itwillbs.ifund.vo.AccountHistoryVO;
 import com.itwillbs.ifund.vo.CalculateVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -541,12 +542,16 @@ public class ProjectCreateController {
 //	06-12 강정운 정산신청
 	@PostMapping("project/calculateApply")
 	@ResponseBody
-	public boolean calculateApply(CalculateVO cal, int project_idx, HttpServletResponse response) {
+	public boolean calculateApply(CalculateVO cal, AccountHistoryVO history, int project_idx, HttpServletResponse response) {
 		Integer checkCount = projectCreateService.applyCheck(project_idx);
 		if(checkCount != null) {
 			return false;
 		} else {
+			
 			int insertCount = projectCreateService.calculateApply(cal);
+			if(insertCount > 0) {
+				int historyCount = projectCreateService.accountHistory(cal, history);				
+			}
 			return true;
 		}
 	}

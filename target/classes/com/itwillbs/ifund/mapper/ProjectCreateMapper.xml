@@ -345,7 +345,26 @@
 		, 0
 		, #{calculate_charge}
 		, now()
-		)
+		);
+		
+	</insert>
+	
+	<insert id="accountHistory">
+		INSERT INTO account_history 
+	<selectKey keyProperty="balance" resultType="int"
+		order="BEFORE">
+		SELECT balance FROM account_history ORDER BY history_idx DESC LIMIT 1 
+	</selectKey>
+	VALUES(
+		 NULL
+		,#{cal.project_idx}
+		,'아이펀드'	
+		,'d'
+		,#{cal.calculate_charge} + #{cal.calculate_fee}
+		,#{balance} + #{cal.calculate_charge} + #{cal.calculate_fee}
+		,now()
+	);
+		
 	</insert>
 	
 	<select id="applyCheck" resultType="integer">

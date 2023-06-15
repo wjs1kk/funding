@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.ifund.service.FundingService;
+import com.itwillbs.ifund.service.MainService;
 import com.itwillbs.ifund.service.MypageService;
 import com.itwillbs.ifund.service.PreorderService;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -32,10 +33,16 @@ public class PreorderController {
 	private PreorderService preorderService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private MainService mainService;
+	
 	@GetMapping("preorder")
 	public String preorder(Model model,HttpSession session, @RequestParam(defaultValue = "전체") String category, @RequestParam(defaultValue = "") String order, @RequestParam(defaultValue = "0") String selectbox) {
 		List<ProjectListVO> projectDetailList = preorderService.selectPreorderProject(category, order, selectbox);
 		model.addAttribute("projectDetailList", projectDetailList);
+		
+		List list = mainService.slide();
+		model.addAttribute("list", list);
 		
 		List categoryList = fundingService.categoryList();
 		model.addAttribute("categoryList", categoryList);

@@ -62,67 +62,68 @@
 
 </head>
 <script>
-	// 슬라이드 3초간 유지 후 다음 화면으로 넘어감
-	$(document).ready(function () {
-		$(".slick-slide").not(".slick-active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
-		
-		setInterval(next, 3000);
-		
+//슬라이드 3초간 유지 후 다음 화면으로 넘어감
+$(document).ready(function() {
+	$(".slick-slide").hide(); //화면 로딩 후 모두 숨김
+	$(".slick-slide").eq(0).show(); // 0번 표시
+	
+	setInterval(next, 2000); // 2초마다 next()호출
+
+});
+
+function next() {
+	$(".slick-slide").hide();
+	var allSlide = $(".slick-slide");
+	var currentIndex = 0;
+
+	$(".slick-slide").each(function(index, item) {
+		if ($(this).hasClass("slick-active")) {
+			currentIndex = index;
+		}
+
 	});
-	
-	function next() {
-		$(".slick-slide").hide();
-		var allSlide = $(".slick-slide");
-		var currentIndex = 0;
-		
-		$(".slick-slide").each(function(index,item){
-			if($(this).hasClass("slick-active")) {
-				currentIndex = index;
-			}
-	        
-		});
-		
-		var newIndex = 0;
-		
-		if(currentIndex >= allSlide.length - 1) {
-			//현재 슬라이드 index가 마지막 순서면 0번째로 보냄
-			newIndex = 0;
-		} else {
-			//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
-			newIndex = currentIndex + 1;
-		}
 
-		$(".slick-slide").removeClass("slick-active");
-		$(".slick-slide").eq(newIndex).addClass("slick-active");
-		$(".slick-slide").eq(newIndex).show();
-		
-	}
-	
-	function prev() {
-		$(".slick-slide").hide(); //모든 div 숨김
-		var allSlide = $(".slick-slide"); //모든 div 객체를 변수에 저장
-		var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
-		
-		//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
-		$(".slick-slide").each(function(index, item){
-			if($(this).hasClass("slick-active")) {
-				currentIndex = index;
-			}
-		});
-		
-		//새롭게 나타낼 div의 index
-		var newIndex = 0;
-	    
-		if(currentIndex <= 0) {
-			newIndex = allSlide.length - 1;
-		} else {
-			newIndex = currentIndex - 1;
-		}
+	var newIndex = 0;
 
-		$(".slick-slide").removeClass("slick-active");
-		$(".slick-slide").eq(newIndex).addClass("slick-active");
-		$(".slick-slide").eq(newIndex).show();
+	if (currentIndex >= allSlide.length - 1) {
+		//현재 슬라이드 index가 마지막 순서면 0번째로 보냄
+		newIndex = 0;
+	} else {
+		//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+		newIndex = currentIndex + 1;
 	}
+
+	$(".slick-slide").removeClass("slick-active");
+	$(".slick-slide").eq(newIndex).addClass("slick-active");
+	$(".slick-slide").eq(newIndex).show();
+
+}
+
+function prev() {
+	$(".slick-slide").hide(); //모든 div 숨김
+	var allSlide = $(".slick-slide"); //모든 div 객체를 변수에 저장
+	var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+
+	//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+	$(".slick-slide").each(function(index, item) {
+		if ($(this).hasClass("slick-active")) {
+			currentIndex = index;
+		}
+	});
+
+	//새롭게 나타낼 div의 index
+	var newIndex = 0;
+
+	if (currentIndex <= 0) {
+		newIndex = allSlide.length - 1;
+	} else {
+		newIndex = currentIndex - 1;
+	}
+
+	$(".slick-slide").removeClass("slick-active");
+	$(".slick-slide").eq(newIndex).addClass("slick-active");
+	$(".slick-slide").eq(newIndex).show();
+}
 </script>
 <!-- 찜하기-->
 <script type="text/javascript">
@@ -199,120 +200,35 @@
 				<div class="KeyVisualBanner_container__37DZf">
 					<div class="slick-slider slick-initialized" dir="ltr">
 						<div class="slick-list">
-							<div data-index="0" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/campaign/detail/206117?_refer_section_st=RMK_3"
-											class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-											data-promo-id="https://www.wadiz.kr/web/wreward/main"
-											data-promo-position="RMK_3" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0510/20230510105159087_6537.jpg/wadiz/resize/2800/format/jpg/quality/85/&quot;);"
-											data-gtm-vis-first-on-screen-11319722_2047="22282"
-											data-gtm-vis-first-on-screen-11319722_2115="22282"
-											data-gtm-vis-first-on-screen-11319722_2184="22282">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														배우와 사진 촬영 기회까지<br>베스트셀러 뮤지컬 루쓰
-													</p>
-													<p class="VisualSlide_badge__3nqfs">선예&amp;이지훈 등 실력파 배우
-														총 출연</p>
+							
+							<!-- top.jsp 아래 팝 슬라이드 -->
+									<c:forEach items="${list }" var="slide" varStatus="status">
+										<div 
+											class="slick-slide slick-active slick-current" tabindex="-1"
+											aria-hidden="false" style="outline: none; width: 1900px;">
+												
+											<div>
+												<div>
+													<a	href=""
+														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
+														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
+														<div class="VisualSlide_wrap__32Lj4">
+															<div class="VisualSlide_text__2SIqN">
+																<p class="VisualSlide_title__3USGy" >${slide.project_title }
+																</p>
+																<p class="VisualSlide_badge__3nqfs">
+																<c:choose>
+																	<c:when test="${slide.project_type eq 1}">펀딩</c:when>
+																	<c:otherwise>공동구매</c:otherwise>
+																</c:choose>
+																 </p>
+															</div>
+														</div>
+													</a>
 												</div>
 											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="1" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/campaign/detail/207154?acid=10030861&amp;_refer_section_st=RMK_1"
-											class="VisualSlide_container__2NDvY"
-											data-promo-acid="10030861"
-											data-promo-id="https://www.wadiz.kr/web/wreward/main"
-											data-promo-name="드글드글 블랙헤드 하루 30초면 싹 녹여요"
-											data-promo-position="RMK_1" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn1.wadiz.kr/images/20230511/1683797463720.jpg/wadiz/optimize&quot;);"
-											data-gtm-vis-first-on-screen-11319722_2047="16199"
-											data-gtm-vis-first-on-screen-11319722_2115="16199"
-											data-gtm-vis-first-on-screen-11319722_2184="16199">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">
-														드글드글 블랙헤드<br>하루 30초면 싹 녹여요
-													</p>
-													<p class="VisualSlide_badge__3nqfs">왕모공 유발 딱딱한 피지! 사르르
-														녹여주세요</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="2" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/wreward/collection/2023foodweek?order=recommend&amp;endYn=N&amp;keyword=&amp;_refer_section_st=RMK_2"
-											class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-											data-promo-id="https://www.wadiz.kr/web/wreward/main"
-											data-promo-name="와디즈食 푸드위크에 초대합니다"
-											data-promo-position="RMK_2" data-promo-acid-force="true"
-											style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0509/20230509100246674_7175.jpg/wadiz/resize/2800/format/jpg/quality/85/&quot;);"
-											data-gtm-vis-first-on-screen-11319722_2047="19240"
-											data-gtm-vis-first-on-screen-11319722_2115="19241"
-											data-gtm-vis-first-on-screen-11319722_2184="19241"
-											data-gtm-vis-recent-on-screen-11319722_2047="103097"
-											data-gtm-vis-total-visible-time-11319722_2047="2000"
-											data-gtm-vis-recent-on-screen-11319722_2115="103097"
-											data-gtm-vis-total-visible-time-11319722_2115="2000"
-											data-gtm-vis-recent-on-screen-11319722_2184="103098"
-											data-gtm-vis-total-visible-time-11319722_2184="2000"
-											data-gtm-vis-has-fired-11319722_2047="1"
-											data-gtm-vis-has-fired-11319722_2115="1"
-											data-gtm-vis-has-fired-11319722_2184="1">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">와디즈食 푸드위크에 초대합니다</p>
-													<p class="VisualSlide_badge__3nqfs">먹잘알을 위한 푸드 프로젝트</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div data-index="3"
-								class="slick-slide slick-active slick-current"
-								aria-hidden="false" style="outline: none; width: 1900px;">
-								<div>
-									<div>
-										<a
-											href="https://www.wadiz.kr/web/campaign/detail/204135?_refer_section_st=RMK_0"
-											class="VisualSlide_container__2NDvY" data-promo-acid="-1"
-											data-promo-id="https://www.wadiz.kr/web/wreward/main"
-											data-promo-name="전세계 유일 포르쉐 공식튜닝 테크아트"
-											data-promo-position="RMK_0" data-promo-acid-force="true"
-											data-gtm-vis-first-on-screen-11319722_2047="2553"
-											data-gtm-vis-first-on-screen-11319722_2115="2553"
-											data-gtm-vis-first-on-screen-11319722_2184="2553"
-											style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/green001/2023/0511/20230511145748150_6537.jpg/wadiz/resize/2800/format/jpg/quality/85/&quot;);">
-											<div class="VisualSlide_wrap__32Lj4">
-												<div class="VisualSlide_text__2SIqN">
-													<p class="VisualSlide_title__3USGy">전세계 유일 포르쉐 공식튜닝
-														테크아트</p>
-													<p class="VisualSlide_badge__3nqfs">국내 어디서도 볼수없는 공식
-														튜닝서비스 와디즈 단독공개</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
+										</div>
+									</c:forEach>
 						</div>
 					</div>
 					<div class="KeyVisualBanner_wrap__10qJJ">
