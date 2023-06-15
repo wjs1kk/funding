@@ -112,7 +112,12 @@ public class ProjectCreateController {
 	}
 	//05-16 김동욱 top.jsp에서 프로젝트 만들기 버튼 누를 시 새로운 프로젝트 생성
 	@GetMapping("projectCreate")
-	public String createFundingProject(HttpSession session) {
+	public String createFundingProject(HttpSession session,Model model) {
+		if(session.getAttribute("member_idx") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다");
+			model.addAttribute("target", "login");
+			return "success";
+		}
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
 		System.out.println("member_idx : " + member_idx);
 		int insertCount = projectCreateService.createFundingProject(member_idx);
@@ -120,7 +125,13 @@ public class ProjectCreateController {
 	}
 	// 05-17 김동욱 마이페이지에서 프로젝트 생성을 누르면 경로가 달라 프로젝트 생성이 안돼서 프로젝트 생성과 같은 코드에 경로만 추가
 	@GetMapping("mypage/projectCreate")
-	public String myPagecreateFundingProject(HttpSession session) {
+	public String myPagecreateFundingProject(HttpSession session, Model model) {
+		if(session.getAttribute("member_idx") == null) {
+			model.addAttribute("msg", "로그인 후 이용가능합니다");
+			model.addAttribute("target", "login");
+			return "success";
+		}
+		
 		int member_idx = Integer.parseInt(session.getAttribute("member_idx").toString());
 		System.out.println("member_idx : " + member_idx);
 		int insertCount = projectCreateService.createFundingProject(member_idx);

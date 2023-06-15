@@ -8,15 +8,19 @@
 <script type="text/javascript">
 window.onload = function() {
 	<!-- 0520 관리자 메뉴 active 추가 -->
-// 	let menuIds = ['admin', 'memberList', 'projectList', 'approveList', 'couponList', 'noticeList', 'newsList'];
-// 	let url = window.location.href.split('/')[5];
-// 	menuIds.forEach(id => {
-// 		let menu = document.getElementById(id);
-		
-// 		if(id === url){
-// 			menu.classList.add('active');
-// 		} 
-// 	})
+	let menuIds = ['memberList', 'projectList', 'approveList', 'couponList', 'noticeList'
+					, 'management', 'managementList'];
+	let url = window.location.href.split('/')[5];
+	if(url == undefined) {
+		let admenu = document.getElementById('admin');
+		admenu.classList.add('active');
+	}
+	menuIds.forEach(id => {
+		let menu = document.getElementById(id);
+		if(id === url){
+			menu.classList.add('active');
+		} 
+	})
 }
 </script>
 <body>
@@ -87,7 +91,7 @@ window.onload = function() {
 		<ul class="menu-inner py-1 ps">
 			<!-- Dashboard -->
 			
-			<li id="admin" class="menu-item" style="margin-bottom: 20px">
+			<li id="adminName" class="menu-item" style="margin-bottom: 20px">
 				<a href='${pageContext.request.contextPath }/admin' class="menu-link">
 					<div>
 						<span style="font-weight: bold;">${sessionScope.member_name}</span><span>님</span>
@@ -101,7 +105,7 @@ window.onload = function() {
 					<div data-i18n="Analytics">&nbsp;관리자 홈</div>	
 				</a>
 			</li>
-			<li id="admin" class="menu-item">
+			<li id="main" class="menu-item">
 				<a href='${pageContext.request.contextPath }/' class="menu-link">
 					<i class="menu-icon tf-icons bx bx-home-circle"></i>
 					<div data-i18n="Analytics">메인</div>	
@@ -130,11 +134,11 @@ window.onload = function() {
 						class="menu-link">
 							<div data-i18n="Fluid">공지사항</div>
 					</a></li>
-					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/management"
+					<li id="management"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/management"
 						class="menu-link">
 							<div data-i18n="Blank">정산 신청 관리</div>
 					</a></li>
-					<li id="newsList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/managementList"
+					<li id="managementList"  class="menu-item"><a href="${pageContext.request.contextPath }/admin/managementList"
 						class="menu-link">
 							<div data-i18n="Blank">정산 내역</div>
 					</a></li>

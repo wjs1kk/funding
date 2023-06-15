@@ -55,4 +55,6 @@ public interface MypageMapper {
 	public int countProject(int member_idx);
 	
 
+	// 2023-06-14 박경은 - 휴대폰 인증완료
+	public int updateSmsAuth(int member_idx);
 }

@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import com.itwillbs.ifund.mapper.MemberMapper;
 import com.itwillbs.ifund.vo.MemberVO;
@@ -27,5 +28,12 @@ public class MemberService {
 	}
 	public Map findUser(String member_email) {
 		return mapper.findUser(member_email);
+	}
+	// 이메일 발송을 위한 아이
+	public void updatePass(String member_email, String securePasswd) {
+		mapper.updatePass(member_email, securePasswd);
+	}
+	public String memberEmailCheck(String member_email) {
+		return mapper.selectEmailCheck(member_email);
 	}
 }

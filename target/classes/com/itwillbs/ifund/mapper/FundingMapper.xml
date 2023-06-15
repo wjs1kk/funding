@@ -188,7 +188,11 @@
 		WHERE 
 			p.project_idx = #{project_idx};
 	</select>
-	
+	<update id="updateFunding">
+		UPDATE project
+		   SET project_coming_soon_date = ''
+		 WHERE DATE_FORMAT(NOW(), '%Y-%m-%d') > project_coming_soon_date 
+	</update>
 	<!--  06-09 김동욱 결제할 리워드 가져오기  -->
 	<select id="getPayReward" resultType="map">
 		SELECT *
@@ -357,6 +361,31 @@
 		p.project_approve_status = '2'
 		AND
 		p.project_type = '1'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY pd.project_detail_amount DESC
+	</select>
+	
+	<!-- 2023-06-13 박경은 - 실시간 랭킹 2 -->
+	<select id="selectRankingProject2"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '2'
 		AND
 		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
 		AND

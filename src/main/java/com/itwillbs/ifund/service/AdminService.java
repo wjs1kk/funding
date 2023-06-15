@@ -164,7 +164,6 @@ public class AdminService {
 	// 은산 프로젝트 승인 시 프로젝트 디테일 생성
 	public void createProjectDetail(Model model) {
 		mapper.insertProjectDetail(model);
-
 	}
 
 	public List sortProjectList(String label) {

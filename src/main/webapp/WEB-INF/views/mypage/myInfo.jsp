@@ -34,6 +34,7 @@
 </style>
 
 <script type="text/javascript">
+<<<<<<< HEAD
 
 	$(function() {
 // 		$("#profileImg").html('<img alt="" src="${pageContext.request.contextPath }/resources/images/profile/'+ $("#member_image").val() +'">');
@@ -81,33 +82,34 @@
             $('#profileImg').removeClass('default-profile-img');
             $('#profileImg').css('background-image', 'url(' + imageURL + ')');
             uploadAndSaveImage(file);
+=======
+$(function() {
+    //비밀번호 규칙 (숫자, 영어 대소문자, 특수문자 (!, @, #, $, %) 4~16자리 사용 가능)
+    let passwdReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+    $("#newPassword").on("change", function() {
+        if(!passwdReg.exec($("#newPassword").val())){
+            $("#passwordError").html("비밀번호 형식을 확인해주세요.<br> 영문자, 숫자, 특수문자 (!, @, #, $, %) 포함하여 8~16자리 입력").css("color", "red");
+        }else{
+            $("#passwordError").html("사용 가능한 비밀번호 형식 입니다!").css("color", "blue");
+>>>>>>> refs/remotes/KDW/KAR
         }
-
-        reader.readAsDataURL(file);
-    });
+    })
     
-    function uploadAndSaveImage(file) {
-        var formData = new FormData();
-        formData.append('image', file);
-
-        $.ajax({
-            url: '/mypage/myInfoPro',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                // 이미지 업로드 및 DB 저장 성공 후 처리 로직
-                console.log('이미지 업로드 성공');
-            },
-            error: function(xhr, status, error) {
-                // 이미지 업로드 및 DB 저장 실패 시 처리 로직
-                console.error('이미지 업로드 실패:', error);
+    // 비밀번호가 일치하는 지 확인
+    $("#newPassword2").on("change", function() {
+        if(!passwdReg.exec($("#newPassword2").val())){
+            $("#passwordError2").html("비밀번호 형식을 확인해주세요.<br> 영문자, 숫자, 특수문자 (!, @, #, $, %) 포함하여 8~16자리 입력").css("color", "red");
+        }else{
+            if($("#newPassword").val() != $("#newPassword2").val()){
+                $("#passwordError2").html("비밀번호가 일치하지 않습니다!").css("color", "red");
+            }else{
+                $("#passwordError2").html("비밀번호가 일치합니다!").css("color", "blue");
             }
-        });
-    }
+        }
+    })
     
- // 2023-06-05 박경은 - 휴대폰 인증
+<<<<<<< HEAD
+ 	// 2023-06-05 박경은 - 휴대폰 인증
  	// 2023-06-07 박경은 - ("value", $("#member_phone").val()); 수정
  	function sendSMS() {
 		const member_phone = $('#member_phone').val();
@@ -125,20 +127,62 @@
 			}
 		});
 		
-		$('#authCode').blur(function () {
-			const authCode = $(this).val();
-			
-			if(authCode === numStr){
-				$('#mobileCheckBtn').attr('disabled',true);
-				$('#authCode').attr('readonly',true);
-				alert('인증이 완료되었습니다.');
-			} else {
-				alert(authCode);
-			}
-		});
+		$('#confirmMobileBtn').click(function () {
+ 			let authCode = $("#authCode").val();
+ 			
+ 			
+ 			if(authCode == numStr){
+ 				alert('인증이 완료되었습니다.');
+ 				
+ 				$.ajax({
+		 				type: 'post',
+		 				url: 'smsAauthStatus',
+		 				data: {member_idx:${sessionScope.member_idx}},
+		 				success: function () {
+		 					alert("성공")
+	 					}
+	 			});
+ 				
+ 			} else {
+ 				
+ 			}
+ 		});
+=======
+});
+function checkForm() {
+	  var form = document.getElementById("saveForm");
+	  var fileInput = document.getElementById("uploadProfileImg");
+
+	  // 필드가 변경된 경우에만 값을 전송하도록 설정
+	  form.addEventListener("submit", function (event) {
+	    var formData = new FormData(form);
+
+	    // 파일 선택 여부 확인
+	    var selectedFile = fileInput.files[0];
+	    if (formData.get("newPassword") !== "" ||
+	        formData.get("newPassword2") !== "" ||
+	        selectedFile) {
+	      // 필드가 변경되었거나 파일이 선택된 경우, 폼을 제출합니다.
+	      return true;
+	    } else {
+	        // 변경된 필드가 없으므로 페이지를 새로고침합니다.
+	        event.preventDefault();
+// 	        location.reload();
+	        window.location.href = "mypage/supporter";
+	        return false;
+	      }
+	  });
+>>>>>>> refs/remotes/KDW/KAR
 	}
- 	
+
+	
+	$(function() {
+		  checkForm();
+		});
+
 </script>
+<<<<<<< HEAD
+=======
 
 </head>
 <body>
@@ -151,7 +195,7 @@
 				<!-- account-wrap -->
 				<div class="account-wrap" style="padding: 80px 20px;">
 					<h2>기본 정보 설정</h2>
-					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data">
+					<form id="saveForm" method="post" action="myInfoPro" enctype="multipart/form-data" onsubmit="return checkForm()">
 						<div class="profileimg-wrap">
 							<button type="button" id="resultProfileImg" class="profileimg" >
 							<em id="profileImg" style="background-image: url('${pageContext.request.contextPath }/resources/images/profile/${member.member_image }')"  class=""></em>
@@ -160,12 +204,87 @@
 								<button type="button" onclick="$('#uploadProfileImg').click()" id="btn_updatePhoto">
 									<span>바꾸기</span>
 								</button>
-<!-- 								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button> -->
+								<button type="button" onclick="deletePhoto()" id="btn_deletePhoto">삭제</button>
 							</p>
 						</div>
 						
 						<input type="file" name="image" id="uploadProfileImg" style="display: none;">
+>>>>>>> refs/remotes/KDW/KAR
 						<input type="hidden" id="member_image" value="${member.member_image }">
+						
+						
+						<script>
+						    $('#uploadProfileImg').on('change', function(e) {
+						        var file = e.target.files[0];
+						        var reader = new FileReader();
+						
+						        reader.onload = function(e) {
+						            var imageURL = e.target.result;
+						            $('#profileImg').removeClass('default-profile-img');
+						            $('#profileImg').css('background-image', 'url(' + imageURL + ')');
+						            uploadAndSaveImage(file);
+						        }
+						
+						        reader.readAsDataURL(file);
+						    });
+						    
+						    function uploadAndSaveImage(file) {
+						        var formData = new FormData();
+						        formData.append('image', file);
+						
+						        $.ajax({
+						            url: '/mypage/myInfoPro',
+						            type: 'POST',
+						            data: formData,
+						            processData: false,
+						            contentType: false,
+						            success: function(response) {
+						                // 이미지 업로드 및 DB 저장 성공 후 처리 로직
+						                console.log('이미지 업로드 성공');
+						            },
+						            error: function(xhr, status, error) {
+						                // 이미지 업로드 및 DB 저장 실패 시 처리 로직
+						                console.error('이미지 업로드 실패:', error);
+						            }
+						        });
+						    }
+						    
+						 // 2023-06-05 박경은 - 휴대폰 인증
+						 	// 2023-06-07 박경은 - ("value", $("#member_phone").val()); 수정
+						 	function sendSMS() {
+								const member_phone = $('#member_phone').val();
+								console.log('보내는 번호: ' + member_phone);
+								const authCode = $('#authCode');
+								
+								$.ajax({
+									type: 'post',
+									url: 'message?member_phone=' + member_phone,
+									success: function (data) {
+										console.log("data: " + data);
+										authCode.attr('disabled', false);
+										code = data;
+										alert('인증번호가 전송되었습니다.');
+									}
+								});
+								
+								$('#authCode').blur(function () {
+									const authCode = $(this).val();
+									
+									if(authCode == code){
+										$('#mobileCheckBtn').attr('disabled',true);
+										$('#authCode').attr('readonly',true);
+										alert('인증이 완료되었습니다.');
+									} else {
+										alert('인증오류.');
+									}
+								});
+							}
+						 	
+						</script>
+						
+						
+						
+						
 						
 						<div class="email-input-wrap">
 							<input type="text" name="realName" class="input-text disable" 
@@ -209,10 +328,10 @@
 							<p id="mobileSuccessNumberCheckMsg" class="error-text mobileMsg" style="color: #50e3c2;">
 								인증이 완료되었습니다.</p>
 							<div class="email-input-wrap">
-		                        <input type="password" id="newPassword" name="newPassword" class="input-text" placeholder="새 비밀번호" maxlength="17">
+		                        <input type="password" id="newPassword" name="newPassword" class="input-text" placeholder="새 비밀번호" maxlength="16">
 		                        <p id="passwordError" class="pwd-text">영문, 숫자, 특수문자 (!@#$%^&amp;*+=-)를 모두 조합한 8자 이상</p>
-		                        <input type="password" id="newPassword2" name="newPassword2" class="input-text" placeholder="새 비밀번호 확인" maxlength="17">
-		                        <p class="error-text">비밀번호가 같지 않습니다.</p>
+		                        <input type="password" id="newPassword2" name="newPassword2" class="input-text" placeholder="새 비밀번호 확인" maxlength="16">
+		                        <p id="passwordError2" class="pwd-text"></p>
                    			 </div>
                    			 
 							<div class="email-input-wrap small">
@@ -221,10 +340,15 @@
 								</div>
 							</div>
 							
+<<<<<<< HEAD
+							<div class="my-info" style="text-align: end; margin-top: 15px;"
+							onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
+                       			 <h3><a href="deleteMember">회원 탈퇴</a></h3>
+=======
 							<div class="my-info" style="text-align: end; margin-top: 15px;" >
-                    			<h3>
-                    				<a href="deleteMember"onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
-                       			 	회원 탈퇴</a><h3>
+                       			 <h3><a href="deleteMember"onclick="if(confirm('회원 탈퇴를 하시겠습니까?')) {fn_userDelete('${resultUser.userNo}');}return false;">
+                       			 회원 탈퇴</a></h3>
+>>>>>>> refs/remotes/KDW/KAR
                     		</div>
 							
 						</div>
@@ -240,12 +364,14 @@
 	</div>
 	
 	<script src="/resources/static/lib/cropper.min.js"></script>
+<<<<<<< HEAD
 	<script type="text/javascript">
 	   		$(document).ready(function() {
 
 	   			if (0 < "0") {
 	   				
 	   			}
+
 	   			var defaultPhotoUrl = 'https://static.wadiz.kr/assets/icon/profile-icon-4.png';
 	   			if (defaultPhotoUrl == undefined || defaultPhotoUrl == '') {
 	   				$('#btn_updatePhoto').text('프로필 사진 등록');
@@ -431,6 +557,9 @@
 			}
 		</script>
 		<jsp:include page="../inc/footer.jsp"></jsp:include>
+=======
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+>>>>>>> refs/remotes/KDW/KAR
 	
 </body>
 </html>

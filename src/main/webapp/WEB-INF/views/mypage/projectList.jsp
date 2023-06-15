@@ -34,6 +34,8 @@
 <body>
 
 	<div id="page-container">
+		<jsp:include page="../inc/top.jsp"></jsp:include>
+	
 		<div class="black-bg-wrap" style="display: none;"></div>
 		<form id="forwardForm" method="get">
 			<input type="hidden" id="returnURL" name="returnURL">
@@ -119,5 +121,7 @@
 		</div>
 		<!-- // #wadizContainer -->
 	</div>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+	
 </body>
 </html>

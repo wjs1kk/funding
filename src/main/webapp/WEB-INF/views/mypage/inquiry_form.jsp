@@ -8,13 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
+	
 <body>
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-8 pb-6" style="margin-left: 156px">
 				<div class="mypage-section on" id="mypage_section_point" style="">
-					<form action="writePro.mf" name="writeForm" method="post">
+					<form action="writePro" name="writeForm" method="post">
 						<fieldset>
 							<section class="section-form">
 								<div class="form-header">

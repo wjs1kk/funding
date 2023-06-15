@@ -88,11 +88,9 @@
 					member_email: $("#userEmail").val(),
 					},
 				success: function(findUser) {
-
 					if(findUser.member_email == $("#userEmail").val()) {
 						$("#correctEmail").show();
 						$("#goToLogin").show();
-						
 					} else {
 						$("#incorrectEmail").show();
 					}
@@ -102,60 +100,28 @@
 	});
 </script>
 <script>
-$('#mail-Check-Btn').click(function() {
-	const eamil = $('#userEmail1').val() + $('#userEmail2').val(); // 이메일 주소값 얻어오기!
-	console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
-	const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
-	
-	$.ajax({
-		type : 'get',
-		url : '<c:url value ="/user/mailCheck?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
-		success : function (data) {
-			console.log("data : " +  data);
-			checkInput.attr('disabled',false);
-			code = data;
-			alert('인증번호가 전송되었습니다.')
-		}			
-	}); // end ajax
-}); // end send eamil
-
-// 인증번호 비교 
-// blur -> focus가 벗어나는 경우 발생
-$('#seNum').blur(function () {
-	const inputCode = $(this).val();
-	const $resultMsg = $('#mail-check-warn');
-	
-	if(inputCode === code){
-		$resultMsg.html('인증번호가 일치합니다.');
-		$resultMsg.css('color','green');
-		$('#mail-Check-Btn').attr('disabled',true);
-		$('#userEamil1').attr('readonly',true);
-		$('#userEamil2').attr('readonly',true);
-		$('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
-         $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
-	}else{
-		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-		$resultMsg.css('color','red');
-	}
-});
 	// 비밀번호 찾기
-	$('#BtnSendlink').click(function() {
-		const email = $('#findType').val()// 이메일 주소값 얻어오기!
-		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
-		const checkInput = $('#seNum') // 인증번호 입력하는곳 
-		
-		$.ajax({
-			type : 'get',
-			url : 'findPass',
-			success : function(data) {
-				$("#divSendLink").show()
-				console.log("data : " +  data);
-				checkInput.attr('disabled',false);
-				code = data;
-				alert('인증번호가 전송되었습니다.')
-			}			
-		}); // end ajax
-	}); // end send eamil
+	$(function() {
+		$('#BtnSendlink').click(function() {
+			const email = $('#userName').val()// 이메일 주소값 얻어오기!
+			console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+			
+			$.ajax({
+				type : 'POST',
+				url : 'findPass',
+				data : {
+					member_email: $('#userName').val(),
+				},
+				success : function(data) {
+					if(data.member_email == $("#userName").val()) {
+						alert('임시 비밀번호가 전송되었습니다.')
+					} else {
+						alert('등록되지 않은 이메일입니다.');
+					}
+				}		
+			}); // end ajax
+		}); // end send eamil
+	});
 </script>
 <body>
 	<div id="wz-header">
@@ -218,15 +184,6 @@ $('#seNum').blur(function () {
 					</div>
 						<br>
 						<button id="BtnSendlink" class="wz primary block button" type="button" style="font-size: medium;">임시 비밀번호 발송</button>
-					<div id="divSendlink" style="display: none;">
-						<div class="wz input" align="right">
-							<input id="seNum" type="text" placeholder="인증 번호를 입력해주세요" style="font-size: 17px; width: 367px; height: 40px; padding: 10px">
-						</div>
-						<br>
-						<button id="linkChecked" class="wz primary block button"
-								type="button" onclick=""
-								style="font-size: medium; width: 368.33px;">확인</button>
-					</div>
 				</form>
 			</div>
 		</div>

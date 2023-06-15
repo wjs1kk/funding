@@ -101,29 +101,44 @@ ul li {
 			<!-- Layout container -->
 			<div class="layout-page">
 				<!-- Navbar -->
-				<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-			      <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
-			        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-			          <i class="bx bx-menu bx-sm"></i>
-			        </a>
-			      </div>    
-			      <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">    
-			        <!-- Search -->
-			        <div class="navbar-nav align-items-center">
-			          <div class="nav-item d-flex align-items-center">
-			            <i class="bx bx-search fs-4 lh-0"></i>
-			            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
-			          </div>
-			        </div>
-			        <!-- /Search -->       
-			        <ul class="navbar-nav flex-row align-items-center ms-auto">        
-			          <!-- Place this tag where you want the button to render. -->
-			          <li class="nav-item lh-1 me-3">
-			            <span></span>
-			          </li>
-			        </ul>
-			      </div>
-			  </nav>
+				<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+					id="layout-navbar">
+					<div
+						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+						<a class="nav-item nav-link px-0 me-xl-4"
+							href="javascript:void(0)"> <i class="bx bx-menu bx-sm"></i>
+						</a>
+					</div>
+					<div class="navbar-nav-right d-flex align-items-center"
+						id="navbar-collapse">
+						<!-- Search -->
+						<!-- 2023-06-02 박경은 - 검색기능(searchKeyword) 추가 -->
+						<form action="memberList">
+							<div class="navbar-nav align-items-center">
+								<div class="nav-item d-flex align-items-center">
+									<i class="bx bx-search fs-4 lh-0"></i> <input type="text"
+										class="form-control border-0 shadow-none search"
+										placeholder="Search..." aria-label="Search..."
+										name="searchKeyword" value="${param.searchKeyword }"
+										id="searchKeyword"> <input class="enter" type="submit"
+										hidden="" />
+								</div>
+							</div>
+						</form>
+						<!-- /Search -->
+						<ul class="navbar-nav flex-row align-items-center ms-auto">
+							<!-- User -->
+							<!-- 2023-06-02 박경은 - 로그아웃 -->
+							<li class="nav-item navbar-dropdown dropdown-user dropdown">
+								<a class="dropdown-item" href="logout"> <i
+									class="bx bx-power-off me-2"></i> <span class="align-middle">Log
+										Out</span>
+							</a>
+							</li>
+							<!--/ User -->
+						</ul>
+					</div>
+				</nav>
 			<!-- / Navbar -->
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
@@ -155,7 +170,9 @@ ul li {
 											<th>참여자수</th>
 										</tr>
 									</thead>
-									<tbody class="table-border-bottom-0">
+									<c:choose>
+										<c:when test="${!empty projects }">
+											<tbody class="table-border-bottom-0">
 										<c:forEach var="projects" items="${projects }">
 											<tr class="cursor-pointer"
 												onclick="location.href='projectList/${projects.project_idx}'">
@@ -172,11 +189,6 @@ ul li {
 														</td>
 													</c:when>
 													<c:otherwise>
-<%-- 														<c:if test="${projects.project_approve_status eq 3}"> --%>
-<!-- 															<td id="td_project_plan"> -->
-<!-- 															<span class="badge bg-label-secondary">승인거부</span> -->
-<!-- 															</td> -->
-<%-- 														</c:if> --%>
 														<td id="td_project_plan">
 															<span class="badge bg-label-secondary">오픈전</span>
 														</td>
@@ -221,6 +233,11 @@ ul li {
 											</tr>
 										</c:forEach>
 									</tbody>
+										</c:when>
+										<c:otherwise>
+											<td>등록된 내역이 없습니다.</td>
+										</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>

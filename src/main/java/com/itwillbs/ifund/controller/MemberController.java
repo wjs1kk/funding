@@ -3,17 +3,31 @@ package com.itwillbs.ifund.controller;
 import java.net.http.*;
 import java.util.*;
 
+import javax.mail.internet.*;
 import javax.servlet.http.*;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.*;
+import org.springframework.mail.javamail.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.ifund.service.BankService;
 import com.itwillbs.ifund.service.MemberService;
 import com.itwillbs.ifund.service.MypageService;
+import com.itwillbs.ifund.util.*;
 import com.itwillbs.ifund.vo.AccountVO;
 import com.itwillbs.ifund.vo.MemberVO;
 import com.itwillbs.ifund.vo.PointVO;
@@ -90,6 +104,7 @@ public class MemberController {
 			return "signup";
 		}
 		
+		
 		// 0607 김애리 추가 - 가입시 포인트 적립
 		mypageService.joinPoint(member.getMember_email());
 		 
@@ -108,5 +123,119 @@ public class MemberController {
 		Map findUser = memberService.findUser(member_email);
 		model.addAttribute("findUser", findUser);
 		return findUser;
+	}
+	
+	// 이메일 보낼 내용
+	@PostMapping("findPass")
+	@ResponseBody
+	public Map findPass(String member_email, Model model, HttpSession session) {
+		try {
+			String keyCode = (String)session.getAttribute("keyCode");
+	        
+		    session.removeAttribute("keyCode");
+		        
+		    String newPwd = FindUtil.getNewPwd();
+		    System.out.println(newPwd);
+		    
+		    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		    String securePasswd = passwordEncoder.encode(newPwd);
+		    System.out.println(securePasswd);
+		    
+		    memberService.updatePass(member_email, securePasswd);
+		        
+		    String subject = "[IFund] 임시 비밀번호 발급 안내";
+		        
+		    String msg = "";
+		    msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		    msg += "<h3 style='color: blue;'><strong>" + member_email;
+		    msg += "님</strong>의 임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</h3>";
+		    msg += "<p>임시 비밀번호 : <strong>" + newPwd + "</strong></p></div>";
+		    
+		        
+			MailUtil.sendMail(member_email, subject, msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map findUser = memberService.findUser(member_email);
+		model.addAttribute("data", findUser);
+		
+		return findUser;
+	}
+	
+	@PostMapping("emailConfirm")
+	@ResponseBody
+	public MemberVO emailConfirm(HttpSession session, String member_email, Model model, MemberVO member, HttpServletRequest req) {
+		try {
+			String keyCode = (String)session.getAttribute("keyCode");
+			
+			member = memberService.selectUser(member_email);
+			
+			if(member.getMember_email() != req.getParameter("member_email")) {
+				session.removeAttribute("keyCode");
+			    
+			    String message = FindUtil.getNewPwd();
+			    System.out.println(message);
+			    
+			    model.addAttribute("member", member);
+			    model.addAttribute("message", message);
+			    
+			    String subject = "[IFund] 이메일 인증 코드 발급 안내";
+			        
+			    String msg = "";
+			    msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			    msg += "<h3 style='color: blue;'><strong>" + member_email;
+			    msg += "님</strong>의 이메일 인증 코드 입니다.</h3>";
+			    msg += "<p>인증 코드 : <strong>" + message + "</strong></p></div>";
+			    
+				MailUtil.sendMail(member_email, subject, msg);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return member;
+	}
+	
+	@PostMapping("messageConfirm")
+	@ResponseBody
+	public void messageConfirm(HttpSession session, String member_email, Model model, MemberVO member, String message) {
+		try {
+			member = memberService.selectUser(member_email);
+			
+			session.removeAttribute("keyCode");
+			
+			model.addAttribute("member", member);
+			model.addAttribute("message", message);
+			
+			String subject = "[IFund] 이메일 인증 코드 발급 안내";
+			
+			String msg = "";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: blue;'><strong>" + member_email;
+			msg += "님</strong>의 이메일 인증 코드 입니다.</h3>";
+			msg += "<p>인증 코드 : <strong>" + message + "</strong></p></div>";
+			
+			MailUtil.sendMail(member_email, subject, msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//0615 김애리 추가 - 회원가입 이메일 중복체크
+	@PostMapping("MemberEmailCheck")
+	public void memberEmailCheck(@RequestParam(defaultValue = "") String member_email, HttpServletResponse response) {
+		System.out.println(member_email);
+		try {
+			// 사용중인 member_email이 없으면 view페이지로 true 있으면 false를 보냄!
+			String email = memberService.memberEmailCheck(member_email);
+			System.out.println(email);
+			if(email == null) {
+				response.getWriter().print("true");
+			}else {
+				response.getWriter().print("false");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
