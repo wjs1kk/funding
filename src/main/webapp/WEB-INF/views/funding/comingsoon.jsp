@@ -132,7 +132,7 @@
 												
 											<div>
 												<div>
-													<a	href=""
+													<a	href="detail?num=${slide.project_idx }"
 														class="VisualSlide_container__2NDvY" data-promo-acid="-1"													
 														style="background-image: url('${pageContext.request.contextPath }/resources/images/project_thumbnail/${slide.project_thumbnail }') ; background-size: contain">
 														<div class="VisualSlide_wrap__32Lj4">

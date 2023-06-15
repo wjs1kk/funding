@@ -308,9 +308,7 @@
 							<!-- 오른쪽 (공간 아이펀드 쇼룸 신청하기, 필수 서류 확인하기 등 배너) -->
 						</div>
 					</div>
-					<div class="ChannelTalk_container__3OcHU">
-						<button type="button"></button>
-					</div>
+					
 				</div>
 			</div>
 		</div>
