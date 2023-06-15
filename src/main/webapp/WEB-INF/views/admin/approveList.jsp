@@ -97,7 +97,6 @@
 		let comingSoonDate = $("input[name=project_coming_soon_date]");
 		$("#project_idx").val(project_idx);
 		$("#project_title").val(project_title);
-		alert(project_plan);
 		// 오픈예정
 		if (project_plan == 1) {
 		  comingSoonDate.attr('readonly', true);

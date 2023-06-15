@@ -183,6 +183,7 @@ public class ProjectCreateController {
 	@PostMapping("project/rewardModify")
 	@ResponseBody
 	public void rewardModify(RewardVO reward) {
+		System.out.println(reward);
 		int updateCount = projectCreateService.rewardModify(reward);
 	}
 	// 05-18 김동욱 AJAX 리워드 삭제하기
