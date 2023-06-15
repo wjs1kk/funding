@@ -341,7 +341,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 							<div class="btn-wrap">
 								<p class="confirm">
-									${project_title}에 <em id="sumTotalNum">0</em>
+									${projectInfo.project_title}에 <em id="sumTotalNum">0</em>
 									원을 참여합니다.
 								</p>
 									<input type="hidden" id="project_idx" name="project_idx" value="${param.num }">
