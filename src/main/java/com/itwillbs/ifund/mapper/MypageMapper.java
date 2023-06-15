@@ -33,4 +33,6 @@ public interface MypageMapper {
 	public List<InquiryVO> selectInquiry(Integer member_idx);
 	public InquiryVO getInquiry(@Param("inq_idx") String inq_idx);
 	public String inqMaker(Integer member_idx);
+	// 2023-06-14 박경은 - 휴대폰 인증완료
+	public int updateSmsAuth(int member_idx);
 }

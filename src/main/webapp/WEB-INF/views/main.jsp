@@ -22,12 +22,6 @@
 	href="https://static.wadiz.kr/main/main.3858b619.css">
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/main/css/main-page.ca7ed471.chunk.css">
-<!-- <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?bc8acc52"> -->
-<!-- <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?16adbba1"> -->
-<!-- <link rel="stylesheet" href="https://static.wadiz.kr/main/main.3858b619.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/0.9e265a0e.chunk.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/1.aab0e1b7.chunk.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/main/css/main-page.ca7ed471.chunk.css"> -->
 <script src="resources/js/jquery-3.6.4.js"></script>
 
 </head>
@@ -92,19 +86,9 @@
 		$(".slick-slide").eq(newIndex).addClass("slick-active");
 		$(".slick-slide").eq(newIndex).show();
 	}
-	$(function() {
-		$('.TabButton_btnTab__bibVE').click(
-				function() {
-					$('.TabButton_btnTab__bibVE').removeClass(
-							'TabButton_active__2mzCI');
-					$(this).addClass('TabButton_active__2mzCI');
-					$('.tabList').removeClass('on');
-					$('.tabList').eq($(this).index()).addClass('on');
-				});
-	});
 </script>
 <style>
-.tabList {
+.TabContainer_tabList__2IbMs {
 	display: none;
 }
 
@@ -295,6 +279,18 @@
 										</div>
 									</div>
 
+									<script type="text/javascript">
+										$(function() {
+											$('.TabButton_btnTab__bibVE').click(function() {
+												 var index = $(this).index();
+
+												$('.TabButton_btnTab__bibVE').removeClass('TabButton_active__2mzCI');
+												$(this).addClass('TabButton_active__2mzCI');
+												$('.TabWrap .TabContainer_tabList__2IbMs').removeClass('on');
+												$('.TabWrap .TabContainer_tabList__2IbMs').eq(index).addClass('on');
+											});
+										});
+									</script>
 
 									<div
 										class="RankingFundingWrap_container__16_A3 RecommendationDesktop_rankingFunding__2ccRd">
@@ -302,7 +298,7 @@
 											class="title_contentWrapper__1P-q0 RankingFundingWrap_titleBox__16I2D">
 											<h2 class="RankingFundingWrap_title__1fllE">실시간 랭킹</h2>
 										</div>
-										<div>
+										<div class="TabWrap">
 											<div class="TabContainer_tab__LuPx6">
 												<div>
 													<div class="TabButton_container__xc7Uw">
@@ -315,8 +311,8 @@
 													</div>
 												</div>
 											</div>
-											<div class="TabContainer_tabList__2IbMs">
-												<ol class="tabList on">
+											<div class="TabContainer_tabList__2IbMs on">
+												<ol>
 													<c:forEach items="${rankingList }" var="rankingList"
 														begin="1" end="5" varStatus="status">
 														<li class="TabContainer_listItem__2nO5j"><div>
@@ -345,7 +341,10 @@
 																		</p>
 																		<p class="PreorderMainCard_amount__3UOXm"
 																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px;">
-																			${rankingList.project_detail_amount } 원</p>
+																			<fmt:formatNumber type="number" maxFractionDigits="3"
+																				value="${rankingList.project_detail_amount }" />
+																			원
+																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
@@ -358,13 +357,15 @@
 															</div></li>
 													</c:forEach>
 												</ol>
-												<ol class="tabList">
-													<c:forEach items="${rankingList }" var="rankingList"
-														begin="1" end="5">
+											</div>
+											<div class="TabContainer_tabList__2IbMs">
+												<ol>
+													<c:forEach items="${rankingList2 }" var="rankingList2"
+														begin="1" end="5" varStatus="status">
 														<li class="TabContainer_listItem__2nO5j"><div>
 																<a
 																	class="CardType_projectCard__3xhjb CardType_projectCardA__33rbP"
-																	href="detail?num=${rankingList.project_idx }"
+																	href="detail?num=${rankingList2.project_idx }"
 																	data-ec-list="홈_실시간랭킹_펀딩" data-ec-id="110059"
 																	data-ec-name="[슈가슈가룬] 오리지널 초판본 완벽 복간 + 한정 굿즈"
 																	data-ec-position="0" data-ec-category="출판"
@@ -380,18 +381,23 @@
 																	data-gtm-vis-has-fired-11319722_2115="1">
 																	<div
 																		class="commons_content__2K1SH commons_order__3AewF CardType_content__1Pavj">
-																		<div class="commons_orderText__3B9S_">1</div>
-																		<em class="commons_title__1yGWm">${rankingList.project_title }</em>
+																		<div class="commons_orderText__3B9S_">${status.index}</div>
+																		<em class="commons_title__1yGWm">${rankingList2.project_title }</em>
 																		<p class="commons_summary__2Ynez">
-																			<span class="commons_rate__10tOH"></span>${project_category }
+																			<span class="commons_rate__10tOH"></span>${rankingList2.project_category }
 																		</p>
-																		${rankingList.project_detail_amount }
+																		<p class="PreorderMainCard_amount__3UOXm"
+																			style="font-weight: 700; line-height: 20px; color: #00b2b2; font-size: 16px;">
+																			<fmt:formatNumber type="number" maxFractionDigits="3"
+																				value="${rankingList2.project_detail_amount }" />
+																			원
+																		</p>
 																	</div>
 																	<div
 																		class="commons_thumbnail__3wYGv CardType_thumbnail__2dtTe">
 																		<div aria-hidden="true"
 																			class="commons_img__2UTCA commons_visible__1xTJh CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4"
-																			style="background-image: url(resources/images/project_thumbnail/${rankingList.project_thumbnail};);"></div>
+																			style="background-image: url(resources/images/project_thumbnail/${rankingList2.project_thumbnail};);"></div>
 																	</div>
 																	</article>
 																</a>
@@ -455,8 +461,7 @@
 														<div role="presentation"
 															class="CardTable_itemContainer__v9-cW"
 															style="width: calc(( 16.6667% - 16px + 2.66667px)- 0.01px); margin-left: 0px; margin-right: 8px; margin-bottom: 0px;">
-															<a
-																href="/web/store/detail/35?_refer_section_st=storeCurator_0"
+															<a href="detail?num=${rankingList.project_idx }"
 																class="RecommendationStoreCard_item__3iMMQ"
 																data-ec-list="홈_추천_스토어" data-ec-id="35"
 																data-ec-name="내 손안의 스마트한 스튜디오, 저스트모바일 셔터그립2"
@@ -512,7 +517,7 @@
 						<div class="EarlybirdDesktop_container__1IoRp">
 							<div class="EarlybirdDesktop_wrap__314kI">
 								<div class="title_titleWrapper__1ggAh">
-									<h2 class="title_title__2rv2M">얼리버드</h2>
+									<h2 class="title_title__2rv2M">오픈예정</h2>
 									<p>먼저 참여하는 분들께 드리는 얼리버드 혜택</p>
 								</div>
 								<div
@@ -585,7 +590,11 @@
 															<dt class="BlindText_textHidden__ovQb4">옵션내용</dt>
 															<dd class="CardType_description__2BtXk">${earlybirdList.reward_option }</dd>
 															<dt class="BlindText_textHidden__ovQb4">옵션금액</dt>
-															<dd class="CardType_subContent__3QETf">${earlybirdList.reward_amount }원</dd>
+															<dd class="CardType_subContent__3QETf">
+																<fmt:formatNumber type="number" maxFractionDigits="3"
+																	value="${earlybirdList.reward_amount }" />
+																원
+															</dd>
 														</dl>
 													</div>
 													<div class="CardType_linkBtn__1QHvM">

@@ -136,9 +136,7 @@
 	
 	<update id="updateSmsAuth">
 		UPDATE member
-			SET <if test="authCode.equals(numStr)">
-					sms_auth_status = 'Y'
-				</if>
+			SET sms_auth_status = 'Y'
 			WHERE
 				member_idx = #{member_idx}
 	</update>

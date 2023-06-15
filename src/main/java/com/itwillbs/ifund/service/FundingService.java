@@ -91,4 +91,5 @@ public class FundingService {
 	public List selectTodayOpenProject(ProjectListVO projectList) {
 		return mapper.selectTodayOpenProject(projectList);
 	}
+	
 }

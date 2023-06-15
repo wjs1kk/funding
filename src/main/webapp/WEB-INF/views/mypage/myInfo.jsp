@@ -107,7 +107,7 @@
         });
     }
     
- // 2023-06-05 박경은 - 휴대폰 인증
+ 	// 2023-06-05 박경은 - 휴대폰 인증
  	// 2023-06-07 박경은 - ("value", $("#member_phone").val()); 수정
  	function sendSMS() {
 		const member_phone = $('#member_phone').val();
@@ -125,22 +125,29 @@
 			}
 		});
 		
-		$('#authCode').blur(function () {
-			const authCode = $(this).val();
-			
-			if(authCode === numStr){
-				$('#mobileCheckBtn').attr('disabled',true);
-				$('#authCode').attr('readonly',true);
-				alert('인증이 완료되었습니다.');
-			} else {
-				alert(authCode);
-			}
-		});
+		$('#confirmMobileBtn').click(function () {
+ 			let authCode = $("#authCode").val();
+ 			
+ 			
+ 			if(authCode == numStr){
+ 				alert('인증이 완료되었습니다.');
+ 				
+ 				$.ajax({
+		 				type: 'post',
+		 				url: 'smsAauthStatus',
+		 				data: {member_idx:${sessionScope.member_idx}},
+		 				success: function () {
+		 					alert("성공")
+	 					}
+	 			});
+ 				
+ 			} else {
+ 				
+ 			}
+ 		});
 	}
  	
 </script>
-						
-						
 						<input type="hidden" id="member_image" value="${member.member_image }">
 						
 						<div class="email-input-wrap">

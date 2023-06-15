@@ -323,6 +323,31 @@
 		ORDER BY pd.project_detail_amount DESC
 	</select>
 	
+	<!-- 2023-06-13 박경은 - 실시간 랭킹 2 -->
+	<select id="selectRankingProject2"
+	resultType="map">
+		SELECT
+		DISTINCT
+		p.project_idx, p.project_category, p.project_thumbnail, p.project_plan,
+		pd.project_detail_amount, pd.project_detail_person, p.project_target, p.project_start_date,
+		p.project_end_date, p.project_title, m.maker_name FROM project p
+		INNER
+		JOIN
+		project_detail pd ON p.project_idx = pd.project_idx
+		INNER
+		JOIN
+		maker m ON p.maker_idx = m.maker_idx
+		WHERE
+		p.project_approve_status = '2'
+		AND
+		p.project_type = '2'
+		AND
+		DATE_FORMAT(NOW(), '%Y-%m-%d') >= p.project_start_date
+		AND
+		p.project_end_date >= DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY pd.project_detail_amount DESC
+	</select>
+	
 	<!-- 2023-06-13 박경은 - 얼리버드 -->
 	<select id="selectEarlybirdProject"
 	resultType="map">

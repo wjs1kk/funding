@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.ifund.service.FundingService;
 import com.itwillbs.ifund.service.MainService;
@@ -34,9 +35,13 @@ public class HomeController {
 		List attentionList = fundingService.selectAttentionProject(projectList);
 		model.addAttribute("attentionList", attentionList);
 		
-		// 실시간랭킹 : 쌓인 가격 순
+		// 실시간랭킹 : 쌓인 가격 순 펀딩
 		List rankingList = fundingService.selectRankingProject(projectList);
 		model.addAttribute("rankingList", rankingList);
+		
+		// 실시간랭킹 : 쌓인 가격 순 공동구매
+		List rankingList2 = fundingService.selectRankingProject(projectList);
+		model.addAttribute("rankingList2", rankingList2);
 		
 //		06/13 최근 본 프로젝트 관련
 		ArrayList<Integer> cookieList = new ArrayList<Integer>();

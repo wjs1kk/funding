@@ -77,4 +77,9 @@ public class MypageService {
 	public String inqMaker(Integer member_idx) {
 		return mapper.inqMaker(member_idx);
 	}
+	// 2023-06-14 박경은 - 휴대폰 인증완료
+	public int updateSmsAuth(int member_idx) {
+		return mapper.updateSmsAuth(member_idx);
+	}
+	
 }
