@@ -167,14 +167,16 @@
 
 	<!-- funding detail 페이지 쿼리 -->
 	<select id="selectReward" resultType="com.itwillbs.ifund.vo.RewardVO">
-		SELECT * 
+		SELECT DISTINCT * 		
 		  FROM reward
 		 WHERE project_idx = #{project_idx}
 	</select>
+	
 	<select id="categoryList" resultType="map">
 	SELECT *
 	FROM category
 	</select>
+	
 	<select id="fundingDetail" resultType="map">
 		SELECT 
 			DISTINCT

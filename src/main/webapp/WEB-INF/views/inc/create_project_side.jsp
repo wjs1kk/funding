@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
-<script type="text/javascript">
-tocplusTop=1000
-tocplusLeft=1500
-tocplusWidth=310
-tocplusHeight=140
-tocplusFrameColor="orange"
-tocplusUserName="Guest"
-</script> <script type="text/javascript" src="http://tocplus007.com:80/chatLoader.do?userId=test_ko"></script>
 
 <script>
 	$.ajax({
