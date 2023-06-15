@@ -65,18 +65,14 @@
 				WHERE member_idx = #{member_idx}
 	</delete>
 
-	<select id="selectWish" resultType="com.itwillbs.ifund.vo.ProjectVO">
-		SELECT *
-			FROM project
-				WHERE project_idx IN 
-					(SELECT project_idx FROM wish WHERE member_idx = #{member_idx})
-	</select>
-
-	<select id="selectHistory" resultType="com.itwillbs.ifund.vo.ProjectVO">
-		SELECT *
-			FROM project
-				WHERE project_idx IN 
-					(SELECT project_idx FROM project_detail WHERE member_idx = #{member_idx})
+	
+	<select id="selectWish" resultType="com.itwillbs.ifund.vo.ProjectListVO">
+		SELECT p.project_idx, project_thumbnail, project_plan, project_target, project_end_date, project_title ,maker_name, project_detail_amount
+		FROM project p
+		inner join project_detail pd on p.project_idx = pd.project_idx
+		inner join maker m on p.maker_idx = m.maker_idx 
+		WHERE p.project_idx IN 
+					(SELECT project_idx FROM wish WHERE member_idx = #{member_idx});
 	</select>
 
 	<update id="updateProfile">
@@ -134,6 +130,43 @@
 			 		  AND member_idx = #{member_idx}
 	</select>
 	
+	
+<!-- 	0613 김애리 추가 - 보유 쿠폰 갯수 -->
+	<select id="countCoupon" resultType="Integer">
+		SELECT count(coupon_idx)
+			FROM coupon_used
+				WHERE member_idx = #{member_idx}
+	</select>
+	
+<!-- 	0613 김애리 추가 - 참여한 펀딩 갯수 -->
+	<select id="countPayment" resultType="Integer">
+		SELECT count(payment_idx)
+			FROM payment
+				WHERE member_idx = #{member_idx}
+	</select>
+	
+<!-- 	0614 김애리 추가 - 생성한 프로젝트 갯수 -->
+	<select id="countProject" resultType="Integer">
+		SELECT count(project_idx)
+			FROM project
+				WHERE member_idx = #{member_idx}
+	</select>
+	
+
+	<select id="selectPayment" resultType="map">
+		SELECT p.*, py.*
+			FROM payment py		
+			INNER JOIN project p ON py.project_idx = p.project_idx
+				WHERE py.member_idx = #{member_idx}
+	</select>
+	<select id="selectPaymentMap" resultType="map">
+		SELECT p.*, py.*
+			FROM payment py		
+			INNER JOIN project p ON py.project_idx = p.project_idx
+				WHERE py.member_idx = #{member_idx} 
+						AND py.payment_idx = #{payment_idx}
+	</select>
+
 	<update id="updateSmsAuth">
 		UPDATE member
 			SET <if test="authCode.equals(numStr)">
@@ -155,18 +188,13 @@
 			FROM inquiry
 				WHERE inq_idx = #{inq_idx}
 	</select>
-	
-<!--   	<select id="inqMaker" resultType="string"> -->
-<!-- 		SELECT maker_name  -->
-<!-- 			FROM maker -->
-<!-- 				WHERE maker_idx IN  -->
-<!-- 				(SELECT DISTINCT maker_idx FROM inquiry) -->
-<!-- 	</select> -->
 
-	<select id="myInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
-		SELECT *
-			FROM inquiry
-				WHERE member_idx = #{member_idx}
+	<select id="myInquiry" resultType="map">
+		SELECT i.*, m.*
+			FROM inquiry i
+				INNER JOIN maker m ON i.maker_idx = m.maker_idx 
+				WHERE i.member_idx = #{member_idx}
+<!-- 					AND i.maker_idx = #{maker_idx} -->
 				ORDER BY inq_re_ref DESC, inq_re_seq ASC
 				LIMIT #{startRow}, #{listLimit};
 	</select>
@@ -178,17 +206,46 @@
 	</select>
 	
 	
-	<select id="selectSupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO">
-		SELECT *
-			FROM inquiry
-				WHERE maker_idx IN     
-				<foreach item="maker" collection="maker" open="(" separator="," close=")">
-			    	#{maker}
-			    </foreach>
-				ORDER BY inq_re_ref DESC, inq_re_seq ASC
-				LIMIT #{startRow}, #{listLimit};
+	<select id="SupInquiry" resultType="map">
+		SELECT i.*, m.*
+		FROM inquiry i
+		INNER JOIN maker m ON i.maker_idx = m.maker_idx 
+		WHERE i.maker_idx IN (SELECT maker_idx FROM maker WHERE member_idx = #{member_idx})
+		ORDER BY inq_re_ref DESC, inq_re_seq ASC
+		LIMIT #{startRow}, #{listLimit};
+
 	</select>
 
+	
+	<select id="SupInquiryCount" resultType="Integer">
+		SELECT COUNT(maker_idx)
+			FROM inquiry
+				WHERE maker_idx = #{maker_idx}
+	</select>
+	
+	<update id="updateProgress">
+		UPDATE inquiry SET inq_progress = "답변완료"
+			WHERE inq_re_ref = #{inq_re_ref}
+	</update>
+	
+		<!-- 1:1 문의 답변 기능 -->
+	<insert id="insertReply">
+	  	<selectKey keyProperty="inq_idx" resultType="int" order="BEFORE">
+	  		SELECT IFNULL(MAX(inq_idx), 0) FROM inquiry
+	  	</selectKey>
+	  	INSERT INTO inquiry
+	  	VALUES (#{inq_idx} + 1
+	  			, #{member_idx}
+	  			, #{maker_idx}
+	  			, "답변"
+	  			, CONCAT('Re : ', #{inq_subject})
+	  			, #{inq_content}
+	  			, #{inq_re_ref} 
+	  			, #{inq_re_lev} + 1 
+	  			, #{inq_re_seq} + 1
+	  			, now()
+	  		   )
+	</insert>
   	<select id="selectMakerIdx" resultType="map">
 		SELECT maker_idx
 			FROM maker

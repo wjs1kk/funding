@@ -246,18 +246,6 @@
 	  			, now()
 	  		   )
 	</insert>
-	
-<!-- <select id="SupInquiry" resultType="com.itwillbs.ifund.vo.InquiryVO"> -->
-<!--     SELECT * -->
-<!--     FROM inquiry -->
-<!--     WHERE maker_idx IN -->
-<!--         <foreach item="item" collection="maker_idx" open="(" separator="," close=")"> -->
-<!--             #{item} -->
-<!--         </foreach> -->
-<!-- </select> -->
-
-
-
   	<select id="selectMakerIdx" resultType="map">
 		SELECT maker_idx
 			FROM maker

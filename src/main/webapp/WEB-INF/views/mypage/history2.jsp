@@ -194,22 +194,22 @@
 										data-campaign-id="202395" data-is-refund-target="true"
 										data-refund-version="5">
 										<div>
-											<div class="MyRewardPurchaseDetailFooter_contact__u9c1f" style="padding: 25px 60px">
-												<div class="MyRewardPurchaseDetailFooter_info__6EBYD">프로젝트
-													종료 이후에는 서포터의 배송지 정보가 메이커에게 전달되기 때문에 종료 이후 배송 정보 변경 등에 대한
-													문의는 메이커에게 직접 해야 합니다.</div>
-												<button onclick="location.href=''" class="Button_button__2dR1L Button_secondary__1fskO Button_lg__1xVO8 MyRewardPurchaseDetailFooter_button__1Gis_"
-													type="button">
-													<span>
-														<span class="Button_children__1A_Ce">
-															<svg viewBox="0 0 40 40" focusable="false" role="presentation"
-																class="withIcon_icon__3BadF MyRewardPurchaseDetailFooter_icon__1tHXb" aria-hidden="true">
-																<path fill="none" d="M0 0h40v40H0z"></path>
-																<path d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"></path>
-																<path d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"></path></svg>
-																메이커에게 문의하기</span></span>
-												</button>
-											</div>
+<!-- 											<div class="MyRewardPurchaseDetailFooter_contact__u9c1f" style="padding: 25px 60px"> -->
+<!-- 												<div class="MyRewardPurchaseDetailFooter_info__6EBYD">프로젝트 -->
+<!-- 													종료 이후에는 서포터의 배송지 정보가 메이커에게 전달되기 때문에 종료 이후 배송 정보 변경 등에 대한 -->
+<!-- 													문의는 메이커에게 직접 해야 합니다.</div> -->
+<!-- 												<button onclick="location.href=''" class="Button_button__2dR1L Button_secondary__1fskO Button_lg__1xVO8 MyRewardPurchaseDetailFooter_button__1Gis_" -->
+<!-- 													type="button"> -->
+<!-- 													<span> -->
+<!-- 														<span class="Button_children__1A_Ce"> -->
+<!-- 															<svg viewBox="0 0 40 40" focusable="false" role="presentation" -->
+<!-- 																class="withIcon_icon__3BadF MyRewardPurchaseDetailFooter_icon__1tHXb" aria-hidden="true"> -->
+<!-- 																<path fill="none" d="M0 0h40v40H0z"></path> -->
+<!-- 																<path d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"></path> -->
+<!-- 																<path d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"></path></svg> -->
+<!-- 																메이커에게 문의하기</span></span> -->
+<!-- 												</button> -->
+<!-- 											</div> -->
 											<div class="MyRewardPurchaseDetailFooter_messageBox__AcAbp" style="padding: 25px 60px">
 												<div color="basic"
 													class="MessageBox_messageBox__2ElIE MessageBox_basic__1LPiz">

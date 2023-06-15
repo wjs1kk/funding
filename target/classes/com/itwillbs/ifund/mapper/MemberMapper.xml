@@ -30,4 +30,11 @@
 		FROM member
 		WHERE member_email = #{member_email}
 	</select>
+	
+	<!-- 0615추가	 회원가입 이메일 중복 체크 -->
+	<select id="selectEmailCheck" resultType="String">
+		SELECT member_email
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
   </mapper>

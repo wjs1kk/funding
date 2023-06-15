@@ -9,7 +9,6 @@ import com.itwillbs.ifund.vo.CouponVO;
 import com.itwillbs.ifund.vo.InquiryVO;
 import com.itwillbs.ifund.vo.MakerVO;
 import com.itwillbs.ifund.vo.MemberVO;
-import com.itwillbs.ifund.vo.PaymentVO;
 import com.itwillbs.ifund.vo.PointVO;
 import com.itwillbs.ifund.vo.ProjectListVO;
 import com.itwillbs.ifund.vo.ProjectVO;
