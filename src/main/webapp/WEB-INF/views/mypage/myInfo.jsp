@@ -34,30 +34,53 @@
 </style>
 
 <script type="text/javascript">
-
-	  // 필드가 변경된 경우에만 값을 전송하도록 설정
-	  form.addEventListener("submit", function (event) {
-	    var formData = new FormData(form);
-
-	    // 파일 선택 여부 확인
-	    var selectedFile = fileInput.files[0];
-	    if (formData.get("newPassword") !== "" ||
-	        formData.get("newPassword2") !== "" ||
-	        selectedFile) {
-	      // 필드가 변경되었거나 파일이 선택된 경우, 폼을 제출합니다.
-	      return true;
-	    } else {
-	        // 변경된 필드가 없으므로 페이지를 새로고침합니다.
-	        event.preventDefault();
-	        location.reload();
-// 	        window.location.href = "mypage/supporter";
-	        return false;
-	      }
-	  });
-	}
-
-	
-
+$(function() {
+    //비밀번호 규칙 (숫자, 영어 대소문자, 특수문자 (!, @, #, $, %) 4~16자리 사용 가능)
+    let passwdReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+    $("#newPassword").on("change", function() {
+        if(!passwdReg.exec($("#newPassword").val())){
+            $("#passwordError").html("비밀번호 형식을 확인해주세요.<br> 영문자, 숫자, 특수문자 (!, @, #, $, %) 포함하여 8~16자리 입력").css("color", "red");
+        }else{
+            $("#passwordError").html("사용 가능한 비밀번호 형식 입니다!").css("color", "blue");
+        }
+    })
+    
+    // 비밀번호가 일치하는 지 확인
+    $("#newPassword2").on("change", function() {
+        if(!passwdReg.exec($("#newPassword2").val())){
+            $("#passwordError2").html("비밀번호 형식을 확인해주세요.<br> 영문자, 숫자, 특수문자 (!, @, #, $, %) 포함하여 8~16자리 입력").css("color", "red");
+        }else{
+            if($("#newPassword").val() != $("#newPassword2").val()){
+                $("#passwordError2").html("비밀번호가 일치하지 않습니다!").css("color", "red");
+            }else{
+                $("#passwordError2").html("비밀번호가 일치합니다!").css("color", "blue");
+            }
+        }
+    })
+    
+});
+function checkForm() {
+      var form = document.getElementById("saveForm");
+      var fileInput = document.getElementById("uploadProfileImg");
+      form.addEventListener("submit", function (event) {
+        var formData = new FormData(form);
+        var selectedFile = fileInput.files[0];
+        if (formData.get("newPassword") !== "" ||
+            formData.get("newPassword2") !== "" ||
+            selectedFile) {
+          return true;
+        } else {
+            event.preventDefault();
+            location.reload();
+//          window.location.href = "mypage/supporter";
+            return false;
+          }
+      });
+    }
+    
+    $(function() {
+          checkForm();
+        });
 </script>
 
 </head>
