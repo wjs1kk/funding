@@ -163,7 +163,14 @@
 											style="position: relative;">
 											<div class="d-flex flex-column align-items-center gap-1">
 												<span>총 프로젝트</span>
-												<h2 class="mb-2">${count.project }개</h2>
+												<c:choose>
+													<c:when test="${count.project eq null}">
+														<h2>0개</h2>
+													</c:when>
+													<c:otherwise>
+														<h2 class="mb-2">${count.project }개</h2>
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div id="orderStatisticsChart" style="min-height: 137.55px;">
 											</div>
@@ -187,7 +194,7 @@
 														<small class="text-muted">Mobile, Earbuds, TV</small>
 													</div>
 													<div class="user-progress">
-														<small class="fw-semibold">${count.food }</small>
+														<small class="fw-semibold">${count.tech }</small>
 													</div>
 												</div>
 											</li>
@@ -203,7 +210,7 @@
 														<small class="text-muted">T-shirt, Jeans, Shoes</small>
 													</div>
 													<div class="user-progress">
-														<small class="fw-semibold">23.8k</small>
+														<small class="fw-semibold">${count.fashion }</small>
 													</div>
 												</div>
 											</li>
@@ -215,11 +222,11 @@
 												<div
 													class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
 													<div class="me-2">
-														<h6 class="mb-0">홈/리빙</h6>
+														<h6 class="mb-0">뷰티</h6>
 														<small class="text-muted">Fine Art, Dining</small>
 													</div>
 													<div class="user-progress">
-														<small class="fw-semibold">849k</small>
+														<small class="fw-semibold">${count.beauty }</small>
 													</div>
 												</div>
 											</li>
@@ -235,7 +242,7 @@
 														<small class="text-muted">Football, Cricket Kit</small>
 													</div>
 													<div class="user-progress">
-														<small class="fw-semibold">99</small>
+														<small class="fw-semibold">${count.food }</small>
 													</div>
 												</div>
 											</li>
@@ -264,13 +271,7 @@
 															type : 'line',
 															data : {
 																labels : [
-																		'6일전',
-																		'5일전',
-																		'4일전',
-																		'3일전',
-																		'2일전',
-																		'1일전',
-																		'오늘' ], // x축의 이름
+																		], // x축의 이름
 																datasets : [ // y축에 들어갈 데이터들
 																{
 																	label : '누적 결제 금액', //범례
