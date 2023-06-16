@@ -10,11 +10,11 @@ public class MailUtil {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com"; // SMTP 서버명
-		String hostSMTPid = "qwez0498"; // 아이디
-		String hostSMTPpwd = "xoduddl12!"; // 비밀번호
+		String hostSMTPid = "mailnave"; // 아이디
+		String hostSMTPpwd = "151515!q"; // 비밀번호
 
 		// 보내는 사람
-		String fromEmail = "qwez0498@naver.com";
+		String fromEmail = "mailnave@naver.com";
 		String fromName = "아이펀드";
 
 		// email 전송
