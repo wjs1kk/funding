@@ -248,8 +248,8 @@ public class BankApiClient {
 		req.put("bank_tran_id", valueGenerator.getBankTranId()); // 거래순번
 		req.put("fintech_use_num", map.get("recv_client_fintech_use_num")); // fintech_use_num(출금계좌 핀테크 이용번호)
 		req.put("print_content", "아이펀드"); // dps_print_content(입금계좌 인자내역, 상대방 통장에 표시할 내역)
-		req.put("tran_amt", map.get("calculate_fee")); 
-		req.put("req_client_name", "김동욱"); // req_client_name(요청고객성명)
+		req.put("tran_amt", "4649415"); 
+		req.put("req_client_name", "강정운"); // req_client_name(요청고객성명)
 		req.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
 		req.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
 		req.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
@@ -261,7 +261,7 @@ public class BankApiClient {
 		jo.put("cntr_account_type", "N"); // cntr_account_type(계좌형태 - 계좌를 의미하는 "N" 전달)
 		
 		jo.put("wd_pass_phrase", "NONE");  // 입금 이체용 암호문구
-		jo.put("wd_print_content", "7066으로출금"); // 출금계좌 인자내역
+		jo.put("wd_print_content", "아이펀드"); // 출금계좌 인자내역
 		jo.put("name_check_option", "on"); // 수취인 성명 검증 여부
 		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
 		jo.put("req_cnt", 1); // 입금 요청 건수

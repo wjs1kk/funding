@@ -189,7 +189,7 @@
 								</div>
 								<input type="hidden" id="member_idx" name="member_idx" value="${member_idx}">
 								<input type="hidden" name="fintech_use_num" value="${fintech_use_num }">
-								<input type="hidden" name="recv_client_fintech_use_num" value="120211385488932372197010">
+								<input type="hidden" name="recv_client_fintech_use_num" value="120211385488932372197288">
 								<input type="hidden" id="calculate_idx" name="calculate_idx" value="${calculate_idx}">
 								<input type="hidden" id="calculate_fee" name="calculate_fee" value="${calculate_fee}">
 								<input type="hidden" id="project_idx" name="project_idx" value="${project_idx}">

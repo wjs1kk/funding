@@ -428,6 +428,7 @@
 		(SELECT COUNT(*)FROM project WHERE project_category = "푸드") as 'food'
 	</select>
 	
+	
 	<!-- 정산 출금 기록 -->
 	<insert id="insertAccountHistory">
 		INSERT INTO account_history 

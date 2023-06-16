@@ -233,10 +233,12 @@ public class BankController {
 		int project_idx = Integer.parseInt(map.get("project_idx").toString());
 		int calculate_fee = Integer.parseInt(map.get("calculate_fee").toString());
 		// 입출금 내역 db insert
-		int calResult = adminService.insertAccountHistory(member_idx, project_idx, calculate_fee); 
+		int calResult = adminService.insertAccountHistory(member_idx, project_idx, calculate_fee);
+		System.out.println(calResult);
 		if(calResult > 0) {
 			adminService.updateCalApprove(project_idx);
 		} 
+		
 		
 		return "redirect:/admin/management";
 	}
