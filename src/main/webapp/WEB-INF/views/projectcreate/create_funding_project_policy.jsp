@@ -4,7 +4,7 @@
 <html lang="ko" class="">
 
 <head>
-<title>아이펀드 프로젝트만들기 스토리작성</title>
+<title>정책</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 
 <link

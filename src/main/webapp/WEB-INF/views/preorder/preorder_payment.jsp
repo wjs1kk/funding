@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공동구매</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/reward/payments.d2c2c5fa.css">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/css/vendor.5f64dbd5.chunk.css">

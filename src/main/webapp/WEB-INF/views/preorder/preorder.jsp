@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공동구매</title>
 
 <link rel="stylesheet"
 	href="https://static.wadiz.kr/main/main.c1266dc7.css">

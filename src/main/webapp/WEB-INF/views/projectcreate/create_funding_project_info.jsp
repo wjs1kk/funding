@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>프로젝트 정보</title>
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 

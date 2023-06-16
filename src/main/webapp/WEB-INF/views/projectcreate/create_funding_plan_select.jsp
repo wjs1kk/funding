@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>요금제 선택</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://static.wadiz.kr/studio/funding/static/css/19.b3b957fa.chunk.css">

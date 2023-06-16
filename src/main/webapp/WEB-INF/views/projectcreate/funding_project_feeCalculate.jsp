@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수수료 및 정산정보</title>
 
 <link
 	href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css"

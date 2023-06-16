@@ -6,7 +6,7 @@
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
 <meta charset="utf-8">
-<title>1팀 펀딩</title>
+<title>아이펀드</title>
 
 
 <link rel="stylesheet"

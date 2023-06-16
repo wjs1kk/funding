@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">

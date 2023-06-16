@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>title here</title>
+<title>아이펀드</title>
 <script src="/yata/resources/js/jquery-3.6.4.js"></script>
 <link rel="stylesheet" href="../resources/css/mypage.css">
 

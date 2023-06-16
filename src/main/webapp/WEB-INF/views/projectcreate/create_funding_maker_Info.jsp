@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메이커</title>
 
 <link rel="stylesheet" type="text/css" href="https://static.wadiz.kr/studio/funding/static/css/11.e00806b3.chunk.css">
 <link href="https://static.wadiz.kr/studio/funding/static/css/5.6aa6dee4.chunk.css" rel="stylesheet">

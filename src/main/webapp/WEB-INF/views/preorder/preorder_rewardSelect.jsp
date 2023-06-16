@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
-<title>리워드 선택</title>
+<title>공동구매</title>
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/layout.css?97a6eedb">
 <link rel="stylesheet" href="/resources/static/css/common.css?v=20230502">

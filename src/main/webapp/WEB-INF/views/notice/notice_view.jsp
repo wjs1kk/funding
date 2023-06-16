@@ -6,7 +6,7 @@
 <head>
 
 
-<title>와디즈, 전 세계 트렌디한 브랜드 모은다… 온라인 부티크샵 ‘메종드와’ 오픈 | 와디즈 공지사항</title>
+<title>공지사항</title>
 
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/wui.css?c542abcf">
 <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?6b20ab93">
