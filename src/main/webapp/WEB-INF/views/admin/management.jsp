@@ -47,7 +47,6 @@
 		$("#calculate_fee").val(calculate_fee);
 		$("#project_idx").val(project_idx);
 		
-		alert(member_idx);
 		
 	}
 	

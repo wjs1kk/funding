@@ -348,10 +348,10 @@
 												</p>
 											</div>
 											<div class="PreorderMainCard_headerRight__3rRNi">
-												<c:if test="${selectbox eq 1 }">
+												<c:if test="${param.selectbox eq '1' }">
 													<p><span id="done" class="">종료</span>∙<span id="success" class="">성공</span></p>
 												</c:if>
-												<c:if test="${selectbox eq 0 }">
+												<c:if test="${param.selectbox eq '0' || empty param.selectbox }">
 													<span class="Badge_container__9G9PS Badge_visible__3LNXv"><span
 													class="Badge_badge__ovUKI Badge_label__2Rft2 Badge_sm__1OBNp Badge_primary__tTdjx Badge_tertiary__3uYKh">
 														<script type="text/javascript">

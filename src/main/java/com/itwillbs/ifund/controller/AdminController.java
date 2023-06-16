@@ -89,6 +89,9 @@ public class AdminController {
 
 	@Value("${client_id}")
 	private String client_id;
+	
+	@Value("${fintech_use_num}")
+	private String fintech_use_num;
  
 	// 관리자 메인페이지
 	@GetMapping("admin")
@@ -841,10 +844,10 @@ public class AdminController {
 		System.out.println("list: " + list );
 		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
 //			System.out.println(userInfo.getRes_list().get(2).getFintech_use_num());
-		System.out.println("Fintech_use_num : " + userInfo.getRes_list().get(2).getFintech_use_num());
+		System.out.println("Fintech_use_num : " + fintech_use_num);
 			
 		// Model 객체에 ResponseUserInfoVO 객체 저장
-		model.addAttribute("fintech_use_num", userInfo.getRes_list().get(2).getFintech_use_num());
+		model.addAttribute("fintech_use_num", fintech_use_num);
 
 		model.addAttribute("list", list);
 		return "admin/management";
