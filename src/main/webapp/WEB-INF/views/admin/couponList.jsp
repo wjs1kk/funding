@@ -10,7 +10,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-<title>와디즈 관리자 - 쿠폰관리</title>
+<title></title>
 <meta name="description" content="" />
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath }/resources/assets/img/favicon/favicon.ico" />

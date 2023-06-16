@@ -50,7 +50,7 @@
 								<div class="info">
 	
 									<h3 class="title">${noticeList.board_subject }</h3>
-									<span class="author">와디즈</span><span class="created-at">
+									<span class="author">관리자</span><span class="created-at">
 										${fn:substring(noticeList.board_date,0,10)}
 									</span>
 								</div>

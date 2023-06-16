@@ -12,7 +12,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<title>와디즈 관리자 - 회원관리 상세</title>
+<title>ifund 관리자 - 회원관리 상세</title>
 
 <meta name="description" content="" />
 

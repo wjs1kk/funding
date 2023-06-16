@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>펀딩</title>
+
+<title>ifund</title>
 
 <link rel="stylesheet"
 	href="https://static.wadiz.kr/main/main.c1266dc7.css">
