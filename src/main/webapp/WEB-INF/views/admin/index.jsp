@@ -252,46 +252,6 @@
 							</div>
 							<!--/ Order Statistics -->
 							<!-- Expense Overview -->
-							<div class="col-md-6 col-lg-12 col-xl-6 order-0 mb-4">
-								<div class="card h-100">
-									<div class="card-body px-0">
-										<div class="tab-content p-0">
-											<canvas id="myChart" style="width: 100px;"></canvas>
-											<hr>
-											<script>
-												const ctx = document
-														.getElementById(
-																'myChart')
-														.getContext('2d');
-												// const 변수타입과 ctx 변수명은 Chart.js 기본문서에서 사용하고 있으니 따라했다.
-												// ctx는 sample 코드들에서 다 사용하기 때문에 불편하지 않게 ctx로 연습하자.
-												const myChart = new Chart(
-														ctx,
-														{
-															type : 'line',
-															data : {
-																labels : [
-																		], // x축의 이름
-																datasets : [ // y축에 들어갈 데이터들
-																{
-																	label : '누적 결제 금액', //범례
-																	data : [ ${balanceCount.first},
-																		${balanceCount.second},
-																		${balanceCount.third},
-// 																		${balanceCount.fourth},
-// 																		${balanceCount.fifth},
-// 																		${balanceCount.sixth},
-// 																		${balanceCount.seventh} ]
-																]
-																// 값
-																} ]
-															}
-														});
-											</script>
-										</div>
-									</div>
-								</div>
-							</div>
 							<!--/ Expense Overview -->
 
 							<!-- Transactions -->
