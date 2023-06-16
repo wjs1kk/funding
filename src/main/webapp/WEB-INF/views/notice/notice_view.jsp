@@ -35,8 +35,8 @@
 							<p class="title">${noticeMap.board_subject }</p>
 							<div class="info">
 								<em class="user-img"
-									style="background-image: url(https://static.wadiz.kr/assets/icon/apple-touch-icon.png)"></em>
-								<span class="user-info">와디즈 <br>${fn:substring(noticeMap.board_date,0,10)}
+									style="background-image: url()"></em>
+								<span class="user-info">관리자 <br>${fn:substring(noticeMap.board_date,0,10)}
 								</span>
 
 							</div>
